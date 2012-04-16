@@ -1062,9 +1062,9 @@ function getAddressPartsXMLforSOLR($physical_address_id)
 				$type = ' type="'.strtolower(esc($type)).'"';
 			}
 			$value = ($element['value']);
-			$value = htmlspecialchars_decode($value);
-			$value = purify($value);
-			$value = htmlspecialchars($value);
+		//	$value = htmlspecialchars_decode($value);
+		//	$value = purify($value);
+		//	$value = htmlspecialchars($value);
 			$xml .= "            <addressPart$type>$value</addressPart>\n";
 		}		
 	}
@@ -1718,6 +1718,8 @@ function getSubjectTypesXMLforSOLR($registryObjectKey, $elementName)
 		{
 			//var_dump($element['type']);
 			$value = esc(trim($element['value']));
+//merge YS
+/*
 			$resolvedName = '';
 			if(($value != '') && (strlen($value) < 7) && is_numeric($value))
 			{
@@ -1738,9 +1740,81 @@ function getSubjectTypesXMLforSOLR($registryObjectKey, $elementName)
 				$term = $value;
 			}
 			$type = ' type="'.esc($element['type']).'"';
+*/
+if($value != '')
+			{
+                                $code='';
+				$type = $element['type'];
+				$resolvedName = '';
+				if($type!='')
+				{				
+					$upperCase = strtoupper($type);
+					//echo $upperCase.' ';
+					
+					
+					if($upperCase=='RFCD'){
+						$resolvedName = getTermsForVocabByIdentifier('rfcd', $value);
+					}elseif($upperCase=='ANZSRC-FOR'){
+						$valueLength = strlen($value);
+						if($valueLength < 6){
+							for($i = 0; $i < (6 - $valueLength) ; $i++){
+								$value .= '0';
+							}				
+						}
+						$resolvedName = getTermsForVocabByIdentifier("ANZSRC-FOR", $value);
+						//echo $value;
+						$resolvedName = $resolvedName[0]['name'];
+						$code = ' code="'.esc($value).'"';
+						//$resolvedName="ANZFOR";
+					}elseif($upperCase=='ANZSRC-SEO'){
+										$valueLength = strlen($value);
+						if($valueLength < 6){
+							for($i = 0; $i < (6 - $valueLength) ; $i++){
+								$value .= '0';
+							}				
+						}
+						$resolvedName = getTermsForVocabByIdentifier('ANZSRC-SEO', $value);
+						$resolvedName = $resolvedName[0]['name'];
+					}elseif($upperCase=='ANZSRC-TOA'){
+										$valueLength = strlen($value);
+						if($valueLength < 6){
+							for($i = 0; $i < (6 - $valueLength) ; $i++){
+								$value .= '0';
+							}				
+						}
+						$resolvedName = getTermsForVocabByIdentifier('ANZSRC-TOA', $value);
+						$resolvedName = $resolvedName[0]['name'];
+					}elseif($upperCase=='TERN'){
+										$valueLength = strlen($value);
+						if($valueLength < 6){
+							for($i = 0; $i < (6 - $valueLength) ; $i++){
+								$value .= '0';
+							}
+						}
+						$resolvedName = getTermsForVocabByIdentifier('TERN', $value);
+						$resolvedName = $resolvedName[0]['name'];
+					}else{
+						$resolvedName = $value;
+					}
+					
+				}
+				if( $lang = $element['lang'] )
+				{
+					$lang = ' xml:lang="'.esc($lang).'"';
+				}
+				if($resolvedName != '')
+				{
+					$term = $resolvedName;				
+				}
+				else {
+					$term = $value;
+				}
+				$type = ' type="'.esc($type).'"';
+                               
 			$xml .= "      <$elementName$type>$term</$elementName>\n";
 		}
 	}
+     }
 	return $xml;
 }
 
@@ -1770,9 +1844,9 @@ function getDescriptionTypesXMLforSOLR($registryObjectKey, $elementName)
 			}
 			$value = (trim($value));
 			
-			$value = htmlspecialchars_decode($value);
-			$value = purify($value);
-			$value = htmlspecialchars($value);
+		//	$value = htmlspecialchars_decode($value);
+		//	$value = purify($value);
+		//	$value = htmlspecialchars($value);
 			
 			$xml .= "      <$elementName$type$lang>$value</$elementName>\n";
 		}

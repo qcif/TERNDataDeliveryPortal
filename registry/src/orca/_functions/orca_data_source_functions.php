@@ -592,11 +592,17 @@ return $transformResult;
 
 function transformToSolr($registryObjectsXML)
 {
-    global $solrXSLTProc;
-	$registryObjects = new DomDocument();
-	$registryObjects->loadXML($registryObjectsXML);
-	$transformResult = $solrXSLTProc->transformToXML($registryObjects);	
-	return $transformResult;
+    $qtestxsl = new DomDocument();
+$registryObjects = new DomDocument();
+$registryObjects->loadXML($registryObjectsXML);
+$qtestxsl->load('../_xsl/rif2solr.xsl');
+$proc = new XSLTProcessor();
+$proc->importStyleSheet($qtestxsl);
+$transformResult = $proc->transformToXML($registryObjects);
+
+$result=replaceCodeWithStringValue($transformResult);
+//return $transformResult;
+return $result;
 }
 
 function runSolrIndexForDatasource($dataSourceKey)
@@ -625,6 +631,7 @@ function runSolrIndexForDatasource($dataSourceKey)
 		$rifcs .= $rifcsContent;			
 		$rifcs .= "</registryObjects>\n";		
 		$rifcs = transformToSolr($rifcs);									
+
 		$result .= curl_post(gSOLR_UPDATE_URL, $rifcs);					
 		$result .= curl_post(gSOLR_UPDATE_URL.'?commit=true', '<commit waitFlush="false" waitSearcher="false"/>');
 		$result .= curl_post(gSOLR_UPDATE_URL.'?optimize=true', '<optimize waitFlush="false" waitSearcher="false"/>');	

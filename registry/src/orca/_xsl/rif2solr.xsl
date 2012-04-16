@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" exclude-result-prefixes="ro">
-    <xsl:output indent="yes" />
+    <xsl:output indent="yes" method="xml"/>
     <xsl:strip-space elements="*"/>
 <xsl:template match="/">
     <xsl:apply-templates/>
@@ -96,7 +96,8 @@
         
         <xsl:apply-templates select="ro:subject" mode="value"/>
         <xsl:apply-templates select="ro:subject" mode="type"/>
-        
+        <xsl:apply-templates select="ro:subject" mode="code"/>
+
         <xsl:apply-templates select="ro:description" mode="value"/>
         <xsl:apply-templates select="ro:description" mode="type"/>
         
@@ -105,7 +106,7 @@
         
         <xsl:apply-templates select="ro:location"/>
         <xsl:apply-templates select="ro:coverage"/>
-        
+         
         <xsl:apply-templates select="ro:relatedObject"/>
         <xsl:apply-templates select="ro:relatedInfo"/>
     </xsl:template>
@@ -184,9 +185,50 @@
 	        <xsl:element name="field">
 	            <xsl:attribute name="name"><xsl:value-of select="@type"/></xsl:attribute>
 	            <xsl:value-of select="$dateValue"/>           
-	        </xsl:element>     
-        </xsl:if>   
-    </xsl:template>
+	        </xsl:element>
+        </xsl:if>  
+    </xsl:template> 
+
+  <!--xsl:template match="ro:coverage/ro:temporal">
+
+        <xsl:if test="ro:date != ''">
+	        <xsl:element name="field">
+	            <xsl:attribute name="name">minDate</xsl:attribute>
+	            <xsl:value-of select="ro:date[1]"/>
+	        </xsl:element>
+                 <xsl:element name="field">
+	            <xsl:attribute name="name">maxDate</xsl:attribute>
+	            <xsl:value-of select="ro:date[last()]"/>
+	        </xsl:element>
+        </xsl:if>
+        <xsl:for-each select="ro:date">
+            <xsl:variable name="dateString"><xsl:value-of select="."/></xsl:variable>
+        <xsl:variable name="dateValue">
+            <xsl:choose>
+                <xsl:when test="contains($dateString ,'-')">
+                    <xsl:value-of select="substring-before($dateString ,'-')"/>
+                </xsl:when>
+                <xsl:when test="contains($dateString ,'/')">
+                    <xsl:value-of select="substring-before($dateString ,'/')"/>
+                </xsl:when>
+                <xsl:when test="contains($dateString ,'T')">
+                    <xsl:value-of select="substring-before($dateString ,'T')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:if test="$dateValue != ''">
+	        <xsl:element name="field">
+	            <xsl:attribute name="name"><xsl:value-of select="@type"/></xsl:attribute>
+	            <xsl:value-of select="$dateValue"/>
+	        </xsl:element>
+
+        </xsl:if>
+        </xsl:for-each>
+
+    </xsl:template>-->
     
     <xsl:template match="ro:address | ro:electronic | ro:physical | ro:coverage | ro:temporal">
             <xsl:apply-templates/>
@@ -230,19 +272,98 @@
     </xsl:template>
     
     <xsl:template match="ro:subject" mode="value">
-        <xsl:element name="field">
-            <xsl:attribute name="name">subject_value</xsl:attribute>
-            <xsl:value-of select="."/>
-        </xsl:element>       
+        <xsl:if test="./@type!='anzsrc-for'">
+            <xsl:element name="field">
+                <xsl:attribute name="name">subject_value</xsl:attribute>
+                <xsl:value-of select="."/>
+            </xsl:element>       
+        </xsl:if>
+        
     </xsl:template>
     
     <xsl:template match="ro:subject" mode="type">
+        <xsl:if test="@type!='anzsrc-for'">
+            <xsl:element name="field">
+                <xsl:attribute name="name">subject_type</xsl:attribute>
+                <xsl:value-of select="@type"/>
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+
+<!--
+    <xsl:template match="ro:subject[@type='anzsrc-for']" mode="code">
         <xsl:element name="field">
             <xsl:attribute name="name">subject_type</xsl:attribute>
             <xsl:value-of select="@type"/>
         </xsl:element>
     </xsl:template>
-    
+-->
+<!--Added for FOR -->
+    <xsl:template match="ro:subject[@type='anzsrc-for']" mode="code">
+        <xsl:variable name="codelength" select="string-length(.)"/>
+
+        <xsl:variable name="fullcode">
+            <xsl:choose>
+                <xsl:when test="$codelength=2">
+                    <xsl:value-of select="concat(.,'0000')"/>
+                </xsl:when>
+                <xsl:when test="$codelength=4">
+                    <xsl:value-of select="concat(.,'00')"/>
+                </xsl:when>
+                <xsl:when test="$codelength=6">
+                    <xsl:value-of select="."/>
+                </xsl:when>                
+                <xsl:otherwise>
+                    <xsl:value-of select="substring(.,1,6)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+         </xsl:variable>
+         
+             <xsl:variable name="forcode_six"><xsl:value-of select="$fullcode"/></xsl:variable>
+              <xsl:variable name="forcode_four_tmp" select="substring($forcode_six,1,4)" />
+                    <xsl:variable name="forcode_two_tmp" select="substring($forcode_six,1,2)" />
+
+                    <xsl:variable name="forcode_four" select="concat($forcode_four_tmp,'00')" />
+                    <xsl:variable name="forcode_two" select="concat($forcode_two_tmp,'0000')" />
+
+                    <!--code-->
+                    <xsl:element name="field">
+                        <xsl:attribute name="name">for_code_six</xsl:attribute>
+                        <xsl:value-of select="$forcode_six"/>
+                    </xsl:element>
+
+                    <xsl:element name="field">
+                        <xsl:attribute name="name">for_code_four</xsl:attribute>
+                        <xsl:value-of select="$forcode_four"/>
+                    </xsl:element>
+
+                    <xsl:element name="field">
+                        <xsl:attribute name="name">for_code_two</xsl:attribute>
+                        <xsl:value-of select="$forcode_two"/>
+                    </xsl:element>
+
+                    <!--string value-->
+                    <xsl:element name="field">
+                        <xsl:attribute name="name">for_value_six</xsl:attribute>
+                        <xsl:value-of select="$forcode_six"/>
+                    </xsl:element>
+
+                    <xsl:element name="field">
+                        <xsl:attribute name="name">for_value_four</xsl:attribute>
+                        <xsl:value-of select="$forcode_four"/>
+                    </xsl:element>
+
+                    <xsl:element name="field">
+                        <xsl:attribute name="name">for_value_two</xsl:attribute>
+                        <xsl:value-of select="$forcode_two"/>
+                    </xsl:element>
+         
+  
+       
+        
+    </xsl:template>
+<!-- end -->
+
     <xsl:template match="ro:description" mode="value">
         <xsl:element name="field">
             <xsl:attribute name="name">description_value</xsl:attribute>

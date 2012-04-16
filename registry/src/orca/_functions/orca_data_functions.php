@@ -2371,6 +2371,48 @@ function setDraftFlag($draft_key, $data_source, $flag)
 }
 
 
+function replaceCodeWithStringValue($transformResult)
+{
+    global $gCNN_DBS_ORCA;
+    
+    $resultSet = null;
+    $strQuery = 'SELECT name FROM dba.tbl_terms where identifier=$1';
+    $xml=  simplexml_load_string($transformResult);
+     $att="name";
+    foreach($xml->doc as $doc)
+    {
+        foreach($doc->field as $f)
+        {
+            if($f->attributes()->$att=="for_value_two" ||$f->attributes()->$att=="for_value_four" ||$f->attributes()->$att=="for_value_six")
+            {
+                $params = array($f);
+                $resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+               // print($resultSet[0]["name"]);
+               // print($f);
+                $name=$resultSet[0]["name"];
+                $f[0][0]=$name;     
+              
+            }
+            
+            
+        }       
+    }
+//print_r($xml->asXML());
+    
+    return $xml->asXML();
+    
+/*    
+	global $gCNN_DBS_ORCA;
+	
+	$resultSet = null;
+	$strQuery = 'SELECT name FROM dba.tbl_terms where identifier=$1';
+	$params = array($harvest_request_id);
+	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+	
+	return $resultSet;
+ *
+ */
+}
 
 
 

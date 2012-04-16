@@ -31,7 +31,7 @@ define('IN_ORCA', true);
 // note: changing this will cause all reharvested records to have a "new record revision" created
 define('gRIF_SCHEMA_PATH', eAPPLICATION_ROOT.'/orca/schemata/registryObjects.xsd'); 
 
-define('gRIF_SCHEMA_URI', 'http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd');
+define('gRIF_SCHEMA_URI', 'http://demo/schema/rif-cs1.3/registryObjects.xsd');
 
 define('gCURRENT_SCHEMA_VERSION', '1.3');
 
@@ -70,8 +70,8 @@ define('gORCA_VOCABS_BASE_URI', "");
 
 // The harvester settings.
 // Use empty strings for both values if there is no harvester available.
-define('gORCA_HARVESTER_BASE_URI', $harvest_url);
-define('gORCA_HARVESTER_IP', $harvest_ip);
+define('gORCA_HARVESTER_BASE_URI', "https://demo:8443/harvester/");
+define('gORCA_HARVESTER_IP', "192.168.56.100");
 
 // Harvest methods.
 // These values are used in _javascript/data_source_forms.js
@@ -129,6 +129,6 @@ $gORCA_STATUS_INFO = array (
 // PIDS environment settings.
 // -----------------------------------------------------------------------------
 // Service configuration.
-define('gPIDS_SERVICE_BASE_URI', $pids_url);
-define('gPIDS_APP_ID', $pids_app_id);
-define('gSOLR_UPDATE_URL' , $solr_url . "update");
+//define('gPIDS_SERVICE_BASE_URI', $pids_url);
+//define('gPIDS_APP_ID', $pids_app_id);
+define('gSOLR_UPDATE_URL' , "http://demo:8080/orca-solr/update");
