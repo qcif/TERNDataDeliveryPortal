@@ -1,0 +1,44 @@
+/* 
+    Document   : mobile
+    Created on : 15/02/2012, 9:31:09 AM
+    Author     : wahyuni
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+h2 {
+    font-size: 15px;
+}
+li {
+    font-size:12px;
+}
+#logo{
+  text-align: center;
+  height: 140px;
+
+}
+
+.clearfix:after{clear: both;content: ".";display: block;height: 0;visibility: hidden;font-size: 0;}
+
+.hide{ display:none;}
+
+.ui-collapsible-heading, .ui-collapsible-content{
+    margin:0;
+}
+
+#spatial_coverage_map{width:250px;height:300px; margin:auto;}
+
+.center{ text-align: center;}
+
+#search{ margin-top: 10px; margin-bottom:10px;}
+#header{margin-bottom: 10px;}
+
+.icon-heading-connections{position:relative;float:left;padding:5px;}
