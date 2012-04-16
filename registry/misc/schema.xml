@@ -459,36 +459,23 @@
    
    <!-- Single Value Fields-->
    <field name="key" type="string" indexed="true" stored="true" required="true" /> 
-   <field name="key_hash" type="string" indexed="true" stored="true" required="true" />
-   <field name="status" type="string" indexed="true" stored="true"/>
-   <field name="class" type="string" indexed="true" stored="true"/>
-   <field name="reverseLinks" type="string" indexed="true" stored="true"/>
    <field name="originating_source" type="string" indexed="true" stored="true"/>
-   <field name="data_source_key" type="string" indexed="true" stored="true"/>
-   
-   <field name="date_modified" type="string" indexed="true" stored="true"/>
-   
-   <!-- Anything that starts with s_ is alpha only sort-->
    <field name="group" type="string" indexed="true" stored="true"/>
-   <field name="s_group" type="alphaOnlySort" indexed="true"/>
-
+   <field name="class" type="string" indexed="true" stored="true"/>
    <field name="type" type="string" indexed="true" stored="true"/>
-   <field name="s_type" type="alphaOnlySort" indexed="true"/>
-   
-   <!-- Search Base Score being a sortable int-->
-   <field name="search_base_score" type="sint" indexed="true" stored="true"/>
-   	
+   <field name="date_modified" type="string" indexed="true" stored="true"/>
+   <field name="status" type="string" indexed="true" stored="true"/>
 
+   <field name="reverseLinks" type="string" indexed="true" stored="true"/>
+
+  <field name="data_source_key" type="string" indexed="true" stored="true"/>
    
    <!-- Names-->
-   <field name="display_title" type="text" indexed="true" stored="true"/>
-   <field name="list_title" type="text" indexed="true" stored="true"/>
-   <field name="s_list_title" type="alphaOnlySort" indexed="true" stored="false"/>
-   <field name="alt_list_title" type="text" indexed="true" stored="true" multiValued="true"/>
-   <field name="alt_display_title" type="text" indexed="true" stored="true" multiValued="true"/>
+   <field name="displayTitle" type="text" indexed="true" stored="true"/>
+   <field name="listTitle" type="text" indexed="true" stored="true"/>
+   <field name="alt_listTitle" type="text" indexed="true" stored="true" multiValued="true"/>
+   <field name="alt_displayTitle" type="text" indexed="true" stored="true" multiValued="true"/>
 
-
-	<!-- Not sure what to use name part for, but leave for now-->
    <field name="name_part_type" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="name_part" type="string" indexed="true" stored="true" multiValued="true"/>
    
@@ -496,28 +483,27 @@
    <field name="location" type="text" indexed="true" stored="true" multiValued="true"/>
    
    <!-- MultiValued relatedObjects -->
-   <field name="related_object_key" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="related_object_class" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="related_object_type" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="related_object_list_title" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="related_object_display_title" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="related_object_relation" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="related_object_display_logo" type="string" indexed="true" stored="true" multiValued="true"/>
-  
+   <field name="relatedObject_key" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="relatedObject_relatedObjectClass" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="relatedObject_relatedObjectType" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="relatedObject_relatedObjectListTitle" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="relatedObject_relatedObjectDisplayTitle" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="relatedObject_relation" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="relatedObject_relatedObjectLogo" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="relatedObject_relation_description" type="string" indexed="true" stored="true" multiValued="true"/>
+ 
    <!-- MultiValued Descriptions-->
    <field name="description_value" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="description_type" type="string" indexed="true" stored="true" multiValued="true"/>
    
    <!-- MultiValued Subjects-->
-   <field name="subject_value_resolved" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="subject_value_unresolved" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="s_subject_value_resolved" type="alphaOnlySort" indexed="true" stored="false" multiValued="true"/>
+   <field name="subject_value" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="subject_type" type="string" indexed="true" stored="true" multiValued="true"/>
    
    <!-- relatedInfo all cramped into 1-->
-   <field name="related_info" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="date_from" type="int" indexed="true" stored="true" multiValued="true"/>
-   <field name="date_to" type="int" indexed="true" stored="true" multiValued="true"/>
+   <field name="relatedInfo" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="dateFrom" type="int" indexed="true" stored="true" multiValued="true"/>
+   <field name="dateTo" type="int" indexed="true" stored="true" multiValued="true"/>
 
    <field name="identifier_value" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="identifier_type" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -586,7 +572,7 @@
  <!-- Field to use to determine and enforce document uniqueness. 
       Unless this field is marked with required="false", it will be a required field
    -->
- <uniqueKey>key_hash</uniqueKey>
+ <uniqueKey>key</uniqueKey>
 
  <!-- field for the QueryParser to use when an explicit fieldname is absent -->
  <defaultSearchField>description_value</defaultSearchField>
@@ -598,13 +584,12 @@
         is added to the index.  It's used either to index the same field differently,
         or to add multiple fields to the same field for easier/faster searching.  -->
 
+   <copyField source="displayTitle" dest="text"/>
+   <copyField source="listTitle" dest="text"/>
+   <copyField source="description_value" dest="text"/>
+   <copyField source="subject_value" dest="text"/>
+	
    <copyField source="*" dest="fulltext"/>
-   
-   <copyField source="group" dest="s_group"/>
-   <copyField source="type" dest="s_type"/>
-   <copyField source="list_title" dest="s_list_title"/>
-   <copyField source="subject_value_resolved" dest="s_subject_value_resolved"/>
-   
 
    <!-- Above, multiple source fields are copied to the [text] field. 
 	  Another way to map multiple source fields to the same 
