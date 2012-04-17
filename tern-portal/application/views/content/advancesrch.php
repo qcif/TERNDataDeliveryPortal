@@ -14,19 +14,10 @@
   <hr width="440"/>
   <div id="advance-temporal" style="padding-left:5px;padding-bottom: 5px; margin:5px"><?php $this->load->view('tab/widgets/temporal');?></div>
   <hr width="440"/>
-  <div id="advance-spatial" style="padding-left:5px;padding-bottom: 5px; margin:5px">  <p><b><label>Spatial</label></b></p> 
-      <div >
-				<span id="map-stuff">
-					<button id="start-drawing">Start Drawing</button>
-					<button id="clear-drawing">Clear Drawing</button>
-					<!--<button id="expand">Expand</button>
-					<button id="collapse">Collapse</button>-->
-                                        <label>Region: </label><input type="text" id="address" value=""/>
-					<button id="map-info">Info</button>
-				</span>
-                            	<span id="map-help-stuff"></span>
-			</div><?php $this->load->view('tab/widgets/spatial');?> </div>
+    <div id="advance-for" style="padding-left:5px;padding-bottom: 5px; margin:5px"><p><b>Fields of Research</b></p>
+        <select><option>CHEMICAL SCIENCE</option><option>BIOLOGICAL SCIENCES</option></select></div>
   <hr width="440"/>
+
   <div id="advance-facility-widget" style="padding-left:5px;padding-bottom: 5px; margin:5px" ><?php $this->load->view('tab/widgets/facility');?></div>  
   <hr width="440"/>
   <!--<div id="advance-researcher-widget"><?php //$this->load->view('tab/widgets/researcher');?></div>
@@ -36,7 +27,18 @@
    </div>
  <div id="tab-location-map" >
 			<div id="spatialmap"></div>
-                    
+                    <div id="advance-spatial" >  
+      <div class="ui-widget-header" >
+				<span id="map-stuff">
+					<button id="start-drawing">Start Drawing</button>
+					<button id="clear-drawing">Clear Drawing</button>
+					<!--<button id="expand">Expand</button>
+					<button id="collapse">Collapse</button>-->
+                                        <label>Region: </label><input type="text" id="address" value=""/>
+					<button id="map-info">Info</button>
+				</span>
+                            	<span id="map-help-stuff"></span>
+			</div> </div><?php $this->load->view('tab/widgets/spatial');?>
                 </div>
                 <div id="spatial-info2" class="hide">
 				<ul style="text-align:left">

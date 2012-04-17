@@ -4,15 +4,15 @@
 
         echo '<div>';
      
-        echo '<select id="fac"  multiple="multiple" style="width:15em;height:15em">';
+        echo '';
 
-        foreach( $json->docs as $d)
+        for($i=0;$i< sizeof($facilities)-1; $i=$i+2)
         {
         
-            echo '<option value="'.$d.'">'.$d.'</option>';
+            echo '<input type="checkbox" value="'. $facilities[$i].'">'.$facilities[$i].'</input><br/>';
                    
-       }
-		
-	echo '</select></div>';
+        }
+      
+	echo '</div>';
 
 ?>

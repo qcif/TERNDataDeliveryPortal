@@ -1,5 +1,4 @@
-var map;
-var map2;
+
 $(document).ready(function(){
 	var search_term = $('#search-box').val();
 	var page = 1;
@@ -27,11 +26,14 @@ $(document).ready(function(){
         var infoWindows = [];
         var labelMap = [ {featureType: "all", stylers: [ {elementType: "labels", stylers: [ {visibility: "on"} ]} ]} ];
         var infowindow;
-        var alltab = '';
+        
+        var map;
+        var map2;
+        var drawingArrays = [];
         var markerCluster = '';
       //router
 
-                       var drawingArrays = [];
+       
 
 	if(window.location.href.indexOf('https://')==0){
 		var thisurl = window.location.href;
@@ -66,11 +68,11 @@ $(document).ready(function(){
 		});
 	}
 
-//==========================
-//Prepare loading window
-//
+        //==========================
+        //Prepare loading window 
+        //
         $("#loadingScreen").dialog({
-		autoOpen: false,	// set this to false so we can manually open it
+		autoOpen: false,	
 		dialogClass: "loadingScreenWindow",
 		closeOnEscape: false,
 		draggable: false,
@@ -89,7 +91,7 @@ $(document).ready(function(){
 		}
 	}); // end of dialog
      
-        function waitingDialog(waiting) { // I choose to allow my loading screen dialog to be customizable, you don't have to
+        function waitingDialog(waiting) { 
 	
         $("#loadingScreen").html( (waiting.message && waiting.message !='')  ? waiting.message : 'Please wait...');
 	$("#loadingScreen").dialog('option', 'title', (waiting.title && waiting.title !='') ? waiting.title : 'Loading');
@@ -98,7 +100,7 @@ $(document).ready(function(){
         function closeWaitingDialog() {
                 $("#loadingScreen").dialog('close');
         }
-//==========================
+        //==========================
 
 
 

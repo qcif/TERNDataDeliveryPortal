@@ -23,9 +23,7 @@
                     <div id="temporal-widget"><?php $this->load->view('tab/widgets/temporal');?></div>
                     </p>
                     <br>
-                    <hr width="440">
-                    <div id="spatial-widget"><?php $this->load->view('tab/widgets/spatial');?></div>   
-                    <br>
+                 
                     <hr width="440">
                     <br> Map tools
                     <br>
@@ -38,6 +36,9 @@
 				</span>
                             	<span id="map-help-stuff"></span>
                     </div>
+                    <br>
+            
+                    <div id="spatial-widget"><?php $this->load->view('tab/widgets/spatial');?></div>   
                     <br>
                     <hr width="440">
 <!--                    
