@@ -51,6 +51,13 @@
                 <xsl:value-of select="'OzFlux'"/>
                 </xsl:attribute>
             </xsl:when>
+            
+                <xsl:when test=". = 'TERN Supersites'">
+                <xsl:attribute name="group">
+                <xsl:value-of select="'Supersites'"/>
+                </xsl:attribute>
+            </xsl:when>
+            
              <!--xsl:when test=". = 'Terrestrial Ecosystem Research Network'">
                    <xsl:choose>
                  <xsl:when test="contains('aekos',rif:key)">
