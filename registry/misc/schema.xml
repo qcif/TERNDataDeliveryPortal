@@ -512,7 +512,13 @@
    <field name="spatial_coverage_center" type="string" indexed="true" stored="true" multiValued="true"/>
    
    <!-- END ANDS Indexed Field-->
-
+<!-- FOR Fields -->
+<field name="for_code_two" type="string" indexed="true" stored="true" multiValued="true"/>
+<field name="for_code_four" type="string" indexed="true" stored="true" multiValued="true"/>
+<field name="for_code_six" type="string" indexed="true" stored="true" multiValued="true"/>
+<field name="for_value_two" type="string" indexed="true" stored="true" multiValued="true"/>
+<field name="for_value_four" type="string" indexed="true" stored="true" multiValued="true"/>
+<field name="for_value_six" type="string" indexed="true" stored="true" multiValued="true"/>
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
    <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
