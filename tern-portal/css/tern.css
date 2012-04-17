@@ -205,7 +205,7 @@ button{font-size:13px;}
 .info-message{border:1px solid #9ab191;padding:10px;margin:10px 0;background:white;}
 
 /*new advanced search*/
-#tab-location-map{ float:right; margin-right:10px;}
+#tab-location-map{ float:right; margin-right:10px; margin-top:10px}
 
 /*
  * Auto Complete
@@ -652,4 +652,14 @@ h3.ui-accordion-header.ui-state-active{ font-weight:bold; }
   
   #advance-buttonSearch{
       margin: 5px;
+  }
+  
+  #advance-spatial-search{
+      text-align:center;
+      padding-top:8px;
+      
+  }
+  #advance-spatial-search table{
+      margin:auto;
+      
   }

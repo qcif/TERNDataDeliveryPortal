@@ -402,19 +402,22 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         return $json;
     }
 
-    public function getNCRISPartners()
+
+    public function getFacilities()
     {
         // get Partner File
 
-        $json = json_decode($this->load->file(APPPATH . 'config/partners.php', TRUE));
-        /* $fields = array(
-          'q'=>'group:NCRIS','version'=>'2.2','start'=>'0','rows'=>'100','indent'=>'on', 'wt'=>'json',
-          'fl'=>'description_value, description_type, key, displayTitle, location'
+        //$json = json_decode($this->load->file(APPPATH . 'config/partners.php', TRUE));
+          $fields = array(
+          'q'=>'class:collection','version'=>'2.2','start'=>'0','rows'=>'0','indent'=>'on', 'wt'=>'json'
           );
-          $json = $this->fireSearch($fields, ''); */
+          $facet = 'facet=on&facet=true&facet.limit=-1&facet.field=group&facet.mincount=1';
+
+          $json = $this->fireSearch($fields, $facet); 
 
         return $json;
     }
+
 
     /* This method is used by refreshFORStat.php to get statistics on the FOR codes */
     public function getFORCodes()
