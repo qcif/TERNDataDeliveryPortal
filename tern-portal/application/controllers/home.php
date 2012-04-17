@@ -45,14 +45,14 @@ class Home extends CI_Controller {
                 }
                 $this->load->model('Registryobjects');
                 $query = $this->Registryobjects->get_min_year();
-                $row = $query->row();
+                if($query) $row = $query->row();
  
                 //$data['min_date'] = $row;
 
                 $data['min_year'] = $row->min_year;
                 $data['max_year'] = $row->max_year;
 		$this->load->model('Solr');
-		$data['json'] = $this->Solr->getNCRISPartners();
+		//$data['json'] = $this->Solr->getNCRISPartners();
 		$data['home'] = 1;
 		$data['tabs'] = 1;
 		//echo $data['user_agent'];
@@ -71,7 +71,7 @@ class Home extends CI_Controller {
         public function advancesrch(){
                 $this->load->model('Registryobjects');
                 $query = $this->Registryobjects->get_min_year();
-                $row = $query->row();
+                 if($query) $row = $query->row();
  
                 $data['min_year'] = $row->min_year;
                 $data['max_year'] = $row->max_year;
@@ -163,7 +163,7 @@ class Home extends CI_Controller {
 
             foreach($datatype as $key=>$value){
                 $parentQ = $this->ro->getParentTerms('TERN',$key);
-                $row = $parentQ->row();
+                 if($parentQ) $row = $parentQ->row();
                  if($row->name!='') {
                     array_push($dataTypeLvl1, array('name' => $row->name));
                     $dataTypeLvl2[$row->name][$key] = array('name' => $key, 'stat' => $value);
