@@ -490,8 +490,7 @@
    <field name="relatedObject_relatedObjectDisplayTitle" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="relatedObject_relation" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="relatedObject_relatedObjectLogo" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="relatedObject_relation_description" type="string" indexed="true" stored="true" multiValued="true"/>
- 
+  
    <!-- MultiValued Descriptions-->
    <field name="description_value" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="description_type" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -499,12 +498,13 @@
    <!-- MultiValued Subjects-->
    <field name="subject_value" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="subject_type" type="string" indexed="true" stored="true" multiValued="true"/>
-   
+  <field name="subject_code" type="string" indexed="true" stored="true" multiValued="true"/> 
    <!-- relatedInfo all cramped into 1-->
    <field name="relatedInfo" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="dateFrom" type="int" indexed="true" stored="true" multiValued="true"/>
    <field name="dateTo" type="int" indexed="true" stored="true" multiValued="true"/>
-
+   <field name="minDate" type="int" indexed="true" stored="true"/>
+   <field name="maxDate" type="int" indexed="true" stored="true" />
    <field name="identifier_value" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="identifier_type" type="string" indexed="true" stored="true" multiValued="true"/>
 
@@ -513,6 +513,15 @@
    
    <!-- END ANDS Indexed Field-->
 
+  <!-- FOR Fields-->
+   <field name="for_code_two" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="for_code_four" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="for_code_six" type="string" indexed="true" stored="true" multiValued="true"/> 
+   
+   <field name="for_value_two" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="for_value_four" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="for_value_six" type="string" indexed="true" stored="true" multiValued="true"/> 
+   
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
    <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
