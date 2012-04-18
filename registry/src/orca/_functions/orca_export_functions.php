@@ -1062,9 +1062,9 @@ function getAddressPartsXMLforSOLR($physical_address_id)
 				$type = ' type="'.strtolower(esc($type)).'"';
 			}
 			$value = ($element['value']);
-			//$value = htmlspecialchars_decode($value);
-			//$value = purify($value);
-			//$value = htmlspecialchars($value);
+			$value = htmlspecialchars_decode($value);
+			$value = purify($value);
+			$value = htmlspecialchars($value);
 			$xml .= "            <addressPart$type>$value</addressPart>\n";
 		}		
 	}
