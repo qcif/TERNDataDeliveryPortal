@@ -592,13 +592,14 @@ return $transformResult;
 
 function transformToSolr($registryObjectsXML)
 {
+    
     $qtestxsl = new DomDocument();
 $registryObjects = new DomDocument();
 $registryObjects->loadXML($registryObjectsXML);
 $qtestxsl->load('../_xsl/rif2solr.xsl');
 $proc = new XSLTProcessor();
 $proc->importStyleSheet($qtestxsl);
-$transformResult = $proc->transformToXML($registryObjects);
+$transformResult = $proc->transformToXML($registryObjects); 
 
 $result=replaceCodeWithStringValue($transformResult);
 //return $transformResult;
@@ -629,8 +630,9 @@ function runSolrIndexForDatasource($dataSourceKey)
 		$rifcs .='                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
 		$rifcs .='                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF_SCHEMA_URI.'">'."\n";	
 		$rifcs .= $rifcsContent;			
-		$rifcs .= "</registryObjects>\n";		
-		$rifcs = transformToSolr($rifcs);									
+		$rifcs .= "</registryObjects>\n";	
+ 
+        	$rifcs = transformToSolr($rifcs);									
 
 		$result .= curl_post(gSOLR_UPDATE_URL, $rifcs);					
 		$result .= curl_post(gSOLR_UPDATE_URL.'?commit=true', '<commit waitFlush="false" waitSearcher="false"/>');

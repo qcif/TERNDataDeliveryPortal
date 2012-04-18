@@ -441,9 +441,9 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         $fields = array('q' => "-for_code_two:['' TO *] AND class:collection", 'version' => '2.2', 'start' => '0', 'rows' => '1', 'indent' => 'on', 'wt' => 'json',
             'fl' => '*');
         $facet = 'facet=on&facet=true&facet.limit=-1&facet.field=for_code_two&facet.mincount=1';
-
-        $json = $this->fireSearch($fields, $facet);
-
+          print_r($fields);
+        $json = $this->fireSearch($fields, '');
+     
         return $json;
     }
     
@@ -537,7 +537,9 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         $content = curl_exec($ch); //execute the curl
         //echo 'json received+<pre>'.$content.'</pre>';
         curl_close($ch); //close the curl
-
+        print "Here: ";
+        print_r($content);
+        print "<br/>";
         $json = json_decode($content);
         return $json;
     }

@@ -10,12 +10,8 @@ http://www.apache.org/licenses/LICENSE-2.0
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions andgetSubjectTypesXMLforSOLR
+See the License for the specific language governing permissions and
 limitations under the License.
-
-********************************************************************************
-$Date: 2011-09-22 11:18:18 +1000 (Thu, 22 Sep 2011) $
-$Revision: 1488 $
 *******************************************************************************/
 
 function getRegistryObjectXML($registryObjectKey)
@@ -48,6 +44,7 @@ function getRegistryObjectXML($registryObjectKey)
 		// Registry Object Class
 		// =====================================================================
 		$registryObjectClass = strtolower($registryObject[0]['registry_object_class']);
+		$dataSource = $registryObject[0]['data_source_key'];
 		$type = esc(strtolower($registryObject[0]['type']));
 		
 		$dateAccessioned = '';
@@ -69,6 +66,9 @@ function getRegistryObjectXML($registryObjectKey)
 		// identifier
 		// -------------------------------------------------------------
 		$internalxml .= getIdentifierTypesXML($registryObjectKey, 'identifier');
+		// existenceDates
+		// -------------------------------------------------------------
+		$internalxml .= getExistenceDateTypesXML($registryObjectKey, 'existenceDates');	
 		
 		// name
 		// -------------------------------------------------------------
@@ -84,7 +84,7 @@ function getRegistryObjectXML($registryObjectKey)
 		
 		// relatedObject
 		// -------------------------------------------------------------
-		$internalxml .= getRelatedObjectTypesXML($registryObjectKey, 'relatedObject');
+		$internalxml .= getRelatedObjectTypesXML($registryObjectKey, $dataSource, $registryObjectClass,'relatedObject');
 		
 		// subject
 		// -------------------------------------------------------------
@@ -93,7 +93,10 @@ function getRegistryObjectXML($registryObjectKey)
 		// description
 		// -------------------------------------------------------------
 		$internalxml .= getDescriptionTypesXML($registryObjectKey, 'description');
-						
+		
+		// rights
+		// -------------------------------------------------------------
+		$internalxml .= getRightsTypesXML($registryObjectKey, 'rights');									
 		if($registryObjectClass  == 'service')
 		{				
 			// accessPolicy
@@ -107,7 +110,7 @@ function getRegistryObjectXML($registryObjectKey)
 		//citationInfo
 		// -------------------------------------------------------------
 		$internalxml .= getCitationInformationTypeXML($registryObjectKey, 'citationInfo');
-		
+
 		if (strlen($internalxml) > 0)
 		{
 			$xml .= "    <$registryObjectClass type=\"$type\"".$dateAccessioned.$dateModified.">\n";
@@ -170,12 +173,15 @@ function getRegistryObjectRelatedObjectsforSOLR($registryObjectKey)
 		$internalxml = "";
 		// identifier
 		// -------------------------------------------------------------
-		$internalxml .= getIdentifierTypesXML($registryObjectKey, 'identifier');		
+		$internalxml .= getIdentifierTypesXML($registryObjectKey, 'identifier');
+		// existenceDates
+		// -------------------------------------------------------------
+		$internalxml .= getExistenceDateTypesXMLSolr($registryObjectKey, 'existenceDates');				
 		// relatedObject
 		// -------------------------------------------------------------
-		$internalxml .= getRelatedObjectTypesXMLforSolr($registryObjectKey, $registryObjectClass,'relatedObject');
+		$internalxml .= getRelatedObjectTypesXMLforSolr($registryObjectKey, $registryObjectClass,$dataSourceKey,'relatedObject');
 		
-		// reversce links
+		// reverse links
 		// -------------------------------------------------------------		
 		$internalxml .= getReverseLinkTypesXMLforSolr($registryObjectKey,$dataSourceKey, $registryObjectClass, 'relatedObject');
 		
@@ -307,17 +313,17 @@ HTML; */
 		if($includeRelated){
 			// relatedObject
 			// -------------------------------------------------------------
-			$internalxml .= getRelatedObjectTypesXMLforSolr($registryObjectKey, $registryObjectClass,'relatedObject');		
+			$internalxml .= getRelatedObjectTypesXMLforSolr($registryObjectKey, $registryObjectClass,$dataSourceKey,'relatedObject');		
 	
 		}
 		// subject
 		// -------------------------------------------------------------
-		$internalxml .= getSubjectTypesXMLforSOLR($registryObjectKey, 'subject', true);
+		$internalxml .= getSubjectTypesXMLforSOLR($registryObjectKey, 'subject');
 		
 		// description
 		// -------------------------------------------------------------
 		$internalxml .= getDescriptionTypesXMLforSOLR($registryObjectKey, 'description');
-						
+			
 		if($registryObjectClass  == 'service')
 		{				
 			// accessPolicy
@@ -327,161 +333,12 @@ HTML; */
 		// relatedInfo
 		// -------------------------------------------------------------
 		$internalxml .= getRelatedInfoTypesXML($registryObjectKey, 'relatedInfo');
-		
-		//citationInfo
+		// existenceDates
 		// -------------------------------------------------------------
-		$internalxml .= getCitationInformationTypeXML($registryObjectKey, 'citationInfo');
-		
-		if (strlen($internalxml) > 0)
-		{
-			$xml .= "    <$registryObjectClass type=\"$type\"".$dateAccessioned.$dateModified.">\n";
-			$xml .= $internalxml;
-			$xml .= "    </$registryObjectClass>\n";
-		} else {
-			$xml .= "    <$registryObjectClass type=\"$type\"".$dateAccessioned.$dateModified."/>\n";
-		}
-		
-		$xml .= "  </registryObject>\n";
-	}
-
-	return $xml;
-}
-
-function getRegistryObjectXMLforRDA($registryObjectKey,$includeRelated=false)
-{
-	$xml = '';
-	$registryObject = getRegistryObject($registryObjectKey);
-	$dataSourceKey = $registryObject[0]["data_source_key"];
-	$registryObjectStatus = $registryObject[0]["status"];
-	$dataSource = getDataSources($dataSourceKey, null);
-	$allow_reverse_internal_links = $dataSource[0]['allow_reverse_internal_links'];
-	$allow_reverse_external_links = $dataSource[0]['allow_reverse_external_links'];
-	
-	if( $registryObject )
-	{
-		// Registry Object
-		// =====================================================================
-		$group= esc($registryObject[0]['object_group']);
-		$xml .= "  <registryObject group=\"$group\">\n";
-		
-		// Registry Object Key
-		// =====================================================================
-		$xml .= "    <key>".esc($registryObjectKey)."</key>\n";
-		$xml .= "    <status>".esc($registryObjectStatus)."</status>\n";
-		$xml .= "    <dataSourceKey>".esc($dataSourceKey)."</dataSourceKey>\n";		
-		$reverseLinks = 'NONE';
-		$allow_reverse_internal_links = $dataSource[0]['allow_reverse_internal_links'];
-		$allow_reverse_external_links = $dataSource[0]['allow_reverse_external_links'];
-		if($allow_reverse_internal_links == 't' && $allow_reverse_external_links == 't')
-		{
-			$reverseLinks = 'BOTH';
-		}
-		else if($allow_reverse_internal_links == 't')
-		{
-			$reverseLinks = 'INT';
-			
-		}
-		else if($allow_reverse_external_links == 't')
-		{
-			$reverseLinks = 'EXT';
-		}
-		$xml .= "    <reverseLinks>".$reverseLinks."</reverseLinks>\n";
-		// Registry Object Originating Source
-		// =====================================================================
-		$originatingSource = esc($registryObject[0]['originating_source']);
-		$originatingSourceType = '';
-		if( $registryObject[0]['originating_source_type'] )
-		{
-			$originatingSourceType = ' type="'.esc($registryObject[0]['originating_source_type']).'"';
-		}
-		
-		$xml .= "    <originatingSource$originatingSourceType>$originatingSource</originatingSource>\n";
-		
-		// Registry Object Class
-		// =====================================================================
-		$registryObjectClass = strtolower($registryObject[0]['registry_object_class']);
-		$type = esc(strtolower($registryObject[0]['type']));
-		
-		$dateAccessioned = '';
-		if( $registryObject[0]['date_accessioned'] && $registryObjectClass == 'collection' )
-		{
-			$dateAccessioned = ' dateAccessioned="'.esc(getXMLDateTime($registryObject[0]['date_accessioned'])).'"';
-		}
-		
-		$dateModified = '';
-		if( $registryObject[0]['date_modified'] )
-		{
-			$dateModified = ' dateModified="'.esc(getXMLDateTime($registryObject[0]['date_modified'])).'"';
-		}	
-			
-		// To prevent empty XML elements, we append to blank string and check that it actually
-		// contains data
-		$internalxml = "";
-		
-		// identifier
+		$internalxml .= getExistenceDateTypesXMLSolr($registryObjectKey, 'existenceDates');
+		// rights
 		// -------------------------------------------------------------
-		$internalxml .= getIdentifierTypesXML($registryObjectKey, 'identifier');
-		
-		// displayTitle
-		// -------------------------------------------------------------
-		$internalxml .= '<displayTitle>'.esc(trim($registryObject[0]['display_title'])).'</displayTitle>';
-				$logo = '';
-	//if ($registryObjectClass == 'Party')
-	//{
-		$logoStr = getDescriptionLogo($registryObjectKey);
-		if ($logoStr !== false)
-		{
-			
-			$internalxml .= '<displayLogo>'.$logoStr.'</displayLogo>';
-		/*	$logo = <<<HTML
-					<span style="position:relative;float:right;"><img id="party_logo" style="right:0; top:0;position:absolute; float:right;" src="{$logoStr}"/></span>
-					<script type="text/javascript">
-					testLogo('party_logo', '{$logoStr}');
-					</script>
-HTML; */
-			
-		} 
-	//}
-		
-		// listTitle
-		// -------------------------------------------------------------
-		$internalxml .= '<listTitle>'.esc(trim($registryObject[0]['list_title'])).'</listTitle>';
-		
-		// name
-		// -------------------------------------------------------------
-		$internalxml .= getComplexNameTypesXMLforSOLR($registryObjectKey, 'name', $registryObjectClass);
-		
-		// location
-		// -------------------------------------------------------------
-		$internalxml .= getLocationTypesXMLforSOLR($registryObjectKey, 'location');
-
-		// coverage
-		// -------------------------------------------------------------
-		$internalxml .= getCoverageTypesXMLforSOLR($registryObjectKey, 'coverage');	
-			
-		if($includeRelated){
-			// relatedObject
-			// -------------------------------------------------------------
-			$internalxml .= getRelatedObjectTypesXMLforSolr($registryObjectKey, $registryObjectClass,'relatedObject');		
-	
-		}
-		// subject
-		// -------------------------------------------------------------
-		$internalxml .= getSubjectTypesXMLforSOLR($registryObjectKey, 'subject',false);
-		
-		// description
-		// -------------------------------------------------------------
-		$internalxml .= getDescriptionTypesXMLforSOLR($registryObjectKey, 'description');
-						
-		if($registryObjectClass  == 'service')
-		{				
-			// accessPolicy
-			// -------------------------------------------------------------
-			$internalxml .= getAccessPolicyTypesXML($registryObjectKey, 'accessPolicy');
-		}		
-		// relatedInfo
-		// -------------------------------------------------------------
-		$internalxml .= getRelatedInfoTypesXML($registryObjectKey, 'relatedInfo');
+		$internalxml .= getRightsTypesXMLforSOLR($registryObjectKey, 'rights');
 		
 		//citationInfo
 		// -------------------------------------------------------------
@@ -847,6 +704,9 @@ function getSpatialCoverageXMLforSOLR($coverage_id)
 					$centre = (($east+$west)/2).','.(($north+$south)/2);
 					$xml .= "        <spatial>$coordinates</spatial>\n";
 				}
+			}else{
+				$valueString =  strtolower(esc($element['value']));
+				$xml .= "        <spatial $type>$valueString</spatial>\n";	
 			}
 	        if($centre != '')
 	        {
@@ -897,16 +757,15 @@ function getTemporalCoverageXMLforSOLR($coverage_id)
 				asort($dateArray);
 				foreach( $dateArray as $row )
 				{
-                                        if($row['type'] == 'W3CDTF'){
-                                            $value = FormatDateTime(esc($row['value']), gDATE);
-                                        }elseif($row['type'] == 'UTC'){
-                                            $value = FormatDateTimeUTC(esc($row['value']), gDATE);
-                                        }
 					$type = ' type="'.esc($row['type']).'"';	
 					$dateFormat = ' dateFormat="'.esc($row['date_format']).'"';
-					$value = FormatDateTime(esc($row['value']), gDATE);
-					$xml .= "            <date$type$dateFormat>$value</date>\n";
-				}
+					$value = esc($row['value']);
+					if (preg_match('/\b\d{4}\b/', $value, $matches)) 
+					{
+	    				$year = $matches[0];
+						$xml .= "            <date$type$dateFormat>$year</date>\n";
+					}
+					}
 				$xml .= '</temporal>';	
 			}
 		}	
@@ -991,6 +850,7 @@ function drawCitationInfoXML($citation_info_id, $row)
 		$xml .= getCitationContributorsXML($citation_info_id);		
 		$xml .= "		<title>".esc($row['metadata_title'])."</title>\n";
 		$xml .= "		<edition>".esc($row['metadata_edition'])."</edition>\n";
+		if($row['metadata_publisher']){$xml .= "		<publisher>".esc($row['metadata_publisher'])."</publisher>\n";}				
 		$xml .= "		<placePublished>".esc($row['metadata_place_published'])."</placePublished>\n";
 		$xml .= getCitationDatesXML($citation_info_id);		
 		$xml .= "		<url>".esc($row['metadata_url'])."</url>\n";
@@ -1199,9 +1059,12 @@ function getAddressPartsXMLforSOLR($physical_address_id)
 		{			
 			if( $type = $element['type'] )
 			{
-				$type = ' type="'.esc($type).'"';
+				$type = ' type="'.strtolower(esc($type)).'"';
 			}
-			$value = esc($element['value']);
+			$value = ($element['value']);
+			//$value = htmlspecialchars_decode($value);
+			//$value = purify($value);
+			//$value = htmlspecialchars($value);
 			$xml .= "            <addressPart$type>$value</addressPart>\n";
 		}		
 	}
@@ -1288,6 +1151,19 @@ function getSpatialTypesXMLforSOLR($location_id)
 				    $xml .= "        <spatial>$coordinates</spatial>\n";
 					
 				}
+			}else{
+				
+					if( $type = $element['type'] )
+					{
+						$type = ' type="'.esc($type).'"';
+					}
+					if( $lang = $element['lang'] )
+					{
+						$lang = ' xml:lang="'.esc($lang).'"';
+					}
+					$value = esc($element['value']);
+					$xml .= "        <spatial$type$lang>$value</spatial>\n";
+				
 			}
 	        if($centre != '')
 	        {
@@ -1326,83 +1202,177 @@ function getSpatialTypesXML($location_id)
 	return $xml;
 }
 
-function getRelatedObjectTypesXMLforSolr($registryObjectKey,$registryObjectClass, $elementName)
+function getRelatedObjectTypesXMLforSolr($registryObjectKey,$registryObjectClass, $dataSourceKey, $elementName)
 {
 	$xml = '';
 	$elementName = esc($elementName);
-	$typeArray = array(
+	$datasource = null;
+	$dataSource = getDataSources($dataSourceKey, null);	
+	$create_primary_relationships = $dataSource[0]['create_primary_relationships'];
+	$typeArray['collection'] = array(
 		"describes" => "Describes",
 		"hasAssociationWith" => "Associated with",
+		"hasDerivedCollection" => "Derived collection",
 		"hasCollector" => "Aggregated by",
-		"hasMember" => "Has member",
-		"hasOutput" => "Produces",
-		"hasPart" => "Includes",
-		"hasParticipant" => "Undertaken by",
-		"isCollectorOf" => "Collector of",
+		"hasPart" => "Contains",
+		"isDerivedFrom" => "Derived from",	
 		"isDescribedBy" => "Described by",
-		"isFundedBy" => "Funded by",
-		"isFunderOf" => "Funds",
 		"isLocatedIn" => "Located in",
 		"isLocationFor" => "Location for",
+		"isEnrichedBy" => "Enriched by",
+		"isManagedBy" => "Managed by",
+		"isOutputOf" => "Output of",
+		"isOwnedBy" => "Owned by",
+		"isPartOf" => "Part of",
+		"supports" => "Supports",
+		"isAvailableThrough" => "Available through",	
+		"isProducedBy" => "Produced by",	
+		"isPresentedBy" => "Presented by",	
+		"isOperatedOnBy" => "Operated on by",	
+		"hasValueAddedBy" => "Value added by"	
+			
+	);
+	$typeArray['party'] = array(
+		"hasAssociationWith" => "Associated with",
+		"hasMember" => "Has member",
+		"hasPart" => "Has part",
+		"isCollectorOf" => "Collector of",
+		"enriches" => "Enriches",	
+		"isFundedBy" => "Funded by",
+		"isFunderOf" => "Funds",
 		"isManagedBy" => "Managed by",
 		"isManagerOf" => "Manages",
 		"isMemberOf" => "Member of",
-		"isOutputOf" => "Output of",
 		"isOwnedBy" => "Owned by",
 		"isOwnerOf" => "Owner of",
 		"isParticipantIn" => "Participant in",
-		"isPartOf" => "Part of",
-		"isSupportedBy" => "Supported by",
-		"supports" => "Supports"
+		"isPartOf" => "Part of"
+		
 	);
+	$typeArray['service'] = array(
+		"hasAssociationWith" => "Associated with",
+		"hasPart" => "Includes",
+		"isManagedBy" => "Managed by",
+		"isMemberOf" => "Member of",	
+		"isOwnedBy" => "Owned by",
+		"isPartOf" => "Part of",
+		"isOutputOf" => "Output of",	
+		"isSupportedBy" => "Supported by",
+		"makesAvailable" => "Makes available",
+		"produces" => "Produces",		
+		"presents" => "Presents",	
+		"operatesOn" => "Operates on",
+		"adddsValueTo" => "Adds value to"			
+	);
+	$typeArray['activity'] = array(
+		"hasAssociationWith" => "Associated with",
+		"hasOutput" => "Produces",
+		"hasPart" => "Includes",
+		"hasParticipant" => "Undertaken by",
+		"isFundedBy" => "Funded by",
+		"isManagedBy" => "Managed by",
+		"isOwnedBy" => "Owned by",
+		"isPartOf" => "Part of"
+	);	
+
+	//we need to check if this datasource has primary relationships set up.
+	$pkey1 = '';
+	$pkey2 = '';
+	if($create_primary_relationships == 't'||$create_primary_relationships == '1')
+		{
+			$primary_key_1 =  $dataSource[0]['primary_key_1'];
+			$primary_key_2 =  $dataSource[0]['primary_key_2'];
+				$currentObject = getRegistryObject($registryObjectKey,true);			
+			if($primary_key_1!='' && $primary_key_1!=$registryObjectKey)
+			{
+
+				$pkey1 = esc($primary_key_1);
+				$relatedObject = getRegistryObject($pkey1,true);
+
+				$relatedclass= strtolower($relatedObject[0]['registry_object_class']);	
+			
+				$relation_logo = false;
+				if($typeArray[$relatedclass][$dataSource[0][strtolower($currentObject[0]['registry_object_class']).'_rel_1']])
+				{
+					$type = ' type="'.$typeArray[$relatedclass][$dataSource[0][strtolower($currentObject[0]['registry_object_class']).'_rel_1']].'"';
+				}else{
+					$type = ' type="'.$dataSource[0][strtolower($currentObject[0]['registry_object_class']).'_rel_1'].'"';
+				}
+				if (isset($row) &&	$relatedObject[0]['registry_object_class'] == 'Party' && strtolower($relatedObject[0]['type']) != 'person') 
+				{
+					$relation_logo = getDescriptionLogo($key);
+				}		
+				
+				$xml .= "      <$elementName>\n";
+				$xml .= "        <key>$pkey1</key>\n";				
+				$xml .= "		 <relatedObjectClass>".strtolower($relatedObject[0]['registry_object_class'])."</relatedObjectClass>";
+				$xml .= "		 <relatedObjectType>".strtolower($relatedObject[0]['type'])."</relatedObjectType>";
+				$xml .= "		 <relatedObjectListTitle>".esc($relatedObject[0]['list_title'])."</relatedObjectListTitle>";
+				$xml .= "		 <relatedObjectDisplayTitle>".esc($relatedObject[0]['display_title'])."</relatedObjectDisplayTitle>";
+				if($relation_logo) $xml .= "		 <relatedObjectLogo>".esc($relation_logo)."</relatedObjectLogo>";					
+				$xml .=   "<relation$type>\n</relation>";
+				$xml .= "      </$elementName>\n";			
+					
+			}
+			if($primary_key_2!='' && $primary_key_2!=$registryObjectKey)
+			{
+
+				$pkey2 = esc($primary_key_2);
+				$relatedObject = getRegistryObject($pkey2,true);
+				$relatedclass= strtolower($relatedObject[0]['registry_object_class']);	
+			
+				$relation_logo = false;
+				if($typeArray[$relatedclass][$dataSource[0][strtolower($currentObject[0]['registry_object_class']).'_rel_2']])
+				{
+					$type = ' type="'.$typeArray[$relatedclass][$dataSource[0][strtolower($currentObject[0]['registry_object_class']).'_rel_2']].'"';
+				}else{
+					$type = ' type="'.$dataSource[0][strtolower($currentObject[0]['registry_object_class']).'_rel_2'].'"';
+				}
+				if ($relatedObject[0]['registry_object_class'] == 'Party' && strtolower($relatedObject[0]['type']) != 'person') 
+				{
+					$relation_logo = getDescriptionLogo($key);
+				}		
+				
+				$xml .= "      <$elementName>\n";
+				$xml .= "        <key>$pkey2</key>\n";				
+				$xml .= "		 <relatedObjectClass>".strtolower($relatedObject[0]['registry_object_class'])."</relatedObjectClass>";
+				$xml .= "		 <relatedObjectType>".strtolower($relatedObject[0]['type'])."</relatedObjectType>";
+				$xml .= "		 <relatedObjectListTitle>".esc($relatedObject[0]['list_title'])."</relatedObjectListTitle>";
+				$xml .= "		 <relatedObjectDisplayTitle>".esc($relatedObject[0]['display_title'])."</relatedObjectDisplayTitle>";
+				if($relation_logo) $xml .= "		 <relatedObjectLogo>".esc($relation_logo)."</relatedObjectLogo>";					
+				$xml .=   "<relation$type>\n</relation>";
+				$xml .= "      </$elementName>\n";								
+			}			
+			
+		}	
 	$list = getRelatedObjects($registryObjectKey);
-	$acceptableLogoRelations = array();
-	if ($registryObjectClass == 'collection')
-	{
-		$acceptableLogoRelations[] = 'isOwnedBy';
-		$acceptableLogoRelations[] = 'isCollectedBy';
-		$acceptableLogoRelations[] = 'isManagedBy';	
-	} 
-	elseif ($registryObjectClass == 'activity')
-	{
-		$acceptableLogoRelations[] = 'isOwnedBy';
-		$acceptableLogoRelations[] = 'isFundedBy';
-		$acceptableLogoRelations[] = 'isManagedBy';
-		$acceptableLogoRelations[] = 'isPartOf';		
-	}
-	elseif ($registryObjectClass == 'service')
-	{
-		$acceptableLogoRelations[] = 'isOwnedBy';
-		$acceptableLogoRelations[] = 'isManagedBy';
-	}
-	
+
 	if( $list )
 	{
 		foreach( $list as $element )
 		{
 			$key = esc($element['related_registry_object_key']);
-			$relatedObject = getRegistryObject($element['related_registry_object_key'],true);
-			$relation_logo = false;
-			$relationType = getRelationType($element['relation_id']);
-			if (isset($element) &&
-				//in_array(strtolower($registryObjectClass), array('collection','service','activity')) &&
-				$relatedObject[0]['registry_object_class'] == 'Party' && 
-				strtolower($relatedObject[0]['type']) != 'person' ) // $acceptableLogoRelations defined according
-																					 // to this registry object's class
+			if($key!=$pkey1 && $key!=$pkey2)
 			{
+				$relatedObject = getRegistryObject($element['related_registry_object_key'],true);
+				$relation_logo = false;
+				$relationType = getRelationType($element['relation_id']);
+				if (isset($element) &&	$relatedObject[0]['registry_object_class'] == 'Party' && strtolower($relatedObject[0]['type']) != 'person' ) 
+				{
+					$relation_logo = getDescriptionLogo($key);
+				}		
+				$relatedclass= strtolower($relatedObject[0]['registry_object_class']);
 	
-				$relation_logo = getDescriptionLogo($key);
-			}		
-			
-			$xml .= "      <$elementName>\n";
-			$xml .= "        <key>$key</key>\n";
-			$xml .= "		 <relatedObjectClass>".strtolower($relatedObject[0]['registry_object_class'])."</relatedObjectClass>";
-			$xml .= "		 <relatedObjectType>".strtolower($relatedObject[0]['type'])."</relatedObjectType>";
-			$xml .= "		 <relatedObjectListTitle>".esc($relatedObject[0]['list_title'])."</relatedObjectListTitle>";
-			$xml .= "		 <relatedObjectDisplayTitle>".esc($relatedObject[0]['display_title'])."</relatedObjectDisplayTitle>";
-			if($relation_logo) $xml .= "		 <relatedObjectLogo>".esc($relation_logo)."</relatedObjectLogo>";
-			$xml .= getRelationsXMLSOLR($element['relation_id'],$typeArray);
-			$xml .= "      </$elementName>\n";
+				$xml .= "      <$elementName>\n";
+				$xml .= "        <key>$key</key>\n";
+				$xml .= "		 <relatedObjectClass>".strtolower($relatedObject[0]['registry_object_class'])."</relatedObjectClass>";
+				$xml .= "		 <relatedObjectType>".strtolower($relatedObject[0]['type'])."</relatedObjectType>";
+				$xml .= "		 <relatedObjectListTitle>".esc($relatedObject[0]['list_title'])."</relatedObjectListTitle>";
+				$xml .= "		 <relatedObjectDisplayTitle>".esc($relatedObject[0]['display_title'])."</relatedObjectDisplayTitle>";
+				if($relation_logo) $xml .= "		 <relatedObjectLogo>".esc($relation_logo)."</relatedObjectLogo>";
+				$xml .= getRelationsXMLSOLR($element['relation_id'],$typeArray[$registryObjectClass]);
+				$xml .= "      </$elementName>\n";
+			}
 		}
 	}
 	return $xml;
@@ -1412,52 +1382,68 @@ function getRelatedObjectTypesXMLforSolr($registryObjectKey,$registryObjectClass
 function getReverseLinkTypesXMLforSolr($registryObjectKey,$dataSourceKey,$registryObjectClass, $elementName)
 {
 	$xml = '';
-		$typeArray = array(
+	$typeArray['collection'] = array(
 		"describes" => "Described by",
+		"hasPart" => "Part of",	
 		"hasAssociationWith" => "Associated with",
 		"hasCollector" => "Collector of",
-		"hasMember" => "Member of",
-		"hasOutput" => "Output of",
-		"hasPart" => "Includes",
-		"hasParticipant" => "Undertaken by",
-		"isCollectorOf" => "Aggregated by",
 		"isDescribedBy" => "Describes",
-		"isFundedBy" => "Funds",
-		"isFunderOf" => "Funded by",
 		"isLocatedIn" => "Location for",
 		"isLocationFor" => "Located in",
+		"isManagedBy" => "Manager of",
+		"isOutputOf" => "Has output",
+		"isOwnedBy" => "Owner of",
+		"isPartOf" => "Has part",
+		"supports" => "Supported by",
+		"isDerivedFrom" => "Derived collection",
+		"hasDerivedCollection" => "Derived from",
+		"isEnrichedBy"	=> "Enriches",
+		"isAvailableThrough" => "Makes available",
+		"isProducedBy" => "Produces",
+		"isPresentedBy" => "Presents",
+		"isOperatedOnBy" => "OperatesOn",
+		"hasValueAddedBy" => "Adds value to",
+	
+	);
+	$typeArray['party'] = array(
+		"hasAssociationWith" => "Associated with",
+		"hasMember" => "Member of",
+		"hasPart" => "Part of",
+		"isCollectorOf" => "Has collector",
+		"isFundedBy" => "Funds",
+		"isFunderOf" => "Funded by",
 		"isManagedBy" => "Manages",
 		"isManagerOf" => "Managed by",
 		"isMemberOf" => "Has member",
-		"isOutputOf" => "Produces",
 		"isOwnedBy" => "Owner of",
 		"isOwnerOf" => "Owned by",
-		"isParticipantIn" => "Part of",
-		"isPartOf" => "Participant in",
-		"isSupportedBy" => "Supports",
-		"supports" => "Supported by"
+		"isParticipantIn" => "Has participant",
+		"isPartOf" => "Has part",
+		"enriches" => "Enriched by",
 	);
-	$elementName = esc($elementName);
-	$acceptableLogoReversedRelations = array();
-	if ($registryObjectClass == 'collection')
-	{
-		$acceptableLogoReversedRelations[] = 'isOwnerOf';
-		$acceptableLogoReversedRelations[] = 'isCollectorOf';
-		$acceptableLogoReversedRelations[] = 'isManagerOf';
-	} 
-	elseif ($registryObjectClass == 'activity')
-	{
-		$acceptableLogoReversedRelations[] = 'isOwnerOf';
-		$acceptableLogoReversedRelations[] = 'isFunderOf';
-		$acceptableLogoReversedRelations[] = 'isManagerOf';
-
-	}
-	elseif ($registryObjectClass == 'service')
-	{
-		$acceptableLogoReversedRelations[] = 'isOwnerOf';
-		$acceptableLogoReversedRelations[] = 'isManagerOf';
-	}
-	
+	$typeArray['service'] = array(
+		"hasAssociationWith" => "Associated with",
+		"hasPart" => "Part of",
+		"isManagedBy" => "Manager of",
+		"isOwnedBy" => "Owner of",
+		"isSupportedBy" => "Supports",
+		"makesAvailable" => "Available through",
+		"produces" =>	"Produced by",
+		"presents" => "Presented by",
+		"operatesOn" => "Operated on by",
+		"addsValueto" => "Value added by",
+	);
+	$typeArray['activity'] = array(
+		"hasAssociationWith" => "Associated with",
+		"hasOutput" => "Output of",
+		"hasPart" => "Part of",
+		"hasParticipant" => "Participant in",
+		"isFundedBy" => "Funder of",
+		"isManagedBy" => "Manages",
+		"isOwnedBy" => "Owner of",
+		"isPartOf" => "Includes",
+	);	
+	$elementName = esc($elementName);	
 	$datasource = null;
 	$dataSource = getDataSources($dataSourceKey, null);
 	$allow_reverse_internal_links = $dataSource[0]['allow_reverse_internal_links'];
@@ -1490,18 +1476,13 @@ function getReverseLinkTypesXMLforSolr($registryObjectKey,$dataSourceKey,$regist
 					$relatedObject = getRegistryObject($row['registry_object_key'],true);
 					$relation_logo = false;
 					$relationType = getRelationType($row['relation_id']);
-
-					if (isset($row) &&
-					//in_array(strtolower($registryObjectClass), array('collection','service','activity')) &&
-					$relatedObject[0]['registry_object_class'] == 'Party' && 
-					strtolower($relatedObject[0]['type']) != 'person') // $acceptableLogoRelations defined according
-																					 // to this registry object's class
+					$relatedclass= strtolower($relatedObject[0]['registry_object_class']);
+					if (isset($row) && $relatedObject[0]['registry_object_class'] == 'Party' &&	strtolower($relatedObject[0]['type']) != 'person')																	
 					{
 
 						$relation_logo = getDescriptionLogo($key);
 					}		
 			
-	
 					$xml .= "      <$elementName type='internal'>\n";
 					$xml .= "        <key>$key</key>\n";
 
@@ -1510,9 +1491,8 @@ function getReverseLinkTypesXMLforSolr($registryObjectKey,$dataSourceKey,$regist
 					$xml .= "		 <relatedObjectListTitle>".esc($relatedObject[0]['list_title'])."</relatedObjectListTitle>";
 					$xml .= "		 <relatedObjectDisplayTitle>".esc($relatedObject[0]['display_title'])."</relatedObjectDisplayTitle>";
 					if($relation_logo) $xml .= "		 <relatedObjectLogo>".esc($relation_logo)."</relatedObjectLogo>";					
-					$xml .= getRelationsXMLSOLR($row['relation_id'],$typeArray);
+					$xml .= getRelationsXMLSOLR($row['relation_id'],$typeArray[$registryObjectClass]);
 					$xml .= "      </$elementName>\n";					
-
 				}
 			}
 
@@ -1528,12 +1508,8 @@ function getReverseLinkTypesXMLforSolr($registryObjectKey,$dataSourceKey,$regist
 					$relatedObject = getRegistryObject($row['registry_object_key'],true);
 					$relation_logo = false;
 					$relationType = getRelationType($row['relation_id']);
-					if (isset($row) &&
-					//in_array(strtolower($registryObjectClass), array('collection','service','activity')) &&
-					$relatedObject[0]['registry_object_class'] == 'Party' && 
-					strtolower($relatedObject[0]['type']) != 'person') 
+					if (isset($row) &&	$relatedObject[0]['registry_object_class'] == 'Party' && strtolower($relatedObject[0]['type']) != 'person') 
 					{
-
 						$relation_logo = getDescriptionLogo($key);
 					}		
 			
@@ -1546,36 +1522,74 @@ function getReverseLinkTypesXMLforSolr($registryObjectKey,$dataSourceKey,$regist
 					$xml .= "		 <relatedObjectListTitle>".esc($relatedObject[0]['list_title'])."</relatedObjectListTitle>";
 					$xml .= "		 <relatedObjectDisplayTitle>".esc($relatedObject[0]['display_title'])."</relatedObjectDisplayTitle>";
 					if($relation_logo) $xml .= "		 <relatedObjectLogo>".esc($relation_logo)."</relatedObjectLogo>";					
-					$xml .= getRelationsXMLSOLR($row['relation_id'],$typeArray);
+					$xml .= getRelationsXMLSOLR($row['relation_id'],$typeArray[$registryObjectClass]);
 					$xml .= "      </$elementName>\n";			
 				}
 			}
 		}
+
 	}	
 	return $xml;
 }
 
-function getRelatedObjectTypesXML($registryObjectKey, $elementName)
+function getRelatedObjectTypesXML($registryObjectKey, $dataSourceKey, $registryObjectClass, $elementName)
 {
 	$xml = '';
 	$elementName = esc($elementName);
+	
+	//we need to check if this has related primary keys
+	$dataSource = getDataSources($dataSourceKey, null);
+	$pkey1 = '';
+	$pkey2 = '';
+	
+	//we do not want to add the related primary objects if we are pasing the rifcs to te manual entry screens
+	$caller = explode('/',$_SERVER['PHP_SELF']);
+	$thecaller = $caller[count($caller)-1];
+		
+	if(($dataSource[0]['create_primary_relationships']=='t'||$dataSource[0]['create_primary_relationships']=='1') && $thecaller != 'process_registry_object.php')
+	{
+		if(trim($dataSource[0]['primary_key_1'])!='' && trim($dataSource[0]['primary_key_1'])!=$registryObjectKey)
+		{
+			$pkey1 = esc($dataSource[0]["primary_key_1"]);
+			$type = ' type="'.$dataSource[0][$registryObjectClass.'_rel_1'].'"';
+			$xml .= "      <$elementName>\n";
+			$xml .= "        <key>".$pkey1."</key>\n";
+			$xml .= "        <relation$type></relation>\n";			
+			$xml .= "      </$elementName>\n";			
+		}
+		if(trim($dataSource[0]['primary_key_2'])!='' && trim($dataSource[0]['primary_key_2'])!=$registryObjectKey)
+		{
+			$pkey2 = esc($dataSource[0]["primary_key_2"]);
+			$type = ' type="'.$dataSource[0][$registryObjectClass.'_rel_2'].'"';
+			$xml .= "      <$elementName>\n";
+			$xml .= "        <key>".$pkey2."</key>\n";
+			$xml .= "        <relation$type></relation>\n";			
+			$xml .= "      </$elementName>\n";			
+		}		
+	}		
 	$list = getRelatedObjects($registryObjectKey);
 	if( $list )
 	{
 		foreach( $list as $element )
 		{
-			$key = esc($element['related_registry_object_key']);
-			$xml .= "      <$elementName>\n";
-			$xml .= "        <key>$key</key>\n";
-			$xml .= getRelationsXML($element['relation_id']);
-			$xml .= "      </$elementName>\n";
+			$key = esc($element['related_registry_object_key']);			
+			if($key!=$pkey1 && $key!=$pkey2){
+				$xml .= "      <$elementName>\n";
+				$xml .= "        <key>$key</key>\n";
+				$xml .= getRelationsXML($element['relation_id']);
+				$xml .= "      </$elementName>\n";
+			}			
 		}
 	}
+
+
 	return $xml;
 }
+
 function getRelationType($relation_id)
 {
 	$list = getRelationDescriptions($relation_id);
+	$type = '';
 	if( $list )
 	{
 		foreach( $list as $element )
@@ -1634,6 +1648,8 @@ function getRelationsXMLSOLR($relation_id,$typeArray)
 				}
 				else
 				{
+					$types ='';
+					
 					$type = ' type="'.changeFromCamelCase($type).'"';
 				}
 				
@@ -1645,6 +1661,12 @@ function getRelationsXMLSOLR($relation_id,$typeArray)
 					$lang = ' xml:lang="'.esc($lang).'"';
 				}
 				$description = "          <description$lang>".esc($element['description'])."</description>\n";
+			}else{
+				if( $lang = $element['lang'] )
+				{
+					$lang = ' xml:lang="'.esc($lang).'"';
+				}
+				$description = "          <description$lang>null</description>\n";
 			}
 			if( $url = $element['url'] )
 			{
@@ -1672,6 +1694,10 @@ function getSubjectTypesXML($registryObjectKey, $elementName)
 			{
 				$lang = ' xml:lang="'.esc($lang).'"';
 			}
+			if( $termId = $element['termIdentifier'] )
+			{
+				$termId = ' termIdentifier="'.esc($termId).'"';
+			}			
 			$value = esc($element['value']);
 			$xml .= "      <$elementName$type$lang>$value</$elementName>\n";
 		}
@@ -1680,7 +1706,7 @@ function getSubjectTypesXML($registryObjectKey, $elementName)
 }
 
 
-function getSubjectTypesXMLforSOLR($registryObjectKey, $elementName, $addCode=true)
+function getSubjectTypesXMLforSOLR($registryObjectKey, $elementName)
 {
 	$xml = '';
 	$elementName = esc($elementName);
@@ -1692,7 +1718,30 @@ function getSubjectTypesXMLforSOLR($registryObjectKey, $elementName, $addCode=tr
 		{
 			//var_dump($element['type']);
 			$value = esc(trim($element['value']));
-			if($value != '')
+//merge YS
+/*
+			$resolvedName = '';
+			if(($value != '') && (strlen($value) < 7) && is_numeric($value))
+			{
+				$valueLength = strlen($value);
+				if($valueLength < 6){
+					for($i = 0; $i < (6 - $valueLength) ; $i++){
+						$value .= '0';
+					}				
+				}
+				$resolvedName = getTermsForVocabByIdentifier(null, $value);
+			}
+			if($resolvedName && $resolvedName[0]['name'] != '')
+			{
+				$term = $resolvedName[0]['name'];
+			}
+			else 
+			{
+				$term = $value;
+			}
+			$type = ' type="'.esc($element['type']).'"';
+*/
+if($value != '')
 			{
                                 $code='';
 				$type = $element['type'];
@@ -1715,7 +1764,7 @@ function getSubjectTypesXMLforSOLR($registryObjectKey, $elementName, $addCode=tr
 						$resolvedName = getTermsForVocabByIdentifier("ANZSRC-FOR", $value);
 						//echo $value;
 						$resolvedName = $resolvedName[0]['name'];
-						if($addCode) $code = ' code="'.esc($value).'"';
+						$code = ' code="'.esc($value).'"';
 						//$resolvedName="ANZFOR";
 					}elseif($upperCase=='ANZSRC-SEO'){
 										$valueLength = strlen($value);
@@ -1762,11 +1811,10 @@ function getSubjectTypesXMLforSOLR($registryObjectKey, $elementName, $addCode=tr
 				}
 				$type = ' type="'.esc($type).'"';
                                
-				$xml .= "      <$elementName$type$lang$code>$term</$elementName>\n";
-                            
-			}
+			$xml .= "      <$elementName$type$code>$term</$elementName>\n";
 		}
 	}
+     }
 	return $xml;
 }
 
@@ -1787,13 +1835,49 @@ function getDescriptionTypesXMLforSOLR($registryObjectKey, $elementName)
 			{
 				$lang = ' xml:lang="'.esc($lang).'"';
 			}
-			$value = esc(trim($element['value']));
+				
+			$value = $element['value'];
+			
+			if(str_replace("/>","",$value)==$value&&str_replace("</","",$value)==$value)
+			{
+			$value =  nl2br(str_replace("\t", "&#xA0;&#xA0;&#xA0;&#xA0;", $value));
+ 			}
+			$value = (trim($value));
+			
+                        $value = htmlspecialchars_decode($value);
+			$value = purify($value);
+			$value = htmlspecialchars($value);
+			
 			$xml .= "      <$elementName$type$lang>$value</$elementName>\n";
 		}
 	}
 	return $xml;
 }
 
+
+function purify($dirty_html){
+	require_once "../htmlpurifier/library/HTMLPurifier.auto.php";
+	
+	// Allowed Elements in HTML
+	$HTML_Allowed_Elms = 'a, abbr, acronym, b, blockquote, br, caption, cite, code, dd, del, dfn, div, dl, dt, em, h1, h2, h3, h4, h5, h6, i, img, ins, kbd, li, ol, p, pre, s, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var';
+
+	// Allowed Element Attributes in HTML, element must also be allowed in Allowed Elements for these attributes to work.
+	$HTML_Allowed_Attr = 'a.href, a.rev, a.title, a.target, a.rel, abbr.title, acronym.title, blockquote.cite, div.align, div.class, div.id, img.src, img.alt, img.title, img.class, img.align, span.class, span.id, table.class, table.id, table.border, table.cellpadding, table.cellspacing, table.width, td.abbr, td.align, td.class, td.id, td.colspan, td.rowspan, td.valign, tr.align, tr.class, tr.id, tr.valign, th.abbr, th.align, th.class, th.id, th.colspan, th.rowspan, th.valign, img.width, img.height, img.style';
+	
+	$config = HTMLPurifier_Config::createDefault();
+	$config->set('Core.Encoding', 'UTF-8'); // replace with your encoding
+	$config->set('HTML.Doctype', 'XHTML 1.0 Transitional'); // replace with your doctype
+	//$config->set('Cache.SerializerPath', '/tmp/htmlfilter/');
+	$config->set('HTML.AllowedElements', $HTML_Allowed_Elms); // sets allowed html elements that can be used.
+	$config->set('HTML.AllowedAttributes', $HTML_Allowed_Attr); // sets allowed html attributes that can be used.
+	
+	
+	
+	//$def->removeAttribute('p','font');
+    $purifier = new HTMLPurifier($config);
+    $clean_html = $purifier->purify($dirty_html);
+    return $clean_html;
+}
 function getDescriptionTypesXML($registryObjectKey, $elementName)
 {
 	$xml = '';
@@ -1817,7 +1901,6 @@ function getDescriptionTypesXML($registryObjectKey, $elementName)
 	}
 	return $xml;
 }
-
 function getAccessPolicyTypesXML($registryObjectKey, $elementName)
 {
 	$xml = '';
@@ -1833,6 +1916,7 @@ function getAccessPolicyTypesXML($registryObjectKey, $elementName)
 	}
 	return $xml;
 }
+
 
 function getRelatedInfoTypesXML($registryObjectKey, $elementName)
 {
@@ -1872,7 +1956,188 @@ function getRelatedInfoTypesXML($registryObjectKey, $elementName)
 	}
 	return $xml;
 }
+function getRightsTypesXMLforSOLR($registryObjectKey, $elementName)
+{
+	$xml = '';
+	$elementName = esc($elementName);
+	$list = getDescriptions($registryObjectKey);
+	if( $list )
+	{
+		foreach( $list as $element )
+		{
+			if( $type = $element['type'] && ($element['type']=='rights' || $element['type']=='accessRights'))
+			{
+				$type = ' type="'.esc($element['type']).'"';
+		
+			$test = $element['type'];
+			$value = esc($element['value']);
+			$xml .= "      <$elementName$type>$value</$elementName>\n";
+			$type = '';
+			}
+		}
+	}
+	$list = getRights($registryObjectKey);
+	//echo $registryObjectKey;
+	//print_r($list);
+	if( $list )
+	{
+		foreach( $list as $element )
+		{
+			if( $type = $element['access_rights'] || $type = $element['access_rights_uri'])
+			{
+				$type = ' type="accessRights"';
+				if($uri = $element['access_rights_uri'])
+				{
+					$uri = ' rightsUri = "'.esc($uri).'"';
+				}
+				$value = esc($element['access_rights']);
+				$xml .= "      <$elementName$type$uri>$value</$elementName>\n";				
+			}
+			
+			if( $type = $element['rights_statement'] || $type = $element['rights_statement_uri'])
+			{
+				$type = ' type="rights"';
+				if($uri = $element['rights_statement_uri'])
+				{
+					$uri = ' rightsUri = "'.esc($uri).'"';
+				}
+				$value = esc($element['rights_statement']);
+				$xml .= "      <$elementName$type$uri>$value</$elementName>\n";								
+			}
+			
+			if( $type = $element['licence'] || $type = $element['licence_uri'])
+			{
+				$type = ' type="licence"';
+				if($uri = $element['licence_uri'])
+				{
+					$uri = ' rightsUri = "'.esc($uri).'"';
+				}
+				$value = esc($element['licence']);
+				$xml .= "      <$elementName$type$uri>$value</$elementName>\n";										
+			}			
+		}
+	}	
+	return $xml;			
+}
 
+function getRightsTypesXML($registryObjectKey, $elementName)
+{
+	$xml = '';
+	$elementName = esc($elementName);
+
+	$list = getRights($registryObjectKey);
+	if( $list )
+	{
+		foreach( $list as $element )
+		{
+			$xml .= "      <$elementName>";			
+			if( $type = $element['access_rights'] || $type = $element['access_rights_uri'])
+			{
+				$subType = 'accessRights';
+				if($uri = $element['access_rights_uri'])
+				{
+					$uri = ' rightsUri = "'.esc($uri).'"';
+				}
+				$value = esc($element['access_rights']);
+				$xml .= "      <$subType$uri>$value</$subType>\n";				
+			}
+			
+			if( $type = $element['rights_statement'] || $type = $element['rights_statement_uri'])
+			{
+				$subType = 'rightsStatement';
+				if($uri = $element['rights_statement_uri'])
+				{
+					$uri = ' rightsUri = "'.esc($uri).'"';
+				}
+				$value = esc($element['rights_statement']);
+				$xml .= "      <$subType$uri>$value</$subType>\n";								
+			}
+			
+			if( $type = $element['licence'] || $type = $element['licence_uri'])
+			{
+				$subType = 'licence';
+				if($uri = $element['licence_uri'])
+				{
+					$uri = ' rightsUri = "'.esc($uri).'"';
+				}
+				$value = esc($element['licence']);
+				$xml .= "      <$subType$uri>$value</$subType>\n";																
+			}
+			$xml .= "      </$elementName>\n";							
+		}	
+	}	
+	return $xml;			
+}
+
+function getExistenceDateTypesXML($registryObjectKey, $elementName)
+{
+	$xml = '';
+	$startdate = '';
+	$enddate = '';
+	$elementName = esc($elementName);
+	$list = getExistenceDate($registryObjectKey);
+	if( $list )
+	{	
+		foreach( $list as $element )
+		{
+			$xml .=	"		<$elementName>";
+			if($startdate = $element['start_date'])
+			{
+				if($startDateFormat = $element['start_date_format'])
+				{
+					$dateFormat = ' dateFormat="'.$startDateFormat.'"';
+				}
+				$xml .= "			<startDate$dateFormat>$startdate</startDate>";
+			}
+			if($enddate = $element['end_date'])
+			{
+				if($startDateFormat = $element['end_date_format'])
+				{
+					$dateFormat = ' dateFormat="'.$startDateFormat.'"';
+				}
+				$xml .= "			<endDate$dateFormat>$enddate</endDate>";
+			}			
+			$xml .= "      </$elementName>\n";
+		}
+	}
+	return $xml;
+}
+function getExistenceDateTypesXMLSolr($registryObjectKey, $elementName)
+{
+	$xml = '';
+	$startdate = '';
+	$enddate = '';
+	$elementName = esc($elementName);
+	$list = getExistenceDate($registryObjectKey);
+	if( $list )
+	{	
+		foreach( $list as $element )
+		{
+			$xml .=	"		<$elementName>";
+			if($startdate = $element['start_date'])
+			{
+				$startdate1 = FormatDateTime(esc($startdate), gDATE);
+				//echo $startdate;
+				if($startDateFormat = $element['start_date_format'])
+				{
+					$dateFormat = ' dateFormat="'.$startDateFormat.'"';
+				}
+				$xml .= "			<startDate$dateFormat>$startdate1</startDate>";
+			}
+			if($enddate = $element['end_date'])
+			{
+				$enddate1 = FormatDateTime(esc($enddate), gDATE);				
+				if($startDateFormat = $element['end_date_format'])
+				{
+					$dateFormat = ' dateFormat="'.$startDateFormat.'"';
+				}
+				$xml .= "			<endDate$dateFormat>$enddate1</endDate>";
+			}			
+			$xml .= "      </$elementName>\n";
+		}
+	}
+	return $xml;
+}
 function getRegistryObjectKML($registryObjectKey)
 {
 	$kml = "";
@@ -2463,7 +2728,7 @@ function addSolrIndex($registryObjectKey, $commit=true)
 		$rifcs = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
 		$rifcs .='<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" '."\n";
 		$rifcs .='                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
-		$rifcs .='                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF2_SCHEMA_URI.'">'."\n";	
+		$rifcs .='                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF_SCHEMA_URI.'">'."\n";	
 		$rifcs .= $rifcsContent;			
 		$rifcs .= "</registryObjects>\n";	
 		$rifcs = transformToSolr($rifcs);									
@@ -2482,14 +2747,13 @@ function addKeysToSolrIndex($keys, $commit=true)
 		$rifcs = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
 		$rifcs .='<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" '."\n";
 		$rifcs .='                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
-		$rifcs .='                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF2_SCHEMA_URI.'">'."\n";	
+		$rifcs .='                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF_SCHEMA_URI.'">'."\n";	
 		foreach ($keys as $registryObjectKey)
 		{
 			$rifcs .= getRegistryObjectXMLforSOLR(rawurldecode($registryObjectKey),true);
 		}					
 		$rifcs .= "</registryObjects>\n";	
-		$rifcs = transformToSolr($rifcs);		
-         
+		$rifcs = transformToSolr($rifcs);									
 		$result .= curl_post(gSOLR_UPDATE_URL, $rifcs);
 		if($commit)
 		{

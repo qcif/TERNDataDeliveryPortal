@@ -52,11 +52,12 @@ class RefreshFORStat extends CI_Controller {
                                 }
                         }
                 }
+               print_r($subject);
                 
                 $json = $this->Solr->getNotFORCodes();
                 
                 $uncategorized = $json->{'response'}->{'numFound'};
-             
+            
                 if($uncategorized>0){
                     $subject['UNCATEGORIZED'] = $uncategorized;
                 }

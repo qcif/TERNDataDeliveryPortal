@@ -156,7 +156,7 @@ if($solrUrl)
 					$result = curl_post($solrUrl, $rifcs);
 					print($j.': ('.$i.')registryObjects is sent to solr ' . $result . "<br/>");					
 					
-					$result = curl_post($solrUrl.'?commit=true', '<commit waitFlush="false" waitSearcher="false"/>');
+					//$result = curl_post($solrUrl.'?commit=true', '<commit waitFlush="false" waitSearcher="false"/>');
 					print(time() . ' commit: '.$result. "<br/>");
 					ob_flush();flush();
 					$rifcsContent = '';
@@ -164,7 +164,7 @@ if($solrUrl)
 			}
 		}
                 print $solrUrl;
-			$result = curl_post($solrUrl.'?optimize=true', '<optimize waitFlush="false" waitSearcher="false"/>');
+			//$result = curl_post($solrUrl.'?optimize=true', '<optimize waitFlush="false" waitSearcher="false"/>');
 			print ('optimise: '.$result. "<br/>");
 	}
 
