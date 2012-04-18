@@ -70,8 +70,8 @@ define('gORCA_VOCABS_BASE_URI', "");
 
 // The harvester settings.
 // Use empty strings for both values if there is no harvester available.
-define('gORCA_HARVESTER_BASE_URI', "https://demo:8443/harvester/");
-define('gORCA_HARVESTER_IP', "192.168.56.100");
+define('gORCA_HARVESTER_BASE_URI', $harvest_url);
+define('gORCA_HARVESTER_IP', $harvest_ip);
 
 // Harvest methods.
 // These values are used in _javascript/data_source_forms.js
@@ -131,4 +131,4 @@ $gORCA_STATUS_INFO = array (
 // Service configuration.
 //define('gPIDS_SERVICE_BASE_URI', $pids_url);
 //define('gPIDS_APP_ID', $pids_app_id);
-define('gSOLR_UPDATE_URL' , "http://demo:8080/orca-solr/update");
+define('gSOLR_UPDATE_URL' ,  $solr_url . "update");
