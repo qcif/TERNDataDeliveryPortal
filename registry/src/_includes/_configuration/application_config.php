@@ -176,10 +176,10 @@ addMenu($menu);
 	addActivity($activity);	
 
 	// =============================================================================
-	/* Registry Index
+	// Registry Index
 	$activity = new activity('aORCA_REGISTRY_INDEX', 'Browse', 'orca/registry_index.php');
 	$activity->menu_id = 'mORCA_CONTAINER';
-	addActivity($activity);*/
+	addActivity($activity);
 
 	// =============================================================================
 	// View
@@ -268,6 +268,11 @@ addMenu($menu);
 		$activity = new activity('aORCA_SERVICE_PUT_NLA_DATA', 'Put NLA Party Data', 'http://'.eHOST.'/'.eROOT_DIR.'/orca/services/putNLAPartyData.php');
 		$activity->no_check_ssl= true;
 		addActivity($activity);		
+		
+		// =============================================================================
+		// services/getRegistryObjectsSOLR
+		$activity = new activity('aORCA_SERVICE_GET_REGISTRY_OBJECTS_SOLR','Get Registry Objects','http://'.eHOST.'/'.eROOT_DIR.'/orca/services/getRegistryObjectsSOLR.php');
+		addActivity($activity);	
 		
 	// BEGIN - PUBLISH MY DATA #####################################################
 	// =============================================================================
@@ -582,6 +587,11 @@ addMenu($menu);
 		//$activity->menu_id = 'mORCA_REGISTRY_OBJECT_ADMIN_ADD';
 		addActivity($activity);	
 		
+                //Reinddex all data published (hidden)
+		$activity = new activity('aORCA_REINDEX DATA', '', 'http://'.eHOST.'/'.eROOT_DIR.'/orca/manage/reindex_all.php');
+		//$activity->menu_id = 'mORCA_REGISTRY_OBJECT_ADMIN_ADD';
+		addActivity($activity);
+
 		// =============================================================================
 		// Edit Registry Object
 		$activity = new activity('aORCA_REGISTRY_OBJECT_EDIT', 'Edit Registry Object', 'orca/admin/registry_object_edit.php');
