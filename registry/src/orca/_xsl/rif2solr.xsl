@@ -96,7 +96,7 @@
         
         <xsl:apply-templates select="ro:subject" mode="value"/>
         <xsl:apply-templates select="ro:subject" mode="type"/>
-        <xsl:apply-templates select="ro:subject" mode="code"/>
+        <xsl:apply-templates select="ro:subject[@type='anzsrc-for']" mode="code"/>
 
         <xsl:apply-templates select="ro:description" mode="value"/>
         <xsl:apply-templates select="ro:description" mode="type"/>
@@ -300,66 +300,66 @@
 -->
 <!--Added for FOR -->
     <xsl:template match="ro:subject[@type='anzsrc-for']" mode="code">
-        <xsl:variable name="codelength" select="string-length(.)"/>
-
+        <xsl:choose>
+            <xsl:when test="@code!=''">
+        <xsl:variable name="codelength" select="string-length(@code)"/>
+        
         <xsl:variable name="fullcode">
             <xsl:choose>
                 <xsl:when test="$codelength=2">
-                    <xsl:value-of select="concat(.,'0000')"/>
+                    <xsl:value-of select="concat(@code,'0000')"/>
                 </xsl:when>
                 <xsl:when test="$codelength=4">
-                    <xsl:value-of select="concat(.,'00')"/>
+                    <xsl:value-of select="concat(@code,'00')"/>
                 </xsl:when>
                 <xsl:when test="$codelength=6">
-                    <xsl:value-of select="."/>
+                    <xsl:value-of select="@code"/>
                 </xsl:when>                
-                <xsl:otherwise>
-                    <xsl:value-of select="substring(.,1,6)"/>
-                </xsl:otherwise>
+               
             </xsl:choose>
-         </xsl:variable>
-         
-             <xsl:variable name="forcode_six"><xsl:value-of select="$fullcode"/></xsl:variable>
-              <xsl:variable name="forcode_four_tmp" select="substring($forcode_six,1,4)" />
-                    <xsl:variable name="forcode_two_tmp" select="substring($forcode_six,1,2)" />
+        </xsl:variable>
+        
+        <xsl:variable name="forcode_six"><xsl:value-of select="$fullcode"/></xsl:variable>
+        <xsl:variable name="forcode_four_tmp" select="substring($forcode_six,1,4)" />
+        <xsl:variable name="forcode_two_tmp" select="substring($forcode_six,1,2)" />
+        
+        <xsl:variable name="forcode_four" select="concat($forcode_four_tmp,'00')" />
+        <xsl:variable name="forcode_two" select="concat($forcode_two_tmp,'0000')" />
+        
+        <!--code-->
+        <xsl:element name="field">
+            <xsl:attribute name="name">for_code_six</xsl:attribute>
+            <xsl:value-of select="$forcode_six"/>
+        </xsl:element>
+        
+        <xsl:element name="field">
+            <xsl:attribute name="name">for_code_four</xsl:attribute>
+            <xsl:value-of select="$forcode_four"/>
+        </xsl:element>
+        
+        <xsl:element name="field">
+            <xsl:attribute name="name">for_code_two</xsl:attribute>
+            <xsl:value-of select="$forcode_two"/>
+        </xsl:element>
+        
+        <!--string value-->
+        <xsl:element name="field">
+            <xsl:attribute name="name">for_value_six</xsl:attribute>
+            <xsl:value-of select="$forcode_six"/>
+        </xsl:element>
+        
+        <xsl:element name="field">
+            <xsl:attribute name="name">for_value_four</xsl:attribute>
+            <xsl:value-of select="$forcode_four"/>
+        </xsl:element>
+        
+        <xsl:element name="field">
+            <xsl:attribute name="name">for_value_two</xsl:attribute>
+            <xsl:value-of select="$forcode_two"/>
+        </xsl:element>
+            </xsl:when>
+        </xsl:choose>
 
-                    <xsl:variable name="forcode_four" select="concat($forcode_four_tmp,'00')" />
-                    <xsl:variable name="forcode_two" select="concat($forcode_two_tmp,'0000')" />
-
-                    <!--code-->
-                    <xsl:element name="field">
-                        <xsl:attribute name="name">for_code_six</xsl:attribute>
-                        <xsl:value-of select="$forcode_six"/>
-                    </xsl:element>
-
-                    <xsl:element name="field">
-                        <xsl:attribute name="name">for_code_four</xsl:attribute>
-                        <xsl:value-of select="$forcode_four"/>
-                    </xsl:element>
-
-                    <xsl:element name="field">
-                        <xsl:attribute name="name">for_code_two</xsl:attribute>
-                        <xsl:value-of select="$forcode_two"/>
-                    </xsl:element>
-
-                    <!--string value-->
-                    <xsl:element name="field">
-                        <xsl:attribute name="name">for_value_six</xsl:attribute>
-                        <xsl:value-of select="$forcode_six"/>
-                    </xsl:element>
-
-                    <xsl:element name="field">
-                        <xsl:attribute name="name">for_value_four</xsl:attribute>
-                        <xsl:value-of select="$forcode_four"/>
-                    </xsl:element>
-
-                    <xsl:element name="field">
-                        <xsl:attribute name="name">for_value_two</xsl:attribute>
-                        <xsl:value-of select="$forcode_two"/>
-                    </xsl:element>
-         
-  
-       
         
     </xsl:template>
 <!-- end -->

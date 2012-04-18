@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rif="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:oai="http://www.openarchives.org/OAI/2.0/" exclude-result-prefixes="oai xsi" version="1.0">
 	<xsl:output indent="yes"/>
 	<xsl:strip-space elements="*"/>
+        <xsl:include   href ="TERNcleanup.xsl" />
 	<xsl:template match="/">
 		<xsl:element name="registryObjects" xmlns="http://ands.org.au/standards/rif-cs/registryObjects" >
 			<xsl:attribute name="xsi:schemaLocation">http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd</xsl:attribute>

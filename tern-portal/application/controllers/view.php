@@ -36,9 +36,8 @@ class View extends CI_Controller {
                         $content =  $this->ro->get($key);
                         $data['key']= $key;
                         $data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key));
-                        
-			$query = $this->ro->get_min_year();
-                        $row = $query->row();
+                        $query = $this->ro->get_min_year();
+                        if($query)$row = $query->row();
 
                 //$data['min_date'] = $row;
 

@@ -163,6 +163,7 @@ if($solrUrl)
 					$j++;
 			}
 		}
+                print $solrUrl;
 			$result = curl_post($solrUrl.'?optimize=true', '<optimize waitFlush="false" waitSearcher="false"/>');
 			print ('optimise: '.$result. "<br/>");
 	}
