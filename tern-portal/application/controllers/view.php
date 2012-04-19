@@ -33,20 +33,32 @@ class View extends CI_Controller {
 			$key = ($_GET['key']);
 			//echo $key;
 			$this->load->model('RegistryObjects', 'ro');
+                        $this->load->model('Solr', 'solr');
                         $content =  $this->ro->get($key);
                         $data['key']= $key;
                         $data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key));
                         $query = $this->ro->get_min_year();
                         if($query)$row = $query->row();
 
-                //$data['min_date'] = $row;
+			$obj = $this->solr->getByKey($key);
+			$numFound = $obj->{'response'}->{'numFound'};
+			$doc = ($obj->{'response'}->{'docs'}[0]);
+			//echo $numFound;
 
-                        $data['min_year'] = $row->min_year;
-                        $data['max_year'] = $row->max_year;
+			$data['title'] = $doc->{'displayTitle'};
+			
+			if(isset($doc->{'description_value'}[0]))$data['description']=htmlentities($doc->{'description_value'}[0]);
+			$data['doc'] = $doc;
+			
+			
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();
-			//header("Content-Type: text/html; charset=UTF-8", true);
+			
+			
+			if($numFound>0){
 			$this->load->view('xml-view', $data);
+			}else show_404('page');
+			
 		}else{
 			show_404('page');
 		}				
@@ -76,17 +88,15 @@ class View extends CI_Controller {
 		
 	}
 
-
 	private function transform($registryObjectsXML, $xslt,$key){
 		$qtestxsl = new DomDocument();
 		$registryObjects = new DomDocument();
 		$registryObjects->loadXML($registryObjectsXML);
-            //    print_r($registryObjectsXML);
 		$qtestxsl->load('_xsl/'.$xslt);
 		$proc = new XSLTProcessor();
 		$proc->importStyleSheet($qtestxsl);
 		$proc->setParameter('','base_url',base_url());
-		$orca_view = $this->config->item('orca_view');
+		$orca_view = view_url();
 		$proc->setParameter('','orca_view',$orca_view);
 		$proc->setParameter('','key',$key);
 		$transformResult = $proc->transformToXML($registryObjects);	

@@ -12,15 +12,258 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
-********************************************************************************
-$Date: 2011-09-06 11:35:57 +1000 (Tue, 06 Sep 2011) $
-$Revision: 1 $
 ***************************************************************************
 *
 **/ 
 ?>
 <?php
+
+/*
+ * displayFacet
+ * function prints out HTML
+ * used in facet view
+ */
+function displayFacet($facet_name, $facetFilter, $json, $ro_class){
+	
+	$clear ='';$name = '';$class='';
+	
+	switch($facet_name){
+		case "type":$clear = 'clearType';
+			if($ro_class!='All'){ 
+				$name=ucfirst($ro_class).' Types';
+			}else $name = 'Types';				
+			$class="typeFilter";break;
+		case "group":$clear = 'clearGroup';$name='Facilities';$class="groupFilter";break;
+		case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
+           
+	}
+	
+
+	
+	echo '<div class="right-box">';
+	
+	
+	echo '<h2>'.$name;
+	echo '<span class="toggle-facet-field">
+			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-facet-field"></span>
+			</span>';
+	echo '</h2>';
+	echo '<div class="facet-content">';
+	
+	echo '<ul class="more" id="'.$facet_name.'-facet">';
+	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
+	
+	//print the others
+	for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
+		if($object_type[$i+1]>0){
+			if($object_type[$i]!=$facetFilter){
+				echo '<li class="limit">
+					<a href="javascript:void(0);" 
+						title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
+						class="'.$class.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
+			} 
+		}
+	}
+	echo '</ul>';
+	echo '</div>';
+	echo '</div>';
+}
+
+/*
+ * displayCustomiseOptions
+ * Used in the display customise dialog box
+ */ 
+function displayCustomiseOptions($cookie){
+	$CI =& get_instance();
+	if($CI->input->cookie($cookie)!=''){
+		if($CI->input->cookie('show_subjects')=='yes'){
+			echo '<img id="'.$cookie.'" class="customise-option" src="'.base_url().'img/yes.png">';
+		}else{
+			echo '<img id="'.$cookie.'" class="customise-option" src="'.base_url().'img/no.png">';
+		}
+	}else{
+		echo '<img id="'.$cookie.'" class="customise-option" src="'.base_url().'img/no.png">';
+	}
+}
+
+/*
+ * displaySelectedFacet
+ * Used in facet view
+ */ 
+function displaySelectedFacet($facet_name, $facetFilter, $json){
+	$clear ='';$name = '';$class='';
+	switch($facet_name){
+		case "type":$clear = 'clearType';$name='Types';$class="typeFilter";break;
+		case "group":$clear = 'clearGroup';$name='Facilities';$class="groupFilter";break;
+		case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
+                case "for_value_two":$clear = 'clearFortwo';$name="FOR";$class="fortwoFilter";break;
+                case "for_value_four":$clear = 'clearForfour';$name="FOR";$class="forfourFilter";break;
+                case "for_value_six":$clear = 'clearForsix';$name="FOR";$class="forsixFilter";break;
+	}
+	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
+	//print the selected
+	for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
+		if($object_type[$i+1]>0){
+			if($object_type[$i]==$facetFilter){
+				echo '<li class="limit">
+					<a href="javascript:void(0);" 
+						title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
+						class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
+			}
+		}
+	}
+
+}
+
+/*
+ * Construct a SOLR based filter query
+ * Used in SOLR model
+ */ 
+function constructFilterQuery($class, $groups){
+	$str='';
+	switch($class){
+		case 'class':$str='+class:(';break;
+		case 'type':$str='+type:(';break;
+		case 'group':$str='+group:(';break;
+		case 'subject_value':$str='+subject_value:(';break;
+                case 'subject_code': $str='+subject_code:(';break;
+		case 'status':$str='+status:(';break;
+                case 'for_value_two':$str='+for_value_two:(';break;
+                case 'for_value_four':$str='+for_value_four:(';break;
+                case 'for_value_six':$str='+for_value_six:(';break;
+	}
+	
+	$classes = explode(';',$groups);
+	$first = true;
+	foreach($classes as $c){
+		if(!$first){
+                        if($class=='subject_code') $str.=' OR '. $c .'*';
+			else $str.=' OR "'.escapeSolrValue($c).'"';
+		}else{
+			if($class=='subject_code') $str.=''. $c .'*';
+                        else $str.= '"'.escapeSolrValue($c).'"';
+			$first = false;
+		}
+	}
+	$str .=')';
+    return $str;
+}
+
+/*
+ * escapeSolrValue
+ * escaping sensitive items in a solr query
+ * encode afterwards (need check)
+ */ 
+function escapeSolrValue($string){
+	//$string = urldecode($string);
+    $match = array('\\','&', '|', '!', '(', ')', '{', '}', '[', ']', '^', '~', '*', '?', ':', '"', ';');
+    $replace = array('\\\\','&', '\\|', '\\!', '\\(', '\\)', '\\{', '\\}', '\\[', '\\]', '\\^', '\\~', '\\*', '\\?', '\\:', '\\"', '\\;');
+        $string = str_replace($match, $replace, $string);
+        return urlencode($string);
+    }
+
+/*
+ * getDidYouMean
+ * given a term, spits out didyoumean term
+ * Used when no search result is being returned
+ */ 
+function getDidYouMean($term){
+	$CI =& get_instance();
+	$CI->load->model('Registryobjects', 'ro');
+	return $CI->ro->didYouMean($term);
+}
+
+/*
+ * array_to_json
+ * Spits out a json object given a php array
+ * Used in search suggestion
+ */ 
+/* following function obtained from http://jqueryui.com */
+function  array_to_json( $array ){
+  if( !is_array( $array ) ){
+      return false;
+  }
+  $associative = count( array_diff( array_keys($array), array_keys( array_keys( $array )) ));
+  if( $associative ){
+        $construct = array();
+        foreach( $array as $key => $value ){
+            // We first copy each key/value pair into a staging array,
+            // formatting each key and value properly as we go.
+            // Format the key:
+            if( is_numeric($key) ){
+                $key = "key_$key";
+            }
+            $key = "\"".addslashes($key)."\"";
+            // Format the value:
+            if( is_array( $value )){
+                $value = array_to_json( $value );
+            } else if( !is_numeric( $value ) || is_string( $value ) ){
+                $value = "\"".addslashes($value)."\"";
+            }
+            // Add to staging array:
+            $construct[] = "$key: $value";
+        }
+        // Then we collapse the staging array into the JSON form:
+        $result = "{ " . implode( ", ", $construct ) . " }";
+    } else { // If the array is a vector (not associative):
+        $construct = array();
+        foreach( $array as $value ){
+            // Format the value:
+            if( is_array( $value )){
+                $value = array_to_json( $value );
+            } else if( !is_numeric( $value ) || is_string( $value ) ){
+                $value = "'".addslashes($value)."'";
+            }
+            // Add to staging array:
+            $construct[] = $value;
+        }
+        // Then we collapse the staging array into the JSON form:
+        $result = "[ " . implode( ", ", $construct ) . " ]";
+    }
+    return $result;
+}
+
+
+ /*
+ * getHTTPs
+ * takes in a URL and spits out https form
+ * Basically replace http with https
+ */
+function getHTTPs($uri){
+	return str_replace('http', 'https', $uri);
+}
+/*
+ * service_url
+ * gives the ORCA service url that view page will use to get extended RIFCS
+ * Basically returns a string
+ */
+function service_url(){
+	$ci =& get_instance();
+	$orca = $ci->config->item('orca_url');
+   
+	$orca_service = $ci->config->item('orca_service_point');
+	//return getHTTPs($orca).$orca_service;
+	return $orca.$orca_service;
+}
+
+/*
+ * view_url
+ * gives the ORCA view url that the view page will link to
+ * Basically returns a string
+ */
+function view_url(){
+	$ci =& get_instance();
+	return getHTTPs($ci->config->item('orca_url')).$ci->config->item('orca_view_point');
+}
+
+
+/*Get response from a http request*/
+function get_http_response_code($url) {
+	$headers = get_headers($url);
+	return substr($headers[0], 9, 3);
+	}
+
+        
 function showBrief($str, $length) {
   $str = strip_tags($str);
   $str = explode(" ", $str);
@@ -69,72 +312,13 @@ function displayFacet4Mobile($facet_name, $facetFilter, $json, $ro_class, $obj){
 	echo '</div>';
 }
 
-function displayFacet($facet_name, $facetFilter, $json, $ro_class, $obj){
-	
-	$clear ='';$name = '';$class='';
-	
-	switch($facet_name){
-		case "type":$clear = 'clearType';
-			if($ro_class!='All'){ 
-				$name=ucfirst($obj->lang->line($ro_class)).' Types';
-			}else $name = 'Types';				
-			$class="typeFilter";break;
-		case "group":$clear = 'clearGroup';$name='Facilities';$class="groupFilter";break;
-		case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
-           
-	}
-	
-
-	
-	echo '<div class="right-box">';
-	
-	
-	echo '<h2>'.$name;
-	echo '<span class="toggle-facet-field">
-			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-facet-field"></span>
-			</span>';
-	echo '</h2>';
-	echo '<div class="facet-content">';
-	
-	
-	echo '<ul class="more">';
-	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
-       // print_r($json);
-	//print the selected
-	/*
-	for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
-		if($object_type[$i+1]>0){
-			if($object_type[$i]==$facetFilter){
-				echo '<li class="limit">
-					<a href="javascript:void(0);" 
-						title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
-						class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
-			}
-		}
-	}*/
-	//print the others
-
-	for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
-		if($object_type[$i+1]>0){
-			if($object_type[$i]!=$facetFilter){
-				echo '<li class="limit">
-					<a href="javascript:void(0);" 
-						title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
-						class="'.$class.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
-			} 
-		}
-	}
-	echo '</ul>';
-	echo '</div>';
-	echo '</div>';
-}
-
 function stripFORString($str)
 {
     $pos=strpos($str,'-');
     $result=substr($str,$pos+1);
     return $result;
 }
+
 function displayFORFacet($facettwo,$facetfour,$facetsix,$facetFilter, $json, $ro_class, $obj)
 {
 	$clear =$facetName;$class=$facetFilter;
@@ -216,69 +400,8 @@ for($j=0;$j<count($object_type6);$j=$j+2)
        
 	
 }
-
-function displayCustomiseOptions($cookie){
-	$CI =& get_instance();
-	if($CI->input->cookie($cookie)!=''){
-		if($CI->input->cookie('show_subjects')=='yes'){
-			echo '<img id="'.$cookie.'" class="customise-option" src="'.base_url().'img/yes.png">';
-		}else{
-			echo '<img id="'.$cookie.'" class="customise-option" src="'.base_url().'img/no.png">';
-		}
-	}else{
-		echo '<img id="'.$cookie.'" class="customise-option" src="'.base_url().'img/no.png">';
-	}
-}
-
-function displaySelectedFacet4Mobile($facet_name, $facetFilter, $json){
-	$clear ='';$name = '';$class='';
-	switch($facet_name){
-		case "type":$clear = 'clearType';$name='Types';$class="typeFilter";break;
-		case "group":$clear = 'clearGroup';$name='Facilities';$class="groupFilter";break;
-		case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
-	}
-
-	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
-	//print the selected
-	for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
-		if($object_type[$i+1]>0){
-			if($object_type[$i]==$facetFilter){
-				echo '<li class="limit">
-					<a href="javascript:void(0);"
-						title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)"
-						class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
-			}
-		}
-	}
-
-}
-
-function displaySelectedFacet($facet_name, $facetFilter, $json){
-	$clear ='';$name = '';$class='';
-	switch($facet_name){
-		case "type":$clear = 'clearType';$name='Types';$class="typeFilter";break;
-		case "group":$clear = 'clearGroup';$name='Facilities';$class="groupFilter";break;
-		case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
-                case "for_value_two":$clear = 'clearFortwo';$name="FOR";$class="fortwoFilter";break;
-                case "for_value_four":$clear = 'clearForfour';$name="FOR";$class="forfourFilter";break;
-                case "for_value_six":$clear = 'clearForsix';$name="FOR";$class="forsixFilter";break;
-	}
-
-	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
-	//print the selected
-	for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
-		if($object_type[$i+1]>0){
-			if($object_type[$i]==$facetFilter){
-				echo '<li class="limit">
-					<a href="javascript:void(0);" 
-						title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
-						class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
-			}
-		}
-	}
-
-}
-
+/*
+// is this still being used? 
 function escapeSolrValueNoEncode($string){
 		//$string = urldecode($string);
         $match = array('\\', '+', '-', '&', '|', '!', '(', ')', '{', '}', '[', ']', '^', '~', '*', '?', ':', '"', ';', ' ');
@@ -287,52 +410,6 @@ function escapeSolrValueNoEncode($string){
         return ($string);
     }
 
-function escapeSolrValue($string){
-		$string = urldecode($string);
-        $match = array('\\', '&', '|', '!', '(', ')', '{', '}', '[', ']', '^', '~', '*', '?', ':', '"', ';');
-        $replace = array('\\\\', '&', '\\|', '\\!', '\\(', '\\)', '\\{', '\\}', '\\[', '\\]', '\\^', '\\~', '\\*', '\\?', '\\:', '\\"', '\\;');
-        $string = str_replace($match, $replace, $string);
-        return urlencode($string);
-    }
-
-
-function constructFilterQuery($class, $groups){
-	$str='';
-	switch($class){
-		case 'class':$str='+class:(';break;
-		case 'type':$str='+type:(';break;
-		case 'group':$str='+group:(';break;
-		case 'subject_value':$str='+subject_value:(';break;
-                case 'subject_code': $str='+subject_code:(';break;
-		case 'status':$str='+status:(';break;
-                case 'for_value_two':$str='+for_value_two:(';break;
-                case 'for_value_four':$str='+for_value_four:(';break;
-                case 'for_value_six':$str='+for_value_six:(';break;
-	}
-	
-	$classes = explode(';',$groups);
-	$first = true;
-	foreach($classes as $c){
-		if(!$first){
-                        if($class=='subject_code') $str.=' OR '. $c .'*';
-			else $str.=' OR "'.escapeSolrValue($c).'"';
-		}else{
-			if($class=='subject_code') $str.=''. $c .'*';
-                        else $str.= '"'.escapeSolrValue($c).'"';
-			$first = false;
-		}
-	}
-	$str .=')';
-        
-
-    return $str;
-}
-
-function getDidYouMean($term){
-	$CI =& get_instance();
-	$CI->load->model('Registryobjects', 'ro');
-	return $CI->ro->didYouMean($term);
-}
 
 function formatDateTime($datetime, $type=gDATETIME){
 	date_default_timezone_set('Australia/Brisbane');
@@ -421,51 +498,6 @@ function formatDateTimeWithMask($datetime, $mask){
 	return $formatDate;
 }
 
-/* following function obtained from http://jqueryui.com */
-function  array_to_json( $array ){
-  if( !is_array( $array ) ){
-      return false;
-  }
-  $associative = count( array_diff( array_keys($array), array_keys( array_keys( $array )) ));
-  if( $associative ){
-        $construct = array();
-        foreach( $array as $key => $value ){
-            // We first copy each key/value pair into a staging array,
-            // formatting each key and value properly as we go.
-            // Format the key:
-            if( is_numeric($key) ){
-                $key = "key_$key";
-            }
-            $key = "\"".addslashes($key)."\"";
-            // Format the value:
-            if( is_array( $value )){
-                $value = array_to_json( $value );
-            } else if( !is_numeric( $value ) || is_string( $value ) ){
-                $value = "\"".addslashes($value)."\"";
-            }
-            // Add to staging array:
-            $construct[] = "$key: $value";
-        }
-        // Then we collapse the staging array into the JSON form:
-        $result = "{ " . implode( ", ", $construct ) . " }";
-    } else { // If the array is a vector (not associative):
-        $construct = array();
-        foreach( $array as $value ){
-            // Format the value:
-            if( is_array( $value )){
-                $value = array_to_json( $value );
-            } else if( !is_numeric( $value ) || is_string( $value ) ){
-                $value = "'".addslashes($value)."'";
-            }
-            // Add to staging array:
-            $construct[] = $value;
-        }
-        // Then we collapse the staging array into the JSON form:
-        $result = "[ " . implode( ", ", $construct ) . " ]";
-    }
-    return $result;
-}
-
 function getRelationship($keyList, $relationshipList){
 		$typeArray = array(
 		"Describes" => "Described by",
@@ -506,7 +538,7 @@ function getRelationship($keyList, $relationshipList){
 		{
 			return   $relationship;
 		}
-
-	}
-
+}
+ * 
+ */
 ?>

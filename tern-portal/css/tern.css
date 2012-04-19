@@ -40,7 +40,7 @@ body {
 }
 
 h1,h2,h3,h4,h5{color:#555;}
-h1{font-size:20px;}
+h1{font-size:20px; text-align:center;}
 h2{font-size:15px;}
 h3{font-size:14px;}
 h4{font-size:13px;}
@@ -383,6 +383,7 @@ button{font-size:13px;}
 }
 .right-box p{margin:7px;}
 .right-box h3{margin:7px;padding:0;}
+.right-box h4{ margin:7px;}
 .spatial{display:none;}
 .coverage{display:none;}
 .spatial_center{display:none;}

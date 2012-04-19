@@ -1,5 +1,5 @@
 <?php
-
+require_once('../registry/src/global_config.php');
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -18,7 +18,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'development');
+	define('ENVIRONMENT', $rda_environment);
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -27,7 +27,6 @@
  * Different environments will require different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
-
 
 if (defined('ENVIRONMENT'))
 {
@@ -128,6 +127,11 @@ if (defined('ENVIRONMENT'))
 // --------------------------------------------------------------------
 // END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
 // --------------------------------------------------------------------
+//DEFINE ANDS REGISTRY ONLINE SERVICE VARIABLES
+define('RDA_ROOT', $rda_root);
+define('HOST', $host);
+define('ORCA_ROOT', $orca_root);
+define('SOLR_URL', $solr_url);
 
 /*
  * ---------------------------------------------------------------
@@ -191,6 +195,8 @@ if (defined('ENVIRONMENT'))
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
 
+	
+	
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE

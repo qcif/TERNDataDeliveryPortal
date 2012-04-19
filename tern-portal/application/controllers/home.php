@@ -72,9 +72,15 @@ class Home extends CI_Controller {
                 $this->load->model('Registryobjects');
                 $query = $this->Registryobjects->get_min_year();
                  if($query) $row = $query->row();
- 
+                 
                 $data['min_year'] = $row->min_year;
                 $data['max_year'] = $row->max_year;
+                
+                 $this->load->model('Solr');
+                $queryFacilities = $this->Solr->getFacilities();
+                
+                $data['facilities'] = $queryFacilities->{'facet_counts'}->{'facet_fields'}->{'group'};
+            
                 
 		$this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();

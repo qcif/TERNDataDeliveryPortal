@@ -13,18 +13,12 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-
- * *******************************************************************************
-  $Date: 2011-09-06 11:35:57 +1000 (Tue, 06 Sep 2011) $
-  $Revision: 1 $
- * **************************************************************************
+***************************************************************************
  *
- * */
+**/ 
 ?>
 <?php
-
-class Solr extends CI_Model
-{
+	class Solr extends CI_Model {
 
     function __construct()
     {
@@ -32,7 +26,7 @@ class Solr extends CI_Model
     }
 
 
-    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $subjectCode = 'All')
+    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $subjectCode = 'All', $sort='score desc')
     {
         $q = $query;
         $q = rawurlencode($q);
@@ -67,10 +61,11 @@ class Solr extends CI_Model
 
 
         $q = urldecode($q);
-      if ($q != '*:*')
-            $q = escapeSolrValue($q);
+     // if ($q != '*:*')
+     //       $q = escapeSolrValue($q);
 
-        $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10 OR for_value_two:('. $q.')^10 OR for_value_four:('. $q.')^10 OR for_value_six:('. $q.')^10 OR subject_code:(' . $q . ')^10 OR name_part:(' . $q . ')^30)';
+        $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10  OR for_value_two:('. $q.')^10 OR for_value_four:('. $q.')^10 OR for_value_six:('. $q.')^10 OR name_part:(' . $q . ')^30)';
+        if($sort!='score desc') $filter_query.='&sort='.$sort;
         $q.=$filter_query;
 
         $q.=($extended_query);
@@ -84,8 +79,8 @@ class Solr extends CI_Model
         //if($filter_query!='') $fields['fq']=urlencode($filter_query);
         //print_r(urldecode($fields[q]));
         
-//        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&f.subject_value.facet.mincount=1&facet.sort=index';
-$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value.facet.mincount=1&facet.sort=index';
+//        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&f.subject_value.facet.mincount=1&facet.sort=count';
+        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value.facet.mincount=1&facet.sort=count';
         /* prep */
         $fields_string = '';
         foreach ($fields as $key => $value)
@@ -199,85 +194,7 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
     }
     
     
-    function searchAllSpatial($query, $extended_query, $write_type = 'json', $page, $classFilter = 'collection', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All', $status = 'All')
-    {
-        $q = $query;
-        $q = rawurlencode($q);
-        $q = str_replace("%5C%22", "\"", $q); //silly encoding
-        $start = 0;
-        $row = 10000;
-        //if($page!=1) $start = ($page - 1) * $row;
-
-        $solr_url = $this->config->item('solr_url');
-
-        $filter_query = '';
-        if ($classFilter != 'All')
-            $filter_query .= constructFilterQuery('class', $classFilter);
-        if ($typeFilter != 'All')
-            $filter_query .= constructFilterQuery('type', $typeFilter);
-        if ($groupFilter != 'All')
-            $filter_query .= constructFilterQuery('group', $groupFilter);
-        if ($subjectFilter != 'All')
-            $filter_query .= constructFilterQuery('subject_value', $subjectFilter);
-        if ($status != 'All')
-            $filter_query .= constructFilterQuery('status', $status);
-
-        //echo $status;
-        //echo $extended_query;
-        //echo urldecode($q).'<br/>';
-
-
-        $q = urldecode($q);
-        if ($q != '*:*')
-            $q = escapeSolrValue($q);
-        $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10 OR name_part:(' . $q . ')^30)';
-        $q.=$filter_query;
-
-        $q.=($extended_query);
-        //echo $filter_query;
-        //$filter_query .=$extended_query;//for spatial and temporal
-        //$q .=$extended_query;//extended for spatial
-        $fields = array(
-            'q' => $q, 'version' => '2.2', 'start' => $start, 'rows' => $row, 'wt' => $write_type,
-            'fl' => 'key,displayTitle,spatial_coverage_center,score'
-        );
-        //if($filter_query!='') $fields['fq']=urlencode($filter_query);
-        //print_r(urldecode($fields[q]));
-
-        //$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&f.subject_value.facet.mincount=1&facet.sort=index';
-        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value.facet.mincount=1&facet.sort=index';
-        /* prep */
-        $fields_string = '';
-        foreach ($fields as $key => $value)
-        {
-            $fields_string .= $key . '=' . $value . '&';
-        }//build the string
-        rtrim($fields_string, '&');
-
-        $fields_string .= $facet; //add the facet bits
-        //$fields_string = urldecode($fields_string);
-        //echo urldecode($fields_string).'<hr/>';
-        $ch = curl_init();
-        //set the url, number of POST vars, POST data
-        curl_setopt($ch, CURLOPT_URL, $solr_url . 'select'); //post to SOLR
-        curl_setopt($ch, CURLOPT_POST, count($fields)); //number of POST var
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string); //post the field strings
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //return to variable
-        $content = curl_exec($ch); //execute the curl
-        //echo 'json received+<pre>'.$content.'</pre>';
-        curl_close($ch); //close the curl
-
-        if ($write_type == 'json')
-        {
-            $json = json_decode($content);
-            return $json;
-        }
-        elseif ($write_type == 'xml')
-        {
-            return $content;
-        }
-    }
-
+  
     public function getRelated($key, $class, $type)
     {
         $fields = array(
@@ -345,34 +262,25 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         $fields = array(
             'q' => 'relatedObject_key:"' . $key . '"', 'version' => '2.2', 'rows' => '200000', 'start' => '0', 'indent' => 'on', 'wt' => 'json', 'fl' => 'key,class,type,data_source_key'
         );
-        $filter_query = '+class:("' . $class . '")';
-        if ($type)
-            $filter_query = '+type:("' . $type . '")';
-        if ($reverseLinks == "INT")
-            $filter_query .= '+data_source_key:("' . $dataSourceKey . '")';
-        if ($reverseLinks == "EXT")
-            $filter_query .= '-data_source_key:("' . $dataSourceKey . '")';
-        if ($excludeKeys)
-            $filter_query .= '-key: ' . escapeSolrValue($excludeKeys);
+		$filter_query = '+class:("'.$class.'")';
+		if($type) $filter_query = '+type:("'.$type.'")'; 
+		if($reverseLinks=="INT")$filter_query .= '+data_source_key:("'.$dataSourceKey.'")';
+		if($reverseLinks=="EXT")$filter_query .= '-data_source_key:("'.$dataSourceKey.'")';		
+		if($excludeKeys)$filter_query .= '-key: '.escapeSolrValue($excludeKeys);  
 
-        $fields['fq'] = $filter_query;
+		$fields['fq']=$filter_query;
         $json = $this->fireSearch($fields, '');
-
 
         return $json;
     }
 
-    public function getObjects($keys, $class, $type, $page)
-    {
-
-        if ($page != null)
-        {
+	public function getObjects($keys, $class, $type, $page){	
+		//echo $keys[0];
+		if($page!=null){
             $start = 0;
             $rows = 10;
-            if ($page != 1)
-                $start = (($page - 1) * $rows) + 0;
-        }else
-        {
+			if($page!=1) $start = (($page - 1) * $rows) + 0;			
+		}else{
             $start = 0;
             $rows = 2000;
         }
@@ -397,11 +305,12 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
             'q' => 'key:' . $getkeys . ' +status:(PUBLISHED)', 'version' => '2.2', 'rows' => $rows, 'start' => $start, 'indent' => 'on', 'wt' => 'json'
         );
         $json = $this->fireSearch($fields, '');
-
-
         return $json;
     }
 
+	public function getByKey($key){
+		return $this->getRegistryObjectSOLR($key, '*', 'json');
+	}
 
     public function getFacilities()
     {
@@ -441,7 +350,6 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         $fields = array('q' => "-for_code_two:['' TO *] AND class:collection", 'version' => '2.2', 'start' => '0', 'rows' => '1', 'indent' => 'on', 'wt' => 'json',
             'fl' => '*');
         $facet = 'facet=on&facet=true&facet.limit=-1&facet.field=for_code_two&facet.mincount=1';
-          print_r($fields);
         $json = $this->fireSearch($fields, '');
      
         return $json;
@@ -479,7 +387,7 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
             'q' => 'key:"' . $key . '"', 'version' => '2.2', 'start' => '0', 'rows' => '100', 'indent' => 'on', 'wt' => $wt,
             'fl' => $flag, 'q.alt' => '*:*'
         );
-        $result = fireSearch($fields, ''); //no facet
+		$result = $this->fireSearch($fields, '');//no facet
         return $result;
     }
 
@@ -490,11 +398,11 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
     function getStat($sort, $type = '')
     {
         $fields = array(
-            'q' => '*:*', 'version' => '2.2', 'start' => '0', 'rows' => '100', 'indent' => 'on', 'wt' => 'json',
-            'fl' => 'key', 'q.alt' => '*:*'
+			'q'=>'*:*','version'=>'2.2','start'=>'0','rows'=>'100','indent'=>'on', 'wt'=>'json',
+			'fl'=>'key', 'q.alt'=>'*:*','fq'=>'status:PUBLISHED'
         );
         if ($type == 'collection')
-            $fields['fq'] = 'class:collection+status:PUBLISHED';
+            $fields['fq'] = '+class:collection';
        // $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&facet.sort=index&facet.mincount=1';
           $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value.facet.mincount=1&facet.sort=index';        
 
@@ -512,7 +420,6 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         $json = $this->fireSearch($fields, $facet);
         return $json;
     }
-
     /*
      * Fire a search, given an array of fields and a string of facets
      */
@@ -537,9 +444,7 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         $content = curl_exec($ch); //execute the curl
         //echo 'json received+<pre>'.$content.'</pre>';
         curl_close($ch); //close the curl
-        print "Here: ";
-        print_r($content);
-        print "<br/>";
+     
         $json = json_decode($content);
         return $json;
     }

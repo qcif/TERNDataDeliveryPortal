@@ -12,10 +12,6 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
-********************************************************************************
-$Date: 2011-09-06 11:35:57 +1000 (Tue, 06 Sep 2011) $
-$Revision: 1 $
 ***************************************************************************
 *
 **/ 
@@ -33,8 +29,8 @@ class Preview extends CI_Controller {
 			$key = urlencode($_GET['key']);
 			$ds = urlencode($_GET['ds']);
 			$this->load->model('RegistryObjects', 'ro');
-	       	$content = $this->ro->getDraft($key, $ds);
-	       	$data['key']= $key;  	
+                        $content = $this->ro->get($key, $ds);
+                        $data['key']= $key;  	
 			$data['content'] = $this->transform($content, 'rifcs2Preview.xsl', $ds);	
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();	
@@ -52,7 +48,7 @@ class Preview extends CI_Controller {
 		$proc = new XSLTProcessor();
 		$proc->importStyleSheet($qtestxsl);
 		$proc->setParameter('','base_url',base_url());
-		$proc->setParameter('','orca_home',$this->config->item('orca'));
+		$proc->setParameter('','orca_home',getHTTPs($this->config->item('orca_url')));
 		$proc->setParameter('','dataSource',$ds);
 		$transformResult = $proc->transformToXML($registryObjects);	
 		return $transformResult;

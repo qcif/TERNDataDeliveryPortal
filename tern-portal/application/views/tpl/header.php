@@ -12,25 +12,31 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
-********************************************************************************
-$Date: 2011-09-06 11:35:57 +1000 (Tue, 06 Sep 2011) $
-$Revision: 1 $
 ***************************************************************************
 *
-**/ 
+**/ $md_title = 'TERN Data Discovery Portal (Test Version)';
+	$md_description = 'TERN Data Discovery Portal (Test Version)is a mesh of searchable web pages describing (and where possible linking to) terrestrial ecosystem research data collections. ';
+	$md_image = 'http://services.ands.org.au/home/orca/rda/img/rda-design.png';
+if(isset($title))$md_title = $title .' - TERN Data Discovery Portal';
+	if(isset($description))$md_description = htmlentities($description);
+        
 ?>
 <html>
 <head>
-	<title>TERN Data Discovery Portal (Test Version)</title>
-	<meta property="og:title" content="TERN Data Discovery Portal (Test Version)" />
-	<meta property="og:description" content=" " />
-	<meta property="og:image" content="http://services.ands.org.au/home/orca/rda/img/rda-design.png"/>
+	<title><?php echo $md_title;?></title>
+	<meta property="og:title" content="<?php echo $md_title;?>" />
+	<meta property="og:description" content="<?php echo $md_description;?>" />
+	<meta property="og:image" content="<?php echo $md_image;?>"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="title" content="TERN Data Portal"/>
-	<meta name="description" content=" "/>
 	
-	<link href="<?php echo base_url();?>css/tern-superfish.css" media="screen" type="text/css" rel="stylesheet">
+	<meta name="title" content="<?php echo $md_title;?>"/>
+	<meta name="description" content="<?php echo $md_description;?>"/>
+	
+	<?php if ($user_agent!='Internet Explorer'):?>
+    	<link href="<?php echo base_url();?>css/tern-superfish.css" media="screen" type="text/css" rel="stylesheet">
+	<?php endif;?>
+	 
+	
 	<link href="<?php echo base_url();?>css/reset.css" media="reset" type="text/css" rel="stylesheet">
 	<link type="text/css" href="<?php echo base_url();?>css/smoothness/jquery-ui-1.8.14.custom.css" rel="stylesheet" />
 	<link type="text/css" href="<?php echo base_url();?>css/tipsy.css" rel="stylesheet" />
@@ -43,9 +49,9 @@ $Revision: 1 $
 
 	<?php if($this->config->item('GA_enabled')):?>
 	<script type="text/javascript">
-            /*
+           /* 
 	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-8380487-7']);
+	  _gaq.push(['_setAccount', '<?php echo $this->config->item('GA_code');?>']);
 	  _gaq.push(['_trackPageview']);
 	
 	  (function() {
@@ -64,17 +70,17 @@ $Revision: 1 $
 </head>
 
 <body>   
-<div class="hide">TERN Data Discovery Portal (Test Version)</div>
+<div class="hide"><?php echo $md_title;?></div>
 <div id="wrapper">
 	<div id="container">
 		
-		<div id="header" class="no_print">
+		<div id="header" >
                     <div id="logo">
 			<a href="/"><img src="<?php echo site_url('img/logo.png');?>" id="tern-logo"/></a>
                         
                     </div>
                     
-                    <div class="top-menu-cover">
+                    <div class="no_print top-menu-cover">
 
 			<ul class="sf-menu">
 				<li><?php echo anchor('','Home');?></li>
@@ -85,10 +91,10 @@ $Revision: 1 $
 			</ul>  
                     </div>
                     <br><br><br><br><br><br>
-                    <div style="clear:right;text-align: center;"><h1>TERN Data Discovery Portal (Test Version)</h1></div>
+                    <div ><h1>TERN Data Discovery Portal (Test Version)</h1></div>
 		</div>
             
-		<div id="customise-dialog-box" class="clearfix hide">
+		<div id="customise-dialog-box" class="clearfix hide no_print" >
 			<p>Show Subjects <?php displayCustomiseOptions('show_subjects');?></p>
 			<p>Show Icons <?php displayCustomiseOptions('show_icons');?></p>
 			<p>Show Facets <?php displayCustomiseOptions('facets');?></p>

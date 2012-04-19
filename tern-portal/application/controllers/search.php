@@ -1,5 +1,4 @@
 <?php
-
 /**
   Copyright 2011 The Australian National University
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,35 +12,23 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-
- * *******************************************************************************
-  $Date: 2011-09-06 11:35:57 +1000 (Tue, 06 Sep 2011) $
-  $Revision: 1 $
- * **************************************************************************
+***************************************************************************
  *
- * */
+**/ 
 ?>
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+class Search extends CI_Controller {
 
-class Search extends CI_Controller
-{
-
-    public function index()
-    {
+	public function index(){
         parse_str($_SERVER['QUERY_STRING'], $_GET);
-        if (isset($_GET['q']))
-        {
+	if(isset($_GET['q'])){
             $q = $_GET['q'];
             //echo $q;
-            redirect(base_url() . 'search/#!/q=' . $q);
-        }
-        else
-        {
-            $this->load->library('user_agent');
-            $data['user_agent'] = $this->agent->browser();
+			redirect(base_url().'search/#!/q='.$q);
+		}else{	
+                        $this->load->library('user_agent');
+                        $data['user_agent'] = $this->agent->browser();
             $this->load->model('Registryobjects');
             $query = $this->Registryobjects->get_min_year();
             if($query) $row = $query->row();
@@ -51,42 +38,35 @@ class Search extends CI_Controller
         }
     }
 
-    public function bwredirect()
-    {//backward redirection with list.php
+	public function bwredirect(){//backward redirection with list.php
         parse_str($_SERVER['QUERY_STRING'], $_GET);
-        $class = 'All';
-        $group = 'All';
-        if (isset($_GET['class']))
-            $class = $_GET['class'];
-        if (isset($_GET['group']))
-            $group = $_GET['group'];
-        $this->browse($group, $class);
+		$class='All';$group='All';
+		if(isset($_GET['class'])) $class=$_GET['class'];
+		if(isset($_GET['group'])) $group=$_GET['group'];
+		$this->browse($group,$class);
     }
 
-    public function browse($group = 'All', $class='All')
-    {//yeah, just redirect the browsing to the search page for now
-        if ($class != 'All')
-            $class = strtolower($class);
-        redirect(base_url() . 'search#!/p=1/tab=' . $class . '/group=' . urldecode($group));
+	public function browse($group = 'All', $class='All'){//yeah, just redirect the browsing to the search page for now
+		if($class!='All') $class=strtolower($class);
+		redirect(base_url().'search#!/p=1/tab='.$class.'/group='.urldecode($group).'');
     }
 
-    public function updateStatistic()
-    {//update the statistics
+	public function updateStatistic(){//update the statistics
         $query = $this->input->post('q');
         $class = $this->input->post('classFilter');
         $group = $this->input->post('groupFilter');
         $subject = $this->input->post('subjectFilter');
-        $this->load->model('Registryobjects', 'ro');
-        $this->ro->updateStatistic($query, $class, $group, $subject);
+		$type = $this->input->post('typeFilter');
+		$temporal = $this->input->post('temporal');
+		$this->load->model('Registryobjects','ro');
+		$this->ro->updateStatistic($query, $class, $group, $subject, $type, $temporal);
     }
 
-    public function service_front()
-    {//front    end for orca search service
+	public function service_front(){//front    end for orca search service
         $this->load->view('service_front');
     }
 
-    public function service()
-    {//orca search service
+	public function service(){//orca search service
         $this->load->model('solr');
         $query = $this->input->post('query');
         $class = $this->input->post('class');
@@ -97,23 +77,18 @@ class Search extends CI_Controller
         $source_key = $this->input->post('source_key');
 
         $extended_query = '';
-        if ($source_key != 'undefined')
-        {
-            if ($source_key != 'All')
-                $extended_query = '+data_source_key:("' . $source_key . '")';
+		if($source_key!='undefined'){
+			if($source_key!='All') $extended_query = '+data_source_key:("'.$source_key.'")';
         }
-        if ($status == 'undefined')
-        {
-            $status = 'All';
+		if($status=='undefined'){
+			$status='All';
         }
 
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $status);
-
+		$data['json']=$this->solr->search($query,$extended_query,'json',$page,$class, $group, 'All', $subject, $status);
         $this->load->view('search/service', $data);
     }
 
-    public function seeAlso($type="count", $seeAlsoType='subjects')
-    {//for rda see also
+	public function seeAlso($type="count", $seeAlsoType='subjects'){//for rda see also
         $this->load->model('solr');
         $query = $this->input->post('q');
         $class = $this->input->post('classFilter');
@@ -131,27 +106,21 @@ class Search extends CI_Controller
         $data['numfound'] = $data['json']->{'response'}->{'numFound'};
         $data['seeAlsoType'] = $seeAlsoType;
 
-        if ($type == 'count')
-        {
+        if($type=='count'){
             $this->load->view('search/seeAlso', $data);
-        }
-        elseif ($type == 'content')
-        {
+        }elseif($type=='content'){
             $this->load->view('search/seeAlsoInfoBox', $data);
         }
     }
 
-    public function seeAlsoOLD()
-    {
+	public function seeAlsoOLD(){
         echo 'testing';
     }
 
-    function getSeeAlsoParty($key)
-    {
+       function getSeeAlsoParty($key){
         $relation_types = array('custodian', 'isManagedBy', 'isManagerOf');
         $relatedObjectsKeys = $this->getRelatedObjects($key, $relation_types);
-        foreach ($relatedObjectsKeys->{'response'}->{'docs'} as $index => $r)
-        {
+               foreach($relatedObjectsKeys->{'response'}->{'docs'} as $index=>$r){
             $relation_types2 = array('custodian', 'isManagedBy');
             echo '<pre>';
             print_r($relation =
@@ -161,113 +130,181 @@ class Search extends CI_Controller
         }
     }
 
-    function getRelationship($key, $relatedKey)
+
+	function getRelationship($key,$relatedKey,$class)
     {
         $related[] = $relatedKey;
+		$class= strtolower($class);
+		if($class=='party') 
+		{
         $typeArray = array(
-            "Describes" => "Described by",
             "Associated with" => "Associated with",
-            "Aggregated by" => "Collector of",
             "Has member" => "Member of",
-            "Produces" => "Output of",
-            "Includes" => "Includes",
-            "Undertaken by" => "Undertaken by",
-            "Collector of" => "Aggregated by",
-            "Described by" => "Describes",
+		"Has part" => "Part of",
+		"Collector of" => "Collected by",
             "Funded by" => "Funds",
             "Funds" => "Funded by",
-            "Located in" => "Location for",
-            "Location for" => "Located in",
             "Managed by" => "Manages",
             "Manages" => "Managed by",
             "Member of" => "Has member",
-            "Output of" => "Produces",
             "Owned by" => "Owner of",
-            "Owned Of" => "Owned by",
+		"Owner of" => "Owned by",
             "Participant in" => "Part of",
             "Part of" => "Participant in",
+		"Has collector"	 => "Aggregated by",
+		"Aggregated by" => "Has collector",	
+		"Enriched by" => "Enriches",
+		"Enriches" => "Enriched by"							
+		);
+		}
+		elseif($class=='collection')
+		{
+		$typeArray = array(
+			"Describes" => "Described by",
+			"Associated with" => "Associated with",
+			"Aggregated by" => "Collector of",
+			"Part of" => "Contains",
+			"Described by" => "Describes",
+			"Located in" => "Location for",
+			"Location for" => "Located in",
+			"Managed by" => "Manages",
+			"Manages" => "Managed by",		
+			"Output of" => "Outputs",
+			"isOutputOf" => "Outputs",		
+			"Owned by" => "Owns",
+			"Contains" => "Part of",
+			"Supports" => "Supported by",
+			"Enriched by" => "Enriches",
+			"Available through" => "Makes available",
+			"Makes available" => "Available through",	
+			"Has collector"	 => "Collector of",	
+			"Derived from" => "Derived collection",
+			"Produced by" => "Produces",	
+			"Operated on by" => "Operates on",	
+			"Adds value to "=> "Value added by",	
+			"Derived collection" => "Derived from"
+		);		
+		}
+		elseif($class=='service')
+		{
+		$typeArray = array(
+			"Associated with" => "Associated with",
+			"Part of" => "Includes",
+			"Managed by" => "Manages",
+			"Manages" => "Managed by",			
+			"Owned by" => "Owns",
+			"Part of" => "Has part",
             "Supported by" => "Supports",
-            "Supports" => "Supported by"
+			"Available through" => "Makes available",
+			"Makes available" => "Available through",
+			"Includes" => "Part of",
+			"Produces" => "Produced by",
+			"Produced by" => "Produces",
+			"Presents" => "Presented by",
+			"Operates on" => "Operated on by",
+			"Operated on by" => "Operates on",	
+			"Adds value to" => "Value added by",
+			"Value added by" => "Adds value to",						
         );
+		}
+		else
+		{
+		$typeArray = array(
+			"Associated with" => "Associated with",
+			"Produces" => "Output of",
+			"Includes" => "Part of",
+			"Undertaken by" => "Has participant",
+			"Funded by" => "Funds",
+			"Managed by" => "Manages",
+			"Owned by" => "Owns",
+			"Part of" => "Includes",
+			"Has collector"	 => "Collector of",		
+		);			
+		}		
         $this->load->model('solr');
         $object = $this->solr->getObjects($related, null, null, null);
         if (isset($object->{'response'}->{'docs'}[0]))
         {
             $keyList = $object->{'response'}->{'docs'}[0]->{'relatedObject_key'};
             $relationshipList = $object->{'response'}->{'docs'}[0]->{'relatedObject_relation'};
-
-            for ($i = 0; $i < count($keyList); $i++)
+		$relationship = '';
+		for($i=0;$i<count($keyList);$i++)
             {
-                if ($keyList[$i] == $key)
-                    $relationship = $relationshipList[$i];
+			if($keyList[$i]==$key) $relationship = $relationshipList[$i];
             }
 
-            if (array_key_exists($relationship, $typeArray))
+		if( array_key_exists($relationship, $typeArray) )
             {
-                return $typeArray[$relationship];
+			return  $typeArray[$relationship];
             }
             else
             {
-                return $relationship;
+			return   $relationship;
             }
         }
     }
-
-    public function connections($type="count", $class=null, $types=null)
-    {//for rda connections
+	public function connections($type="count",$class=null,$types=null){//for rda connections
         $this->load->model('solr');
         $query = $this->input->post('q');
-        $classArray = array('collection', 'service', 'activity');
+        $classArray = array('collection','service','activity');
         $typeArray = array('person', 'group');
         $page = $this->input->post('page');
-        if (!$page)$page = null;
-        
+       	if(!$page)$page=null;
         $key = $this->input->post('key');
         $keyArray[] = $key;
-        $data['json'] = $this->solr->getObjects($keyArray, $class, $types, null);
+        $data['json'] =$this->solr->getObjects($keyArray,$class,$types,null);
+		$data['externalKeys']  ='';
   
-        $data['externalKeys'] = '';
+		//print_r($data['json']);
+		
         $reverseLinks = $data['json']->{'response'}->{'docs'}[0]->{'reverseLinks'};
         $dataSourceKey = $data['json']->{'response'}->{'docs'}[0]->{'data_source_key'};
+		
+		//print_r($data['json']);
+		
         $data['thisClass'] = $data['json']->{'response'}->{'docs'}[0]->{'class'};
         $data['externalKeys'] = '';
-        if (!$types and !$class)
+        if(!$types and !$class)
         {
-            foreach ($classArray as $class)
+        	foreach($classArray as $class)
             {
-                $data[$class]['json'][0] = $this->solr->getRelated($key, $class, $types);
+        		$data[$class]['json'][0] =$this->solr->getRelated($key,$class,$types); 
                 $relatedKeys = array();
-                 
-                foreach ($data[$class]['json'][0]->{'response'}->{'docs'} as $r)
+        		foreach($data[$class]['json'][0]->{'response'}->{'docs'} as $r)
                 {
                     $relatedNum = count($r->{'relatedObject_key'});
 
                     $relatedKeys = '';
-                    $relationship = '';
-                    for ($i = 0; $i < $relatedNum; $i++)
+        	        $data[$class]['relatedKey'] = '';      			
+        			for($i = 0; $i<$relatedNum;$i++)
                     {
-                        if ($r->{'relatedObject_relatedObjectClass'}[$i] == $class)
+        				if($r->{'relatedObject_relatedObjectClass'}[$i]==$class)
                         {
                             $relatedKeys[] = $r->{'relatedObject_key'}[$i];
                             $data[$class]['relationship'][] = $r->{'relatedObject_relation'}[$i];
+        					if(isset( $r->{'relatedObject_relation_description'}[$i])){
+       							$data[$class]['relationship_description'][] = $r->{'relatedObject_relation_description'}[$i];  
+        					}else{
+        						$data[$class]['relationship_description'][] = 'null';
                         }
+         					$data[$class]['relatedKey'][] = $r->{'relatedObject_key'}[$i];       					
                     }
                 }
-                if ($reverseLinks != "NONE")
-                {
+        		} 
+        		if($reverseLinks!="NONE"){
 
-                    $data[$class]['json'][1] = $this->solr->getConnections($key, $class, $types, $relatedKeys, $reverseLinks, $dataSourceKey);
-                    $data[$class]["extrnal"] = $this->solr->getConnections($key, $class, $types, $relatedKeys, 'EXT', $dataSourceKey);
+        			$data[$class]['json'][1] =$this->solr->getConnections($key,$class,$types,$relatedKeys,$reverseLinks,$dataSourceKey);  
+        			$data[$class]["extrnal"] =$this->solr->getConnections($key,$class,$types,$relatedKeys,'EXT',$dataSourceKey); 
 
-                    if ($data[$class]["extrnal"]->{'response'}->{'numFound'} > 0)
+					if($data[$class]["extrnal"]->{'response'}->{'numFound'}>0) 
                     {
 
-                        foreach ($data[$class]["extrnal"]->{'response'}->{'docs'} as $r)
+        				foreach($data[$class]["extrnal"]->{'response'}->{'docs'} as $r)
                         {
                             $extrnalNum = count($r->{'key'});
-                            for ($i = 0; $i < $extrnalNum; $i++)
+        					for($i = 0; $i<$extrnalNum;$i++)
                             {
-                                if ($r->{'class'} == $class)
+        						if($r->{'class'}==$class)
                                 {
                                     $data['externalKeys'][] = $r->{'key'};
                                 }
@@ -275,53 +312,59 @@ class Search extends CI_Controller
                         }
                     }
 
-                    foreach ($data[$class]['json'][1]->{'response'}->{'docs'} as $r)
+      				foreach($data[$class]['json'][1]->{'response'}->{'docs'} as $r)
                     {
                         $connectedNum = count($r->{'key'});
-                        for ($i = 0; $i < $connectedNum; $i++)
+        				for($i = 0; $i<$connectedNum;$i++)
                         {
-                            if ($r->{'class'} == $class)
+        					if($r->{'class'}==$class)
                             {
                                 $relatedKeys[] = $r->{'key'};
-                                $data[$class]['relationship'][] = $this->getRelationship($key, $r->{'key'});
+        						$data[$class]['relationship'][] = $this->getRelationship($key,$r->{'key'},$class);
+         						$data[$class]['relatedKey'][] = $r->{'key'};       					
                             }
                         }
                     }
                 }
-                $data[$class]['json'] = $this->solr->getObjects($relatedKeys, $class, $types, $page = null);
+  				$data[$class]['json'] = $this->solr->getObjects($relatedKeys,$class,$types,$page=null);
                 $data[$class]['numfound'] = $data[$class]['json']->{'response'}->{'numFound'};
             }
-            foreach ($typeArray as $types)
+            foreach($typeArray as $types)
             {
                 $relatedKeys = '';
-                $data[$types]['json'][0] = $this->solr->getRelated($key, 'party', $types);
+        		$data[$types]['json'][0]=$this->solr->getRelated($key,'party',$types);   
                 $relatedKeys = array();
-                foreach ($data[$types]['json'][0]->{'response'}->{'docs'} as $r)
+        		foreach($data[$types]['json'][0]->{'response'}->{'docs'} as $r)
                 {
                     $relatedNum = count($r->{'relatedObject_key'});
                     $relatedKeys = '';
-                    for ($i = 0; $i < $relatedNum; $i++)
+        			for($i = 0; $i<$relatedNum;$i++)
                     {
-                        if ($r->{'relatedObject_relatedObjectType'}[$i] == $types)
+        				if($r->{'relatedObject_relatedObjectType'}[$i]==$types)
                         {
                             $relatedKeys[] = $r->{'relatedObject_key'}[$i];
                             $data[$types]['relationship'][] = $r->{'relatedObject_relation'}[$i];
+        					if(isset($r->{'relatedObject_relation_description'}[$i])){
+       							$data[$types]['relationship_description'][] = $r->{'relatedObject_relation_description'}[$i];       
+        					}else{
+       							$data[$types]['relationship_description'][] = 'null';               					
                         }
+         					$data[$types]['relatedKey'][] = $r->{'relatedObject_key'}[$i];          				
                     }
                 }
-                if ($reverseLinks != "NONE")
+        		}  	
+        		if($reverseLinks!="NONE"){    		
+            		$data[$types]['json'][1] =$this->solr->getConnections($key,'party',$types,$relatedKeys,$reverseLinks,$dataSourceKey); 
+        			$data[$class]["extrnal"] =$this->solr->getConnections($key,'party',$types,$relatedKeys,'EXT',$dataSourceKey);  
+					if($data[$class]["extrnal"]->{'response'}->{'numFound'}>0) 
                 {
-                    $data[$types]['json'][1] = $this->solr->getConnections($key, 'party', $types, $relatedKeys, $reverseLinks, $dataSourceKey);
-                    $data[$class]["extrnal"] = $this->solr->getConnections($key, $class, $types, $relatedKeys, 'EXT', $dataSourceKey);
-                    if ($data[$class]["extrnal"]->{'response'}->{'numFound'} > 0)
-                    {
 
-                        foreach ($data[$class]["extrnal"]->{'response'}->{'docs'} as $r)
+        				foreach($data[$class]["extrnal"]->{'response'}->{'docs'} as $r)
                         {
                             $extrnalNum = count($r->{'key'});
-                            for ($i = 0; $i < $extrnalNum; $i++)
+        					for($i = 0; $i<$extrnalNum;$i++)
                             {
-                                if ($r->{'type'} == $types)
+        						if($r->{'type'}==$types)
                                 {
                                     $data['externalKeys'][] = $r->{'key'};
                                 }
@@ -329,67 +372,67 @@ class Search extends CI_Controller
                         }
                     }
 
-                    foreach ($data[$types]['json'][1]->{'response'}->{'docs'} as $r)
+        			foreach($data[$types]['json'][1]->{'response'}->{'docs'} as $r)
                     {
                         $connectedNum = count($r->{'key'});
-                        for ($i = 0; $i < $connectedNum; $i++)
+        				for($i = 0; $i<$connectedNum;$i++)
                         {
-                            if ($r->{'type'} == $types)
+         					if($r->{'type'}==$types)
                             {
                                 $relatedKeys[] = $r->{'key'};
-                                $data[$types]['relationship'][] = $this->getRelationship($key, $r->{'key'});
+        						$data[$types]['relationship'][] = $this->getRelationship($r->{'key'},$key,$class);        						
+         						$data[$types]['relatedKey'][] = $r->{'key'};        					
                             }
                         }
                     }
                 }
 
-                $data[$types]['json'] = $this->solr->getObjects($relatedKeys, 'party', $types, $page = null);
+       			$data[$types]['json'] = $this->solr->getObjects($relatedKeys,'party',$types,$page=null);
                 $data[$types]['numfound'] = $data[$types]['json']->{'response'}->{'numFound'};
             }
-        }
-        else
-        {
+        }else{
             $relatedKeys = '';
-            if ($types = 'undefined'
-                )$types = null;
-            $data['json'] = $this->solr->getRelated($key, $class, $types);
+        	$relatedDescriptions = '';
+			if($types='undefined')$types = null;
+         	$data['json'] =$this->solr->getRelated($key,$class,$types); 
             $relatedKeys = array();
-            foreach ($data['json']->{'response'}->{'docs'} as $r)
+        	foreach($data['json']->{'response'}->{'docs'} as $r)
             {
                 $relatedNum = count($r->{'relatedObject_key'});
                 $relatedKeys = '';
-                for ($i = 0; $i < $relatedNum; $i++)
+        		for($i = 0; $i<$relatedNum;$i++)
                 {
-                    if ($r->{'relatedObject_relatedObjectClass'}[$i] == $class)
+        			if($r->{'relatedObject_relatedObjectClass'}[$i]==$class)
                     {
                         $relatedKeys[] = $r->{'relatedObject_key'}[$i];
+        				$relatedDescriptions[] = $r->{'relatedObject_relation_description'}[$i];
                     }
                 }
             }
-            if ($reverseLinks != "NONE")
+        	if($reverseLinks!="NONE")
             {
-                $data['json'] = $this->solr->getConnections($key, $class, $types, $relatedKeys, $reverseLinks, $dataSourceKey);
-                $data["extrnal"] = $this->solr->getConnections($key, $class, $types, $relatedKeys, 'EXT', $dataSourceKey);
-                if ($data["extrnal"]->{'response'}->{'numFound'} > 0)
+           		$data['json'] =$this->solr->getConnections($key,$class,$types,$relatedKeys,$reverseLinks,$dataSourceKey); 
+         		$data["extrnal"] =$this->solr->getConnections($key,$class,$types,$relatedKeys,'EXT',$dataSourceKey);  
+				if($data["extrnal"]->{'response'}->{'numFound'}>0) 
                 {
-                    foreach ($data["extrnal"]->{'response'}->{'docs'} as $r)
+        			foreach($data["extrnal"]->{'response'}->{'docs'} as $r)
                     {
                         $extrnalNum = count($r->{'key'});
-                        for ($i = 0; $i < $extrnalNum; $i++)
+        				for($i = 0; $i<$extrnalNum;$i++)
                         {
-                            if ($r->{'class'} == $class)
+        					if($r->{'class'}==$class)
                             {
                                 $data['externalKeys'][] = $r->{'key'};
                             }
                         }
                     }
                 }
-                foreach ($data['json']->{'response'}->{'docs'} as $r)
+      			foreach($data['json']->{'response'}->{'docs'} as $r)
                 {
                     $connectedNum = count($r->{'key'});
-                    for ($i = 0; $i < $connectedNum; $i++)
+        			for($i = 0; $i<$connectedNum;$i++)
                     {
-                        if ($r->{'class'} == $class)
+        				if($r->{'class'}==$class)
                         {
                             $relatedKeys[] = $r->{'key'};
                         }
@@ -397,23 +440,22 @@ class Search extends CI_Controller
                 }
             }
 
-            $data['json'] = $this->solr->getObjects($relatedKeys, $class, $types, $page);
+       		$data['json'] =$this->solr->getObjects($relatedKeys,$class,$types,$page); 
             $data['numfound'] = $data['json']->{'response'}->{'numFound'};
+			  	      	
         }
-        if ($type == 'count')
-        {
+        if($type=='count'){
             $this->load->view('search/connections', $data);
-        }
-        elseif ($type == 'content')
-        {
+        }elseif($type=='content'){
             $this->load->view('search/connectionsInfoBox', $data);
         }
     }
 
-    public function getRelatedObjects($key, $relation_types)
-    {
+
+	
+    public function getRelatedObjects($key, $relation_types){
         $this->load->model('solr');
-        $relatedObject_keys = $this->solr->getRelatedKeys($key, $relation_types);
+               $relatedObject_keys = $this->solr->getRelatedKeys($key,$relation_types);
         return $relatedObject_keys;
     }
 
@@ -425,7 +467,7 @@ class Search extends CI_Controller
 
         if (($q == '') || ($q == 'Search ecosystem data'))
             $q = "*:*";
-        //echo $q;
+      //  echo $q;
         //Filtering if there is any
         $classFilter = $this->input->post('classFilter');
         $typeFilter = urldecode($this->input->post('typeFilter'));
@@ -441,39 +483,31 @@ class Search extends CI_Controller
         $spatial_included_ids = $this->input->post('spatial_included_ids');
         $temporal = $this->input->post('temporal');
         $alltab = $this->input->post('alltab');
-
+        $sort = $this->input->post('sort');
 
         $query = $q;
         $extended_query = '';
 
         //echo '+spatial:('.$spatial_included_ids.')';
-
-        if ($spatial_included_ids != '')
-        {
+        if($spatial_included_ids!='') {
             $extended_query .= $spatial_included_ids;
         }
-        if ($temporal != 'All')
-        {
+		if($temporal!='All'){
             $temporal_array = explode('-', $temporal);
             //$extended_query .='+dateFrom:[' . $temporal_array[0] . ' TO *]+dateTo:[* TO ' . $temporal_array[1] . ']';
              $extended_query .='+dateFrom:[* TO '. $temporal_array[1].']+dateTo:['.$temporal_array[0] . ' TO *]';
         }
 
-        //echo $query;
+        
 
         /* Search Part */
 
         $this->load->model('solr');
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, $fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$subjectCodeFilter);
-        if ($classFilter == 'collection')
-        {
-            // $data['result_spatial']= $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter,'PUBLISHED');
-        }
-        //print_r($data['json']);
+        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, $fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$subjectCodeFilter, $sort);
 
         /*         * getting the tabbing right* */
         $query_tab = $q;
-        $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$subjectCodeFilter); //just for the tabbing mechanism (getting the numbers right)
+        $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$subjectCodeFilter,$sort); //just for the tabbing mechanism (getting the numbers right)
         /* just that! and json_tab is used in tab view */
 
         /*         * getting the facet right* */
@@ -696,7 +730,7 @@ class Search extends CI_Controller
         $west = $this->input->post('west');
 
         $this->load->model('registryobjects');
-        $data['registryObjects'] = $this->registryobjects->spatial($north, $east, $south, $west);
+		$data['registryObjects']=$this->registryobjects->spatial($north, $east, $south, $west);
         $this->load->view('search/listIDs', $data);
     }
 

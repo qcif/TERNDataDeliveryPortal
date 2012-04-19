@@ -31,10 +31,8 @@ class View_part extends CI_Controller {
 
 	public function homepageStat($sort = 'index'){
 		$this->load->model('solr');
-		$data['json']=$this->solr->getStat($sort, 'collection');
-                $data['facilities'] = $this->solr->getNCRISPartners();
-               
-		$data['json_class']=$this->solr->getStat($sort);
+		$data['groups']=$this->solr->getStat($sort, 'collection');
+		$data['classes']=$this->solr->getStat($sort);
 		$this->load->view('stat-view', $data);
 	}
 	
@@ -55,7 +53,7 @@ class View_part extends CI_Controller {
 		echo array_to_json($result);
 	}
 	
-// this function is deprecated and just here for reference - MINH
+
 	public function getView()
 	{
 		$key = $this->input->post('key');
