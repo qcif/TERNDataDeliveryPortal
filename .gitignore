@@ -9,4 +9,6 @@
 ._*
 /registry/src/global_config.php
 /registry/src/orca/rda/.htaccess
+/tern-portal/application/config/config.php
+/tern-portal/application/config/database.php
 
