@@ -11,4 +11,8 @@
 /registry/src/orca/rda/.htaccess
 /tern-portal/application/config/config.php
 /tern-portal/application/config/database.php
-
+/registry/src/_includes/init.php
+/registry/src/_includes/_environment/application_env.php
+/registry/src/orca/_includes/init.php
+/registry/src/_includes/_configuration/application_config.php
+/registry/src/_inclues/_environment/database_env.php
