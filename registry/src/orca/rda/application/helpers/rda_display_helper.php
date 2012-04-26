@@ -99,6 +99,8 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
 		case "subject_value":$clear = 'clearSubjects';$name="Subjects";$class="subjectFilter";break;
 	}
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
+       
+ 
 	//print the selected
 	for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
 		if($object_type[$i+1]>0){

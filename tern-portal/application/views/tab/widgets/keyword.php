@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 ?>
-<p><b><label>Search options</label></b></p>
+<p><b><label>Keywords</label></b></p>
 <div id="advance-keyword-search">  
     <div id="keywordsrch">
         <!--div id="condition">
@@ -14,50 +14,44 @@
         </div-->
         <p>
         <div id="firstsearch">
-             <select id="operator1">
-                    <option value="and">All Fields</option>
-                    <option value="or">Title/Name</option>
-                    <option value="not">Description</option>
-                
+             <select name="fields[]">
+                    <option value="">All Fields</option>
+                    <option value="displayTitle">Title/Name</option>
+                    <option value="description">Description</option>
+                    <option value="subject">Keyword</option>
                 </select>
-            <input class="search-input short" id="first-keyword1" type="text" value=""/>
-                <select id="operator1">
-                    <option value="and">AND</option>
-                    <option value="or">OR</option>
-                    <option value="not">NOT</option>
-                </select>
-          
+            <input class="search-input short" name="keyword[]" type="text" value=""/>
+                <select name="operator[]">
+                    <option value="AND">AND</option>
+                    <option value="OR">OR</option>
+                    <option value="-">NOT</option>
+                </select>  
         </div>
         <p>
         <div id="secondsearch">
-            <select id="operator1">
-                    <option value="and">All Fields</option>
-                    <option value="or">Title/Name</option>
-                    <option value="not">Description</option>
-           
+            <select name="fields[]">
+                    <option value="">All Fields</option>
+                    <option value="displayTitle">Title/Name</option>
+                    <option value="description">Description</option>
+                    <option value="subject">Keyword</option>
                 </select>
-          <input class="search-input short" id="first-keyword2" type="text" value=""/>
-            <select id="operator2">
-                    <option value="and">AND</option>
-                    <option value="or">OR</option>
-                      <option value="not">NOT</option>
-            </select>
-           
+          <input class="search-input short" name="keyword[]" type="text" value=""/>
+            <select name="operator[]">
+                    <option value="AND">AND</option>
+                    <option value="OR">OR</option>
+                    <option value="-">NOT</option>
+                </select>  
         </div>
         <p>
         <div id="thirdsearch">
-            <select id="operator1">
-                    <option value="and">All Fields</option>
-                    <option value="or">Title/Name</option>
-                    <option value="not">Description</option>
-                     <option value="not">Description</option>
+            <select name="fields[]">
+                    <option value="">All Fields</option>
+                    <option value="displayTitle">Title/Name</option>
+                    <option value="description">Description</option>
+                    <option value="subject">Keyword</option>
                 </select>
-             <input class="search-input short" id="first-keyword3" type="text" value=""/>
-            <select id="operator3">
-                    <option value="and">AND</option>
-                    <option value="or">OR</option>
-                     <option value="not">NOT</option>
-            </select>
+             <input class="search-input short" name="keyword[]" type="text" value=""/>
+           
            
         </div>
     </div>

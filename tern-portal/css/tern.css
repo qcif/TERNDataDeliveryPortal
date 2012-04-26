@@ -184,7 +184,7 @@ a:hover{text-decoration:underline;}
 }
 
 /* Tabs */
-#spatialmap{width:430px;height:430px;overflow:auto;display:block;}
+#spatialmap,#openlayers-spatialmap{width:430px;height:430px;overflow:auto;display:block;}
 
 
 /*
@@ -205,7 +205,7 @@ button{font-size:13px;}
 .info-message{border:1px solid #9ab191;padding:10px;margin:10px 0;background:white;}
 
 /*new advanced search*/
-#tab-location-map{ float:right; margin-right:10px; margin-top:10px}
+#advanced-location-map{ float:right; margin-right:10px; margin-top:10px}
 
 /*
  * Auto Complete
@@ -646,21 +646,23 @@ h3.ui-accordion-header.ui-state-active{ font-weight:bold; }
    }
   .spatial-label
   {
-      font-size:0.9em;
-      font-family: Verdana,Arial,sans-serif;
+      font-size:11px;
   }
-  
+  #showCoords{
+      text-decoration: underline;
+      color: #0a450a;
+  }
   
   #advance-buttonSearch{
       margin: 5px;
   }
   
-  #advance-spatial-search{
+  #spatial-search{
       text-align:center;
       padding-top:8px;
       
   }
-  #advance-spatial-search table{
+  #spatial-search table{
       margin:auto;
       
   }

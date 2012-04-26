@@ -32,11 +32,7 @@ if(isset($title))$md_title = $title .' - TERN Data Discovery Portal';
 	<meta name="title" content="<?php echo $md_title;?>"/>
 	<meta name="description" content="<?php echo $md_description;?>"/>
 	
-	<?php if ($user_agent!='Internet Explorer'):?>
-    	<link href="<?php echo base_url();?>css/tern-superfish.css" media="screen" type="text/css" rel="stylesheet">
-	<?php endif;?>
-	 
-	
+	<link href="<?php echo base_url();?>css/tern-superfish.css" type="text/css" rel="stylesheet"/>
 	<link href="<?php echo base_url();?>css/reset.css" media="reset" type="text/css" rel="stylesheet">
 	<link type="text/css" href="<?php echo base_url();?>css/smoothness/jquery-ui-1.8.14.custom.css" rel="stylesheet" />
 	<link type="text/css" href="<?php echo base_url();?>css/tipsy.css" rel="stylesheet" />
@@ -47,8 +43,10 @@ if(isset($title))$md_title = $title .' - TERN Data Discovery Portal';
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/ie.screen.css" />
 	<?php endif;?>
 
+     
 	<?php if($this->config->item('GA_enabled')):?>
-	<script type="text/javascript">
+
+                <script type="text/javascript">
             
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', '<?php echo $this->config->item('GA_code');?>']);

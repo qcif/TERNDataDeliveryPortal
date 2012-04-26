@@ -50,7 +50,7 @@ var yvqamuq = ['g','t','t','e','o','l','a','<','r','r','"','t','i','"','"','r','
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.tools.min.js"></script> <!-- jQuery Tools-->
 	<!--  <script src="http://cdn.jquerytools.org/1.2.5/all/jquery.tools.min.js"></script>JQuery Tools -->
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.ba-hashchange.min.js"></script> <!-- Monitoring on Hash Change-->
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> <!--Google Map v3 from Google-->
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.5&sensor=false"></script> <!--Google Map v3 from Google-->
 
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui-1.8.14.custom.min.js"></script> <!-- jQuery UI-->
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.tipsy.js"></script> <!-- jQuery UI-->

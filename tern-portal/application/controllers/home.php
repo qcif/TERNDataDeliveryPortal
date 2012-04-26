@@ -69,6 +69,7 @@ class Home extends CI_Controller {
 	}
 	
         public function advancesrch(){
+                include APPPATH . '/views/tab/forstat.php';
                 $this->load->model('Registryobjects');
                 $query = $this->Registryobjects->get_min_year();
                  if($query) $row = $query->row();
@@ -80,7 +81,7 @@ class Home extends CI_Controller {
                 $queryFacilities = $this->Solr->getFacilities();
                 
                 $data['facilities'] = $queryFacilities->{'facet_counts'}->{'facet_fields'}->{'group'};
-            
+                $data['subject'] = $subject;
                 
 		$this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();

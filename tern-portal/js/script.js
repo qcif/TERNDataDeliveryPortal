@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	var search_term = $('#search-box').val();
 	var page = 1;
@@ -10,25 +9,22 @@ $(document).ready(function(){
         var fortwoFilter='All';
         var forfourFilter='All';
         var forsixFilter='All';
-        
-        var subjectCodeFilter = 'All';
-	var advanced_search_term = '';
-	var spatial_included_ids = '';
+        var resultSort = 'score desc';
+         var spatial_included_ids = '';
 	var temporal = 'All';
-        var limit = 150;
-	var doTemporalSearch = false;
+        var doTemporalSearch = false;
 	var n = '';var e = '';var s='';var w='';
         var min_year = parseInt($('#min_year').html());
         var max_year = parseInt($('#max_year').html());
-        var markerArray2 = [];
         var markerArray = [];
         var markerArrayTab = [];
-        var infoWindows = [];
+        var adv = 0;
         var labelMap = [ {featureType: "all", stylers: [ {elementType: "labels", stylers: [ {visibility: "on"} ]} ]} ];
-        var infowindow;
+ 
         
-        var map;
-        var map2;
+        var map; // is used in the home page and adv search 
+        var map2;  // is used in the view records page 
+        var map3; // is used in the search results page. 
         var drawingArrays = [];
         var markerCluster = '';
       //router
@@ -53,7 +49,8 @@ $(document).ready(function(){
 	}else if(window.location.href.indexOf('preview')>=0){
 		initPreviewPage();
     }else if(window.location.href.indexOf('advancesrch')>=0){
-        loadDrawGoogleMap();  
+                //loadDrawGoogleMap();  
+                loadDrawOpenLayersMap();
 	}else {
 		initHomePage();
         }
@@ -116,7 +113,7 @@ $(document).ready(function(){
 		var hash = window.location.hash;
 		//console.log('Hash Change: '+ hash + '<br/>');
 		//$('#date-slider').slider({//date slider for advanced search
-                    $('#date-slider').slider({//date slider for advanced search
+                   /*$('#date-slider').slider({//date slider for advanced search
 			range: true,
 			min:min_year,
                         max:max_year,
@@ -130,7 +127,7 @@ $(document).ready(function(){
                             //commented out to disable autoredirect
 				//changeHashTo(formatSearch(search_term, page, classFilter));
 			}
-		});
+		});*/
 
 
 		//console.log($('#date-slider').slider('option', 'values'));
@@ -151,13 +148,13 @@ $(document).ready(function(){
                                 case 'fortwo':fortwoFilter=encodeURIComponent(decodeURIComponent(value));break;
                                 case 'forfour':forfourFilter=encodeURIComponent(decodeURIComponent(value));break;
                                 case 'forsix':forsixFilter=encodeURIComponent(decodeURIComponent(value));break;
-                                case 'subjectCode':subjectCodeFilter=encodeURIComponent(decodeURIComponent(value));break;
-				case 'temporal':temporal=value;break;
+                                case 'temporal':temporal=value;break;
 				case 'n':n=value;break;
 				case 'e':e=value;break;
 				case 's':s=value;break;
 				case 'w':w=value;break;
                                 case 'alltab':alltab=value;break;
+                                case 'adv':adv = value;break;
 			}
 		});
 		if(classFilter!=$('#classSelect').val()) {
@@ -286,6 +283,7 @@ $(document).ready(function(){
 		if(n!=''){
 			res+='/n='+n+'/e='+e+'/s='+s+'/w='+w;
 		}
+                res+='/adv=' +(adv);
 		//alert(res);
 		return res;
 
@@ -1050,7 +1048,7 @@ $(document).ready(function(){
   			type:"POST",
   			url: base_url+"/search/filter/",
 
-  			data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&subjectCodeFilter="+subjectCodeFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1",
+  			data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv,
 
   				success:function(msg){
   					$("#search-result").html(msg);
@@ -1077,6 +1075,8 @@ $(document).ready(function(){
   				}
   		});
 	}
+
+    
 
     /* display the map and enable start drawing buttons */
 
@@ -1243,17 +1243,15 @@ $(document).ready(function(){
 		  api.play();
 		});
 		*/
-        loadDrawGoogleMap();
+                loadDrawGoogleMap();
 		$('.hp-class-item').live('click', function(){
 			var id = $(this).attr('id');
 			changeHashTo(formatSearch(search_term,1,id));
 		});
     
                   var formap = drawTabMap("formap","content","for");
-                  //var datatypemap = drawMarkerMap("datatypemap","content","datatype");
-                 // register event for tabs
-               
-                  $('.boxfor a').live("click", function(e) {
+                  // register event for tabs
+                 $('.boxfor a').live("click", function(e) {
                         e.preventDefault();
 
                         var subjectName=$(this).attr('title');
@@ -1598,10 +1596,10 @@ $(document).ready(function(){
 
 
 		for(i in markerArray){
-    		if(markerArray[i]!=null)markerArray[i].setMap(null);
+    		if(markerArray[i]!=null) markerArray[i].setMap(null);
     		markerArray[i]=null;
                 }
-                markerArray2 = [];
+                markerArray = [];
 		for(i in drawingArrays){
     		if(drawingArrays[i]!=null)drawingArrays[i].setMap(null);
     		drawingArrays[i]=null;
@@ -1614,13 +1612,13 @@ $(document).ready(function(){
 			var key = $(this).parent().children('.key').html();
 			var info = $(this).parent();
 		        marker = drawMarkerOnTabMap(stringToLatLng($(this).html()),map3,info.parent().children('a').html(),key);
-                        markerArray2.push(marker);
+                        markerArray.push(marker);
                         latlngbounds.extend( stringToLatLng($(this).html()) );
 
 		});
 
 
-                        markerCluster = new MarkerClusterer(map3, markerArray2);
+                        markerCluster = new MarkerClusterer(map3, markerArray);
 
                         markerCluster.onClick = function(e) {
                             
@@ -1730,26 +1728,12 @@ $(document).ready(function(){
 	});
 
 
-	/*ADVANCED SEARCH
-	$('#advanced-search-button').click(function(){
-		advanced_search_term = $('#search-box').val();
-		$('#advanced-search-term').html(advanced_search_term);
-		$('#advanced').slideToggle();
-		resetZoom();//google map api bug fix
-		$.cookie('advanced-search','open');
-	});
+	/*ADVANCED SEARCH and LOCATION TAB SEARCH*/ 
 
-	$('#close_advanced').click(function(){
-		$('#advanced-search-button').click();
-		$.cookie('advanced-search','close');
-	});
-*/
 	$('#search_advanced').click(function(){
 		if(doTemporalSearch){
-            // temporal = $('#date-slider').slider('values', 0)+'-'+$('#date-slider').slider('values',1);
-            temporal = $('#dateFrom').val() + '-' + $('#dateTo').val();
-       
-		}else temporal = 'All';
+                  temporal = $('#dateFrom').val() + '-' + $('#dateTo').val();
+                }else temporal = 'All';
                                 
                 //update spatial coordinates from textboxes
                  var nl=document.getElementById("spatial-north");
@@ -1758,10 +1742,56 @@ $(document).ready(function(){
                  var wl=document.getElementById("spatial-west");
     
                  n=nl.value;s=sl.value;e=el.value;w=wl.value;
+                
+                //Advanced search widgets 
+                //FOR filtering 
+                 if( document.getElementById("forfourFilter") != null && $('#forfourFilter').val()!='')  forfourFilter = $('#forfourFilter').val();
+                //Group filtering
+                 if( document.getElementById("groupFilter") != null ) {
+                     var first = true;
+                       $('#groupFilter :checked').each(function(){
+                           if(first) { groupFilter = $(this).val(); first=false;}
+                           else groupFilter +=  ";" + $(this).val();
+                       });                  
+                 } 
+                 //Keywords 
+                 if( $('[name^=fields]').length>0){
+                     first = true;
+                     var field = '';
+                     $("input[name^=keyword]").each(function(index){
+                         if($.trim($(this).val())!='') {
+                              switch($("[name^=fields]").get(index).value){
+				case 'displayTitle': field = 'displayTitle'; break;
+				case 'description':field = 'description_value';break;
+				case 'subject': field = 'subject_value' ;break;
+                                default: field='fulltext';break;
+                              }
+                             if(first){
+                                 search_term = field;
+                             }else{
+                                 if($("[name^=operator]").get(index-1) ){
+                                 var operator = $("[name^=operator]").get(index-1).value;
+                                  search_term += operator
+                                  search_term += ' ';
+                                }
+                             
+                                 search_term += field;
+                             }
+                             search_term += ':';
+                             search_term += $.trim($(this).val()) + ' ';
+                            
+                             
+                             first = false;
+                                
+                            }
+                        }
+                     );
+                     adv = 1;
+                     
+                 }
                  page = 1;
-		//search_term = $('#search-box').val();
-    
-		search_term='*:*';
+		
+		
 		changeHashTo(formatSearch(search_term, 1, classFilter));
                 
 		//$('#search-button').click();
@@ -1778,6 +1808,8 @@ $(document).ready(function(){
 		refreshTemporalSearch();
 		//alert(doTemporalSearch);
 	}).tipsy();
+        
+        
 /*
 	$('#classSelect').change(function(){
 		//console.log($(this).val());
@@ -1790,7 +1822,7 @@ $(document).ready(function(){
 	});
 
 	//$('button').button();
-
+*/
 	/*
 	 * Advanced Search inputs
 	 * Updates the main search-box on type

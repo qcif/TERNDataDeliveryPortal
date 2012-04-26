@@ -4,24 +4,24 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+?>  
+<div >        
+<?php
+
+        echo '<p><b><label>Fields Of Research (Group) </label></b></p>';
+
+     
+        echo '<select id="forfourFilter">';
+        echo '<option value="">All</option>';
+        foreach($subject as $forTwo=>$forFourArr)
+        {
+             //echo '<option value="'. $forTwo.'">'.$forTwo.'</option>';
+        
+              foreach($forFourArr as $forFour=>$forFourVal)
+             {
+                   echo '<option value="'. $forFour.'">  '.$forFour.'</option>';
+             }
+        }
+     echo '</select>';
 ?>
-<div id="rsearch-field">
-    <table border="0" cellspacing="1" cellpadding="1">
-        <tr>
-            <td><label>Research Field:</label></td>
-
-        </tr>
-        <tr>
-             <td>
-                <select id="researchFieldSelect" multiple="multiple" names="researchfield" style="width:20em">                            
-                            <option value="soil">Soil Sciences</option>
-                            <option value="eco">Ecological Application</option>
-                            <option value="en">Environmental Science and Management</option> 
-                            
-		</select>
-            </td>
-        </tr>
-    </table>
-
-
 </div>

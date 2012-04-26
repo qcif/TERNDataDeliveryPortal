@@ -3,19 +3,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 ?>
 <?php $this->load->view('tpl/header');?>
 <?php $this->load->view('tpl/mid');?>
+
 <div class="hp-left">
-  
+    <h1>Advanced Search </h1>
   <div id="advance-keyword-widget" style="padding-left:5px;padding-bottom: 5px; margin:5px"><?php $this->load->view('tab/widgets/keyword');?></div>
 
   <hr width="440"/>
   <div id="advance-temporal" style="padding-left:5px;padding-bottom: 5px; margin:5px"><?php $this->load->view('tab/widgets/temporal');?></div>
   <hr width="440"/>
-    <div id="advance-for" style="padding-left:5px;padding-bottom: 5px; margin:5px"><p><b>Fields of Research</b></p>
-        <select><option>CHEMICAL SCIENCE</option><option>BIOLOGICAL SCIENCES</option></select></div>
+    <div id="advance-for" style="padding-left:5px;padding-bottom: 5px; margin:5px"><?php $this->load->view('tab/widgets/researchfield');?></div>
   <hr width="440"/>
 
   <div id="advance-facility-widget" style="padding-left:5px;padding-bottom: 5px; margin:5px" ><?php $this->load->view('tab/widgets/facility');?></div>  
@@ -23,22 +22,11 @@
   <!--<div id="advance-researcher-widget"><?php //$this->load->view('tab/widgets/researcher');?></div>
   <div id="advance-researchfield"><?php //$this->load->view('tab/widgets/researchfield');?></div>-->
   <!--<div id="advance-researchtype" ><?php //$this->load->view('tab/widgets/researchtype');?></div>-->
-  <div id="advance-buttonSearch" ><?php $this->load->view('tab/widgets/buttonsearch');?></div>
+  <div  ><?php $this->load->view('tab/widgets/buttonsearch');?></div>
    </div>
- <div id="tab-location-map" >
-			<div id="spatialmap"></div>
-                    <div id="advance-spatial" >  
-      <div class="ui-widget-header" >
-				<span id="map-stuff">
-					<button id="start-drawing">Start Drawing</button>
-					<button id="clear-drawing">Clear Drawing</button>
-					<!--<button id="expand">Expand</button>
-					<button id="collapse">Collapse</button>-->
-                                        <label>Region: </label><input type="text" id="address" value=""/>
-					<button id="map-info">Info</button>
-				</span>
-                            	<span id="map-help-stuff"></span>
-			</div> </div><?php $this->load->view('tab/widgets/spatial');?>
+<div class="hp-right">
+ <div id="advanced-location-map" >
+		    <?php $this->load->view('tab/widgets/mapLayers');?>
                 </div>
                 <div id="spatial-info2" class="hide">
 				<ul style="text-align:left">
@@ -49,5 +37,5 @@
 				<li>Only the objects that are listed in the current search results view will appear on the map. Choose a results page number or click on '>' to move further down the results list.</li>
 				</ul>
 		</div>
-
+</div>
  <?php $this->load->view('tpl/footer');?>

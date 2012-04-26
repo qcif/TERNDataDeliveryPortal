@@ -21,6 +21,7 @@ $Revision: 1 $
 **/ 
 ?>
 <?php 
+
 if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All'))
 {
 	echo '<div class="right-box">';
@@ -54,8 +55,8 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 	echo '</pre>';
 	*/
 	//displayFacet('type', $typeFilter, $json, $classFilter, $this);
-	displayFacet('group', $groupFilter, $json, $classFilter, $this);
-	displayFacet('subject_value', $subjectFilter, $json, $classFilter, $this);
+	displayFacet('group', $groupFilter, $json, $classFilter);
+	displayFacet('subject_value', $subjectFilter, $json, $classFilter);
         
         echo '<div class="right-box">';
 	

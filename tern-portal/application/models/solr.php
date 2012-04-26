@@ -25,8 +25,7 @@
         parent::__construct();
     }
 
-
-    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $subjectCode = 'All', $sort='score desc')
+    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0)
     {
         $q = $query;
         $q = rawurlencode($q);
@@ -43,8 +42,8 @@
             $filter_query .= constructFilterQuery('class', $classFilter);
         if ($typeFilter != 'All')
             $filter_query .= constructFilterQuery('type', $typeFilter);
-        if ($groupFilter != 'All')
-            $filter_query .= constructFilterQuery('group', $groupFilter);
+        if ($groupFilter != 'All') 
+            $filter_query .= constructFilterQuery('group', $groupFilter);     
         if ($subjectFilter != 'All')
             $filter_query .= constructFilterQuery('subject_value', $subjectFilter);
         if ($status != 'All')
@@ -56,15 +55,13 @@
             $filter_query .= constructFilterQuery('for_value_four', $forfour);
         if ($forsix != 'All')
             $filter_query .= constructFilterQuery('for_value_six', $forsix);
-        //echo $status;
-        //echo $extended_query;
-
-
+    
         $q = urldecode($q);
-     // if ($q != '*:*')
-     //       $q = escapeSolrValue($q);
-
+       // if ($q != '*:*')
+        //     $q = escapeSolrValue($q);
+        if($adv == 0){ 
         $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10  OR for_value_two:('. $q.')^10 OR for_value_four:('. $q.')^10 OR for_value_six:('. $q.')^10 OR name_part:(' . $q . ')^30)';
+        }
         if($sort!='score desc') $filter_query.='&sort='.$sort;
         $q.=$filter_query;
 
@@ -448,6 +445,7 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         $json = json_decode($content);
         return $json;
     }
+
 
 }
 

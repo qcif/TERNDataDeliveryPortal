@@ -21,6 +21,7 @@ function checkForInvalid(obj) {
 <div id="advance-spatial-search">
             
     <div id="spatial-search-tab">
+        <br/>
         <table border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td></td>

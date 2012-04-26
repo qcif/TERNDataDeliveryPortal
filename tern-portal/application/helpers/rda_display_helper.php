@@ -91,6 +91,7 @@ function displayCustomiseOptions($cookie){
  * Used in facet view
  */ 
 function displaySelectedFacet($facet_name, $facetFilter, $json){
+  
 	$clear ='';$name = '';$class='';
 	switch($facet_name){
 		case "type":$clear = 'clearType';$name='Types';$class="typeFilter";break;
@@ -101,15 +102,26 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
                 case "for_value_six":$clear = 'clearForsix';$name="FOR";$class="forsixFilter";break;
 	}
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
+        // handle it if facetFilter is an array 
+        $facetFilter = explode(";",$facetFilter);
 	//print the selected
 	for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
 		if($object_type[$i+1]>0){
-			if($object_type[$i]==$facetFilter){
-				echo '<li class="limit">
+                        if(count($facetFilter) == 1){
+                            if($object_type[$i]==$facetFilter ){
+                                    echo '<li class="limit">
+                                            <a href="javascript:void(0);" 
+                                                    title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
+                                                    class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
+                            }
+                        }else{
+                            if(in_array($object_type[$i],$facetFilter)){
+                                echo '<li class="limit">
 					<a href="javascript:void(0);" 
 						title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
 						class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
-			}
+                            }
+                        }
 		}
 	}
 
