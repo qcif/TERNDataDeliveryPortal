@@ -60,7 +60,7 @@ $Revision: 1 $
 		$name = $r->{'listTitle'};
 		$class = $r->{'class'};
 		$group = $r->{'group'};
-		echo '<a href="'.$this->config->item('orca_view').'?key='.urlencode($ro_key).'">'.$name.'</a> <br/>';
+		echo '<a href="'.$this->config->item('orca_view_point').'?key='.urlencode($ro_key).'">'.$name.'</a> <br/>';
 		echo '<span class="resultListItemLabel">Class: </span>'.$class.' <br/>';
 		echo '<span class="resultListItemLabel">Type: </span>'.$type.' <br/>';
 		echo '<span class="resultListItemLabel">Group: </span>'.$group.' <br/>';
