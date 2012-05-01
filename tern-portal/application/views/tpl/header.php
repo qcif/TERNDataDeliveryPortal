@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ***************************************************************************
 *
-**/ $md_title = 'TERN Data Discovery Portal (Test Version)';
-	$md_description = 'TERN Data Discovery Portal (Test Version)is a mesh of searchable web pages describing (and where possible linking to) terrestrial ecosystem research data collections. ';
+**/ $md_title = 'TERN Data Discovery Portal (Development Version)';
+	$md_description = 'TERN Data Discovery Portal (Dev Version)is a mesh of searchable web pages describing (and where possible linking to) terrestrial ecosystem research data collections. ';
 	//$md_image = 'http://services.ands.org.au/home/orca/rda/img/rda-design.png';
 if(isset($title))$md_title = $title .' - TERN Data Discovery Portal';
 	if(isset($description))$md_description = htmlentities($description);
@@ -90,7 +90,7 @@ if(isset($title))$md_title = $title .' - TERN Data Discovery Portal';
 			</ul>  
                     </div>
                     <br><br><br><br><br><br>
-                    <div ><h1>TERN Data Discovery Portal (Test Version)</h1></div>
+                    <div ><h1><?php echo $md_title;?></h1></div>
 		</div>
             
 		<div id="customise-dialog-box" class="clearfix hide no_print" >

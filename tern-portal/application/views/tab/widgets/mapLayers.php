@@ -5,11 +5,6 @@
  * and open the template in the editor.
  */
 ?>
-<script tye="text/javascript">
-        $(window).bind("load", function() {
-        alert('hoi');
-        });
-</script>
 <script src="http://openlayers.org/api/2.11/OpenLayers.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/openLayersMap.js"></script>
 <style type="text/css">
@@ -20,7 +15,7 @@
             background-position: -26px -1px;
             }
             .olControlEditingToolbar div{
-                float:left;               
+                float:left !important;      
             }
             .olControlDragFeatureBoxItemActive {
             background-position: -103px -24px;
@@ -36,12 +31,14 @@
        <div id="advance-spatial" >  
             <div class="ui-widget-header clearfix">
                 <div id="panel" class="olControlEditingToolbar">
-                    <div  id="box" class="olControlDrawFeatureBoxItemInactive" onclick="toggleControl(this);" title=""></div>
-                    <div  id="drag" class="olControlDragFeatureBoxItemInactive" onclick="toggleControl(this);" ></div>
+                    <div  id="box" class="olControlDrawFeatureBoxItemInactive" title=""></div>
+                    <div  id="drag" class="olControlDragFeatureBoxItemInactive" ></div>
+                   
                 </div>
+                
+ 	</div> 
                
- 	</div>
-         <br/><a id="showCoords">Show coordinates</a><br/><br/>
+         <br/><a id="showCoords">Show spatial coordinates</a><br/><br/>
          <div id="coords" style="display:none">
          <table border="0" cellspacing="0" cellpadding="0">
             <tr>

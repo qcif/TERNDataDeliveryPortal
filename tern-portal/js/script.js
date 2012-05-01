@@ -20,13 +20,14 @@ $(document).ready(function(){
         var markerArrayTab = [];
         var adv = 0;
         var labelMap = [ {featureType: "all", stylers: [ {elementType: "labels", stylers: [ {visibility: "on"} ]} ]} ];
- 
+       
         
-        var map; // is used in the home page and adv search 
+        var map; // is used in the home page 
         var map2;  // is used in the view records page 
         var map3; // is used in the search results page. 
         var drawingArrays = [];
         var markerCluster = '';
+        var mapAdvanced;
       //router
 
 	if(window.location.href.indexOf('https://')==0){
@@ -48,9 +49,20 @@ $(document).ready(function(){
 		initHelpPage();
 	}else if(window.location.href.indexOf('preview')>=0){
 		initPreviewPage();
-    }else if(window.location.href.indexOf('advancesrch')>=0){
+        }else if(window.location.href.indexOf('advancesrch')>=0){
+                resetCoordinates();
                 //loadDrawGoogleMap();  
-                loadDrawOpenLayersMap();
+                mapAdvanced = new MapWidget('openlayers-spatialmap');
+                //add other protocols 
+                mapAdvanced.addExtLayer({protocol: "WFS", url: "supersites", style: "default", multiSelect: false, afterSelect: updateCoordinates});
+                mapAdvanced.addExtLayer({protocol: "WFS", url: "aceas", style: "red", multiSelect: false, afterSelect: updateCoordinates});
+               // mapAdvanced.addExtLayer({protocol: "GEOJSON", url: "dummy", style: "red", multiSelect: false, afterSelect: updateCoordinates});
+                //add box drawing
+                mapAdvanced.addDrawLayer({geometry: "box", allowMultiple: false, afterDraw: updateCoordinates, afterDrag: updateCoordinates});
+                // enable clicking button controllers
+                enableToolbarClick(mapAdvanced);
+                // allow users to click "Show Coordinates" to expand div
+                enableCoordsClick();
 	}else {
 		initHomePage();
         }

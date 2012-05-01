@@ -72,7 +72,7 @@ class Home extends CI_Controller {
                 include APPPATH . '/views/tab/forstat.php';
                 $this->load->model('Registryobjects');
                 $query = $this->Registryobjects->get_min_year();
-                 if($query) $row = $query->row();
+                if($query) $row = $query->row();
                  
                 $data['min_year'] = $row->min_year;
                 $data['max_year'] = $row->max_year;
@@ -82,6 +82,9 @@ class Home extends CI_Controller {
                 
                 $data['facilities'] = $queryFacilities->{'facet_counts'}->{'facet_fields'}->{'group'};
                 $data['subject'] = $subject;
+                $data['widget_map'] = 1;
+                $data['widget_map_drawtoolbar'] = 1;
+                $data['widget_map_coords'] = 1;
                 
 		$this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();
@@ -152,9 +155,7 @@ class Home extends CI_Controller {
         /*get statistics for FOR tab, get the names for the parent two digit FOR code and the four digit FOR code*/
         private function handleFORTab(&$subject){
             $this->load->model('Registryobjects','ro');
-            include APPPATH . '/views/tab/forstat.php';
-            
-            
+            include APPPATH . '/views/tab/forstat.php';            
         }
         
 
