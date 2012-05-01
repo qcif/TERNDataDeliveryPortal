@@ -19,7 +19,7 @@ ALTER TYPE dba.udt_search_result_tern OWNER TO dba;
 
 
 
-CREATE FUNCTION dba.udf_search_registry_tern(_search_string character varying, _classes character varying, _data_source_key character varying, _object_group character varying, _created_before_equals timestamp with time zone, _created_after_equals timestamp with time zone, _status character, _record_owner character varying) RETURNS SETOF udt_search_result_tern
+CREATE FUNCTION dba.udf_search_registry_tern(_search_string character varying, _classes character varying, _data_source_key character varying, _object_group character varying, _created_before_equals timestamp with time zone, _created_after_equals timestamp with time zone, _status character, _record_owner character varying) RETURNS SETOF dba.udt_search_result_tern
     LANGUAGE sql
     AS $_$ 
 
@@ -68,10 +68,10 @@ ALTER FUNCTION dba.udf_search_registry_tern(_search_string character varying, _c
 CREATE VIEW dba.vw_registry_search_tern AS
 SELECT ro.registry_object_key, ro.originating_source, ro.data_source_key, ro.data_source_title, ro.object_group, ro.created_when, ro.created_who, ro.registry_object_class, ro.type, i.value AS identifier_value, i.type AS identifier_type, ro.status, ro.record_owner, ro.list_title, ro.display_title
    FROM dba.vw_registry_objects ro
-   LEFT JOIN tbl_identifiers i ON ro.registry_object_key::text = i.registry_object_key::text;
+   LEFT JOIN dba.tbl_identifiers i ON ro.registry_object_key::text = i.registry_object_key::text;
 ALTER TABLE dba.vw_registry_search_tern OWNER TO dba;
 
-REVOKE ALL ON TABLE vw_registry_search_tern FROM PUBLIC;
-REVOKE ALL ON TABLE vw_registry_search_tern FROM dba;
-GRANT ALL ON TABLE vw_registry_search_tern TO dba;
-GRANT SELECT ON TABLE vw_registry_search_tern TO webuser;
+REVOKE ALL ON TABLE dba.vw_registry_search_tern FROM PUBLIC;
+REVOKE ALL ON TABLE dba.vw_registry_search_tern FROM dba;
+GRANT ALL ON TABLE dba.vw_registry_search_tern TO dba;
+GRANT SELECT ON TABLE dba.vw_registry_search_tern TO webuser;
