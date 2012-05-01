@@ -1174,6 +1174,21 @@ function searchRegistry($search_string, $classes, $data_source_key, $object_grou
 
 	return $resultSet;
 }
+
+function searchRegistryTERN($search_string, $classes, $data_source_key, $object_group, $created_before_equals, $created_after_equals, $status=PUBLISHED, $record_owner=null)
+{
+	global $gCNN_DBS_ORCA;
+	
+	$search_string = str_replace("%", "\%", $search_string);
+	
+	$resultSet = null;
+	$strQuery = 'SELECT * FROM dba.udf_search_registry_tern($1, $2, $3, $4, $5, $6, $7, $8)';
+	$params = array($search_string, $classes, $data_source_key, $object_group, $created_before_equals, $created_after_equals, $status, $record_owner);
+	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+
+	return $resultSet;
+}
+
 function getSpecialObjectSet($specialSetFlag, $class)
 {
 	global $gCNN_DBS_ORCA;

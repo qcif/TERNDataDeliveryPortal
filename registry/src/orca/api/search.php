@@ -1,18 +1,5 @@
 <?php
-/*
-Copyright 2009 The Australian National University
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
 
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*******************************************************************************/
 // Include required files and initialisation.
 require '../../_includes/init.php';
 require '../orca_init.php';
@@ -24,15 +11,17 @@ ini_set("max_execution_time", "$executionTimeoutSeconds");
 // Set the Content-Type header.
 header("Content-Type: text/xml; charset=UTF-8", true);
 
-$searchString = getQueryValue('search');
+$searchString = getQueryValue('term');
 $registryObjects = null;
 
 if( $searchString )
 {
-	$registryObjects = searchRegistry($searchString, '',  null, null, null, null);
+	$registryObjects = searchRegistryTERN($searchString, '',  null, null, null, null);
+       
+       
 }
 
-$itemLinkBaseURL = eAPP_ROOT.'orca/view.php?key=';
+$itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/view/?key=';
 
 $totalResults = 0;
 if( $registryObjects )
@@ -41,13 +30,14 @@ if( $registryObjects )
 }
 
 
+
 // BEGIN: XML Response
 // =============================================================================
 print('<?xml version="1.0" encoding="UTF-8"?>'."\n");
 print('<rss version="2.0" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">'."\n");
 print('  <channel>'."\n");
 print('    <title>'.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Collections Registry Search Results</title>\n");
-print('    <link>'.eAPP_ROOT.'orca/search.php</link>'."\n");
+print('    <link>'.eAPP_ROOT.'orca/api/search.php</link>'."\n");
 print('    <description>Search results for '.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Collections Registry collection, service, party, and activity metadata</description>\n");
 print('    <opensearch:totalResults>'.$totalResults.'</opensearch:totalResults>'."\n");
 print('    <opensearch:Query role="request" searchTerms="'.esc($searchString).'" />'."\n");
@@ -75,8 +65,9 @@ print('  </channel>'."\n");
 print("</rss>\n");
 // END: XML Response
 // =============================================================================
-require '../../_includes/finish.php';
 
+ require '../../_includes/finish.php';
+ 
 
 // Local presentation functions.
 function getNameRSS($registryObjectKey)
