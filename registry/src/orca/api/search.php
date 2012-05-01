@@ -21,7 +21,7 @@ if( $searchString )
        
 }
 
-$itemLinkBaseURL = eHOST.'/view/?key=';
+$itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/view/?key=';
 
 $totalResults = 0;
 if( $registryObjects )
@@ -37,7 +37,7 @@ print('<?xml version="1.0" encoding="UTF-8"?>'."\n");
 print('<rss version="2.0" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">'."\n");
 print('  <channel>'."\n");
 print('    <title>'.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Collections Registry Search Results</title>\n");
-print('    <link>'.eAPP_ROOT.'orca/search.php</link>'."\n");
+print('    <link>'.eAPP_ROOT.'orca/api/search.php</link>'."\n");
 print('    <description>Search results for '.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Collections Registry collection, service, party, and activity metadata</description>\n");
 print('    <opensearch:totalResults>'.$totalResults.'</opensearch:totalResults>'."\n");
 print('    <opensearch:Query role="request" searchTerms="'.esc($searchString).'" />'."\n");
