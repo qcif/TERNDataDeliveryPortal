@@ -46,7 +46,7 @@ require '../../_includes/header.php';
 		</tr>
 		<tr>
 			<td>Service Base URI:</td>
-			<td><a href="<?php printSafe(eAPP_ROOT.'orca/services/OpenSearch.php') ?>"><?php printSafe(eAPP_ROOT.'orca/services/OpenSearch.php'); ?></a></td>
+			<td><a href="<?php printSafe(eAPP_ROOT.'orca/api/search.php') ?>"><?php printSafe(eAPP_ROOT.'orca/api/search.php'); ?></a></td>
 		</tr>
 		<tr>
 			<td>Method:</td>
@@ -62,7 +62,7 @@ require '../../_includes/header.php';
 			<td>Response Data&nbsp;<br />XML Schema:</td>
 			<td>
 				RSS 2.0 with OpenSearch extensions.<br />
-				<a href="<?php printSafe(eAPP_ROOT.'orca/services/OpenSearch.php?search=Australia') ?>">Example query response.</a>
+				<a href="<?php printSafe(eAPP_ROOT.'orca/api/search.php?search=Australia') ?>">Example query response.</a>
 			</td>
 		</tr>
 	</tbody>

@@ -1,18 +1,5 @@
 <?php
-/*
-Copyright 2009 The Australian National University
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
 
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*******************************************************************************/
 // Include required files and initialisation.
 require '../../_includes/init.php';
 require '../orca_init.php';
@@ -29,16 +16,19 @@ $registryObjects = null;
 
 if( $searchString )
 {
-	$registryObjects = searchRegistry($searchString, '',  null, null, null, null);
+	$registryObjects = searchRegistryTERN($searchString, '',  null, null, null, null);
+       
+       
 }
 
-$itemLinkBaseURL = eAPP_ROOT.'orca/view.php?key=';
+$itemLinkBaseURL = 'http://demo/view/?key=';
 
 $totalResults = 0;
 if( $registryObjects )
 {
 	$totalResults = count($registryObjects);
 }
+
 
 
 // BEGIN: XML Response
@@ -75,8 +65,9 @@ print('  </channel>'."\n");
 print("</rss>\n");
 // END: XML Response
 // =============================================================================
-require '../../_includes/finish.php';
 
+ require '../../_includes/finish.php';
+ 
 
 // Local presentation functions.
 function getNameRSS($registryObjectKey)
