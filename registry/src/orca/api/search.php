@@ -11,7 +11,7 @@ ini_set("max_execution_time", "$executionTimeoutSeconds");
 // Set the Content-Type header.
 header("Content-Type: text/xml; charset=UTF-8", true);
 
-$searchString = getQueryValue('search');
+$searchString = getQueryValue('term');
 $registryObjects = null;
 
 if( $searchString )
@@ -21,7 +21,7 @@ if( $searchString )
        
 }
 
-$itemLinkBaseURL = 'http://demo/view/?key=';
+$itemLinkBaseURL = eHOST.'/view/?key=';
 
 $totalResults = 0;
 if( $registryObjects )

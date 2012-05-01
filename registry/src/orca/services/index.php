@@ -55,7 +55,7 @@ require '../../_includes/header.php';
 		<tr>
 			<td>Parameters:</td>
 			<td>
-				Specified in <a href="<?php printSafe(eAPP_ROOT.'orca/services/OpenSearchDescription.php') ?>"><?php printSafe(eAPP_ROOT.'orca/services/OpenSearchDescription.php'); ?></a>
+				Specified in <a href="<?php printSafe(eAPP_ROOT.'orca/api/OpenSearchDescription.php') ?>"><?php printSafe(eAPP_ROOT.'orca/api/OpenSearchDescription.php'); ?></a>
 			</td>
 		</tr>
 		<tr>
