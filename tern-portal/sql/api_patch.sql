@@ -32,7 +32,6 @@ GRANT SELECT ON TABLE dba.vw_registry_search_tern TO webuser;
 CREATE FUNCTION dba.udf_search_registry_tern(_search_string character varying, _classes character varying, _data_source_key character varying, _object_group character varying, _created_before_equals timestamp with time zone, _created_after_equals timestamp with time zone, _status character, _record_owner character varying) RETURNS SETOF dba.udt_search_result_tern
     LANGUAGE sql
     AS $_$ 
-
 SELECT *
  
 FROM
@@ -57,8 +56,8 @@ FROM
  WHERE ( $2 ~* registry_object_class OR $2 = '' )
    AND ( data_source_key = $3 OR $3 IS NULL )
    AND ( object_group = $4 OR $4 IS NULL )
-   AND ( registry_object_key ~* ('^'||$1)
-        OR $1 = '' OR originating_source~* ('^'||$1)OR data_source_key~* ('^'||$1)OR data_source_title~* ('^'||$1)OR object_group~* ('^'||$1)OR created_who~* ('^'||$1)OR registry_object_class~* ('^'||$1)OR type~* ('^'||$1)OR identifier_value~* ('^'||$1)OR identifier_type~* ('^'||$1)OR status~* ('^'||$1)OR record_owner~* ('^'||$1)OR list_title~* ('^'||$1)OR display_title~* ('^'||$1)
+   AND ( registry_object_key ~* $1
+        OR $1 = '' OR originating_source~* $1 OR data_source_key~* $1 OR data_source_title~* $1 OR object_group~* $1 OR created_who~* $1 OR registry_object_class~* $1 OR type~* $1 OR identifier_value~* $1 OR identifier_type~* $1 OR status~* $1 OR record_owner~* $1 OR list_title~* $1 OR display_title~* $1
    )
    AND ( status = $7 OR $7 IS NULL )
    AND ( record_owner = $8 OR $8 IS NULL )
