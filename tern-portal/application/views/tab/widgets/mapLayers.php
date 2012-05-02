@@ -31,13 +31,15 @@
        <div id="advance-spatial" >  
             <div class="ui-widget-header clearfix">
                 <div id="panel" class="olControlEditingToolbar">
-                    <div  id="box" class="olControlDrawFeatureBoxItemInactive" title=""></div>
-                    <div  id="drag" class="olControlDragFeatureBoxItemInactive" ></div>
+                    <?php if($widget_map_drawtoolbar){ ?> 
+                        <div  id="box" class="olControlDrawFeatureBoxItemInactive" title=""></div>
+                        <div  id="drag" class="olControlDragFeatureBoxItemInactive" ></div>
+                    <?php } ?>
                    
                 </div>
                 
  	</div> 
-               
+<?php if($widget_map_coords){ ?>              
          <br/><a id="showCoords">Show spatial coordinates</a><br/><br/>
          <div id="coords" style="display:none">
          <table border="0" cellspacing="0" cellpadding="0">
@@ -58,6 +60,5 @@
             </tr> 
         </table>
          </div>
-</div>
-       
-         
+<?php } ?> 
+</div>     

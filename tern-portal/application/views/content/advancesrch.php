@@ -24,8 +24,10 @@
   <!--<div id="advance-researchtype" ><?php //$this->load->view('tab/widgets/researchtype');?></div>-->
   <div  ><?php $this->load->view('tab/widgets/buttonsearch');?></div>
    </div>
+
 <div class="hp-right">
- <div id="advanced-location-map" >
+    <?php if($widget_map) { ?> 
+     <div id="advanced-location-map" > 
 		    <?php $this->load->view('tab/widgets/mapLayers');?>
                 </div>
                 <div id="spatial-info2" class="hide">
@@ -37,5 +39,7 @@
 				<li>Only the objects that are listed in the current search results view will appear on the map. Choose a results page number or click on '>' to move further down the results list.</li>
 				</ul>
 		</div>
+    <?php } ?>
 </div>
+
  <?php $this->load->view('tpl/footer');?>
