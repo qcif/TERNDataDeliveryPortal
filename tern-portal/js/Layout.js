@@ -22,8 +22,7 @@ function sizeCenterPane () {
     myLayout.resizeAll();
 }
 
-$(function(){
-                
+function setupNestedLayout(){
     /*                              LAYOUT
                  *              Set outer container to div#container
                  *              Set inner container to div#content 
@@ -56,6 +55,6 @@ $(function(){
     // now RESIZE the container to be a perfect fit
     sizeCenterPane();
 
-});
+}
            
          

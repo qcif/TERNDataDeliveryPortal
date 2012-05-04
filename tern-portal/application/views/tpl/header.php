@@ -19,8 +19,8 @@ if (isset($description))
         <meta name="title" content="<?php echo $md_title; ?>"/>
         <meta name="description" content="<?php echo $md_description; ?>"/>
         <link href="<?php echo base_url(); ?>css/tern-superfish.css" type="text/css" rel="stylesheet"/>
-        <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.14.custom.css" rel="stylesheet" />
-        <link type="text/css" href="<?php echo base_ul(); ?>css/tipsy.css" rel="stylesheet" />
+        <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
+        <link type="text/css" href="<?php echo base_url(); ?>css/tipsy.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/layout-default-latest.css" />
         <link type="text/css" href="<?php echo base_url(); ?>css/tern.css" rel="stylesheet" />
 

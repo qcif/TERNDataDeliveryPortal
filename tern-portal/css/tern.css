@@ -11,7 +11,7 @@
 */
 body {
     padding:0;margin:0;
-    text-align: center;
+    text-align: left;
     font:11px Arial, Helvetica, sans-serif;
     color:#333;
     font-weight:normal;
@@ -30,7 +30,9 @@ a img{border:0;border:none;}
 a:link, a:visited{color: #376500;text-decoration:underline;}
 a:hover{text-decoration:underline;}
 
-/*Outer Width being 960px, if changed, all other widths must also change*/
+input{ vertical-align: middle;}
+
+
 #wrapper{background: url('../img/header.png') repeat-x scroll left top transparent; margin:0}
 #header{ position:relative;width: 100% }
 /* footer styles */
@@ -133,17 +135,13 @@ a:hover{text-decoration:underline;}
     padding:10px;
 }
 
-#advsearch{ text-align: left}
-
 .ui-layout-center{padding:0;}
 
 .ui-layout-map { height: 300px}
 
-/* Adv Search */
+/* WEST SEARCH  */
 
-
-span.titleForm{ font-weight: bold; margin-top:0.5em}
-
+ .head{ margin-bottom: 5px; }
 .search-input
 {
     width: 100px;
@@ -160,7 +158,7 @@ span.titleForm{ font-weight: bold; margin-top:0.5em}
 }
 
 /*Research Institution Form*/
-label{vertical-align:middle;}
+label{vertical-align:middle; font: 11px Arial,Helvetica,sans-serif}
 div#groupFilter{ width: 25em; margin: 1em auto;}
 div.checkitem{ margin-top: 0.5em; clear: both; line-height:20px }
 
@@ -169,4 +167,11 @@ div#temporalFilter{ height: 20px;vertical-align: middle; margin-top: 0.5em; }
 
 /*FOR form*/
 div#forFilter{ height:20px; margin-top: 0.5em;}
+
+/* BASIC SEARCH FORM */
+
+.searchbox{
+    width: 200px;
+    font-size:11px;
+}
 

@@ -62,24 +62,27 @@ SEE Special Utility Methods below for a list of the button classes.</pre>
             </div>
 
             <div class="ui-layout-west hidden">
-                <div id="advsearch">
-                    <h3 class="ui-widget-header"> Search </h3>
+
+                     <?php $this->load->view('tab/widgets/basicsearch');?>
+                <div id="panel_advSearch">
+                        <h3 class="head ui-widget-header">Advanced Search</h3>
                     <div class="padding10">
+                     
                     <?php if($widget_keyword) { ?> 
                      <?php $this->load->view('tab/widgets/keyword');?>
-                    <hr/>
+                 
                     <?php } ?>
                     <?php if($widget_facilities) { ?>
                      <?php $this->load->view('tab/widgets/facility');?>
-                    <hr/>
+                   
                     <?php } ?>
                     <?php if($widget_temporal) { ?>
                      <?php $this->load->view('tab/widgets/temporal');?>
-                    <hr/>
+              
                     <?php }?>
                     <?php if($widget_for){  ?>
                      <?php $this->load->view('tab/widgets/researchfield');?>
-                    <hr/>
+              
                     <?php } ?>
                      <?php $this->load->view('tab/widgets/buttonsearch');?>
                     </div>

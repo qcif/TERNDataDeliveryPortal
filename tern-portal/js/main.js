@@ -162,7 +162,9 @@ $(function() {
     function initSearchPage(){
         var temporalWidget = new TemporalWidget();
         temporalWidget.refreshTemporalSearch();
-        enableToggleTemporal("#show-temporal-search",temporalWidget);        
+        enableToggleTemporal("#show-temporal-search",temporalWidget);   
+        setupNestedLayout();
+        setupCollapsibleSearchPanel();
     }
         
 });
