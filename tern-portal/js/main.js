@@ -4,11 +4,11 @@ $(function() {
     var search_term = '';
     search_term = $('#search-box').val();
     var page = 1;
-    var classFilter = $('#classSelect').val();
+    var classFilter = 'Collection';
     var typeFilter = 'All';
     var groupFilter = 'All';
     var subjectFilter = 'All';
-        
+    var adv = 0;     
     var fortwoFilter='All';
     var forfourFilter='All';
     var forsixFilter='All';
@@ -153,7 +153,34 @@ $(function() {
     });
     $(window).hashchange(); //do the hashchange on page load
         
-        
+    /*Change the Hash Value on the URL*/
+	function changeHashTo(location){
+		if(window.location.href.indexOf("view") || (window.location.href.indexOf("browse"))){
+			window.location.href = base_url+location;
+		}else {
+			window.location.hash = location;
+		}
+	}
+   
+   function formatSearch(term, page, classFilter){
+		if(term=='') term ='*:*';
+		var res = 'search#!/q='+term+'/p='+page;
+		res+='/tab='+classFilter;
+		if(typeFilter!='All') res+='/type='+(typeFilter);
+		if(groupFilter!='All') res+='/group='+(groupFilter);
+		if(subjectFilter!='All') res+='/subject='+(subjectFilter);
+		if(temporal!='All') res+='/temporal='+(temporal);
+                if(fortwoFilter!='All') res+='/fortwo='+(fortwoFilter);
+                if(forfourFilter!='All') res+='/forfour='+(forfourFilter);
+                if(forsixFilter!='All') res+='/forsix='+(forsixFilter);
+		if(n!=''){
+			res+='/n='+n+'/e='+e+'/s='+s+'/w='+w;
+		}
+                res+='/adv=' +(adv);
+		//alert(res);
+		return res;
+
+	}    
     /*      Initialization function for '/search' urls
          *      Called by ROUTING function
          *      Call widget objects 
@@ -161,10 +188,81 @@ $(function() {
         
     function initSearchPage(){
         var temporalWidget = new TemporalWidget();
+        temporalWidget.temporal = temporal;
         temporalWidget.refreshTemporalSearch();
         enableToggleTemporal("#show-temporal-search",temporalWidget);   
         setupNestedLayout();
-        setupCollapsibleSearchPanel();
+        
+	$('#search_advanced').click(function(){
+            
+            //check which panel is active 0 is basic, 1 is advanced
+            if($( ".accordion" ).accordion( "option", "active" ) == 1 ){  // handle advanced search 
+                temporal = temporalWidget.getTemporalValues();
+             
+                /*
+                 * 
+                               //update spatial coordinates from textboxes
+                 var nl=document.getElementById("spatial-north");
+                 var sl=document.getElementById("spatial-south");
+                 var el=document.getElementById("spatial-east");
+                 var wl=document.getElementById("spatial-west");
+                   
+                 n=nl.value;s=sl.value;e=el.value;w=wl.value;
+                 */  
+                
+                //Advanced search widgets 
+                //FOR filtering 
+                 if( document.getElementById("forfourFilter") != null && $('#forfourFilter').val()!='')  forfourFilter = $('#forfourFilter').val();
+                //Group filtering
+                 if( document.getElementById("groupFilter") != null ) {
+                     var first = true;
+                       $('#groupFilter :checked').each(function(){
+                           if(first) { groupFilter = $(this).val(); first=false;}
+                           else groupFilter +=  ";" + $(this).val();
+                       });                  
+                 } 
+                 
+                 //Keywords 
+                 if( $('[name^=fields]').length>0){
+                     first = true;
+                     var field = '';
+                     $("input[name^=keyword]").each(function(index){
+                         if($.trim($(this).val())!='') {
+                              switch($("[name^=fields]").get(index).value){
+				case 'displayTitle': field = 'displayTitle'; break;
+				case 'description':field = 'description_value';break;
+				case 'subject': field = 'subject_value' ;break;
+                                default: field='fulltext';break;
+                              }
+                             if(first){
+                                 search_term = field;
+                             }else{
+                                 if($("[name^=operator]").get(index-1) ){
+                                 var operator = $("[name^=operator]").get(index-1).value;
+                                  search_term += operator
+                                  search_term += ' ';
+                                }                            
+                                 search_term += field;
+                             }
+                             search_term += ':';
+                             search_term += $.trim($(this).val()) + ' ';
+                             first = false;                             
+                            }
+                        }
+                     );
+                     search_term = $.trim(search_term);
+                     adv = 1;              
+                 }
+                 page = 1;
+            }else{
+                search_term = $('#search-box').val();
+            }   		
+	    
+            changeHashTo(formatSearch(search_term, 1, classFilter));
+
+	}).button();
+
+
     }
         
 });

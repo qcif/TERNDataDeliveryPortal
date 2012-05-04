@@ -21,8 +21,7 @@ function TemporalWidget(){
 *  ------------------------------------------------------------
 */
 function enableToggleTemporal(div_id, temporalWidgetObj){
-    $(div_id).click(function(){   
-           
+    $(div_id).click(function(){              
         if(temporalWidgetObj.doTemporalSearch){
             temporalWidgetObj.doTemporalSearch=false;
         }else temporalWidgetObj.doTemporalSearch = true;
@@ -46,8 +45,8 @@ TemporalWidget.prototype.refreshTemporalSearch = function(){
             var word = [min_year,max_year];
         }
 
-        $('#dateFrom').val(word[0]).attr('disabled','');
-        $('#dateTo').val(word[1]).attr('disabled','');	
+        $('#dateFrom').val(word[0]).removeAttr('disabled');
+        $('#dateTo').val(word[1]).removeAttr('disabled');	
 
     }else{
         $('#show-temporal-search').attr('src',base_url+'img/no.png');
@@ -55,11 +54,13 @@ TemporalWidget.prototype.refreshTemporalSearch = function(){
         $('#dateTo').attr('disabled','true');			
     }
 }
-        
-TemporalWidget.prototype.setTemporalValue = function(temporal){
-    this.temporal = temporal;  
-}          
 
-TemporalWidget.prototype.getTemporalValue = function(temporal){
-    return this.temporal;  
-}          
+/*      GET TEMPORAL VALUES FROM INPUT       */
+TemporalWidget.prototype.getTemporalValues = function(){       
+    if(this.doTemporalSearch){
+        this.temporal = $('#dateFrom').val() + '-' + $('#dateTo').val();
+    }else this.temporal = 'All';
+
+    return this.temporal;
+}
+

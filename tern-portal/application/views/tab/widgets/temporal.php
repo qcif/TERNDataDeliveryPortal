@@ -3,8 +3,7 @@
     <div id="temporalFilter" class="padding5"><img src="<?php echo base_url();?>/img/no.png" id="show-temporal-search" title="toggle to enable/disable temporal search"/> 
     <label for="show-temporal-search">Show data between
 
-            <select id="dateFrom">
-                
+            <select id="dateFrom">               
 		<?php 
                     for($i=$min_year;$i<$max_year;$i++)
                     {
@@ -12,7 +11,7 @@
                     }
 		?>
             </select>
-            AND 
+            and  
             <select id="dateTo">
 		<?php 
                     for($i=$max_year;$i>$min_year;$i--)

@@ -30,7 +30,7 @@ a img{border:0;border:none;}
 a:link, a:visited{color: #376500;text-decoration:underline;}
 a:hover{text-decoration:underline;}
 
-input{ vertical-align: middle;}
+input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 
 
 #wrapper{background: url('../img/header.png') repeat-x scroll left top transparent; margin:0}
@@ -79,7 +79,7 @@ input{ vertical-align: middle;}
     padding:0 !important;
 }
 
-.hide{
+.hide,.hidden{
     display:none;
 }
 
@@ -143,22 +143,8 @@ input{ vertical-align: middle;}
 .ui-layout-map { height: 300px}
 
 /* WEST SEARCH  */
-
  .head{ margin-bottom: 5px; }
-.search-input
-{
-    width: 90px;
-    height: 16px;
-    font-size:11px;
-    padding: 0;
-}
-#firstsearch, #secondsearch, #thirdsearch{
-    height:20px;
-    padding:0;
-}
-#firstsearch select, #firstsearch input,#secondsearch select, #secondsearch input,#thirdsearch select, #thirdsearch input{
-    vertical-align: middle;
-}
+ #buttonSearch{ margin: 10px;}
 
 /*Research Institution Form*/
 label{vertical-align:middle; font: 11px Arial,Helvetica,sans-serif}
@@ -174,9 +160,21 @@ div#forFilter{ height:20px; margin-top: 0.5em;}
 /* BASIC SEARCH FORM */
 .searchbox{
     width: 200px;
-    font-size:11px;
 }
-
+/* ADV SEARCH */
+.search-input
+{
+    width: 90px;
+    height: 16px;
+    padding: 0;
+}
+#firstsearch, #secondsearch, #thirdsearch{
+    height:20px;
+    padding:0;
+}
+#firstsearch select, #firstsearch input,#secondsearch select, #secondsearch input,#thirdsearch select, #thirdsearch input{
+    vertical-align: middle;
+}
 div#panel_advSearch .borderMe{
    border-left: 1px solid #AAAAAA;
    border-right: 1px solid #AAAAAA;
@@ -190,4 +188,12 @@ div#panel_advSearch .ui-widget-header{
 }
 .collapsiblePanel{
     padding-bottom:5px;
+}
+
+.accordion .ui-accordion-header a{
+    font-size:14px;
+    font-weight:bold;
+}
+.accordion .ui-accordion-content{
+    padding:5px;
 }

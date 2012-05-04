@@ -59,5 +59,6 @@ function setupNestedLayout(){
     {
      $(this).next("div").slideToggle(300);
      });
+   $(".accordion").accordion({autoHeight:false});
 }
            
