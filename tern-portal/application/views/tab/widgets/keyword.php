@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 ?>
-<p><b><label>Keywords</label></b></p>
+<span class="titleForm">Terms</span>
 <div id="advance-keyword-search">  
     <div id="keywordsrch">
         <!--div id="condition">

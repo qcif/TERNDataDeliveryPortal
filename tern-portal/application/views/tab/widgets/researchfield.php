@@ -5,11 +5,11 @@
  * and open the template in the editor.
  */
 ?>  
-<div >        
+      
 <?php
 
-        echo '<p><b><label>Fields Of Research (Group) </label></b></p>';
-
+        echo '<span class="titleForm">Fields Of Research (Group) </span>';
+        echo '<div id="forFilter">';
      
         echo '<select id="forfourFilter">';
         echo '<option value="">All</option>';
@@ -22,6 +22,5 @@
                    echo '<option value="'. $forFour.'">  '.$forFour.'</option>';
              }
         }
-     echo '</select>';
+     echo '</select></div>';
 ?>
-</div>

@@ -1,24 +1,3 @@
-/** 
-Copyright 2011 The Australian National University
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-********************************************************************************
-$Date: 2011-09-06 11:35:57 +1000 (Tue, 06 Sep 2011) $
-$Revision: 1 $
-***************************************************************************
-*
-**/ 
-z.ui-dialog-titlebar{display:none;}
 /* float clearing for IE6 */
 * html .clearfix{height: 1%;overflow: visible;}
 /* float clearing for IE7 */
@@ -45,516 +24,15 @@ h2{font-size:15px;}
 h3{font-size:14px;}
 h4{font-size:13px;}
 .branding{text-align:center;color:#e9771c;}
-
+.title{ }
 a img{border:0;border:none;}
 
 a:link, a:visited{color: #376500;text-decoration:underline;}
 a:hover{text-decoration:underline;}
 
 /*Outer Width being 960px, if changed, all other widths must also change*/
-#container{width: 973px;margin: 0 auto;text-align:left; background: url("../img/map.jpg") no-repeat scroll 580px 10px transparent;}
-#wrapper{background: url('../img/header.png') repeat-x scroll left top transparent;}
-#header{ height:144px;position:relative;width: 100% }
-#footer{padding:5px 0px 20px 0px; text-align:center;}
-#sponsor{text-align:center; position: relative; bottom:0px; width:100%; height: 170px; background: url("../img/mainbody.jpg") no-repeat  left bottom #FFFFFF;}
-#footer{padding:5px 0px 5px 0px;}
-.border{  border:1px solid #D8D8D8; }
-
-/*
- * Special Styling for contact us form
- * This is to prevent inline styling
- */
-#contact-us-form input{display:block;font-size:14px;margin:5px;width:400px;padding:10px;}
-#contact-us-form textarea{display:block;font-size:14px;margin:5px;width:400px;}
-
-/*
- * Fixed style for dialog box
- */
-#customise-dialog-box{text-align:left;height:400px;}
-
-
-/*
- * Mid Section
- * Includes Logo and Searching Parts
- */
-#mid{width:100%;margin:15px 0 10px 0;position:relative;text-align:center;padding:0;}
-#logo{ width:131px; float:left; margin-top: 17px;}
-#ands-logo-white{float:right;margin-right:30px;}
-#logo h1{
-	color:#0a450a;margin:0;padding:0;font-weight:bold;text-shadow: 2px 2px 2px #fff;font-size:23px;
-}
-#search-bar{text-align:center;padding-left: 0px;margin:0 auto; width:100%;float:left;padding-top:10px;}
-#search-bar h1{
-	   font: 25px Arial, Helvetica, sans-serif;
-	   color:#0a450a;
-	   text-shadow: 2px 2px 2px #fff;
-	   margin:0;padding:10px;
-}
-/*#mid a{text-decoration:none; font-size:16px; color:#525252;font-variant:small-caps;height:16px;position:inherit;margin: 5px 0px;}*/
-#mid a.heading{font-size:20px;text-shadow: 0px 2px 3px #fff;display:block;margin:0px 0px 6px 0px;height:auto;}
-#mid a:hover{}
-#search-wrapper{
-    border:1px solid #376500;
-    background: #fff;
-    margin:10px 0;padding:2px;
-}
-#placeholder{float:left;margin:14px 0px 0px 10px;}
-#placeholder p{text-align:left;font-size:13px;}
-.show-hide-facet{width:16px;cursor:pointer;display:block;float:left;margin:5px 0;}
-.toggle-facet-field{width:16px;cursor:pointer;zoom:1;height:16px;position:absolute;top:3px;right:3px;}
-#date-slider{width:450px;background-color: #a1a1a1;}
-#search-bar .searchbox{
-    width:640px;
-    clear:both;
-    float:left;
-    background:transparent;border:transparent;
-    height:23px;
-    font-size:14px;margin:0;
-    line-height:23px;
-    padding:0;
-    
-}
-.searchboxActive{color: #a1a1a1;font-style:italic;}
-.searchboxInactive{color: #909090;font-style:italic;}
-.text-background {
-    color: #cdcdcd;
-    font-weight: bold;
-}
-
-.search-input-mini
-{
-    width:60px;
-    height:20px;
-    font-size:0.9em;
-    font-family: Verdana,Arial,sans-serif;
-
-}
-.searchbox_submit{
-    float:right;margin:0; padding:3px 15px;cursor:pointer;
-    border:0px;font-size:13px;
-    background: #376500;
-    color: #fff;
-    line-height: 20px;
-}
-.searchbox_submit:focus{outline:none;border:0;}
-.searchbox_submit:hover{
-    
-}
-#loading_img{vertical-align: text-bottom;position:relative;}
-#close_advanced{position:absolute;top:0;right:0;cursor:pointer;}
-#result-placeholder{float:left;}
-
-#hp-groups{ list-style: none;}
-#hp-groups li {
-    margin-top:10px;
-}
-#hp-groups li a{
-    padding-left: 15px;
-    background:  url('../img/icon/arrow_down.png') 0 0 no-repeat;
-    font-size: 15px;
-    text-decoration: none;
-    font-weight: bold;
-    line-height: 20px;
-}
-
-/* Styling for Home Titles*/
-.home_title{
-    background: url('../img/icon/sidebar.jpg') no-repeat;
-    background: #c1bab8; /* Old browsers */
-    background: -moz-linear-gradient(left,  #c1bab8 0%, #ffffff 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#c1bab8), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(left,  #c1bab8 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(left,  #c1bab8 0%,#ffffff 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(left,  #c1bab8 0%,#ffffff 100%); /* IE10+ */
-    background: linear-gradient(left,  #c1bab8 0%,#ffffff 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1bab8', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
-    padding-left:0;
-    margin-left:0;
-    font-family: Calibri, Arial, Helvetica;
-    font-size: 27px;
-    color: #376500;
-    text-align:left;
-}
-
-.nomargin{
-    margin:0 !important;
-}
-.nopadding{
-    padding:0 !important;
-}
-
-/* Tabs */
-#spatialmap,#openlayers-spatialmap{width:430px;height:430px;overflow:auto;display:block;}
-
-
-/*
- * Advanced Search
- */
-#advanced{background:white;border:1px solid #ccc;margin:10px;height:360px;position:relative;}
-
-#spatialmap-search{height:320px;display:block; overflow:hidden;margin:0;}
-
-#advanced-search-term{border:10px solid #ccc;padding:5px;}
-#advanced label{width:200px;float:left;}
-#advanced input.long{width:350px;}
-#advanced input.short{width:100px;}
-button{font-size:13px;}
-#advanced-text{width:600px;float:right;}
-#advanced-spatial{height:320px;float:left;}
-#map-help-stuff{line-height:28px;height:28px;font-size:11px;padding-left:3px;}
-.info-message{border:1px solid #9ab191;padding:10px;margin:10px 0;background:white;}
-
-/*new advanced search*/
-#advanced-location-map{ float:right; margin-right:10px; margin-top:10px}
-
-/*
- * Auto Complete
- * Auto Complete and Address Field (spatial search suggestion) is a jquery ui widget
- */
-.ui-autocomplete {
-    background-color: white;
-    width: 300px;
-    border: 1px solid #cfcfcf;
-    list-style-type: none;
-    padding-left: 0px;
-    text-align:left;
-    z-index:1000;
-    font-size:15px;
-}
-#address{width:100px;}
-
-
-/*
- * Search Results
- */
-#search-result{}
-#top-tab{margin-left:210px;}
-#bottom-content{margin:0;padding:0;}
-#search-left{width:200px;float:left;margin:0;padding:0;}
-#search-center{		
-	width:550px;float:left;margin-left:10px;position:relative;		
-}
-#search-right{
-	width:200px;float:right;margin:0;position:relative;
-}
-
-
-/*
- * Top Tab
- */
-#search-top{
-	font: 18px Arial, Helvetica, sans-serif;
-	
-    background-repeat:repeat-x;
-    height:30px;
-    line-height:30px;
-    color:#9b9b9b;
-    border-top:1px solid #cacaca;
-    border-right:1px solid #cacaca;
-    border-left:1px solid #cacaca;
-    margin:0;padding:0;
-    position:relative;
-}
-#search-tabs{position:relative;margin:0;padding:0;}
-#search-tabs li{display:inline;list-style-type:none;padding:0;margin:0;}
-#search-tabs li a:first{border-top-left-radius: 10px;}
-.top-left-corner{}
-.bottom-corner{}
-.top-corner{}
-.shadow-and-corner{}
-#search-tabs li a{
-	padding:5px 18px;
-    color: black;
-    position:relative;
-    font-variant:small-caps;
-    text-decoration:none;
-    border-right:1px solid #cacaca;
-    border-bottom:1px solid #cacaca;
-    font-weight:bold;
-}
-#search-tabs li a:link span{font-size:12px;}
-#search-tabs li a:hover{color:black;}
-#search-tabs li a:hover span{}
-#search-tabs li a.current{background: #ccc;color:black !important;}
-#search-tabs li a.zero{color:#ccc;}
-
-/*
- * Customise Button
- */
-#customise-icon a{position:absolute;top:0;right:0;height:30px;cursor:pointer;opacity:0.7;}
-#customise-icon a:hover{opacity:1.0;}
-.customise-option{cursor:pointer;}
-
-
-/*
- * Search Result Content
- */
-#search-result-content div.search_item{padding:10px;border-bottom:1px solid #ccc;position:relative;}
-#search-result-content{background:white;border-left:1px solid #ccc;border-right:1px solid #ccc;border-bottom:1px solid #ccc;position:relative;word-wrap:break-word;}
-#search-result-content p{padding:0;margin:5px 0;}
-#search-result-content em{font-weight:bold;}
-#search-result-content h2{margin:0;padding:5px 0px;font-size:17px;}
-#search-result-content h2 a{text-decoration:none; color: black;}
-#search-result-content h2 a:hover{text-decoration:underline;}
-#search-result-content img{max-width: 100%;}
-#search-result-content img.ro-icon{float:right;margin-left:5px;}
-/*Alternatives Names use for both search result and page view*/
-.alternatives{padding:0px 0px 7px 0px;}
-.alt_listTitle{color:#696969;margin:0;padding:0;clear:both;}
-.alt_displayTitle{color:#696969;margin:0;padding:5px 0;clear:both;}
-.subject-container{width:100%;overflow:hidden;}
-.show-more{float:right;font-size:12px;text-decoration:none;}
-
-
-/*
- * Toolbar and Pagination
- */
-.toolbar{
-    font: 11px Arial, Helvetica, sans-serif;
-    height:30px;
-    line-height:30px;
-    color:#9b9b9b;
-    overflow:hidden;margin:0;padding:0 10px;
-    position:relative;
-}
-.toolbar2{background:white;}
-.pagination{float:right;}
-.pagination-page{padding:0px 3px;text-decoration:none;margin:3px;color:#0a450a;/*border:1px solid #ccc;*/}
-.pagination-currentPage{font-weight:bold;color:black;}
-.result{float:left;font-size:13px;margin:0 10px;color:#777;}
-#infoBox{text-align:left;}
-#connectionsInfoBox{text-align:left;}
-
-
-/*
- * BreadCrumbs use in page view
- */
-#breadcrumb{
-    font: 11px Arial, Helvetica, sans-serif;
-    
-    height:30px;
-    line-height:30px;
-    color:#9b9b9b;
-    border:solid 1px #cacaca;
-    width:100%;
-    overflow:hidden;margin:0;padding:0;
-    position:relative;
-}
-
-#breadcrumb li {list-style-type:none;float:left;padding-left:10px;}
-#breadcrumb li a.crumb{
-    height:30px;
-    display:inline-block;
-    background-image:url('../img/bc_separator.png'); 
-    background-repeat:no-repeat; 
-    background-position:right;
-    padding-right: 15px;
-    text-decoration: none;
-    color:#454545;
-    zoom:1;
-}
-#breadcrumb li a.crumb:hover{color:#0a450a;}
-
-/*
- * Page View
- * Viewing a single item
- */
-#item-view{background:white;padding:10px;border:1px solid #ccc;}
-#item-view-inner{background:white;}
-#left{width:600px;float:left;margin:10px;word-wrap: break-word}
-#right{width:270px;float:right;position:relative;}
-.right-box{
-	border:1px solid #ccc;margin:20px 10px 0px 0px;padding:0;word-wrap: break-word;position:relative;overflow:auto;background:white;
-    
-}
-.right-box h2{
-    text-align:center;color:#232323;padding: 5px;
-    font: 15px Arial, Helvetica, sans-serif;
-    background: none repeat scroll 0 0 #ccc;
-    font-weight: bold;
-    
-    background-repeat:repeat-x;
-    height:30px;
-    line-height:30px;
-    margin:0;padding:0 10px;
-    position:relative;
-
-   
-}
-.right-box p{margin:7px;}
-.right-box h3{margin:7px;padding:0;}
-.right-box h4{ margin:7px;}
-.spatial{display:none;}
-.coverage{display:none;}
-.spatial_center{display:none;}
-.spatial_coverage_center{display:none;}
-#spatial_coverage_map{width:400px;height:400px;}
-#displaytitle{position:relative;float:left;width:610px; }
-#displaytitle h2{font-size:1.3em;}
-#displaylogo{max-width:130px;}
-.descriptions div{line-height:17px;}
-
-/*
- * Facets
- * Use in the search page
- */
-.facet{background:white;border:1px solid #ccc;}
-#search-left div{margin:0px 0px 15px 0px;padding:0;}
-#search-left p{margin:0;}
-#search-left a.clearFilter{
-    font-size:13px;text-decoration:underline;color:black;margin:auto;line-height:22px;
-    /*
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;*/
-}
-#search-left a.clearFilter:hover{}
-.clearFilterImg{vertical-align:middle;line-height:22px;}
-#search-left h2{/*font-variant: small-caps;font-weight: normal;font-size:18px;float:left;margin:0;padding:0;*/}
-#search-left .facet-header{margin:0;padding:0;color:black;text-align: left;display:block;background:#eaeaea;padding: 7px;}
-#search-left ul {margin:5px 0px 0px 25px;padding:0px;font-size:13px;list-style-image:url('../img/bullet_square.png');}
-#search-left ul li{line-height:20px;}
-#search-left ul li a:link{text-decoration:none;color:black;}
-.selected-facet{background:yellow;}
-.normal-facet{}
-#search-left ul li a:visited{}
-#search-left ul li a:hover{text-decoration:underline;}
-#search-left ul li a.current{text-decoration:underline;color:red;}
-
-
-/*
- * Home Page
- * Box Style
- */
-.box, .box-nobg{
-	 background: #FFFFFF;
-         margin:15px 0px;position:relative;
-	  zoom:1;padding:9px;
-        max-width:100%;
-        position:relative;
-        clear:both;
-}
-
-#content{
-     padding-bottom: 40;
-     padding-left:5px;
-     padding-right:5px;
-     padding-top:5px;
-     min-height:450px;
-     background-color: #fff;
-}
-
-
-/*
- * Feature Box
- */
-.hp-class-items{padding:0 15px; }
-.hp-class-item{
-	border:1px solid #D8D8D8;padding:10px 0px 0px 10px;
-	background:white;
-	margin-bottom:10px;
-}
-.hp-class-item:hover{
-	cursor:pointer;
-	border:1px solid black;
-}
-.hp-class-item img{float:left;margin:5px;margin-right:15px;display:block;}
-
-.hp-class-item div{display:block;float:left;width:300px;}
-.hp-minibrowse-links{ padding-left: 5px; margin: 5px;}
-#hp-groups li .hp-minibrowse-links a{ background: none;  font-size:12px;}
-/*
- * Generic Left and Right
- * Normally put in boxes
- */
-.hp-left{width:450px;float:left;}
-.hp-right{float:left;margin:0 15px 0px 25px;}
-
-/*
- * Generic style for every styled box
- */
-.hp-styled-box{padding:5px;margin:5px;border:1px solid black;}
-
-
-/*
- * NCRIS SPOTLIGHT
- */
-#display-wrapper{border:1px solid #ccc;margin:0;padding:0;position:relative;top:-30px;overflow:hidden;height:347px;}
-#display-here{height:300px;overflow:auto;margin:0 15px;zoom:1;position:relative;top:10px;}
-#carousel{}
-#scrollable {position:relative;overflow:hidden;width: 350px;height:120px;}
-#scrollable .items {width:20000em;position:absolute;clear:both;}
-
-.items div {float:left; width:680px;}
-
-/* single scrollable item */
-#scrollable img {float:left;margin:20px 5px 0px 21px;background-color:#fff;padding:2px;width:132px;height:63px;cursor:pointer;}
-/* active item */
-#scrollable .active {border:2px solid #000;position:relative;cursor:default;}
-/* this makes it possible to add next button beside scrollable */
-#scrollable {float:left;}
-
-#items img{opacity:0.2;filter: alpha(opacity =20);}
-#items img.current-scroll{opacity:1.0;filter: alpha(opacity =100);}
-
-/* prev, next, prevPage and nextPage buttons */
-div.browse {background:url(../img/hori_large.png) no-repeat;display:block;width:30px;height:30px;float:left;margin:40px 10px;cursor:pointer;font-size:1px;}
-
-/* right */
-div.right{ background-position: 0 -30px; clear:right; margin-right: 0px;float:right;}
-div.right:hover{ background-position:-30px -30px; }
-div.right:active{ background-position:-60px -30px; } 
-
-/* left */
-div.left{margin-left: 0px;} 
-div.left:hover{background-position:-30px 0;}
-div.left:active{background-position:-60px 0;}
-
-/* disabled navigational button */
-a.disabled {visibility:hidden !important;}
-
-
-
-
-
-
-/*
- * Subjects List
- * Used in any instance a subject list is required
- */
-ul.subjects{list-style-type:none;margin:10px 0px 0px 0px;padding:0;}
-ul.subjects li{display:inline-block;line-height:27px;width:auto;}
-ul.subjects li a{text-decoration:none; padding:2px 4px;margin:2px 4px; text-decoration: underline; }
-ul.subjects li a:hover{background: white;}
-
-
-ul.subjects-sml{list-style-type:none;margin:10px 0px 0px 0px;padding:0;}		
-ul.subjects-sml li{display:inline-block;line-height:27px;width:auto;}		
-ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px; }
-
-
-
-
-
-/*
- * Generic Styles
- */
-.hide{display:none;}
-.show{visibility:visible;}
-.faded{font-style:italic;color:#666666;font-size:.9em;}
-#clearSearch{float:right;margin:5px;cursor:pointer;}
-#loading{float:right;}
-.limitHeight300{max-height:300px;overflow:auto;}
-.limitHeight200{max-height:200px;overflow:auto;}
-.loading-icon{margin:10px auto;text-align:center;display:block;}
-.icon-heading-connections{position:relative;float:left;padding:5px;}
-.right_icon{position:relative;float:right;display:block;padding-top:5px;}
-#print_icon{position:absolute;top:5px;right:15px;cursor:pointer;display:block;}
-#share{position:absolute;top:5px;right:50px;display:block;}
-
-/* delete EARN tab in share */
-#a2apage_PTZ { display:none !important; }
-
+#wrapper{background: url('../img/header.png') repeat-x scroll left top transparent; margin:0}
+#header{ position:relative;width: 100% }
 /* footer styles */
 #phone {
     float:left;
@@ -576,11 +54,40 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
     font-size: 13px;
 }
 
+
+#footer{padding:5px 0px 20px 0px; text-align:center;}
+#sponsor{text-align:center; position: relative; bottom:0px; width:100%; height: 170px; background: url("../img/mainbody.jpg") repeat-x  left bottom #FFFFFF;}
+#footer{padding:5px 0px 5px 0px;}
+.border{  border:1px solid #D8D8D8; }
+
+/*
+ * Mid Section
+ * Includes Logo and Searching Parts
+*/
+#mid{width:100%;margin:15px 0 10px 0;position:relative;text-align:center;padding:0;}
+#logo{ width:131px; float:left; margin-top: 17px;}
+#logo h1{
+    color:#0a450a;margin:0;padding:0;font-weight:bold;text-shadow: 2px 2px 2px #fff;font-size:23px;
+}
+
+.nomargin{
+    margin:0 !important;
+}
+.nopadding{
+    padding:0 !important;
+}
+
+.hide{
+    display:none;
+}
+
+/*  */
+
 #info {
     float:left;
     font-size: 11px;
     text-align: center;
-    width: 550px;
+    width: 70%;
     position:relative;
     top: 80px;
 }
@@ -598,71 +105,68 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 }
 
-/* view party css*/
-#party_box{float:left;}
-.rif_logo{ float:left; width:200px; position:relative;}
-.personal_details{ float:left;width:300px; border: 1px solid  #cccccc;  padding-left:10px; padding-top:0px; padding-bottom:4px; padding-right: 4px; min-height: 300px; }
-.research_data{ float:left; border: 1px solid #cccccc;  margin-left: 10px; width:380px; min-height:300px;  padding-left:10px; padding-top:0px; padding-bottom:4px; padding-right: 4px;}
-#displayname{position:relative;width:100%; }
-#displayname h2{font-size:1.3em;}
+/* container layout */
 
-span.read-more { cursor: pointer; color: #376500; text-decoration:underline}
-span.read-less { cursor: pointer; color: #376500; text-decoration:underline; display:none;}
-span.more { display: none;  }
-.search_item p { overflow:hidden; }
-div#infoWin { overflow: auto; }
-div.download{ font-size: 15px; margin: 7px; font-weight: bold;}
+.ui-layout-center P.ui-layout-content {
+    line-height:	1.4em;
+    margin:			0; /* remove top/bottom margins from <P> used as content-div */
 
-/*for tab*/
-.boxdatatype, .boxfor { border:1px solid #ccc; margin-bottom:10px; padding-left:5px; padding-bottom:20px; background-color: #e6e6e6;}
-#formap { width:430px; height:430px;}
-#datatypemap {width:430px; height:430px;}
-
-/* override jquery custom css for tabs*/
-.ui-widget-content {
-    border: 0 !important;
-}
-/*override for titles in popup*/		
-h3.ui-accordion-header.ui-state-active{ font-weight:bold; }
-/* loading window */
-#loadingScreen {
-        background: url('../img/ajax-loader.gif') no-repeat 10px 2px;
-        padding-left: 25px;
+} 
+.ui-layout-center{
+    border: 0;
 }
 
-.loadingScreenWindow .ui-dialog-titlebar-close{
-    display:none;
+.ui-layout-center .ui-widget-content{
+    background: #fff;
+    border:0;
 }
 
-.indented
-   {
-   padding-left: 280pt;
-   padding-right:280pt;
-   }
- .spatial-indented
-   {
-   padding-left: 50pt;
-   padding-right:50pt;
-   }
-  .spatial-label
-  {
-      font-size:11px;
-  }
-  #showCoords{
-      text-decoration: underline;
-      color: #0a450a;
-  }
-  
-  #advance-buttonSearch{
-      margin: 5px;
-  }
-  
-  #spatial-search{
-      text-align:center;
-      padding-top:8px;
-      
-  }
-  #spatial-search table{
-      margin:auto;
-      
-  }
+.ui-layout-west, .ui-layout-facet{
+    padding: 0;
+}
+
+.ui-layout-west h3,.ui-layout-facet h3 {
+    margin:0;
+    padding: 7px 10px;
+}
+.padding10{
+    padding:10px;
+}
+
+#advsearch{ text-align: left}
+
+.ui-layout-center{padding:0;}
+
+.ui-layout-map { height: 300px}
+
+/* Adv Search */
+
+
+span.titleForm{ font-weight: bold; margin-top:0.5em}
+
+.search-input
+{
+    width: 100px;
+    height: 16px;
+    font-size:11px;
+    padding: 0;
+}
+#firstsearch, #secondsearch, #thirdsearch{
+    height:20px;
+    padding:0;
+}
+#firstsearch select, #firstsearch input,#secondsearch select, #secondsearch input,#thirdsearch select, #thirdsearch input{
+    vertical-align: middle;
+}
+
+/*Research Institution Form*/
+label{vertical-align:middle;}
+div#groupFilter{ width: 25em; margin: 1em auto;}
+div.checkitem{ margin-top: 0.5em; clear: both; line-height:20px }
+
+/*Temporal form */
+div#temporalFilter{ height: 20px;vertical-align: middle; margin-top: 0.5em; }
+
+/*FOR form*/
+div#forFilter{ height:20px; margin-top: 0.5em;}
+

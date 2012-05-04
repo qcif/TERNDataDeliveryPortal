@@ -69,25 +69,37 @@ class Home extends CI_Controller {
 	}
 	
         public function advancesrch(){
-                include APPPATH . '/views/tab/forstat.php';
+                //get Temporal 
                 $this->load->model('Registryobjects');
                 $query = $this->Registryobjects->get_min_year();
-                if($query) $row = $query->row();
-                 
+                if($query) $row = $query->row();              
                 $data['min_year'] = $row->min_year;
                 $data['max_year'] = $row->max_year;
+                $data['widget_temporal'] = 1;
                 
-                 $this->load->model('Solr');
+                //get Group
+                $this->load->model('Solr');
                 $queryFacilities = $this->Solr->getFacilities();
-                
                 $data['facilities'] = $queryFacilities->{'facet_counts'}->{'facet_fields'}->{'group'};
+                $data['widget_facilities'] = 1;
+                
+                //get Subject
+                include APPPATH . '/views/tab/forstat.php';
+                $data['widget_for'] = 1;
                 $data['subject'] = $subject;
+              
+		$this->load->library('user_agent');
+		$data['user_agent']=$this->agent->browser();
+                
+                //get Map widget
                 $data['widget_map'] = 1;
                 $data['widget_map_drawtoolbar'] = 1;
                 $data['widget_map_coords'] = 1;
                 
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
+                //get Keyword
+                $data['widget_keyword'] = 1;
+                
+                
 		$this->load->view('content/advancesrch', $data);
 	}
         
