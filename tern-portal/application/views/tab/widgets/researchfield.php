@@ -1,15 +1,6 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>  
-      
-<?php
-
-        echo '<span class="titleForm">Fields Of Research (Group) </span>';
-        echo '<div id="forFilter">';
+<div class="borderMe collapsiblePanel borderBottomMe">  
+    <h3 class="head ui-widget-header">Fields Of Research (Group)</h3>
+ <?php  echo '<div id="forFilter" class="padding5">';
      
         echo '<select id="forfourFilter">';
         echo '<option value="">All</option>';
@@ -24,3 +15,4 @@
         }
      echo '</select></div>';
 ?>
+</div>

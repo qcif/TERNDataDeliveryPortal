@@ -131,6 +131,9 @@ input{ vertical-align: middle;}
     margin:0;
     padding: 7px 10px;
 }
+.padding5{
+    padding:5px;
+}
 .padding10{
     padding:10px;
 }
@@ -144,7 +147,7 @@ input{ vertical-align: middle;}
  .head{ margin-bottom: 5px; }
 .search-input
 {
-    width: 100px;
+    width: 90px;
     height: 16px;
     font-size:11px;
     padding: 0;
@@ -159,19 +162,32 @@ input{ vertical-align: middle;}
 
 /*Research Institution Form*/
 label{vertical-align:middle; font: 11px Arial,Helvetica,sans-serif}
-div#groupFilter{ width: 25em; margin: 1em auto;}
 div.checkitem{ margin-top: 0.5em; clear: both; line-height:20px }
 
 /*Temporal form */
-div#temporalFilter{ height: 20px;vertical-align: middle; margin-top: 0.5em; }
+div#temporalFilter{ height: 23px;vertical-align: middle; margin-top: 0.5em; }
+div#temporalFilter img{vertical-align:middle;}
 
 /*FOR form*/
 div#forFilter{ height:20px; margin-top: 0.5em;}
 
 /* BASIC SEARCH FORM */
-
 .searchbox{
     width: 200px;
     font-size:11px;
 }
 
+div#panel_advSearch .borderMe{
+   border-left: 1px solid #AAAAAA;
+   border-right: 1px solid #AAAAAA;
+}
+div#panel_advSearch .borderBottomMe{
+   border-bottom: 1px solid #AAAAAA;
+}
+div#panel_advSearch .ui-widget-header{
+    border-left: 0;
+    border-right: 0;
+}
+.collapsiblePanel{
+    padding-bottom:5px;
+}

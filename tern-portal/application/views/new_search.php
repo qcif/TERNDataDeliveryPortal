@@ -64,9 +64,9 @@ SEE Special Utility Methods below for a list of the button classes.</pre>
             <div class="ui-layout-west hidden">
 
                      <?php $this->load->view('tab/widgets/basicsearch');?>
-                <div id="panel_advSearch">
+                <div id="panel_advSearch" class="collapsiblePanel">
                         <h3 class="head ui-widget-header">Advanced Search</h3>
-                    <div class="padding10">
+                    <div class="padding5">
                      
                     <?php if($widget_keyword) { ?> 
                      <?php $this->load->view('tab/widgets/keyword');?>
@@ -81,12 +81,13 @@ SEE Special Utility Methods below for a list of the button classes.</pre>
               
                     <?php }?>
                     <?php if($widget_for){  ?>
-                     <?php $this->load->view('tab/widgets/researchfield');?>
-              
+                     <?php $this->load->view('tab/widgets/researchfield');?>              
                     <?php } ?>
+                      </div>
+                 </div>
                      <?php $this->load->view('tab/widgets/buttonsearch');?>
-                    </div>
-                </div>
+                   
+                
             </div>
 
 

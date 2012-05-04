@@ -1,12 +1,6 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
-<span class="titleForm">Temporal</span>
-<div id="temporalFilter"><img src="<?php echo base_url();?>/img/no.png" id="show-temporal-search" title="toggle to enable/disable temporal search"/> 
+<div class="borderMe collapsiblePanel">  
+    <h3 class="head ui-widget-header">Date</h3>
+    <div id="temporalFilter" class="padding5"><img src="<?php echo base_url();?>/img/no.png" id="show-temporal-search" title="toggle to enable/disable temporal search"/> 
     <label for="show-temporal-search">Show data between
 
             <select id="dateFrom">
@@ -31,3 +25,4 @@
             <div id="max_year" class="hide"><?php echo $max_year;?></div>
             <div id="date-slider" style="display:none"></div>
             <div class="clearfix"></div>
+</div>

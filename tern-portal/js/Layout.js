@@ -55,6 +55,9 @@ function setupNestedLayout(){
     // now RESIZE the container to be a perfect fit
     sizeCenterPane();
 
+   $(".collapsiblePanel .head").click(function()
+    {
+     $(this).next("div").slideToggle(300);
+     });
 }
            
-         

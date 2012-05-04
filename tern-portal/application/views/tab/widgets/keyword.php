@@ -5,14 +5,11 @@
  * and open the template in the editor.
  */
 ?>
-<span class="titleForm">Terms</span>
-<div id="advance-keyword-search">  
-    <div id="keywordsrch">
-        <!--div id="condition">
-            <input type="radio" name="conditionselect" value="any" />Match any of the conditions
-            <input type="radio" name="conditionselect" value="all" />Match all of the conditions
-        </div-->
-        <p>
+<div id="advance-keyword-search" class="borderMe collapsiblePanel">  
+    <h3 class="head ui-widget-header">Search Terms</h3>
+
+    <div id="keywordsrch" class="padding5">
+       
         <div id="firstsearch">
              <select name="fields[]">
                     <option value="">All Fields</option>
@@ -27,7 +24,7 @@
                     <option value="-">NOT</option>
                 </select>  
         </div>
-        <p>
+   
         <div id="secondsearch">
             <select name="fields[]">
                     <option value="">All Fields</option>
@@ -42,7 +39,7 @@
                     <option value="-">NOT</option>
                 </select>  
         </div>
-        <p>
+
         <div id="thirdsearch">
             <select name="fields[]">
                     <option value="">All Fields</option>
