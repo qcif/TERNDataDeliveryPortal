@@ -8,7 +8,7 @@ $(function() {
     var search_term = '';
     search_term = $('#search-box').val();
     var page = 1;
-    var classFilter = 'Collection';
+    var classFilter = 'collection';
     var typeFilter = 'All';
     var groupFilter = 'All';
     var subjectFilter = 'All';
@@ -118,15 +118,72 @@ $(function() {
 
        
         //console.log('yea');
-        //  search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
-        //   search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
+          search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
+           search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
         //  doSearch();
+        doNormalSearch();
     
 	
     });
     $(window).hashchange(); //do the hashchange on page load
      routing();    
        
+	$('.typeFilter, .groupFilter, .subjectFilter,.fortwoFilter, .forfourFilter, .forsixFilter').live('click', function(event){
+		if(event.type=='click'){
+			page = 1;
+			if($(this).hasClass('typeFilter')){
+				typeFilter = encodeURIComponent($(this).attr('id'));
+				changeHashTo(formatSearch(search_term, 1, classFilter));
+			}else if($(this).hasClass('groupFilter')){
+				groupFilter = encodeURIComponent($(this).attr('id'));
+				changeHashTo(formatSearch(search_term, 1, classFilter));
+			}else if($(this).hasClass('subjectFilter')){
+				subjectFilter = encodeURIComponent($(this).attr('id'));
+				changeHashTo(formatSearch(search_term, 1, classFilter));
+                               
+			}else if($(this).hasClass('fortwoFilter')){
+				fortwoFilter = encodeURIComponent($(this).attr('id'));
+				changeHashTo(formatSearch(search_term, 1, classFilter));               
+                               
+			}else if($(this).hasClass('forfourFilter')){
+				forfourFilter = encodeURIComponent($(this).attr('id'));
+				changeHashTo(formatSearch(search_term, 1, classFilter));               
+                               
+			}else if($(this).hasClass('forsixFilter')){
+				forsixFilter = encodeURIComponent($(this).attr('id'));
+				changeHashTo(formatSearch(search_term, 1, classFilter));               
+                               
+			}
+			//scrollToTop();
+		}
+	}); 
+     
+     $('.clearFilter').each(function(){
+		$(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
+	});
+        
+       $('.typeFilter, .groupFilter, .subjectFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({live:true, gravity:'sw'});
+
+	/*
+	 * Clearing filters/facets
+	 */
+	$('.clearFilter').live('click', function(e){
+		if($(this).hasClass('clearType')){
+			typeFilter = 'All';
+		}else if($(this).hasClass('clearGroup')){
+			groupFilter = 'All';
+		}else if($(this).hasClass('clearSubjects')){
+			subjectFilter = 'All';
+		}else if($(this).hasClass('clearFortwo')){
+			fortwoFilter = 'All';
+		}else if($(this).hasClass('clearForfour')){
+			forfourFilter = 'All';
+		}else if($(this).hasClass('clearForsix')){
+			forsixFilter = 'All';
+		}
+		changeHashTo(formatSearch(search_term,1,classFilter));
+	});
+        
     /*Change the Hash Value on the URL*/
     function changeHashTo(location){
         if(window.location.href.indexOf("view") || (window.location.href.indexOf("browse"))){
@@ -241,7 +298,8 @@ $(function() {
     *      Called by ROUTING function
     *      Call widget objects 
     */   
-        
+      
+      
     function initSearchPage(){
         setupNestedLayout();
         
@@ -364,5 +422,40 @@ $(function() {
 
 
     }
-        
+      
+      
+    function doNormalSearch(){
+            spatial_included_ids='';
+		$.ajax({
+  			type:"POST",
+  			url: base_url+"/search/filter/",
+
+  			data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv,
+
+  				success:function(msg){
+  					$("#search-result").html(msg);
+  					$('#loading').hide();
+                                        layoutInner();
+  					//$('#advanced, #mid').css('opacity','1.0');
+  					//$('#map-stuff').show();
+  					//$('#map-help-stuff').html('');
+  					//initFormat();
+  					if($('#realNumFound').html() !='0'){//only update statistic when there is a result
+  						//update search statistics
+  						$.ajax({
+  				  			type:"POST",
+  				  			url: base_url+"/search/updateStatistic/",
+
+  				  			data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1",
+
+  				  				success:function(msg){},
+  				  				error:function(msg){}
+  				  			});
+  					}
+  				},
+  				error:function(msg){
+  					console.log('error');
+  				}
+  		});
+	}
 });

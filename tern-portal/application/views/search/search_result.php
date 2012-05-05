@@ -22,53 +22,15 @@ $Revision: 1 $
 ?>
 
 
-	<?php if($json):?>
-	
-	<?php if(($spatial_included_ids!='') && ($this->input->cookie('spatial-info')=='unread')):?>
-	<div class="info-message shadow-and-corner" id="spatial-info">
-		<p>
-			<ul style="text-align:left">
-				<li>Spatial search results will be displayed in the results list and on the interactive map.</li>
-				<li>Only those objects which have geospatial information associated with them will be returned as results from a Spatial search. Not all metadata Providers include geospatial information with their objects.</li>
-				<li>Only the objects that are listed in the current search results view will appear on the map. Choose a results page number or click on '>' to move further down the results list.</li>
-			</ul>
-		<p><a href="javascript:void(0);" class="disable-info">Don't show this message again</a></p>
-	</div>
-	<?php endif;?>
-	
-	<div id="top-tab">
-		<div class="clearfix"></div>
-	</div>	
-	<div id="bottom-content">
-		<div id="search-left">
-               
-			<div>
-			<?php $this->load->view('search/facet');?>
-			</div>
-		</div>
+	<?php if($json):?>	
 
-		<div id="search-center" class="shadow-and-corner">
-			<div id="search-top">
-				<ul id="search-tabs">
-	                <?php $this->load->view('search/tabs');?>
-				</ul>
-				<span id="customise-icon">
-					<a href="javascript:void(0);" title="Customise Your Search Results" id="customise-dialog"><img src="<?php echo site_url('img/customise.png');?>" /></a>
-				</span>
-			</div> 
-
-			<div id="search-result-content" class="bottom-corner">
-				<?php $this->load->view('search/content');?>
-			</div> 
-
-		
-            
-		     <?php if($classFilter == 'collection' || $classFilter == 'service' ) { ?>
-               
-			<?php $this->load->view('search/map');?>
-			
-                    <?php } ?>
-             </div>
-		<div class="clearfix"></div>
-	</div>
+                     <div class="ui-layout-map hidden">
+                        Map here
+                    </div>
+                    <div class="ui-layout-facet hidden">
+                        <h3 class="ui-widget-header"> Facets </h3>
+                        <?php $this->load->view('search/facet');?> 
+                    </div>
+                    <div class="ui-layout-results hidden" >
+                            <?php $this->load->view('search/content');?>
 	<?php endif;?>

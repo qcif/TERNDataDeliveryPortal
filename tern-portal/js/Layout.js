@@ -3,7 +3,7 @@ var myLayout,middleLayout;
 function sizeCenterPane () {
     var $Container	= $('#container')
     ,	$Pane		= $('.ui-layout-center')
-    ,	$Content	= $('#content')
+    ,	$Content	= $('#search-result')
     ,	outerHeight = $Pane.outerHeight()
     // use a Layout utility to calc total height of padding+borders (also handles IE6)
     ,	panePadding	= outerHeight - $.layout.cssHeight($Pane, outerHeight)
@@ -42,9 +42,23 @@ function setupNestedLayout(){
     });
     
  
-    var $Content = $('#content')
+    var $Content = $('#search-result')
     $Content.height( $(window).height() - $Content.offset().top );
-    middleLayout = $('#content').layout({ 
+
+
+    // now RESIZE the container to be a perfect fit
+    sizeCenterPane();
+
+   $(".collapsiblePanel .head").click(function()
+    {
+     $(this).next("div").slideToggle(300);
+     });
+   $("#accordion").accordion({autoHeight:false});
+}
+
+function layoutInner()
+{
+        middleLayout = $('#search-result').layout({ 
         center__paneSelector:	".ui-layout-results" 
         ,	
         west__paneSelector:		".ui-layout-facet" 
@@ -58,14 +72,5 @@ function setupNestedLayout(){
         , west__togglerLength_closed: 80
         , togglerClass:	"innertoggler"	// default = 'ui-layout-toggler'
     }); 
-
-    // now RESIZE the container to be a perfect fit
-    sizeCenterPane();
-
-   $(".collapsiblePanel .head").click(function()
-    {
-     $(this).next("div").slideToggle(300);
-     });
-   $("#accordion").accordion({autoHeight:false});
 }
            
