@@ -50,7 +50,6 @@ $(function() {
             initHomePage();
         }
     }
-    
     $(window).hashchange(function(){
 
         var hash = window.location.hash;
@@ -116,10 +115,12 @@ $(function() {
             $('#classSelect').val(classFilter);
         }
         //console.log('term='+search_term+'page='+page+'tab='+classFilter);
- 
-        search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
-        search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
-  
+
+       
+        //console.log('yea');
+          search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
+           search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
+        //  doSearch();
         doNormalSearch();
     
 	
@@ -157,9 +158,7 @@ $(function() {
 		}
 	}); 
      
-     $('.clearFilter').each(function(){
-		$(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
-	});
+
         
        $('.typeFilter, .groupFilter, .subjectFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({live:true, gravity:'sw'});
 
@@ -192,7 +191,7 @@ $(function() {
         }
     }
    
-    /*Create Hash URL from search terms and filters*/
+
     function formatSearch(term, page, classFilter){
         if(term=='') term ='*:*';
         var res = 'search#!/q='+term+'/p='+page;
@@ -239,62 +238,55 @@ $(function() {
     *      
     *      
     */
-    function populateSearchFields(temporalWidget, search_term){
+    function populateSearchFields(search_term){
         if(adv == 1){
             $("#accordion").accordion("activate",parseInt(adv));
-            if(search_term != '*:*') {
-                var word = search_term.split(' ');
+            var word = search_term.split(' ');
 
-                $('input[name^="keyword"]').each(function(index){
-                    $(this).val('');           
-                });
+            $('input[name^="keyword"]').each(function(index){
+                $(this).val('');           
+            });
 
-                //getting operators
-                var ors = [];
-                $.each(word, function(index){
-                    if(this.toString()=='OR' || this.toString() == "AND" || this.toString() == "-"){
-                        if(ors.length < 2) ors.push(index);				
-                    }
-                });
-                ors.push(word.length);
-                var start = -1;
-                $.each(ors,function(index,value){
-                    if(value < word.length)  $('select[name^="operator"]').eq(index).val(word[value]);
-                    var keywords = word.slice((start+1),value);
-                    //fulltext:searchterm
-                    $.each(keywords,function(i,v){
-                        var fieldNterm = v.split(':');
-                        //fulltext, searchterm
-                        $.each(fieldNterm,function(fieldNtermIndex,fieldNtermValue){
-                            if(this.toString()=='fulltext' || this.toString() == "displayTitle" || this.toString() == "description" || this.toString() == "subject"){
-                                $('select[name^="fields"]').eq(index).val(fieldNtermValue);
-                            }else{
-                                $('input[name^="keyword"]').eq(index).val(fieldNtermValue);
-                            }                            
-                        });
+            //getting operators
+            var ors = [];
+            $.each(word, function(index){
+                if(this.toString()=='OR' || this.toString() == "AND" || this.toString() == "-"){
+                    if(ors.length < 2) ors.push(index);				
+                }
+            });
+            ors.push(word.length);
+            var start = -1;
+            $.each(ors,function(index,value){
+                if(value < word.length)  $('select[name^="operator"]').eq(index).val(word[value]);
+                var keywords = word.slice((start+1),value);
+                //fulltext:searchterm
+                $.each(keywords,function(i,v){
+                    var fieldNterm = v.split(':');
+                    //fulltext, searchterm
+                    $.each(fieldNterm,function(fieldNtermIndex,fieldNtermValue){
+                        if(this.toString()=='fulltext' || this.toString() == "displayTitle" || this.toString() == "description" || this.toString() == "subject"){
+                            $('select[name^="fields"]').eq(index).val(fieldNtermValue);
+                        }else{
+                            $('input[name^="keyword"]').eq(index).val(fieldNtermValue);
+                        }                            
                     });
-                    start = value;
                 });
-            }
-            
-            var group;
-            if(groupFilter !="All"){
-                    group = groupFilter.split(';');
-                    $.each(group,function(i,v){
-                        $('input[id^="group"][value="' + urldecode(v) + '"]').attr('checked',true);
-                    });            
-            }
+                start = value;
+            });
+        var group;
+        if(groupFilter !="All"){
+                group = groupFilter.split(';');
+                $.each(group,function(i,v){
+                    $('input[id^="group"][value="' + urldecode(v) + '"]').attr('checked',true);
+                });            
+        }
 
-            if(n!='') {populateCoordinates(n,w,s,e);} 
+        if(n!='') { populateCoordinates(n,w,s,e); } 
 
-            if(forfourFilter != "All"){
+        if(forfourFilter != "All"){
 
-                $('select[id="forfourFilter"]').val(urldecode(forfourFilter));
-            }
-            if(temporal!= 'All'){
-                temporalWidget.doTemporalSearch = true;
-                temporalWidget.refreshTemporalSearch();
-            }
+            $('select[id="forfourFilter"]').val(urldecode(forfourFilter));
+        }
         }else{ // it's just basic search
             if(search_term != '*:*' && search_term !="Search ecosystem data") {
             $('input[id="search-box"]').val(search_term);
@@ -314,14 +306,8 @@ $(function() {
         temporalWidget.temporal = temporal;
         temporalWidget.refreshTemporalSearch();
         enableToggleTemporal("#show-temporal-search",temporalWidget);   
-        
-        populateSearchFields(temporalWidget,search_term);
-
-        
-        // SEARCH MAP
         var mapWidget; 
-        
-        // Map dialog overlay
+   
         $('#overlaymap').dialog({
             autoOpen: false,
             height: 512,
@@ -330,27 +316,25 @@ $(function() {
             modal: true
         })
 
-        //Open map button
         $('#openMap').click(function(){
             mapWidget = openMap(mapWidget);
         }).button();
 
-
-        //Reset Button 
-        $('#search_reset').click(function(){
-            resetAllFields(temporalWidget);
-        }).button();
+            if((search_term!='*:*') && (search_term!='')){
+                populateSearchFields(search_term);
+			
+          }
+            
         
-        //Submit button
         $('#search_advanced').click(function(){
-            //Reset search term
-            resetAllSearchVals();
+            
             //check which panel is active 0 is basic, 1 is advanced
             if($( ".accordion" ).accordion( "option", "active" ) == 1 ){  // handle advanced search 
                 
                 //Advanced search widgets                 
                 temporal = temporalWidget.getTemporalValues();
-                               
+                
+                
                 //update spatial coordinates from textboxes
                 var nl=document.getElementById("spatial-north");
                 var sl=document.getElementById("spatial-south");
@@ -360,8 +344,10 @@ $(function() {
                 n=nl.value;
                 s=sl.value;
                 e=el.value;
-                w=wl.value;               
-                           
+                w=wl.value;
+                
+                
+             
                 //FOR filtering 
                 if( document.getElementById("forfourFilter") != null && $('#forfourFilter').val()!='')  forfourFilter = $('#forfourFilter').val();
                 //Group filtering
@@ -435,46 +421,8 @@ $(function() {
 
 
     }
-    /* Reset all search values */
-    function resetAllSearchVals(){
-           search_term = '';
-           page = 1;
-           classFilter = 'collection';
-           typeFilter = 'All';
-           groupFilter = 'All';
-           subjectFilter = 'All';
-           adv = 0;     
-           fortwoFilter='All';
-           forfourFilter='All';
-           forsixFilter='All';
-           resultSort = 'score desc';
-           temporal = 'All';        
-           n = '';
-           e = '';
-           s='';
-           w='';
-        
-    }
-    /* Reset all fields in the search pane*/
-    function resetAllFields(temporalWidget){
-         $('#search-box').val('');
-         $('[name^=fields]').val('');
-         $('[name^=keyword]').val('');
-         $('[name^=keyword]').val('');
-         $('[name^=operator]').val('');
-         $('#groupFilter :checked').each(function(){
-             $(this).removeAttr('checked');
-         }); 
-         $('#forfourFilter').val('');
-         temporalWidget.doTemporalSearch = false;
-         temporalWidget.refreshTemporalSearch();
-         
-         if($('#spatial-north').val() != '') {
-             $("#box").trigger('click');
-         }
-    }
-    
-    
+      
+      
     function doNormalSearch(){
             spatial_included_ids='';
 		$.ajax({
@@ -486,6 +434,9 @@ $(function() {
   				success:function(msg){                                      
   					$("#search-result").html(msg);  				
                                         layoutInner();
+                                             $('.clearFilter').each(function(){
+                                                $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
+                                                });
   					//$('#advanced, #mid').css('opacity','1.0');
   					//$('#map-stuff').show();
   					//$('#map-help-stuff').html('');
