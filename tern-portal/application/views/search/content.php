@@ -80,6 +80,8 @@ $Revision: 1 $
 			}
 
                        $c=1;//record counter 1- 10
+               
+                       
 			foreach($json->{'response'}->{'docs'} as $r)
 			{
 				//var_dump($r->{'description_value'});

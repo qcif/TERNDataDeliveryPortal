@@ -31,7 +31,7 @@
         $q = rawurlencode($q);
         $q = str_replace("%5C%22", "\"", $q); //silly encoding
         $start = 0;
-        $row = 10000000;
+        $row = 10;     
         if ($page != 1)
             $start = ($page - 1) * $row;
 
