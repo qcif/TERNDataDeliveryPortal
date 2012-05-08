@@ -515,6 +515,20 @@ function resetCoordinates(){
    
 }
 
+      /*  ------------------------------------------------------------  
+       *    Populate coordinate textboxes 
+       *
+       *  ------------------------------------------------------------
+       */
+function populateCoordinates(n,w,s,e){
+    
+    $('#spatial-north').val(n);
+    $('#spatial-west').val(w);
+    $('#spatial-south').val(s);
+    $('#spatial-east').val(e); 
+   
+   
+}
  
  
 

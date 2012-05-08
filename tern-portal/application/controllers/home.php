@@ -92,6 +92,7 @@ class Home extends CI_Controller {
 		$data['user_agent']=$this->agent->browser();
                 
                 //get Map widget
+
                 $data['widget_map'] = 1;
                 $data['widget_map_drawtoolbar'] = 1;
                 $data['widget_map_coords'] = 1;

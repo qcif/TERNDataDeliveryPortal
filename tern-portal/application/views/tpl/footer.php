@@ -42,6 +42,7 @@
         <script type="text/javascript" src="<?php echo base_url();?>js/TemporalWidget.js"></script> <!-- WIDGET TEMPORAL-->
         <?php } ?>
         <?php if($widget_map) { ?>
+        <script src="http://openlayers.org/api/2.11/OpenLayers.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/MapWidget.js"></script> <!-- WIDGET MAP -->
         <?php } ?>
          <?php if ($this->config->item('GA_enabled')): ?>

@@ -62,7 +62,7 @@
             </div>
 
             <div class="ui-layout-west hidden">    
-                <div class="accordion">
+                <div id="accordion" class="accordion">
                     <h3><a href="#">Basic Search</a></h3>
                     <?php $this->load->view('tab/widgets/basicsearch');?>               
                     <h3><a href="#">Advanced Search</a></h3>
@@ -78,6 +78,9 @@
                     <?php } ?>
                     <?php if($widget_temporal) { ?>
                      <?php $this->load->view('tab/widgets/temporal');?>
+                     <?php }?>
+                     <?php if(widget_map) { ?>
+                     <?php $this->load->view('tab/widgets/mapLayers');?>
               
                     <?php }?>
                     <?php if($widget_for){  ?>

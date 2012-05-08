@@ -24,20 +24,24 @@ function sizeCenterPane () {
 
 function setupNestedLayout(){
     /*                              LAYOUT
-                 *              Set outer container to div#container
-                 *              Set inner container to div#content 
-                 */
+    *              Set outer container to div#container
+    *              Set inner container to div#content 
+    */
+
     // first set a 'fixed height' on the container so it does not collapse...
     var $Container = $('#container')
     $Container.height( $(window).height() - $Container.offset().top );
 
-    // NOW create the layout
+    // OUTER LAYOUT
     myLayout = $('#container').layout({
         west__size: 300, 
         north__spacing_open: 0
-
+        , west__spacing_closed: 30
+        , west__togglerLength_closed: 80
+        , togglerClass:	"toggler"	// default = 'ui-layout-toggler'
     });
-		
+    
+ 
     var $Content = $('#content')
     $Content.height( $(window).height() - $Content.offset().top );
     middleLayout = $('#content').layout({ 
@@ -50,6 +54,9 @@ function setupNestedLayout(){
         west__size:				300 
         ,       
         north__size:                             300
+        , west__spacing_closed: 30
+        , west__togglerLength_closed: 80
+        , togglerClass:	"innertoggler"	// default = 'ui-layout-toggler'
     }); 
 
     // now RESIZE the container to be a perfect fit
@@ -59,6 +66,6 @@ function setupNestedLayout(){
     {
      $(this).next("div").slideToggle(300);
      });
-   $(".accordion").accordion({autoHeight:false});
+   $("#accordion").accordion({autoHeight:false});
 }
            

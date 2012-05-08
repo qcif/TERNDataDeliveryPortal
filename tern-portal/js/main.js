@@ -1,3 +1,7 @@
+function urldecode(str) {
+   return decodeURIComponent((str+'').replace(/\+/g, '%20'));
+}
+
 $(function() {
     // GLOBAL VARIABLES
     var hash = window.location.hash;
@@ -18,6 +22,7 @@ $(function() {
     var e = '';
     var s='';
     var w='';
+    //var mapAdvanced;
         
         
     // ROUTING 
@@ -41,42 +46,10 @@ $(function() {
             initHelpPage();
         }else if(window.location.href.indexOf('preview')>=0){
             initPreviewPage();
-        }else if(window.location.href.indexOf('advancesrch')>=0){
-            resetCoordinates();
-            //loadDrawGoogleMap();  
-            mapAdvanced = new MapWidget('openlayers-spatialmap');
-            //add other protocols 
-            mapAdvanced.addExtLayer({
-                protocol: "WFS", 
-                url: "supersites", 
-                style: "default", 
-                multiSelect: false, 
-                afterSelect: updateCoordinates
-            });
-            mapAdvanced.addExtLayer({
-                protocol: "WFS", 
-                url: "aceas", 
-                style: "red", 
-                multiSelect: false, 
-                afterSelect: updateCoordinates
-            });
-            // mapAdvanced.addExtLayer({protocol: "GEOJSON", url: "dummy", style: "red", multiSelect: false, afterSelect: updateCoordinates});
-            //add box drawing
-            mapAdvanced.addDrawLayer({
-                geometry: "box", 
-                allowMultiple: false, 
-                afterDraw: updateCoordinates, 
-                afterDrag: updateCoordinates
-            });
-            // enable clicking button controllers
-            enableToolbarClick(mapAdvanced);
-            // allow users to click "Show Coordinates" to expand div
-            enableCoordsClick();
         }else {
             initHomePage();
         }
     }
-    routing();    
     $(window).hashchange(function(){
 
         var hash = window.location.hash;
@@ -86,7 +59,7 @@ $(function() {
         $.each(words, function(){
             var string = this.split('=');
             var term = string[0];
-            var value = string[1];
+            var value = urldecode(string[1]);
             switch(term){
                 case 'q':
                     search_term=value;
@@ -98,22 +71,22 @@ $(function() {
                     classFilter=value;
                     break;
                 case 'group':
-                    groupFilter=encodeURIComponent(decodeURIComponent(value));
+                    groupFilter=value;
                     break;
                 case 'type':
-                    typeFilter=encodeURIComponent(decodeURIComponent(value));
+                    typeFilter=value;
                     break;
                 case 'subject':
-                    subjectFilter=encodeURIComponent(decodeURIComponent(value));
+                    subjectFilter=value;
                     break;
                 case 'fortwo':
-                    fortwoFilter=encodeURIComponent(decodeURIComponent(value));
+                    fortwoFilter=value;
                     break;
                 case 'forfour':
-                    forfourFilter=encodeURIComponent(decodeURIComponent(value));
+                    forfourFilter=value;
                     break;
                 case 'forsix':
-                    forsixFilter=encodeURIComponent(decodeURIComponent(value));
+                    forsixFilter=value;
                     break;
                 case 'temporal':
                     temporal=value;
@@ -143,124 +116,251 @@ $(function() {
         }
         //console.log('term='+search_term+'page='+page+'tab='+classFilter);
 
-        if(window.location.href.indexOf('search')>=0) {
-            //console.log('yea');
-          //  search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
-         //   search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
-          //  doSearch();
-        }
+       
+        //console.log('yea');
+        //  search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
+        //   search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
+        //  doSearch();
+    
 	
     });
     $(window).hashchange(); //do the hashchange on page load
-        
+     routing();    
+       
     /*Change the Hash Value on the URL*/
-	function changeHashTo(location){
-		if(window.location.href.indexOf("view") || (window.location.href.indexOf("browse"))){
-			window.location.href = base_url+location;
-		}else {
-			window.location.hash = location;
-		}
-	}
+    function changeHashTo(location){
+        if(window.location.href.indexOf("view") || (window.location.href.indexOf("browse"))){
+            window.location.href = base_url+location;
+        }else {
+            window.location.hash = location;
+        }
+    }
    
-   function formatSearch(term, page, classFilter){
-		if(term=='') term ='*:*';
-		var res = 'search#!/q='+term+'/p='+page;
-		res+='/tab='+classFilter;
-		if(typeFilter!='All') res+='/type='+(typeFilter);
-		if(groupFilter!='All') res+='/group='+(groupFilter);
-		if(subjectFilter!='All') res+='/subject='+(subjectFilter);
-		if(temporal!='All') res+='/temporal='+(temporal);
-                if(fortwoFilter!='All') res+='/fortwo='+(fortwoFilter);
-                if(forfourFilter!='All') res+='/forfour='+(forfourFilter);
-                if(forsixFilter!='All') res+='/forsix='+(forsixFilter);
-		if(n!=''){
-			res+='/n='+n+'/e='+e+'/s='+s+'/w='+w;
-		}
-                res+='/adv=' +(adv);
-		//alert(res);
-		return res;
 
-	}    
+    function formatSearch(term, page, classFilter){
+        if(term=='') term ='*:*';
+        var res = 'search#!/q='+term+'/p='+page;
+        res+='/tab='+classFilter;
+        if(typeFilter!='All') res+='/type='+(typeFilter);
+        if(groupFilter!='All') res+='/group='+(groupFilter);
+        if(subjectFilter!='All') res+='/subject='+(subjectFilter);
+        if(temporal!='All') res+='/temporal='+(temporal);
+        if(fortwoFilter!='All') res+='/fortwo='+(fortwoFilter);
+        if(forfourFilter!='All') res+='/forfour='+(forfourFilter);
+        if(forsixFilter!='All') res+='/forsix='+(forsixFilter);
+        if(n!=''){
+            res+='/n='+n+'/e='+e+'/s='+s+'/w='+w;
+        }
+        res+='/adv=' +(adv);
+        //alert(res);
+        return res;
+
+    }
+        
+    /*      Initialize map in overlay
+    *       If the map already exists, just open the dialog, otherwise init map
+    *      
+    */   
+    function openMap(mapWidget){
+        $('#overlaymap').dialog('open');
+        if(typeof mapWidget === 'undefined'){
+            mapWidget = new MapWidget('spatialmap');
+            //add box drawing
+            mapWidget.addDrawLayer({
+                geometry: "box", 
+                allowMultiple: false, 
+                afterDraw: updateCoordinates, 
+                afterDrag: updateCoordinates
+            });
+            //enable clicking button controllers
+            enableToolbarClick(mapWidget);
+            
+        }
+        return mapWidget;
+    }
+   
+    /*      Populate Search fields
+    *      
+    *      
+    */
+    function populateSearchFields(search_term){
+        if(adv == 1){
+            $("#accordion").accordion("activate",parseInt(adv));
+            var word = search_term.split(' ');
+
+            $('input[name^="keyword"]').each(function(index){
+                $(this).val('');           
+            });
+
+            //getting operators
+            var ors = [];
+            $.each(word, function(index){
+                if(this.toString()=='OR' || this.toString() == "AND" || this.toString() == "-"){
+                    if(ors.length < 2) ors.push(index);				
+                }
+            });
+            ors.push(word.length);
+            var start = -1;
+            $.each(ors,function(index,value){
+                if(value < word.length)  $('select[name^="operator"]').eq(index).val(word[value]);
+                var keywords = word.slice((start+1),value);
+                //fulltext:searchterm
+                $.each(keywords,function(i,v){
+                    var fieldNterm = v.split(':');
+                    //fulltext, searchterm
+                    $.each(fieldNterm,function(fieldNtermIndex,fieldNtermValue){
+                        if(this.toString()=='fulltext' || this.toString() == "displayTitle" || this.toString() == "description" || this.toString() == "subject"){
+                            $('select[name^="fields"]').eq(index).val(fieldNtermValue);
+                        }else{
+                            $('input[name^="keyword"]').eq(index).val(fieldNtermValue);
+                        }                            
+                    });
+                });
+                start = value;
+            });
+        var group;
+        if(groupFilter !="All"){
+                group = groupFilter.split(';');
+                $.each(group,function(i,v){
+                    $('input[id^="group"][value="' + urldecode(v) + '"]').attr('checked',true);
+                });            
+        }
+
+        if(n!='') { populateCoordinates(n,w,s,e); } 
+
+        if(forfourFilter != "All"){
+
+            $('select[id="forfourFilter"]').val(urldecode(forfourFilter));
+        }
+        }else{ // it's just basic search
+            $('input[id="search-box"]').val(search_term);
+        }
+    }
+   
     /*      Initialization function for '/search' urls
-         *      Called by ROUTING function
-         *      Call widget objects 
-         */   
+    *      Called by ROUTING function
+    *      Call widget objects 
+    */   
         
     function initSearchPage(){
+        setupNestedLayout();
+        
         var temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
         temporalWidget.refreshTemporalSearch();
         enableToggleTemporal("#show-temporal-search",temporalWidget);   
-        setupNestedLayout();
+        var mapWidget; 
+   
+        $('#overlaymap').dialog({
+            autoOpen: false,
+            height: 512,
+            width: 454,
+            resizable: false,            
+            modal: true
+        })
+
+        $('#openMap').click(function(){
+            mapWidget = openMap(mapWidget);
+        }).button();
+
+            if((search_term!='*:*') && (search_term!='')){
+                populateSearchFields(search_term);
+			
+          }
+            
         
-	$('#search_advanced').click(function(){
+        $('#search_advanced').click(function(){
             
             //check which panel is active 0 is basic, 1 is advanced
             if($( ".accordion" ).accordion( "option", "active" ) == 1 ){  // handle advanced search 
-                temporal = temporalWidget.getTemporalValues();
-             
-                /*
-                 * 
-                               //update spatial coordinates from textboxes
-                 var nl=document.getElementById("spatial-north");
-                 var sl=document.getElementById("spatial-south");
-                 var el=document.getElementById("spatial-east");
-                 var wl=document.getElementById("spatial-west");
-                   
-                 n=nl.value;s=sl.value;e=el.value;w=wl.value;
-                 */  
                 
-                //Advanced search widgets 
+                //Advanced search widgets                 
+                temporal = temporalWidget.getTemporalValues();
+                
+                
+                //update spatial coordinates from textboxes
+                var nl=document.getElementById("spatial-north");
+                var sl=document.getElementById("spatial-south");
+                var el=document.getElementById("spatial-east");
+                var wl=document.getElementById("spatial-west");
+                   
+                n=nl.value;
+                s=sl.value;
+                e=el.value;
+                w=wl.value;
+                
+                
+             
                 //FOR filtering 
-                 if( document.getElementById("forfourFilter") != null && $('#forfourFilter').val()!='')  forfourFilter = $('#forfourFilter').val();
+                if( document.getElementById("forfourFilter") != null && $('#forfourFilter').val()!='')  forfourFilter = $('#forfourFilter').val();
                 //Group filtering
-                 if( document.getElementById("groupFilter") != null ) {
-                     var first = true;
-                       $('#groupFilter :checked').each(function(){
-                           if(first) { groupFilter = $(this).val(); first=false;}
-                           else groupFilter +=  ";" + $(this).val();
-                       });                  
-                 } 
-                 
-                 //Keywords 
-                 if( $('[name^=fields]').length>0){
-                     first = true;
-                     var field = '';
-                     $("input[name^=keyword]").each(function(index){
-                         if($.trim($(this).val())!='') {
-                              switch($("[name^=fields]").get(index).value){
-				case 'displayTitle': field = 'displayTitle'; break;
-				case 'description':field = 'description_value';break;
-				case 'subject': field = 'subject_value' ;break;
-                                default: field='fulltext';break;
-                              }
-                             if(first){
-                                 search_term = field;
-                             }else{
-                                 if($("[name^=operator]").get(index-1) ){
-                                 var operator = $("[name^=operator]").get(index-1).value;
-                                  search_term += operator
-                                  search_term += ' ';
-                                }                            
-                                 search_term += field;
-                             }
-                             search_term += ':';
-                             search_term += $.trim($(this).val()) + ' ';
-                             first = false;                             
-                            }
+                if( document.getElementById("groupFilter") != null ) {
+                    var first = true;
+                    $('#groupFilter :checked').each(function(){
+                        if(first) {
+                            groupFilter = $(this).val();
+                            first=false;
                         }
-                     );
-                     search_term = $.trim(search_term);
-                     adv = 1;              
-                 }
-                 page = 1;
+                        else groupFilter +=  ";" + $(this).val();
+                    });                  
+                }                 
+                //Keywords 
+                if( $('[name^=fields]').length>0){
+                    first = true;
+                    var field = '';
+                    $("input[name^=keyword]").each(function(index){
+                        if($.trim($(this).val())!='') {
+                            switch($("[name^=fields]").get(index).value){
+                                case 'displayTitle':
+                                    field = 'displayTitle';
+                                    break;
+                                case 'description':
+                                    field = 'description_value';
+                                    break;
+                                case 'subject':
+                                    field = 'subject_value' ;
+                                    break;
+                                default:
+                                    field='fulltext';
+                                    break;
+                            }
+                            if(first){
+                                search_term = field;
+                            }else{
+                                if($("[name^=operator]").get(index-1) ){
+                                    var operator = $("[name^=operator]").get(index-1).value;
+                                    search_term += operator
+                                    search_term += ' ';
+                                }                            
+                                search_term += field;
+                            }
+                            search_term += ':';
+                            search_term += $.trim($(this).val()) + ' ';
+                            first = false;                             
+                        }
+                    }
+                    );
+                    search_term = $.trim(search_term);
+                    adv = 1;              
+                }
+                page = 1;
             }else{
                 search_term = $('#search-box').val();
+                adv = 0;
+                n = '';
+                w = '';
+                e = '';
+                s = '';
+                groupFilter = 'All'
+                forfourFilter = 'All';
+                temporal = 'All';
+                
+                
             }   		
 	    
             changeHashTo(formatSearch(search_term, 1, classFilter));
 
-	}).button();
+        }).button();
 
 
     }

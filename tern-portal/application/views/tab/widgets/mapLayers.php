@@ -1,18 +1,9 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
-<script src="http://openlayers.org/api/2.11/OpenLayers.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>js/openLayersMap.js"></script>
 <style type="text/css">
             .olControlDrawFeatureBoxItemActive {
-            background-position: -26px -24px;
+            background-position: -153px -24px;
             }
             .olControlDrawFeatureBoxItemInactive {
-            background-position: -26px -1px;
+            background-position: -153px -1px;
             }
             .olControlEditingToolbar div{
                 float:left !important;      
@@ -23,25 +14,35 @@
             .olControlDragFeatureBoxItemInactive {
             background-position: -103px -1px;
             }
+            .olControlNavToolbar div, .olControlEditingToolbar div {
+                background-image: url('/img/editing_tool_bar.png');
+            }
             #advance-spatial { 
                 width: 430px;
             }
-        </style>
-<div id="openlayers-spatialmap"></div>
-       <div id="advance-spatial" >  
-            <div class="ui-widget-header clearfix">
-                <div id="panel" class="olControlEditingToolbar">
-                    <?php if($widget_map_drawtoolbar){ ?> 
-                        <div  id="box" class="olControlDrawFeatureBoxItemInactive" title=""></div>
-                        <div  id="drag" class="olControlDragFeatureBoxItemInactive" ></div>
-                    <?php } ?>
-                   
-                </div>
-                
- 	</div> 
+</style>
+<div class="borderMe collapsiblePanel">  
+<h3 class="head ui-widget-header">Location</h3>
+<input type="button" id="openMap" class="margin10" value="Draw a region on map"/><br/>
+<div id="overlaymap" title="Draw a region on the map">
+    <div id="spatialmap" class=""></div>
+    <div id="advance-spatial" >  
+        <div class="ui-widget-header clearfix ">
+            <div id="panel" class="olControlEditingToolbar">
+                <?php if($widget_map_drawtoolbar){ ?> 
+                    <div  id="box" class="olControlDrawFeatureBoxItemInactive" title=""></div>
+                    <div  id="drag" class="olControlDragFeatureBoxItemInactive" ></div>
+                <?php } ?>
+
+            </div>
+
+        </div> 
+    </div>
+</div>  
 <?php if($widget_map_coords){ ?>              
-         <br/><a id="showCoords">Show spatial coordinates</a><br/><br/>
-         <div id="coords" style="display:none">
+      
+         <div id="coords" class="padding5" >
+             <h4> Coordinates</h4>
          <table border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td></td>
@@ -61,4 +62,5 @@
         </table>
          </div>
 <?php } ?> 
-</div>     
+   
+</div>

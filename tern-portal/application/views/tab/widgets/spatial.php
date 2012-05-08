@@ -39,6 +39,6 @@ function checkForInvalid(obj) {
                 <td></td> 
             </tr> 
         </table>
-    </div>
+    </div><div id="coords"></div>
             <div class="clearfix"></div>
 </div>

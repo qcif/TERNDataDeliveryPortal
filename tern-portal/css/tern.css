@@ -131,13 +131,34 @@ input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
     margin:0;
     padding: 7px 10px;
 }
+.ui-layout-resizer-west-closed{
+    border-left: 1px solid #BBBBBB;
+    border-top: 1px solid #BBBBBB;
+}
+.toggler-west-closed{
+    background: url('/img/icon/pnl_search_green.png') no-repeat;
+    height: 80px;
+}
+.toggler-west-open{
+    background: #AAAAAA;
+}
+
+.innertoggler-west-closed{
+    background: url('/img/icon/pnl_facets_blue.png') no-repeat;
+    height: 80px;
+}
+.innertoggler-west-open{
+    background: #AAAAAA;
+}
 .padding5{
     padding:5px;
 }
 .padding10{
     padding:10px;
 }
-
+.margin10{
+    margin:10px;
+}
 .ui-layout-center{padding:0;}
 
 .ui-layout-map { height: 300px}
@@ -153,6 +174,9 @@ div.checkitem{ margin-top: 0.5em; clear: both; line-height:20px }
 /*Temporal form */
 div#temporalFilter{ height: 23px;vertical-align: middle; margin-top: 0.5em; }
 div#temporalFilter img{vertical-align:middle;}
+
+/*SPATIAL form */
+div#spatialmap{width:430px;height:430px;overflow:auto;display:block;}
 
 /*FOR form*/
 div#forFilter{ height:20px; margin-top: 0.5em;}
@@ -197,3 +221,8 @@ div#panel_advSearch .ui-widget-header{
 .accordion .ui-accordion-content{
     padding:5px;
 }
+
+#coords input{ 
+    width: 50px;
+}
+
