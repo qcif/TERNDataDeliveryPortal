@@ -22,7 +22,7 @@ $(function() {
     var e = '';
     var s='';
     var w='';
-    //var mapAdvanced;
+    var mapResult;
         
         
     // ROUTING 
@@ -117,12 +117,12 @@ $(function() {
         }
         //console.log('term='+search_term+'page='+page+'tab='+classFilter);
  
-        search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
-        search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
-  
-        doNormalSearch();
-    
-	
+        if(window.location.href.indexOf('search')>=0) {
+			//console.log('yea');
+			search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
+			search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
+			doNormalSearch();
+	}
     });
     $(window).hashchange(); //do the hashchange on page load
      routing();    
@@ -157,10 +157,7 @@ $(function() {
 		}
 	}); 
      
-     $('.clearFilter').each(function(){
-		$(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
-	});
-        
+          
        $('.typeFilter, .groupFilter, .subjectFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({live:true, gravity:'sw'});
 
 	/*
@@ -318,7 +315,9 @@ $(function() {
         populateSearchFields(temporalWidget,search_term);
 
         // Results Map
-        var mapResult = new MapWidget('result-map');
+        mapResult = new MapWidget('result-map');
+        mapResult.addDataLayer();
+        
         // SEARCH MAP
         var mapWidget; 
         
@@ -434,8 +433,7 @@ $(function() {
 
         }).button();
 
-
-    }
+      }
     /* Reset all search values */
     function resetAllSearchVals(){
            search_term = '';
@@ -475,6 +473,28 @@ $(function() {
          }
     }
     
+    function handleResults(msg,mapWidget){                                    
+        $("#search-result").html(msg);  				
+        layoutInner();
+        mapWidget.clearMarkers();
+        mapWidget.addMarkerstoDataLayer(".spatial_center");
+        $('.clearFilter').each(function(){
+                $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
+        });
+
+        if($('#realNumFound').html() !='0'){//only update statistic when there is a result
+        //update search statistics
+        $.ajax({
+                type:"POST",
+                url: base_url+"/search/updateStatistic/",
+
+                data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1",
+
+                        success:function(msg){},
+                        error:function(msg){}
+                });
+        }
+    }
     
     function doNormalSearch(){
             spatial_included_ids='';
@@ -484,29 +504,13 @@ $(function() {
 
   			data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv,
 
-  				success:function(msg){                                      
-  					$("#search-result").html(msg);  				
-                                        layoutInner();
-  					//$('#advanced, #mid').css('opacity','1.0');
-  					//$('#map-stuff').show();
-  					//$('#map-help-stuff').html('');
-  					//initFormat();
-  					if($('#realNumFound').html() !='0'){//only update statistic when there is a result
-  						//update search statistics
-  						$.ajax({
-  				  			type:"POST",
-  				  			url: base_url+"/search/updateStatistic/",
-
-  				  			data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1",
-
-  				  				success:function(msg){},
-  				  				error:function(msg){}
-  				  			});
-  					}
-  				},
-  				error:function(msg){
-  					console.log('error');
-  				}
+                        success: function(msg,textStatus){
+                            handleResults(msg,mapResult);
+                        }
+                        ,
+                        error:function(msg){
+                                console.log('error');
+                        }
   		});
 	}
 });

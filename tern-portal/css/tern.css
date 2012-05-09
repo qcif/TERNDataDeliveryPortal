@@ -172,7 +172,7 @@ input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 }
 .ui-layout-center{padding:0;}
 
-.ui-layout-map { height: 300px}
+.ui-layout-map { padding:0;}
 
 /* WEST SEARCH  */
  .head{ margin-bottom: 5px; }
@@ -246,3 +246,8 @@ div#panel_advSearch .ui-widget-header{
 .spatial_center{display:none;}
 .spatial_coverage_center{display:none;}
 #search-result{ padding: 0; border:0;}
+
+/* MAP Results*/
+#result-map{
+    height: 100%;   
+}

@@ -320,6 +320,42 @@ MapWidget.prototype.toggleControl = function(element) {
     }
 }
 
+
+    /*  ------------------------------------------------------------  
+     *    addDataLayer(coordinateSelector)  
+     *    Display coordinates in coordinateSelector as markers on map
+     *    
+     *    
+     *  ------------------------------------------------------------
+     */
+MapWidget.prototype.addDataLayer = function() {
+
+    this.markers = new OpenLayers.Layer.Markers( "Search Results" );
+    this.map.addLayer(this.markers);
+}
+
+MapWidget.prototype.addMarkerstoDataLayer = function(coordinateSelector){
+    var centers = $(coordinateSelector);
+    var markers  = this.markers;
+    var WGS84 = this.WGS84; 
+    var WGS84_google_mercator = this.WGS84_google_mercator;
+    $.each(centers, function(){
+           addMarker($(this).html(), markers, WGS84,WGS84_google_mercator);
+      
+
+    });
+    function addMarker(lonlat,markers,WGS84,WGS84_google_mercator){
+            var word = lonlat.split(',');
+            var coords = new OpenLayers.LonLat(word[0],word[1]).transform(WGS84, WGS84_google_mercator)
+            var marker = new OpenLayers.Marker(coords);
+            markers.addMarker(marker);
+    }
+}
+
+MapWidget.prototype.clearMarkers = function(){
+    this.markers.clearMarkers();
+    
+}
 /*  ------------------------------------------------------------  
  *   FUNCTION TO GET WFS FEATURES AND ADD TO LAYER
  *

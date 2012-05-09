@@ -2,7 +2,7 @@
         <div id="container">
 
             <div id="center" class="ui-layout-center hidden">
-                <div id="result-map" class="ui-layout-map hidden"></div>
+                <div class="ui-layout-map hidden"><div id="result-map"></div></div>
                 <div id="search-result" class="ui-layout-search-results hidden"></div>
             </div>
             
