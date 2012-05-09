@@ -36,9 +36,6 @@ function enableToggleTemporal(div_id, temporalWidgetObj){
 TemporalWidget.prototype.refreshTemporalSearch = function(){       
     var min_year = parseInt($('#min_year').html());
     var max_year = parseInt($('#max_year').html());
-    if(this.temporal!='All'){
-        this.doTemporalSearch = true;
-    }
     if(this.doTemporalSearch){
         $('#show-temporal-search').attr('src',base_url+'img/yes.png');
         //console.log(parseInt(word[1]));

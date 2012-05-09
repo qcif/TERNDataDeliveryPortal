@@ -8,7 +8,7 @@ function sizeCenterPane () {
     // use a Layout utility to calc total height of padding+borders (also handles IE6)
     ,	panePadding	= outerHeight - $.layout.cssHeight($Pane, outerHeight)
     ,       $West           = $('.ui-layout-west')
-    ,       $WestContent    = $('#advsearch')
+    ,       $WestContent    = $('#accordion')
     ,       outerWestHeight  = $West.outerHeight()      
     ,       paneWestPadding	= outerWestHeight - $.layout.cssHeight($West, outerWestHeight)
     ;
@@ -16,7 +16,8 @@ function sizeCenterPane () {
         // update the container height - *just* tall enough to accommodate #Content without scrolling
         $Container.height( $Pane.position().top + $Content.outerHeight() + panePadding );
     }else{
-        $Container.height( $West.position().top + $WestContent.outerHeight() + paneWestPadding + 5);
+        console.log( $West.position().top + $WestContent.outerHeight() + paneWestPadding + 100);
+        $Container.height( $West.position().top + $WestContent.outerHeight() + paneWestPadding );
     }
     // now resize panes to fit new container size
     myLayout.resizeAll();
@@ -69,6 +70,8 @@ function layoutInner()
         west__size:				300 
         ,       
         north__size:                             300
+        , north__spacing_closed:    30
+        , north__togglerLength_closed: 80
         , west__spacing_closed: 30
         , west__togglerLength_closed: 80
         , togglerClass:	"innertoggler"	// default = 'ui-layout-toggler'

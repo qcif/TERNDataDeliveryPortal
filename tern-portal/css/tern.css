@@ -150,6 +150,17 @@ input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 .innertoggler-west-open{
     background: #AAAAAA;
 }
+.innertoggler-north-closed{
+    background: url('/img/icon/pnl_map_grey.png') no-repeat;
+    height: 80px;
+}
+.innertoggler-north-open{
+    background: #AAAAAA;
+}
+
+.innertoggler-west-open{
+    background: #AAAAAA;
+}
 .padding5{
     padding:5px;
 }
@@ -166,7 +177,10 @@ input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 /* WEST SEARCH  */
  .head{ margin-bottom: 5px; }
  #buttonSearch{ margin: 10px;}
-
+ .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+     color:#333333;
+     
+ }
 /*Research Institution Form*/
 label{vertical-align:middle; font: 11px Arial,Helvetica,sans-serif}
 div.checkitem{ margin-top: 0.5em; clear: both; line-height:20px }
@@ -226,3 +240,8 @@ div#panel_advSearch .ui-widget-header{
     width: 50px;
 }
 
+/*SEARCH RESULTS */
+.spatial{display:none;}
+.coverage{display:none;}
+.spatial_center{display:none;}
+.spatial_coverage_center{display:none;}
