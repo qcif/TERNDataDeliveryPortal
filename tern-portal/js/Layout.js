@@ -57,7 +57,8 @@ function setupNestedLayout(){
 }
 
 function layoutInner()
-{
+{       
+        if(typeof middleLayout != 'undefined') middleLayout.destroy();
         middleLayout = $('#search-result').layout({ 
         center__paneSelector:	".ui-layout-results" 
         ,	

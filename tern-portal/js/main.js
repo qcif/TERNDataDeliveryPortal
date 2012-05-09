@@ -290,15 +290,16 @@ $(function() {
             $('select[id="forfourFilter"]').val(urldecode(forfourFilter));
         }
         }else{ // it's just basic search
+            if(search_term != '*:*' && search_term !="Search ecosystem data") {
             $('input[id="search-box"]').val(search_term);
         }
+    }
     }
    
     /*      Initialization function for '/search' urls
     *      Called by ROUTING function
     *      Call widget objects 
     */   
-      
       
     function initSearchPage(){
         setupNestedLayout();
@@ -432,9 +433,8 @@ $(function() {
 
   			data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv,
 
-  				success:function(msg){
-  					$("#search-result").html(msg);
-  					$('#loading').hide();
+  				success:function(msg){                                      
+  					$("#search-result").html(msg);  				
                                         layoutInner();
   					//$('#advanced, #mid').css('opacity','1.0');
   					//$('#map-stuff').show();
