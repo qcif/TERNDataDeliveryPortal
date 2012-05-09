@@ -317,7 +317,8 @@ $(function() {
         
         populateSearchFields(temporalWidget,search_term);
 
-        
+        // Results Map
+        var mapResult = new MapWidget('result-map');
         // SEARCH MAP
         var mapWidget; 
         

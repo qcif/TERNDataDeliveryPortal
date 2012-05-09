@@ -1,4 +1,4 @@
-var myLayout,middleLayout;
+var myLayout,middleLayout,innerLayout;
       
 function sizeCenterPane () {
     var $Container	= $('#container')
@@ -42,11 +42,22 @@ function setupNestedLayout(){
         , togglerClass:	"toggler"	// default = 'ui-layout-toggler'
     });
     
- 
+    
     var $Content = $('#search-result')
     $Content.height( $(window).height() - $Content.offset().top );
+    
 
-
+        middleLayout = $('#center').layout({ 
+        center__paneSelector:	".ui-layout-search-results" 
+        ,	
+        north__paneSelector:	".ui-layout-map" 
+        ,	
+        north__size:                             300
+        , north__spacing_closed:    30
+        , north__togglerLength_closed: 80
+        , togglerClass:	"middletoggler"	// default = 'ui-layout-toggler'
+    }); 
+    
     // now RESIZE the container to be a perfect fit
     sizeCenterPane();
 
@@ -59,19 +70,13 @@ function setupNestedLayout(){
 
 function layoutInner()
 {       
-        if(typeof middleLayout != 'undefined') middleLayout.destroy();
-        middleLayout = $('#search-result').layout({ 
+        if(typeof innerLayout != 'undefined') innerLayout.destroy();
+        innerLayout = $('#search-result').layout({ 
         center__paneSelector:	".ui-layout-results" 
         ,	
         west__paneSelector:		".ui-layout-facet" 
         ,	
-        north__paneSelector:		".ui-layout-map" 
-        ,	
         west__size:				300 
-        ,       
-        north__size:                             300
-        , north__spacing_closed:    30
-        , north__togglerLength_closed: 80
         , west__spacing_closed: 30
         , west__togglerLength_closed: 80
         , togglerClass:	"innertoggler"	// default = 'ui-layout-toggler'

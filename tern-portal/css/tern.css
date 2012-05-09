@@ -150,15 +150,15 @@ input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 .innertoggler-west-open{
     background: #AAAAAA;
 }
-.innertoggler-north-closed{
+.middletoggler-north-closed{
     background: url('/img/icon/pnl_map_grey.png') no-repeat;
     height: 80px;
 }
-.innertoggler-north-open{
+.middletoggler-north-open{
     background: #AAAAAA;
 }
 
-.innertoggler-west-open{
+.middletoggler-north-open{
     background: #AAAAAA;
 }
 .padding5{
@@ -245,3 +245,4 @@ div#panel_advSearch .ui-widget-header{
 .coverage{display:none;}
 .spatial_center{display:none;}
 .spatial_coverage_center{display:none;}
+#search-result{ padding: 0; border:0;}
