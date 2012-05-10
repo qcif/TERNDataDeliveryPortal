@@ -22,11 +22,12 @@
             }
 </style>
 <div class="borderMe collapsiblePanel">  
-<h3 class="head ui-widget-header">Location</h3>
+<h3 class="head ui-widget-header lefttext">Location</h3>
+<div class="padding5 centertext">
 <input type="button" id="openMap" class="margin10" value="Draw a region on map"/><br/>
 <div id="overlaymap" title="Draw a region on the map">
     <div id="spatialmap" class=""></div>
-    <div id="advance-spatial" >  
+    <div id="advance-spatial">
         <div class="ui-widget-header clearfix ">
             <div id="panel" class="olControlEditingToolbar">
                 <?php if($widget_map_drawtoolbar){ ?> 
@@ -39,6 +40,7 @@
         </div> 
     </div>
 </div>  
+
 <?php if($widget_map_coords){ ?>              
       
          <div id="coords" class="padding5" >
@@ -62,5 +64,5 @@
         </table>
          </div>
 <?php } ?> 
-   
+   </div>
 </div>

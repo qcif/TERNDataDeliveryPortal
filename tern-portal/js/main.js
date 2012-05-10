@@ -1,6 +1,12 @@
 function urldecode(str) {
    return decodeURIComponent((str+'').replace(/\+/g, '%20'));
 }
+function trimwords(theString, numWords) {
+    expString = theString.split(/\s+/,numWords);
+    theNewString=expString.join(" ");
+    return theNewString;
+}
+
 
 $(function() {
     // GLOBAL VARIABLES
@@ -157,9 +163,8 @@ $(function() {
 		}
 	}); 
      
-          
-       $('.typeFilter, .groupFilter, .subjectFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({live:true, gravity:'sw'});
-
+         
+    
 	/*
 	 * Clearing filters/facets
 	 */
@@ -225,9 +230,13 @@ $(function() {
                 afterDraw: updateCoordinates, 
                 afterDrag: updateCoordinates
             });
+            if(n!='') {
+                mapWidget.updateDrawing(mapWidget,w + "," + s+ "," + e + "," + n);
+            }
             //enable clicking button controllers
             enableToolbarClick(mapWidget);
-            
+            //changing coordinates on textbox should change the map appearance
+            enableCoordsChange(mapWidget);
         }
         return mapWidget;
     }
@@ -312,6 +321,8 @@ $(function() {
         temporalWidget.refreshTemporalSearch();
         enableToggleTemporal("#show-temporal-search",temporalWidget);   
         
+        resetCoordinates();
+         
         populateSearchFields(temporalWidget,search_term);
 
         // Results Map
@@ -320,7 +331,7 @@ $(function() {
         
         // SEARCH MAP
         var mapWidget; 
-        
+    
         // Map dialog overlay
         $('#overlaymap').dialog({
             autoOpen: false,
@@ -341,6 +352,13 @@ $(function() {
             resetAllFields(temporalWidget);
         }).button();
         
+        // If user presses enter in the inputs, submit the form
+         $('.ui-layout-west input').keypress(function(e) {
+                if(e.which == 13) {
+                  $('#search_advanced').trigger('click');
+                }
+        });
+    
         //Submit button
         $('#search_advanced').click(function(){
             //Reset search term
@@ -481,7 +499,35 @@ $(function() {
         $('.clearFilter').each(function(){
                 $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
         });
-
+        $('.tipsy').remove();
+        $('.typeFilter, .groupFilter, .subjectFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({live:true, gravity:'sw'});
+ 
+	/*
+	 * show-hide facet content, slide up and down
+	 */
+	$('.toggle-facet-field').live('click', function(){
+		//console.log($(this).parent().parent().next('div.facet-content'));
+		$(this).parent().parent().next('div.facet-content').slideToggle();
+		//$(this).parent().children().toggle();//show all the toggle facet field in the same div
+		$(this).toggleClass('ui-icon-arrowthickstop-1-n');
+		$(this).toggleClass('ui-icon-arrowthickstop-1-s');
+		//$(this).hide();
+	});
+        
+        		//LIMIT 5
+		$("ul.more").each(function() {
+		    $("li:gt(5)", this).hide();
+		    $("li:nth-child(6)", this).after("<a href='#' class=\"more\">More...</a>");
+		});
+		$("a.more").live("click", function() {
+			//console.log($(this).parent());
+			$(this).parent().children().slideDown();
+			$(this).remove();
+		    return false;
+		});
+                
+       
+                 
         if($('#realNumFound').html() !='0'){//only update statistic when there is a result
         //update search statistics
         $.ajax({
@@ -495,15 +541,15 @@ $(function() {
                 });
         }
     }
-    
+     
     function doNormalSearch(){
             spatial_included_ids='';
 		$.ajax({
   			type:"POST",
   			url: base_url+"/search/filter/",
 
-  			data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv,
-
+                       data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv,
+        
                         success: function(msg,textStatus){
                             handleResults(msg,mapResult);
                         }

@@ -336,18 +336,41 @@ MapWidget.prototype.addDataLayer = function() {
 
 MapWidget.prototype.addMarkerstoDataLayer = function(coordinateSelector){
     var centers = $(coordinateSelector);
+    
     var markers  = this.markers;
     var WGS84 = this.WGS84; 
     var WGS84_google_mercator = this.WGS84_google_mercator;
     $.each(centers, function(){
-           addMarker($(this).html(), markers, WGS84,WGS84_google_mercator);
+            var desc = trimwords($(this).parent().children('p').html(),50);
+            if (desc.length <  $(this).parent().children('p').html().length) desc += "...";
+            var html  = $(this).parent().children('h2').html() + "<p>" + desc + "</p>";
+	    
+            addMarker($(this).html(), markers, WGS84,WGS84_google_mercator, html);
       
 
     });
-    function addMarker(lonlat,markers,WGS84,WGS84_google_mercator){
+    function addMarker(lonlat,markers,WGS84,WGS84_google_mercator,html){
             var word = lonlat.split(',');
             var coords = new OpenLayers.LonLat(word[0],word[1]).transform(WGS84, WGS84_google_mercator)
-            var marker = new OpenLayers.Marker(coords);
+            var feature = new OpenLayers.Feature(markers,coords);
+            AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, {
+                'autoSize': true,
+                'maxSize': new OpenLayers.Size(500,150)
+            });
+
+            feature.closeBox = true;
+            feature.data.popupContentHTML = html;
+            feature.popupClass = AutoSizeAnchored;
+            feature.data.overflow = "auto";
+            var marker = feature.createMarker();
+            //var marker = new OpenLayers.Marker(coords);
+            
+            var markerClick = function(evt){
+                this.createPopup(this.closeBox);
+                markers.map.addPopup(this.popup);
+                this.popup.show();
+            };
+            marker.events.register("click",feature,markerClick);
             markers.addMarker(marker);
     }
 }
@@ -356,6 +379,16 @@ MapWidget.prototype.clearMarkers = function(){
     this.markers.clearMarkers();
     
 }
+
+MapWidget.prototype.updateDrawing = function(map,coordStr){
+    var control = this.drawControls['box'];
+     control.layer.removeAllFeatures();
+     var bounds = OpenLayers.Bounds.fromString(coordStr);
+     
+     var box = new OpenLayers.Feature.Vector(bounds.toGeometry().transform(this.WGS84,this.WGS84_google_mercator));
+     control.layer.addFeatures(box);
+}
+
 /*  ------------------------------------------------------------  
  *   FUNCTION TO GET WFS FEATURES AND ADD TO LAYER
  *
@@ -493,14 +526,30 @@ function getStyle(styleName){
     
 
       /*  ------------------------------------------------------------  
+       *    Bind changes to coordinates textbox 
+       *
+       *  ------------------------------------------------------------
+       */
+function enableCoordsChange(map){
+   
+      $("#coords input").change(function(){
+           var coordStr = '';
+          coordStr += $('#spatial-west').val() +  "," + $('#spatial-south').val() + "," +
+              $('#spatial-east').val() + "," + $('#spatial-north').val();
+          
+         map.updateDrawing(map,coordStr);
+     });
+}
+
+      /*  ------------------------------------------------------------  
        *    Bind click to toolbar "panel" buttons div 
        *
        *  ------------------------------------------------------------
        */
-function enableToolbarClick(mapAdvanced){
+function enableToolbarClick(map){
       $("#panel div").each(function(){
             $(this).click(function(){
-             mapAdvanced.toggleControl(this);
+             map.toggleControl(this);
       });
      });
 }

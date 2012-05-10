@@ -181,6 +181,9 @@ input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
      color:#333333;
      
  }
+ .lefttext {
+     text-align: left;
+ }
 /*Research Institution Form*/
 label{vertical-align:middle; font: 11px Arial,Helvetica,sans-serif}
 div.checkitem{ margin-top: 0.5em; clear: both; line-height:20px }
@@ -226,6 +229,7 @@ div#panel_advSearch .ui-widget-header{
 }
 .collapsiblePanel{
     padding-bottom:5px;
+    cursor: pointer; 
 }
 
 .accordion .ui-accordion-header a{
@@ -236,9 +240,13 @@ div#panel_advSearch .ui-widget-header{
     padding:5px;
 }
 
+#coords{
+    text-align: left;
+}
 #coords input{ 
     width: 50px;
 }
+   
 
 /*SEARCH RESULTS */
 .spatial{display:none;}
@@ -250,4 +258,13 @@ div#panel_advSearch .ui-widget-header{
 /* MAP Results*/
 #result-map{
     height: 100%;   
+}
+.centertext{
+    text-align: center;
+}
+.olPopupCloseBox {
+    background: url("/img/delete.png") no-repeat scroll 0 0 transparent !important;
+}
+.olPopup{
+    border: 1px solid #AAAAAA ! important ;
 }
