@@ -32,6 +32,79 @@ a:hover{text-decoration:underline;}
 
 input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 
+.top-left-corner{}
+.bottom-corner{}
+.top-corner{}
+.shadow-and-corner{}
+
+/*
+ * BreadCrumbs use in page view
+ */
+#breadcrumb{
+    font: 11px Arial, Helvetica, sans-serif;
+    
+    height:30px;
+    line-height:30px;
+    color:#9b9b9b;
+    border:solid 1px #cacaca;
+    width:100%;
+    overflow:hidden;margin:0;padding:0;
+    position:relative;
+}
+
+#breadcrumb li {list-style-type:none;float:left;padding-left:10px;}
+#breadcrumb li a.crumb{
+    height:30px;
+    display:inline-block;
+    background-image:url('../img/bc_separator.png'); 
+    background-repeat:no-repeat; 
+    background-position:right;
+    padding-right: 15px;
+    text-decoration: none;
+    color:#454545;
+    zoom:1;
+}
+#breadcrumb li a.crumb:hover{color:#0a450a;}
+
+.descriptions div{line-height:17px;}
+
+/*
+ * Subjects List
+ * Used in any instance a subject list is required
+ */
+ul.subjects{list-style-type:none;margin:10px 0px 0px 0px;padding:0;}
+ul.subjects li{display:inline-block;line-height:27px;width:auto;}
+ul.subjects li a{text-decoration:none; padding:2px 4px;margin:2px 4px; text-decoration: underline; }
+ul.subjects li a:hover{background: white;}
+
+
+ul.subjects-sml{list-style-type:none;margin:10px 0px 0px 0px;padding:0;}		
+ul.subjects-sml li{display:inline-block;line-height:27px;width:auto;}		
+ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px; }
+
+#left{width:600px;float:left;margin:10px;word-wrap: break-word}
+#right{width:270px;float:right;position:relative;}
+
+.right-box{
+	border:1px solid #ccc;margin:20px 10px 0px 0px;padding:0;word-wrap: break-word;position:relative;overflow:auto;background:white;
+    
+}
+.right-box h2{
+    text-align:center;color:#232323;padding: 5px;
+    font: 15px Arial, Helvetica, sans-serif;
+    background: none repeat scroll 0 0 #ccc; 
+    font-weight: bold;
+   
+    background-repeat:repeat-x;
+   /*
+    height:30px;
+   */
+    line-height:30px;
+    margin:0;padding:0 10px;
+    position:relative;   
+}
+.limitHeight300{max-height:300px;overflow:auto;}
+.limitHeight200{max-height:200px;overflow:auto;}
 
 #wrapper{background: url('../img/header.png') repeat-x scroll left top transparent; margin:0}
 #header{ position:relative;width: 100% }
