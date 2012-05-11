@@ -115,7 +115,7 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
                                                     class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
                             }
                         }else{
-                            if(in_array($object_type[$i],$facetFilter[$i])){
+                            if(in_array($object_type[$i],$facetFilter)){
                                 echo '<li class="limit">
 					<a href="javascript:void(0);" 
 						title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
