@@ -330,29 +330,44 @@ MapWidget.prototype.toggleControl = function(element) {
      */
 MapWidget.prototype.addDataLayer = function() {
 
-    this.markers = new OpenLayers.Layer.Markers( "Search Results" );
-    this.map.addLayer(this.markers);
+    this.dataLayer = new OpenLayers.Layer.Markers( "Search Results" );
+    this.map.addLayer(this.dataLayer);
 }
 
-MapWidget.prototype.addMarkerstoDataLayer = function(coordinateSelector){
+    /*  ------------------------------------------------------------  
+     *    addMarkersDataLayer(coordinateSelector)  
+     *    For every coordinateSelector, create a marker
+     *    If clickInfo is true, try to find the info and create HTML popup
+     *    
+     *  ------------------------------------------------------------
+     */
+MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo){
     var centers = $(coordinateSelector);
-    
-    var markers  = this.markers;
+    var markers  = this.dataLayer;
     var WGS84 = this.WGS84; 
     var WGS84_google_mercator = this.WGS84_google_mercator;
+    if(typeof clickInfo == "undefined") clickInfo = false;
     $.each(centers, function(){
-            var desc = trimwords($(this).parent().children('p').html(),50);
-            if (desc.length <  $(this).parent().children('p').html().length) desc += "...";
-            var html  = $(this).parent().children('h2').html() + "<p>" + desc + "</p>";
-	    
-            addMarker($(this).html(), markers, WGS84,WGS84_google_mercator, html);
-      
+            var html ='';
+            if(clickInfo){
+                var desc = trimwords($(this).parent().children('p').html(),50);
+                if (desc.length <  $(this).parent().children('p').html().length) desc += "...";
+                html  = $(this).parent().children('h2').html() + "<p>" + desc + "</p>";
+            }
+            if($(this).html().indexOf(' ') != -1){ 
+             addVector($(this).html(), markers, WGS84,WGS84_google_mercator, html);    
+            }else{
+             addMarker($(this).html(), markers, WGS84,WGS84_google_mercator, html);
+            }
 
     });
+   
+   
     function addMarker(lonlat,markers,WGS84,WGS84_google_mercator,html){
             var word = lonlat.split(',');
             var coords = new OpenLayers.LonLat(word[0],word[1]).transform(WGS84, WGS84_google_mercator)
             var feature = new OpenLayers.Feature(markers,coords);
+            if(html != ''){
             AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, {
                 'autoSize': true,
                 'maxSize': new OpenLayers.Size(500,150)
@@ -362,18 +377,55 @@ MapWidget.prototype.addMarkerstoDataLayer = function(coordinateSelector){
             feature.data.popupContentHTML = html;
             feature.popupClass = AutoSizeAnchored;
             feature.data.overflow = "auto";
+                var markerClick = function(evt){
+                    this.createPopup(this.closeBox);
+                    markers.map.addPopup(this.popup);
+                    this.popup.show();
+                };
+            }
             var marker = feature.createMarker();
             //var marker = new OpenLayers.Marker(coords);
             
-            var markerClick = function(evt){
-                this.createPopup(this.closeBox);
-                markers.map.addPopup(this.popup);
-                this.popup.show();
-            };
-            marker.events.register("click",feature,markerClick);
+            if(html!= ''){
+                marker.events.register("click",feature,markerClick);
+            }
             markers.addMarker(marker);
     }
-}
+    
+    function addVector(coordinates,dataLayer,WGS84,WGS84_google_mercator,html){
+            var points = coordinates.split(' ');
+            var vector_points;
+            $.each(points, function(){
+                 var word = points.split(',');
+                 var point = new OpenLayers.Geometry.Point(word[0],word[1]);
+                 point.transform(WGS84, WGS84_google_mercator);
+            });
+            vector_points.push(point);
+            var linear_ring = new OpenLayers.Geometry.LinearRing(vector_points);
+            var feature = new OpenLayers.Feature.Vector(
+                        new OpenLayers.Geometry.Polygon([linear_ring]));          
+           
+            if(html != ''){
+                AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, {
+                    'autoSize': true,
+                    'maxSize': new OpenLayers.Size(500,150)
+                });
+
+                feature.closeBox = true;
+                feature.data.popupContentHTML = html;
+                feature.popupClass = AutoSizeAnchored;
+                feature.data.overflow = "auto";
+                    var markerClick = function(evt){
+                        this.createPopup(this.closeBox);
+                        markers.map.addPopup(this.popup);
+                        this.popup.show();
+                    };
+
+                    feature.events.register("click",feature,markerClick);
+            }
+            dataLayer.addFeature(feature);
+      }
+
 
 MapWidget.prototype.clearMarkers = function(){
     this.markers.clearMarkers();
@@ -389,6 +441,7 @@ MapWidget.prototype.updateDrawing = function(map,coordStr){
      control.layer.addFeatures(box);
 }
 
+    
 /*  ------------------------------------------------------------  
  *   FUNCTION TO GET WFS FEATURES AND ADD TO LAYER
  *

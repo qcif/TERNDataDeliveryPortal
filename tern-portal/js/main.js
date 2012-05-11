@@ -495,12 +495,23 @@ $(function() {
         $("#search-result").html(msg);  				
         layoutInner();
         mapWidget.clearMarkers();
-        mapWidget.addMarkerstoDataLayer(".spatial_center");
+        mapWidget.addMarkerstoDataLayer(".spatial_center",true);
         $('.clearFilter').each(function(){
                 $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
         });
         $('.tipsy').remove();
         $('.typeFilter, .groupFilter, .subjectFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({live:true, gravity:'sw'});
+ 
+         //record popup dialog
+         $('#record-popup').dialog({
+             autoOpen: false,
+             height: 950,
+             width: 1200,
+             resizable: true,
+             modal: true
+         })
+ 
+ 	 handleRecordPopup();
  
 	/*
 	 * show-hide facet content, slide up and down
@@ -541,7 +552,34 @@ $(function() {
                 });
         }
     }
-     
+    
+    
+     function handleRecordPopup()
+    {
+         $('.record-list').live('click', function(){
+	        //alert($(this).attr('id'));
+                var rokey=$(this).attr('id');
+                          
+                $.ajax({
+                    type:"POST",
+                    url:base_url+"/view/?key="+rokey,
+                    
+                    
+                    success:function(html){
+                        $("#record-popup").html(html); 
+                        initConnectionsBox()
+                        initSubjectsSEEALSO()
+                        
+                        $("#record-popup").dialog('open');
+                    },
+                    error:function(html){
+                        console.log("error");
+                    }
+                    
+                })
+	  });  
+    } 
+    
     function doNormalSearch(){
             spatial_included_ids='';
 		$.ajax({
@@ -559,4 +597,159 @@ $(function() {
                         }
   		});
 	}
+        
+          
+    function initConnectionsBox(){
+
+		   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//NEW CONNECTIONS
+
+
+		var key_value=$('#key').text();
+
+        $.ajax({
+                type:"POST",
+                url: base_url+"search/connections/count",data:"q=relatedObject_key:"+key_value+"&key="+key_value,
+                        success:function(msg){
+                        	//alert(msg);
+                                $("#connections").html(msg);
+                                $('ul.connection_list li a').tipsy({live:true, gravity:'s'});
+                                if(parseInt($('#connections-realnumfound').html())==0){
+	                            	$('#connectionsRightBox').hide();
+	                            }
+
+                        },
+                        error:function(msg){}
+        });
+		var connectionsPage = 1;
+
+        $('.connections_NumFound').live('click', function(){
+         	var types = $(this).attr("type_id");
+         	var classes = $(this).attr("class_id");
+         	if(!classes) var classes = 'party';
+
+	        $.ajax({
+                type:"POST",
+                url: base_url+"search/connections/content/"+classes+"/"+types,data:"q=relatedObject_key:"+key_value+"&key="+key_value+"&page="+connectionsPage,
+                    success:function(msg){
+                             //console.log("success" + msg);
+                            $("#connectionsInfoBox").html(msg);
+
+                            $(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
+                            $("#connectionsInfoBox").dialog({
+                                    modal: true,minWidth:700,position:'center',draggable:'false',resizable:false,
+                            		title:"Connections",
+                                    buttons: {
+                                        '<': function() {
+                                                if(connectionsPage > 1){
+                                                	connectionsPage = connectionsPage - 1;
+                                                        $('.accordion').html('Loading...');
+                                                        getConnectionsAjax(classes,types, connectionsPage, key_value)
+                                                }
+                                        },
+                                        '>': function() {
+                                                if(connectionsPage < parseInt($('#connectionsTotalPage').html())){
+                                                	connectionsPage = connectionsPage + 1;
+                                                        $('.accordion').html('Loading...');
+                                                        getConnectionsAjax(classes,types, connectionsPage, key_value)
+                                                }
+                                        }
+                                    },
+                                    open: function(){
+                                        $(".ui-dialog-buttonset").append("<span id='status'></span>");
+                                        setupConnectionsBtns();
+                                        return false;
+                                    }
+                            });
+
+                           return false;
+                    },
+                    error:function(msg){
+                            //console.log("error" + msg);
+                    }
+	         });
+	        return false;
+        });
+	}
+        
+    function initSubjectsSEEALSO(){
+		//SEE ALSO FOR SUBJECTS
+        var group_value = encodeURIComponent($('#group_value').html());
+        //console.log(group_value);
+        var key_value = $('#key').html();
+        var subjectSearchstr = '';
+        $('.subjectFilter').each(function(){
+                //console.log($(this).attr('id'));
+                subjectSearchstr += $(this).attr('id')+';';
+        });
+        subjectSearchstr = subjectSearchstr.substring(0,subjectSearchstr.length -1 );
+        //console.log(subjectSearchstr);
+        subjectSearchstr = encodeURIComponent(subjectSearchstr);
+        $.ajax({
+                type:"POST",
+                url: base_url+"search/seeAlso/count/subjects",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page=1&spatial_included_ids=&temporal=All&excluded_key="+key_value,
+                        success:function(msg){
+                                $("#seeAlso").html(msg);
+                                //console.log(msg);
+                                if(parseInt($('#seealso-realnumfound').html())==0){
+	                            	$('#seeAlsoRightBox').hide();
+	                            }
+                        },
+                        error:function(msg){
+                                //console.log("error" + msg);
+                        }
+        });
+		var seeAlsoPage = 1;
+        $('#seeAlso_subjectNumFound').live('click', function(){
+	        $.ajax({
+                type:"POST",
+                url: base_url+"search/seeAlso/content/subjects",
+                data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
+                    success:function(msg){
+                            //console.log("success" + msg);
+                            $("#infoBox").html(msg);
+
+                    		$(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
+                            //var seeAlso_display = $('#seeAlsoCurrentPage').html() + '/'+$('#seeAlsoTotalPage').html();
+
+                            $("#infoBox").dialog({
+                                    modal: true,minWidth:700,position:'center',draggable:false,resizable:false,
+                            		title:"Suggested Links",
+                                    buttons: {
+                                        '<': function() {
+                                                if(seeAlsoPage > 1){
+                                                        seeAlsoPage = seeAlsoPage - 1;
+                                                        $('.accordion').html('Loading...');
+                                                        getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value)
+                                                }
+                                        },
+                                        '>': function() {
+                                                if(seeAlsoPage < parseInt($('#seeAlsoTotalPage').html())){
+                                                        seeAlsoPage = seeAlsoPage + 1;
+                                                        $('.accordion').html('Loading...');
+                                                        getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value)
+                                                }
+                                        }
+                                    },
+                                    open: function(){
+                                        $(".ui-dialog-buttonset").append("<span id='status'></span>");
+                                        setupSeealsoBtns();
+                                        return false;
+                                    }
+                            }).height('auto');
+
+                            //$('#infoBox').dialog().prepend('<div id="something-here" style="border:1px solid black;height:400px;width:400px;"></div>');
+                            //$('#infoBox').overlay();
+
+                           return false;
+                    },
+                    error:function(msg){
+                            //console.log("error" + msg);
+                    }
+	         });
+	        return false;
+        });
+
+	}    
+        
 });
