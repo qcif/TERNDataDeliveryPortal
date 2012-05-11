@@ -33,4 +33,5 @@ $Revision: 1 $
                     </div>
                     <div class="ui-layout-results hidden" >
                             <?php $this->load->view('search/content');?>
+                        <?php $this->load->view('tab/widgets/recordpopup');?>
 	<?php endif;?>

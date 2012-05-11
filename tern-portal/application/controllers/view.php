@@ -28,15 +28,20 @@ class View extends CI_Controller {
 	public function index()
 	{
 		parse_str($_SERVER['QUERY_STRING'], $_GET);
-		
+
+               
 		if(isset($_GET['key'])){
 			$key = ($_GET['key']);
-			//echo $key;
+			//echo urlencode($key);
 			$this->load->model('RegistryObjects', 'ro');
                         $this->load->model('Solr', 'solr');
                         $content =  $this->ro->get($key);
+                        
+                        //print_r($content);
                         $data['key']= $key;
                         $data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key));
+                        
+                        
                         $query = $this->ro->get_min_year();
                         if($query)$row = $query->row();
 

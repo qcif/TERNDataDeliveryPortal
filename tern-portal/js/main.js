@@ -30,7 +30,6 @@ $(function() {
     var w='';
     var mapResult;
         
-        
     // ROUTING 
     function routing(){
         if(window.location.href.indexOf('https://')==0){
@@ -325,6 +324,8 @@ $(function() {
          
         populateSearchFields(temporalWidget,search_term);
 
+
+        
         // Results Map
         mapResult = new MapWidget('result-map');
         mapResult.addDataLayer();
@@ -503,16 +504,17 @@ $(function() {
         $('.typeFilter, .groupFilter, .subjectFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({live:true, gravity:'sw'});
  
          //record popup dialog
-         $('#record-popup').dialog({
-             autoOpen: false,
-             height: 950,
-             width: 1200,
-             resizable: true,
-             modal: true
-         })
- 
- 	 handleRecordPopup();
- 
+        $('#record-popup').dialog({
+            
+            autoOpen: false,
+            height: 950,
+            width: 1200,
+            resizable: true,            
+            modal: true
+        })
+
+        handleRecordPopup();
+      
 	/*
 	 * show-hide facet content, slide up and down
 	 */
@@ -537,8 +539,7 @@ $(function() {
 		    return false;
 		});
                 
-       
-                 
+              
         if($('#realNumFound').html() !='0'){//only update statistic when there is a result
         //update search statistics
         $.ajax({
@@ -552,10 +553,8 @@ $(function() {
                 });
         }
     }
-    
-    
-     function handleRecordPopup()
-    {
+
+    function handleRecordPopup()  {
          $('.record-list').live('click', function(){
 	        //alert($(this).attr('id'));
                 var rokey=$(this).attr('id');
@@ -578,7 +577,9 @@ $(function() {
                     
                 })
 	  });  
+
     } 
+
     
     function doNormalSearch(){
             spatial_included_ids='';
@@ -598,7 +599,7 @@ $(function() {
   		});
 	}
         
-          
+
     function initConnectionsBox(){
 
 		   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -751,5 +752,5 @@ $(function() {
         });
 
 	}    
-        
+
 });

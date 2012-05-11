@@ -20,9 +20,12 @@ $Revision: 1 $
 *
 **/ 
 ?>
-<?php $this->load->view('tpl/header');?>
-<?php $this->load->view('tpl/mid');?>
+<?php //$this->load->view('tpl/header');?>
+<?php //$this->load->view('tpl/mid');?>
 <div id="item-view" class="shadow-and-corner">
-	<?php echo $content;?>
+
+        <?php echo $content;?>
+
+	
 </div>
-<?php $this->load->view('tpl/footer');?>
+<?php //$this->load->view('tpl/footer');?>
