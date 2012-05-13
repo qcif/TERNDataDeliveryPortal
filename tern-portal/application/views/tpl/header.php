@@ -2,8 +2,7 @@
 $md_title = 'TERN Data Discovery Portal (Development Version)';
 $md_description = 'TERN Data Discovery Portal (Dev Version)is a mesh of searchable web pages describing (and where possible linking to) terrestrial ecosystem research data collections. ';
 //$md_image = 'http://services.ands.org.au/home/orca/rda/img/rda-design.png';
-if (isset($title))
-   
+if (!isset($title))  $title = $md_title;
 if (isset($description))
     $md_description = htmlentities($description);
 ?>
@@ -22,7 +21,7 @@ if (isset($description))
         <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/tipsy.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/layout-default-latest.css" />
-        <link type="text/css" href="<?php echo base_url(); ?>css/tern_1.css" rel="stylesheet" />
+        <link type="text/css" href="<?php echo base_url(); ?>css/tern.css" rel="stylesheet" />
 
 
     </head>

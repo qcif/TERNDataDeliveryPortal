@@ -339,5 +339,10 @@ div#panel_advSearch .ui-widget-header{
     background: url("/img/delete.png") no-repeat scroll 0 0 transparent !important;
 }
 .olPopup{
-    border: 1px solid #AAAAAA ! important ;
+    border: 1px solid #AAAAAA ! important;
+}
+
+/*View Records*/
+#spatial_coverage_map{  
+    width:400px;height:400px;
 }

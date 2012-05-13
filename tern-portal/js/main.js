@@ -1,12 +1,11 @@
 function urldecode(str) {
-   return decodeURIComponent((str+'').replace(/\+/g, '%20'));
+    return decodeURIComponent((str+'').replace(/\+/g, '%20'));
 }
 function trimwords(theString, numWords) {
     expString = theString.split(/\s+/,numWords);
     theNewString=expString.join(" ");
     return theNewString;
 }
-
 
 $(function() {
     // GLOBAL VARIABLES
@@ -123,66 +122,66 @@ $(function() {
         //console.log('term='+search_term+'page='+page+'tab='+classFilter);
  
         if(window.location.href.indexOf('search')>=0) {
-			//console.log('yea');
-			search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
-			search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
-			doNormalSearch();
-	}
+            //console.log('yea');
+            search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
+            search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
+            doNormalSearch();
+        }
     });
     $(window).hashchange(); //do the hashchange on page load
-     routing();    
+    routing();    
        
-	$('.typeFilter, .groupFilter, .subjectFilter,.fortwoFilter, .forfourFilter, .forsixFilter').live('click', function(event){
-		if(event.type=='click'){
-			page = 1;
-			if($(this).hasClass('typeFilter')){
-				typeFilter = encodeURIComponent($(this).attr('id'));
-				changeHashTo(formatSearch(search_term, 1, classFilter));
-			}else if($(this).hasClass('groupFilter')){
-				groupFilter = encodeURIComponent($(this).attr('id'));
-				changeHashTo(formatSearch(search_term, 1, classFilter));
-			}else if($(this).hasClass('subjectFilter')){
-				subjectFilter = encodeURIComponent($(this).attr('id'));
-				changeHashTo(formatSearch(search_term, 1, classFilter));
+    $('.typeFilter, .groupFilter, .subjectFilter,.fortwoFilter, .forfourFilter, .forsixFilter').live('click', function(event){
+        if(event.type=='click'){
+            page = 1;
+            if($(this).hasClass('typeFilter')){
+                typeFilter = encodeURIComponent($(this).attr('id'));
+                changeHashTo(formatSearch(search_term, 1, classFilter));
+            }else if($(this).hasClass('groupFilter')){
+                groupFilter = encodeURIComponent($(this).attr('id'));
+                changeHashTo(formatSearch(search_term, 1, classFilter));
+            }else if($(this).hasClass('subjectFilter')){
+                subjectFilter = encodeURIComponent($(this).attr('id'));
+                changeHashTo(formatSearch(search_term, 1, classFilter));
                                
-			}else if($(this).hasClass('fortwoFilter')){
-				fortwoFilter = encodeURIComponent($(this).attr('id'));
-				changeHashTo(formatSearch(search_term, 1, classFilter));               
+            }else if($(this).hasClass('fortwoFilter')){
+                fortwoFilter = encodeURIComponent($(this).attr('id'));
+                changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
-			}else if($(this).hasClass('forfourFilter')){
-				forfourFilter = encodeURIComponent($(this).attr('id'));
-				changeHashTo(formatSearch(search_term, 1, classFilter));               
+            }else if($(this).hasClass('forfourFilter')){
+                forfourFilter = encodeURIComponent($(this).attr('id'));
+                changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
-			}else if($(this).hasClass('forsixFilter')){
-				forsixFilter = encodeURIComponent($(this).attr('id'));
-				changeHashTo(formatSearch(search_term, 1, classFilter));               
+            }else if($(this).hasClass('forsixFilter')){
+                forsixFilter = encodeURIComponent($(this).attr('id'));
+                changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
-			}
-			//scrollToTop();
-		}
-	}); 
+            }
+        //scrollToTop();
+        }
+    }); 
      
          
     
-	/*
+    /*
 	 * Clearing filters/facets
 	 */
-	$('.clearFilter').live('click', function(e){
-		if($(this).hasClass('clearType')){
-			typeFilter = 'All';
-		}else if($(this).hasClass('clearGroup')){
-			groupFilter = 'All';
-		}else if($(this).hasClass('clearSubjects')){
-			subjectFilter = 'All';
-		}else if($(this).hasClass('clearFortwo')){
-			fortwoFilter = 'All';
-		}else if($(this).hasClass('clearForfour')){
-			forfourFilter = 'All';
-		}else if($(this).hasClass('clearForsix')){
-			forsixFilter = 'All';
-		}
-		changeHashTo(formatSearch(search_term,1,classFilter));
-	});
+    $('.clearFilter').live('click', function(e){
+        if($(this).hasClass('clearType')){
+            typeFilter = 'All';
+        }else if($(this).hasClass('clearGroup')){
+            groupFilter = 'All';
+        }else if($(this).hasClass('clearSubjects')){
+            subjectFilter = 'All';
+        }else if($(this).hasClass('clearFortwo')){
+            fortwoFilter = 'All';
+        }else if($(this).hasClass('clearForfour')){
+            forfourFilter = 'All';
+        }else if($(this).hasClass('clearForsix')){
+            forsixFilter = 'All';
+        }
+        changeHashTo(formatSearch(search_term,1,classFilter));
+    });
         
     /*Change the Hash Value on the URL*/
     function changeHashTo(location){
@@ -284,13 +283,15 @@ $(function() {
             
             var group;
             if(groupFilter !="All"){
-                    group = groupFilter.split(';');
-                    $.each(group,function(i,v){
-                        $('input[id^="group"][value="' + urldecode(v) + '"]').attr('checked',true);
-                    });            
+                group = groupFilter.split(';');
+                $.each(group,function(i,v){
+                    $('input[id^="group"][value="' + urldecode(v) + '"]').attr('checked',true);
+                });            
             }
 
-            if(n!='') {populateCoordinates(n,w,s,e);} 
+            if(n!='') {
+                populateCoordinates(n,w,s,e);
+            } 
 
             if(forfourFilter != "All"){
 
@@ -302,9 +303,9 @@ $(function() {
             }
         }else{ // it's just basic search
             if(search_term != '*:*' && search_term !="Search ecosystem data") {
-            $('input[id="search-box"]').val(search_term);
+                $('input[id="search-box"]').val(search_term);
+            }
         }
-    }
     }
    
     /*      Initialization function for '/search' urls
@@ -328,7 +329,7 @@ $(function() {
         
         // Results Map
         mapResult = new MapWidget('result-map');
-        mapResult.addDataLayer();
+        mapResult.addDataLayer(true);
         
         // SEARCH MAP
         var mapWidget; 
@@ -354,10 +355,10 @@ $(function() {
         }).button();
         
         // If user presses enter in the inputs, submit the form
-         $('.ui-layout-west input').keypress(function(e) {
-                if(e.which == 13) {
-                  $('#search_advanced').trigger('click');
-                }
+        $('.ui-layout-west input').keypress(function(e) {
+            if(e.which == 13) {
+                $('#search_advanced').trigger('click');
+            }
         });
     
         //Submit button
@@ -452,58 +453,61 @@ $(function() {
 
         }).button();
 
-      }
+    }
     /* Reset all search values */
     function resetAllSearchVals(){
-           search_term = '';
-           page = 1;
-           classFilter = 'collection';
-           typeFilter = 'All';
-           groupFilter = 'All';
-           subjectFilter = 'All';
-           adv = 0;     
-           fortwoFilter='All';
-           forfourFilter='All';
-           forsixFilter='All';
-           resultSort = 'score desc';
-           temporal = 'All';        
-           n = '';
-           e = '';
-           s='';
-           w='';
+        search_term = '';
+        page = 1;
+        classFilter = 'collection';
+        typeFilter = 'All';
+        groupFilter = 'All';
+        subjectFilter = 'All';
+        adv = 0;     
+        fortwoFilter='All';
+        forfourFilter='All';
+        forsixFilter='All';
+        resultSort = 'score desc';
+        temporal = 'All';        
+        n = '';
+        e = '';
+        s='';
+        w='';
         
     }
     /* Reset all fields in the search pane*/
     function resetAllFields(temporalWidget){
-         $('#search-box').val('');
-         $('[name^=fields]').val('');
-         $('[name^=keyword]').val('');
-         $('[name^=keyword]').val('');
-         $('[name^=operator]').val('');
-         $('#groupFilter :checked').each(function(){
-             $(this).removeAttr('checked');
-         }); 
-         $('#forfourFilter').val('');
-         temporalWidget.doTemporalSearch = false;
-         temporalWidget.refreshTemporalSearch();
+        $('#search-box').val('');
+        $('[name^=fields]').val('');
+        $('[name^=keyword]').val('');
+        $('[name^=keyword]').val('');
+        $('[name^=operator]').val('');
+        $('#groupFilter :checked').each(function(){
+            $(this).removeAttr('checked');
+        }); 
+        $('#forfourFilter').val('');
+        temporalWidget.doTemporalSearch = false;
+        temporalWidget.refreshTemporalSearch();
          
-         if($('#spatial-north').val() != '') {
-             $("#box").trigger('click');
-         }
+        if($('#spatial-north').val() != '') {
+            $("#box").trigger('click');
+        }
     }
     
     function handleResults(msg,mapWidget){                                    
         $("#search-result").html(msg);  				
         layoutInner();
-        mapWidget.clearMarkers();
-        mapWidget.addMarkerstoDataLayer(".spatial_center",true);
+        mapWidget.removeAllFeatures();
+        mapWidget.addVectortoDataLayer(".spatial_center",true);
         $('.clearFilter').each(function(){
-                $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
+            $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
         });
         $('.tipsy').remove();
-        $('.typeFilter, .groupFilter, .subjectFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({live:true, gravity:'sw'});
+        $('.typeFilter, .groupFilter, .subjectFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({
+            live:true, 
+            gravity:'sw'
+        });
  
-         //record popup dialog
+        //record popup dialog
         $('#record-popup').dialog({
             
             autoOpen: false,
@@ -511,246 +515,281 @@ $(function() {
             width: 1200,
             resizable: true,            
             modal: true
-        })
-
-        handleRecordPopup();
-      
-	/*
+        });
+        
+        $('.record-list').click( function(){     
+            handleRecordPopup($(this));
+        });
+        
+        /*
 	 * show-hide facet content, slide up and down
 	 */
-	$('.toggle-facet-field').live('click', function(){
-		//console.log($(this).parent().parent().next('div.facet-content'));
-		$(this).parent().parent().next('div.facet-content').slideToggle();
-		//$(this).parent().children().toggle();//show all the toggle facet field in the same div
-		$(this).toggleClass('ui-icon-arrowthickstop-1-n');
-		$(this).toggleClass('ui-icon-arrowthickstop-1-s');
-		//$(this).hide();
-	});
+        $('.toggle-facet-field').live('click', function(){
+            //console.log($(this).parent().parent().next('div.facet-content'));
+            $(this).parent().parent().next('div.facet-content').slideToggle();
+            //$(this).parent().children().toggle();//show all the toggle facet field in the same div
+            $(this).toggleClass('ui-icon-arrowthickstop-1-n');
+            $(this).toggleClass('ui-icon-arrowthickstop-1-s');
+        //$(this).hide();
+        });
         
-        		//LIMIT 5
-		$("ul.more").each(function() {
-		    $("li:gt(5)", this).hide();
-		    $("li:nth-child(6)", this).after("<a href='#' class=\"more\">More...</a>");
-		});
-		$("a.more").live("click", function() {
-			//console.log($(this).parent());
-			$(this).parent().children().slideDown();
-			$(this).remove();
-		    return false;
-		});
+        //LIMIT 5
+        $("ul.more").each(function() {
+            $("li:gt(5)", this).hide();
+            $("li:nth-child(6)", this).after("<a href='#' class=\"more\">More...</a>");
+        });
+        $("a.more").live("click", function() {
+            //console.log($(this).parent());
+            $(this).parent().children().slideDown();
+            $(this).remove();
+            return false;
+        });
                 
               
         if($('#realNumFound').html() !='0'){//only update statistic when there is a result
-        //update search statistics
-        $.ajax({
+            //update search statistics
+            $.ajax({
                 type:"POST",
                 url: base_url+"/search/updateStatistic/",
 
                 data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1",
 
-                        success:function(msg){},
-                        error:function(msg){}
-                });
+                success:function(msg){},
+                error:function(msg){}
+            });
         }
-    }
-
-    function handleRecordPopup()  {
-         $('.record-list').live('click', function(){
-	        //alert($(this).attr('id'));
-                var rokey=$(this).attr('id');
-                          
-                $.ajax({
-                    type:"POST",
-                    url:base_url+"/view/?key="+rokey,
-                    
-                    
-                    success:function(html){
-                        $("#record-popup").html(html); 
-                        initConnectionsBox()
-                        initSubjectsSEEALSO()
-                        
-                        $("#record-popup").dialog('open');
-                    },
-                    error:function(html){
-                        console.log("error");
-                    }
-                    
-                })
-	  });  
-
     } 
+    
 
     
     function doNormalSearch(){
-            spatial_included_ids='';
-		$.ajax({
-  			type:"POST",
-  			url: base_url+"/search/filter/",
-
-                       data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv,
-        
-                        success: function(msg,textStatus){
-                            handleResults(msg,mapResult);
-                        }
-                        ,
-                        error:function(msg){
-                                console.log('error');
-                        }
-  		});
-	}
-        
-
-    function initConnectionsBox(){
-
-		   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//NEW CONNECTIONS
-
-
-		var key_value=$('#key').text();
-
+        spatial_included_ids='';
         $.ajax({
-                type:"POST",
-                url: base_url+"search/connections/count",data:"q=relatedObject_key:"+key_value+"&key="+key_value,
-                        success:function(msg){
-                        	//alert(msg);
-                                $("#connections").html(msg);
-                                $('ul.connection_list li a').tipsy({live:true, gravity:'s'});
-                                if(parseInt($('#connections-realnumfound').html())==0){
-	                            	$('#connectionsRightBox').hide();
-	                            }
+            type:"POST",
+            url: base_url+"/search/filter/",
 
-                        },
-                        error:function(msg){}
-        });
-		var connectionsPage = 1;
-
-        $('.connections_NumFound').live('click', function(){
-         	var types = $(this).attr("type_id");
-         	var classes = $(this).attr("class_id");
-         	if(!classes) var classes = 'party';
-
-	        $.ajax({
-                type:"POST",
-                url: base_url+"search/connections/content/"+classes+"/"+types,data:"q=relatedObject_key:"+key_value+"&key="+key_value+"&page="+connectionsPage,
-                    success:function(msg){
-                             //console.log("success" + msg);
-                            $("#connectionsInfoBox").html(msg);
-
-                            $(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
-                            $("#connectionsInfoBox").dialog({
-                                    modal: true,minWidth:700,position:'center',draggable:'false',resizable:false,
-                            		title:"Connections",
-                                    buttons: {
-                                        '<': function() {
-                                                if(connectionsPage > 1){
-                                                	connectionsPage = connectionsPage - 1;
-                                                        $('.accordion').html('Loading...');
-                                                        getConnectionsAjax(classes,types, connectionsPage, key_value)
-                                                }
-                                        },
-                                        '>': function() {
-                                                if(connectionsPage < parseInt($('#connectionsTotalPage').html())){
-                                                	connectionsPage = connectionsPage + 1;
-                                                        $('.accordion').html('Loading...');
-                                                        getConnectionsAjax(classes,types, connectionsPage, key_value)
-                                                }
-                                        }
-                                    },
-                                    open: function(){
-                                        $(".ui-dialog-buttonset").append("<span id='status'></span>");
-                                        setupConnectionsBtns();
-                                        return false;
-                                    }
-                            });
-
-                           return false;
-                    },
-                    error:function(msg){
-                            //console.log("error" + msg);
-                    }
-	         });
-	        return false;
-        });
-	}
+            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv,
         
-    function initSubjectsSEEALSO(){
-		//SEE ALSO FOR SUBJECTS
-        var group_value = encodeURIComponent($('#group_value').html());
-        //console.log(group_value);
-        var key_value = $('#key').html();
-        var subjectSearchstr = '';
-        $('.subjectFilter').each(function(){
-                //console.log($(this).attr('id'));
-                subjectSearchstr += $(this).attr('id')+';';
+            success: function(msg,textStatus){
+                handleResults(msg,mapResult);
+            }
+            ,
+            error:function(msg){
+                console.log('error');
+            }
         });
-        subjectSearchstr = subjectSearchstr.substring(0,subjectSearchstr.length -1 );
-        //console.log(subjectSearchstr);
-        subjectSearchstr = encodeURIComponent(subjectSearchstr);
-        $.ajax({
-                type:"POST",
-                url: base_url+"search/seeAlso/count/subjects",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page=1&spatial_included_ids=&temporal=All&excluded_key="+key_value,
-                        success:function(msg){
-                                $("#seeAlso").html(msg);
-                                //console.log(msg);
-                                if(parseInt($('#seealso-realnumfound').html())==0){
-	                            	$('#seeAlsoRightBox').hide();
-	                            }
-                        },
-                        error:function(msg){
-                                //console.log("error" + msg);
-                        }
-        });
-		var seeAlsoPage = 1;
-        $('#seeAlso_subjectNumFound').live('click', function(){
-	        $.ajax({
-                type:"POST",
-                url: base_url+"search/seeAlso/content/subjects",
-                data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
-                    success:function(msg){
-                            //console.log("success" + msg);
-                            $("#infoBox").html(msg);
+    }
+        
 
-                    		$(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
-                            //var seeAlso_display = $('#seeAlsoCurrentPage').html() + '/'+$('#seeAlsoTotalPage').html();
-
-                            $("#infoBox").dialog({
-                                    modal: true,minWidth:700,position:'center',draggable:false,resizable:false,
-                            		title:"Suggested Links",
-                                    buttons: {
-                                        '<': function() {
-                                                if(seeAlsoPage > 1){
-                                                        seeAlsoPage = seeAlsoPage - 1;
-                                                        $('.accordion').html('Loading...');
-                                                        getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value)
-                                                }
-                                        },
-                                        '>': function() {
-                                                if(seeAlsoPage < parseInt($('#seeAlsoTotalPage').html())){
-                                                        seeAlsoPage = seeAlsoPage + 1;
-                                                        $('.accordion').html('Loading...');
-                                                        getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value)
-                                                }
-                                        }
-                                    },
-                                    open: function(){
-                                        $(".ui-dialog-buttonset").append("<span id='status'></span>");
-                                        setupSeealsoBtns();
-                                        return false;
-                                    }
-                            }).height('auto');
-
-                            //$('#infoBox').dialog().prepend('<div id="something-here" style="border:1px solid black;height:400px;width:400px;"></div>');
-                            //$('#infoBox').overlay();
-
-                           return false;
-                    },
-                    error:function(msg){
-                            //console.log("error" + msg);
-                    }
-	         });
-	        return false;
-        });
-
-	}    
-
+   
 });
+
+
+function handleRecordPopup(e){
+    
+    var rokey=e.attr('id');
+                          
+    $.ajax({
+        type:"POST",
+        url:base_url+"/view/?key="+rokey,
+                    
+                    
+        success:function(html){
+            $("#record-popup").html(html); 
+            initConnectionsBox()
+            initSubjectsSEEALSO()
+                        
+            $("#record-popup").dialog('open');
+                        
+            initViewMap();
+        },
+        error:function(html){
+            console.log("error");
+        }
+                    
+    }); 
+     
+} 
+
+function initConnectionsBox(){
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //NEW CONNECTIONS
+
+
+    var key_value=$('#key').text();
+
+    $.ajax({
+        type:"POST",
+        url: base_url+"search/connections/count",
+        data:"q=relatedObject_key:"+key_value+"&key="+key_value,
+        success:function(msg){
+            //alert(msg);
+            $("#connections").html(msg);
+            $('ul.connection_list li a').tipsy({
+                live:true, 
+                gravity:'s'
+            });
+            if(parseInt($('#connections-realnumfound').html())==0){
+                $('#connectionsRightBox').hide();
+            }
+
+        },
+        error:function(msg){}
+    });
+    var connectionsPage = 1;
+
+    $('.connections_NumFound').live('click', function(){
+        var types = $(this).attr("type_id");
+        var classes = $(this).attr("class_id");
+        if(!classes) var classes = 'party';
+
+        $.ajax({
+            type:"POST",
+            url: base_url+"search/connections/content/"+classes+"/"+types,
+            data:"q=relatedObject_key:"+key_value+"&key="+key_value+"&page="+connectionsPage,
+            success:function(msg){
+                //console.log("success" + msg);
+                $("#connectionsInfoBox").html(msg);
+
+                $(".accordion").accordion({
+                    autoHeight:false, 
+                    collapsible:true,
+                    active:false
+                });
+                $("#connectionsInfoBox").dialog({
+                    modal: true,
+                    minWidth:700,
+                    position:'center',
+                    draggable:'false',
+                    resizable:false,
+                    title:"Connections",
+                    buttons: {
+                        '<': function() {
+                            if(connectionsPage > 1){
+                                connectionsPage = connectionsPage - 1;
+                                $('.accordion').html('Loading...');
+                                getConnectionsAjax(classes,types, connectionsPage, key_value)
+                            }
+                        },
+                        '>': function() {
+                            if(connectionsPage < parseInt($('#connectionsTotalPage').html())){
+                                connectionsPage = connectionsPage + 1;
+                                $('.accordion').html('Loading...');
+                                getConnectionsAjax(classes,types, connectionsPage, key_value)
+                            }
+                        }
+                    },
+                    open: function(){
+                        $(".ui-dialog-buttonset").append("<span id='status'></span>");
+                        setupConnectionsBtns();
+                        return false;
+                    }
+                });
+
+                return false;
+            },
+            error:function(msg){
+            //console.log("error" + msg);
+            }
+        });
+        return false;
+    });
+}
+        
+function initSubjectsSEEALSO(){
+    //SEE ALSO FOR SUBJECTS
+    var group_value = encodeURIComponent($('#group_value').html());
+    //console.log(group_value);
+    var key_value = $('#key').html();
+    var subjectSearchstr = '';
+    $('.subjectFilter').each(function(){
+        //console.log($(this).attr('id'));
+        subjectSearchstr += $(this).attr('id')+';';
+    });
+    subjectSearchstr = subjectSearchstr.substring(0,subjectSearchstr.length -1 );
+    //console.log(subjectSearchstr);
+    subjectSearchstr = encodeURIComponent(subjectSearchstr);
+    $.ajax({
+        type:"POST",
+        url: base_url+"search/seeAlso/count/subjects",
+        data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page=1&spatial_included_ids=&temporal=All&excluded_key="+key_value,
+        success:function(msg){
+            $("#seeAlso").html(msg);
+            //console.log(msg);
+            if(parseInt($('#seealso-realnumfound').html())==0){
+                $('#seeAlsoRightBox').hide();
+            }
+        },
+        error:function(msg){
+        //console.log("error" + msg);
+        }
+    });
+    var seeAlsoPage = 1;
+    $('#seeAlso_subjectNumFound').live('click', function(){
+        $.ajax({
+            type:"POST",
+            url: base_url+"search/seeAlso/content/subjects",
+            data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
+            success:function(msg){
+                //console.log("success" + msg);
+                $("#infoBox").html(msg);
+
+                $(".accordion").accordion({
+                    autoHeight:false, 
+                    collapsible:true,
+                    active:false
+                });
+                //var seeAlso_display = $('#seeAlsoCurrentPage').html() + '/'+$('#seeAlsoTotalPage').html();
+
+                $("#infoBox").dialog({
+                    modal: true,
+                    minWidth:700,
+                    position:'center',
+                    draggable:false,
+                    resizable:false,
+                    title:"Suggested Links",
+                    buttons: {
+                        '<': function() {
+                            if(seeAlsoPage > 1){
+                                seeAlsoPage = seeAlsoPage - 1;
+                                $('.accordion').html('Loading...');
+                                getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value)
+                            }
+                        },
+                        '>': function() {
+                            if(seeAlsoPage < parseInt($('#seeAlsoTotalPage').html())){
+                                seeAlsoPage = seeAlsoPage + 1;
+                                $('.accordion').html('Loading...');
+                                getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value)
+                            }
+                        }
+                    },
+                    open: function(){
+                        $(".ui-dialog-buttonset").append("<span id='status'></span>");
+                        setupSeealsoBtns();
+                        return false;
+                    }
+                }).height('auto');
+
+                //$('#infoBox').dialog().prepend('<div id="something-here" style="border:1px solid black;height:400px;width:400px;"></div>');
+                //$('#infoBox').overlay();
+
+                return false;
+            },
+            error:function(msg){
+            //console.log("error" + msg);
+            }
+        });
+        return false;
+    });
+
+}    
+    
+function initViewMap(){
+    var mapView = new MapWidget('spatial_coverage_map');
+    mapView.addDataLayer(false);
+    mapView.addVectortoDataLayer('#record-popup .spatial_coverage_center',false);
+    mapView.addVectortoDataLayer('#record-popup .coverage',false);
+        
+}

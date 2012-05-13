@@ -328,10 +328,19 @@ MapWidget.prototype.toggleControl = function(element) {
      *    
      *  ------------------------------------------------------------
      */
-MapWidget.prototype.addDataLayer = function() {
-
-    this.dataLayer = new OpenLayers.Layer.Markers( "Search Results" );
+MapWidget.prototype.addDataLayer = function(clickInfo) {
+    var self = this;
+    var styleM = getStyle("default");
+    this.dataLayer = new OpenLayers.Layer.Vector( "Data Markers", {styleMap: styleM});
     this.map.addLayer(this.dataLayer);
+    if(clickInfo){
+         this.selectControl = new OpenLayers.Control.SelectFeature(this.dataLayer,
+                {onSelect: function(e) { 
+                        self.onFeatureSelect(e,this.map,self); },
+                onUnselect: function(e) { self.onFeatureUnselect(e,this.map);}});
+         this.map.addControl(this.selectControl);
+         this.selectControl.activate();
+    }
 }
 
     /*  ------------------------------------------------------------  
@@ -343,7 +352,7 @@ MapWidget.prototype.addDataLayer = function() {
      */
 MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo){
     var centers = $(coordinateSelector);
-    var markers  = this.dataLayer;
+    var dataLayer  = this.dataLayer;
     var WGS84 = this.WGS84; 
     var WGS84_google_mercator = this.WGS84_google_mercator;
     if(typeof clickInfo == "undefined") clickInfo = false;
@@ -352,22 +361,25 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
             if(clickInfo){
                 var desc = trimwords($(this).parent().children('p').html(),50);
                 if (desc.length <  $(this).parent().children('p').html().length) desc += "...";
-                html  = $(this).parent().children('h2').html() + "<p>" + desc + "</p>";
+                var link = $(this).parent().children('h2').children('a');
+                 link.attr('onClick','handleRecordPopup($(this));');
+                html  = "<strong>" + $("<div/>").append(link.clone()).html()  + "</strong><p>" + desc + "</p>";
             }
             if($(this).html().indexOf(' ') != -1){ 
-             addVector($(this).html(), markers, WGS84,WGS84_google_mercator, html);    
+             addVector($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html);    
             }else{
-             addMarker($(this).html(), markers, WGS84,WGS84_google_mercator, html);
+             addMarker($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html);
             }
 
     });
-   
-   
-    function addMarker(lonlat,markers,WGS84,WGS84_google_mercator,html){
+
+    function addMarker(lonlat,dataLayer,WGS84,WGS84_google_mercator,html){
             var word = lonlat.split(',');
-            var coords = new OpenLayers.LonLat(word[0],word[1]).transform(WGS84, WGS84_google_mercator)
-            var feature = new OpenLayers.Feature(markers,coords);
-            if(html != ''){
+            var point = new OpenLayers.Geometry.Point(word[0],word[1]);
+            point.transform(WGS84, WGS84_google_mercator);
+            var attributes = {popupHTML: html, type: "marker"}
+            var feature = new OpenLayers.Feature.Vector(point, attributes);
+            /*if(html != ''){
             AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, {
                 'autoSize': true,
                 'maxSize': new OpenLayers.Size(500,150)
@@ -384,54 +396,39 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
                 };
             }
             var marker = feature.createMarker();
-            //var marker = new OpenLayers.Marker(coords);
-            
+           
             if(html!= ''){
                 marker.events.register("click",feature,markerClick);
-            }
-            markers.addMarker(marker);
-    }
+            }*/ 
+            dataLayer.addFeatures([feature]);
+    } 
     
     function addVector(coordinates,dataLayer,WGS84,WGS84_google_mercator,html){
             var points = coordinates.split(' ');
-            var vector_points;
-            $.each(points, function(){
-                 var word = points.split(',');
+            var vector_points = Array();
+            $.each(points, function(i, s){
+                 var word = s.split(',');
                  var point = new OpenLayers.Geometry.Point(word[0],word[1]);
                  point.transform(WGS84, WGS84_google_mercator);
+                 vector_points.push(point);
             });
-            vector_points.push(point);
-            var linear_ring = new OpenLayers.Geometry.LinearRing(vector_points);
-            var feature = new OpenLayers.Feature.Vector(
-                        new OpenLayers.Geometry.Polygon([linear_ring]));          
            
-            if(html != ''){
-                AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, {
-                    'autoSize': true,
-                    'maxSize': new OpenLayers.Size(500,150)
-                });
-
-                feature.closeBox = true;
-                feature.data.popupContentHTML = html;
-                feature.popupClass = AutoSizeAnchored;
-                feature.data.overflow = "auto";
-                    var markerClick = function(evt){
-                        this.createPopup(this.closeBox);
-                        markers.map.addPopup(this.popup);
-                        this.popup.show();
-                    };
-
-                    feature.events.register("click",feature,markerClick);
-            }
-            dataLayer.addFeature(feature);
+            var linear_ring = new OpenLayers.Geometry.LinearRing(vector_points);
+            var attributes = {popupHTML: html, type: "polygon"}
+            var feature = new OpenLayers.Feature.Vector(
+                        new OpenLayers.Geometry.Polygon([linear_ring]),attributes);          
+           
+            
+            dataLayer.addFeatures([feature]);
       }
+}
 
-
-MapWidget.prototype.clearMarkers = function(){
-    this.markers.clearMarkers();
+MapWidget.prototype.removeAllFeatures = function(){
+    this.dataLayer.removeAllFeatures();
     
 }
 
+/* Use coordStr to update Map Vector*/
 MapWidget.prototype.updateDrawing = function(map,coordStr){
     var control = this.drawControls['box'];
      control.layer.removeAllFeatures();
@@ -577,6 +574,33 @@ function getStyle(styleName){
     return styleM;
 }
     
+      /*  ------------------------------------------------------------  
+       *    Feature Select methods
+       *
+       *  ------------------------------------------------------------
+       */
+MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
+    selectedFeature = feature;
+    popup = new OpenLayers.Popup.Anchored("chicken",
+        feature.geometry.getBounds().getCenterLonLat(),
+        null, feature.data.popupHTML, null, true, function(){ mapWidgetObj.onPopupClose(mapWidgetObj);});
+    popup.maxSize = new OpenLayers.Size(500,150);
+    popup.panMapIfOutOfView = true;
+    popup.autoSize = true;
+    feature.popup = popup;
+    
+    map.addPopup(feature.popup);     
+}
+
+MapWidget.prototype.onPopupClose = function(mapWidgetObj){
+    mapWidgetObj.selectControl.unselectAll();
+}
+
+MapWidget.prototype.onFeatureUnselect = function(feature,map){
+    map.removePopup(feature.popup);
+    feature.popup.destroy();
+    feature.popup=null;    
+}
 
       /*  ------------------------------------------------------------  
        *    Bind changes to coordinates textbox 
