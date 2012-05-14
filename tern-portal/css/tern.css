@@ -348,6 +348,10 @@ div#panel_advSearch .ui-widget-header{
     border: 1px solid #AAAAAA ! important;
 }
 
+span.read-more { cursor: pointer; color: #376500; text-decoration:underline}
+span.read-less { cursor: pointer; color: #376500; text-decoration:underline; display:none;}
+span.more { display: none;  }
+
 /*View Records*/
 #spatial_coverage_map{  
     width:400px;height:400px;

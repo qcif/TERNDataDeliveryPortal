@@ -372,12 +372,15 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
             }
 
     });
-
+    var bounds = dataLayer.getDataExtent();
+    if(bounds)  this.map.zoomToExtent(bounds); 
+    if(this.map.zoom > 2) this.map.zoomTo(2);
+    
     function addMarker(lonlat,dataLayer,WGS84,WGS84_google_mercator,html){
             var word = lonlat.split(',');
             var point = new OpenLayers.Geometry.Point(word[0],word[1]);
             point.transform(WGS84, WGS84_google_mercator);
-            var attributes = {popupHTML: html, type: "marker"}
+            var attributes = {popupHTML: html, type: "point"}
             var feature = new OpenLayers.Feature.Vector(point, attributes);
             /*if(html != ''){
             AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, {

@@ -521,6 +521,25 @@ $(function() {
             handleRecordPopup($(this));
         });
         
+         $(".search_item p").each(function(index){
+            if($(this).height() > 43){
+                    $(this).css('height','43px').css('overflow','hidden');
+                        var readMore = $("<span class='read-more'>Read more</span>");
+                        $(this).parent().append(readMore);
+            }else{
+                $(this).css('height','43px');
+         }});
+        $('.read-more').die('click').live("click",function() {
+            if($(this).text() == 'Read more'){
+            $(this).siblings('p').css('height','auto');
+            $(this).text('Read less');
+            }else{
+            $(this).siblings('p').css('height','43px'); 
+                $(this).text('Read more');
+            }
+
+            return false;
+        });
         /*
 	 * show-hide facet content, slide up and down
 	 */
