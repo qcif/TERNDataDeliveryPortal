@@ -48,7 +48,7 @@ $Revision: 1 $
                   
 			<div id="placeholder">
 				
-				<p><?php echo anchor('home/advancesrch','Advanced Search');?></p>
+				<p><?php echo anchor('search','Advanced Search');?></p>
 			</div>
 
 		</div>
@@ -164,23 +164,31 @@ $Revision: 1 $
 
 
 		</div>
--->		
-                 <?php if($tabs==1){ ?>
+-->	
+
+
+                 <?php //if($tabs==1){ ?>
+<!--
 <h3>Browse by </h3>
-                  <?php } ?>
+-->
+                  <?php //} ?>
+<!--
                 <div class="border">
-
+   -->   
 		<?php
-                if($tabs==1){ ?> 
+                //if($tabs==1){ ?> 
 
-
+<!--
                     <div id="content" class="clearfix">
                     <ul>
                         <li><a href="#location">Location & time</a></li>
                         <li><a href="#for">Fields of Research</a></li>
-                    <!--        <li><a href="#datatype">Data type</a></li>
+                         <li><a href="#datatype">Data type</a></li>
+-->
 <!--                        <li><a href="#advancedsrch">Advanced search</a></li> -->
+<!--
                     </ul>
-                 <?php  } else { ?>
-                  <div id="content" class="clearfix">
-                 <?php } ?>
+  -->            
+                 <?php // } else { ?>
+   <!--               <div id="content" class="clearfix">-->
+                 <?php //} ?>

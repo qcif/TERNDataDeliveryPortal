@@ -161,7 +161,43 @@ $(function() {
         }
     }); 
      
-         
+     /*
+	 * On type, update the search term
+	 * On Press Enter, change hash value and thus do search based on search term
+	 * Initial search on collection
+	 */
+	$('#search-box').keypress(function(e){
+		if(e.which==13){//press enter
+			page = 1;
+			resetFilter();
+			search_term = $('#search-box').val();
+			if(search_term=='')search_term='*:*';
+			$('.ui-autocomplete').hide();
+			changeHashTo(formatSearch(search_term, 1, classFilter));
+		}
+	}).keyup(function(){//on typing
+		search_term = $('#search-box').val();
+		if($(this).val()==''){
+			$('#clearSearch').hide();
+			populateAdvancedFields(search_term);
+			clearEverything();
+		}else{
+			$('#clearSearch').show();
+			populateAdvancedFields(search_term);
+		}
+	});
+     
+     /*
+	 * Big search button
+	 */
+	$('#search-button').click(function(){
+		page = 1;
+		search_term = $('#search-box').val();
+    
+		if(search_term=='')search_term='*:*';
+		changeHashTo(formatSearch(search_term, 1, classFilter));
+
+	});
     
     /*
 	 * Clearing filters/facets
@@ -182,6 +218,30 @@ $(function() {
         }
         changeHashTo(formatSearch(search_term,1,classFilter));
     });
+        
+        
+/*PAGINATION*/
+	$('#next').live('click', function(){
+		var current_page = parseInt(page);
+		var next_page =  current_page + 1;
+		changeHashTo(formatSearch(search_term, next_page, classFilter));
+		page = next_page;
+	});
+
+	$('#prev').live('click', function(){
+		var current_page = parseInt(page);
+		var next_page =  current_page - 1;
+		var term = '#'+search_term+'/p'+next_page;
+		changeHashTo(formatSearch(search_term, next_page, classFilter));
+		page = next_page;
+	});
+
+	$('.gotoPage').live('click', function(){
+		var id = $(this).attr('id');
+		var term = '#'+search_term+'/p'+id;
+		changeHashTo(formatSearch(search_term, id, classFilter));
+		page = id;
+	});
         
     /*Change the Hash Value on the URL*/
     function changeHashTo(location){
@@ -804,26 +864,25 @@ function initViewMap(){
     mapView.addVectortoDataLayer('#record-popup .coverage',false);
         
 }
-/*PAGINATION*/
-	$('#next').live('click', function(){
-		var current_page = parseInt(page);
-		var next_page =  current_page + 1;
-		changeHashTo(formatSearch(search_term, next_page, classFilter));
-		page = next_page;
-	});
 
-	$('#prev').live('click', function(){
-		var current_page = parseInt(page);
-		var next_page =  current_page - 1;
-		var term = '#'+search_term+'/p'+next_page;
-		changeHashTo(formatSearch(search_term, next_page, classFilter));
-		page = next_page;
-	});
+	/*
+	 * Execute the functions only available in home page
+	 */
+	function initHomePage(){
 
-	$('.gotoPage').live('click', function(){
-		var id = $(this).attr('id');
-		var term = '#'+search_term+'/p'+id;
-		changeHashTo(formatSearch(search_term, id, classFilter));
-		page = id;
-	});
+		 $('#content').tabs();
+		$('.hp-icons img').hover(function(){
+			id = $(this).attr('id');
+
+			$('.hp-icon-content').hide();
+			$('#hp-content-'+id).show();
+			//console.log('#hp-content-'+id);
+			$('.hp-icons img').removeClass('active');
+			$(this).addClass('active');
+		});
+              
+
+		$('#clearSearch').hide();
+	}
+
 

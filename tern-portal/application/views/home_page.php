@@ -48,16 +48,16 @@ $home=1;
 
 <div id="location">
 
-        <?php $this->load->view('tab/coverage');?>
+        <?php //$this->load->view('tab/coverage');?>
 
 </div>
 
 <div id="for">
-  <?php $this->load->view('tab/for');?>
+  <?php //$this->load->view('tab/for');?>
 </div>
 <!--
 <div id="datatype">
-  <?php $this->load->view('tab/datatype');?>
+  <?php //$this->load->view('tab/datatype');?>
 </div>
 
 

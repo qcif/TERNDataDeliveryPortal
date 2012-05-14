@@ -101,7 +101,7 @@ class Home extends CI_Controller {
                 $data['widget_keyword'] = 1;
                 
                 
-		$this->load->view('content/advancesrch', $data);
+		$this->load->view('new_search', $data);
 	}
         
 	public function about(){

@@ -37,7 +37,65 @@ input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 .top-corner{}
 .shadow-and-corner{}
 
+/*Big search box*/
+#search-bar .searchbox{
+    width:640px;
+    clear:both;
+    float:center;
+    background:transparent;
+    /*
+    border:transparent;
+    */
+    height:23px;
+    font-size:14px;margin:0;
+    line-height:23px;
+    padding:0;
+    
+}
+.searchboxActive{color: #a1a1a1;font-style:italic;}
+.searchboxInactive{color: #909090;font-style:italic;}
+.text-background {
+    color: #cdcdcd;
+    font-weight: bold;
+}
 
+.search-input-mini
+{
+    width:60px;
+    height:20px;
+    font-size:0.9em;
+    font-family: Verdana,Arial,sans-serif;
+
+}
+.searchbox_submit{
+    float:center;margin:0; padding:3px 15px;cursor:pointer;
+    border:0px;font-size:13px;
+    background: #376500;
+    color: #fff;
+    line-height: 20px;
+}
+.searchbox_submit:focus{outline:none;border:0;}
+.searchbox_submit:hover{
+    
+}
+.text-background {
+    color: #cdcdcd;
+    font-weight: bold;
+}
+/*
+ * Auto Complete
+ * Auto Complete and Address Field (spatial search suggestion) is a jquery ui widget
+ */
+.ui-autocomplete {
+    background-color: white;
+    width: 300px;
+    border: 1px solid #cfcfcf;
+    list-style-type: none;
+    padding-left: 0px;
+    text-align:left;
+    z-index:1000;
+    font-size:15px;
+}
 /*Pagination*/
 
 .pagination{float:right;}
