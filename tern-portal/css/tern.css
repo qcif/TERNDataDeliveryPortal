@@ -37,6 +37,12 @@ input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 .top-corner{}
 .shadow-and-corner{}
 
+
+/*Pagination*/
+
+.pagination{float:right;}
+.pagination-page{padding:0px 3px;text-decoration:none;margin:3px;color:#0a450a;/*border:1px solid #ccc;*/}
+.pagination-currentPage{font-weight:bold;color:black;}
 /*
  * BreadCrumbs use in page view
  */

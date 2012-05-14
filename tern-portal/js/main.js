@@ -751,6 +751,27 @@ $(function() {
 
 	}    
      
+/*PAGINATION*/
+	$('#next').live('click', function(){
+		var current_page = parseInt(page);
+		var next_page =  current_page + 1;
+		changeHashTo(formatSearch(search_term, next_page, classFilter));
+		page = next_page;
+	});
 
+	$('#prev').live('click', function(){
+		var current_page = parseInt(page);
+		var next_page =  current_page - 1;
+		var term = '#'+search_term+'/p'+next_page;
+		changeHashTo(formatSearch(search_term, next_page, classFilter));
+		page = next_page;
+	});
+
+	$('.gotoPage').live('click', function(){
+		var id = $(this).attr('id');
+		var term = '#'+search_term+'/p'+id;
+		changeHashTo(formatSearch(search_term, id, classFilter));
+		page = id;
+	});
     
 });
