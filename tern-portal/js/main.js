@@ -524,7 +524,7 @@ $(function() {
         /*
 	 * show-hide facet content, slide up and down
 	 */
-        $('.toggle-facet-field').live('click', function(){
+        $('.toggle-facet-field').die('click').live('click', function(){
             //console.log($(this).parent().parent().next('div.facet-content'));
             $(this).parent().parent().next('div.facet-content').slideToggle();
             //$(this).parent().children().toggle();//show all the toggle facet field in the same div
