@@ -84,8 +84,8 @@ function MapWidget(mapId){
         sphericalMercator: true, 
         minZoomLevel: 3, 
         maxZoomLevel: 15, 
-        wrapDateLine:false, 
-        maxExtent : new OpenLayers.Bounds(13237508.34,-5537508.34,16037508.34,-937508.34)
+        wrapDateLine:false//, 
+   //     maxExtent : new OpenLayers.Bounds(13237508.34,-5537508.34,16037508.34,-937508.34)
     });	
    
    this.map.addLayer(gphy);          
@@ -371,10 +371,10 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
              addMarker($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html);
             }
 
-    });
+    }); 
     var bounds = dataLayer.getDataExtent();
     if(bounds)  this.map.zoomToExtent(bounds); 
-    if(this.map.zoom > 2) this.map.zoomTo(2);
+    if(this.map.zoom > 5) this.map.zoomTo(5);
     
     function addMarker(lonlat,dataLayer,WGS84,WGS84_google_mercator,html){
             var word = lonlat.split(',');
