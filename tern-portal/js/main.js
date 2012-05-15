@@ -576,7 +576,7 @@ $(function() {
             modal: true
         });
         
-        $('.record-list').click( function(){     
+        $('.record-list').die('click').click( function(){     
             handleRecordPopup($(this));
         });
         
