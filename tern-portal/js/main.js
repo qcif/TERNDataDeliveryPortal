@@ -571,7 +571,7 @@ $(function() {
         $('#record-popup').dialog({
             
             autoOpen: false,
-            height: 950,
+            height: 600,
             width: 1200,
             resizable: true,            
             modal: true
@@ -600,17 +600,9 @@ $(function() {
 
             return false;
         });
-        /*
-	 * show-hide facet content, slide up and down
-	 */
-        $('.toggle-facet-field').die('click').live('click', function(){
-            //console.log($(this).parent().parent().next('div.facet-content'));
-            $(this).parent().parent().next('div.facet-content').slideToggle();
-            //$(this).parent().children().toggle();//show all the toggle facet field in the same div
-            $(this).toggleClass('ui-icon-arrowthickstop-1-n');
-            $(this).toggleClass('ui-icon-arrowthickstop-1-s');
-        //$(this).hide();
-        });
+        
+        handlefacetSlide();
+
         
         //LIMIT 5
         $("ul.more").each(function() {
@@ -674,17 +666,19 @@ function handleRecordPopup(e){
                     
                     
         success:function(html){
-            $("#record-popup").html(html); 
+            $("#record-popup").html(html);
+handlerecordpopupSlide();
             initConnectionsBox()
             initSubjectsSEEALSO()
-                        
             $("#record-popup").dialog('open');
                         
             initViewMap();
+
         },
         error:function(html){
             console.log("error");
         }
+        
                     
     }); 
      
@@ -868,7 +862,7 @@ function initViewMap(){
 	/*
 	 * Execute the functions only available in home page
 	 */
-	function initHomePage(){
+function initHomePage(){
 
 		 $('#content').tabs();
 		$('.hp-icons img').hover(function(){

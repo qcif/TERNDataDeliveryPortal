@@ -59,15 +59,17 @@
 		</xsl:otherwise>
 		</xsl:choose>
 		</xsl:variable>			
-    	<div id="top" class="top-corner">
+    
+        <div id="top" class="top-corner">
     	<meta property="og:description" content="description" />
 			<ul id="breadcrumb" class="top-corner">
+                            <!--
 				<li><a href="{$base_url}" class="crumb">Home</a></li>
 				<li><a href="{$base_url}search/browse/{./@group}/{$objectClass}" class="crumb"><xsl:value-of select="$group"/></a></li>
 				<li><a href="{$base_url}search/browse/{./@group}/{$objectClass}" class="crumb"><xsl:value-of select="$objectClassLabel"/></a></li>
 				<li><xsl:value-of select="$theTitle"/></li>
 				
-				
+			    -->
 				<div id="breadcrumb-corner">
 				    
 				
@@ -177,7 +179,12 @@
             
             </xsl:choose>
             </xsl:variable>
-            <p><b><xsl:value-of select="$coverageLabel"/></b></p>
+<div class="right-box">            
+            <h2><xsl:value-of select="$coverageLabel"/></h2>
+            <span class="toggle-record-popup">
+			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
+			</span>
+                        
             <xsl:variable name="needMap">   
                 <xsl:for-each select="ro:coverage/ro:spatial"> 
              	<xsl:if test="not(./@type) or (./@type!='text' and ./@type!='dcmiPoint')">        	
@@ -194,26 +201,41 @@
             <xsl:if test="ro:coverage/ro:spatial | ro:location/ro:spatial">
                 <xsl:apply-templates select="ro:coverage/ro:spatial | ro:location/ro:spatial"/>
                	 	<xsl:if test="$needMap!=''">
-                <div id="spatial_coverage_map"></div>
+                            <div class="record-slide">
+                                <div id="spatial_coverage_map"></div>
+                            </div>
+                        </xsl:if>   
             </xsl:if>   
-            </xsl:if>   
-            
+ </div>           
             <xsl:if test="ro:coverage/ro:center | ro:location/ro:center">
                 <xsl:apply-templates select="ro:coverage/ro:center | ro:location/ro:center"/>
             </xsl:if>   
-         
+ <div class="right-box">        
             <xsl:if test="ro:coverage/ro:temporal/ro:date">
-                <p>Time Period:<br />
+                <h2>Time Period</h2>
+                   <span class="toggle-record-popup">
+			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
+                    </span>
+                        
+                <div class="record-slide">
                 <xsl:apply-templates select="ro:coverage/ro:temporal/ro:date"/> 
-                </p>    
+                </div>
+                   
             </xsl:if> 
-
+</div>
         </xsl:if>
         
         <xsl:if test="ro:subject">
+<div class="right-box">            
               <div style="position:relative;clear:both" class="subjects" >
-            <p><b>Subjects:</b>
+            <h2>Subjects:</h2>
+            <span class="toggle-record-popup">
+			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
+			</span>
+              </div>  
+ <div class="record-slide">
             <xsl:if test="ro:subject/@type='anzsrc-for' or ro:subject/@type='anzsrc-seo' or ro:subject/@type='anzsrc-toa'">
+
                 <p>ANZSRC</p>
                 <ul class="subjects">
                 <xsl:for-each select="ro:subject">      
@@ -236,13 +258,20 @@
                         </xsl:for-each>
                     </ul>
                 </xsl:if> 
-             </p> 
-             </div>  
+              
+ </div>
                <a href="javascript:void(0);" class="showall_subjects hide">More...</a>
-   
+     
+</div>  
         </xsl:if> 
+<div class="right-box">  
+    <h2>Citation</h2>
+    <span class="toggle-record-popup">
+			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
+			</span>                        
        <xsl:choose>
             <xsl:when test="ro:citationInfo">
+<div class="record-slide">                
                 <div id="citation" style="position:relative;clear:both;">
                 <xsl:choose>
                     <xsl:when test="ro:citationInfo/ro:citationMetadata">
@@ -271,13 +300,21 @@
                         </span><span class="Z3988"></span>      
                     </xsl:otherwise>                        
                 </xsl:choose>   
-                </div>          
+                </div>
+</div>                
             </xsl:when>
 
          </xsl:choose>
-            
+ </div>  
+ 
+ <div class="right-box">
         <xsl:if test="ro:identifier[not(@type = 'local')]">
-            <div style="position:relative;clear:both;"><p><b>Identifiers:</b></p>
+            <div style="position:relative;clear:both;"><h2>Identifiers:</h2>
+            <span class="toggle-record-popup">
+			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
+			</span>
+          </div>
+<div class="record-slide">          
            	 	<div id="identifiers">
   
     	<p> 	
@@ -291,7 +328,7 @@
    		</p>
 	
         </div>
-            </div>
+  </div>
         </xsl:if>   
         <!--div style="position:relative;clear:both;" class="no_print">
           	<p>	<a>
@@ -300,7 +337,26 @@
           		</a>
           	</p>  
         </div-->  
-     
+</div> 
+
+			<div class="right-box" id="connectionsRightBox">
+			<div id="connectionsInfoBox" class="hide"></div>
+			<h2>Connections</h2>
+                        <span class="toggle-record-popup">
+			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
+			</span>
+                       
+			<div id="connections" class="record-slide">
+				<img>
+				<xsl:attribute name="src"><xsl:value-of select="$base_url"/><xsl:text>/img/ajax-loader.gif</xsl:text></xsl:attribute>
+				<xsl:attribute name="class">loading-icon</xsl:attribute>
+				<xsl:attribute name="alt">Loading…</xsl:attribute>
+				</img>
+			</div>
+                       
+			</div>
+                        
+                    
         </div>
      
         <!--  we will now transform the rights handside stuff -->
@@ -309,7 +365,8 @@
  
                          	
 	       <xsl:if test="ro:location/ro:address/ro:electronic/@type='url' 
-		or ro:rights or ro:location/ro:address/ro:electronic/@type='email'  or ro:location/ro:address/ro:physical">		
+		or ro:rights or ro:location/ro:address/ro:electronic/@type='email'  or ro:location/ro:address/ro:physical">	
+                <div class="download"> <a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><h2>Access data / metadata</h2></a><br /></div>
 		<div class="right-box">
 			<h2>Access</h2>
 			<div class="limitHeight300">
@@ -340,8 +397,9 @@
 			</div>
 		</div>					
 		</xsl:if>
-		
+	
 			<!-- NEW CONNECTION -->
+                        <!--
 			<div class="right-box" id="connectionsRightBox">
 			<div id="connectionsInfoBox" class="hide"></div>
 			<h2>Connections</h2>
@@ -354,7 +412,7 @@
 			</div>
 			</div>	
 				
-				
+			-->
 				
 								
 		 	<xsl:if test="$objectClass='Collection'">
@@ -745,7 +803,9 @@ Handle:
 		</xsl:otherwise>
 		</xsl:choose>
 		</xsl:variable>	
+                <!--
 			<div class="download"> <a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute>Access data / more information</a><br /></div>
+                        -->
 		</xsl:if>		
 	</xsl:template>
 	

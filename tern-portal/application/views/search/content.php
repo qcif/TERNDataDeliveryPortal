@@ -137,7 +137,7 @@ $Revision: 1 $
 				}*/
 				$key_url =  base_url().'view/?key='.urlencode($ro_key);
 				//echo '<h2><span class="count">'. $c . '. </span><a href="'.$key_url.'">'.$name.'</a></h2>';
-                                echo '<h2><span class="count">'. $c . '. </span><a href="#" id="'.$ro_key.'" class="record-list">'.$name.'</a></h2>';
+                                echo '<h2><span class="count">'. $c . '. </span><a id="'.$ro_key.'" class="record-list">'.$name.'</a></h2>';
 				
 				//echo '<pre>';
 								

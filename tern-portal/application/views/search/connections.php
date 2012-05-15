@@ -144,9 +144,12 @@ if(isset($groups)&&$groups['numfound']>0){
 		}
 		}
 
-		echo '<li><a href="'.base_url().'view/?key='.urlencode($groups['json']->{'response'}->{'docs'}[$i]->{'key'}).'" title="'.$groups['relationship'][$i].' '.$autoLinkTitle.'">';
+		//echo '<li><a href="'.base_url().'view/?key='.urlencode($groups['json']->{'response'}->{'docs'}[$i]->{'key'}).'" title="'.$groups['relationship'][$i].' '.$autoLinkTitle.'">';
+                //echo '<li><a>';
+                echo '<li>';
 		echo $groups['json']->{'response'}->{'docs'}[$i]->{'displayTitle'};
-		echo '</a>'.$autoLink.$logostr.'</li>';
+		//echo '</a>'.$autoLink.$logostr.'</li>';
+                echo $autoLink.$logostr.'</li>';
 	}
 	echo '</ul>';	
 	if($seeMore)

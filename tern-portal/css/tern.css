@@ -103,6 +103,10 @@ input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 }
 #placeholder{float:center;margin:14px 0px 0px 10px;}
 #placeholder p{text-align:center;font-size:13px;}
+
+.show-hide-facet{width:16px;cursor:pointer;display:block;float:left;margin:5px 0;}
+.toggle-facet-field{width:16px;cursor:pointer;zoom:1;height:16px;position:absolute;top:3px;right:3px;}
+.toggle-record-popup{width:16px;cursor:pointer;zoom:1;height:16px;position:absolute;top:3px;right:3px;}
 /*
  * Auto Complete
  * Auto Complete and Address Field (spatial search suggestion) is a jquery ui widget
@@ -435,3 +439,18 @@ span.more { display: none;  }
 #spatial_coverage_map{  
     width:400px;height:400px;
 }
+
+.accordionButton {	
+	width: 800px;
+	float: left;
+	background: #003366;
+	border-bottom: 1px solid #FFFFFF;
+	cursor: pointer;
+	}
+ 
+.accordionContent {	
+	width: 800px;
+	float: left;
+	background: #95B1CE;
+	display: none;
+	}
