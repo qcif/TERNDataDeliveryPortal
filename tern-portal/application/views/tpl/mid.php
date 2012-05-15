@@ -44,21 +44,21 @@ $Revision: 1 $
 -->
 				</div>
 				
-			</div>
-                  
-			<div id="placeholder">
-				
+			</div>                  
+			<div id="placeholder">				
 				<p><?php echo anchor('search','Advanced Search');?></p>
 			</div>
 
 		</div>
                 <?php } ?> 
+
+<!--
 <div id="classSelectDiv" class="hide">
     	<select id="classSelect">
 		<option value="collection" selected="selected"></option>
 	</select>
 </div>
-		<?php
+-->		<?php
 //			if($this->input->cookie('advanced-search')!=''){
 //				if($this->input->cookie('advanced-search')=='open'){
                                  
