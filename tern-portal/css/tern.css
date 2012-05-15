@@ -454,3 +454,10 @@ span.more { display: none;  }
 	background: #95B1CE;
 	display: none;
 	}
+
+#breadcrumb-corner{ line-height:30px; vertical-align:middle}
+
+#share{ float:left; margin-right: 20px}
+
+#share a { vertical-align: middle;}
+ 

@@ -4,27 +4,6 @@
  */
 
 
-    //background text
-$('#search-box').each(function(){
- 
-    this.value = $(this).attr('title');
-    $(this).addClass('text-background');
- 
-    $(this).focus(function(){
-        if(this.value == $(this).attr('title')) {
-            this.value = '';
-            $(this).removeClass('text-background');
-        }
-    });
- 
-    $(this).blur(function(){
-        if(this.value == '') {
-            this.value = $(this).attr('title');
-            $(this).addClass('text-background');
-        }
-    });
-});
-
 function handlefacetSlide()
 {
             /*
