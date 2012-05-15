@@ -900,7 +900,7 @@ function initHomePage(){
             }
         });
 
-        $(this).blur(function(){
+        $(this).blur(function(){ 
             if(this.value == '') {
                 this.value = $(this).attr('title');
                 $(this).addClass('text-background');
