@@ -624,7 +624,6 @@ $(function() {
             url: base_url+"/search/updateStatistic/",
 
             data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1",
-
             success:function(msg){},
             error:function(msg){}
         });
@@ -638,7 +637,6 @@ function doNormalSearch(){
     $.ajax({
         type:"POST",
         url: base_url+"/search/filter/",
-
         data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv,
         
         success: function(msg,textStatus){
@@ -869,8 +867,9 @@ function initViewMap(){
 }
 
 /*
-	 * Execute the functions only available in home page
-	 */
+
+* Execute the functions only available in home page
+*/
 function initHomePage(){
 
     $('#content').tabs();
@@ -884,6 +883,7 @@ function initHomePage(){
         $(this).addClass('active');
     });
               
+
 
     $('#clearSearch').hide();
     

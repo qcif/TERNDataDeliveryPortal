@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 
-
 function handlefacetSlide()
 {
             /*
@@ -24,10 +23,9 @@ function handlerecordpopupSlide()
 
         $('.toggle-record-popup').die('click').live('click', function(){
 
-            $(this).parent().parent().next('div.record-slide').slideToggle();
-            //$(this).parent().children().toggle();//show all the toggle facet field in the same div
+            $(this).parent().next('div.record-slide').slideToggle();
             $(this).toggleClass('ui-icon-arrowthickstop-1-n');
             $(this).toggleClass('ui-icon-arrowthickstop-1-s');
-        //$(this).hide();
+
         });
 }
