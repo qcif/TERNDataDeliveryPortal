@@ -155,6 +155,7 @@ $(function() {
                 forsixFilter = encodeURIComponent($(this).attr('id'));
                 changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
+
             }
         //scrollToTop();
         }
@@ -196,7 +197,9 @@ $(function() {
         if(search_term=='')search_term='*:*';
         changeHashTo(formatSearch(search_term, 1, classFilter));
 
-    });
+	});     
+
+
     
     /*
 	 * Clearing filters/facets
@@ -572,7 +575,7 @@ $(function() {
             
             autoOpen: false,
             height: 600,
-            width: 1200,
+            width: 980,
             resizable: true,            
             modal: true
         });
@@ -630,9 +633,7 @@ $(function() {
         });
     }
 } 
-    
-
-    
+ 
 function doNormalSearch(){
     spatial_included_ids='';
     $.ajax({
@@ -909,7 +910,9 @@ function initHomePage(){
         });
     });
 
-
 }
 
+
+
+    
 

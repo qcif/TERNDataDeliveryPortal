@@ -175,7 +175,8 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 #right{width:270px;float:right;position:relative;}
 
 .right-box{
-	border:1px solid #ccc;margin:20px 10px 0px 0px;padding:0;word-wrap: break-word;position:relative;overflow:auto;background:white;
+	/*border:1px solid #ccc;margin:20px 10px 0px 0px;padding:0;word-wrap: break-word;position:relative;overflow:auto;background:white;*/
+        border:1px solid #ccc;padding:0;word-wrap: break-word;position:relative;overflow:auto;background:white;
     
 }
 .right-box h2{
