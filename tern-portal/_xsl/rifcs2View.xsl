@@ -182,8 +182,8 @@
 <div class="right-box">            
             <h2><xsl:value-of select="$coverageLabel"/></h2>
             <span class="toggle-record-popup">
-			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
-			</span>
+		<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
+	    </span>
                         
             <xsl:variable name="needMap">   
                 <xsl:for-each select="ro:coverage/ro:spatial"> 
@@ -197,15 +197,16 @@
                </xsl:if>            
                </xsl:for-each>               
         	</xsl:variable>
-        
+<div class="record-slide">      
             <xsl:if test="ro:coverage/ro:spatial | ro:location/ro:spatial">
                 <xsl:apply-templates select="ro:coverage/ro:spatial | ro:location/ro:spatial"/>
                	 	<xsl:if test="$needMap!=''">
-                            <div class="record-slide">
+ 
                                 <div id="spatial_coverage_map"></div>
-                            </div>
+                      
                         </xsl:if>   
-            </xsl:if>   
+            </xsl:if> 
+ </div>            
  </div>           
             <xsl:if test="ro:coverage/ro:center | ro:location/ro:center">
                 <xsl:apply-templates select="ro:coverage/ro:center | ro:location/ro:center"/>
@@ -264,13 +265,15 @@
      
 </div>  
         </xsl:if> 
-<div class="right-box">  
-    <h2>Citation</h2>
-    <span class="toggle-record-popup">
-			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
-			</span>                        
+
+                   
        <xsl:choose>
             <xsl:when test="ro:citationInfo">
+  <div class="right-box">  
+                    <h2>Citation</h2>
+    <span class="toggle-record-popup">
+			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
+			</span>     
 <div class="record-slide">                
                 <div id="citation" style="position:relative;clear:both;">
                 <xsl:choose>
@@ -301,14 +304,16 @@
                     </xsl:otherwise>                        
                 </xsl:choose>   
                 </div>
-</div>                
+</div> 
+ </div> 
             </xsl:when>
 
          </xsl:choose>
- </div>  
  
- <div class="right-box">
+ 
+
         <xsl:if test="ro:identifier[not(@type = 'local')]">
+ <div class="right-box">            
             <div style="position:relative;clear:both;"><h2>Identifiers:</h2>
             <span class="toggle-record-popup">
 			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
@@ -329,6 +334,7 @@
 	
         </div>
   </div>
+  </div> 
         </xsl:if>   
         <!--div style="position:relative;clear:both;" class="no_print">
           	<p>	<a>
@@ -337,7 +343,7 @@
           		</a>
           	</p>  
         </div-->  
-</div> 
+
 
 			<div class="right-box" id="connectionsRightBox">
 			<div id="connectionsInfoBox" class="hide"></div>

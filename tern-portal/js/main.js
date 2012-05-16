@@ -630,9 +630,7 @@ $(function() {
             });
         }
     } 
-    
-
-    
+   
     function doNormalSearch(){
         spatial_included_ids='';
         $.ajax({
@@ -859,9 +857,9 @@ function initViewMap(){
         
 }
 
-	/*
-	 * Execute the functions only available in home page
-	 */
+/*
+* Execute the functions only available in home page
+*/
 function initHomePage(){
 
 		 $('#content').tabs();
@@ -877,6 +875,27 @@ function initHomePage(){
               
 
 		$('#clearSearch').hide();
+                
+                            //background text
+        $('#search-box').each(function(){
+
+            this.value = $(this).attr('title');
+            $(this).addClass('text-background');
+
+            $(this).focus(function(){
+                if(this.value == $(this).attr('title')) {
+                    this.value = '';
+                    $(this).removeClass('text-background');
+                }
+            });
+
+            $(this).blur(function(){
+                if(this.value == '') {
+                    this.value = $(this).attr('title');
+                    $(this).addClass('text-background');
+                }
+            });
+        });
 	}
 
 
