@@ -65,6 +65,14 @@ function setupNestedLayout(){
      $(this).next("div").slideToggle(300);
      });
    $("#accordion").accordion({autoHeight:false});
+   $("#accordion h3").click(function(){
+       if($("#accordion").accordion("option","active") ) {
+           $("#accordion").accordion("option","active",0);
+       }else{
+           $("#accordion").accordion("option","active",1);
+       }
+ 
+   });
 }
 
 function layoutInner()

@@ -37,7 +37,6 @@ TemporalWidget.prototype.refreshTemporalSearch = function(){
     var min_year = parseInt($('#min_year').html());
     var max_year = parseInt($('#max_year').html());
     if(this.doTemporalSearch){
-        $('#show-temporal-search').attr('src',base_url+'img/yes.png');
         //console.log(parseInt(word[1]));
         if(this.temporal!='All'){
             var word = this.temporal.split('-');
@@ -49,7 +48,6 @@ TemporalWidget.prototype.refreshTemporalSearch = function(){
         $('#dateTo').val(word[1]).removeAttr('disabled');	
 
     }else{
-        $('#show-temporal-search').attr('src',base_url+'img/no.png');
         $('#dateFrom').attr('disabled','true');
         $('#dateTo').attr('disabled','true');			
     }

@@ -42,10 +42,9 @@
 </div>  
 
 <?php if($widget_map_coords){ ?>              
-      
-         <div id="coords" class="padding5" >
-             <h4> Coordinates</h4>
-         <table border="0" cellspacing="0" cellpadding="0">
+<a id="showCoords">Show Coordinates</a>
+         <div id="coords" class="padding5 hide" >
+          <table border="0" cellspacing="0" cellpadding="0" style="margin:auto;">
             <tr>
                 <td></td>
                 <td><label class="spatial-label">N:</label><input class="search-input-mini" id="spatial-north" type="text" value="" onkeyup="checkForInvalid(this)"/></td>

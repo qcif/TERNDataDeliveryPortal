@@ -406,7 +406,8 @@ $(function() {
         $('#openMap').click(function(){
             mapWidget = openMap(mapWidget);
         }).button();
-
+        
+        enableCoordsClick();
 
         //Reset Button 
         $('#search_reset').click(function(){

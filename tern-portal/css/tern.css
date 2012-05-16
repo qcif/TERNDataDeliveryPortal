@@ -62,7 +62,7 @@ input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 .search-input-mini
 {
     width:60px;
-    height:20px;
+    height:15px;
     font-size:0.9em;
     font-family: Verdana,Arial,sans-serif;
 
@@ -338,7 +338,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 /* WEST SEARCH  */
  .head{ margin-bottom: 5px; }
- #buttonSearch{ margin: 10px;}
+ #buttonSearch{ margin: 10px; float:right;}
  .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
      color:#333333;
      
@@ -348,7 +348,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
  }
 /*Research Institution Form*/
 label{vertical-align:middle; font: 11px Arial,Helvetica,sans-serif}
-div.checkitem{ margin-top: 0.5em; clear: both; line-height:20px }
+div.checkitem{ margin-top: 0.5em; clear: both; line-height:15px }
 
 /*Temporal form */
 div#temporalFilter{ height: 23px;vertical-align: middle; margin-top: 0.5em; }
@@ -403,7 +403,7 @@ div#panel_advSearch .ui-widget-header{
 }
 
 #coords{
-    text-align: left;
+    text-align: center;
 }
 #coords input{ 
     width: 50px;

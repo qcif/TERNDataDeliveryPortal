@@ -441,6 +441,35 @@ MapWidget.prototype.updateDrawing = function(map,coordStr){
      control.layer.addFeatures(box);
 }
 
+
+      /*  ------------------------------------------------------------  
+       *    Feature Select methods
+       *
+       *  ------------------------------------------------------------
+       */
+MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
+    selectedFeature = feature;
+    popup = new OpenLayers.Popup.Anchored("chicken",
+        feature.geometry.getBounds().getCenterLonLat(),
+        null, feature.data.popupHTML, null, true, function(){ mapWidgetObj.onPopupClose(mapWidgetObj);});
+    popup.maxSize = new OpenLayers.Size(500,150);
+    popup.panMapIfOutOfView = true;
+    popup.autoSize = true;
+    feature.popup = popup;
+    
+    map.addPopup(feature.popup);     
+}
+
+MapWidget.prototype.onPopupClose = function(mapWidgetObj){
+    mapWidgetObj.selectControl.unselectAll();
+}
+
+MapWidget.prototype.onFeatureUnselect = function(feature,map){
+    map.removePopup(feature.popup);
+    feature.popup.destroy();
+    feature.popup=null;    
+}
+
     
 /*  ------------------------------------------------------------  
  *   FUNCTION TO GET WFS FEATURES AND ADD TO LAYER
@@ -577,33 +606,6 @@ function getStyle(styleName){
     return styleM;
 }
     
-      /*  ------------------------------------------------------------  
-       *    Feature Select methods
-       *
-       *  ------------------------------------------------------------
-       */
-MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
-    selectedFeature = feature;
-    popup = new OpenLayers.Popup.Anchored("chicken",
-        feature.geometry.getBounds().getCenterLonLat(),
-        null, feature.data.popupHTML, null, true, function(){ mapWidgetObj.onPopupClose(mapWidgetObj);});
-    popup.maxSize = new OpenLayers.Size(500,150);
-    popup.panMapIfOutOfView = true;
-    popup.autoSize = true;
-    feature.popup = popup;
-    
-    map.addPopup(feature.popup);     
-}
-
-MapWidget.prototype.onPopupClose = function(mapWidgetObj){
-    mapWidgetObj.selectControl.unselectAll();
-}
-
-MapWidget.prototype.onFeatureUnselect = function(feature,map){
-    map.removePopup(feature.popup);
-    feature.popup.destroy();
-    feature.popup=null;    
-}
 
       /*  ------------------------------------------------------------  
        *    Bind changes to coordinates textbox 

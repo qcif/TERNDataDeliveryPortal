@@ -1,6 +1,6 @@
 <div class="borderMe collapsiblePanel">  
     <h3 class="head ui-widget-header">Date</h3>
-    <div id="temporalFilter" class="padding5"><img src="<?php echo base_url();?>/img/no.png" id="show-temporal-search" title="toggle to enable/disable temporal search"/> 
+    <div id="temporalFilter" class="padding5"><input type="checkbox" id="show-temporal-search" title="toggle to enable/disable temporal search"/> 
     <label for="show-temporal-search">Show data between
 
             <select id="dateFrom">               
