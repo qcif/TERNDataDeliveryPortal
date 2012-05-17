@@ -1,3 +1,5 @@
+
+
 function urldecode(str) {
     return decodeURIComponent((str+'').replace(/\+/g, '%20'));
 }
@@ -197,7 +199,7 @@ $(function() {
         if(search_term=='')search_term='*:*';
         changeHashTo(formatSearch(search_term, 1, classFilter));
 
-	});     
+    });     
 
 
     
@@ -370,13 +372,21 @@ $(function() {
         }
     }
    
+  
     /*      Initialization function for '/search' urls
     *      Called by ROUTING function
     *      Call widget objects 
     */   
       
     function initSearchPage(){
-        setupNestedLayout();
+         /*       Resize Map callback */
+        
+        var resizeMap = function(){
+             if(typeof mapResult !== 'undefined') mapResult.map.updateSize();
+          }
+   
+         setupNestedLayout(resizeMap);  
+                
         
         var temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
@@ -387,8 +397,6 @@ $(function() {
          
         populateSearchFields(temporalWidget,search_term);
 
-
-        
         // Results Map
         mapResult = new MapWidget('result-map');
         mapResult.addDataLayer(true);
@@ -556,9 +564,16 @@ $(function() {
         }
     }
     
-    function handleResults(msg,mapWidget){                                    
-        $("#search-result").html(msg);  				
-        layoutInner();
+    function handleResults(msg,mapWidget){         
+        var divs = $(msg).filter(function(){ return $(this).is('div') });
+        divs.each(function() {
+            if($(this).attr('id') == 'facet-content')  {
+                 $('#ui-layout-facet').html($(this).html());
+            }
+            else if($(this).attr('id') == 'search-results-content') {        
+                $('#search-result').html($(this).html());
+            }
+        }) 				
         mapWidget.removeAllFeatures();
         mapWidget.addVectortoDataLayer(".spatial_center",true);
         $('.clearFilter').each(function(){
@@ -593,63 +608,63 @@ $(function() {
                 $(this).css('height','43px');
             }
         });
-    $('.read-more').die('click').live("click",function() {
-        if($(this).text() == 'Read more'){
-            $(this).siblings('p').css('height','auto');
-            $(this).text('Read less');
-        }else{
-            $(this).siblings('p').css('height','43px'); 
-            $(this).text('Read more');
-        }
+        $('.read-more').die('click').live("click",function() {
+            if($(this).text() == 'Read more'){
+                $(this).siblings('p').css('height','auto');
+                $(this).text('Read less');
+            }else{
+                $(this).siblings('p').css('height','43px'); 
+                $(this).text('Read more');
+            }
 
-        return false;
-    });
+            return false;
+        });
         
-    handlefacetSlide();
+        handlefacetSlide();
 
         
-    //LIMIT 5
-    $("ul.more").each(function() {
-        $("li:gt(5)", this).hide();
-        $("li:nth-child(6)", this).after("<a href='#' class=\"more\">More...</a>");
-    });
-    $("a.more").live("click", function() {
-        //console.log($(this).parent());
-        $(this).parent().children().slideDown();
-        $(this).remove();
-        return false;
-    });
+        //LIMIT 5
+        $("ul.more").each(function() {
+            $("li:gt(5)", this).hide();
+            $("li:nth-child(6)", this).after("<a href='#' class=\"more\">More...</a>");
+        });
+        $("a.more").live("click", function() {
+            //console.log($(this).parent());
+            $(this).parent().children().slideDown();
+            $(this).remove();
+            return false;
+        });
                 
               
-    if($('#realNumFound').html() !='0'){//only update statistic when there is a result
-        //update search statistics
+        if($('#realNumFound').html() !='0'){//only update statistic when there is a result
+            //update search statistics
+            $.ajax({
+                type:"POST",
+                url: base_url+"/search/updateStatistic/",
+
+                data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1",
+                success:function(msg){},
+                error:function(msg){}
+            });
+        }
+    } 
+ 
+    function doNormalSearch(){
+        spatial_included_ids='';
         $.ajax({
             type:"POST",
-            url: base_url+"/search/updateStatistic/",
-
-            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1",
-            success:function(msg){},
-            error:function(msg){}
+            url: base_url+"/search/filter/",
+            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv,
+        
+            success: function(msg,textStatus){
+                handleResults(msg,mapResult);
+            }
+            ,
+            error:function(msg){
+                console.log('error');
+            }
         });
     }
-} 
- 
-function doNormalSearch(){
-    spatial_included_ids='';
-    $.ajax({
-        type:"POST",
-        url: base_url+"/search/filter/",
-        data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv,
-        
-        success: function(msg,textStatus){
-            handleResults(msg,mapResult);
-        }
-        ,
-        error:function(msg){
-            console.log('error');
-        }
-    });
-}
         
 
    

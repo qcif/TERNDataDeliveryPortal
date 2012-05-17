@@ -1,4 +1,4 @@
-var myLayout,middleLayout,innerLayout;
+var outerLayout,middleLayout,innerLayout;
       
 function sizeCenterPane () {
     var $Container	= $('#container')
@@ -19,10 +19,10 @@ function sizeCenterPane () {
         $Container.height( $West.position().top + $WestContent.outerHeight() + paneWestPadding );
     }
     // now resize panes to fit new container size
-    myLayout.resizeAll();
+    outerLayout.resizeAll();
 }
 
-function setupNestedLayout(){
+function setupNestedLayout(mapResize){
     /*                              LAYOUT
     *              Set outer container to div#container
     *              Set inner container to div#content 
@@ -33,60 +33,83 @@ function setupNestedLayout(){
     $Container.height( $(window).height() - $Container.offset().top );
 
     // OUTER LAYOUT
-    myLayout = $('#container').layout({
-        west__size: 300, 
-        north__spacing_open: 0
-        , west__spacing_closed: 30
-        , west__togglerLength_closed: 80
-        , togglerClass:	"toggler"	// default = 'ui-layout-toggler'
+    outerLayout = $('#container').layout({
+        west__size: 300,
+        west__resizable : false
+        , 
+        west__spacing_closed: 30
+        , 
+        west__togglerLength_closed: 80
+        , 
+        togglerClass:	"toggler"	// default = 'ui-layout-toggler'
     });
     
-    
-    var $Content = $('#search-result')
+    var $Content = $('#ui-layout-center')
     $Content.height( $(window).height() - $Content.offset().top );
     
 
-        middleLayout = $('#center').layout({ 
-        center__paneSelector:	".ui-layout-search-results" 
+    middleLayout = $('#ui-layout-center').layout({ 
+        center__paneSelector:	"#search-result" 
         ,	
-        north__paneSelector:	".ui-layout-map" 
+        north__paneSelector:	"#ui-layout-facetmap" 
         ,	
-        north__size:                             300
-        , north__spacing_closed:    30
-        , north__togglerLength_closed: 80
-        , togglerClass:	"middletoggler"	// default = 'ui-layout-toggler'
+        north__size:            300
+        , 
+        north__resizable : true 
+        , 
+        north__spacing_closed:    30
+        , 
+        north__togglerLength_closed: 80
+        , 
+        togglerClass:	"middletoggler"	// default = 'ui-layout-toggler'
+        , 
+        livePaneResizing: true
+        ,
+        north__onresize: function(){
+            innerLayout.resizeAll();
+            mapResize();
+        }
     }); 
     
-    // now RESIZE the container to be a perfect fit
-    sizeCenterPane();
-
-   $(".collapsiblePanel .head").click(function()
-    {
-     $(this).next("div").slideToggle(300);
-     });
-   $("#accordion").accordion({autoHeight:false});
-   $("#accordion h3").click(function(){
-       if($("#accordion").accordion("option","active") ) {
-           $("#accordion").accordion("option","active",0);
-       }else{
-           $("#accordion").accordion("option","active",1);
-       }
- 
-   });
-}
-
-function layoutInner()
-{       
-        if(typeof innerLayout != 'undefined') innerLayout.destroy();
-        innerLayout = $('#search-result').layout({ 
-        center__paneSelector:	".ui-layout-results" 
+   
+    innerLayout = $('#ui-layout-facetmap').layout({ 
+        center__paneSelector:	"#ui-layout-map" 
         ,	
-        west__paneSelector:		".ui-layout-facet" 
+        west__paneSelector:	"#ui-layout-facet" 
         ,	
         west__size:				300 
-        , west__spacing_closed: 30
-        , west__togglerLength_closed: 80
-        , togglerClass:	"innertoggler"	// default = 'ui-layout-toggler'
+        , 
+        west__spacing_closed: 30
+        , 
+        west__togglerLength_closed: 80
+        , 
+        togglerClass:	"innertoggler"	// default = 'ui-layout-toggler'
+        ,
+        resizable: false
+        ,
+        west__onclose: function(){
+            innerLayout.resizeAll();
+            mapResize(); 
+        }
     }); 
+
+    // now RESIZE the container to be a perfect fit
+     sizeCenterPane();
+    $(".collapsiblePanel .head").click(function()
+    {
+        $(this).next("div").slideToggle(300);
+    });
+    $("#accordion").accordion({
+        autoHeight:false
+    });
+    $("#accordion h3").click(function(){
+        if($("#accordion").accordion("option","active") ) {
+            $("#accordion").accordion("option","active",0);
+        }else{
+            $("#accordion").accordion("option","active",1);
+        }
+ 
+    });
 }
+
            

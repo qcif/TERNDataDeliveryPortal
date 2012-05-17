@@ -126,36 +126,6 @@ input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 .pagination{float:right;}
 .pagination-page{padding:0px 3px;text-decoration:none;margin:3px;color:#0a450a;/*border:1px solid #ccc;*/}
 .pagination-currentPage{font-weight:bold;color:black;}
-/*
- * BreadCrumbs use in page view
- */
-#breadcrumb{
-    font: 11px Arial, Helvetica, sans-serif;
-    
-    height:30px;
-    line-height:30px;
-    color:#9b9b9b;
-    border:solid 1px #cacaca;
-    width:100%;
-    overflow:hidden;margin:0;padding:0;
-    position:relative;
-}
-
-#breadcrumb li {list-style-type:none;float:left;padding-left:10px;}
-#breadcrumb li a.crumb{
-    height:30px;
-    display:inline-block;
-    background-image:url('../img/bc_separator.png'); 
-    background-repeat:no-repeat; 
-    background-position:right;
-    padding-right: 15px;
-    text-decoration: none;
-    color:#454545;
-    zoom:1;
-}
-#breadcrumb li a.crumb:hover{color:#0a450a;}
-
-.descriptions div{line-height:17px;}
 
 /*
  * Subjects List
@@ -278,7 +248,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 } 
 .ui-layout-center{
-    border: 0;
+    padding:0;
 }
 
 .ui-layout-center .ui-widget-content{
@@ -333,9 +303,12 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 .margin10{
     margin:10px;
 }
-.ui-layout-center{padding:0;}
 
-.ui-layout-map { padding:0;}
+.ui-layout-map { padding:0; border:0}
+
+.ui-layout-facet{ border:0;}
+
+#ui-layout-facetmap {height: 300px; padding:0; border:0}
 
 /* WEST SEARCH  */
  .head{ margin-bottom: 5px; }
@@ -416,7 +389,7 @@ div#panel_advSearch .ui-widget-header{
 .coverage{display:none;}
 .spatial_center{display:none;}
 .spatial_coverage_center{display:none;}
-#search-result{ padding: 0; border:0;}
+#search-result{ border:0;}
 
 /* MAP Results*/
 #result-map{
@@ -448,7 +421,7 @@ span.more { display: none;  }
 	border-bottom: 1px solid #FFFFFF;
 	cursor: pointer;
 	}
- 
+
 .accordionContent {	
 	width: 800px;
 	float: left;
@@ -462,3 +435,8 @@ span.more { display: none;  }
 
 #share a { vertical-align: middle;}
  
+div.olLayerGoogleCopyright,
+div.olLayerGooglePoweredBy
+{
+  display: none !important;
+}
