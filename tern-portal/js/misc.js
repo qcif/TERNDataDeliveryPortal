@@ -16,6 +16,7 @@ function handlefacetSlide()
             $(this).toggleClass('ui-icon-arrowthickstop-1-s');
         //$(this).hide();
         });
+     
 }
 
 function handlerecordpopupSlide()

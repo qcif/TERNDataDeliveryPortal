@@ -12,11 +12,11 @@ function sizeCenterPane () {
     ,       outerWestHeight  = $West.outerHeight()      
     ,       paneWestPadding	= outerWestHeight - $.layout.cssHeight($West, outerWestHeight)
     ;
-    if(( $Pane.position().top + $Content.outerHeight() + panePadding ) > ( $West.position().top + $WestContent.outerHeight() + paneWestPadding )) {
+    if(( $Pane.position().top + $Content.outerHeight() + panePadding + 300 ) > ( $West.position().top + $WestContent.outerHeight() + paneWestPadding )) {
         // update the container height - *just* tall enough to accommodate #Content without scrolling
-        $Container.height( $Pane.position().top + $Content.outerHeight() + panePadding );
+        $Container.height( $Pane.position().top + $Content.outerHeight() + panePadding + 300 );
     }else{
-        $Container.height( $West.position().top + $WestContent.outerHeight() + paneWestPadding );
+        $Container.height( $West.position().top + $WestContent.outerHeight() + paneWestPadding + 220  );
     }
     // now resize panes to fit new container size
     outerLayout.resizeAll();

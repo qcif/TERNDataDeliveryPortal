@@ -55,18 +55,16 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 	echo '</pre>';
 	*/
 	//displayFacet('type', $typeFilter, $json, $classFilter, $this);
-	displayFacet('group', $groupFilter, $json, $classFilter);
 	displayFacet('subject_value', $subjectFilter, $json, $classFilter);
-        
-        echo '<div class="right-box">';
+         echo '<div class="right-box">';
 	
 	
 	echo '<h2>Field of Research';
-	echo '<span class="toggle-facet-field">
-			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-facet-field"></span>
+	echo '<span class="toggle-facet-field" id="for">
+			<span class="ui-icon ui-icon-arrowthickstop-1-s toggle-facet-field"></span>
 			</span>';
 	echo '</h2>';
-	echo '<div class="facet-content">';
+	echo '<div class="facet-content hide">';
 	
 	
 	echo '<ul class="more">';
@@ -76,5 +74,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
        	echo '</ul>';
 	echo '</div>';
 	echo '</div>';	
-        
+        displayFacet('group', $groupFilter, $json, $classFilter, true);
+	  
+       
 ?>

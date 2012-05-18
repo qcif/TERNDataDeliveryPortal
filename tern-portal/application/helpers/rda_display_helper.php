@@ -23,7 +23,7 @@ limitations under the License.
  * function prints out HTML
  * used in facet view
  */
-function displayFacet($facet_name, $facetFilter, $json, $ro_class){
+function displayFacet($facet_name, $facetFilter, $json, $ro_class, $hide=false){
 	
 	$clear ='';$name = '';$class='';
 	
@@ -38,17 +38,15 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
            
 	}
 	
-
-	
 	echo '<div class="right-box">';
-	
-	
-	echo '<h2>'.$name;
-	echo '<span class="toggle-facet-field">
-			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-facet-field"></span>
+	$class = ($hide)? "ui-icon-arrowthickstop-1-s" : "ui-icon-arrowthickstop-1-n";
+	$hideclass = ($hide)? "hide" : "" ;
+	echo '<h2 >'.$name;
+	echo '<span class="toggle-facet-field" id="' . $facet_name . '">
+			<span class="ui-icon ' . $class . ' toggle-facet-field"></span>
 			</span>';
 	echo '</h2>';
-	echo '<div class="facet-content">';
+	echo '<div class="facet-content ' .$hideclass . '">';
 	
 	echo '<ul class="more" id="'.$facet_name.'-facet">';
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};

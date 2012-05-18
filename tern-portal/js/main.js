@@ -579,12 +579,7 @@ $(function() {
         $('.clearFilter').each(function(){
             $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
         });
-        $('.tipsy').remove();
-        $('.typeFilter, .groupFilter, .subjectFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({
-            live:true, 
-            gravity:'sw'
-        });
- 
+
         //record popup dialog
         $('#record-popup').dialog({
             
@@ -621,8 +616,7 @@ $(function() {
         });
         
         handlefacetSlide();
-
-        
+         
         //LIMIT 5
         $("ul.more").each(function() {
             $("li:gt(5)", this).hide();
