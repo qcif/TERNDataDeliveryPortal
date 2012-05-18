@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 ?>
-<div id="record-content" class="clearfix border">
+<div id="record-content" class="clearfix">
 <div id="record-popup">
     
 </div>

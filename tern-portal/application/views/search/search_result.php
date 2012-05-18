@@ -22,16 +22,12 @@ $Revision: 1 $
 ?>
 
 
-	<?php if($json):?>	
-
-                     <div class="ui-layout-map hidden">
-                        Map here
-                    </div>
-                    <div class="ui-layout-facet hidden">
-                        <h3 class="ui-widget-header"> Facets </h3>
-                        <?php $this->load->view('search/facet');?> 
-                    </div>
-                    <div class="ui-layout-results hidden" >
-                            <?php $this->load->view('search/content');?>
-                        <?php $this->load->view('tab/widgets/recordpopup');?>
-	<?php endif;?>
+<?php if($json):?>	
+        <div id="facet-content">
+            <h3 class="ui-widget-header"> Facets </h3>
+            <?php $this->load->view('search/facet');?> 
+        </div>
+        <div id="search-results-content" >
+                <?php $this->load->view('search/content');?>
+        <?php $this->load->view('tab/widgets/recordpopup');?>
+<?php endif;?>

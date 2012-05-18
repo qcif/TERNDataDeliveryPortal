@@ -1,11 +1,14 @@
 <?php $this->load->view('tpl/header'); ?>      
         <div id="container">
-
-            <div id="center" class="ui-layout-center hidden">
-                <div class="ui-layout-map hidden"><div id="result-map"></div></div>
-                <div id="search-result" class="ui-layout-search-results hidden"></div>
+            <div id="ui-layout-center" class="ui-layout-center ">
+                 <div id="ui-layout-facetmap">
+                      <div id="ui-layout-facet" class="ui-layout-facet hidden"></div>
+                      <div id ="ui-layout-map" class="ui-layout-map">
+                          <div id="result-map"></div>                                               
+                     </div>
+                 </div>
+                <div id="search-result" class="ui-layout-search-results hidden">Loading...</div>
             </div>
-            
 
             <div class="ui-layout-west hidden">    
                 <div id="accordion" class="accordion">
