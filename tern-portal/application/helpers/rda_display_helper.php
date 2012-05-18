@@ -39,11 +39,11 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class, $hide=false){
 	}
 	
 	echo '<div class="right-box">';
-	$class = ($hide)? "ui-icon-arrowthickstop-1-s" : "ui-icon-arrowthickstop-1-n";
+	$arrowclass = ($hide)? "ui-icon-arrowthickstop-1-s" : "ui-icon-arrowthickstop-1-n";
 	$hideclass = ($hide)? "hide" : "" ;
 	echo '<h2 >'.$name;
 	echo '<span class="toggle-facet-field" id="' . $facet_name . '">
-			<span class="ui-icon ' . $class . ' toggle-facet-field"></span>
+			<span class="ui-icon ' . $arrowclass . ' toggle-facet-field"></span>
 			</span>';
 	echo '</h2>';
 	echo '<div class="facet-content ' .$hideclass . '">';

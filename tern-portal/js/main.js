@@ -579,7 +579,7 @@ $(function() {
         $('.clearFilter').each(function(){
             $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
         });
-
+       
         //record popup dialog
         $('#record-popup').dialog({
             

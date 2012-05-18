@@ -355,6 +355,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
     var dataLayer  = this.dataLayer;
     var WGS84 = this.WGS84; 
     var WGS84_google_mercator = this.WGS84_google_mercator;
+    var number;
     if(typeof clickInfo == "undefined") clickInfo = false;
     $.each(centers, function(){
             var html ='';
@@ -362,13 +363,14 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
                 var desc = trimwords($(this).parent().children('p').html(),50);
                 if (desc.length <  $(this).parent().children('p').html().length) desc += "...";
                 var link = $(this).parent().children('h2').children('a');
-                 link.attr('onClick','handleRecordPopup($(this));');
-                html  = "<strong>" + $("<div/>").append(link.clone()).html()  + "</strong><p>" + desc + "</p>";
+                link.attr('onClick','handleRecordPopup($(this));');
+                html  = "<strong>" + $(this).parent().children('h2').children('span.count').html() + $("<div/>").append(link.clone()).html()  + "</strong><p>" + desc + "</p>";
+                number = $(this).parent().children('h2').children('span.count').html().replace(".","");
             }
             if($(this).html().indexOf(' ') != -1){ 
-             addVector($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html);    
+             addVector($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html,number);    
             }else{
-             addMarker($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html);
+             addMarker($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html,number);
             }
 
     }); 
@@ -376,11 +378,11 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
     if(bounds)  this.map.zoomToExtent(bounds); 
     if(this.map.zoom > 5) this.map.zoomTo(5);
     
-    function addMarker(lonlat,dataLayer,WGS84,WGS84_google_mercator,html){
+    function addMarker(lonlat,dataLayer,WGS84,WGS84_google_mercator,html, number){
             var word = lonlat.split(',');
             var point = new OpenLayers.Geometry.Point(word[0],word[1]);
             point.transform(WGS84, WGS84_google_mercator);
-            var attributes = {popupHTML: html, type: "point"}
+            var attributes = {popupHTML: html, type: "point", number: number}
             var feature = new OpenLayers.Feature.Vector(point, attributes);
             /*if(html != ''){
             AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, {
@@ -525,11 +527,12 @@ function getStyle(styleName){
                         strokeWidth: 3
                     },
                     "Polygon": {*/
-                        pointRadius: 6, 
+                        pointRadius: 9, 
                         fillColor: '#48D1CC', 
-                        fillOpacity: '0.4', 
+                        fillOpacity: '0.9', 
                         strokeColor: '#48D1CC', 
-                        strokeWidth: '1'
+                        strokeWidth: '1',
+                        label: "${number}"
                    // }
                 }
                 styleSelected = {
@@ -545,11 +548,12 @@ function getStyle(styleName){
                         strokeWidth: 3
                     },
                     "Polygon": {*/
-                        pointRadius: 6,
+                        pointRadius: 9,
                         fillColor: '#ff0000', 
-                        fillOpacity: '0.4', 
+                        fillOpacity: '0.9', 
                         strokeColor: '#ff0000', 
-                        strokeWidth: '1'
+                        strokeWidth: '1',
+                        label: "${number}"
                    // }
                 }
                   
@@ -568,11 +572,12 @@ function getStyle(styleName){
                         strokeWidth: 3
                     },
                      "Polygon": {*/
-                         pointRadius: 6,
+                         pointRadius: 9,
                         fillColor: '#FFFF00', 
-                        fillOpacity: '0.4', 
+                        fillOpacity: '0.9', 
                         strokeColor: '#FFFF00', 
-                        strokeWidth: '1'
+                        strokeWidth: '1',
+                        label: "${number}"
                   // }
                 }
                 styleSelected = {
@@ -588,11 +593,12 @@ function getStyle(styleName){
                         strokeWidth: 3
                     },
                     "Polygon": {*/
-                        pointRadius: 6,
+                        pointRadius: 9,
                         fillColor: '#ff0000', 
-                        fillOpacity: '0.4', 
+                        fillOpacity: '0.9', 
                         strokeColor: '#ff0000', 
-                        strokeWidth: '1'
+                        strokeWidth: '1',
+                        label: "${number}"
                    // }
                 }
           };break;
