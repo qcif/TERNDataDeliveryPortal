@@ -35,6 +35,7 @@
 		</xsl:choose>		
 	</xsl:variable>	
 
+
     <xsl:template match="ro:registryObject">
         <!--  We will first set up the breadcrumb menu for the page -->   
         <span id="originating_source" class="hide"><xsl:value-of select="$dataSource"/></span>
@@ -60,12 +61,6 @@
 		</xsl:otherwise>
 		</xsl:choose>
 		</xsl:variable>			
-
-<xsl:apply-templates select="rkey">
-
-    <xsl:with-param name="rokey" select="."/>
-
-  </xsl:apply-templates>
 
 		<!--  the following hidden elements dfine content to be used in further ajax calls --> 
         <div id="group_value" class="hide"><xsl:value-of select="@group"/></div>
@@ -159,7 +154,11 @@
                </xsl:if>            
                </xsl:for-each>               
         	</xsl:variable>
+<<<<<<< Updated upstream
 <div class="record-slide ">      
+=======
+<div class="record-slide">      
+>>>>>>> Stashed changes
             <xsl:if test="ro:coverage/ro:spatial | ro:location/ro:spatial">
                 <xsl:apply-templates select="ro:coverage/ro:spatial | ro:location/ro:spatial"/>
                	 	<xsl:if test="$needMap!=''">
@@ -367,7 +366,7 @@
 			</div>             
 
 		</div>		
-                                               <div id="top" class="top-corner">
+        <div id="top" class="top-corner">
     	<meta property="og:description" content="description" />
 			<ul id="breadcrumb" class="top-corner">
                             <!--
@@ -398,7 +397,7 @@
 	        		<!-- AddToAny END -->  
 	        
 					<a target="_blank">
-                    <xsl:attribute name="href"><xsl:value-of select="$base_url"/>view/printview/?key=<xsl:value-of select="$rokey"/></xsl:attribute>                    
+                   <xsl:attribute name="href"><xsl:value-of select="$base_url"/>view/printview/?key=<xsl:value-of select="$key"/></xsl:attribute>                    
                     <img id="print_icon">
                     <xsl:attribute name="src">
                     <xsl:value-of select="$base_url"/>

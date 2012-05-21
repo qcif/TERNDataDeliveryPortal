@@ -44,13 +44,19 @@ class Preview extends CI_Controller {
 		$qtestxsl = new DomDocument();
 		$registryObjects = new DomDocument();
 		$registryObjects->loadXML($registryObjectsXML);
+                
+                
+                
 		$qtestxsl->load('_xsl/'.$xslt);
 		$proc = new XSLTProcessor();
 		$proc->importStyleSheet($qtestxsl);
 		$proc->setParameter('','base_url',base_url());
-		$proc->setParameter('','orca_home',getHTTPs($this->config->item('orca_url')));
+		//$proc->setParameter('','orca_home',getHTTPs($this->config->item('orca_url')));
+                $proc->setParameter('','orca_home',$this->config->item('orca_url'));
 		$proc->setParameter('','dataSource',$ds);
 		$transformResult = $proc->transformToXML($registryObjects);	
+                
+                
 		return $transformResult;
 	}
 }

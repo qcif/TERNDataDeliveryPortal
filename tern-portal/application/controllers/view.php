@@ -81,7 +81,7 @@ class View extends CI_Controller {
 			$this->load->model('RegistryObjects', 'ro');
 	       	$content = $this->ro->get($key);
 	       	$data['key']= $key;  	
-			$data['content'] = $this->transform($content, 'rifcs2View.xsl',$key);	
+			$data['content'] = $this->transform($content, 'rifcs2PrintView.xsl',$key);	
 			
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();
@@ -89,7 +89,7 @@ class View extends CI_Controller {
 			$this->load->view('print-view', $data);
 		}else{
 			show_404('page');
-		}
+		} 
 		
 	}
 
