@@ -114,29 +114,30 @@
         <xsl:if test="ro:subject">
               <div style="position:relative;clear:both">
             <p><b>Subjects:</b>
-            <xsl:if test="ro:subject/@type='anzsrc-for' or ro:subject/@type='anzsrc-seo' or ro:subject/@type='anzsrc-toa'">
+                       <xsl:if test="ro:subject/@type='anzsrc-for' or ro:subject/@type='anzsrc-seo' or ro:subject/@type='anzsrc-toa'">
+
                 <p>ANZSRC</p>
                 <ul class="subjects">
                 <xsl:for-each select="ro:subject">      
                     <xsl:sort select="./@type"/>
-                    <xsl:if test="@type='anzsrc-for'or @type='anzsrc-seo' or @type='anzsrc-toa'">
+                    <xsl:if test="@type='anzsrc-for' or @type='anzsrc-seo' or @type='anzsrc-toa'">
                         <xsl:apply-templates select="."/>
                     </xsl:if>
                 </xsl:for-each>
                 </ul>
             </xsl:if>
-            
-            <xsl:if test="ro:subject/@type!='anzsrc-for' and ro:subject/@type!='anzsrc-seo' and ro:subject/@type!='anzsrc-toa'">
-                <p>Keywords</p> 
-                <ul class="subjects">
-                <xsl:for-each select="ro:subject">      
-                    <xsl:sort select="./@type"/>
-                    <xsl:if test="@type!='anzsrc-for'and @type!='anzsrc-seo' and @type!='anzsrc-toa'">
-                        <xsl:apply-templates select="."/>
-                    </xsl:if>
-                </xsl:for-each>
-                </ul>
-            </xsl:if> 
+                
+                <xsl:if test="ro:subject[not(@type = 'anzsrc-for' or  @type = 'anzsrc-seo' or  @type = 'anzsrc-toa')]">
+                    <p>Keywords</p> 
+                    <ul class="subjects">
+                        <xsl:for-each select="ro:subject">      
+                            <xsl:sort select="./@type"/>
+                            <xsl:if test="@type!='anzsrc-for'and @type!='anzsrc-seo' and @type!='anzsrc-toa'">
+                                <xsl:apply-templates select="."/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    </ul>
+                </xsl:if> 
              </p> 
              </div>  
         </xsl:if>

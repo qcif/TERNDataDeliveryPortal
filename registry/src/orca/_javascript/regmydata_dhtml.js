@@ -1157,8 +1157,8 @@ function saveAndPreview() {
 
 	var key = $('#object_mandatoryInformation_key').val();
 
-	$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
-
+	//$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+        $(".rda_preview").attr("href",$("#baseURL").val() + 'preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
 	
 
 	$("#errors_preview").hide();	
@@ -1183,8 +1183,9 @@ function saveAndPreview() {
 							"<div id='rda_preview_container'><a style='float:right;'id='rda_preview_xml' href='#'>View XML</a><a id='rda_preview' class='rda_preview' href='#' target='_blank'><img src='"+rootAppPath+"orca/_images/globe.png' /> Preview in Research Data Australia</a></div><div id='rifcs_plain' class='hide'><img src='"+rootAppPath+"orca/_images/delete_16.png' class='closeBlockUI' style='float:right;'/><textarea id='rifcs_plain_content'></textarea></div>"
 			);
 		
-		$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());			
-		
+//		$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());			
+	$(".rda_preview").attr("href",$("#baseURL").val() + 'preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());			
+        
 		$('#rda_preview_xml').click(function(){
 			var key = $('#object_mandatoryInformation_key').val();
 			var ds = $('#object_mandatoryInformation_dataSource').val();
@@ -1223,7 +1224,9 @@ function saveAndPreview() {
 			);
 
 		//copy and paste from above, need refactor
-		$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+//		$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+                $(".rda_preview").attr("href",$("#baseURL").val() + 'preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+                
 		$('#rda_preview_xml').click(function(){
 			var key = $('#object_mandatoryInformation_key').val();
 			var ds = $('#object_mandatoryInformation_dataSource').val();

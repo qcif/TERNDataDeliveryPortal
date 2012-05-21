@@ -154,11 +154,8 @@
                </xsl:if>            
                </xsl:for-each>               
         	</xsl:variable>
-<<<<<<< Updated upstream
+
 <div class="record-slide ">      
-=======
-<div class="record-slide">      
->>>>>>> Stashed changes
             <xsl:if test="ro:coverage/ro:spatial | ro:location/ro:spatial">
                 <xsl:apply-templates select="ro:coverage/ro:spatial | ro:location/ro:spatial"/>
                	 	<xsl:if test="$needMap!=''">
