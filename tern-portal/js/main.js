@@ -177,16 +177,6 @@ $(function() {
             $('.ui-autocomplete').hide();
             changeHashTo(formatSearch(search_term, 1, classFilter));
         }
-    }).keyup(function(){//on typing
-        search_term = $('#search-box').val();
-        if($(this).val()==''){
-            $('#clearSearch').hide();
-            populateSearchFields(search_term);
-            clearEverything();
-        }else{
-            $('#clearSearch').show();
-            populateSearchFields(search_term);
-        }
     });
      
     /*
@@ -200,9 +190,21 @@ $(function() {
         changeHashTo(formatSearch(search_term, 1, classFilter));
 
     });     
+    /*
+	 * Auto complete for main search box
+	 * Use getDictionaryTerms for search terms
+	 * Use getDictionaryTermsOLD for solr dictionary
+	 * */
+	$( "#search-box" ).autocomplete( {
+		source: base_url+"view_part/getDictionaryTerms/",
+		minLength: 2,
+		delimiter:/(,|;)\s*/,
+		select: function( event, ui ) {
+			$('#search-box').val = ui.item.value;
+			
+		}
+	});
 
-
-    
     /*
 	 * Clearing filters/facets
 	 */
