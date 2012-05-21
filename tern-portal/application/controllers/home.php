@@ -51,20 +51,13 @@ class Home extends CI_Controller {
 
                 $data['min_year'] = $row->min_year;
                 $data['max_year'] = $row->max_year;
-		$this->load->model('Solr');
+		//$this->load->model('Solr');
 		//$data['json'] = $this->Solr->getNCRISPartners();
 		$data['home'] = 1;
 		$data['tabs'] = 1;
 		//echo $data['user_agent'];
 
-                $data['tab-slider-id']="date-slider";
-                $data['adv-slider-id']="date-slider-adv";
-                
-		$this->handleFORTab($data['subject']);
-              
-                $this->handleDataTypeTab($data['dataTypeLvl1'],$data['dataTypeLvl2']);
-      
-
+                $data['recordsArr'] = $this->handleRandomTab(10);
 		$this->load->view('home_page', $data);
 	}
 	
@@ -101,7 +94,7 @@ class Home extends CI_Controller {
                 $data['widget_keyword'] = 1;
                 
                 
-		$this->load->view('new_search', $data);
+		$this->load->view('content/advancesrch', $data);
 	}
         
 	public function about(){
@@ -171,7 +164,15 @@ class Home extends CI_Controller {
             include APPPATH . '/views/tab/forstat.php';            
         }
         
-
+        /*get 10 random records*/
+        private function handleRandomTab($num){
+            $this->load->model('Solr','Solr');
+            $randomRJson = $this->Solr->getRandomRecords($num);
+            $recordsArr = $randomRJson->{'response'}->{'docs'};
+            return $recordsArr;
+            
+        }
+        
         /*get data type stats, find the parent name and put in respective arrays */
        private function handleDataTypeTab(&$dataTypeLvl1,&$dataTypeLvl2){
             $this->load->model('Registryobjects','ro');

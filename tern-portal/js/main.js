@@ -181,11 +181,11 @@ $(function() {
         search_term = $('#search-box').val();
         if($(this).val()==''){
             $('#clearSearch').hide();
-            populateAdvancedFields(search_term);
+            populateSearchFields(search_term);
             clearEverything();
         }else{
             $('#clearSearch').show();
-            populateAdvancedFields(search_term);
+            populateSearchFields(search_term);
         }
     });
      
@@ -661,6 +661,48 @@ $(function() {
     }
         
 
+    /*
+
+    * Execute the functions only available in home page
+    */
+    function initHomePage(){
+
+        $('#tab').tabs();
+        $('.hp-icons img').hover(function(){
+            id = $(this).attr('id');
+
+            $('.hp-icon-content').hide();
+            $('#hp-content-'+id).show();
+            //console.log('#hp-content-'+id);
+            $('.hp-icons img').removeClass('active');
+            $(this).addClass('active');
+        });
+        $('#clearSearch').hide();
+
+        //background text
+        $('#search-box').each(function(){
+
+            this.value = $(this).attr('title');
+            $(this).addClass('text-background');
+
+            $(this).focus(function(){
+                if(this.value == $(this).attr('title')) {
+                    this.value = '';
+                    $(this).removeClass('text-background');
+                }
+            });
+
+            $(this).blur(function(){ 
+                if(this.value == '') {
+                    this.value = $(this).attr('title');
+                    $(this).addClass('text-background');
+                }
+            });
+        });
+        
+    }
+
+
    
 });
 
@@ -876,51 +918,6 @@ function initViewMap(){
     mapView.addVectortoDataLayer('#record-popup .coverage',false);
         
 }
-
-/*
-
-* Execute the functions only available in home page
-*/
-function initHomePage(){
-
-    $('#content').tabs();
-    $('.hp-icons img').hover(function(){
-        id = $(this).attr('id');
-
-        $('.hp-icon-content').hide();
-        $('#hp-content-'+id).show();
-        //console.log('#hp-content-'+id);
-        $('.hp-icons img').removeClass('active');
-        $(this).addClass('active');
-    });
-              
-
-
-    $('#clearSearch').hide();
-    
-    //background text
-    $('#search-box').each(function(){
-
-        this.value = $(this).attr('title');
-        $(this).addClass('text-background');
-
-        $(this).focus(function(){
-            if(this.value == $(this).attr('title')) {
-                this.value = '';
-                $(this).removeClass('text-background');
-            }
-        });
-
-        $(this).blur(function(){ 
-            if(this.value == '') {
-                this.value = $(this).attr('title');
-                $(this).addClass('text-background');
-            }
-        });
-    });
-
-}
-
 
 
     

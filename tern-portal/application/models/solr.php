@@ -417,6 +417,17 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         $json = $this->fireSearch($fields, $facet);
         return $json;
     }
+    /* Get Random Records $num = number of records to get*/
+    function getRandomRecords($num){
+         $fields = array(
+            'q' => 'class:collection', 'version' => '2.2', 'start' => '0', 'rows' => $num, 'indent' => 'on', 'wt' => 'json',
+            'fl' => 'key,displayTitle,description_value,description_type', 'sort' => 'random_' . mt_rand(1,10000) . ' desc'
+        );
+        
+        $json = $this->fireSearch($fields, '');
+        return $json;
+        
+    }
     /*
      * Fire a search, given an array of fields and a string of facets
      */

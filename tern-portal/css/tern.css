@@ -440,3 +440,20 @@ div.olLayerGooglePoweredBy
 {
   display: none !important;
 }
+
+/* Homepage Tab */
+#tab{
+    width: 70%;
+    min-width: 900px;
+    margin: 0 auto;
+}
+
+#hp-left{ 
+    width:50%;
+    float:left;
+    padding-right: 10px;
+}
+.list_item{
+    height:120px;
+    overflow:hidden;
+}
