@@ -1158,7 +1158,7 @@ function saveAndPreview() {
 	var key = $('#object_mandatoryInformation_key').val();
 
 	//$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
-        $(".rda_preview").attr("href",$("#baseURL").val() + 'preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+        $(".rda_preview").attr("href",$("#ternURL").val() + 'preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
 	
 
 	$("#errors_preview").hide();	
@@ -1184,7 +1184,7 @@ function saveAndPreview() {
 			);
 		
 //		$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());			
-	$(".rda_preview").attr("href",$("#baseURL").val() + 'preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());			
+	$(".rda_preview").attr("href",$("#ternURL").val() + 'preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());			
         
 		$('#rda_preview_xml').click(function(){
 			var key = $('#object_mandatoryInformation_key').val();
@@ -1225,7 +1225,7 @@ function saveAndPreview() {
 
 		//copy and paste from above, need refactor
 //		$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
-                $(".rda_preview").attr("href",$("#baseURL").val() + 'preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+                $(".rda_preview").attr("href",$("#ternURL").val() + 'preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
                 
 		$('#rda_preview_xml').click(function(){
 			var key = $('#object_mandatoryInformation_key').val();

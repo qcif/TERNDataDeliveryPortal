@@ -104,8 +104,8 @@ require '../../_includes/header.php';
 
 
 
-<!--<input type="hidden" id="baseURL" value="<?php //print eAPP_ROOT . "orca/" ?>" />-->
-<input type="hidden" id="baseURL" value="<?php print eTERN_ROOT ?>" />
+<input type="hidden" id="baseURL" value="<?php print eAPP_ROOT . "orca/" ?>" />
+<input type="hidden" id="ternURL" value="<?php print eTERN_ROOT ?>" />
 
 <input type="hidden" id="elementSourceURL" value="<?php print eAPP_ROOT . "orca/fetch_element.php" ?>" />
 <input type="hidden" id="elementCategory" value="collection" />
