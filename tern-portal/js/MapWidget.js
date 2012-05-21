@@ -365,8 +365,8 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
                 var link = $(this).parent().children('h2').children('a');
                 link.attr('onClick','handleRecordPopup($(this));');
                 html  = "<strong>" + $(this).parent().children('h2').children('span.count').html() + $("<div/>").append(link.clone()).html()  + "</strong><p>" + desc + "</p>";
-                number = $(this).parent().children('h2').children('span.count').html().replace(".","");
-            }
+                number = $(this).parent().children('h2').children('span.count').html().replace(".","");              
+            }else { number = ''}
             if($(this).html().indexOf(' ') != -1){ 
              addVector($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html,number);    
             }else{
@@ -419,7 +419,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
             });
            
             var linear_ring = new OpenLayers.Geometry.LinearRing(vector_points);
-            var attributes = {popupHTML: html, type: "polygon"}
+            var attributes = {popupHTML: html, type: "polygon", number: number}
             var feature = new OpenLayers.Feature.Vector(
                         new OpenLayers.Geometry.Polygon([linear_ring]),attributes);          
            
@@ -529,10 +529,11 @@ function getStyle(styleName){
                     "Polygon": {*/
                         pointRadius: 9, 
                         fillColor: '#48D1CC', 
-                        fillOpacity: '0.9', 
+                        fillOpacity: '0.7', 
                         strokeColor: '#48D1CC', 
                         strokeWidth: '1',
-                        label: "${number}"
+                        label: "${number}",
+                        labelSelect: true
                    // }
                 }
                 styleSelected = {
@@ -550,10 +551,11 @@ function getStyle(styleName){
                     "Polygon": {*/
                         pointRadius: 9,
                         fillColor: '#ff0000', 
-                        fillOpacity: '0.9', 
+                        fillOpacity: '0.7', 
                         strokeColor: '#ff0000', 
                         strokeWidth: '1',
-                        label: "${number}"
+                        label: "${number}",
+                        labelSelect: true
                    // }
                 }
                   
@@ -574,10 +576,11 @@ function getStyle(styleName){
                      "Polygon": {*/
                          pointRadius: 9,
                         fillColor: '#FFFF00', 
-                        fillOpacity: '0.9', 
+                        fillOpacity: '0.7', 
                         strokeColor: '#FFFF00', 
                         strokeWidth: '1',
-                        label: "${number}"
+                        label: "${number}",
+                        labelSelect: true
                   // }
                 }
                 styleSelected = {
@@ -595,10 +598,11 @@ function getStyle(styleName){
                     "Polygon": {*/
                         pointRadius: 9,
                         fillColor: '#ff0000', 
-                        fillOpacity: '0.9', 
+                        fillOpacity: '0.7',  
                         strokeColor: '#ff0000', 
                         strokeWidth: '1',
-                        label: "${number}"
+                        label: "${number}",
+                        labelSelect: true
                    // }
                 }
           };break;
