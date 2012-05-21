@@ -158,53 +158,10 @@ $(function() {
                 changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
 
-            }
-        //scrollToTop();
+            }        
         }
     }); 
      
-    /*
-	 * On type, update the search term
-	 * On Press Enter, change hash value and thus do search based on search term
-	 * Initial search on collection
-	 */
-    $('#search-box').keypress(function(e){
-        if(e.which==13){//press enter
-            page = 1;
-            resetFilter();
-            search_term = $('#search-box').val();
-            if(search_term=='')search_term='*:*';
-            $('.ui-autocomplete').hide();
-            changeHashTo(formatSearch(search_term, 1, classFilter));
-        }
-    });
-     
-    /*
-	 * Big search button
-	 */
-    $('#search-button').click(function(){
-        page = 1;
-        search_term = $('#search-box').val();
-    
-        if(search_term=='')search_term='*:*';
-        changeHashTo(formatSearch(search_term, 1, classFilter));
-
-    });     
-    /*
-	 * Auto complete for main search box
-	 * Use getDictionaryTerms for search terms
-	 * Use getDictionaryTermsOLD for solr dictionary
-	 * */
-	$( "#search-box" ).autocomplete( {
-		source: base_url+"view_part/getDictionaryTerms/",
-		minLength: 2,
-		delimiter:/(,|;)\s*/,
-		select: function( event, ui ) {
-			$('#search-box').val = ui.item.value;
-			
-		}
-	});
-
     /*
 	 * Clearing filters/facets
 	 */
@@ -387,7 +344,7 @@ $(function() {
              if(typeof mapResult !== 'undefined') mapResult.map.updateSize();
           }
    
-         setupNestedLayout(resizeMap);  
+        setupNestedLayout(resizeMap);  
                 
         
         var temporalWidget = new TemporalWidget();
@@ -433,7 +390,10 @@ $(function() {
                 $('#search_advanced').trigger('click');
             }
         });
-    
+        
+         autocomplete('#search-box');
+         autocomplete('input[name^=keyword]');
+         
         //Submit button
         $('#search_advanced').click(function(){
             //Reset search term
@@ -702,12 +662,59 @@ $(function() {
             });
         });
         
+         /*
+        * Big search button
+        */
+        $('#search-button').click(function(){
+            page = 1;
+            search_term = $('#search-box').val();
+
+            if(search_term=='')search_term='*:*';
+            changeHashTo(formatSearch(search_term, 1, classFilter));
+
+        });     
+         
+         /*
+	 * On type, update the search term
+	 * On Press Enter, change hash value and thus do search based on search term
+	 * Initial search on collection
+	 */
+        $('#search-box').keypress(function(e){
+            if(e.which==13){//press enter
+                page = 1;
+                resetFilter();
+                search_term = $('#search-box').val();
+                if(search_term=='')search_term='*:*';
+                $('.ui-autocomplete').hide();
+                changeHashTo(formatSearch(search_term, 1, classFilter));
+            }
+        });
+        
+        autocomplete('#search-box');
     }
 
 
    
 });
 
+function autocomplete(id){
+       
+    /*
+    * Auto complete for main search box
+    * Use getDictionaryTerms for search terms
+    * Use getDictionaryTermsOLD for solr dictionary
+    * */
+    $( id ).autocomplete( {
+            source: base_url+"view_part/getDictionaryTerms/",
+            minLength: 2,
+            delimiter:/(,|;)\s*/,
+            select: function( event, ui ) {
+                    $(id).val = ui.item.value;
+
+            }
+    });
+    
+}
 
 function handleRecordPopup(e){
     
