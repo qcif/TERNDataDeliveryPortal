@@ -159,7 +159,7 @@
                </xsl:if>            
                </xsl:for-each>               
         	</xsl:variable>
-<div class="record-slide hide">      
+<div class="record-slide ">      
             <xsl:if test="ro:coverage/ro:spatial | ro:location/ro:spatial">
                 <xsl:apply-templates select="ro:coverage/ro:spatial | ro:location/ro:spatial"/>
                	 	<xsl:if test="$needMap!=''">
