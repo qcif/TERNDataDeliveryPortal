@@ -19,8 +19,8 @@ $Revision: 1 $
 ***************************************************************************
 *
 **/ 
-?>
-<?php //$this->load->view('tpl/header');?>
+?> 
+<?php $this->load->view('tpl/header');?>
 <?php //$this->load->view('tpl/mid');?>
 <div id="item-view" class="shadow-and-corner">
 
@@ -28,4 +28,4 @@ $Revision: 1 $
 
 	
 </div>
-<?php //$this->load->view('tpl/footer');?>
+<?php $this->load->view('tpl/footer');?>
