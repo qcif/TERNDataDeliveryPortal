@@ -335,9 +335,13 @@ MapWidget.prototype.addDataLayer = function(clickInfo) {
     this.map.addLayer(this.dataLayer);
     if(clickInfo){
          this.selectControl = new OpenLayers.Control.SelectFeature(this.dataLayer,
-                {onSelect: function(e) { 
+                {onSelect: function(e) {                          
                         self.onFeatureSelect(e,this.map,self); },
-                onUnselect: function(e) { self.onFeatureUnselect(e,this.map);}});
+                onUnselect: function(e) { 
+                    this.map.removePopup(e.popup);
+                    self.onFeatureUnselect(e,this.map);
+                           
+                }});
          this.map.addControl(this.selectControl);
          this.selectControl.activate();
     }
@@ -362,9 +366,9 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
             if(clickInfo){
                 var desc = trimwords($(this).parent().children('p').html(),50);
                 if (desc.length <  $(this).parent().children('p').html().length) desc += "...";
-                var link = $(this).parent().children('h2').children('a');
-                link.attr('onClick','handleRecordPopup($(this));');
-                html  = "<strong>" + $(this).parent().children('h2').children('span.count').html() + $("<div/>").append(link.clone()).html()  + "</strong><p>" + desc + "</p>";
+                var link = $(this).parent().children('h2').children('a').clone().attr('onClick','handleRecordPopup($(this));');
+               
+                html  = "<strong>" + $(this).parent().children('h2').children('span.count').html() + $('<div>').append(link).html()   + "</strong><p>" + desc + "</p>";
                 number = $(this).parent().children('h2').children('span.count').html().replace(".","");              
             }else { number = ''}
             if($(this).html().indexOf(' ') != -1){ 
@@ -450,7 +454,7 @@ MapWidget.prototype.updateDrawing = function(map,coordStr){
        *  ------------------------------------------------------------
        */
 MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
-    selectedFeature = feature;
+    selectedFeature = feature; 
     popup = new OpenLayers.Popup.Anchored("chicken",
         feature.geometry.getBounds().getCenterLonLat(),
         null, feature.data.popupHTML, null, true, function(){ mapWidgetObj.onPopupClose(mapWidgetObj);});
@@ -459,6 +463,7 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
     popup.autoSize = true;
     feature.popup = popup;
     
+
     map.addPopup(feature.popup);     
 }
 
