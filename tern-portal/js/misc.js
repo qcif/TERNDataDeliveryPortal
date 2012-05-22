@@ -33,16 +33,19 @@ function handlerecordpopupSlide()
 
 	function initPrintViewPage(){
 		//alert('init');
+
 		$('#header').hide();
 		$('.descriptions div').show();
 		$('.descriptions div').height('auto');
 		$('.showall_descriptions').hide();
 		$('.tipsy').hide();
+                initConnectionsBox();
+                initSubjectsSEEALSO();
+                initViewMap();
 		window.print();
 	}
         
         function initViewPage(){
-
 
 		//hide all descriptions and headings
 		$('.descriptions div, .descriptions h3').hide();

@@ -39,7 +39,7 @@ $(function() {
         }
 
         if(window.location.href.indexOf('/view')>=0){
-            //initViewPage();
+            initViewPage();
         if(window.location.href.indexOf('printview')>=0) initPrintViewPage();
         }else if(window.location.href==secure_base_url){
             window.location.href=base_url;

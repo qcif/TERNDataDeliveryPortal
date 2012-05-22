@@ -81,6 +81,8 @@ class View extends CI_Controller {
 			$this->load->model('RegistryObjects', 'ro');
 	       	$content = $this->ro->get($key);
 	       	$data['key']= $key;  	
+                $data['widget_map'] = true;
+
 			$data['content'] = $this->transform($content, 'rifcs2PrintView.xsl',$key);	
 			
 			$this->load->library('user_agent');

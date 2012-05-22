@@ -19,12 +19,12 @@ $Revision: 1 $
 *
 **/ 
 .limitHeight300{max-height:10000000px;overflow:show;}
-.right-box{border:1px solid #ccc;margin:20px 30px 0px 0px;padding:0;word-wrap: break-word;max-height:1000000px;position:relative;overflow:show;}
+.right-box-print{border:1px solid #ccc;margin:20px 30px 0px 0px;padding:0;word-wrap: break-word;max-height:1000000px;position:relative;overflow:show;}
 .no_print{display:none;}
-.border{border:none}
-.descriptions{display:block;}
-.subjects{display:block;}
-#item-view{border:0;}
-#right{ float:none}
-#left{float:none}
-h1{text-align:left !important; }
+.border-print{border:none}
+.descriptions-print{display:block;}
+.subjects-print{display:block;}
+#item-view-print{border:1;width:50%;margin:0px auto;}
+#right-print{width:270px;float:none;position:relative;}
+#left-print{width:900px;float:none;}
+h1-print{text-align:left !important; }
