@@ -31,9 +31,11 @@ class Preview extends CI_Controller {
 			$this->load->model('RegistryObjects', 'ro');
                         $content = $this->ro->get($key, $ds);
                         $data['key']= $key;  	
+                       
 			$data['content'] = $this->transform($content, 'rifcs2Preview.xsl', $ds);	
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();	
+                        $data['header_footer'] = true;
 			$this->load->view('xml-view', $data);
 		}else{
 			show_404('Preview Draft');
@@ -46,7 +48,7 @@ class Preview extends CI_Controller {
 		$registryObjects->loadXML($registryObjectsXML);
                 
                 
-                
+                print_r($registryObjectsXML);
 		$qtestxsl->load('_xsl/'.$xslt);
 		$proc = new XSLTProcessor();
 		$proc->importStyleSheet($qtestxsl);
