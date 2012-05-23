@@ -102,28 +102,18 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         // handle it if facetFilter is an array 
         $facetFilter = explode(";",$facetFilter);
-	//print the selected
-	for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
-		if($object_type[$i+1]>0){
-                        if(count($facetFilter) == 1){
-                            if($object_type[$i]==$facetFilter[$i] ){
-                                    echo '<li class="limit">
-                                            <a href="javascript:void(0);" 
-                                                    title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
-                                                    class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
-                            }
-                        }else{
-                            if(in_array($object_type[$i],$facetFilter)){
-                                echo '<li class="limit">
-					<a href="javascript:void(0);" 
-						title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
-						class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
-                            }
-                        }
-		}
-	}
-
-}
+	//print the selected 
+        for($i=0; $i<count($facetFilter); $i++){
+            $idx = array_search($facetFilter[$i],$object_type);
+            if($idx !== false){
+                 echo '<li class="limit">
+		       <a href="javascript:void(0);" 
+			title="'.$object_type[$idx].' ('.number_format($object_type[$idx+1]).''.' results)" 
+						class="clearFilter '.$clear.'" id="'.$object_type[$idx].'">'.$object_type[$idx].' ('.number_format($object_type[$idx+1]).')'.'</a></li>';
+                
+            }
+        }
+}       
 
 /*
  * Construct a SOLR based filter query
