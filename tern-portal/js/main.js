@@ -40,7 +40,7 @@ $(function() {
 
         if(window.location.href.indexOf('/view')>=0){
             //initViewPage();
-            if(window.location.href.indexOf('printview')>=0) initPrintViewPage();
+        if(window.location.href.indexOf('printview')>=0) initPrintViewPage();
         }else if(window.location.href==secure_base_url){
             window.location.href=base_url;
         }else if(window.location.href.indexOf('search')>=0){
@@ -693,8 +693,30 @@ $(function() {
         autocomplete('#search-box');
     }
 
+ 
+   function initPreviewPage(){
+       initConnectionsBox()
+       initSubjectsSEEALSO()
+        $('#view-in-orca').remove();
 
-   
+        $('.anzsrc-for, .anzsrc-seo, .anzsrc-toa').each(function(){
+                var unresolved = $(this).attr('id');
+                var subjectClass = $(this).attr('class');
+                var item = $(this);
+                //console.log(subjectClass);
+                $.ajax({
+                        type:"GET",
+                        url: service_url+"?subject="+unresolved+"&vocab="+subjectClass,
+                                success:function(msg){
+                                        //console.log(msg);
+                                        item.text(msg);
+                                },
+                                error:function(msg){}
+                });
+        });              
+        initViewMap();
+            
+   }
 });
 
 function autocomplete(id){

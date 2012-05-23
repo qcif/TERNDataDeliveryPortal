@@ -21,8 +21,8 @@
         
         	<script type="text/javascript">
   		var base_url = "<?php echo base_url(); ?>";
-  		var secure_base_url = "<?php echo $this->config->item('secure_base_url')?>";
-		var service_url = "<?php echo $this->config->item('service_url');?>";
+  		var secure_base_url = "<?php echo getHTTPs(base_url());?>";
+		var service_url = "<?php echo service_url();?>";
 	</script>
 	
 	
