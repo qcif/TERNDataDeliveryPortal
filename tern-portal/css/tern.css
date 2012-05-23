@@ -429,9 +429,9 @@ span.more { display: none;  }
 	display: none;
 	}
 
-#breadcrumb-corner{ line-height:20px; vertical-align:middle; margin-top:10px}
+#breadcrumb-corner{ line-height:30px; vertical-align:middle}
 
-#share{ float:left; margin-right: 5px}
+#share{ float:left; margin-right: 20px}
 
 #share a { vertical-align: middle;}
  
@@ -479,6 +479,6 @@ div.olLayerGooglePoweredBy
                                       #5DA331 97%,
                                       #659635 100%);
 }
-#item-view{background:white;padding-bottom:10px;width:900px;}
+#item-view{background:white;padding-bottom:10px;width:900px;margin: 0 auto;}
 /*remove Earn tab in social media plugin */
 #a2apage_PTZ { display:none !important; }

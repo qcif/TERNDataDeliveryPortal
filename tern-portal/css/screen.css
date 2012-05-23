@@ -330,7 +330,7 @@ button{font-size:13px;}
  * Viewing a single item
  */
 #item-view{background:white;padding-bottom:10px;width:900px;}
-#item-view-inner{background:white;}
+#item-view-inner{background:white;width:900px;}
 #left{width:650px;float:left;margin:10px;word-wrap: break-word}
 #right{width:270px;float:right;position:relative;}
 .right-box{border:1px solid #ccc;margin:20px 10px 0px 0px;padding:0;word-wrap: break-word;position:relative;overflow:auto;background:white;
