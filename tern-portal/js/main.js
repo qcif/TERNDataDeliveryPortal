@@ -714,7 +714,7 @@ $(function() {
                                 error:function(msg){}
                 });
         });              
-        initViewMap();
+        initViewMap('spatial_coverage_map','.spatial_coverage_center','.coverage');
             
    }
 });
@@ -754,7 +754,7 @@ function handleRecordPopup(e){
             initSubjectsSEEALSO()
             $("#record-popup").dialog('open');
                         
-            initViewMap();
+            initViewMap('spatial_coverage_map','#record-popup .spatial_coverage_center','#record-popup .coverage');
 
         },
         error:function(html){
@@ -942,11 +942,11 @@ function initSubjectsSEEALSO(){
 }
 
     
-function initViewMap(){
-    var mapView = new MapWidget('spatial_coverage_map');
+function initViewMap(mapId, centerSelector,coverageSelector){
+    var mapView = new MapWidget(mapId);
     mapView.addDataLayer(false);
-    mapView.addVectortoDataLayer('#record-popup .spatial_coverage_center',false);
-    mapView.addVectortoDataLayer('#record-popup .coverage',false);
+    mapView.addVectortoDataLayer(centerSelector,false);
+    mapView.addVectortoDataLayer(coverageSelector,false);
         
 }
 
