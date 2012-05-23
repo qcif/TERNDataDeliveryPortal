@@ -35,6 +35,7 @@ class Preview extends CI_Controller {
 			$data['content'] = $this->transform($content, 'rifcs2Preview.xsl', $ds);	
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();	
+                        $data['widget_map'] = true;
                         $data['header_footer'] = true;
 			$this->load->view('xml-view', $data);
 		}else{
