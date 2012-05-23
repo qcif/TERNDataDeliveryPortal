@@ -329,7 +329,7 @@ button{font-size:13px;}
  * Page View
  * Viewing a single item
  */
-#item-view{background:white;padding-bottom:10px;}
+#item-view{background:white;padding-bottom:10px;width:900px;}
 #item-view-inner{background:white;}
 #left{width:650px;float:left;margin:10px;word-wrap: break-word}
 #right{width:270px;float:right;position:relative;}

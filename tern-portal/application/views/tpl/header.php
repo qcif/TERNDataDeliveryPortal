@@ -22,7 +22,7 @@ if (isset($description))
         <link type="text/css" href="<?php echo base_url(); ?>css/tipsy.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/layout-default-latest.css" />
         <link type="text/css" href="<?php echo base_url(); ?>css/tern.css" rel="stylesheet" />
-         <link type="text/css" href="<?php echo base_url(); ?>css/print.css" rel="stylesheet" />
+         <link type="text/css" href="<?php echo base_url(); ?>css/print.css" rel="stylesheet" media="print" />
 
 
     </head>

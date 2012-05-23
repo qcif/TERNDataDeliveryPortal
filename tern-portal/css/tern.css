@@ -23,11 +23,11 @@ h1{font-size:20px; text-align:center;}
 h2{font-size:15px;}
 h3{font-size:14px;}
 h4{font-size:13px;}
-.branding{text-align:center;color:#e9771c;} 
+.branding{text-align:center;color:#e9771c;}
 .title{ }
 a img{border:0;border:none;}
 
-a:link, a:visited,a:not([href]) {color: #376500;text-decoration:underline; cursor: pointer;}
+a:link, a:visited{color: #376500;text-decoration:underline;}
 a:hover{text-decoration:underline;}
 
 input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
@@ -479,3 +479,6 @@ div.olLayerGooglePoweredBy
                                       #5DA331 97%,
                                       #659635 100%);
 }
+#item-view{background:white;padding-bottom:10px;width:900px;}
+/*remove Earn tab in social media plugin */
+#a2apage_PTZ { display:none !important; }
