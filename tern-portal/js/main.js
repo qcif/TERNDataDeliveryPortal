@@ -719,7 +719,7 @@ function initPreviewPage(){
 	   }		
 	});
    
-});
+
 
 function autocomplete(id){
        
