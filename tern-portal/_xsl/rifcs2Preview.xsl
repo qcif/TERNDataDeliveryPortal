@@ -26,25 +26,8 @@
 			<xsl:when test="//ro:service">services</xsl:when>			
 		</xsl:choose>		
 	</xsl:variable>		                    
-    <xsl:template match="ro:registryObject">
-        <!--  We will first set up the breadcrumb menu for the page -->   
-        <span id="originating_source" class="hide"><xsl:value-of select="$dataSource"/></span>
-    	<div id="top">
-			<ul id="breadcrumb">
-				<li><a href="#" class="crumb">Home</a></li>
-				<li><a href="#" class="crumb"><xsl:value-of select="./@group"/></a></li>
-				<li><a href="#" class="crumb"><xsl:value-of select="$objectClass"/></a></li>
-				<li><xsl:value-of select="//ro:displayTitle"/></li>
-				<img id="print_icon">
-				<xsl:attribute name="src">
-				<xsl:value-of select="$base_url"/>
-				<xsl:text>img/</xsl:text>
-				<xsl:text>1313027722_print.png</xsl:text></xsl:attribute>
-				</img>
-			</ul>
-		</div>	
-			
-		<!--  the following hidden elements dfine content to be used in further ajax calls --> 
+    <xsl:template match="ro:registryObject">     
+	<!--  the following hidden elements dfine content to be used in further ajax calls --> 
         <div id="group_value" class="hide"><xsl:value-of select="@group"/></div>
         <div id="datasource_key" class="hide"><xsl:value-of select="@originatingSource"/></div>
         <div id="key_value" class="hide"></div>
@@ -278,10 +261,6 @@
 			</div>
 		</div>
  		</xsl:if>
-			
-			
-			
-
 					   
 		</div>
        </div>              				
@@ -291,15 +270,7 @@
 <!--  the following templates will format the view page content -->
     <xsl:template match="ro:displayTitle">   
         <div id="displaytitle">
-        	<h1><xsl:value-of select="."/></h1>
-				<div class="right_icon">
-				<img class="icon-heading">
-				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
-				<xsl:text>/img/icon/</xsl:text>
-				<xsl:value-of select="$objectClassType"/>
-				<xsl:text>_32.png</xsl:text></xsl:attribute>
-				</img>
-				</div>
+        	<h1><xsl:value-of select="."/></h1>			
 	            <div class="clearfix"/>
 		</div>   
     </xsl:template>
@@ -342,14 +313,7 @@
 				</xsl:choose>
 			</h1>
 			</div>
-				<div class="right_icon">
-				<img class="icon-heading">
-				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
-				<xsl:text>/img/icon/</xsl:text>
-				<xsl:value-of select="$objectClassType"/>
-				<xsl:text>_32.png</xsl:text></xsl:attribute>
-				</img>
-				</div>
+				
 	        <div class="clearfix"/>
 
     </xsl:template>
@@ -571,24 +535,24 @@
 			<xsl:choose>
 				<xsl:when test = "./ro:addressPart or ./ro:addressPart!=''">
 					<xsl:for-each select="./ro:addressPart">	
-						<xsl:value-of select="."/><br />	
+						<xsl:value-of select="."  disable-output-escaping="yes"/><br />	
 					</xsl:for-each>	
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:value-of select="."/><br />			
+					<xsl:value-of select="."  disable-output-escaping="yes"/><br />			
 				</xsl:otherwise>
 			</xsl:choose>	
-		</p>
+		</p> 
 	</xsl:template>	
 	
 	<xsl:template match="ro:description" mode="right">			
-			<p class="rights"><xsl:value-of select="."/></p>		
+			<p class="rights"><xsl:value-of select="."  disable-output-escaping="yes"/></p>		
 	</xsl:template>
 	
 	<xsl:template match="ro:description" mode="content">     
         <p> 
              <div><xsl:attribute name="class"><xsl:value-of select="@type"/></xsl:attribute>
-                <p><xsl:value-of select="."/></p>
+                <p><xsl:value-of select="."  disable-output-escaping="yes"/></p>
             </div>            
         </p>                     
 	</xsl:template> 

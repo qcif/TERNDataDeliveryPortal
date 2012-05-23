@@ -48,7 +48,7 @@ class Preview extends CI_Controller {
 		$registryObjects->loadXML($registryObjectsXML);
                 
                 
-                print_r($registryObjectsXML);
+                //print_r($registryObjectsXML);
 		$qtestxsl->load('_xsl/'.$xslt);
 		$proc = new XSLTProcessor();
 		$proc->importStyleSheet($qtestxsl);
