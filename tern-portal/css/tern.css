@@ -27,7 +27,7 @@ h4{font-size:13px;}
 .title{ }
 a img{border:0;border:none;}
 
-a:link, a:visited{color: #376500;text-decoration:underline;}
+a:link, a:visited,a:not([href]) {color: #376500;text-decoration:underline; cursor: pointer;}
 a:hover{text-decoration:underline;}
 
 input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
