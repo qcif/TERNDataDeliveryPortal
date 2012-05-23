@@ -95,6 +95,28 @@ class View extends CI_Controller {
 		
 	}
 
+        public function dataview(){
+		parse_str($_SERVER['QUERY_STRING'], $_GET);
+		
+		if(isset($_GET['key'])){
+			$key = $_GET['key'];
+			$this->load->model('RegistryObjects', 'ro');
+	       	$content = $this->ro->get($key);
+	       	$data['key']= $key;  	
+                $data['widget_map'] = true;
+                $data['header_footer'] = true; 
+	
+			$data['content'] = $this->transform($content, 'rifcs2View.xsl',$key);	
+		
+			$this->load->library('user_agent');
+			$data['user_agent']=$this->agent->browser();
+			
+			$this->load->view('dataview', $data);
+		}else{
+			show_404('page');
+		} 		
+	}
+        
 	private function transform($registryObjectsXML, $xslt,$key){
 		$qtestxsl = new DomDocument();
 		$registryObjects = new DomDocument();

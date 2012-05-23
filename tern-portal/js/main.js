@@ -40,7 +40,8 @@ $(function() {
 
         if(window.location.href.indexOf('/view')>=0){
             initViewPage();
-        if(window.location.href.indexOf('printview')>=0) initPrintViewPage();
+            if(window.location.href.indexOf('printview')>=0) initPrintViewPage();
+            if(window.location.href.indexOf('dataview')>=0) initDataViewPage();
         }else if(window.location.href==secure_base_url){
             window.location.href=base_url;
         }else if(window.location.href.indexOf('search')>=0){
@@ -693,30 +694,8 @@ $(function() {
         autocomplete('#search-box');
     }
 
- 
-   function initPreviewPage(){
-       initConnectionsBox()
-       initSubjectsSEEALSO()
-        $('#view-in-orca').remove();
 
-        $('.anzsrc-for, .anzsrc-seo, .anzsrc-toa').each(function(){
-                var unresolved = $(this).attr('id');
-                var subjectClass = $(this).attr('class');
-                var item = $(this);
-                //console.log(subjectClass);
-                $.ajax({
-                        type:"GET",
-                        url: service_url+"?subject="+unresolved+"&vocab="+subjectClass,
-                                success:function(msg){
-                                        //console.log(msg);
-                                        item.text(msg);
-                                },
-                                error:function(msg){}
-                });
-        });              
-        initViewMap('spatial_coverage_map','.spatial_coverage_center','.coverage');
-            
-   }
+   
 });
 
 function autocomplete(id){
@@ -754,7 +733,7 @@ function handleRecordPopup(e){
             initSubjectsSEEALSO()
             $("#record-popup").dialog('open');
                         
-            initViewMap('spatial_coverage_map','#record-popup .spatial_coverage_center','#record-popup .coverage');
+            initViewMap();
 
         },
         error:function(html){
@@ -942,11 +921,11 @@ function initSubjectsSEEALSO(){
 }
 
     
-function initViewMap(mapId, centerSelector,coverageSelector){
-    var mapView = new MapWidget(mapId);
+function initViewMap(){
+    var mapView = new MapWidget('spatial_coverage_map');
     mapView.addDataLayer(false);
-    mapView.addVectortoDataLayer(centerSelector,false);
-    mapView.addVectortoDataLayer(coverageSelector,false);
+    mapView.addVectortoDataLayer('#record-popup .spatial_coverage_center',false);
+    mapView.addVectortoDataLayer('#record-popup .coverage',false);
         
 }
 

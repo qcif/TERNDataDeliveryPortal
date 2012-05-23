@@ -45,6 +45,15 @@ function handlerecordpopupSlide()
 		window.print();
 	}
         
+        	function initDataViewPage(){
+
+                handlerecordpopupSlide();
+                initConnectionsBox();
+                initSubjectsSEEALSO();
+                initViewMap();
+
+	}
+        
         function initViewPage(){
 
 		//hide all descriptions and headings
