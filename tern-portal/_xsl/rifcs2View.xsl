@@ -92,7 +92,7 @@
 			
                         </div>
 	        </xsl:otherwise> 
-        </xsl:choose>    
+                </xsl:choose>    
         <div class="clearfix"></div>  
 
         <xsl:apply-templates select="ro:displayLogo"/>
@@ -365,8 +365,7 @@
 		</div>		
         <div id="top" class="top-corner">
     	<meta property="og:description" content="description" />
-			<ul id="breadcrumb" class="top-corner">
-                            <!--
+			    <!--
 				<li><a href="{$base_url}" class="crumb">Home</a></li>
 				<li><a href="{$base_url}search/browse/{./@group}/{$objectClass}" class="crumb"><xsl:value-of select="$group"/></a></li>
 				<li><a href="{$base_url}search/browse/{./@group}/{$objectClass}" class="crumb"><xsl:value-of select="$objectClassLabel"/></a></li>
@@ -374,27 +373,30 @@
 				
 			    -->
 				<div id="breadcrumb-corner">
-				    
-				
-					 <!-- AddToAny BEGIN -->   
-	      
-	       			 <div class="a2a_kit a2a_default_style no_print" id="share">
-	                                  
-                                <a class="a2a_dd">
-                                    <xsl:attribute name="href">http://www.addtoany.com/share_save?linkurl=<xsl:value-of select="$base_url"/>view/dataview/?key=<xsl:value-of select="$key"/></xsl:attribute>   
-                                Share</a>
-	        		<span class="a2a_divider"></span>
-	       			 <a class="a2a_button_linkedin"></a>
-	        		<a class="a2a_button_facebook"></a>
-	     
-	        		<a class="a2a_button_email"></a>
-	        		</div>
-	        		<script type="text/javascript">
+				<!-- AddToAny BEGIN -->   
+				<div class="a2a_kit a2a_default_style" id="share">                                    
+                                <a class="a2a_button_facebook"></a>
+                                <a class="a2a_button_linkedin"></a>
+                                <a class="a2a_button_google_gmail"></a>
+                                <a class="a2a_button_twitter"></a>
+                                <a class="a2a_button_yahoo_mail"></a>
+                                <a class="a2a_button_google_plus"></a>
+                                <a class="a2a_button_delicious"></a>
+                                <a class="a2a_button_digg"></a>
+                                <a class="a2a_button_email"></a>
+                                
+                                <span class="a2a_divider"></span>
+                                </div> 
+                                <script type="text/javascript">
 	        		var a2a_config = a2a_config || {};
+                                <xsl:choose>
+                                <xsl:when test="ro:displayTitle!=''">
+                                        a2a_config.linkname ="<xsl:value-of select="ro:displayTitle"/>";
+                                </xsl:when></xsl:choose>
                                 a2a_config.linkurl = "http://www.addtoany.com/share_save?linkurl=<xsl:value-of select="$base_url"/>view/dataview/?key=<xsl:value-of select="$key"/>";
 	        		</script>
 	        		<script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
-	      
+                                
 	        		<!-- AddToAny END -->  
 	        
 					<a target="_blank">
@@ -408,8 +410,7 @@
                     </img>
                     </a>
 				</div>
-			</ul>
-	
+			
 		</div>	
 		</xsl:if>
 	
