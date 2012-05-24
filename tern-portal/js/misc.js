@@ -41,7 +41,7 @@ function handlerecordpopupSlide()
 		$('.tipsy').hide();
                 initConnectionsBox();
                 initSubjectsSEEALSO();
-                initViewMap();
+                initViewMap('spatial_coverage_map','spatial_coverage_center','.coverage');
 		window.print();
 	}
         
@@ -50,7 +50,7 @@ function handlerecordpopupSlide()
                 handlerecordpopupSlide();
                 initConnectionsBox();
                 initSubjectsSEEALSO();
-                initViewMap();
+                initViewMap('spatial_coverage_map','spatial_coverage_center','.coverage');
 
 	}
         
