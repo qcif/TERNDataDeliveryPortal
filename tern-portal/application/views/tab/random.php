@@ -18,8 +18,8 @@ function printRecord($r){
                             $found_full = true;
                     }
             }
-            echo '<div class="list_item">';
-            echo '<h2><a href="view?key='.$ro_key.'" class="record-list">'.$name.'</a></h2>';
+            echo '<div class="list_item">'; 
+            echo '<h2><a href="view/dataview?key='.$ro_key.'" class="record-list">'.$name.'</a></h2>';
             //DESCRIPTIONS';
             if($found_brief || $found_full){
                 echo '<p>';
