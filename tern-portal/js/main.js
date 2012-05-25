@@ -400,7 +400,7 @@ $(function() {
             //Reset search term
             resetAllSearchVals();
             //check which panel is active 0 is basic, 1 is advanced
-            if($( ".accordion" ).accordion( "option", "active" ) == 1 ){  // handle advanced search 
+            if($( "#accordion" ).accordion( "option", "active" ) == 1 ){  // handle advanced search 
                 
                 //Advanced search widgets                 
                 temporal = temporalWidget.getTemporalValues();

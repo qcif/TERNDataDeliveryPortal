@@ -100,16 +100,17 @@ function setupNestedLayout(mapResize){
         $(this).next("div").slideToggle(300);
     });
     $("#accordion").accordion({
-        autoHeight:false
+        autoHeight:false,
+        event: ""
     });
-    $("#accordion h3").click(function(){
-        if($("#accordion").accordion("option","active") ) {
+     $("#accordion h3").click(function(){
+        if($("#accordion").accordion("option","active") == 1 ) {
             $("#accordion").accordion("option","active",0);
-        }else{
+        }else if($("#accordion").accordion("option","active") == 0  ) {
             $("#accordion").accordion("option","active",1);
         }
  
-    });
+    }); 
 }
 
            
