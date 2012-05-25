@@ -185,7 +185,8 @@
             <xsl:if test="ro:subject/@type='anzsrc-for' or ro:subject/@type='anzsrc-seo' or ro:subject/@type='anzsrc-toa'">
 
                 <p>ANZSRC</p>
-                <ul>
+                <ul class="subjects commas">
+                
                 <xsl:for-each select="ro:subject">      
                     <xsl:sort select="./@type"/>
                     <xsl:if test="@type='anzsrc-for' or @type='anzsrc-seo' or @type='anzsrc-toa'">
@@ -197,7 +198,7 @@
                 
                 <xsl:if test="ro:subject[not(@type = 'anzsrc-for' or  @type = 'anzsrc-seo' or  @type = 'anzsrc-toa')]">
                     <p>Keywords</p> 
-                    <ul >
+                    <ul class="subjects commas">
                         <xsl:for-each select="ro:subject">      
                             <xsl:sort select="./@type"/>
                             <xsl:if test="@type!='anzsrc-for'and @type!='anzsrc-seo' and @type!='anzsrc-toa'">

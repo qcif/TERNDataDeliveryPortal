@@ -480,5 +480,13 @@ div.olLayerGooglePoweredBy
                                       #659635 100%);
 }
 #item-view{background:white;padding-bottom:10px;width:900px;margin: 0 auto;}
-/*remove Earn tab in social media plugin */
-#a2apage_PTZ { display:none !important; }
+
+/*comma separated value*/
+.commas li:after{
+    content: ", ";
+}
+
+.commas li:last-child:after{
+    content: " ";
+}
+
