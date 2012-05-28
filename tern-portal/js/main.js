@@ -137,11 +137,14 @@ $(function() {
             search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
             search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
             
-            if(adv=1&&window.location.href.indexOf('/n')>=0)
+            if(adv==1&&window.location.href.indexOf('/n')>=0)
             {
                     doSpatialSearch();
-            }
-            doNormalSearch();
+            }else
+                {
+                    doNormalSearch();
+                }
+            
         }
     });
     $(window).hashchange(); //do the hashchange on page load
@@ -521,7 +524,7 @@ $(function() {
   					spatial_included_ids = msg;
                                        
   					//console.log(spatial_included_ids);
-  					//doNormalSearch();
+  					doNormalSearch();
   				},
   				error:function(msg){
   					//console.log('spatial: error'+msg);
@@ -651,6 +654,7 @@ $(function() {
  
     function doNormalSearch(){
         //spatial_included_ids='';
+        //alert(spatial_included_ids);
         $.ajax({
             type:"POST",
             url: base_url+"/search/filter/",
