@@ -286,8 +286,7 @@ $(function() {
     *      
     *      
     */
-    function populateSearchFields(temporalWidget, search_term){
-        alert(adv);
+    function populateSearchFields(temporalWidget, search_term){ 
         if(adv == 1){
             $("#accordion").accordion("activate",parseInt(adv));
             if(search_term != '*:*') {
