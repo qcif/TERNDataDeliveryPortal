@@ -187,7 +187,19 @@ $(function() {
         if($(this).hasClass('clearType')){
             typeFilter = 'All';
         }else if($(this).hasClass('clearGroup')){
-            groupFilter = 'All';
+            var arrgroupFilter=groupFilter.split(";");
+            
+            if(arrgroupFilter.length>1)
+            {
+                var idx=arrgroupFilter.indexOf($(this).attr('id'));
+                arrgroupFilter.splice(idx,1);
+                groupFilter=arrgroupFilter.join(";");
+            }else if(arrgroupFilter.length==1)
+            {
+                groupFilter='All';
+            }else{ }
+
+            
         }else if($(this).hasClass('clearSubjects')){
             subjectFilter = 'All';
         }else if($(this).hasClass('clearFortwo')){
@@ -198,7 +210,7 @@ $(function() {
             forsixFilter = 'All';
         }else if($(this).hasClass('clearTemporal')){
             temporal = 'All';
-        }w
+        }
         changeHashTo(formatSearch(search_term,1,classFilter));
     });
         
@@ -574,7 +586,7 @@ $(function() {
     }
     
     function handleResults(msg,mapWidget){         
-        var divs = $(msg).filter(function(){ return $(this).is('div') });
+        var divs = $(msg).filter(function(){return $(this).is('div')});
         divs.each(function() {
             if($(this).attr('id') == 'facet-content')  {
                  $('#ui-layout-facet').html($(this).html());
