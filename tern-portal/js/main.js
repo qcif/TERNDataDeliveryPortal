@@ -4,9 +4,17 @@ function urldecode(str) {
     return decodeURIComponent((str+'').replace(/\+/g, '%20'));
 }
 function trimwords(theString, numWords) {
-    expString = theString.split(/\s+/,numWords);
-    theNewString=expString.join(" ");
-    return theNewString;
+    
+    if(theString!=null)
+    {
+            expString = theString.split(/\s+/,numWords);
+            theNewString=expString.join(" ");
+            return theNewString;
+    }else
+    {
+            return '';
+    }
+    
 }
 
 $(function() {
@@ -128,6 +136,11 @@ $(function() {
             //console.log('yea');
             search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
             search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
+            
+            if(adv=1&&window.location.href.indexOf('/n')>=0)
+            {
+                    doSpatialSearch();
+            }
             doNormalSearch();
         }
     });
@@ -473,7 +486,7 @@ $(function() {
                 }
                 page = 1;
                  //changeHashTo(formatSearch(search_term, 1, classFilter));
-                doSpatialSearch();
+                //doSpatialSearch();
             }else{
                 search_term = $('#search-box').val();
                 adv = 0;
@@ -495,7 +508,7 @@ $(function() {
 
     }
     
-    	function doSpatialSearch(){
+    function doSpatialSearch(){
 		//$('#result-placeholder').html('Loading');
        // $('#loading').show();$('#clearSearch').hide();
 
@@ -508,7 +521,7 @@ $(function() {
   					spatial_included_ids = msg;
                                        
   					//console.log(spatial_included_ids);
-  					doNormalSearch();
+  					//doNormalSearch();
   				},
   				error:function(msg){
   					//console.log('spatial: error'+msg);
@@ -534,6 +547,8 @@ $(function() {
         e = '';
         s='';
         w='';
+        spatial_included_ids='';
+        
         
     }
     /* Reset all fields in the search pane*/

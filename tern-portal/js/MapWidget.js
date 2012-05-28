@@ -365,11 +365,16 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
             var html ='';
             if(clickInfo){
                 var desc = trimwords($(this).parent().children('p').html(),50);
-                if (desc.length <  $(this).parent().children('p').html().length) desc += "...";
-                var link = $(this).parent().children('h2').children('a').clone().attr('onClick','handleRecordPopup($(this));');
+                if(desc.length>0)
+                {
+                                        
+                    if (desc.length <  $(this).parent().children('p').html().length) desc += "...";
+                    var link = $(this).parent().children('h2').children('a').clone().attr('onClick','handleRecordPopup($(this));');
                
-                html  = "<strong>" + $(this).parent().children('h2').children('span.count').html() + $('<div>').append(link).html()   + "</strong><p>" + desc + "</p>";
-                number = $(this).parent().children('h2').children('span.count').html().replace(".","");              
+                    html  = "<strong>" + $(this).parent().children('h2').children('span.count').html() + $('<div>').append(link).html()   + "</strong><p>" + desc + "</p>";
+                    number = $(this).parent().children('h2').children('span.count').html().replace(".",""); 
+                }
+             
             }else { number = ''}
             if($(this).html().indexOf(' ') != -1){ 
              addVector($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html,number);    
