@@ -137,7 +137,7 @@ $(function() {
             search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
             search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
             
-            if(adv=1&&window.location.href.indexOf('/n')>=0)
+            if(adv==1&&window.location.href.indexOf('/n')>=0)
             {
                     doSpatialSearch();
             }
@@ -284,6 +284,7 @@ $(function() {
     *      
     */
     function populateSearchFields(temporalWidget, search_term){
+        alert(adv);
         if(adv == 1){
             $("#accordion").accordion("activate",parseInt(adv));
             if(search_term != '*:*') {

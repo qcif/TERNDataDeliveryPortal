@@ -43,7 +43,7 @@ TemporalWidget.prototype.refreshTemporalSearch = function(){
         }else{
             var word = [min_year,max_year];
         }
-
+        $('#show-temporal-search').attr('checked','checked');
         $('#dateFrom').val(word[0]).removeAttr('disabled');
         $('#dateTo').val(word[1]).removeAttr('disabled');	
 

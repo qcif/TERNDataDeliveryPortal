@@ -102,14 +102,16 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         // handle it if facetFilter is an array 
         $facetFilter = explode(";",$facetFilter);
-	//print the selected 
+        //print the selected 
         for($i=0; $i<count($facetFilter); $i++){
-            $idx = array_search($facetFilter[$i],$object_type);
+            $idx = false;
+            array_walk($object_type, 'trim');
+            $idx = array_search($facetFilter[$i],$object_type, true);
+       
             if($idx !== false){
                  echo '<li class="limit">
 		       <a href="javascript:void(0);" 
-			title="'.$object_type[$idx].' ('.number_format($object_type[$idx+1]).''.' results)" 
-						class="clearFilter '.$clear.'" id="'.$object_type[$idx].'">'.$object_type[$idx].' ('.number_format($object_type[$idx+1]).')'.'</a></li>';
+						class="clearFilter '.$clear.'" id="'.$object_type[$idx].'">'.$object_type[$idx].' ('. $object_type[$idx+1].')'.'</a></li>';
                 
             }
         }
