@@ -179,7 +179,9 @@ $(function() {
             forfourFilter = 'All';
         }else if($(this).hasClass('clearForsix')){
             forsixFilter = 'All';
-        }
+        }else if($(this).hasClass('clearTemporal')){
+            temporal = 'All';
+        }w
         changeHashTo(formatSearch(search_term,1,classFilter));
     });
         

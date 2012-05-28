@@ -29,7 +29,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 	echo '<div class="facet-content">';
 		echo '<ul>';
 		if($temporal!='All'){
-			echo '<li><a href="javascript:void(0);" id="clearTemporal" class="clearFilter" title="Search results are restricted to this timeline, Click to remove this filter">'.$temporal.'</a></li>';
+			echo '<li><a href="javascript:void(0);" id="" class="clearTemporal clearFilter" title="Search results are restricted to this timeline, Click to remove this filter">'.$temporal.'</a></li>';
 		}
 		if($spatial_included_ids!=''){
 			//echo '<li><a href="javascript:void(0);" id="clearSpatial" class="clearFilter" title="Search results are restricted to spatial, Click to remove this filter">Clear Spatial</a></li>';
