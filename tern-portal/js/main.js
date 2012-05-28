@@ -29,6 +29,7 @@ $(function() {
     var s='';
     var w='';
     var mapResult;
+     var spatial_included_ids = '';
         
     // ROUTING 
     function routing(){
@@ -471,6 +472,8 @@ $(function() {
                     adv = 1;              
                 }
                 page = 1;
+                 //changeHashTo(formatSearch(search_term, 1, classFilter));
+                doSpatialSearch();
             }else{
                 search_term = $('#search-box').val();
                 adv = 0;
@@ -487,9 +490,32 @@ $(function() {
 	    
             changeHashTo(formatSearch(search_term, 1, classFilter));
 
+
         }).button();
 
     }
+    
+    	function doSpatialSearch(){
+		//$('#result-placeholder').html('Loading');
+       // $('#loading').show();$('#clearSearch').hide();
+
+        $.ajax({
+  			type:"POST",
+  			url: base_url+"/search/spatial/",
+  			data:"north="+n+"&south="+s+"&east="+e+"&west="+w,
+                        
+  				success:function(msg){
+  					spatial_included_ids = msg;
+                                       
+  					//console.log(spatial_included_ids);
+  					doNormalSearch();
+  				},
+  				error:function(msg){
+  					//console.log('spatial: error'+msg);
+  				}
+  		});
+	}
+        
     /* Reset all search values */
     function resetAllSearchVals(){
         search_term = '';
@@ -609,7 +635,7 @@ $(function() {
     } 
  
     function doNormalSearch(){
-        spatial_included_ids='';
+        //spatial_included_ids='';
         $.ajax({
             type:"POST",
             url: base_url+"/search/filter/",

@@ -723,6 +723,7 @@ class Search extends CI_Controller
 
         $this->load->model('registryobjects');
         $data['registryObjects'] = $this->registryobjects->spatial($north, $east, $south, $west);
+
         $this->load->view('search/listIDs', $data);
     }
 
