@@ -1,5 +1,5 @@
 <div class="borderMe collapsiblePanel borderBottomMe">  
-    <h3 class="head ui-widget-header">Fields Of Research (Group)</h3>
+    <h3 class="head ui-widget-header">Fields Of Research</h3>
     
  <?php 
         echo '<div id="forFilter" class="padding5">';
