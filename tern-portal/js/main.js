@@ -191,7 +191,8 @@ $(function() {
             
             if(arrgroupFilter.length>1)
             {
-                var idx=arrgroupFilter.indexOf($(this).attr('id'));
+                var idx=jQuery.inArray($(this).attr('id'),arrgroupFilter);
+                //var idx=arrgroupFilter.indexOf($(this).attr('id'));
                 arrgroupFilter.splice(idx,1);
                 groupFilter=arrgroupFilter.join(";");
             }else if(arrgroupFilter.length==1)
