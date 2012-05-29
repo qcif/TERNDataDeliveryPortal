@@ -542,8 +542,8 @@ function getStyle(styleName){
                     "Polygon": {*/
                         pointRadius: 9, 
                         fillColor: '#48D1CC', 
-                        fillOpacity: '0.7', 
-                        strokeColor: '#48D1CC', 
+                        fillOpacity: '1', 
+                        strokeColor: '#000000', 
                         strokeWidth: '1',
                         label: "${number}",
                         labelSelect: true
@@ -564,8 +564,8 @@ function getStyle(styleName){
                     "Polygon": {*/
                         pointRadius: 9,
                         fillColor: '#ff0000', 
-                        fillOpacity: '0.7', 
-                        strokeColor: '#ff0000', 
+                        fillOpacity: '1', 
+                        strokeColor: '#000000', 
                         strokeWidth: '1',
                         label: "${number}",
                         labelSelect: true
@@ -587,10 +587,10 @@ function getStyle(styleName){
                         strokeWidth: 3
                     },
                      "Polygon": {*/
-                         pointRadius: 9,
+                        pointRadius: 9,
                         fillColor: '#FFFF00', 
-                        fillOpacity: '0.7', 
-                        strokeColor: '#FFFF00', 
+                        fillOpacity: '1', 
+                        strokeColor: '#000000', 
                         strokeWidth: '1',
                         label: "${number}",
                         labelSelect: true
@@ -611,8 +611,8 @@ function getStyle(styleName){
                     "Polygon": {*/
                         pointRadius: 9,
                         fillColor: '#ff0000', 
-                        fillOpacity: '0.7',  
-                        strokeColor: '#ff0000', 
+                        fillOpacity: '1',  
+                        strokeColor: '#000000', 
                         strokeWidth: '1',
                         label: "${number}",
                         labelSelect: true
