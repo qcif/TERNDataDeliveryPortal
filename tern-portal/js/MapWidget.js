@@ -431,14 +431,17 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
             var attributes = {popupHTML: html, type: "polygon", number: number}
             var feature = new OpenLayers.Feature.Vector(
                         new OpenLayers.Geometry.Polygon([linear_ring]),attributes);          
-           
-            
+
             dataLayer.addFeatures([feature]);
       }
 }
-
+ 
 MapWidget.prototype.removeAllFeatures = function(){
     this.dataLayer.removeAllFeatures();
+    for (var i=0; i<this.map.popups.length; ++i) 
+    { 
+        this.map.removePopup(this.map.popups[i]); 
+    }; 
     
 }
 
