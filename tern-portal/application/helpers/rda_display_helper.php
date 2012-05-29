@@ -37,34 +37,37 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class, $hide=false){
 		case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
            
 	}
-	
-	echo '<div class="right-box">';
-	$arrowclass = ($hide)? "ui-icon-arrowthickstop-1-s" : "ui-icon-arrowthickstop-1-n";
-	$hideclass = ($hide)? "hide" : "" ;
-	echo '<h2 >'.$name;
-	echo '<span class="toggle-facet-field" id="' . $facet_name . '">
-			<span class="ui-icon ' . $arrowclass . ' toggle-facet-field"></span>
-			</span>';
-	echo '</h2>';
-	echo '<div class="facet-content ' .$hideclass . '">';
-	
-	echo '<ul class="more" id="'.$facet_name.'-facet">';
+	$object_type="";
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
-	
-	//print the others
-	for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
-		if($object_type[$i+1]>0){
-			if($object_type[$i]!=$facetFilter){
-				echo '<li class="limit">
-					<a href="javascript:void(0);" 
-						title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
-						class="'.$class.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
-			} 
-		}
-	}
-	echo '</ul>';
-	echo '</div>';
-	echo '</div>';
+        if(count($object_type)>0){
+            
+            echo '<div class="right-box">';
+            $arrowclass = ($hide)? "ui-icon-arrowthickstop-1-s" : "ui-icon-arrowthickstop-1-n";
+            $hideclass = ($hide)? "hide" : "" ;
+            echo '<h2 >'.$name;
+            echo '<span class="toggle-facet-field" id="' . $facet_name . '">
+                            <span class="ui-icon ' . $arrowclass . ' toggle-facet-field"></span>
+                            </span>';
+            echo '</h2>';
+            echo '<div class="facet-content ' .$hideclass . '">';
+
+            echo '<ul class="more" id="'.$facet_name.'-facet">';
+
+            //print the others
+            for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
+                    if($object_type[$i+1]>0){
+                            if($object_type[$i]!=$facetFilter){
+                                    echo '<li class="limit">
+                                            <a href="javascript:void(0);" 
+                                                    title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
+                                                    class="'.$class.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
+                            } 
+                    }
+            }
+            echo '</ul>';
+            echo '</div>';
+            echo '</div>';
+        }
 }
 
 /*
@@ -107,7 +110,7 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
             $idx = false;
             array_walk($object_type, 'trim');
             $idx = array_search($facetFilter[$i],$object_type, true);
-       
+         
             if($idx !== false){
                  echo '<li class="limit">
 		       <a href="javascript:void(0);" 
@@ -376,6 +379,18 @@ for($j=0;$j<count($object_type6);$j=$j+2)
         }else
         {
  */ 
+        echo '<div class="right-box">';
+	
+	
+	echo '<h2>Field of Research';
+	echo '<span class="toggle-facet-field" id="for">
+			<span class="ui-icon ui-icon-arrowthickstop-1-s toggle-facet-field"></span>
+			</span>';
+	echo '</h2>';
+	echo '<div class="facet-content hide">';
+	
+	
+	echo '<ul class="more">';
                $out_keys=array_keys($out);
               //print_r($out_keys);
               // print_r(count($out_keys));
@@ -396,12 +411,12 @@ for($j=0;$j<count($object_type6);$j=$j+2)
                // return $object_type;
   //      }
 
-
-
-
-       
-	
+       	echo '</ul>';
+	echo '</div>';
+	echo '</div>';	
+ 
 }
+
 /*
 // is this still being used? 
 function escapeSolrValueNoEncode($string){

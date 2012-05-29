@@ -32,7 +32,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 			echo '<li><a href="javascript:void(0);" id="" class="clearTemporal clearFilter" title="Search results are restricted to this timeline, Click to remove this filter">'.$temporal.'</a></li>';
 		}
 		if($spatial_included_ids!=''){
-			//echo '<li><a href="javascript:void(0);" id="clearSpatial" class="clearFilter" title="Search results are restricted to spatial, Click to remove this filter">Clear Spatial</a></li>';
+			echo '<li><a href="javascript:void(0);" id="" class="clearSpatial clearFilter" title="Search results are restricted to spatial, Click to remove this filter">Clear Spatial</a></li>';
 		}
 		//if($typeFilter!='All') displaySelectedFacet('type',$typeFilter,$json);
 		if($groupFilter!='All') displaySelectedFacet('group',$groupFilter,$json);
@@ -56,24 +56,9 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 	*/
 	//displayFacet('type', $typeFilter, $json, $classFilter, $this);
 	displayFacet('subject_value', $subjectFilter, $json, $classFilter);
-         echo '<div class="right-box">';
-	
-	
-	echo '<h2>Field of Research';
-	echo '<span class="toggle-facet-field" id="for">
-			<span class="ui-icon ui-icon-arrowthickstop-1-s toggle-facet-field"></span>
-			</span>';
-	echo '</h2>';
-	echo '<div class="facet-content hide">';
-	
-	
-	echo '<ul class="more">';
-        $obj_type=displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$json, $classFilter, $this);
-        
+       
+        displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$json, $classFilter, $this);      
 
-       	echo '</ul>';
-	echo '</div>';
-	echo '</div>';	
         displayFacet('group', $groupFilter, $json, $classFilter, true);
 	  
        

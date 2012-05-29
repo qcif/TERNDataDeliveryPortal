@@ -211,6 +211,12 @@ $(function() {
             forsixFilter = 'All';
         }else if($(this).hasClass('clearTemporal')){
             temporal = 'All';
+        }else if($(this).hasClass('clearSpatial')){
+            n = '';
+            e = '';
+            w = '';
+            s = '';
+            spatial_included_ids = '';
         }
         changeHashTo(formatSearch(search_term,1,classFilter));
     });
@@ -446,7 +452,8 @@ $(function() {
                 n=nl.value;
                 s=sl.value;
                 e=el.value;
-                w=wl.value;               
+                w=wl.value;  
+                spatial_included_ids='';
                            
                 //FOR filtering 
                 if( document.getElementById("forfourFilter") != null && $('#forfourFilter').val()!='')  forfourFilter = $('#forfourFilter').val();
@@ -504,15 +511,9 @@ $(function() {
                  //changeHashTo(formatSearch(search_term, 1, classFilter));
                 //doSpatialSearch();
             }else{
+                resetAllSearchVals();
                 search_term = $('#search-box').val();
-                adv = 0;
-                n = '';
-                w = '';
-                e = '';
-                s = '';
-                groupFilter = 'All'
-                forfourFilter = 'All';
-                temporal = 'All';
+              
                 
                 
             }   		

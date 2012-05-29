@@ -38,9 +38,9 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
 	}
 	
 
-	
+	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
+        if(is_array($object_type)){
 	echo '<div class="right-box shadow">';
-	
 	
 	echo '<h2>'.$name;
 	/*echo '<span class="toggle-facet-field">
@@ -50,7 +50,6 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
 	echo '<div class="facet-content">';
 
 	echo '<ul class="more" id="'.$facet_name.'-facet">';
-	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
 	
 	//print the others
 	for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
@@ -68,6 +67,7 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
 	echo '</ul>';
 	echo '</div>';
 	echo '</div>';
+        }
 }
 
 /*
