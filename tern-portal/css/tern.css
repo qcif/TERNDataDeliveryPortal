@@ -239,6 +239,10 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 /* container layout */
 
+#container {
+    max-width:1200px;
+    
+}
 .ui-layout-center P.ui-layout-content {
     line-height:	1.4em;
     margin:			0; /* remove top/bottom margins from <P> used as content-div */
@@ -440,12 +444,17 @@ div.olLayerGooglePoweredBy
 
 
 /* Homepage Tab */
-#tab{
-    width: 70%;
-    min-width: 900px;
-    margin: 0 auto;
-}
 
+.firstcolumn{
+    width:50%;
+    float:left;
+    margin-right:-10px;
+    border-right:1px solid #AAAAAA;
+}
+.secondcolumn{
+    width:50%;
+    float:left;
+}
 #hp-left{ 
     width:50%;
     float:left;
