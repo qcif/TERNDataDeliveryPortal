@@ -328,11 +328,11 @@ MapWidget.prototype.toggleControl = function(element) {
      *    
      *  ------------------------------------------------------------
      */
-MapWidget.prototype.addDataLayer = function(clickInfo) {
+MapWidget.prototype.addDataLayer = function(clickInfo,style) {
     var self = this;
-    var styleM = getStyle("default");
+    var styleM = getStyle(style);
     this.dataLayer = new OpenLayers.Layer.Vector( "Data Markers", {styleMap: styleM});
-    this.map.addLayer(this.dataLayer);
+    this.map.addLayer(this.dataLayer);  
     if(clickInfo){
          this.selectControl = new OpenLayers.Control.SelectFeature(this.dataLayer,
                 {onSelect: function(e) {                          
@@ -528,27 +528,19 @@ function getStyle(styleName){
       switch(styleName){
           case "default" : {
                 style = {
-                 /*   "Point":  {
-                        'externalGraphic': 'http://www.openlayers.org/dev/img/marker-blue.png', 
-                        'graphicWidth': '21', 
-                        'graphicHeight': '25', 
-                        'graphicXOffset': -10, 
-                        'graphicYOffset': -25,  
-                        'graphicOpacity': 1
-                    },
-                    "Line": {
-                        strokeWidth: 3
-                    },
-                    "Polygon": {*/
                         pointRadius: 9, 
                         fillColor: '#48D1CC', 
                         fillOpacity: '1', 
                         strokeColor: '#000000', 
                         strokeWidth: '1',
                         label: "${number}",
-                        labelSelect: true
-                   // }
-                }
+                        labelSelect: true  
+                } /*, { context : {
+                    radius: function(feature){
+                        return Math.min(features.attributes.count,7) +3;
+                    }
+                }}*/;
+               
                 styleSelected = {
                     /*"Point":  {
                         'externalGraphic': 'http://www.openlayers.org/dev/img/marker.png', 
@@ -571,6 +563,11 @@ function getStyle(styleName){
                         labelSelect: true
                    // }
                 }
+                /*, { context : {
+                    radius: function(feature){
+                        return Math.min(features.attributes.count,7) +3;
+                    }
+                }}*/;
                   
           };break;
           case "red" : {
@@ -617,6 +614,28 @@ function getStyle(styleName){
                         label: "${number}",
                         labelSelect: true
                    // }
+                }
+          };break;
+          case "transparent" : {
+                       style = {
+                        pointRadius: 9, 
+                        fillColor: '#48D1CC', 
+                        fillOpacity: '0.7', 
+                        strokeColor: '#000000', 
+                        strokeWidth: '1',
+                        label: "${number}",
+                        labelSelect: true
+
+                }
+                styleSelected = {
+
+                        pointRadius: 9,
+                        fillColor: '#ff0000', 
+                        fillOpacity: '0.7', 
+                        strokeColor: '#000000', 
+                        strokeWidth: '1',
+                        label: "${number}",
+                        labelSelect: true
                 }
           };break;
       }

@@ -382,7 +382,7 @@ $(function() {
         var resizeMap = function(){
              if(typeof mapResult !== 'undefined') mapResult.map.updateSize();
           }
-   
+        setupOuterLayout();
         setupNestedLayout(resizeMap);  
                 
         
@@ -397,7 +397,7 @@ $(function() {
 
         // Results Map
         mapResult = new MapWidget('result-map');
-        mapResult.addDataLayer(true);
+        mapResult.addDataLayer(true,"default");
         
         // SEARCH MAP
         var mapWidget; 
@@ -690,8 +690,7 @@ $(function() {
     * Execute the functions only available in home page
     */
     function initHomePage(){
-
-        $('#tab').tabs();
+        setupOuterLayout();
         $('.hp-icons img').hover(function(){
             id = $(this).attr('id');
 
@@ -1007,7 +1006,7 @@ function initSubjectsSEEALSO(){
     
 function initViewMap(mapId, centerSelector,coverageSelector){
     var mapView = new MapWidget(mapId);
-     mapView.addDataLayer(false);
+     mapView.addDataLayer(false,"transparent");
      mapView.addVectortoDataLayer(centerSelector,false);
      mapView.addVectortoDataLayer(coverageSelector,false);
 	}

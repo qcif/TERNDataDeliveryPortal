@@ -22,12 +22,10 @@ function sizeCenterPane () {
     outerLayout.resizeAll();
 }
 
-function setupNestedLayout(mapResize){
-    /*                              LAYOUT
+function setupOuterLayout(){
+       /*                              LAYOUT
     *              Set outer container to div#container
-    *              Set inner container to div#content 
     */
-
     // first set a 'fixed height' on the container so it does not collapse...
     var $Container = $('#container')
     $Container.height( $(window).height() - $Container.offset().top );
@@ -40,10 +38,22 @@ function setupNestedLayout(mapResize){
         west__spacing_closed: 30
         , 
         west__togglerLength_closed: 80
-        , 
+        ,
+        west__closable: false,
+        east__closable: false,
+        east__size:300,
+        east__resizable: false,                
         togglerClass:	"toggler"	// default = 'ui-layout-toggler'
     });
     
+}
+function setupNestedLayout(mapResize){
+    /*                              LAYOUT
+    *              Set outer container to div#container
+    */
+
+    // first set a 'fixed height' on the container so it does not collapse...
+  
     var $Content = $('#ui-layout-center')
     $Content.height( $(window).height() - $Content.offset().top );
     

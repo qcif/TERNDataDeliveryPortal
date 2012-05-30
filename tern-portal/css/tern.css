@@ -240,7 +240,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 /* container layout */
 
 #container {
-    max-width:1200px;
+   max-width:1200px;
     
 }
 .ui-layout-center P.ui-layout-content {
@@ -450,6 +450,7 @@ div.olLayerGooglePoweredBy
     float:left;
     margin-right:-10px;
     border-right:1px solid #AAAAAA;
+    height:100%
 }
 .secondcolumn{
     width:50%;
@@ -458,13 +459,12 @@ div.olLayerGooglePoweredBy
 #hp-left{ 
     width:50%;
     float:left;
-    padding-right: 10px;
-}
-.list_item{
-    height:120px;
-    overflow:hidden;
+    margin-right: 15px;
 }
 
+#hp-left li {
+    display: table;
+}
 .linkdata
 {
     display:block;

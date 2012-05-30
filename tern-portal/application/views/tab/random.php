@@ -5,7 +5,7 @@ $half = round($count / 2);
 function printRecord($r){
      $ro_key = $r->{'key'};
             $name =  $r->{'displayTitle'};
-            $descriptions = array();if(isset($r->{'description_value'})) $descriptions = $r->{'description_value'};
+           /* $descriptions = array();if(isset($r->{'description_value'})) $descriptions = $r->{'description_value'};
             $description_type=array();if(isset($r->{'description_type'})) $description_type = $r->{'description_type'};
 	    $brief = '';$found_brief = false;
             $full = '';$found_full = false;
@@ -17,9 +17,10 @@ function printRecord($r){
                             $full = $descriptions[$key];
                             $found_full = true;
                     }
-            }
-            echo '<div class="list_item">'; 
-            echo '<h2><a href="view/dataview?key='.$ro_key.'" class="record-list">'.$name.'</a></h2>';
+            }*/
+            echo '<li>'; 
+            echo '<a href="view/dataview?key='.$ro_key.'" class="record-list">'.$name.'</a>';
+            /*
             //DESCRIPTIONS';
             if($found_brief || $found_full){
                 echo '<p>';
@@ -36,8 +37,8 @@ function printRecord($r){
                 }
                 
                     echo '</p> ';
-            }
-            echo '</div>';
+            }*/
+            echo '</li>';
 }
 ?>
 <div id="hp-left">
