@@ -295,8 +295,16 @@ $(function() {
             }
             //enable clicking button controllers
             enableToolbarClick(mapWidget);
+            //activate drawing immediately
+            $("#box").trigger('click');          
             //changing coordinates on textbox should change the map appearance
-            enableCoordsChange(mapWidget);
+            enableCoordsChange(mapWidget);            
+            //Done button
+            $('#doneMap').click(function(){
+               $('#coords').show(); 
+               $('#overlaymap').dialog('close');
+            }).button();
+
         }
         return mapWidget;
     }

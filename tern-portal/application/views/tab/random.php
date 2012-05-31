@@ -42,16 +42,18 @@ function printRecord($r){
 }
 ?>
 <div id="hp-left">
+    <ul>
     <?php 
         for($i=0;$i<$half; $i++){
            printRecord($recordsArr[$i]);
         }
     ?>
-</div>
-<div id="hp-right">
+<!--/div>
+<div id="hp-right"-->
      <?php 
         for($i=$half;$i<$count; $i++){
            printRecord($recordsArr[$i]);
         }
     ?>
+    </ul>
 </div>

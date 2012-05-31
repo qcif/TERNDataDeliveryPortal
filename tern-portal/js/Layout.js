@@ -113,7 +113,7 @@ function setupNestedLayout(mapResize){
         autoHeight:false,
         event: ""
     });
-     $("#accordion h3").click(function(){
+     $("#accordion h2").click(function(){
         if($("#accordion").accordion("option","active") == 1 ) {
             $("#accordion").accordion("option","active",0);
         }else if($("#accordion").accordion("option","active") == 0  ) {

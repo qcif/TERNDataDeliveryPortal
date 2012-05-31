@@ -240,7 +240,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 /* container layout */
 
 #container {
-   max-width:1200px;
+  /* max-width:1200px;*/
     
 }
 .ui-layout-center P.ui-layout-content {
@@ -263,7 +263,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 .ui-layout-west h3,.ui-layout-facet h3 {
     margin:0;
-    padding: 7px 10px;
+    padding: 0px 10px;
 }
 .ui-layout-resizer-west-closed{
     border-left: 1px solid #BBBBBB;
@@ -323,17 +323,17 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
  }
 /*Research Institution Form*/
 label{vertical-align:middle; font: 11px Arial,Helvetica,sans-serif}
-div.checkitem{ margin-top: 0.5em; clear: both; line-height:15px }
+div.checkitem{clear: both; }
 
 /*Temporal form */
-div#temporalFilter{ height: 23px;vertical-align: middle; margin-top: 0.5em; }
+div#temporalFilter{ height: 23px;vertical-align: middle; }
 div#temporalFilter img{vertical-align:middle;}
 
 /*SPATIAL form */
 div#spatialmap{width:430px;height:430px;overflow:auto;display:block;}
 
 /*FOR form*/
-div#forFilter{ height:20px; margin-top: 0.5em;}
+div#forFilter{ height:20px; }
 
 /* BASIC SEARCH FORM */
 .searchbox{
@@ -364,6 +364,11 @@ div#panel_advSearch .ui-widget-header{
     border-left: 0;
     border-right: 0;
 }
+#doneMap{
+    padding: 0.15em 1em;
+    margin-left: 10px;
+}
+
 .collapsiblePanel{
     padding-bottom:5px;
     cursor: pointer; 
@@ -462,7 +467,7 @@ div.olLayerGooglePoweredBy
     margin-right: 15px;
 }
 
-#hp-left li {
+#hp-left ul {
     display: table;
 }
 .linkdata

@@ -12,9 +12,9 @@
 
             <div class="ui-layout-west hidden">    
                 <div id="accordion" class="accordion">
-                    <h3 id="basicSearchH3"><a href="#">Basic Search</a></h3>
+                    <h2 id="basicSearchH2"><a href="#">Basic Search</a></h3>
                     <?php $this->load->view('tab/widgets/basicsearch');?>               
-                    <h3 id="advSearchH3"><a href="#">Advanced Search</a></h3>
+                    <h2 id="advSearchH2"><a href="#">Advanced Search</a></h3>
                     <div class="padding5">
                      
                     <?php if($widget_keyword) { ?> 
