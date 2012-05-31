@@ -250,6 +250,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 } 
 .ui-layout-center{
     padding:0;
+    border: 0;
 }
 
 .ui-layout-center .ui-widget-content{
@@ -265,10 +266,14 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
     margin:0;
     padding: 0px 10px;
 }
+/*
 .ui-layout-resizer-west-closed{
     border-left: 1px solid #BBBBBB;
     border-top: 1px solid #BBBBBB;
 }
+*/
+.ui-layout-pane{ border:0;}
+/*
 .toggler-west-closed{
     background: url('/img/icon/pnl_search_green.png') no-repeat;
     height: 80px;
@@ -295,6 +300,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 .middletoggler-north-open{
     background: #AAAAAA;
 }
+*/
 .padding5{
     padding:5px;
 }
@@ -305,11 +311,11 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
     margin:10px;
 }
 
-.ui-layout-map { padding:0; border:0}
+.ui-layout-map { height: 450px;  padding:0; border:0; text-align: center}
 
 .ui-layout-facet{ border:0;}
 
-#ui-layout-facetmap {height: 300px; padding:0; border:0}
+#ui-layout-facetmap {padding:0; border:0; }
 
 /* WEST SEARCH  */
  .head{ margin-bottom: 5px; }
@@ -323,10 +329,10 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
  }
 /*Research Institution Form*/
 label{vertical-align:middle; font: 11px Arial,Helvetica,sans-serif}
-div.checkitem{ clear: both;}
+div.checkitem{clear: both; }
 
 /*Temporal form */
-div#temporalFilter{ height: 23px;vertical-align: middle;  }
+div#temporalFilter{ height: 23px;vertical-align: middle; }
 div#temporalFilter img{vertical-align:middle;}
 
 /*SPATIAL form */
@@ -364,7 +370,6 @@ div#panel_advSearch .ui-widget-header{
     border-left: 0;
     border-right: 0;
 }
-
 #doneMap{
     padding: 0.15em 1em;
     margin-left: 10px;
@@ -372,8 +377,6 @@ div#panel_advSearch .ui-widget-header{
 #doneMapDiv{
     float:right;
 }
-
-
 .collapsiblePanel{
     padding-bottom:5px;
     cursor: pointer; 
@@ -404,7 +407,9 @@ div#panel_advSearch .ui-widget-header{
 
 /* MAP Results*/
 #result-map{
-    height: 100%;   
+    height: 450px;
+    width: 600px;
+    margin: 0 auto ! important;
 }
 .centertext{
     text-align: center;

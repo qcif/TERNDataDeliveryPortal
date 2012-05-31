@@ -41,15 +41,10 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class, $hide=false){
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         if(count($object_type)>0){
             
-            echo '<div class="right-box">';
-            $arrowclass = ($hide)? "ui-icon-arrowthickstop-1-s" : "ui-icon-arrowthickstop-1-n";
-            $hideclass = ($hide)? "hide" : "" ;
-            echo '<h2 >'.$name;
-            echo '<span class="toggle-facet-field" id="' . $facet_name . '">
-                            <span class="ui-icon ' . $arrowclass . ' toggle-facet-field"></span>
-                            </span>';
-            echo '</h2>';
-            echo '<div class="facet-content ' .$hideclass . '">';
+           $hideclass = ($hide)? "hide" : "" ;
+            echo '<h5 ><a href="#">'.$name;
+            echo '</a></h5>';
+            echo '<div class="facet-content">';
 
             echo '<ul class="more" id="'.$facet_name.'-facet">';
 
@@ -65,7 +60,6 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class, $hide=false){
                     }
             }
             echo '</ul>';
-            echo '</div>';
             echo '</div>';
         }
 }
@@ -379,14 +373,9 @@ for($j=0;$j<count($object_type6);$j=$j+2)
         }else
         {
  */ 
-        echo '<div class="right-box">';
-	
-	
-	echo '<h2>Field of Research';
-	echo '<span class="toggle-facet-field" id="for">
-			<span class="ui-icon ui-icon-arrowthickstop-1-s toggle-facet-field"></span>
-			</span>';
-	echo '</h2>';
+ 
+	echo '<h5>Field of Research';
+	echo '</h5>';
 	echo '<div class="facet-content hide">';
 	
 	
@@ -413,7 +402,7 @@ for($j=0;$j<count($object_type6);$j=$j+2)
 
        	echo '</ul>';
 	echo '</div>';
-	echo '</div>';	
+
  
 }
 

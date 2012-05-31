@@ -515,14 +515,11 @@ $(function() {
                     adv = 1;              
                 }
                 page = 1;
-                 //changeHashTo(formatSearch(search_term, 1, classFilter));
-                //doSpatialSearch();
+
             }else{
                 resetAllSearchVals();
                 search_term = $('#search-box').val();
-              
-                
-                
+             
             }   		
 	    
             changeHashTo(formatSearch(search_term, 1, classFilter));
@@ -598,7 +595,8 @@ $(function() {
         var divs = $(msg).filter(function(){return $(this).is('div')});
         divs.each(function() {
             if($(this).attr('id') == 'facet-content')  {
-                 $('#ui-layout-facet').html($(this).html());
+                 $('#facet-accordion').html($(this).html());
+                 $('#facetH2').removeClass('hide');
             }
             else if($(this).attr('id') == 'search-results-content') {        
                 $('#search-result').html($(this).html());
@@ -645,7 +643,8 @@ $(function() {
             return false;
         });
         
-        handlefacetSlide();
+       sizeCenterPane();
+
          
         //LIMIT 5
         $("ul.more").each(function() {

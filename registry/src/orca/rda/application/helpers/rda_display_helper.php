@@ -42,11 +42,11 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
         if(is_array($object_type)){
 	echo '<div class="right-box shadow">';
 	
-	echo '<h2>'.$name;
+	echo '<h3>'.$name;
 	/*echo '<span class="toggle-facet-field">
 			<img src="'.base_url().'img/sort-alpha.png" id="'.$facet_name.'-facetSort" class="toggle-facet-sort"/>
 			</span>';*/
-	echo '</h2>';
+	echo '</h3>';
 	echo '<div class="facet-content">';
 
 	echo '<ul class="more" id="'.$facet_name.'-facet">';

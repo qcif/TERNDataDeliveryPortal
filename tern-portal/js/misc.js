@@ -1,13 +1,13 @@
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
- */
 
+ /*
 function handlefacetSlide()
 {
-            /*
+           
 	 * show-hide facet content, slide up and down
-	 */
+	
         $('.toggle-facet-field').die('click').live('click', function(){
             //console.log($(this).parent().parent().next('div.facet-content'));
             $(this).parent().parent().next('div.facet-content').slideToggle();
@@ -18,7 +18,7 @@ function handlefacetSlide()
         });
      
 }
-
+ */
 function handlerecordpopupSlide()
 {
 

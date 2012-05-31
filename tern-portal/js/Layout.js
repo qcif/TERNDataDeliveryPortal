@@ -1,20 +1,21 @@
 var outerLayout,middleLayout,innerLayout;
       
-function sizeCenterPane () {
+function sizeCenterPane() {
     var $Container	= $('#container')
     ,	$Pane		= $('.ui-layout-center')
-    ,	$Content	= $('#search-result')
+    ,	$Content1	= $('#search-result')
+    ,   $Content2       = $('#ui-layout-facetmap')
     ,	outerHeight = $Pane.outerHeight()
     // use a Layout utility to calc total height of padding+borders (also handles IE6)
-    ,	panePadding	= outerHeight - $.layout.cssHeight($Pane, outerHeight)
+    ,       panePadding     = outerHeight - $.layout.cssHeight($Pane, outerHeight)
     ,       $West           = $('.ui-layout-west')
     ,       $WestContent    = $('#accordion')
     ,       outerWestHeight  = $West.outerHeight()      
     ,       paneWestPadding	= outerWestHeight - $.layout.cssHeight($West, outerWestHeight)
     ;
-    if(( $Pane.position().top + $Content.outerHeight() + panePadding + 300 ) > ( $West.position().top + $WestContent.outerHeight() + paneWestPadding )) {
+    if(( $Pane.position().top + $Content1.outerHeight() + $Content2.outerHeight() + panePadding  ) > ( $West.position().top + $WestContent.outerHeight() + paneWestPadding )) {
         // update the container height - *just* tall enough to accommodate #Content without scrolling
-        $Container.height( $Pane.position().top + $Content.outerHeight() + panePadding + 300 );
+        $Container.height( $Pane.position().top + $Content1.outerHeight() + $Content2.outerHeight() + panePadding );
     }else{
         $Container.height( $West.position().top + $WestContent.outerHeight() + paneWestPadding + 220  );
     }
@@ -23,7 +24,7 @@ function sizeCenterPane () {
 }
 
 function setupOuterLayout(){
-       /*                              LAYOUT
+    /*                              LAYOUT
     *              Set outer container to div#container
     */
     // first set a 'fixed height' on the container so it does not collapse...
@@ -33,17 +34,11 @@ function setupOuterLayout(){
     // OUTER LAYOUT
     outerLayout = $('#container').layout({
         west__size: 300,
-        west__resizable : false
-        , 
-        west__spacing_closed: 30
-        , 
-        west__togglerLength_closed: 80
-        ,
-        west__closable: false,
-        east__closable: false,
+        resizable : false,
+        closable: false,
         east__size:300,
-        east__resizable: false,                
-        togglerClass:	"toggler"	// default = 'ui-layout-toggler'
+        spacing_open: 0
+       // togglerClass:	"toggler"	// default = 'ui-layout-toggler'
     });
     
 }
@@ -57,7 +52,7 @@ function setupNestedLayout(mapResize){
     var $Content = $('#ui-layout-center')
     $Content.height( $(window).height() - $Content.offset().top );
     
-
+ /*
     middleLayout = $('#ui-layout-center').layout({ 
         center__paneSelector:	"#search-result" 
         ,	
@@ -81,18 +76,11 @@ function setupNestedLayout(mapResize){
         }
     }); 
     
-   
+  
     innerLayout = $('#ui-layout-facetmap').layout({ 
         center__paneSelector:	"#ui-layout-map" 
         ,	
-        west__paneSelector:	"#ui-layout-facet" 
-        ,	
-        west__size:				300 
-        , 
-        west__spacing_closed: 30
-        , 
-        west__togglerLength_closed: 80
-        , 
+        
         togglerClass:	"innertoggler"	// default = 'ui-layout-toggler'
         ,
         resizable: false
@@ -101,8 +89,8 @@ function setupNestedLayout(mapResize){
             innerLayout.resizeAll();
             mapResize(); 
         }
-    }); 
-
+    });  
+    */
     // now RESIZE the container to be a perfect fit
      sizeCenterPane();
     $(".collapsiblePanel .head").click(function()
@@ -110,10 +98,12 @@ function setupNestedLayout(mapResize){
         $(this).next("div").slideToggle(300);
     });
     $("#accordion").accordion({
-        autoHeight:false,
-        event: ""
+        autoHeight:false
     });
-     $("#accordion h2").click(function(){
+    $("#facet-accordion").accordion({
+        header: 'h5' 
+    });
+    /* $("#accordion h2").click(function(){
         if($("#accordion").accordion("option","active") == 1 ) {
             $("#accordion").accordion("option","active",0);
         }else if($("#accordion").accordion("option","active") == 0  ) {
@@ -121,6 +111,7 @@ function setupNestedLayout(mapResize){
         }
  
     }); 
+    */
 }
 
            

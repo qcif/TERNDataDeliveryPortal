@@ -24,7 +24,6 @@ $Revision: 1 $
 
 <?php if($json):?>	
         <div id="facet-content">
-            <h3 class="ui-widget-header"> Facets </h3>
             <?php $this->load->view('search/facet');?> 
         </div>
         <div id="search-results-content" >

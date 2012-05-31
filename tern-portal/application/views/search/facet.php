@@ -24,9 +24,8 @@ $Revision: 1 $
 
 if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All'))
 {
-	echo '<div class="right-box">';
-	echo '<h2>Selected</h2>';
-	echo '<div class="facet-content">';
+	echo '<h5>Selected</h5>';
+	echo '<div>';
 		echo '<ul>';
 		if($temporal!='All'){
 			echo '<li><a href="javascript:void(0);" id="" class="clearTemporal clearFilter" title="Search results are restricted to this timeline, Click to remove this filter">'.$temporal.'</a></li>';
@@ -41,9 +40,9 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
                  if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
                //   if($forsixFilter!='All') displaySelectedFacet('for_value_six',$forsixFilter,$json);
 
-		echo '</ul>';
-	echo '</div>';
-	echo '</div>';    
+	echo '</ul>';
+        echo '</div>';
+  
 }
 
 ?>
