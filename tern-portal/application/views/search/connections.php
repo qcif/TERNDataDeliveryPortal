@@ -35,7 +35,7 @@ $person["id"] = 'person';
 $person["action_id"] = 'type_id="person"';
 // display the research group connections
 
-$group["heading"] = '<h3><img  class="icon-heading-connections" src="'.base_url().'/img/icon/party_multi_16.png"/>Research Groups</h3>';
+$group["heading"] = '<h3 style="margin-top:2px;margin-bottom:2px"><img  class="icon-heading-connections" src="'.base_url().'/img/icon/party_multi_16.png"/>Research Groups</h3>';
 $group["title"] = 'research group';
 $group["titles"] = 'research groups';
 $group["id"] = 'group';

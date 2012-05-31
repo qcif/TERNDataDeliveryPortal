@@ -41,16 +41,16 @@
 		<xsl:if test="ro:relatedObject/ro:relatedObjectClass!=''">
 		<div class="right-box">
 			<div id="infoBox" class="hide"></div>
-			<h2>Connections</h2>
+			<h2 style="margin-top:2px;margin-bottom:2px">Connections</h2>
 			<div class="limitHeight300">
 			
 			<xsl:if test="ro:relatedObject/ro:relatedObjectClass = 'Collection' and $objectClass != 'Collection'">
-			<h3><img  class="icon-heading-connections">
+			<h3 style="margin-top:2px;margin-bottom:2px"><img  class="icon-heading-connections">
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
 				<xsl:text>/img/icon/</xsl:text>
 				<xsl:text>collections_16.png</xsl:text></xsl:attribute>
 				</img>Collections</h3>	
-			<ul id="c-collections">				
+			<ul id="c-collections" style="margin-top:2px;margin-bottom:2px">				
 			<xsl:for-each select="ro:relatedObject[ro:relatedObjectClass='Collection']">		
 				<!--  xsl:if test="ro:relatedObjectClass != $objectClass and ro:relatedObjectClass='Collection' "-->
 				   <xsl:variable name="position" select="position()"/>
@@ -63,12 +63,12 @@
 			</xsl:if>				
 			<xsl:if test="ro:relatedObject/ro:relatedObjectClass = 'Party' and $objectClass != 'Party'">
 				<xsl:if test="ro:relatedObject/ro:relatedObjectType = 'person'">
-					<h3><img  class="icon-heading-connections">
+					<h3 style="margin-top:2px;margin-bottom:2px"><img  class="icon-heading-connections">
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
 				<xsl:text>/img/icon/</xsl:text>
 				<xsl:text>party_one_16.png</xsl:text></xsl:attribute>
 				</img>Researchers</h3>
-					<ul id="c-researchers">
+					<ul id="c-researchers" style="margin-top:2px;margin-bottom:2px">
 					<xsl:for-each select="ro:relatedObject[ro:relatedObjectType='person']">		
 				   <xsl:variable name="position" select="position()"/>
 				   <xsl:if test="$position &lt; 8">
@@ -79,7 +79,7 @@
 				</xsl:if>
 				
 				<xsl:if test="ro:relatedObject/ro:relatedObjectType = 'group'">
-					<h3><img  class="icon-heading-connections">
+                                <h3 style="margin-top:2px;margin-bottom:2px"><img  class="icon-heading-connections">
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
 				<xsl:text>/img/icon/</xsl:text>
 				<xsl:text>party_multi_16.png</xsl:text></xsl:attribute>
