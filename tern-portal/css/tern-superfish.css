@@ -76,9 +76,11 @@ ul.sf-menu li li li.sfHover ul {
 .top-menu-cover{ 
 	height:40px;
         text-align: center;
-        margin-top: 22px;
-        margin-left: 10px;
-        float:right;
+       /* margin-top: 22px;
+        margin-left: 10px;*/
+       margin:0 auto;
+       width: 1200px;
+       /* float:right;*/
 	/*Gradient border:1px solid black;*/
 	/* Old browsers */
 	
@@ -86,10 +88,10 @@ ul.sf-menu li li li.sfHover ul {
 }
 .sf-menu {
 	position:relative;
-	display:inline;
+	/*display:inline;*/
 
 	/*width:960px;*/
-	padding-left:1em;
+	padding-left:28em;
 	/*General Styling*/
 	color: white;
 	overflow:visible;

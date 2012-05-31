@@ -164,7 +164,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 .limitHeight200{max-height:200px;overflow:auto;}
 
 #wrapper{background: url('../img/header.png') repeat-x scroll left top transparent; margin:0}
-#header{ position:relative;width: 100% }
+#header{ position:relative;width: 100%; }
 /* footer styles */
 #phone {
     float:left;
@@ -197,7 +197,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
  * Includes Logo and Searching Parts
 */
 #mid{width:790px;margin:0 auto;position:relative;text-align:center;padding:0; }
-#logo{ width:131px; float:left; margin-top: 17px; margin-left:17px}
+#logo{ width:131px; margin-top: 17px; margin-left:17px;}
 #logo h1{
     color:#0a450a;margin:0;padding:0;font-weight:bold;text-shadow: 2px 2px 2px #fff;font-size:23px;
 }
@@ -240,7 +240,8 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 /* container layout */
 
 #container {
-  /* max-width:1200px;*/
+  max-width:1200px;
+ margin:0 auto;
     
 }
 .ui-layout-center P.ui-layout-content {
