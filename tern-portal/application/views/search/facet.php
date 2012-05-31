@@ -24,7 +24,7 @@ $Revision: 1 $
 
 if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All'))
 {
-	echo '<h5>Selected</h5>';
+	echo '<h5>Selected</h5>'; 
 	echo '<div>';
 		echo '<ul>';
 		if($temporal!='All'){
@@ -58,7 +58,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
        
         displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$json, $classFilter, $this);      
 
-        displayFacet('group', $groupFilter, $json, $classFilter, true);
+        displayFacet('group', $groupFilter, $json, $classFilter);
 	  
        
 ?>

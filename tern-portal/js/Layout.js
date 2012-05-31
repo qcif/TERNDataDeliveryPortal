@@ -100,9 +100,7 @@ function setupNestedLayout(mapResize){
     $("#accordion").accordion({
         autoHeight:false
     });
-    $("#facet-accordion").accordion({
-        header: 'h5' 
-    });
+
     /* $("#accordion h2").click(function(){
         if($("#accordion").accordion("option","active") == 1 ) {
             $("#accordion").accordion("option","active",0);

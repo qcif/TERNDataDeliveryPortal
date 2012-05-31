@@ -34,11 +34,12 @@
                     <?php if($widget_for){  ?>
                      <?php $this->load->view('tab/widgets/researchfield');?>              
                     <?php } ?>
+                          <?php $this->load->view('tab/widgets/buttonsearch');?>
                       </div>
                     <h2 id="facetH2" class="hide"><a href="#">Refine</a></h2>
                     <div id="facet-frame"><div id="facet-accordion" class="accordion"></div></div>         
                  </div>
-                     <?php $this->load->view('tab/widgets/buttonsearch');?>
+                   
                
            </div> 
             

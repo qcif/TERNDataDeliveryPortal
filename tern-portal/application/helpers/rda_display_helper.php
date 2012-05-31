@@ -23,7 +23,7 @@ limitations under the License.
  * function prints out HTML
  * used in facet view
  */
-function displayFacet($facet_name, $facetFilter, $json, $ro_class, $hide=false){
+function displayFacet($facet_name, $facetFilter, $json, $ro_class){
 	
 	$clear ='';$name = '';$class='';
 	
@@ -41,7 +41,6 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class, $hide=false){
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         if(count($object_type)>0){
             
-           $hideclass = ($hide)? "hide" : "" ;
             echo '<h5 ><a href="#">'.$name;
             echo '</a></h5>';
             echo '<div class="facet-content">';
@@ -374,9 +373,9 @@ for($j=0;$j<count($object_type6);$j=$j+2)
         {
  */ 
  
-	echo '<h5>Field of Research';
-	echo '</h5>';
-	echo '<div class="facet-content hide">';
+	echo '<h5><a href="#">Field of Research';
+	echo '</a></h5>';
+	echo '<div >';
 	
 	
 	echo '<ul class="more">';

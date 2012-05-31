@@ -433,19 +433,32 @@ $(function() {
         // If user presses enter in the inputs, submit the form
         $('.ui-layout-west input').keypress(function(e) {
             if(e.which == 13) {
-                $('#search_advanced').trigger('click');
+                 if($( "#accordion" ).accordion( "option", "active" ) == 1 ){
+                         $('#search_advanced').trigger('click');
+                 }else{
+                        $('#search_basic').trigger('click');
+                 }
             }
         });
         
          autocomplete('#search-box');
          autocomplete('input[name^=keyword]');
-         
+        /*
+        * Big search button
+        */
+        $('#search_basic').click(function(){
+            resetAllSearchVals();
+            search_term = $('#search-box').val();
+      
+            changeHashTo(formatSearch(search_term, 1, classFilter));
+        }).button();     
+        
         //Submit button
         $('#search_advanced').click(function(){
             //Reset search term
             resetAllSearchVals();
             //check which panel is active 0 is basic, 1 is advanced
-            if($( "#accordion" ).accordion( "option", "active" ) == 1 ){  // handle advanced search 
+          //  if($( "#accordion" ).accordion( "option", "active" ) == 1 ){  // handle advanced search 
                 
                 //Advanced search widgets                 
                 temporal = temporalWidget.getTemporalValues();
@@ -516,12 +529,12 @@ $(function() {
                 }
                 page = 1;
 
-            }else{
+           /* }else{
                 resetAllSearchVals();
                 search_term = $('#search-box').val();
              
             }   		
-	    
+	    */
             changeHashTo(formatSearch(search_term, 1, classFilter));
 
 
@@ -601,7 +614,8 @@ $(function() {
             else if($(this).attr('id') == 'search-results-content') {        
                 $('#search-result').html($(this).html());
             }
-        }) 				
+        }) 	
+
         mapWidget.removeAllFeatures();
         mapWidget.addVectortoDataLayer(".spatial_center",true);
         $('.clearFilter').each(function(){
@@ -670,6 +684,10 @@ $(function() {
                 error:function(msg){}
             });
         }
+        $("#facet-accordion").accordion({
+            header: 'h5', 
+            autoHeight: false
+        });
     } 
  
     function doNormalSearch(){
