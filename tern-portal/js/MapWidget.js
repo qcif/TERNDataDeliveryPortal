@@ -65,8 +65,8 @@ function MapWidget(mapId){
     this.options = {
         units : 'm',
         numZoomLevels : 12,
-        maxExtent : new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
-        maxResolution:'auto',
+        maxExtent : new OpenLayers.Bounds(11548635,-5889094,18604187,-597430),
+        maxResolution:'auto', 
         projection: this.WGS84_google_mercator,
         displayProjection: this.WGS84
     };
@@ -84,8 +84,8 @@ function MapWidget(mapId){
         sphericalMercator: true, 
         minZoomLevel: 3, 
         maxZoomLevel: 15, 
-        wrapDateLine:false//, 
-   //     maxExtent : new OpenLayers.Bounds(13237508.34,-5537508.34,16037508.34,-937508.34)
+        wrapDateLine:false, 
+       maxExtent : new OpenLayers.Bounds(11548635,-5889094,18604187,-597430)
     });	
    
    this.map.addLayer(gphy);          
@@ -93,7 +93,8 @@ function MapWidget(mapId){
     
     //Enable switch layers (that + button on the map)
     this.map.addControl(new OpenLayers.Control.LayerSwitcher());
-    
+     //Enable Overview Map
+    this.map.addControl(new OpenLayers.Control.OverviewMap({maximized: true, mapOptions: OpenLayers.Util.extend(this.options)}));   
     // look at Australia 
     if (!this.map.getCenter()) this.map.zoomToExtent(new OpenLayers.Bounds(13237508.34,-5537508.34,16037508.34,-937508.34));
 
