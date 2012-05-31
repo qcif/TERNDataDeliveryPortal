@@ -368,7 +368,9 @@ div#panel_advSearch .ui-widget-header{
     padding: 0.15em 1em;
     margin-left: 10px;
 }
-
+#doneMapDiv{
+    float:right;
+}
 .collapsiblePanel{
     padding-bottom:5px;
     cursor: pointer; 

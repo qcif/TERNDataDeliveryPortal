@@ -131,8 +131,7 @@ MapWidget.prototype.addDrawLayer = function(options){
                for(var layer in this.extLayers){
 
                     this.extLayers[layer].setVisibility(false);
-                }
-          
+                }       
         }
        
     }).bind(this));
@@ -170,8 +169,8 @@ MapWidget.prototype.addDrawLayer = function(options){
         this.map.addControl(this.drawControls[key]);
     }
 
-    this.map.addLayer(boxLayer);
-    
+    this.map.addLayer(boxLayer); 
+    this.drawControls["box"].activate();
     //make sure this layer is on top.
     this.map.raiseLayer(boxLayer,this.map.layers.length);
     

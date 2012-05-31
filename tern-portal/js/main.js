@@ -295,8 +295,7 @@ $(function() {
             }
             //enable clicking button controllers
             enableToolbarClick(mapWidget);
-            //activate drawing immediately
-            $("#box").trigger('click');          
+                 
             //changing coordinates on textbox should change the map appearance
             enableCoordsChange(mapWidget);            
             //Done button

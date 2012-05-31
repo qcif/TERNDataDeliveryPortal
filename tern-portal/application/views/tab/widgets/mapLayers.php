@@ -15,7 +15,7 @@
             background-position: -103px -1px;
             }
             .olControlNavToolbar div, .olControlEditingToolbar div {
-                background-image: url('/img/editing_tool_bar.png');
+                background-image: url('/img/editing_tool_bar.png') ! important;
             }
             #advance-spatial { 
                 width: 430px;
@@ -31,13 +31,13 @@
         <div class="ui-widget-header clearfix ">
             <div id="panel" class="olControlEditingToolbar">
                 <?php if($widget_map_drawtoolbar){ ?> 
-                    <div  id="box" class="olControlDrawFeatureBoxItemInactive" title=""></div>
+                    <div  id="box" class="olControlDrawFeatureBoxItemActive" title=""></div>
                     <div  id="drag" class="olControlDragFeatureBoxItemInactive" ></div>
-                    <input type="button" id="doneMap" value="Done" class=""/>
+                   
                 <?php } ?>
 
             </div>
-
+             <div id="doneMapDiv"><input type="button" id="doneMap" value="Done" class=""/></div>
         </div> 
     </div>
 </div>  
