@@ -122,8 +122,7 @@
          </xsl:if>
 
           <xsl:if test="ro:coverage/ro:temporal/ro:date">
-                <p><b>Time Period</b> </p>
-                <xsl:apply-templates select="ro:coverage/ro:temporal/ro:date"/> 
+                <b>Time Period:</b><xsl:apply-templates select="ro:coverage/ro:temporal/ro:date"/> 
           </xsl:if> 
             
         <xsl:if test="ro:coverage or ro:location/ro:spatial">
@@ -203,7 +202,7 @@
  <div class="record-slide hide">
             <xsl:if test="ro:subject/@type='anzsrc-for' or ro:subject/@type='anzsrc-seo' or ro:subject/@type='anzsrc-toa'">
 
-                <b>ANZSRC</b>
+                <div style="padding:5px"><b>ANZSRC</b></div>
                 <ul class="subjects">
                 <xsl:for-each select="ro:subject">      
                     <xsl:sort select="./@type"/>
@@ -215,7 +214,7 @@
             </xsl:if>
                 
                 <xsl:if test="ro:subject[not(@type = 'anzsrc-for' or  @type = 'anzsrc-seo' or  @type = 'anzsrc-toa')]">
-                    <b>Keywords</b>
+                   <div style="padding:5px"><b>Keywords</b></div>
                     <ul class="subjects">
                         <xsl:for-each select="ro:subject">      
                             <xsl:sort select="./@type"/>
@@ -286,7 +285,7 @@
 			</span>
           </div>
 <div class="record-slide hide">          
-           	 	<div id="identifiers">
+           	 	<div id="identifiers" style="padding:5px">
   
     	<p> 	
     	<xsl:apply-templates select="ro:identifier[@type='doi']" mode = "doi"/>
@@ -315,12 +314,12 @@
 
 			<div class="right-box" id="connectionsRightBox">
 			<div id="connectionsInfoBox" class="hide"></div>
-			<h2>Connections</h2>
+			<h2>Association</h2>
                         <span class="toggle-record-popup">
 			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
 			</span>
                        
-			<div id="connections" class="record-slide hide">
+			<div id="connections" class="record-slide hide" style="padding:5px">
 				<img>
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/><xsl:text>/img/ajax-loader.gif</xsl:text></xsl:attribute>
 				<xsl:attribute name="class">loading-icon</xsl:attribute>
@@ -343,8 +342,11 @@
 
               		 	<xsl:if test="ro:location/ro:address/ro:electronic/@type='url'">
                                     <div class="right-box">
-                                        <h2>Related Links</h2>
+                                        <h2>Related Links</h2>    
+                                        <ul style="padding-left:3px">
                                         <p><xsl:apply-templates select="ro:location/ro:address/ro:electronic"/></p>	
+                                        </ul>
+
                                     </div>
                                 </xsl:if>
 		<div class="right-box">
@@ -359,16 +361,18 @@
 			<xsl:apply-templates select="ro:rights"/>		
 
 		 	<xsl:if test="ro:location/ro:address/ro:electronic/@type='email' or ro:location/ro:address/ro:physical">
-		 		<h3>Contacts</h3>
+		 		<div style="margin-left:3px"><h4 style="margin-top:1px;margin-bottom:1px">Contacts</h4>
+                                
 		 		<xsl:if test="ro:location/ro:address/ro:electronic/@type='email'">
-					<p><xsl:apply-templates select="ro:location/ro:address/ro:electronic/@type"/></p>	
+					<p style="margin-top:1px;margin-bottom:1px;margin-left:3px"><xsl:apply-templates select="ro:location/ro:address/ro:electronic/@type"/></p>	
 				</xsl:if>
 			 	<xsl:if test="ro:location/ro:address/ro:physical/@type='telephoneNumber'">
-					<p><xsl:apply-templates select="ro:location/ro:address/ro:physical"/></p>	
+					<p style="margin-top:1px;margin-bottom:1px;margin-left:3px"><xsl:apply-templates select="ro:location/ro:address/ro:physical"/></p>	
 				</xsl:if>				
 		 		<xsl:if test="ro:location/ro:address/ro:physical">
-					<p><xsl:apply-templates select="ro:location/ro:address/ro:physical"/></p>	
-				</xsl:if>				
+					<p style="margin-top:1px;margin-bottom:1px;margin-left:3px"><xsl:apply-templates select="ro:location/ro:address/ro:physical"/></p>	
+				</xsl:if>
+                                </div>
 	 		</xsl:if>			
 			                        
 			</div>             
@@ -841,8 +845,10 @@ Handle:
                     <xsl:value-of select="."/>
                 </xsl:variable>
                 <xsl:variable name="apos">'</xsl:variable>
-
-			<div class="download"> <a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="."/></a><br /></div>
+                <xsl:variable name="l">
+                    <xsl:value-of select="."/>
+                </xsl:variable>
+			<div class="download"> <li><a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="concat(substring($l,1,45),'....')"/></a></li></div>
 <!--
                         <div class="download"> 
                             <h2><input class="linkdata" type="button" value="Access data /metadata"><xsl:attribute name="onclick"><xsl:value-of select="concat('window.open(',$apos,$linkurl,$apos,')')"/> </xsl:attribute></input></h2><br />
@@ -890,12 +896,12 @@ Handle:
 	
 	<xsl:template match="ro:rights">
 			
-			<xsl:if test="./@type='rights'"><h4>Rights statement</h4></xsl:if>
-			<xsl:if test="./@type='accessRights'"><h4>Access rights</h4></xsl:if>
-			<xsl:if test="./@type='licence'"><h4>Licence</h4></xsl:if>				
-			<p class="rights"><xsl:value-of select="." disable-output-escaping="yes"/>
+			<xsl:if test="./@type='rights'"><div style="margin-left:3px"><h4 style="margin-top:1px;margin-bottom:1px">Rights statement</h4></div></xsl:if>
+			<xsl:if test="./@type='accessRights'"><div style="margin-left:3px"><h4 style="margin-top:1px;margin-bottom:1px">Access rights</h4></div></xsl:if>
+			<xsl:if test="./@type='licence'"><div style="margin-left:2px"><h4 style="margin-top:1px;margin-bottom:1px">Licence</h4></div></xsl:if>				
+			<p class="rights" style="padding:5px;margin-top:1px;margin-bottom:1px"><xsl:value-of select="." disable-output-escaping="yes"/>
 			<xsl:if test="./@rightsUri"><br />
-			<a target="_blank">
+			<a target="_blank" style="padding:5px">
 			<xsl:attribute name="href"><xsl:value-of select="./@rightsUri"/></xsl:attribute><xsl:value-of select="./@rightsUri"/></a>
 			</xsl:if>	
 			</p>		
