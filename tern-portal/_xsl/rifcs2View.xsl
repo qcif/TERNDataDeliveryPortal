@@ -120,7 +120,12 @@
         <p><b>More Information:</b> </p>
             <xsl:apply-templates select="ro:relatedInfo"/> 
          </xsl:if>
-                        
+
+          <xsl:if test="ro:coverage/ro:temporal/ro:date">
+                <p><b>Time Period</b> </p>
+                <xsl:apply-templates select="ro:coverage/ro:temporal/ro:date"/> 
+          </xsl:if> 
+            
         <xsl:if test="ro:coverage or ro:location/ro:spatial">
             <xsl:variable name="coverageLabel">
             <xsl:choose>
@@ -168,7 +173,9 @@
  </div>           
             <xsl:if test="ro:coverage/ro:center | ro:location/ro:center">
                 <xsl:apply-templates select="ro:coverage/ro:center | ro:location/ro:center"/>
-            </xsl:if>   
+            </xsl:if> 
+
+<!--            
  <div class="right-box">        
             <xsl:if test="ro:coverage/ro:temporal/ro:date">
                 <h2>Time Period</h2>
@@ -182,6 +189,7 @@
                    
             </xsl:if> 
 </div>
+-->
         </xsl:if>
         
         <xsl:if test="ro:subject">
@@ -195,7 +203,7 @@
  <div class="record-slide hide">
             <xsl:if test="ro:subject/@type='anzsrc-for' or ro:subject/@type='anzsrc-seo' or ro:subject/@type='anzsrc-toa'">
 
-                <p>ANZSRC</p>
+                <b>ANZSRC</b>
                 <ul class="subjects">
                 <xsl:for-each select="ro:subject">      
                     <xsl:sort select="./@type"/>
@@ -207,7 +215,7 @@
             </xsl:if>
                 
                 <xsl:if test="ro:subject[not(@type = 'anzsrc-for' or  @type = 'anzsrc-seo' or  @type = 'anzsrc-toa')]">
-                    <p>Keywords</p> 
+                    <b>Keywords</b>
                     <ul class="subjects">
                         <xsl:for-each select="ro:subject">      
                             <xsl:sort select="./@type"/>
@@ -334,16 +342,19 @@
 		or ro:rights or ro:location/ro:address/ro:electronic/@type='email'  or ro:location/ro:address/ro:physical">	
 
               		 	<xsl:if test="ro:location/ro:address/ro:electronic/@type='url'">
-				<p><xsl:apply-templates select="ro:location/ro:address/ro:electronic"/></p>	
-	 		</xsl:if>
+                                    <div class="right-box">
+                                        <h2>Related Links</h2>
+                                        <p><xsl:apply-templates select="ro:location/ro:address/ro:electronic"/></p>	
+                                    </div>
+                                </xsl:if>
 		<div class="right-box">
 			<h2>Rights and Licences</h2>
 			<div class="limitHeight300">
- 		
+ 		<!--
 	 		 <xsl:if test="ro:rights">
 					<h3>Rights</h3>	
 			</xsl:if>
-				
+		-->		
 			<!-- <xsl:apply-templates select="ro:description[@type = 'accessRights' or @type = 'rights']" mode="right"/>	 -->	
 			<xsl:apply-templates select="ro:rights"/>		
 
@@ -374,6 +385,7 @@
 			    -->
 				<div id="breadcrumb-corner">
 				<!-- AddToAny BEGIN -->   
+<!--                                
 				<div class="a2a_kit a2a_default_style" id="share">                                    
                                 <a class="a2a_button_facebook"></a>
                                 <a class="a2a_button_linkedin"></a>
@@ -397,7 +409,7 @@
 	        		</script>
 	        		<script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
                                 
-	        		<!-- AddToAny END -->  
+ -->  
 	        
 					<a target="_blank">
                    <xsl:attribute name="href"><xsl:value-of select="$base_url"/>view/printview/?key=<xsl:value-of select="$key"/></xsl:attribute>                    
@@ -521,15 +533,18 @@
         <xsl:value-of select="."/>          
     </xsl:template> 
     
+    <!--<li><a href="javascript:void(0);" class="forfourFilter" id="{.}"><xsl:value-of select="."/></a></li>-->
     <xsl:template match="ro:subject">  
          <xsl:if test="./@type='anzsrc-for'">
-            <li><a href="javascript:void(0);" class="forfourFilter" id="{.}"><xsl:value-of select="."/></a></li>
+             <li class="forfourFilter"><xsl:value-of select="."/></li>
         </xsl:if>
         <xsl:if test="./@type='anzsrc-seo' or ./@type='anzsrc-toa'">
-            <li><a href="javascript:void(0);" class="subjectFilter" id="{.}"><xsl:value-of select="."/></a></li>
+            <!--<li><a href="javascript:void(0);" class="subjectFilter" id="{.}"><xsl:value-of select="."/></a></li>-->
+            <li class="subjectFilter"><xsl:value-of select="."/></li>
         </xsl:if>
         <xsl:if test="./@type != 'anzsrc-for' and ./@type != 'anzsrc-seo' and ./@type!='anzsrc-toa'">
-            <li><a href="javascript:void(0);" class="subjectFilter" id="{.}"><xsl:value-of select="."/></a></li>
+            <!--<li><a href="javascript:void(0);" class="subjectFilter" id="{.}"><xsl:value-of select="."/></a></li>-->
+            <li class="subjectFilter"><xsl:value-of select="."/></li>
         </xsl:if>  
 
       
@@ -826,13 +841,13 @@ Handle:
                     <xsl:value-of select="."/>
                 </xsl:variable>
                 <xsl:variable name="apos">'</xsl:variable>
+
+			<div class="download"> <a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="."/></a><br /></div>
 <!--
-			<div class="download"> <a class="linkdata"><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute>Access data / more information</a><br /></div>
--->
                         <div class="download"> 
                             <h2><input class="linkdata" type="button" value="Access data /metadata"><xsl:attribute name="onclick"><xsl:value-of select="concat('window.open(',$apos,$linkurl,$apos,')')"/> </xsl:attribute></input></h2><br />
                         </div>
-                        
+-->                        
 		</xsl:if>		
 	</xsl:template>
 	
