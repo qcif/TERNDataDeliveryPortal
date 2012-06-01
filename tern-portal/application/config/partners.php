@@ -3,8 +3,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  * Original json format
- * {
-    "responseHeader": {
+ * 
+ *
+ */
+?>
+   { "responseHeader": {
         "status": 0,
         "QTime": 1,
         "params": {
@@ -174,16 +177,3 @@
 
     }
 }
-
-
- */
-
-
-
-?>
- {
-    "docs": [
-        "TERN Supersites","OzFlux","AusCover","LAMPS","AusPlots","LTERN","Soil","Coastal","EcoInformatics","eMast","ACEAS"]
-        
- }
-
