@@ -85,7 +85,8 @@ function MapWidget(mapId){
         minZoomLevel: 3, 
         maxZoomLevel: 15, 
         wrapDateLine:false, 
-       maxExtent : new OpenLayers.Bounds(11548635,-5889094,18604187,-597430)
+        maxExtent : new OpenLayers.Bounds(11548635,-5889094,18604187,-597430),
+        zoomWheelEnabled: true
     });	
    
    this.map.addLayer(gphy);          

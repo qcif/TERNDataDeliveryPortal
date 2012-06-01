@@ -75,11 +75,12 @@ ul.sf-menu li li li.sfHover ul {
 /*** VANILLA SKIN SKIN ***/
 .top-menu-cover{ 
 	height:40px;
-        text-align: center;
-       /* margin-top: 22px;
-        margin-left: 10px;*/
-       margin:0 auto;
-       width: 1200px;
+        text-align: left;
+        margin:0 auto;
+        float: right;
+        left:-50%;
+        position:relative;
+        
        /* float:right;*/
 	/*Gradient border:1px solid black;*/
 	/* Old browsers */
@@ -87,17 +88,20 @@ ul.sf-menu li li li.sfHover ul {
         
 }
 .sf-menu {
-	position:relative;
+	list-style:none;
+        position:relative;
+        left:50%;
 	/*display:inline;*/
 
-	/*width:960px;*/
-	padding-left:28em;
 	/*General Styling*/
 	color: white;
 	overflow:visible;
 	margin:0px auto;
       
 }
+.sf-menu li{
+          float:left;position:relative;/* ie needs position:relative here*/ 
+        }
 .sf-menu a {
 	color:black;
 	padding:10px 15px;

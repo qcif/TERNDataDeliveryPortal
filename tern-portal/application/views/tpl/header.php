@@ -29,31 +29,14 @@ if (isset($description))
     <body>
         <div id="wrapper">
             <div id="header" >
-                <br/>
                 <div id="logo">
                     <a href="/"><img src="<?php echo site_url('img/logo.png'); ?>" id="tern-logo"/></a>
                 </div>
-<!--                
-                <div class="no_print top-menu-cover">
-
-                    <ul class="sf-menu">
-                        <li><?php echo anchor('', 'Home'); ?></li>
-                        <li><?php echo anchor('http://www.tern.org.au/About-Tern-pg17674.html', 'About'); ?></li>
-                        <li><?php echo anchor('http://tern.org.au/tern_data_portal_terms_of_use-pg21208.html', 'Terms of use'); ?></li>
-                        <li><?php echo anchor('http://www.tern.org.au/How-TERN-fits-together-pg17726.html', 'Facilities'); ?></li>
-                        <li><?php echo anchor('http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html', 'Contact'); ?></li>
-                    </ul>  
-                </div>
--->
-
-<!--                <div><h1><?php //echo $md_title; ?></h1></div>-->
-                
+                <h1><?php echo $md_title; ?></h1>
                <div class="no_print top-menu-cover">
 
                     <ul class="sf-menu">
                         <li><?php echo anchor('', 'Home'); ?></li>
-                        <li><?php echo anchor('http://www.tern.org.au/About-Tern-pg17674.html', 'About'); ?></li>
-                       <!-- <li><?php echo anchor('http://tern.org.au/tern_data_portal_terms_of_use-pg21208.html', 'Terms of use'); ?></li>-->
                         <li><?php echo anchor('http://www.tern.org.au/How-TERN-fits-together-pg17726.html', 'Facilities'); ?></li>
                         <li><?php echo anchor('http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html', 'Contact'); ?></li>
                     </ul>  
