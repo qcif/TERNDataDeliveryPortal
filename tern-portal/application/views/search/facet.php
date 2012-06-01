@@ -24,7 +24,7 @@ $Revision: 1 $
 
 if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All'))
 {
-	echo '<h5>Selected</h5>'; 
+	echo '<h5><a href="#">Selected</a></h5>'; 
 	echo '<div>';
 		echo '<ul>';
 		if($temporal!='All'){

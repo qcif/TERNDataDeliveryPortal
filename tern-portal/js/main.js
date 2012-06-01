@@ -17,6 +17,13 @@ function trimwords(theString, numWords) {
     
 }
 
+function searchStringInArray (needle, stringArray) {
+    for (var j=0; j<stringArray.length; j++) {
+        if (stringArray[j].match(needle)) return j;
+    }
+    return -1;
+}
+
 $(function() {
     // GLOBAL VARIABLES
     var hash = window.location.hash;
@@ -37,7 +44,8 @@ $(function() {
     var s='';
     var w='';
     var mapResult;
-     var spatial_included_ids = '';
+    var param_q;
+    var spatial_included_ids = '';
         
     // ROUTING 
     function routing(){
@@ -55,6 +63,7 @@ $(function() {
             window.location.href=base_url;
         }else if(window.location.href.indexOf('search')>=0){
             initSearchPage();
+   
         }else if(window.location.href.indexOf('contact')>=0){
             initContactPage();
         }else if(window.location.href.indexOf('help')>=0){
@@ -71,7 +80,9 @@ $(function() {
         var hash = window.location.hash;
         var query = hash.substring(3, hash.length);
         var words = query.split('/');
-        //clearFilter();
+        
+        param_q = searchStringInArray("q",words);
+        
         $.each(words, function(){
             var string = this.split('=');
             var term = string[0];
@@ -133,18 +144,19 @@ $(function() {
         //console.log('term='+search_term+'page='+page+'tab='+classFilter);
  
         if(window.location.href.indexOf('search')>=0) {
-            //console.log('yea');
-            search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
-            search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
-            
-            if(adv==1&&window.location.href.indexOf('/n')>=0)
-            {
-                    doSpatialSearch();
-            }else
+             
+            if(param_q > -1){
+                search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
+                search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
+
+                if(adv==1&&window.location.href.indexOf('/n')>=0)
                 {
-                    doNormalSearch();
-                }
-            
+                        doSpatialSearch();
+                }else
+                    {
+                        doNormalSearch();
+                    }
+            }
         }
     });
     $(window).hashchange(); //do the hashchange on page load
@@ -274,7 +286,19 @@ $(function() {
         return res;
 
     }
-        
+    
+    /*      Show No Results on the result set div */
+    function showNoResult(){
+        $("#ui-layout-facetmap").hide();
+        $("#no-result").show(); 
+        $("#search-result").hide();
+    }
+    
+    function hideNoResult(){
+        $("#no-result").hide();
+         $("#search-result").show();
+         $("#ui-layout-facetmap").show();
+    }
     /*      Initialize map in overlay
     *       If the map already exists, just open the dialog, otherwise init map
     *      
@@ -314,8 +338,7 @@ $(function() {
     */
     function populateSearchFields(temporalWidget, search_term){ 
         if(adv == 1){
-            $("#accordion").accordion("activate",parseInt(adv));
-            if(search_term != '*:*') {
+            if(param_q > -1 && search_term != '*:*') {
                 var word = search_term.split(' ');
 
                 $('input[name^="keyword"]').each(function(index){
@@ -348,6 +371,8 @@ $(function() {
                     });
                     start = value;
                 });
+            }else{
+               $("#accordion").accordion("activate",1);
             }
             
             var group;
@@ -371,8 +396,11 @@ $(function() {
                 temporalWidget.refreshTemporalSearch();
             }
         }else{ // it's just basic search
-            if(search_term != '*:*' && search_term !="Search ecosystem data") {
+            if(param_q > -1 && search_term != '*:*' && search_term !="Search ecosystem data") {
+               
                 $('input[id="search-box"]').val(search_term);
+            }else{
+                $("#accordion").accordion("activate",0);
             }
         }
     }
@@ -392,7 +420,7 @@ $(function() {
         setupOuterLayout();
         setupNestedLayout(resizeMap);  
                 
-        
+         $("#facetH2").addClass("ui-state-disabled");
         var temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
         temporalWidget.refreshTemporalSearch();
@@ -401,11 +429,11 @@ $(function() {
         resetCoordinates();
          
         populateSearchFields(temporalWidget,search_term);
-
-        // Results Map
-        mapResult = new MapWidget('result-map');
-        mapResult.addDataLayer(true,"default");
         
+        if(param_q == -1){
+             showNoResult();
+        }
+      
         // SEARCH MAP
         var mapWidget; 
     
@@ -537,9 +565,10 @@ $(function() {
 	    */
             changeHashTo(formatSearch(search_term, 1, classFilter));
 
-
+            //  }
+            
         }).button();
-
+    
     }
     
     function doSpatialSearch(){
@@ -587,7 +616,6 @@ $(function() {
     }
     /* Reset all fields in the search pane*/
     function resetAllFields(temporalWidget){
-        $('#search-box').val('');
         $('[name^=fields]').val('');
         $('[name^=keyword]').val('');
         $('[name^=keyword]').val('');
@@ -608,16 +636,34 @@ $(function() {
         var divs = $(msg).filter(function(){return $(this).is('div')});
         divs.each(function() {
             if($(this).attr('id') == 'facet-content')  {
-                 $('#facet-accordion').html($(this).html());
-                 $('#facetH2').removeClass('hide');
+                 $('#facet-accordion').html($(this).html());               
             }
             else if($(this).attr('id') == 'search-results-content') {        
                 $('#search-result').html($(this).html());
             }
         }) 	
 
+       
+        if($("#realNumFound").html() !== "0")
+            {
+                hideNoResult();
+                $('#facetH2').removeClass('ui-state-disabled');  
+                if(typeof mapWidget == 'undefined'){
+                    mapResult = new MapWidget('result-map');
+                    mapResult.addDataLayer(true,"default");
+                    mapWidget= mapResult;
+                }
+                $("#accordion").accordion("activate",2);
+            }
+            else{
+                showNoResult(); 
+                $('#facetH2').addClass('ui-state-disabled');  
+            }
+        if(typeof mapWidget !== 'undefined') mapWidget.map.updateSize();
+       
         mapWidget.removeAllFeatures();
         mapWidget.addVectortoDataLayer(".spatial_center",true);
+         
         $('.clearFilter').each(function(){
             $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
         });
@@ -684,10 +730,13 @@ $(function() {
                 error:function(msg){}
             });
         }
-        $("#facet-accordion").accordion({
+       
+        $("#facet-accordion").accordion("destroy").accordion({
             header: 'h5', 
             autoHeight: false
         });
+      
+           
     } 
  
     function doNormalSearch(){

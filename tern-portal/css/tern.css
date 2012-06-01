@@ -14,8 +14,7 @@ body {
     text-align: left;
     font:11px Arial, Helvetica, sans-serif;
     color:#333;
-    font-weight:normal;
-    background: url("../img/main_bg.jpg") repeat-x scroll 0 461px transparent
+    font-weight:normal;    
 }
 
 h1,h2,h3,h4,h5{color:#555;}
@@ -241,7 +240,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 /* container layout */
 
 #container {
-  max-width:1200px;
+ width:1200px;
  margin:0 auto;
     
 }
@@ -253,6 +252,19 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 .ui-layout-center{
     padding:0;
     border: 0;
+    position:relative;
+}
+
+#no-result{
+    width: 880px;
+    height: 570px;
+    text-align:center;
+    background: url("../img/main_bg.jpg") repeat-x  transparent;
+    border:1px solid #ccc;
+    margin-left: 10px;
+}
+#no-result div{
+    overflow:hidden;
 }
 
 .ui-layout-center .ui-widget-content{
@@ -408,7 +420,7 @@ div#panel_advSearch .ui-widget-header{
 .coverage{display:none;}
 .spatial_center{display:none;}
 .spatial_coverage_center{display:none;}
-#search-result{ border:0;}
+#search-result{ border:0; padding-left:10px;}
 
 /* MAP Results*/		
 	#result-map{		

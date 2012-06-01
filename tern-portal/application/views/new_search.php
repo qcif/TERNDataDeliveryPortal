@@ -6,7 +6,8 @@
                           <div id="result-map"></div>                                               
                      </div>
                  </div>
-                <div id="search-result" class="ui-layout-search-results">Loading...</div>
+                <div id="search-result" class="ui-layout-search-results"></div>
+                <div id="no-result" class="hide"><div>Please enter search terms or filters to search for records</div></div>
             </div>
 
             <div class="ui-layout-west hidden">    
@@ -14,7 +15,7 @@
                     <h2 id="basicSearchH2"><a href="#">Basic Search</a></h2>
                     <?php $this->load->view('tab/widgets/basicsearch');?>               
                     <h2 id="advSearchH2"><a href="#">Advanced Search</a></h2>
-                    <div class="padding5">
+                    <div id="advSearch-frame" class="padding5">
                      
                     <?php if($widget_keyword) { ?> 
                      <?php $this->load->view('tab/widgets/keyword');?>
@@ -27,7 +28,7 @@
                     <?php if($widget_temporal) { ?>
                      <?php $this->load->view('tab/widgets/temporal');?>
                      <?php }?>
-                     <?php if(widget_map) { ?>
+                     <?php if($widget_map) { ?>
                      <?php $this->load->view('tab/widgets/mapLayers');?>
               
                     <?php }?>
@@ -36,8 +37,8 @@
                     <?php } ?>
                           <?php $this->load->view('tab/widgets/buttonsearch');?>
                       </div>
-                    <h2 id="facetH2" class="hide"><a href="#">Refine</a></h2>
-                    <div id="facet-frame"><div id="facet-accordion" class="accordion"></div></div>         
+                    <h2 id="facetH2"><a href="#">Refine</a></h2>
+                    <div id="facet-frame" ><div id="facet-accordion" class="accordion"></div></div>         
                  </div>
                    
                
