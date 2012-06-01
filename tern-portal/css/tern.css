@@ -264,7 +264,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
     margin-left: 10px;
 }
 #no-result div{
-    overflow:hidden;
+    position:absolute;
 }
 
 .ui-layout-center .ui-widget-content{

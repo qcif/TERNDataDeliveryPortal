@@ -288,9 +288,22 @@ $(function() {
     }
     
     /*      Show No Results on the result set div */
-    function showNoResult(){
+    function showNoResult(msg){
+        if(msg == 1){
+            $("#no-result div h3").html("No matching records were found");
+        }else{ 
+            $("#no-result div h3").html("Please use the search tool on the left");
+        }
+       
         $("#ui-layout-facetmap").hide();
         $("#no-result").show(); 
+        $('#no-result div').css({
+              position: 'absolute',
+              'left' : '50%',
+              'margin-left': -($('#no-result div').outerWidth())/2,
+              'top': '50%',
+              'margin-top': -($('#no-result div').outerHeight())/2
+        });
         $("#search-result").hide();
     }
     
@@ -431,7 +444,7 @@ $(function() {
         populateSearchFields(temporalWidget,search_term);
         
         if(param_q == -1){
-             showNoResult();
+             showNoResult(2);
         }
       
         // SEARCH MAP
@@ -656,7 +669,7 @@ $(function() {
                 $("#accordion").accordion("activate",2);
             }
             else{
-                showNoResult(); 
+                showNoResult(1); 
                 $('#facetH2').addClass('ui-state-disabled');  
             }
         if(typeof mapWidget !== 'undefined') mapWidget.map.updateSize();
