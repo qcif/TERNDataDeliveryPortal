@@ -28,7 +28,7 @@ $home = 1;
 
 <?php $this->load->view('tpl/mid'); ?>
 
-<div id="container">
+<div id="container" class="ui-corner-all">
     <div id="ui-layout-center" class="ui-layout-center ">
 
         <div id="tab">

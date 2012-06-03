@@ -36,7 +36,21 @@ if (isset($description))
 
                     <ul class="sf-menu">
                         <li><?php echo anchor('', 'Home'); ?></li>                     
-                        <li><?php echo anchor('http://www.tern.org.au/How-TERN-fits-together-pg17726.html', 'Facilities'); ?></li>
+                        <li><?php echo anchor('http://www.tern.org.au/How-TERN-fits-together-pg17726.html', 'Facilities'); ?>
+                            <ul>
+                                    <?php		
+	                                if($json && $json->{'response'}->{'docs'}){		
+	                                    foreach($json->{'response'}->{'docs'} as $d){		
+	                                        if(count($d->{'location'})>0){		
+	                                            echo '<li>';		
+	                                            echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. $d->{'displayTitle'} . '</a>';		
+	                                            echo '</li>';		
+	                                         }		
+	                                    }		
+	                                }		
+	                                ?>                               
+                                
+                            </ul>
                         <li><?php echo anchor('http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html', 'Contact'); ?></li>
                     </ul>  
                 </div>
