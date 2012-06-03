@@ -838,6 +838,7 @@ $(function() {
         });
         
         autocomplete('#search-box');
+        handleRandom('tddp');
     }
 
 function initPreviewPage(){	
@@ -1100,3 +1101,50 @@ function initViewMap(mapId, centerSelector,coverageSelector){
 
     
 
+ $('#auscover').live('click', function(event){
+     var facname=$(this).attr("id");
+    
+    handleRandom(facname);    
+
+    }); 
+    
+     $('#tddp').live('click', function(event){
+     var facname=$(this).attr("id");
+    
+    handleRandom(facname);    
+
+    }); 
+     $('#ozflux').live('click', function(event){
+     var facname=$(this).attr("id");
+    
+    handleRandom(facname);    
+
+    }); 
+     $('#ecoinformatics').live('click', function(event){
+     var facname=$(this).attr("id");
+    
+    handleRandom(facname);    
+
+    }); 
+     $('#supersites').live('click', function(event){
+     var facname=$(this).attr("id");
+    
+    handleRandom(facname);    
+
+    }); 
+    function handleRandom(facname)
+    {
+          $.ajax({
+        type:"POST",
+        url:base_url+"home/getrdmrecord?fac="+facname,
+                    
+                    
+        success:function(msg){
+          $("#random").html(msg);
+
+        },
+        error:function(msg){
+            console.log("error");
+        }
+        })
+    }

@@ -32,11 +32,20 @@ if (isset($description))
                 <div id="logo">
                     <a href="/"><img src="<?php echo site_url('img/logo.png'); ?>" id="tern-logo"/></a>
                 </div>
+
                 <h1><?php echo $md_title; ?></h1>
                <div class="no_print top-menu-cover">
 
                     <ul class="sf-menu">
                         <li><?php echo anchor('', 'Home'); ?></li>
+
+
+               <div><h1><?php echo $md_title; ?></h1></div>
+                
+               <div class="no_print top-menu-cover">
+
+                    <ul class="sf-menu">
+                        <li><?php echo anchor('', 'Home'); ?></li>                     
                         <li><?php echo anchor('http://www.tern.org.au/How-TERN-fits-together-pg17726.html', 'Facilities'); ?></li>
                         <li><?php echo anchor('http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html', 'Contact'); ?></li>
                     </ul>  

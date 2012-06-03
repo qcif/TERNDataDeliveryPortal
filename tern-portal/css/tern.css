@@ -14,7 +14,9 @@ body {
     text-align: left;
     font:11px Arial, Helvetica, sans-serif;
     color:#333;
-    font-weight:normal;    
+    font-weight:normal;
+   /* background: url("../img/main_bg.jpg") repeat-x scroll 0 461px transparent */
+
 }
 
 h1,h2,h3,h4,h5{color:#555;}
@@ -164,16 +166,19 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 .limitHeight200{max-height:200px;overflow:auto;}
 
 #wrapper{background: url('../img/header.png') repeat-x scroll left top transparent; margin:0}
-#header{ position:relative;width: 100%; width:1200px; margin:0 auto; height: 130px;}
+
+#header{ position:relative;width:1200px;margin: 0 auto; }
+
 /* footer styles */
 #phone {
     float:left;
     color: #336400;
     font-size: 18px;
     line-height: 20px;
-    width: 240px;
+    width: 300px;
     top: 80px;
     position: relative;
+    text-align:left;
 
 }
 #phone span {
@@ -188,7 +193,14 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 
 #footer{padding:5px 0px 20px 0px; text-align:center;}
-#sponsor{text-align:center; position: relative; bottom:0px; width:100%; height: 170px; background: url("../img/mainbody.jpg") repeat-x  left bottom #FFFFFF;}
+#sponsor{
+    text-align:center; 
+    position: relative; 
+    bottom:0px;     
+    height: 170px; 
+    background: url("../img/mainbody.jpg") repeat-x  left bottom #FFFFFF;
+    margin:0 auto;
+}
 #footer{padding:5px 0px 5px 0px;}
 .border{  border:1px solid #D8D8D8; }
 
@@ -197,9 +209,15 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
  * Includes Logo and Searching Parts
 */
 #mid{width:790px;margin:0 auto;position:relative;text-align:center;padding:0; }
+<<<<<<< Updated upstream
 #logo{ width:131px; position:absolute;top: 17px;}
 #header h1{
     color:#0a450a;margin:0;padding-top: 50px;text-shadow: 2px 2px 2px #fff;font-size:23px;
+=======
+#logo{ width:131px; margin-top:10px;}
+#logo h1{
+    color:#0a450a;margin:0;padding:0;font-weight:bold;text-shadow: 2px 2px 2px #fff;font-size:23px;
+>>>>>>> Stashed changes
 }
 
 .nomargin{
@@ -219,15 +237,16 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
     float:left;
     font-size: 11px;
     text-align: center;
-    width: 70%;
+    width: 600px;
     position:relative;
     top: 80px;
 }
 #australian_government {
-    float:left;
+    float:right;
     background: url("../img/australian_government.jpg") no-repeat scroll left top transparent;
     height: 127px;
     width: 171px;
+    text-align: right;
 }
 
 #copyright a{
@@ -240,9 +259,18 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 /* container layout */
 
 #container {
+<<<<<<< Updated upstream
  width:1200px;
  margin:0 auto;
     
+=======
+  max-width:1200px;
+  margin:0 auto;
+  border-left: 1px solid #AAAAAA;
+  border-right: 1px solid #AAAAAA;
+  border-top: 1px solid #AAAAAA;
+  border-bottom: 1px solid #AAAAAA;
+>>>>>>> Stashed changes
 }
 .ui-layout-center P.ui-layout-content {
     line-height:	1.4em;
@@ -529,3 +557,18 @@ div.olLayerGooglePoweredBy
     content: " ";
 }
 
+.fl {padding:5px;
+     margin:2px;
+    list-style-position: inside;  
+    border:2px solid #ccc;
+    list-style-type: none; 
+}
+.fl li {
+    border-bottom:1px solid #ccc;
+    padding:50px;
+    margin:0 10px 15px 0;
+}
+
+.new-footer{
+    margin: 0pt auto; width: 1200px;
+}

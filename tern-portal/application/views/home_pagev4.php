@@ -34,23 +34,49 @@ $home = 1;
         <div id="tab" class="firstcolumn">
           
             <div id="random" class="clearfix">
-                <?php $this->load->view('tab/random'); ?>
 
             </div>
         </div>
          <div id="tab2"  class="secondcolumn" >
-            <ul>
-                <li><a href="#random">Facilities Rollover</a></li>
-
-            </ul>
-            <div id="random" class="clearfix">
-              
-            </div>
+            <div id="random" class="clearfix"></div>
         </div>
+
     </div>
-    <div class="ui-layout-west hidden">  Some exciting facilities list to come  
+    <div class="ui-layout-west hidden">  
+        <ul>
+             <li id ="tddp" class="fl">
+                <input type="image"  src="" height="50" width="240" name="tddps" value="TDDP">
+            </li>
+            <li id ="auscover" class="fl">
+            <input type="image"  src="/img/auscover.PNG" height="50" width="240" name="auscover">
+            </li>
+            <li id ="ozflux" class="fl">
+            <input type="image"  src="/img/ozflux.png" height="50" width="240" name="ozflux">
+            </li>
+<!--            
+            <li id ="ausplot" class="fl">
+            <input type="image"  src="/img/ausplot.PNG" height="50" width="80" name="ausplot">
+            </li>
+-->
+<!--
+            <li  id ="aceas" class="fl">
+            <input type="image"  src="/img/aceas.png" height="50" width="150" name="aceas">
+            </li>
+-->
+            <li  id ="ecoinformatics" class="fl">
+            <input type="image"  src="/img/aekos.PNG" height="50" width="150" name="aekos">
+            </li>
+<!--            
+            <li  id ="emast" class="fl">
+            <input type="image"  src="/img/emast.PNG" height="50" width="100" name="emast">
+            </li>
+-->
+            <li  id ="supersites" class="fl">
+            <input type="image"  src="/img/supersite.PNG" height="50" width="240" name="supersite">
+            </li>
+        </ul>
     </div>
-    <div class="ui-layout-east hidden"> Some exciting logos to be found here   
+   <!-- <div class="ui-layout-east hidden"> Some exciting logos to be found here   -->
     </div>
 </div>
 

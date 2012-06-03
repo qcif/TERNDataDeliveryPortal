@@ -57,10 +57,20 @@ class Home extends CI_Controller {
 		$data['tabs'] = 1;
 		//echo $data['user_agent'];
 
-                $data['recordsArr'] = $this->handleRandomTab(10);
+                $data['recordsArr'] = $this->handleRandomTab(10,'tddp');
 		$this->load->view('home_pagev4', $data);
 	}
 	
+        public function getrdmrecord()
+        {
+           if(isset($_GET['fac']))
+                $fac=$_GET['fac'];
+            else
+                $fac="tddp";
+
+            $data['recordsArr'] = $this->handleRandomTab(10,$fac);
+            $this->load->view('facilityrandom',$data);
+        }
         public function advancesrch(){
                 //get Temporal 
                 $this->load->model('Registryobjects');
@@ -165,9 +175,11 @@ class Home extends CI_Controller {
         }
         
         /*get 10 random records*/
-        private function handleRandomTab($num){
+        private function handleRandomTab($num,$fac){
+
             $this->load->model('Solr','Solr');
-            $randomRJson = $this->Solr->getRandomRecords($num);
+
+            $randomRJson = $this->Solr->getRandomRecords($num,$fac);
             $recordsArr = $randomRJson->{'response'}->{'docs'};
             return $recordsArr;
             
@@ -194,6 +206,8 @@ class Home extends CI_Controller {
               }
             if(count($dataTypeLvl2)>1) ksort($dataTypeLvl2);
         }
+        
+
 
     
         }

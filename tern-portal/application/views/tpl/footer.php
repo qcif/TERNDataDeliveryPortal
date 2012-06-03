@@ -1,13 +1,12 @@
         <div id="sponsor" class="no_print">
-            <div id="phone"><span>P:</span> +61 7 3346 7021<div><strong><i>email</i></strong>  
-                    <script type="text/javascript">
-                        var yvqamuq = ['g','t','t','e','o','l','a','<','r','r','"','t','i','"','"','r','t','a','>','s','.','a','r','r','m','p','.','=','p','n','o','u','.','s',' ','e','r','t','r','l','.','t','e','r','"','l','n','@','o','a','c','.','l','a','a','n','m','o','a','l','e','t','/','u','.','r','a','e','a','i',':','@','e','n','=','g','<',' ','h','o','>','f'];var avelpub = [74,63,13,48,72,12,43,0,23,34,39,55,11,8,53,18,16,76,81,45,36,37,62,4,9,60,59,46,21,31,22,77,20,44,2,17,57,28,30,26,32,67,29,73,47,42,70,27,33,25,41,71,52,1,64,19,49,61,10,65,68,24,79,38,75,69,80,5,50,51,15,66,56,58,7,35,78,40,3,14,54,6];var wmvdawu= new Array();for(var i=0;i<avelpub.length;i++){wmvdawu[avelpub[i]] = yvqamuq[i]; }for(var i=0;i<wmvdawu.length;i++){document.write(wmvdawu[i]);}
-                    </script>
+            <div class="new-footer">
+            <div id="phone">
+                <?php echo anchor('http://tern.org.au/tern_data_portal_terms_of_use-pg21208.html', 'Terms of use'); ?>
                 </div></div>
 
             <div id="info">TERN is supported by the Australian Government through the National<br>Collaborative Research Infrastructure Strategy and the Super Science Initiative.</div>
             <div id="australian_government"></div>
-
+            </div>
 
         </div>
 
