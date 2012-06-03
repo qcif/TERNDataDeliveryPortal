@@ -29,7 +29,7 @@
         "start": 0,
         "docs": [
             {
-                "key": "TERN Supersites",
+                "key": "supersites",
                 "displayTitle": "Supersites",
                 "description_type": [
                     "logo",
@@ -42,7 +42,7 @@
                 "location": ["http://tern-supersites.net.au"]
             },
             {
-                "key": "OzFlux",
+                "key": "ozflux",
                 "displayTitle": "OzFlux",
                 "description_type": [
                     "logo",
@@ -55,7 +55,7 @@
                 "location": ["http://www.ozflux.org.au/index.html"]
             },
             {
-                "key": "AusCover",
+                "key": "auscover",
                 "displayTitle": "AusCover",
                 "description_type": [
                     "logo",
@@ -68,7 +68,7 @@
                 "location": ["http://www.auscover.org.au"]
             },
             {
-                "key": "LAMPS",
+                "key": "lamps",
                 "displayTitle": "LAMPS",
                 "description_type": [
                     "logo",
@@ -81,7 +81,7 @@
                 "location": ["http://www.ozflux.org.au/index.html"]
             },
             {
-                "key": "AusPlots",
+                "key": "ausplot",
                 "displayTitle": "AusPlots",
                 "description_type": [
                     "logo",
@@ -94,7 +94,7 @@
                 "location": ["http://www.ozflux.org.au/index.html"]
             },
             {
-                "key": "LTERN",
+                "key": "ltern",
                 "displayTitle": "LTERN",
                 "description_type": [
                     "logo",
@@ -107,7 +107,7 @@
                 "location": ["http://www.ozflux.org.au/index.html"]
             },
             {
-                "key": "Soil",
+                "key": "soil",
                 "displayTitle": "Soil and Landscape Grid",
                 "description_type": [
                     "logo",
@@ -120,7 +120,7 @@
                 "location": ["http://www.ozflux.org.au/index.html"]
             },
             {
-                "key": "Coastal",
+                "key": "coastal",
                 "displayTitle": "Australian Coastal Ecosystems",
                 "description_type": [
                     "logo",
@@ -133,7 +133,7 @@
                 "location": ["http://www.ozflux.org.au/index.html"]
             },
             {
-                "key": "EcoInformatics",
+                "key": "ecoinformatics",
                 "displayTitle": "EcoInformatics",
                 "description_type": [
                     "logo",
@@ -146,7 +146,7 @@
                 "location": ["http://www.ozflux.org.au/index.html"]
             },
             {
-                "key": "eMast",
+                "key": "emast",
                 "displayTitle": "Ecosystem Modelling and Scaling Infrastructure",
                 "description_type": [
                     "logo",
@@ -167,7 +167,7 @@
                 ],
                 "description_value": [
                     "http://www.tern.org.au/rs/7/sites/998/user_uploads/Image/facilities/aceas_multicoloured_no_dots.jpg",
-                    "OzFlux is a national ecosystem research network consisting of 10 flux stations at present with a further 6 planned for installation in 2011, all funded under the TERN 1 initiative. Funding for 6 more sites has been requested under the TERN-EIF initiative. The final network of 21 sites will provide the Australian and global ecosystem modelling communities with nationally consistent observations of energy, carbon and water exchange between the atmosphere and key Australian ecosystems. OzFlux is part of an international network (FluxNet) of over 500 flux stations that is designed to provide continuous, long-term micrometeorological measurements to monitor the state of ecosystems globally. "
+                    "aceas blahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblah"
                 ],
                 "location": ["http://www.ozflux.org.au/index.html"]
             }

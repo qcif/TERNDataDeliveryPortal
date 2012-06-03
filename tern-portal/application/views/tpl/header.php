@@ -32,16 +32,7 @@ if (isset($description))
                 <div id="logo">
                     <a href="/"><img src="<?php echo site_url('img/logo.png'); ?>" id="tern-logo"/></a>
                 </div>
-
-                <h1><?php echo $md_title; ?></h1>
-               <div class="no_print top-menu-cover">
-
-                    <ul class="sf-menu">
-                        <li><?php echo anchor('', 'Home'); ?></li>
-
-
-               <div><h1><?php echo $md_title; ?></h1></div>
-                
+               <h1><?php echo $md_title; ?></h1>                
                <div class="no_print top-menu-cover">
 
                     <ul class="sf-menu">

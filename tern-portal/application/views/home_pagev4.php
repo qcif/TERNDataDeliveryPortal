@@ -31,14 +31,11 @@ $home = 1;
 <div id="container">
     <div id="ui-layout-center" class="ui-layout-center ">
 
-        <div id="tab" class="firstcolumn">
+        <div id="tab">
           
             <div id="random" class="clearfix">
 
             </div>
-        </div>
-         <div id="tab2"  class="secondcolumn" >
-            <div id="random" class="clearfix"></div>
         </div>
 
     </div>
