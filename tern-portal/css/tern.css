@@ -608,3 +608,19 @@ div.left:hover{background-position:-30px 0;}
 
 div.left:active{background-position:-60px 0;}
 
+.facility-desc{
+    float:left;
+    text-align: left;
+    width:445px;
+    
+}
+
+#fac-random-rec{
+    float:right;
+    text-align: left;
+    width:445px;
+}
+
+#fac-title{
+    text-align: center;
+}

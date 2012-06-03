@@ -171,6 +171,20 @@
                     "aceas blahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblah"
                 ],
                 "location": ["http://www.tern.org.au/Australian-Centre-for-Ecological-Analysis-and-Synthesis-pg17735.html"]
+            },
+            
+            {
+                "key": "tddp",
+                "displayTitle": "TERN Data Discovery Portal",
+                "description_type": [
+                    "logo",
+                    "full"
+                ],
+                "description_value": [
+                    "http://www.tern.org.au/rs/7/sites/998/user_uploads/Image/facilities/aceas_multicoloured_no_dots.jpg",
+                    "TERN portal is a portal,TERN portal is a portal,TERN portal is a portal,TERN portal is a portal"
+                ],
+                "location": ["http://www.tern.org.au/Australian-Centre-for-Ecological-Analysis-and-Synthesis-pg17735.html"]
             }
 
 
