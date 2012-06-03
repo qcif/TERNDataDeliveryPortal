@@ -24,7 +24,6 @@ if (isset($description))
         <link type="text/css" href="<?php echo base_url(); ?>css/tern.css" rel="stylesheet" />
          <link type="text/css" href="<?php echo base_url(); ?>css/print.css" rel="stylesheet" media="print" />
 
-
     </head>
     <body>
         <div id="wrapper">
@@ -34,24 +33,10 @@ if (isset($description))
                 </div>
                <h1><?php echo $md_title; ?></h1>                
                <div class="no_print top-menu-cover">
-                    <ul class="sf-menu"> 
-                        <li><?php echo anchor('', 'Home'); ?></li>
-                        <li><?php echo anchor('http://www.tern.org.au/How-TERN-fits-together-pg17726.html', 'Facilities'); ?>
-                            <ul>
-                                
-                                <?php
-                                if($json && $json->{'response'}->{'docs'}){
-                                    foreach($json->{'response'}->{'docs'} as $d){
-                                        if(count($d->{'location'})>0){
-                                            echo '<li>';
-                                            echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. $d->{'displayTitle'} . '</a>'; 
-                                            echo '</li>';
-                                         }
-                                    }
-                                }
-                                ?>                            
-                            </ul>
-                        </li>
+
+                    <ul class="sf-menu">
+                        <li><?php echo anchor('', 'Home'); ?></li>                     
+                        <li><?php echo anchor('http://www.tern.org.au/How-TERN-fits-together-pg17726.html', 'Facilities'); ?></li>
                         <li><?php echo anchor('http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html', 'Contact'); ?></li>
                     </ul>  
                 </div>

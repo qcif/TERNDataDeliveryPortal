@@ -355,7 +355,6 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
     public function getTERNPartners()
     {
         // get Partner File
-
         $json = json_decode($this->load->file(APPPATH . 'config/partners.php', TRUE));
 
         return $json;

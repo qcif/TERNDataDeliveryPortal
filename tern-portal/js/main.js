@@ -63,6 +63,11 @@ $(function() {
             window.location.href=base_url;
         }else if(window.location.href.indexOf('search')>=0){
             initSearchPage();
+   
+        }else if(window.location.href.indexOf('contact')>=0){
+            initContactPage();
+        }else if(window.location.href.indexOf('help')>=0){
+            initHelpPage();
         }else if(window.location.href.indexOf('preview')>=0){
             initPreviewPage();
         }else {
@@ -658,7 +663,7 @@ $(function() {
                 $('#facetH2').removeClass('ui-state-disabled');  
                 if(typeof mapWidget == 'undefined'){
                     mapResult = new MapWidget('result-map');
-                    mapResult.addDataLayer(true,"default",true);
+                    mapResult.addDataLayer(true,"default");
                     mapWidget= mapResult;
                 }
                 $("#accordion").accordion("activate",2);
@@ -772,6 +777,7 @@ $(function() {
     */
     function initHomePage(){
         setupOuterLayout();
+
         $('.hp-icons img').hover(function(){
             id = $(this).attr('id');
 
@@ -836,8 +842,7 @@ $(function() {
         handleRandom('tddp');
     }
 
-function initPreviewPage(){
-               $("ul.sf-menu").superfish(); 
+function initPreviewPage(){	
 	       initConnectionsBox()		
 	       initSubjectsSEEALSO()		
 	        $('#view-in-orca').remove();		
@@ -1251,10 +1256,52 @@ function initViewMap(mapId, centerSelector,coverageSelector){
                     
         success:function(msg){
           $("#random").html(msg);
+          
+          if(facname=="tddp")
+          {
+                  handleRollover();
+          }
 
         },
         error:function(msg){
             console.log("error");
         }
         })
+        
+        
     }
+    
+    
+    function handleRollover()
+    {
+      $("#scrollable").scrollable({circular: true}).autoscroll(4000);
+			var api = $("#scrollable").data("scrollable");
+			api.seekTo(0);
+			api.onSeek(function() {
+				var currentImageIndex = this.getIndex()+2;
+				var prev = this.getIndex() + 1;
+				var next = this.getIndex() + 3;
+				currentKey = $("#items img:nth-child(" + currentImageIndex + ")").attr('alt');
+				$('#items img').removeClass('current-scroll');
+				$("#items img:nth-child(" + currentImageIndex + ")").addClass('current-scroll');
+				currentDescription = $('div[name="'+currentKey+'"]').html();
+				$('#display-here').html(currentDescription);
+				$('#display-here a').tipsy({live:true, gravity:'w'});
+			});
+			$("#items img").click(function(){
+				api.seekTo($(this).index()-1);
+				if($(this).hasClass('current-scroll')){
+					//console.log('current');
+					var h1 = $('#display-here a').html();
+					h1 = h1.replace('-','');
+					changeHashTo(formatSearch(h1,1, 'collection'));
+				}
+			});
+
+			$("#display-here").mouseenter(function() {
+		  api.pause();
+		}).mouseleave(function() {
+		  api.play();
+		});
+    }
+

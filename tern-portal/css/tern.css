@@ -172,7 +172,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 #wrapper{background: url('../img/header.png') repeat-x scroll left top transparent; margin:0}
 
-#header{ position:relative;width:1200px;margin: 0 auto;  height:140px}
+#header{ position:relative;width:1200px;margin: 0 auto; height:140px}
 
 /* footer styles */
 #phone {
@@ -573,6 +573,38 @@ div.olLayerGooglePoweredBy
     margin: 0pt auto; width: 1200px;
 }
 
+
 .facet-list{
     padding:0 ! important;
 }
+
+#carousel{}
+#scrollable {position:relative;overflow:hidden;width: 350px;height:120px;}
+#scrollable .items {width:2000em;position:absolute;clear:both;}
+
+.items div {float:left; width:680px;}
+
+/* single scrollable item */
+#scrollable img {float:left;margin:20px 5px 0px 21px;background-color:#fff;padding:2px;width:132px;height:63px;cursor:pointer;}
+/* active item */
+#scrollable .active {border:2px solid #000;position:relative;cursor:default;}
+/* this makes it possible to add next button beside scrollable */
+#scrollable {float:left;}
+
+#items img{opacity:0.2;filter: alpha(opacity = 20);}
+#items img.current-scroll{opacity:1.0;filter: alpha(opacity = 100);}
+
+/* prev, next, prevPage and nextPage buttons */
+div.browse {background:url(../img/hori_large.png) no-repeat;display:block;width:30px;height:30px;float:left;margin:40px 10px;cursor:pointer;font-size:1px;}
+
+/* right */
+div.right{ background-position: 0 -30px; clear:right; margin-right: 0px;float:right;}
+div.right:hover{ background-position:-30px -30px; }
+div.right:active{ background-position:-60px -30px; } 
+
+/* left */
+div.left{margin-left: 0px;} 
+div.left:hover{background-position:-30px 0;}
+
+div.left:active{background-position:-60px 0;}
+

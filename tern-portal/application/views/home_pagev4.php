@@ -45,7 +45,7 @@ $home = 1;
                 <input type="image"  src="" height="50" width="240" name="tddps" value="TDDP">
             </li>
             <li id ="auscover" class="fl">
-            <input type="image"  src="/img/auscover.PNG" height="50" width="240" name="auscover">
+            <input type="image"  src="/img/auscover.png" height="50" width="240" name="auscover">
             </li>
             <li id ="ozflux" class="fl">
             <input type="image"  src="/img/ozflux.png" height="50" width="240" name="ozflux">
@@ -61,7 +61,7 @@ $home = 1;
             </li>
 -->
             <li  id ="ecoinformatics" class="fl">
-            <input type="image"  src="/img/aekos.PNG" height="50" width="150" name="aekos">
+            <input type="image"  src="/img/aekos.png" height="50" width="150" name="aekos">
             </li>
 <!--            
             <li  id ="emast" class="fl">
@@ -69,7 +69,7 @@ $home = 1;
             </li>
 -->
             <li  id ="supersites" class="fl">
-            <input type="image"  src="/img/supersite.PNG" height="50" width="240" name="supersite">
+            <input type="image"  src="/img/supersite.png" height="50" width="240" name="supersite">
             </li>
         </ul>
     </div>

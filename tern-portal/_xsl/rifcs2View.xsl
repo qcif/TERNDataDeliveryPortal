@@ -342,7 +342,7 @@
 
               		 	<xsl:if test="ro:location/ro:address/ro:electronic/@type='url'">
                                     <div class="right-box">
-                                        <h2>Related Links</h2>    
+                                        <h2>Access Data</h2>    
                                         <ul style="padding-left:3px">
                                         <p><xsl:apply-templates select="ro:location/ro:address/ro:electronic"/></p>	
                                         </ul>
@@ -380,41 +380,8 @@
 		</div>		
         <div id="top" class="top-corner">
     	<meta property="og:description" content="description" />
-			    <!--
-				<li><a href="{$base_url}" class="crumb">Home</a></li>
-				<li><a href="{$base_url}search/browse/{./@group}/{$objectClass}" class="crumb"><xsl:value-of select="$group"/></a></li>
-				<li><a href="{$base_url}search/browse/{./@group}/{$objectClass}" class="crumb"><xsl:value-of select="$objectClassLabel"/></a></li>
-				<li><xsl:value-of select="$theTitle"/></li>
-				
-			    -->
+
 				<div id="breadcrumb-corner">
-				<!-- AddToAny BEGIN -->   
-<!--                                
-				<div class="a2a_kit a2a_default_style" id="share">                                    
-                                <a class="a2a_button_facebook"></a>
-                                <a class="a2a_button_linkedin"></a>
-                                <a class="a2a_button_google_gmail"></a>
-                                <a class="a2a_button_twitter"></a>
-                                <a class="a2a_button_yahoo_mail"></a>
-                                <a class="a2a_button_google_plus"></a>
-                                <a class="a2a_button_delicious"></a>
-                                <a class="a2a_button_digg"></a>
-                                <a class="a2a_button_email"></a>
-                                
-                                <span class="a2a_divider"></span>
-                                </div> 
-                                <script type="text/javascript">
-	        		var a2a_config = a2a_config || {};
-                                <xsl:choose>
-                                <xsl:when test="ro:displayTitle!=''">
-                                        a2a_config.linkname ="<xsl:value-of select="ro:displayTitle"/>";
-                                </xsl:when></xsl:choose>
-                                a2a_config.linkurl = "http://www.addtoany.com/share_save?linkurl=<xsl:value-of select="$base_url"/>view/dataview/?key=<xsl:value-of select="$key"/>";
-	        		</script>
-	        		<script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
-                                
- -->  
-	        
 					<a target="_blank">
                    <xsl:attribute name="href"><xsl:value-of select="$base_url"/>view/printview/?key=<xsl:value-of select="$key"/></xsl:attribute>                    
                     <img id="print_icon">
@@ -425,27 +392,18 @@
                     <xsl:attribute name="alt">Print Icon</xsl:attribute>
                     </img>
                     </a>
+                    
+                    <div>
+                        <h2 style="margin:0">Share this page </h2>
+                        <div id="sharelink" style="text-wrap:nomarl">
+                        <xsl:value-of select="$base_url"/>view/dataview/?key=<xsl:value-of select="$key"/>
+                        </div>
+                    </div>
 				</div>
 			
 		</div>	
 		</xsl:if>
-	
-			<!-- NEW CONNECTION -->
-                        <!--
-			<div class="right-box" id="connectionsRightBox">
-			<div id="connectionsInfoBox" class="hide"></div>
-			<h2>Connections</h2>
-			<div id="connections">
-				<img>
-				<xsl:attribute name="src"><xsl:value-of select="$base_url"/><xsl:text>/img/ajax-loader.gif</xsl:text></xsl:attribute>
-				<xsl:attribute name="class">loading-icon</xsl:attribute>
-				<xsl:attribute name="alt">Loading…</xsl:attribute>
-				</img>
-			</div>
-			</div>	
-				
-			-->
-				
+			
 								
 		 	<xsl:if test="$objectClass='Collection'">
 				<div class="right-box" id="seeAlsoRightBox">
