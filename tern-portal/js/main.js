@@ -64,10 +64,6 @@ $(function() {
         }else if(window.location.href.indexOf('search')>=0){
             initSearchPage();
    
-        }else if(window.location.href.indexOf('contact')>=0){
-            initContactPage();
-        }else if(window.location.href.indexOf('help')>=0){
-            initHelpPage();
         }else if(window.location.href.indexOf('preview')>=0){
             initPreviewPage();
         }else {
@@ -663,7 +659,7 @@ $(function() {
                 $('#facetH2').removeClass('ui-state-disabled');  
                 if(typeof mapWidget == 'undefined'){
                     mapResult = new MapWidget('result-map');
-                    mapResult.addDataLayer(true,"default");
+                    mapResult.addDataLayer(true,"default",true);
                     mapWidget= mapResult;
                 }
                 $("#accordion").accordion("activate",2);
@@ -842,7 +838,8 @@ $(function() {
         handleRandom('tddp');
     }
 
-function initPreviewPage(){	
+function initPreviewPage(){
+    $("ul.sf-menu").superfish();
 	       initConnectionsBox()		
 	       initSubjectsSEEALSO()		
 	        $('#view-in-orca').remove();		

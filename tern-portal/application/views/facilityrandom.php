@@ -106,7 +106,7 @@ function displayDesc($facid,$partners)
 	
 </div>
 
-        <div>
+        <div style="float:left">
                   <?php
                                  displayDesc($fackey,$partners);
                                      
