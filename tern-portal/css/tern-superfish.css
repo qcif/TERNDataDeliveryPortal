@@ -104,7 +104,7 @@ ul.sf-menu li li li.sfHover ul {
         }
 .sf-menu a {
 	color:black;
-	padding:10px 15px;
+	padding:10px 10px;
 	text-decoration:none;
         text-transform: uppercase;
 }
@@ -134,8 +134,23 @@ ul.sf-menu li li li.sfHover ul {
 }
 
 .sf-menu li ul{
-    background:#3D3D3D;
+    background:#cccccc;
     margin:5px 0px;
-    width:150px;
+    width:200px;
 }
 
+.sf-menu li ul li a,.sf-menu li ul li a:visited  {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.sf-sub-indicator {
+   /*-webkit-transform: rotate(90deg); 
+    -moz-transform: rotate(90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);*/
+    line-height:30px;
+    vertical-align:middle;
+    margin-left: 2px;
+    line-height: 18px;
+    vertical-align: top;
+}

@@ -329,10 +329,37 @@ MapWidget.prototype.toggleControl = function(element) {
      *    
      *  ------------------------------------------------------------
      */
-MapWidget.prototype.addDataLayer = function(clickInfo,style) {
+MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
     var self = this;
     var styleM = getStyle(style);
-    this.dataLayer = new OpenLayers.Layer.Vector( "Data Markers", {styleMap: styleM});
+    var strategy;
+    if(clustering){
+         /*var style = new OpenLayers.Style({
+                    pointRadius: "${radius}",
+                    fillColor: "#ffcc66",
+                    fillOpacity: 0.8,
+                    strokeColor: "#cc6633",
+                    strokeWidth: 2,
+                    strokeOpacity: 0.8
+                }, {
+                    context: {
+                        radius: function(feature) {
+                            return Math.min(feature.attributes.count, 7) + 3;
+                        }
+                    }
+                });
+        var styleM = new OpenLayers.StyleMap({
+                        "default": style,
+                        "select": {
+                            fillColor: "#8aeeef",
+                            strokeColor: "#32a8a9"
+                        }});
+                        */
+        strategy = new OpenLayers.Strategy.Cluster({distance: 15, threshold: 2});
+        this.dataLayer = new OpenLayers.Layer.Vector( "Data Markers", { styleMap: styleM, strategies: [strategy]});
+    }else{
+        this.dataLayer = new OpenLayers.Layer.Vector( "Data Markers", {styleMap: styleM});
+    }
     this.map.addLayer(this.dataLayer);  
     if(clickInfo){
          this.selectControl = new OpenLayers.Control.SelectFeature(this.dataLayer,
@@ -361,38 +388,44 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
     var WGS84 = this.WGS84; 
     var WGS84_google_mercator = this.WGS84_google_mercator;
     var number;
+
+    var vectors = Array();
     if(typeof clickInfo == "undefined") clickInfo = false;
     $.each(centers, function(){
-            var html ='';
+            
             if(clickInfo){
-                var desc = trimwords($(this).parent().children('p').html(),50);
+                var html ='';
+               var title = '';
+                 var desc = trimwords($(this).parent().children('p').html(),50);
                 if(desc.length>0)
                 {
                                         
                     if (desc.length <  $(this).parent().children('p').html().length) desc += "...";
                     var link = $(this).parent().children('h2').children('a').clone().attr('onClick','handleRecordPopup($(this));');
-               
-                    html  = "<strong>" + $(this).parent().children('h2').children('span.count').html() + $('<div>').append(link).html()   + "</strong><p>" + desc + "</p>";
+                    title = $('<div>').append(link).html();
+                    html  = "<strong>" + $(this).parent().children('h2').children('span.count').html() + title   + "</strong><p>" + desc + "</p>";
+                    
                     number = $(this).parent().children('h2').children('span.count').html().replace(".",""); 
                 }
              
             }else { number = ''}
             if($(this).html().indexOf(' ') != -1){ 
-             addVector($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html,number);    
+             vectors.push(addVector($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html,number, title));    
             }else{
-             addMarker($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html,number);
+             vectors.push(addMarker($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html,number,title));
             }
 
     }); 
+    dataLayer.addFeatures(vectors);
     var bounds = dataLayer.getDataExtent();
     if(bounds)  this.map.zoomToExtent(bounds); 
     if(this.map.zoom > 5) this.map.zoomTo(5);
     
-    function addMarker(lonlat,dataLayer,WGS84,WGS84_google_mercator,html, number){
+    function addMarker(lonlat,dataLayer,WGS84,WGS84_google_mercator,html, number, title){
             var word = lonlat.split(',');
             var point = new OpenLayers.Geometry.Point(word[0],word[1]);
             point.transform(WGS84, WGS84_google_mercator);
-            var attributes = {popupHTML: html, type: "point", number: number}
+            var attributes = {popupHTML: html, title: title, type: "point", number: number}
             var feature = new OpenLayers.Feature.Vector(point, attributes);
             /*if(html != ''){
             AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, {
@@ -415,10 +448,11 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
             if(html!= ''){
                 marker.events.register("click",feature,markerClick);
             }*/ 
-            dataLayer.addFeatures([feature]);
+        return feature;
+            //dataLayer.addFeatures([feature]);
     } 
     
-    function addVector(coordinates,dataLayer,WGS84,WGS84_google_mercator,html){
+    function addVector(coordinates,dataLayer,WGS84,WGS84_google_mercator,html,title){
             var points = coordinates.split(' ');
             var vector_points = Array();
             $.each(points, function(i, s){
@@ -429,11 +463,11 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
             });
            
             var linear_ring = new OpenLayers.Geometry.LinearRing(vector_points);
-            var attributes = {popupHTML: html, type: "polygon", number: number}
+            var attributes = {popupHTML: html,title: title,  type: "polygon", number: number}
             var feature = new OpenLayers.Feature.Vector(
                         new OpenLayers.Geometry.Polygon([linear_ring]),attributes);          
 
-            dataLayer.addFeatures([feature]);
+            return feature;
       }
 }
  
@@ -464,16 +498,29 @@ MapWidget.prototype.updateDrawing = function(map,coordStr){
        */
 MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
     selectedFeature = feature; 
-    popup = new OpenLayers.Popup.Anchored("chicken",
-        feature.geometry.getBounds().getCenterLonLat(),
-        null, feature.data.popupHTML, null, true, function(){ mapWidgetObj.onPopupClose(mapWidgetObj);});
-    popup.maxSize = new OpenLayers.Size(500,150);
-    popup.panMapIfOutOfView = true;
-    popup.autoSize = true;
-    feature.popup = popup;
-    
-
-    map.addPopup(feature.popup);     
+    if(!feature.cluster){
+        popup = new OpenLayers.Popup.Anchored("chicken",
+            feature.geometry.getBounds().getCenterLonLat(),
+            null, feature.data.popupHTML, null, true, function(){ mapWidgetObj.onPopupClose(mapWidgetObj);});
+        popup.maxSize = new OpenLayers.Size(480,150);
+        popup.panMapIfOutOfView = true;
+        popup.autoSize = true;
+      
+    }else{
+        var html = '';
+        $.each(feature.cluster,function(){
+            html = html + "<strong>" + this.data.number + ". " +  this.data.title  + "</strong><br/>";
+         });
+            popup = new OpenLayers.Popup.Anchored("chicken",
+            feature.geometry.getBounds().getCenterLonLat(),
+            null, html, null, true, function(){ mapWidgetObj.onPopupClose(mapWidgetObj);});
+            popup.maxSize = new OpenLayers.Size(440,180);
+            popup.panMapIfOutOfView = true;
+            popup.autoSize = true;
+    }
+     feature.popup = popup;   
+     map.addPopup(feature.popup);     
+            
 }
 
 MapWidget.prototype.onPopupClose = function(mapWidgetObj){
@@ -526,96 +573,68 @@ function getWFS(url,vectorLayer){
 function getStyle(styleName){
     var style;
     var styleSelected;
+    var context = {};
       switch(styleName){
           case "default" : {
                 style = {
-                        pointRadius: 9, 
-                        fillColor: '#48D1CC', 
-                        fillOpacity: '1', 
+                        pointRadius: "${radius}", 
+                        fillColor: '${bgcolor}', 
+                        fillOpacity: '0.7', 
                         strokeColor: '#000000', 
                         strokeWidth: '1',
-                        label: "${number}",
-                        labelSelect: true  
-                } /*, { context : {
-                    radius: function(feature){
-                        return Math.min(features.attributes.count,7) +3;
-                    }
-                }}*/;
+                        label: "${count}",
+                        labelSelect: true   
+                };
                
                 styleSelected = {
-                    /*"Point":  {
-                        'externalGraphic': 'http://www.openlayers.org/dev/img/marker.png', 
-                        'graphicWidth': '21', 
-                        'graphicHeight': '25', 
-                        'graphicXOffset': -10, 
-                        'graphicYOffset': -25,  
-                        'graphicOpacity': 1
-                    },
-                    "Line": {
-                        strokeWidth: 3
-                    },
-                    "Polygon": {*/
-                        pointRadius: 9,
-                        fillColor: '#ff0000', 
-                        fillOpacity: '1', 
-                        strokeColor: '#000000', 
-                        strokeWidth: '1',
-                        label: "${number}",
-                        labelSelect: true
-                   // }
-                }
-                /*, { context : {
-                    radius: function(feature){
-                        return Math.min(features.attributes.count,7) +3;
-                    }
-                }}*/;
+                         fillColor: '#ff0000', 
+                         strokeColor: '#000000'
+                  }      
                   
+               context =  {
+                    bgcolor: function(feature){
+                        if(feature.attributes.count > 1) {
+                            return "#FFFF00";
+                        }else{
+                            return "#48D1CC";
+                        }
+                    },
+                    radius: function(feature){
+                        if(feature.attributes.count > 1) {
+                            return Math.min(feature.attributes.count,9) + 9;
+                        }else{
+                            return 9;
+                        }
+                    },
+                    count: function(feature){
+                        if(feature.attributes.count > 1) {
+                            return "[" + feature.attributes.count  + "]";
+                        }else{
+                            return feature.attributes.number;
+                        }
+                    }
+                };
           };break;
           case "red" : {
                   style = {
-                 /*   "Point":  {
-                        'externalGraphic': 'http://www.openlayers.org/dev/img/marker.png', 
-                        'graphicWidth': '21', 
-                        'graphicHeight': '25', 
-                        'graphicXOffset': -10, 
-                        'graphicYOffset': -25,  
-                        'graphicOpacity': 1
-                    },
-                    "Line": {
-                        strokeWidth: 3
-                    },
-                     "Polygon": {*/
-                        pointRadius: 9,
+                    pointRadius: 9,
                         fillColor: '#FFFF00', 
                         fillOpacity: '1', 
                         strokeColor: '#000000', 
                         strokeWidth: '1',
                         label: "${number}",
                         labelSelect: true
-                  // }
-                }
+
+                };
                 styleSelected = {
-                 /*   "Point":  {
-                        'externalGraphic': 'http://www.openlayers.org/dev/img/marker-green.png', 
-                        'graphicWidth': '21', 
-                        'graphicHeight': '25', 
-                        'graphicXOffset': -10, 
-                        'graphicYOffset': -25,  
-                        'graphicOpacity': 1
-                    },
-                    "Line": {
-                        strokeWidth: 3
-                    },
-                    "Polygon": {*/
-                        pointRadius: 9,
+                     pointRadius: 9,
                         fillColor: '#ff0000', 
                         fillOpacity: '1',  
                         strokeColor: '#000000', 
                         strokeWidth: '1',
                         label: "${number}",
                         labelSelect: true
-                   // }
-                }
+                };
           };break;
           case "transparent" : {
                        style = {
@@ -642,7 +661,7 @@ function getStyle(styleName){
       }
     // Styling Site Layers
     
-    var styleM = new OpenLayers.StyleMap({ "default" : new OpenLayers.Style(style), "select" : new OpenLayers.Style(styleSelected)});
+    var styleM = new OpenLayers.StyleMap({ "default" : new OpenLayers.Style(style,{context:context}), "select" : new OpenLayers.Style(styleSelected,{context:context})});
   //  styleM.addUniqueValueRules("default", "type", style);
   //  styleM.addUniqueValueRules("select", "type", styleSelected);
  

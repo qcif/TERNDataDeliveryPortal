@@ -663,7 +663,7 @@ $(function() {
                 $('#facetH2').removeClass('ui-state-disabled');  
                 if(typeof mapWidget == 'undefined'){
                     mapResult = new MapWidget('result-map');
-                    mapResult.addDataLayer(true,"default");
+                    mapResult.addDataLayer(true,"default",true);
                     mapWidget= mapResult;
                 }
                 $("#accordion").accordion("activate",2);

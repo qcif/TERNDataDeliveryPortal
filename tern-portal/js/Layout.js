@@ -38,11 +38,12 @@ function setupOuterLayout(){
         west__size: 300,
         resizable : false,
         closable: false,
-        east__size:300,
+        
         spacing_open: 0
        // togglerClass:	"toggler"	// default = 'ui-layout-toggler'
     });
-    
+    $("ul.sf-menu").superfish(); 
+
 }
 function setupNestedLayout(mapResize){
     /*                              LAYOUT
