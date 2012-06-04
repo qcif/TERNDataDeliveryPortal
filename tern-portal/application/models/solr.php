@@ -352,6 +352,15 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         return $json;
     }
     
+    public function getTERNPartners()
+    {
+        // get Partner File
+
+        $json = json_decode($this->load->file(APPPATH . 'config/partners.php', TRUE));
+
+        return $json;
+    }
+    
     function seeAlso($key, $type)
     {
         $result = null;
@@ -418,13 +427,20 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         return $json;
     }
     /* Get Random Records $num = number of records to get*/
-    function getRandomRecords($num){
+    function getRandomRecords($num,$fac){
+
+        if ($fac=="tddp")
+        {
+            $fac="*";
+            
+         }
+
          $fields = array(
-            'q' => 'class:collection', 'version' => '2.2', 'start' => '0', 'rows' => $num, 'indent' => 'on', 'wt' => 'json',
+            'q' => 'class:collection and data_source_key:'.$fac, 'version' => '2.2', 'start' => '0', 'rows' => $num, 'indent' => 'on', 'wt' => 'json',
             'fl' => 'key,displayTitle,description_value,description_type', 'sort' => 'random_' . mt_rand(1,10000) . ' desc'
         );
-        
         $json = $this->fireSearch($fields, '');
+
         return $json;
         
     }

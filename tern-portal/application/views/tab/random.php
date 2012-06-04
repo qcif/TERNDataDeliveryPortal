@@ -41,7 +41,7 @@ function printRecord($r){
             echo '</li>';
 }
 ?>
-<div id="hp-left">
+<div>
     <ul>
     <?php 
         for($i=0;$i<$half; $i++){

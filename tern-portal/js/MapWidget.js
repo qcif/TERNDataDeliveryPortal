@@ -608,7 +608,7 @@ function getStyle(styleName){
                     },
                     count: function(feature){
                         if(feature.attributes.count > 1) {
-                            return "[" + feature.attributes.count  + "]";
+                            return feature.cluster[0].attributes.number  + "+";
                         }else{
                             return feature.attributes.number;
                         }

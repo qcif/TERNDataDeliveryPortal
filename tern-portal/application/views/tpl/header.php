@@ -32,20 +32,24 @@ if (isset($description))
                 <div id="logo">
                     <a href="/"><img src="<?php echo site_url('img/logo.png'); ?>" id="tern-logo"/></a>
                 </div>
-                <h1><?php echo $md_title; ?></h1>
+               <h1><?php echo $md_title; ?></h1>                
                <div class="no_print top-menu-cover">
-
                     <ul class="sf-menu"> 
                         <li><?php echo anchor('', 'Home'); ?></li>
                         <li><?php echo anchor('http://www.tern.org.au/How-TERN-fits-together-pg17726.html', 'Facilities'); ?>
                             <ul>
-                                <?php  foreach($json->{'response'}->{'docs'} as $d){
-                                            echo "<li>";
-                                            echo anchor($d->{'location'},$d->{'displayTitle'}); 
-                                            echo "</li>";
+                                
+                                <?php
+                                if($json && $json->{'response'}->{'docs'}){
+                                    foreach($json->{'response'}->{'docs'} as $d){
+                                        if(count($d->{'location'})>0){
+                                            echo '<li>';
+                                            echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. $d->{'displayTitle'} . '</a>'; 
+                                            echo '</li>';
                                          }
-                                ?>
-                                <li><?php echo anchor('http://www.tern.org.au/How-TERN-fits-together-pg17726.html', 'Facilities1 test test test'); ?></li>
+                                    }
+                                }
+                                ?>                            
                             </ul>
                         </li>
                         <li><?php echo anchor('http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html', 'Contact'); ?></li>

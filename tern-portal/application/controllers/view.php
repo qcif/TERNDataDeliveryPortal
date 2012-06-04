@@ -55,7 +55,9 @@ class View extends CI_Controller {
 			if(isset($doc->{'description_value'}[0]))$data['description']=htmlentities($doc->{'description_value'}[0]);
 			$data['doc'] = $doc;
 			
-			
+			$this->load->model('Solr');
+                        $data['json'] = $this->Solr->getTERNPartners();
+
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();
 			
@@ -110,7 +112,10 @@ class View extends CI_Controller {
 		
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();
-			
+		
+			$this->load->model('Solr');
+                        $data['json'] = $this->Solr->getTERNPartners();
+                        
 			$this->load->view('dataview', $data);
 		}else{
 			show_404('page');

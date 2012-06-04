@@ -51,16 +51,33 @@ class Home extends CI_Controller {
 
                 $data['min_year'] = $row->min_year;
                 $data['max_year'] = $row->max_year;
-		//$this->load->model('Solr');
-		//$data['json'] = $this->Solr->getNCRISPartners();
+		
+                $this->load->model('Solr');
+                $data['json'] = $this->Solr->getTERNPartners();
+
 		$data['home'] = 1;
 		$data['tabs'] = 1;
 		//echo $data['user_agent'];
 
-                $data['recordsArr'] = $this->handleRandomTab(10);
+                $data['recordsArr'] = $this->handleRandomTab(10,'tddp');
 		$this->load->view('home_pagev4', $data);
 	}
 	
+        public function getrdmrecord()
+        {
+           if(isset($_GET['fac']))
+                $fac=$_GET['fac'];
+            else
+                $fac="tddp";
+
+            $this->load->model('Solr');
+            $data['json'] = $this->Solr->getTERNPartners();
+             
+            $data['recordsArr'] = $this->handleRandomTab(10,$fac);
+
+            $data['fackey']=$fac;
+            $this->load->view('facilityrandom',$data);
+        }
         public function advancesrch(){
                 //get Temporal 
                 $this->load->model('Registryobjects');
@@ -140,34 +157,25 @@ class Home extends CI_Controller {
 		
 		echo '<b>Thank you for your response. Your message has been delivered successfully</b>';
 	}
-
-	public function homepage(){
-		$this->load->model('Solr');
-             
-                $data['json'] = $this->Solr->getNCRISPartners();
-
-		$this->load->view('home_page', $data);
-	}
 	
 	public function notfound(){
 		$this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();
 		$data['message']='Whoops! Page not found!';
-		$this->load->view('layout',$data);
+                $this->load->model('Solr');
+                $data['json'] = $this->Solr->getTERNPartners();
+
+                $this->load->view('layout',$data);
 	}
 
 
-
-        /*get statistics for FOR tab, get the names for the parent two digit FOR code and the four digit FOR code*/
-        private function handleFORTab(&$subject){
-            $this->load->model('Registryobjects','ro');
-            include APPPATH . '/views/tab/forstat.php';            
-        }
-        
+    
         /*get 10 random records*/
-        private function handleRandomTab($num){
+        private function handleRandomTab($num,$fac){
+
             $this->load->model('Solr','Solr');
-            $randomRJson = $this->Solr->getRandomRecords($num);
+
+            $randomRJson = $this->Solr->getRandomRecords($num,$fac);
             $recordsArr = $randomRJson->{'response'}->{'docs'};
             return $recordsArr;
             
@@ -194,6 +202,8 @@ class Home extends CI_Controller {
               }
             if(count($dataTypeLvl2)>1) ksort($dataTypeLvl2);
         }
+        
+
 
     
         }

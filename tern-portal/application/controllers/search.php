@@ -68,6 +68,10 @@ class Search extends CI_Controller
                 $data['widget_map_drawtoolbar'] = 1;
                 $data['widget_map_coords'] = 1;
                 
+                $this->load->model('Solr');
+                $data['json'] = $this->Solr->getTERNPartners();
+
+                
                 //get Keyword
                 $data['widget_keyword'] = 1;
                 
