@@ -25,7 +25,7 @@ $Revision: 1 $
 if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All'))
 {
 	echo '<h5><a href="#">Selected</a></h5>'; 
-	echo '<div>';
+	echo '<div class="facet-list">';
 		echo '<ul>';
 		if($temporal!='All'){
 			echo '<li><a href="javascript:void(0);" id="" class="clearTemporal clearFilter" title="Search results are restricted to this timeline, Click to remove this filter">'.$temporal.'</a></li>';

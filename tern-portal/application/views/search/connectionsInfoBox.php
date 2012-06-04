@@ -77,7 +77,7 @@ foreach($json->{'response'}->{'docs'} as $r)
 		echo '<hr/>';
 	}
 	
-	echo anchor('view/?key='.urlencode($r->{'key'}),'View Record', array('class'=>'button','target' => '_blank'));
+	echo anchor('view/dataview?key='.urlencode($r->{'key'}),'View Record', array('class'=>'button','target' => '_blank'));
 	echo '</div>';
 	
 }

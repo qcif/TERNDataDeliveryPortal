@@ -43,7 +43,7 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
             
             echo '<h5 ><a href="#">'.$name;
             echo '</a></h5>';
-            echo '<div class="facet-content">';
+            echo '<div class="facet-list facet-content">';
 
             echo '<ul class="more" id="'.$facet_name.'-facet">';
 
@@ -375,7 +375,7 @@ for($j=0;$j<count($object_type6);$j=$j+2)
  
 	echo '<h5><a href="#">Field of Research';
 	echo '</a></h5>';
-	echo '<div >';
+	echo '<div class="facet-list" >';
 	
 	
 	echo '<ul class="more">';

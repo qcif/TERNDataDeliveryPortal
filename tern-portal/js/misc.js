@@ -1,24 +1,48 @@
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
-
- /*
-function handlefacetSlide()
-{
-           
-	 * show-hide facet content, slide up and down
-	
-        $('.toggle-facet-field').die('click').live('click', function(){
-            //console.log($(this).parent().parent().next('div.facet-content'));
-            $(this).parent().parent().next('div.facet-content').slideToggle();
-            //$(this).parent().children().toggle();//show all the toggle facet field in the same div
-            $(this).toggleClass('ui-icon-arrowthickstop-1-n');
-            $(this).toggleClass('ui-icon-arrowthickstop-1-s');
-        //$(this).hide();
-        });
-     
-}
  */
+
+	var MAX_LOGO_WIDTH = 200;
+	var MAX_LOGO_HEIGHT = 200;
+
+	function testLogo(id, url){
+		var img = $('#'+id)[0]; // Get my img elem
+		//$('#'+id).hide();
+		var pic_real_width, pic_real_height;
+		$("<img/>") // Make in memory copy of image to avoid css issues
+		    .attr("src", $(img).attr("src"))
+		    .load(function() {
+		    	resizeLogo(this, id);
+		    	$('#'+id).show();
+		    }).error(function(){
+			  $('#'+id).hide();
+			});
+	}
+
+	function resizeLogo(image , id)
+	{
+		var maxWidth = MAX_LOGO_WIDTH; // Max width for the image
+	    var maxHeight = MAX_LOGO_HEIGHT;    // Max height for the image
+	    var width = image.width;    // Current image width
+	    var height = image.height;  // Current image height
+		if(width > maxWidth || height > maxHeight)
+		{
+			var hRatio = maxHeight / height;
+			var wRatio = maxWidth / width;
+	        if(hRatio > wRatio)
+	    	{
+	            h = height * wRatio;   // Set new height
+	            w = width * wRatio;
+	    	}
+	        else
+	        {
+	            h = height * hRatio;   // Set new height
+	            w = width * hRatio;
+	    	}
+	    	$('#' + id).css({height: h, width: w});
+		}
+	}
 function handlerecordpopupSlide()
 {
 

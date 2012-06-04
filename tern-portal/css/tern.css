@@ -33,6 +33,11 @@ a:hover{text-decoration:underline;}
 
 input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
 
+ul{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
 .top-left-corner{}
 .bottom-corner{}
 .top-corner{}
@@ -284,6 +289,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
     background: url("../img/main_bg.jpg") repeat-x  transparent;
     border:1px solid #ccc;
     margin-left: 10px;
+    margin-top: 5px;
 }
 #no-result div{
     position:absolute;
@@ -295,7 +301,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 }
 
 .ui-layout-west, .ui-layout-facet{
-    padding: 0;
+    padding: 5px 0 0 5px;
 }
 
 .ui-layout-west h3,.ui-layout-facet h3 {
@@ -565,4 +571,8 @@ div.olLayerGooglePoweredBy
 
 .new-footer{
     margin: 0pt auto; width: 1200px;
+}
+
+.facet-list{
+    padding:0 ! important;
 }

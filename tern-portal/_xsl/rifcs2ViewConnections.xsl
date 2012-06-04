@@ -192,7 +192,7 @@
 		<xsl:choose>
 			<xsl:when test="./@type='external'">
 				<a>
-				<xsl:attribute name="href"><xsl:value-of select="$base_url"/><xsl:text>view/?key=</xsl:text><xsl:value-of select="./ro:key"/></xsl:attribute>		
+				<xsl:attribute name="href"><xsl:value-of select="$base_url"/><xsl:text>view/dataview/?key=</xsl:text><xsl:value-of select="./ro:key"/></xsl:attribute>		
 				<xsl:attribute name="title"><xsl:value-of select="./ro:relation/@type"/><xsl:text> - Automatic link</xsl:text></xsl:attribute>
 				<xsl:choose>
 					<xsl:when test="./ro:relatedObjectDisplayTitle!=''">
@@ -208,7 +208,7 @@
 			</xsl:when>
 			<xsl:otherwise>
 				<a>
-				<xsl:attribute name="href"><xsl:value-of select="$base_url"/><xsl:text>view/?key=</xsl:text><xsl:value-of select="./ro:key"/></xsl:attribute>		
+				<xsl:attribute name="href"><xsl:value-of select="$base_url"/><xsl:text>view/dataview/?key=</xsl:text><xsl:value-of select="./ro:key"/></xsl:attribute>		
 				<xsl:attribute name="title"><xsl:value-of select="./ro:relation/@type"/></xsl:attribute>
 				<xsl:choose>
 					<xsl:when test="./ro:relatedObjectDisplayTitle!=''">

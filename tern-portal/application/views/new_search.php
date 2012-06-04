@@ -1,5 +1,5 @@
 <?php $this->load->view('tpl/header'); ?>      
-        <div id="container">
+        <div id="container" class="ui-corner-all">
             <div id="ui-layout-center" class="ui-layout-center ">
                  <div id="ui-layout-facetmap">
                        <div id ="ui-layout-map" class="ui-layout-map">
