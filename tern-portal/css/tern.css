@@ -638,7 +638,7 @@ div.olLayerGooglePoweredBy
 /* this makes it possible to add next button beside scrollable */
 #scrollable {float:left;}
 
-#items img{opacity:0.2;filter: alpha(opacity = 20);}
+#items img{filter: alpha(opacity = 20);}
 #items img.current-scroll{opacity:1.0;filter: alpha(opacity = 100);}
 
 /* prev, next, prevPage and nextPage buttons */
