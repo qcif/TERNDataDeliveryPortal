@@ -47,7 +47,7 @@ $Revision: 1 $
 			//echo '<p>Searching for \'<b>'.$query.'</b>\' - Results '.$h_start.' to '.$h_end.' of '.$numFound.' (Took '.$timeTaken.' seconds) Current Page: '.$currentPage.' out of '.$totalPage.' pages</p>';
 			//echo '<p> Query = '.$query.' classFilter= '.$classFilter.' typeFilter= '.$typeFilter.' groupFilter= '.$groupFilter.'</p>';
 	
-	echo 'Page: '.$currentPage.'/'.$totalPage.'   |  ';
+	echo '<div class="pagination-currentPageInfo pagination-currentPage">Page: '.$currentPage.' of '.$totalPage.'</div> |  ';
 	
 	//if not on page 1, show Previous
 	echo '<a href="javascript:void(0);" id="1" class="gotoPage">First</a>';

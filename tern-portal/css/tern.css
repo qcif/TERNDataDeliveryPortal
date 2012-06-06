@@ -111,7 +111,6 @@ ul{
 #placeholder p{text-align:center;font-size:13px;}
 
 .show-hide-facet{width:16px;cursor:pointer;display:block;float:left;margin:5px 0;}
-.toggle-facet-field{width:16px;cursor:pointer;zoom:1;height:16px;position:absolute;top:3px;right:3px;}
 .toggle-record-popup{width:16px;cursor:pointer;zoom:1;height:16px;position:absolute;top:3px;right:3px;}
 /*
  * Auto Complete
@@ -127,11 +126,50 @@ ul{
     z-index:1000;
     font-size:15px;
 }
-/*Pagination*/
 
+/* loading window */
+#loading {
+        display:none;
+        position:   absolute;
+        text-align:center;        
+        z-index:    10000;
+        margin:     0 auto;
+        height:     100%;
+        width:      100%;
+        background: rgba( 255, 255, 255, .8 );
+}
+
+#loading p{
+    position:fixed;
+    top:50%;
+    left:50%;
+    margin-top:-y;
+    margin-left:-x;
+    font-weight: bold;
+}
+#loading p img{
+    vertical-align:middle;
+}
+
+/*
+ * Toolbar and Pagination
+ */
+.toolbar{
+    font: 13px Arial, Helvetica, sans-serif;
+    height:30px;
+    line-height:30px;
+    overflow:hidden;margin:0;
+    position:relative;
+}
+.toolbar2{background:white;}
 .pagination{float:right;}
-.pagination-page{padding:0px 3px;text-decoration:none;margin:3px;color:#0a450a;/*border:1px solid #ccc;*/}
+.pagination-page{padding:0px 3px;text-decoration:none;margin:3px/*border:1px solid #ccc;*/}
 .pagination-currentPage{font-weight:bold;color:black;}
+.pagination-currentPageInfo{float:left; margin-right: 5px;}
+.result{float:left;font-weight:bold;}
+#head-toolbar{
+    padding: 10px;
+}
 
 /*
  * Subjects List
@@ -357,7 +395,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 .ui-layout-facet{ border:0;}
 
-#ui-layout-facetmap {padding:0; border:0; }
+#ui-layout-facetmap {padding:5px 0 0 0 ; border:0; }
 
 /* WEST SEARCH  */
  .head{ margin-bottom: 5px; }
@@ -448,7 +486,7 @@ div#panel_advSearch .ui-widget-header{
 .coverage{display:none;}
 .spatial_center{display:none;}
 .spatial_coverage_center{display:none;}
-#search-result{ border:0; padding-left:10px;}
+#search-result{ border:0; padding:10px;}
 
 /* MAP Results*/		
 	#result-map{		

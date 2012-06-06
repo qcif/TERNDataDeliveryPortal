@@ -1,7 +1,9 @@
 <?php $this->load->view('tpl/header'); ?>      
         <div id="container" class="ui-corner-all">
+                    <div id="loading"  ><p><img src="/img/ajax-loader.gif"/> Please wait.. </p></div>
             <div id="ui-layout-center" class="ui-layout-center ">
-                 <div id="ui-layout-facetmap">
+                <div id="head-toolbar" class="toolbar clearfix hide"></div>
+                 <div id="ui-layout-facetmap">                     
                        <div id ="ui-layout-map" class="ui-layout-map">
                           <div id="result-map"></div>                                               
                      </div>
@@ -9,7 +11,6 @@
                 <div id="search-result" class="ui-layout-search-results"></div>
                 <div id="no-result" class="hide ui-corner-all"><div><h3></h3></div></div>
             </div>
-
             <div class="ui-layout-west hidden">    
                 <div id="accordion" class="accordion">
                     <h2 id="basicSearchH2"><a href="#">Basic Search</a></h2>

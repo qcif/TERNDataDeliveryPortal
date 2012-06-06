@@ -82,7 +82,7 @@ function MapWidget(mapId){
     {
         type: google.maps.MapTypeId.HYBRID, 
         sphericalMercator: true, 
-        minZoomLevel: 3, 
+        minZoomLevel: 2, 
         maxZoomLevel: 15, 
         wrapDateLine:false, 
         maxExtent : new OpenLayers.Bounds(11548635,-5889094,18604187,-597430),
@@ -92,10 +92,11 @@ function MapWidget(mapId){
    this.map.addLayer(gphy);          
    //this.layers.push(gphy); 
     
-    //Enable switch layers (that + button on the map)
+    //Enable switch layers (that + button on the map) 
     this.map.addControl(new OpenLayers.Control.LayerSwitcher());
      //Enable Overview Map
-    this.map.addControl(new OpenLayers.Control.OverviewMap({maximized: true, mapOptions: OpenLayers.Util.extend(this.options)}));   
+     var options = {minRatio: 0, maximized: true, maxRatio: Number.POSITIVE_INFINITY, autoPan: true};
+    this.map.addControl(new OpenLayers.Control.OverviewMap(options));   
     // look at Australia 
     if (!this.map.getCenter()) this.map.zoomToExtent(new OpenLayers.Bounds(13237508.34,-5537508.34,16037508.34,-937508.34));
 
@@ -502,7 +503,7 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
         popup = new OpenLayers.Popup.Anchored("chicken",
             feature.geometry.getBounds().getCenterLonLat(),
             null, feature.data.popupHTML, null, true, function(){ mapWidgetObj.onPopupClose(mapWidgetObj);});
-        popup.maxSize = new OpenLayers.Size(480,150);
+        popup.maxSize = new OpenLayers.Size(430,150);
         popup.panMapIfOutOfView = true;
         popup.autoSize = true;
       

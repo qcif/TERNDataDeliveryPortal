@@ -50,7 +50,6 @@ $Revision: 1 $
 <ul>
 	<li>Try different keywords</li>
 	<li>Make sure all words are spelled correctly</li>
-	<li>Broaden your search by clicking on the <a href="javascript:void(0);" class="tab" name="All" >All</a> Tab (To search on all classes)</li>
 	<?php
 		foreach($classes as $index=>$c){
 			if($classes[$index]!=0){

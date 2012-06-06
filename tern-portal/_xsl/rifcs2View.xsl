@@ -394,9 +394,12 @@
                     </a>
                     
                     <div>
-                        <h2 style="margin:0">Share this page </h2>
-                        <div id="sharelink" style="text-wrap:nomarl">
-                        <xsl:value-of select="$base_url"/>view/dataview/?key=<xsl:value-of select="$key"/>
+                       <div id="sharelink" style="text-wrap:nomarl"> Share:
+                        
+                        <a target="_blank">
+                            <xsl:attribute name="href"><xsl:value-of select="$base_url"/>view/dataview/?key=<xsl:value-of select="$key"/></xsl:attribute> 
+                            <xsl:value-of select="//ro:displayTitle"/>
+                            </a>
                         </div>
                     </div>
 				</div>

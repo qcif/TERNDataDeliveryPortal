@@ -43,6 +43,17 @@
 	    	$('#' + id).css({height: h, width: w});
 		}
 	}
+   
+   // LOADING SCREEN
+    $("#loading").ajaxStart(function(){
+         
+       $(this).show();
+    }).ajaxStop(function(){
+        $(this).hide();
+    });
+
+
+
 function handlerecordpopupSlide()
 {
 
