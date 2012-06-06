@@ -141,7 +141,7 @@ ul{
 }
 #loading p{
     position:fixed;
-    top:50%;
+           top:50%;
     left:50%;
     margin-top:-y;
     margin-left:-x;
