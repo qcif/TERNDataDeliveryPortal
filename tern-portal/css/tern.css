@@ -107,7 +107,7 @@ ul{
     float:center;
     
 }
-#placeholder{float:left;margin:14px 0px 0px 10px;}
+#placeholder{float:right;}
 #placeholder p{text-align:center;font-size:13px;}
 
 .show-hide-facet{width:16px;cursor:pointer;display:block;float:left;margin:5px 0;}
@@ -249,7 +249,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
     float:right;
     background: url("../img/australian_government.jpg") no-repeat scroll left top transparent;
     height: 127px;
-    width: 171px;
+    width: 520px;
     text-align: right;
 }
 
@@ -558,15 +558,22 @@ div.olLayerGooglePoweredBy
 }
 
 .fl {padding:5px;
-     margin:2px;
+
     list-style-position: inside;  
     border:2px solid #ccc;
-    list-style-type: none; 
+    list-style-type: none;
+    display:inline-block;
+    margin-bottom: 10px;    
 }
 .fl li {
     border-bottom:1px solid #ccc;
     padding:50px;
     margin:0 10px 15px 0;
+}
+
+.random-record-list {padding:5px;
+     margin:2px;
+
 }
 
 .new-footer{
@@ -579,8 +586,10 @@ div.olLayerGooglePoweredBy
 }
 
 #carousel{}
-#scrollable {position:relative;overflow:hidden;width: 350px;height:120px;}
-#scrollable .items {width:2000em;position:absolute;clear:both;}
+#scrollable {position:relative;overflow:hidden;width: 300px;height:120px;}
+#scrollable .items {width:2000em;
+       position:absolute;
+       clear:both;}
 
 .items div {float:left; width:680px;}
 
@@ -598,7 +607,7 @@ div.olLayerGooglePoweredBy
 div.browse {background:url(../img/hori_large.png) no-repeat;display:block;width:30px;height:30px;float:left;margin:40px 10px;cursor:pointer;font-size:1px;}
 
 /* right */
-div.right{ background-position: 0 -30px; clear:right; margin-right: 0px;float:right;}
+div.right{ background-position: 0 -30px; clear:right; margin-right: 0px;}
 div.right:hover{ background-position:-30px -30px; }
 div.right:active{ background-position:-60px -30px; } 
 
@@ -611,16 +620,24 @@ div.left:active{background-position:-60px 0;}
 .facility-desc{
     float:left;
     text-align: left;
-    width:445px;
-    
+    width:45%;
+    padding-left:5px;
+}
+
+.facility-about{
+    line-height: 20px;
+    font-size: 14px;
 }
 
 #fac-random-rec{
     float:right;
     text-align: left;
-    width:445px;
+    width:45%;
+    padding-right:5px;
 }
 
 #fac-title{
     text-align: center;
 }
+
+#wrapper-adv {float:left; width: 660px;}

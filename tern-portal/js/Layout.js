@@ -31,7 +31,7 @@ function setupOuterLayout(){
     */
     // first set a 'fixed height' on the container so it does not collapse...
     var $Container = $('#container')
-    $Container.height( $(window).height() - $Container.offset().top );
+    $Container.height( $(window).height() - $Container.offset().top-287 );
 
     // OUTER LAYOUT
     outerLayout = $('#container').layout({
@@ -53,7 +53,7 @@ function setupNestedLayout(mapResize){
     // first set a 'fixed height' on the container so it does not collapse...
   
     var $Content = $('#ui-layout-center')
-    $Content.height( $(window).height() - $Content.offset().top );
+    $Content.height( $(window).height() - $Content.offset().top-287 );
     
  /*
     middleLayout = $('#ui-layout-center').layout({ 

@@ -1210,38 +1210,71 @@ function initViewMap(mapId, centerSelector,coverageSelector){
      mapView.addVectortoDataLayer(coverageSelector,false);
 	}
 
-
+function resetFacilityBorder()
+{
+    var element=document.getElementById("tddp").style;
+        element.border="2px solid #CCCCCC"
+     element=document.getElementById("auscover").style;
+         element.border="2px solid #CCCCCC"
+     element=document.getElementById("ozflux").style;
+        element.border="2px solid #CCCCCC"
+     element=document.getElementById("ecoinformatics").style;
+        element.border="2px solid #CCCCCC"
+     element=document.getElementById("supersites").style;
+          element.border="2px solid #CCCCCC"
+}
     
 
  $('#auscover').live('click', function(event){
-     var facname=$(this).attr("id");
-    
-    handleRandom(facname);    
+     resetFacilityBorder();
+        var facname=$(this).attr("id");
+     
+        var element=document.getElementById(facname).style;
+            element.border="5px solid #376500";
+            
+        handleRandom(facname);    
 
     }); 
     
      $('#tddp').live('click', function(event){
-     var facname=$(this).attr("id");
-    
-    handleRandom(facname);    
+        resetFacilityBorder();
+            var facname=$(this).attr("id"); 
+            
+            var element=document.getElementById(facname).style;
+            element.border="5px solid #376500";
+     
+        handleRandom(facname);    
 
     }); 
-     $('#ozflux').live('click', function(event){
-     var facname=$(this).attr("id");
     
-    handleRandom(facname);    
+     $('#ozflux').live('click', function(event){
+        resetFacilityBorder();
+        var facname=$(this).attr("id");
+        
+        var element=document.getElementById(facname).style;
+            element.border="5px solid #376500";
+    
+        handleRandom(facname);    
 
     }); 
      $('#ecoinformatics').live('click', function(event){
-     var facname=$(this).attr("id");
+        resetFacilityBorder();
+        var facname=$(this).attr("id");
+        
+        var element=document.getElementById(facname).style;
+            element.border="5px solid #376500";
     
-    handleRandom(facname);    
+        handleRandom(facname);    
 
     }); 
      $('#supersites').live('click', function(event){
-     var facname=$(this).attr("id");
+        resetFacilityBorder();
+        var facname=$(this).attr("id");
+        
+        var element=document.getElementById(facname).style;
+            element.border="5px solid #376500";
     
-    handleRandom(facname);    
+        handleRandom(facname);    
 
     }); 
     function handleRandom(facname)
@@ -1271,7 +1304,7 @@ function initViewMap(mapId, centerSelector,coverageSelector){
     
     function handleRollover()
     {
-      $("#scrollable").scrollable({circular: true}).autoscroll(4000);
+      $("#scrollable").scrollable({circular: true}).autoscroll(2000);
 			var api = $("#scrollable").data("scrollable");
 			api.seekTo(0);
 			api.onSeek(function() {
@@ -1286,6 +1319,7 @@ function initViewMap(mapId, centerSelector,coverageSelector){
 				$('#display-here a').tipsy({live:true, gravity:'w'});
 			});
 			$("#items img").click(function(){
+                            /*
 				api.seekTo($(this).index()-1);
 				if($(this).hasClass('current-scroll')){
 					//console.log('current');
@@ -1293,6 +1327,10 @@ function initViewMap(mapId, centerSelector,coverageSelector){
 					h1 = h1.replace('-','');
 					changeHashTo(formatSearch(h1,1, 'collection'));
 				}
+                                */
+                                // alert($(this).attr("id"));                                
+                                window.open($(this).attr("id"));
+                                window.focus();
 			});
 
 			$("#display-here").mouseenter(function() {

@@ -30,7 +30,7 @@
         "docs": [
          {
                 "key": "auscover",
-                "displayTitle": "AusCover",
+                "displayTitle": "Auscover",
                 "description_type": [
                     "logo",
                     "full"
@@ -43,7 +43,7 @@
             },
             {
                 "key": "ozflux",
-                "displayTitle": "OzFlux",
+                "displayTitle": "OzFlux: Australian and New Zealand Flux Research and Monitoring",
                 "description_type": [
                     "logo",
                     "full"
@@ -96,7 +96,7 @@
             },
             {
                 "key": "supersites",
-                "displayTitle": "Australian Supersite Network",
+                "displayTitle": "TERN Supersites",
                 "description_type": [
                     "logo",
                     "full"
@@ -135,7 +135,7 @@
             },
             {
                 "key": "ecoinformatics",
-                "displayTitle": "EcoInformatics",
+                "displayTitle": "Ecoinformatics",
                  "description_type": [
                     "logo",
                     "full"

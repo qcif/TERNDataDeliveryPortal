@@ -32,7 +32,7 @@ $Revision: 1 $
 		?>
                 <?php if($home==1){ ?>
 		<div id="mid" class="clearfix">
-			
+                    <div id="wrapper-adv">
 			<div id="search-bar">
 				
 				<div id="search-wrapper" class="clearfix">
@@ -46,9 +46,9 @@ $Revision: 1 $
 				
 			</div>                  
 			<div id="placeholder">				
-				<p><?php echo anchor('search','Advanced Search');?></p>
+				<p><?php echo anchor('search#!/adv=1','Advanced Search');?></p>
 			</div>
-
+                     </div>
 		</div>
                 <?php } ?> 
 
