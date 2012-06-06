@@ -42,7 +42,7 @@ $home = 1;
     <div class="ui-layout-west hidden">  
         <ul>
              <li id ="tddp" class="fl">
-                <input type="image"  src="/img/tddp/png" height="50" width="190" name="tddp" >
+                <input type="image"  src="/img/tddp.png" height="50" width="190" name="tddp" >
             </li>
             <li id ="auscover" class="fl">
                 <input type="image"  src="/img/auscover.png" height="50" width="190" name="auscover">
