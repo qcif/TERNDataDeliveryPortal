@@ -242,6 +242,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
     height: 170px; 
     background: url("../img/mainbody.jpg") repeat-x  left bottom #FFFFFF;
     margin:0 auto;
+    margin-top: 8px;
 }
 #footer{padding:5px 0px 5px 0px;}
 .border{  border:1px solid #D8D8D8; }
@@ -597,13 +598,13 @@ div.olLayerGooglePoweredBy
 .fl {padding:5px;
 
     list-style-position: inside;  
-    border:2px solid #ccc;
+    border:5px solid #ccc;
     list-style-type: none;
     display:inline-block;
     margin-bottom: 10px;    
 }
 .fl li {
-    border-bottom:1px solid #ccc;
+    border-bottom:5px solid #ccc;
     padding:50px;
     margin:0 10px 15px 0;
 }
@@ -677,4 +678,4 @@ div.left:active{background-position:-60px 0;}
     text-align: center;
 }
 
-#wrapper-adv {float:left; width: 660px;}
+#wrapper-adv {float:left; width: 660px;margin-left:70px}

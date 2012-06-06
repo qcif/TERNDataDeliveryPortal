@@ -1224,15 +1224,15 @@ function initViewMap(mapId, centerSelector,coverageSelector){
 function resetFacilityBorder()
 {
     var element=document.getElementById("tddp").style;
-        element.border="2px solid #CCCCCC"
+        element.border="5px solid #ccc"
      element=document.getElementById("auscover").style;
-         element.border="2px solid #CCCCCC"
+         element.border="5px solid #ccc"
      element=document.getElementById("ozflux").style;
-        element.border="2px solid #CCCCCC"
+        element.border="5px solid #ccc"
      element=document.getElementById("ecoinformatics").style;
-        element.border="2px solid #CCCCCC"
+        element.border="5px solid #ccc"
      element=document.getElementById("supersites").style;
-          element.border="2px solid #CCCCCC"
+          element.border="5px solid #ccc"
 }
     
 

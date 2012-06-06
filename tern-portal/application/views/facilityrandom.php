@@ -48,7 +48,7 @@ function printRecord($r){
 function displayDesc($facid,$partners)
 {
     
-    echo '<p class="facility-about">'.$partners[$facid]['description_value'].'</p>';
+    echo '<div class="facility-about">'.$partners[$facid]['description_value'].'</div>';
 }
 
 
@@ -88,14 +88,14 @@ function displayDesc($facid,$partners)
                     echo      ' <div class="items" id="items" style="left: 0px; ">';
                     echo            '<img id="http://www.tern.org.au/AusCover-pg17728.html" src="../img/auscover.png" height="102" width="194"/>';
                     echo            '<img id="http://www.tern.org.au/OzFlux-pg17729.html" src="../img/ozflux.png" height="102" width="194" />';
-                    echo            '<img id="http://www.tern.org.au/Multi-Scale-Plot-Network-pg17730.html" src="../img/mspn.png" height="102" width="194"/>';
+                   // echo            '<img id="http://www.tern.org.au/Multi-Scale-Plot-Network-pg17730.html" src="../img/mspn.png" height="102" width="194"/>';
                     echo            '<img id="http://www.tern.org.au/AusPlots-pg17871.html" src="../img/ausplot.png" height="102" width="194"" />';
-                    echo            '<img id="http://www.tern.org.au/Long-Term-Ecological-Research-Network-pg17872.html" src="../img/ltern.png" height="102" width="194"  />';
+                   // echo            '<img id="http://www.tern.org.au/Long-Term-Ecological-Research-Network-pg17872.html" src="../img/ltern.png" height="102" width="194"  />';
                     echo            '<img id="http://www.tern.org.au/Australian-Supersite-Network-pg17873.html" src="../img/supersite.png" height="102" width="194" />';
-                    echo            '<img id="http://www.tern.org.au/Soil-and-Landscape-Grid-of-Australia-pg17731.html" src="../img/soil.png" height="102" width="194"  /><';
-                    echo            '<img id="http://www.tern.org.au/Australian-Coastal-Ecosystems-pg17732.html" src="../img/acef.png" height="102" width="194"  />';
+                   // echo            '<img id="http://www.tern.org.au/Soil-and-Landscape-Grid-of-Australia-pg17731.html" src="../img/soil.png" height="102" width="194"  /><';
+                  //  echo            '<img id="http://www.tern.org.au/Australian-Coastal-Ecosystems-pg17732.html" src="../img/acef.png" height="102" width="194"  />';
                     echo            '<img id="http://www.tern.org.au/Eco-informatics-pg17733.html" src="../img/aekos.png" height="102" width="194"  />';
-                    echo            '<img id="http://www.tern.org.au/Ecosystem-Modelling-and-Scaling-Infrastructure-pg17734.html" src="../img/emast.png" height="102" width="194"  />';
+                  //  echo            '<img id="http://www.tern.org.au/Ecosystem-Modelling-and-Scaling-Infrastructure-pg17734.html" src="../img/emast.png" height="102" width="194"  />';
                     echo            '<img id="http://www.tern.org.au/Australian-Centre-for-Ecological-Analysis-and-Synthesis-pg17735.html" src="../img/aceas.png" height="102" width="194"  />';
                     echo      '</div>';
                     echo      '</div>';
