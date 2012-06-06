@@ -42,13 +42,13 @@ $home = 1;
     <div class="ui-layout-west hidden">  
         <ul>
              <li id ="tddp" class="fl">
-                <input type="image"  src="" height="50" width="240" name="tddps" value="TDDP">
+                <input type="image"  src="" height="50" width="200" name="tddps" value="TERN Data Discovery Portal Image here">
             </li>
             <li id ="auscover" class="fl">
-            <input type="image"  src="/img/auscover.png" height="50" width="240" name="auscover">
+                <input type="image"  src="/img/auscover.png" height="50" width="190" name="auscover">
             </li>
             <li id ="ozflux" class="fl">
-            <input type="image"  src="/img/ozflux.png" height="50" width="240" name="ozflux">
+                <input type="image"  src="/img/ozflux.png" height="50" width="190" name="ozflux">
             </li>
 <!--            
             <li id ="ausplot" class="fl">
@@ -61,7 +61,7 @@ $home = 1;
             </li>
 -->
             <li  id ="ecoinformatics" class="fl">
-            <input type="image"  src="/img/aekos.png" height="50" width="150" name="aekos">
+                <input type="image"  src="/img/aekos.png" height="50" width="190" name="aekos">
             </li>
 <!--            
             <li  id ="emast" class="fl">
@@ -69,7 +69,7 @@ $home = 1;
             </li>
 -->
             <li  id ="supersites" class="fl">
-            <input type="image"  src="/img/supersite.png" height="50" width="240" name="supersite">
+                <input type="image"  src="/img/supersite.png" height="50" width="190" name="supersite">
             </li>
         </ul>
     </div>

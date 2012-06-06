@@ -298,7 +298,7 @@
 
 
 
-		 	<xsl:if test="$objectClass='Collection'">
+		 	<!--xsl:if test="$objectClass='Collection'">
 				<div class="right-box" id="seeAlsoRightBox" data-role="collapsible">
 				<div id="infoBox" class="hide" ></div>
 				<h2>Suggested Links</h2>
@@ -316,7 +316,7 @@
 					nothing here yet
 				</div>
 				</div>
-			</xsl:if>
+			</xsl:if-->
                      
 
 		</div>

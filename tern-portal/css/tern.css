@@ -107,10 +107,11 @@ ul{
     float:center;
     
 }
-#placeholder{float:left;margin:14px 0px 0px 10px;}
+#placeholder{float:right;}
 #placeholder p{text-align:center;font-size:13px;}
 
 .show-hide-facet{width:16px;cursor:pointer;display:block;float:left;margin:5px 0;}
+.toggle-facet-field{width:16px;cursor:pointer;zoom:1;height:16px;position:absolute;top:3px;right:3px;}
 .toggle-record-popup{width:16px;cursor:pointer;zoom:1;height:16px;position:absolute;top:3px;right:3px;}
 /*
  * Auto Complete
@@ -126,19 +127,18 @@ ul{
     z-index:1000;
     font-size:15px;
 }
-
+	
 /* loading window */
 #loading {
         display:none;
         position:   absolute;
-        text-align:center;        
+        text-align:center;
         z-index:    10000;
         margin:     0 auto;
         height:     100%;
         width:      100%;
         background: rgba( 255, 255, 255, .8 );
 }
-
 #loading p{
     position:fixed;
     top:50%;
@@ -150,27 +150,26 @@ ul{
 #loading p img{
     vertical-align:middle;
 }
-
+        
 /*
  * Toolbar and Pagination
- */
+	 */
 .toolbar{
     font: 13px Arial, Helvetica, sans-serif;
     height:30px;
     line-height:30px;
     overflow:hidden;margin:0;
     position:relative;
-}
-.toolbar2{background:white;}
-.pagination{float:right;}
-.pagination-page{padding:0px 3px;text-decoration:none;margin:3px/*border:1px solid #ccc;*/}
+	}
+.toolbar2{background:white;}        
+.pagination{float:right;}		
+.pagination-page{padding:0px 3px;text-decoration:none;margin:3px;color:#0a450a;/*border:1px solid #ccc;*/}	
 .pagination-currentPage{font-weight:bold;color:black;}
 .pagination-currentPageInfo{float:left; margin-right: 5px;}
 .result{float:left;font-weight:bold;}
 #head-toolbar{
-    padding: 10px;
+	    padding: 10px;
 }
-
 /*
  * Subjects List
  * Used in any instance a subject list is required
@@ -253,9 +252,9 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 */
 #mid{width:790px;margin:0 auto;position:relative;text-align:center;padding:0; }
 
-#logo{ width:131px; position:absolute;top: 17px;}
+#logo{ position:absolute;top: 17px;}
 #header h1{
-    color:#0a450a;margin:0;padding-top: 50px;text-shadow: 2px 2px 2px #fff;font-size:23px;
+    color:#0a450a;margin:0 0 0 100px;padding-top: 50px;text-shadow: 2px 2px 2px #fff;font-size:23px;
 }
 #logo h1{
     color:#0a450a;margin:0;padding:0;font-weight:bold;text-shadow: 2px 2px 2px #fff;font-size:23px;
@@ -395,7 +394,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 .ui-layout-facet{ border:0;}
 
-#ui-layout-facetmap {padding:5px 0 0 0 ; border:0; }
+#ui-layout-facetmap {padding:0 ; border:0; }
 
 /* WEST SEARCH  */
  .head{ margin-bottom: 5px; }
@@ -486,7 +485,7 @@ div#panel_advSearch .ui-widget-header{
 .coverage{display:none;}
 .spatial_center{display:none;}
 .spatial_coverage_center{display:none;}
-#search-result{ border:0; padding:10px;}
+#search-result{ border:0; padding-left:10px;}
 
 /* MAP Results*/		
 	#result-map{		
@@ -596,15 +595,22 @@ div.olLayerGooglePoweredBy
 }
 
 .fl {padding:5px;
-     margin:2px;
+
     list-style-position: inside;  
     border:2px solid #ccc;
-    list-style-type: none; 
+    list-style-type: none;
+    display:inline-block;
+    margin-bottom: 10px;    
 }
 .fl li {
     border-bottom:1px solid #ccc;
     padding:50px;
     margin:0 10px 15px 0;
+}
+
+.random-record-list {padding:5px;
+     margin:2px;
+
 }
 
 .new-footer{
@@ -617,8 +623,10 @@ div.olLayerGooglePoweredBy
 }
 
 #carousel{}
-#scrollable {position:relative;overflow:hidden;width: 350px;height:120px;}
-#scrollable .items {width:2000em;position:absolute;clear:both;}
+#scrollable {position:relative;overflow:hidden;width: 300px;height:120px;}
+#scrollable .items {width:2000em;
+       position:absolute;
+       clear:both;}
 
 .items div {float:left; width:680px;}
 
@@ -636,7 +644,7 @@ div.olLayerGooglePoweredBy
 div.browse {background:url(../img/hori_large.png) no-repeat;display:block;width:30px;height:30px;float:left;margin:40px 10px;cursor:pointer;font-size:1px;}
 
 /* right */
-div.right{ background-position: 0 -30px; clear:right; margin-right: 0px;float:right;}
+div.right{ background-position: 0 -30px; clear:right; margin-right: 0px;}
 div.right:hover{ background-position:-30px -30px; }
 div.right:active{ background-position:-60px -30px; } 
 
@@ -649,16 +657,24 @@ div.left:active{background-position:-60px 0;}
 .facility-desc{
     float:left;
     text-align: left;
-    width:445px;
-    
+    width:45%;
+    padding-left:5px;
+}
+
+.facility-about{
+    line-height: 20px;
+    font-size: 14px;
 }
 
 #fac-random-rec{
     float:right;
     text-align: left;
-    width:445px;
+    width:45%;
+    padding-right:5px;
 }
 
 #fac-title{
     text-align: center;
 }
+
+#wrapper-adv {float:left; width: 660px;}

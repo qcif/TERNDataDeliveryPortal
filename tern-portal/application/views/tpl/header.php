@@ -29,7 +29,7 @@ if (isset($description))
         <div id="wrapper">
             <div id="header" >
                 <div id="logo">
-                    <a href="/"><img src="<?php echo site_url('img/logo.png'); ?>" id="tern-logo"/></a>
+                    <a href="/"><img src="<?php echo site_url('img/TERNPortalLogoandName.png'); ?>" id="tern-logo"/></a>
                 </div>
                <h1><?php echo $md_title; ?></h1>                
                <div class="no_print top-menu-cover">

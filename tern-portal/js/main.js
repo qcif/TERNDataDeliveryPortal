@@ -1,5 +1,4 @@
 
-
 function urldecode(str) {
     return decodeURIComponent((str+'').replace(/\+/g, '%20'));
 }
@@ -47,7 +46,6 @@ $(function() {
     var param_q;
     var spatial_included_ids = '';
     
-
     // ROUTING 
     function routing(){
         if(window.location.href.indexOf('https://')==0){
@@ -145,12 +143,12 @@ $(function() {
             if(param_q > -1){
                 search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
                 search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
-
+                
+                $("#loading").show();
                 if(adv==1&&window.location.href.indexOf('/n')>=0)
                 {
                         doSpatialSearch();
-                }else
-                    {
+                }else{
                         doNormalSearch();
                     }
             }
@@ -294,7 +292,7 @@ $(function() {
        
         $("#ui-layout-facetmap").hide();
         $("#head-toolbar").hide();
-        $("#no-result").show(); 
+         $("#no-result").show();
         $('#no-result div').css({
               position: 'absolute',
               'left' : '50%',
@@ -309,8 +307,8 @@ $(function() {
         $("#no-result").hide();
          $("#search-result").show();
          $("#ui-layout-facetmap").show();
-         
          $("#head-toolbar").show();
+
     }
     /*      Initialize map in overlay
     *       If the map already exists, just open the dialog, otherwise init map
@@ -580,14 +578,11 @@ $(function() {
 
             //  }
             
-        }).button();
-    
+        }).button();    
     }
     
     function doSpatialSearch(){
-		//$('#result-placeholder').html('Loading');
-       // $('#loading').show();$('#clearSearch').hide();
-
+	
         $.ajax({
   			type:"POST",
   			url: base_url+"/search/spatial/",
@@ -598,8 +593,11 @@ $(function() {
                                        
   					//console.log(spatial_included_ids);
   					doNormalSearch();
+                                         $("#loading").hide();
+                                        
   				},
   				error:function(msg){
+                                     $("#loading").hide();
   					//console.log('spatial: error'+msg);
   				}
   		});
@@ -623,9 +621,7 @@ $(function() {
         e = '';
         s='';
         w='';
-        spatial_included_ids='';
-        
-        
+        spatial_included_ids='';        
     }
     /* Reset all fields in the search pane*/
     function resetAllFields(temporalWidget){
@@ -659,10 +655,9 @@ $(function() {
                 else if($(this).attr('id') == 'head-toolbar-content'){
                     $('#head-toolbar').html($(this).html());
                 }
-            }); 	
+            });         
 
-       
-        
+              
             hideNoResult();
             $('#facetH2').removeClass('ui-state-disabled');  
             if(typeof mapWidget == 'undefined'){
@@ -756,6 +751,8 @@ $(function() {
         }
            
     } 
+           
+
  
     function doNormalSearch(){
         //spatial_included_ids='';
@@ -767,10 +764,12 @@ $(function() {
         
             success: function(msg,textStatus){
                 handleResults(msg,mapResult);
+                 $("#loading").hide();
             }
             ,
             error:function(msg){
                 console.log('error');
+                 $("#loading").hide();
             }
         });
     }
@@ -878,11 +877,13 @@ function initPreviewPage(){
 function autocomplete(id){
        
     /*
-    * Auto complete for main search box
+    * Auto complete for main search boxtrus
     * Use getDictionaryTerms for search terms
     * Use getDictionaryTermsOLD for solr dictionary
     * */
+
     $( id ).autocomplete( {
+            global: false,
             source: base_url+"view_part/getDictionaryTerms/",
             minLength: 2,
             delimiter:/(,|;)\s*/,
@@ -890,14 +891,15 @@ function autocomplete(id){
                     $(id).val = ui.item.value;
 
             }
-    });
-    
+    })
+   
+
 }
 
 function handleRecordPopup(e){
     
     var rokey=e.attr('id');
-                          
+     $("#loading").show();                      
     $.ajax({
         type:"POST",
         url:base_url+"/view/?key="+rokey,
@@ -911,10 +913,10 @@ function handleRecordPopup(e){
             $("#record-popup").dialog('open');
                         
             initViewMap('spatial_coverage_map','#record-popup .spatial_coverage_center','#record-popup .coverage');
-
+            $("#loading").hide();
         },
         error:function(html){
-            console.log("error");
+             $("#loading").hide();
         }
         
                     
@@ -1219,38 +1221,71 @@ function initViewMap(mapId, centerSelector,coverageSelector){
      mapView.addVectortoDataLayer(coverageSelector,false);
 	}
 
-
+function resetFacilityBorder()
+{
+    var element=document.getElementById("tddp").style;
+        element.border="2px solid #CCCCCC"
+     element=document.getElementById("auscover").style;
+         element.border="2px solid #CCCCCC"
+     element=document.getElementById("ozflux").style;
+        element.border="2px solid #CCCCCC"
+     element=document.getElementById("ecoinformatics").style;
+        element.border="2px solid #CCCCCC"
+     element=document.getElementById("supersites").style;
+          element.border="2px solid #CCCCCC"
+}
     
 
  $('#auscover').live('click', function(event){
-     var facname=$(this).attr("id");
-    
-    handleRandom(facname);    
+     resetFacilityBorder();
+        var facname=$(this).attr("id");
+     
+        var element=document.getElementById(facname).style;
+            element.border="5px solid #376500";
+            
+        handleRandom(facname);    
 
     }); 
     
      $('#tddp').live('click', function(event){
-     var facname=$(this).attr("id");
-    
-    handleRandom(facname);    
+        resetFacilityBorder();
+            var facname=$(this).attr("id"); 
+            
+            var element=document.getElementById(facname).style;
+            element.border="5px solid #376500";
+     
+        handleRandom(facname);    
 
     }); 
-     $('#ozflux').live('click', function(event){
-     var facname=$(this).attr("id");
     
-    handleRandom(facname);    
+     $('#ozflux').live('click', function(event){
+        resetFacilityBorder();
+        var facname=$(this).attr("id");
+        
+        var element=document.getElementById(facname).style;
+            element.border="5px solid #376500";
+    
+        handleRandom(facname);    
 
     }); 
      $('#ecoinformatics').live('click', function(event){
-     var facname=$(this).attr("id");
+        resetFacilityBorder();
+        var facname=$(this).attr("id");
+        
+        var element=document.getElementById(facname).style;
+            element.border="5px solid #376500";
     
-    handleRandom(facname);    
+        handleRandom(facname);    
 
     }); 
      $('#supersites').live('click', function(event){
-     var facname=$(this).attr("id");
+        resetFacilityBorder();
+        var facname=$(this).attr("id");
+        
+        var element=document.getElementById(facname).style;
+            element.border="5px solid #376500";
     
-    handleRandom(facname);    
+        handleRandom(facname);    
 
     }); 
     function handleRandom(facname)
@@ -1280,7 +1315,7 @@ function initViewMap(mapId, centerSelector,coverageSelector){
     
     function handleRollover()
     {
-      $("#scrollable").scrollable({circular: true}).autoscroll(4000);
+      $("#scrollable").scrollable({circular: true}).autoscroll(2000);
 			var api = $("#scrollable").data("scrollable");
 			api.seekTo(0);
 			api.onSeek(function() {
@@ -1295,6 +1330,7 @@ function initViewMap(mapId, centerSelector,coverageSelector){
 				$('#display-here a').tipsy({live:true, gravity:'w'});
 			});
 			$("#items img").click(function(){
+                            /*
 				api.seekTo($(this).index()-1);
 				if($(this).hasClass('current-scroll')){
 					//console.log('current');
@@ -1302,6 +1338,10 @@ function initViewMap(mapId, centerSelector,coverageSelector){
 					h1 = h1.replace('-','');
 					changeHashTo(formatSearch(h1,1, 'collection'));
 				}
+                                */
+                                // alert($(this).attr("id"));                                
+                                window.open($(this).attr("id"));
+                                window.focus();
 			});
 
 			$("#display-here").mouseenter(function() {
