@@ -1323,11 +1323,11 @@ function resetFacilityBorder()
 				var prev = this.getIndex() + 1;
 				var next = this.getIndex() + 3;
 				currentKey = $("#items img:nth-child(" + currentImageIndex + ")").attr('alt');
-				$('#items img').removeClass('current-scroll');
+				//$('#items img').removeClass('current-scroll');
 				$("#items img:nth-child(" + currentImageIndex + ")").addClass('current-scroll');
-				currentDescription = $('div[name="'+currentKey+'"]').html();
-				$('#display-here').html(currentDescription);
-				$('#display-here a').tipsy({live:true, gravity:'w'});
+				//currentDescription = $('div[name="'+currentKey+'"]').html();
+				//$('#display-here').html(currentDescription);
+				//$('#display-here a').tipsy({live:true, gravity:'w'});
 			});
 			$("#items img").click(function(){
                             /*

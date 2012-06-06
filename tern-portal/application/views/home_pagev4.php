@@ -42,7 +42,7 @@ $home = 1;
     <div class="ui-layout-west hidden">  
         <ul>
              <li id ="tddp" class="fl">
-                <input type="image"  src="" height="50" width="200" name="tddps" value="TERN Data Discovery Portal Image here">
+                <input type="image"  src="/img/tddp.png" height="50" width="190" name="tddp" >
             </li>
             <li id ="auscover" class="fl">
                 <input type="image"  src="/img/auscover.png" height="50" width="190" name="auscover">
