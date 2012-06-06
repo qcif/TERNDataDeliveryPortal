@@ -140,9 +140,12 @@ ul{
 }
 
 #loading p{
-    vertical-align: middle;
+    position:fixed;
+    top:50%;
+    left:50%;
+    margin-top:-y;
+    margin-left:-x;
     font-weight: bold;
-    top: 100px;
 }
 #loading p img{
     vertical-align:middle;

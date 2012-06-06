@@ -2,9 +2,8 @@
         <div id="container" class="ui-corner-all">
                     <div id="loading"  ><p><img src="/img/ajax-loader.gif"/> Please wait.. </p></div>
             <div id="ui-layout-center" class="ui-layout-center ">
-                <div id="head-toolbar" class="toolbar clearfix"></div>
-                 <div id="ui-layout-facetmap">
-                     
+                <div id="head-toolbar" class="toolbar clearfix hide"></div>
+                 <div id="ui-layout-facetmap">                     
                        <div id ="ui-layout-map" class="ui-layout-map">
                           <div id="result-map"></div>                                               
                      </div>

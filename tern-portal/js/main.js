@@ -293,6 +293,7 @@ $(function() {
         }
        
         $("#ui-layout-facetmap").hide();
+        $("#head-toolbar").hide();
         $("#no-result").show(); 
         $('#no-result div').css({
               position: 'absolute',
@@ -308,6 +309,8 @@ $(function() {
         $("#no-result").hide();
          $("#search-result").show();
          $("#ui-layout-facetmap").show();
+         
+         $("#head-toolbar").show();
     }
     /*      Initialize map in overlay
     *       If the map already exists, just open the dialog, otherwise init map
