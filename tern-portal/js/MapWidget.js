@@ -503,7 +503,7 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
         popup = new OpenLayers.Popup.Anchored("chicken",
             feature.geometry.getBounds().getCenterLonLat(),
             null, feature.data.popupHTML, null, true, function(){ mapWidgetObj.onPopupClose(mapWidgetObj);});
-        popup.maxSize = new OpenLayers.Size(480,150);
+        popup.maxSize = new OpenLayers.Size(430,150);
         popup.panMapIfOutOfView = true;
         popup.autoSize = true;
       
