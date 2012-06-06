@@ -26,7 +26,40 @@ $Revision: 1 $
         <div id="facet-content">
             <?php $this->load->view('search/facet');?> 
         </div>
+         <?php  $realNumFound = $json->{'response'}->{'numFound'}; 
+                echo '<div id="head-toolbar-content" class="toolbar clearfix">';
+
+                echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
+
+
+                //echo $this->input->cookie('facets');
+
+                $class='';
+                if($this->input->cookie('facets')!=''){
+                        if($this->input->cookie('facets')=='yes'){
+                                $class='ui-icon-arrowthickstop-1-w';
+                        }else{
+                                $class='ui-icon-arrowthickstop-1-e';
+                        }
+                }else{
+                        $class='ui-icon-arrowthickstop-1-w';
+                }
+
+                //echo '<div class="ui-state-default ui-corner-all show-hide-facet"><span class="ui-icon '.$class.'" id="toggle-facets" title="Show/Hide Facet"></span></div>';
+                //echo '<a href="JavaScript:void(0);" id="hide-facets">Expand</a><a href="JavaScript:void(0);" id="show-facets">Collapse (Show Filters)</a>';
+
+
+
+                echo '<div class="result">';
+                echo ''.number_format($realNumFound).' results';
+                echo '</div>';
+
+                $this->load->view('search/pagination');
+
+                echo '</div>';
+                ?>          
         <div id="search-results-content" >
+               
                 <?php $this->load->view('search/content');?>
         <?php $this->load->view('tab/widgets/recordpopup');?>
 <?php endif;?>

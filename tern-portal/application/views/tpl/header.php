@@ -36,7 +36,8 @@ if (isset($description))
 
                     <ul class="sf-menu">
                         <li><?php echo anchor('', 'Home'); ?></li>                     
-                        <li><?php echo anchor('http://www.tern.org.au/How-TERN-fits-together-pg17726.html', 'Facilities'); ?>
+
+                        <li><a>Facilities</a> ?>
                             <ul>
                                     <?php		
 	                                if($json && $json->{'response'}->{'docs'}){		
@@ -51,7 +52,7 @@ if (isset($description))
 	                                ?>                               
                                 
                             </ul>
-                        <li><?php echo anchor('http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html', 'Contact'); ?></li>
+                        <li><?php echo anchor('http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html', 'Contact', 'target="_blank"'); ?></li>
                     </ul>  
                 </div>
             </div>

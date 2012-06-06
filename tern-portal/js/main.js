@@ -46,7 +46,8 @@ $(function() {
     var mapResult;
     var param_q;
     var spatial_included_ids = '';
-        
+    
+
     // ROUTING 
     function routing(){
         if(window.location.href.indexOf('https://')==0){
@@ -649,6 +650,9 @@ $(function() {
             }
             else if($(this).attr('id') == 'search-results-content') {        
                 $('#search-result').html($(this).html());
+            }
+            else if($(this).attr('id') == 'head-toolbar-content'){
+                $('#head-toolbar').html($(this).html());
             }
         }) 	
 

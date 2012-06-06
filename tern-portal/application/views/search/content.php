@@ -22,7 +22,6 @@ $Revision: 1 $
 ?>
 <?php
 	
-	//$numFound = $json->{'response'}->{'numFound'};
 	$realNumFound = $json->{'response'}->{'numFound'};
 	$numFound = $json_tab->{'response'}->{'numFound'};
 	$timeTaken = $json->{'responseHeader'}->{'QTime'};
@@ -43,37 +42,7 @@ $Revision: 1 $
 	$currentPage = ceil($start / $row)+1;
 ?>
 		<?php
-			echo '<div class="toolbar clearfix">';
 			
-			echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
-			
-			
-			
-			//echo $this->input->cookie('facets');
-			
-			$class='';
-			if($this->input->cookie('facets')!=''){
-				if($this->input->cookie('facets')=='yes'){
-					$class='ui-icon-arrowthickstop-1-w';
-				}else{
-					$class='ui-icon-arrowthickstop-1-e';
-				}
-			}else{
-				$class='ui-icon-arrowthickstop-1-w';
-			}
-			
-			//echo '<div class="ui-state-default ui-corner-all show-hide-facet"><span class="ui-icon '.$class.'" id="toggle-facets" title="Show/Hide Facet"></span></div>';
-			//echo '<a href="JavaScript:void(0);" id="hide-facets">Expand</a><a href="JavaScript:void(0);" id="show-facets">Collapse (Show Filters)</a>';
-			
-                      
-
-			echo '<div class="result">';
-			echo ''.number_format($realNumFound).' results ('.$timeTaken.' seconds)';
-			echo '</div>';
-			
-			$this->load->view('search/pagination');
-			
-			echo '</div>';
 			
 			if($realNumFound==0){
 				$this->load->view('search/no_result');
