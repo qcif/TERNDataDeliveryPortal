@@ -844,6 +844,7 @@ $(function() {
         
         autocomplete('#search-box');
         handleRandom('tddp');
+        sizeHomeContent();
     }
 
 function initPreviewPage(){

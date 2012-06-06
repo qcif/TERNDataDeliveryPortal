@@ -25,6 +25,12 @@ function sizeCenterPane() {
     outerLayout.resizeAll();
 }
 
+function sizeHomeContent()
+{
+    var $Container = $('#container')
+    $Container.height(430);
+    outerLayout.resizeAll();
+}
 function setupOuterLayout(){
     /*                              LAYOUT
     *              Set outer container to div#container
