@@ -96,7 +96,7 @@ function MapWidget(mapId){
     this.map.addControl(new OpenLayers.Control.LayerSwitcher());
      //Enable Overview Map
      var options = {minRatio: 0, maximized: true, maxRatio: Number.POSITIVE_INFINITY, autoPan: true};
-    this.map.addControl(new OpenLayers.Control.OverviewMap(options));   
+    this.map.addControl(new OpenLayers.Control.OverviewMap(options));
     // look at Australia 
     if (!this.map.getCenter()) this.map.zoomToExtent(new OpenLayers.Bounds(13237508.34,-5537508.34,16037508.34,-937508.34));
 

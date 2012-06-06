@@ -47,7 +47,6 @@ $(function() {
     var param_q;
     var spatial_included_ids = '';
     
-
     // ROUTING 
     function routing(){
         if(window.location.href.indexOf('https://')==0){
@@ -294,7 +293,7 @@ $(function() {
        
         $("#ui-layout-facetmap").hide();
         $("#head-toolbar").hide();
-        $("#no-result").show(); 
+         $("#no-result").show();
         $('#no-result div').css({
               position: 'absolute',
               'left' : '50%',
@@ -309,8 +308,8 @@ $(function() {
         $("#no-result").hide();
          $("#search-result").show();
          $("#ui-layout-facetmap").show();
-         
          $("#head-toolbar").show();
+
     }
     /*      Initialize map in overlay
     *       If the map already exists, just open the dialog, otherwise init map
@@ -580,8 +579,7 @@ $(function() {
 
             //  }
             
-        }).button();
-    
+        }).button();    
     }
     
     function doSpatialSearch(){
@@ -623,9 +621,7 @@ $(function() {
         e = '';
         s='';
         w='';
-        spatial_included_ids='';
-        
-        
+        spatial_included_ids='';        
     }
     /* Reset all fields in the search pane*/
     function resetAllFields(temporalWidget){
@@ -659,7 +655,7 @@ $(function() {
                 else if($(this).attr('id') == 'head-toolbar-content'){
                     $('#head-toolbar').html($(this).html());
                 }
-            }); 	
+            });         
 
        
         
@@ -756,6 +752,8 @@ $(function() {
         }
            
     } 
+           
+
  
     function doNormalSearch(){
         //spatial_included_ids='';
