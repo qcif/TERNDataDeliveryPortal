@@ -27,7 +27,7 @@
         <div >
    <?php
         if($realNumFound==0){
-		$this->load->view('mobile/no_result');
+		echo "0 result found. Please try another search term";
 	}else{
           $c=1;//record counter 1- 10
 			foreach($json->{'response'}->{'docs'} as $r)

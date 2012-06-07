@@ -60,7 +60,7 @@
                 <form action="/m/search" id="search" method="get" >
                     <label for="search-basic" class="ui-hidden-accessible">Search Input:</label>
                     <input type="search" name="q" id="search-basic" value=""  placeholder="Search ecosystem data, researchers"   data-theme="c"  />
-                    <input type="hidden" name="class" value="All"/>
+                    <input type="hidden" name="class" value="collection"/>
                 </form>
             </div>
             </div><!-- /content -->
