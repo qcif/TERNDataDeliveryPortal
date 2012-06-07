@@ -279,7 +279,6 @@
 			<xsl:attribute name="class">loading-icon</xsl:attribute></img></div> 	 -->
                         <div data-role="collapsible">
                             <h2>Access data</h2>
-                            <div data-role="navbar" class="clearfix">
                             <ul>
                                <!--li><a><xsl:attribute name="class">ui-btn-active</xsl:attribute><xsl:attribute name="href">/m/</xsl:attribute>Send to Email</a></li-->
 
@@ -287,7 +286,7 @@
 				<xsl:apply-templates select="ro:location/ro:address/ro:electronic"/>
                             </xsl:if>
                             </ul>
-                            </div>
+
                          </div>
 			<!-- NEW CONNECTION -->
 			<div class="right-box" id="connectionsRightBox" data-role="collapsible">
