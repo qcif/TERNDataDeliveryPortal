@@ -75,9 +75,9 @@ ul.sf-menu li li li.sfHover ul {
 /*** VANILLA SKIN SKIN ***/
 .top-menu-cover{ 
 	height:40px;
-        margin:0 auto;
+        margin-top:10px;
         float: right;
-        left:-50%;
+        left:-12%;
         position:relative;
         text-align: center;
        /* margin-top: 22px;

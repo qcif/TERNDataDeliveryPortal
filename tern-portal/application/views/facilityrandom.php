@@ -27,6 +27,7 @@ $half = round($count / 2);
                                     
                        $partners[$key]['url']=$d->{'location'}[0];
                        $partners[$key]['displayTitle']=$d->{'displayTitle'};                         
+                       $partners[$key]['alt_name']=$d->{'alt_name'};  
                     }
 
                 }
@@ -57,7 +58,7 @@ function displayDesc($facid,$partners)
     
 <?php if($header_footer) $this->load->view('tpl/header');?>
 
-<div id="fac-title"><h2><?php  echo  $partners[$fackey]['displayTitle'];?></h2>
+<div id="fac-title"><h2><?php  echo  $partners[$fackey]['alt_name'];?></h2>
 </div>
 
 <div id="fac-content">
@@ -77,7 +78,7 @@ function displayDesc($facid,$partners)
                         printRecord($recordsArr[$i]);
                     }
 
-                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['displayTitle'].'/adv=1','<b>View all '.$partners[$fackey]['displayTitle'].' records</b>');
+                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['displayTitle'].'/adv=1','<b>View all '.$partners[$fackey]['alt_name'].' records</b>');
                     echo '</ul>';
                 }else
                 {

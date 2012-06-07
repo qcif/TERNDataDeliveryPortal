@@ -31,6 +31,7 @@
          {
                 "key": "auscover",
                 "displayTitle": "Auscover",
+                "alt_name": "capabilities",
                 "description_type": [
                     "logo",
                     "full"
@@ -44,6 +45,7 @@
             {
                 "key": "ozflux",
                 "displayTitle": "OzFlux: Australian and New Zealand Flux Research and Monitoring",
+                "alt_name": "capabilities",
                 "description_type": [
                     "logo",
                     "full"
@@ -57,6 +59,7 @@
             {
                 "key": "mspn",
                 "displayTitle": "Multi Scale Plot Network",
+                "alt_name": "capabilities",                
                  "description_type": [
                     "logo",
                     "full"
@@ -71,6 +74,7 @@
             {
                 "key": "ausplot",
                 "displayTitle": "AusPlots",
+                "alt_name": "capabilities",                
                 "description_type": [
                     "logo",
                     "full"
@@ -84,6 +88,7 @@
             {
                 "key": "ltern",
                 "displayTitle": "LTERN",
+                "alt_name": "capabilities",                
                 "description_type": [
                     "logo",
                     "full"
@@ -95,8 +100,9 @@
                 "location": ["http://www.tern.org.au/Long-Term-Ecological-Research-Network-pg17872.html"]
             },
             {
-                "key": "supersites",
+                "key": "supersites",             
                 "displayTitle": "TERN Supersites",
+                "alt_name": "capabilities",                   
                 "description_type": [
                     "logo",
                     "full"
@@ -110,6 +116,7 @@
             {
                 "key": "soil",
                 "displayTitle": "Soil and Landscape Grid",
+                "alt_name": "capabilities", 
                 "description_type": [
                     "logo",
                     "full"
@@ -123,6 +130,7 @@
             {
                 "key": "coastal",
                 "displayTitle": "Australian Coastal Ecosystems",
+                "alt_name": "capabilities", 
                 "description_type": [
                     "logo",
                     "full"
@@ -136,6 +144,7 @@
             {
                 "key": "ecoinformatics",
                 "displayTitle": "Ecoinformatics",
+                "alt_name": "capabilities",                 
                  "description_type": [
                     "logo",
                     "full"
@@ -149,6 +158,7 @@
             {
                 "key": "emast",
                 "displayTitle": "Ecosystem Modelling and Scaling Infrastructure",
+                "alt_name": "capabilities",                 
                 "description_type": [
                     "logo",
                     "full"
@@ -162,6 +172,7 @@
             {
                 "key": "aceas",
                 "displayTitle": "Australian Centre for Ecological Analysis and Synthesis",
+                "alt_name": "capabilities",                 
                 "description_type": [
                     "logo",
                     "full"
@@ -176,6 +187,7 @@
             {
                 "key": "tddp",
                 "displayTitle": "TERN Data Discovery Portal",
+                "alt_name": "capabilities",                 
                 "description_type": [
                     "logo",
                     "full"
