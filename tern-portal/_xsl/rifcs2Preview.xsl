@@ -70,7 +70,7 @@
 				
             </div>
         </xsl:if>
-        <a href="javascript:void(0);" class="showall_descriptions hide">More...</a>
+  <!--      <a href="javascript:void(0);" class="showall_descriptions hide">More...</a>-->
     
         <xsl:if test="ro:relatedInfo">
         <p><b>More Information:</b> </p>

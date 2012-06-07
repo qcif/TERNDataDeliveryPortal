@@ -63,7 +63,7 @@ function handlerecordpopupSlide()
 		$('#header').hide();
 		$('.descriptions div').show();
 		$('.descriptions div').height('auto');
-		$('.showall_descriptions').hide();
+		//$('.showall_descriptions').hide();
 		$('.tipsy').hide();
                 initConnectionsBox();
                 initSubjectsSEEALSO();
@@ -83,7 +83,7 @@ function handlerecordpopupSlide()
         function initViewPage(){
 
 		//hide all descriptions and headings
-		$('.descriptions div, .descriptions h3').hide();
+		//$('.descriptions div, .descriptions h3').hide();
 		brief = null;
 		//if there is a brief, brief is the first brief
 		$('.descriptions div').each(function(){
@@ -110,21 +110,21 @@ function handlerecordpopupSlide()
 
 		//limit to 10 lines, each line height is 17px;
 		if($(brief).height() > 169){
-			$(brief).css('height','169px').css('overflow','hidden');
-			$('.showall_descriptions').show();
+			//$(brief).css('height','169px').css('overflow','hidden');
+			//$('.showall_descriptions').show();
 		}
 		//if there are more than 1 description, show the more button
 		if($('.descriptions div').length > 1){
-			$('.showall_descriptions').show();
+			//$('.showall_descriptions').show();
 		}
 		//the more button
 		$('.showall_descriptions').live('click', function(){
 			//show all descriptions and headings
-			$(this).hide();
-			$('.descriptions div, .descriptions h3').slideDown();
-			$('.descriptions div').css('height','auto');
+			//$(this).hide();
+			//$('.descriptions div, .descriptions h3').slideDown();
+			//$('.descriptions div').css('height','auto');
 		});
-		$(brief).show();
+		//$(brief).show();
 
                 subjects = null;
                 //if there is no subjetcs
