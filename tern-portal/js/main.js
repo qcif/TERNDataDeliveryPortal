@@ -852,6 +852,12 @@ $(function() {
         sizeHomeContent();
     }
 
+function resetFilter(){
+    subjectFilter = 'All';
+    classFilter= 'collection';
+    groupFilter= 'All';
+}
+        
 function initPreviewPage(){
     $("ul.sf-menu").superfish();
 	       initConnectionsBox()		
