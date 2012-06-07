@@ -305,21 +305,26 @@ MapWidget.prototype.toggleControl = function(element) {
                     resetCoordinates();
                     element.setAttribute("class","olControlDrawFeatureBoxItemInactive");  
                     element.className='olControlDrawFeatureBoxItemInactive';
+                    $("#instructions").html('');
                 }
                 else{
                     control.activate();
                     element.setAttribute("class","olControlDrawFeatureBoxItemActive");
                     element.className='olControlDrawFeatureBoxItemActive';
+                    $("#instructions").html(element.getAttribute("title"));
                 }
             }else{
                 if(control.active){
                     control.deactivate();
                     element.setAttribute("class","olControlDragFeatureBoxItemInactive");
                     element.className='olControlDragFeatureBoxItemInactive';
+                    if($(".olControlDrawFeatureBoxItemActive").length==0 ) $("#instructions").html('');
+                    else { $("#instructions").html($("#box").attr("title"));}
                 }else{
                     control.activate();
                     element.setAttribute("class","olControlDragFeatureBoxItemActive");
                     element.className='olControlDragFeatureBoxItemActive';
+                    $("#instructions").html(element.getAttribute("title"));
                 }                            
             }
         } 
