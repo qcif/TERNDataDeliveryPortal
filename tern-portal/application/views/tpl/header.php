@@ -1,5 +1,5 @@
 <?php
-//$md_title = 'TERN Data Discovery Portal (Development Version)';
+$md_title = 'TERN Data Discovery Portal';
 $md_description = 'TERN Data Discovery Portal (Dev Version)is a mesh of searchable web pages describing (and where possible linking to) terrestrial ecosystem research data collections. ';
 //$md_image = 'http://services.ands.org.au/home/orca/rda/img/rda-design.png';
 if (!isset($title))  $title = $md_title;

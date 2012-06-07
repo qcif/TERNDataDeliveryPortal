@@ -81,11 +81,10 @@ class View extends CI_Controller {
 		if(isset($_GET['key'])){
 			$key = $_GET['key'];
 			$this->load->model('RegistryObjects', 'ro');
-	       	$content = $this->ro->get($key);
-	       	$data['key']= $key;  	
-                $data['widget_map'] = true;
-
-			$data['content'] = $this->transform($content, 'rifcs2PrintView.xsl',$key);	
+                        $content = $this->ro->get($key);
+                        $data['key']= $key;  	
+                        $data['widget_map'] = true;
+                	$data['content'] = $this->transform($content, 'rifcs2PrintView.xsl',$key);	
 			
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();
@@ -103,11 +102,12 @@ class View extends CI_Controller {
 		if(isset($_GET['key'])){
 			$key = $_GET['key'];
 			$this->load->model('RegistryObjects', 'ro');
-	       	$content = $this->ro->get($key);
-	       	$data['key']= $key;  	
-                $data['widget_map'] = true;
-                $data['header_footer'] = true; 
-	
+                        $content = $this->ro->get($key);
+                        $data['key']= $key;  	
+                        $data['widget_map'] = true;
+                        $data['header_footer'] = true; 
+
+			
 			$data['content'] = $this->transform($content, 'rifcs2View.xsl',$key);	
 		
 			$this->load->library('user_agent');
