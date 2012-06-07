@@ -195,7 +195,7 @@
                 "description_value": [
                     "http://www.tern.org.au/rs/7/sites/998/user_uploads/Image/facilities/aceas_multicoloured_no_dots.jpg",
                     "Ensuring Australia can maintain, improve and use long-term ecosystem research data collections and infrastructure requires a new and unique set of collective and collaborative links across governments, academia, research, community/non-profit groups and the private sector. The Australian Terrestrial Ecosystem Research Network Data Discovery Portal will serve as the single entry point to TERN meta-data for all levels of users - governments, research organisations, universities, non-government organisations, professional bodies and the public. Once suitable meta-data are located, data are downloaded from Facility portals."                ],
-                "location": ["http://www.tern.org.au/Australian-Centre-for-Ecological-Analysis-and-Synthesis-pg17735.html"]
+                "location": ["http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html"]
             }
 
 
