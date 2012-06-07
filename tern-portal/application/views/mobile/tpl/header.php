@@ -52,8 +52,8 @@
 
 
              <div id="logo"  >
-                <a href="<?php echo base_url(); ?>m/"><img src="<?php echo site_url('img/logo.png'); ?>" width="100" id="tern-logo" alt="TERN Data Portal"/></a><br/>
-                <h4>TERN Data Discovery Portal (Test Version)</h4>
+                <a href="<?php echo base_url(); ?>m/"><img src="<?php echo site_url('img/TERNPortalLogoandName_sml.png'); ?>" height="50" id="tern-logo" alt="TERN Data Portal"/></a><br/>           
+                <a href="mailto:tern.portal@tern.org.au">tern.portal@tern.org.au</a>
             </div>
 
             <div  id="searchbox" data-theme="b"  data-role="header" >

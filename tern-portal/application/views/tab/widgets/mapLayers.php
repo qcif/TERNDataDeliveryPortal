@@ -31,8 +31,8 @@
         <div class="ui-widget-header clearfix ">
             <div id="panel" class="olControlEditingToolbar">
                 <?php if($widget_map_drawtoolbar){ ?> 
-                    <div  id="box" class="olControlDrawFeatureBoxItemActive" title=""></div>
-                    <div  id="drag" class="olControlDragFeatureBoxItemInactive" ></div>
+                    <div  id="box" class="olControlDrawFeatureBoxItemActive" alt="Draw Box" title="Turn off to remove your drawing"></div>
+                    <div  id="drag" class="olControlDragFeatureBoxItemInactive" alt="Move Box"></div>
                    
                 <?php } ?>
 

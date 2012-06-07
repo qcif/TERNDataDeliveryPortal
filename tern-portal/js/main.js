@@ -332,13 +332,16 @@ $(function() {
             enableToolbarClick(mapWidget);
                  
             //changing coordinates on textbox should change the map appearance
-            enableCoordsChange(mapWidget);            
+            enableCoordsChange(mapWidget);  
+            
             //Done button
             $('#doneMap').click(function(){
                $('#coords').show(); 
                $('#overlaymap').dialog('close');
             }).button();
 
+        }else if($('#box').hasClass("olControlDrawFeatureBoxItemInactive")){
+            $("#box").trigger("click");
         }
         return mapWidget;
     }
@@ -638,7 +641,9 @@ $(function() {
          
         if($('#spatial-north').val() != '') {
             $("#box").trigger('click');
+            $('#coords').hide();
         }
+        
     }
     
     function handleResults(msg,mapWidget){         

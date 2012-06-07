@@ -22,10 +22,12 @@ li {
 }
 #logo{
   text-align: center;
-  height: 140px;
+  margin-bottom: 10px;
 
 }
-
+#logo a{
+    color : #376500 ! important;
+}
 .clearfix:after{clear: both;content: ".";display: block;height: 0;visibility: hidden;font-size: 0;}
 
 .hide{ display:none;}
@@ -42,3 +44,5 @@ li {
 #header{margin-bottom: 10px;}
 
 .icon-heading-connections{position:relative;float:left;padding:5px;}
+
+.ui-link{ color:#376500 ! important; }
