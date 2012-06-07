@@ -5,6 +5,7 @@ function sizeCenterPane() {
     ,	$Pane		= $('.ui-layout-center')
     ,	$Content1	= $('#search-result')
     ,   $Content2       = $('#ui-layout-facetmap')
+    ,   $Content3       = $('#head-toolbar')
     ,	outerHeight = $Pane.outerHeight()
     // use a Layout utility to calc total height of padding+borders (also handles IE6)
     ,       panePadding     = outerHeight - $.layout.cssHeight($Pane, outerHeight)
@@ -13,14 +14,14 @@ function sizeCenterPane() {
     ,       outerWestHeight  = $West.outerHeight()      
     ,       paneWestPadding	= outerWestHeight - $.layout.cssHeight($West, outerWestHeight)
     ;
-    var westSizeFix = 590;
-    if(( $Pane.position().top + $Content1.outerHeight() + $Content2.outerHeight() + panePadding  ) >  westSizeFix) { //($West.position().top + $WestContent.outerHeight() + paneWestPadding )) {
+    var westSizeFix = 660;
+    if(( $Pane.position().top + $Content1.outerHeight() + $Content2.outerHeight() + $Content3.outerHeight()   + panePadding  + 20) >  westSizeFix) { //($West.position().top + $WestContent.outerHeight() + paneWestPadding )) {
         // update the container height - *just* tall enough to accommodate #Content without scrolling
-        $Container.height( $Pane.position().top + $Content1.outerHeight() + $Content2.outerHeight() + panePadding );
+        $Container.height( $Pane.position().top + $Content1.outerHeight() + $Content2.outerHeight()  + $Content3.outerHeight() + panePadding + 20);
     }else{
         $Container.height(westSizeFix);
         //$Container.height( $West.position().top + $WestContent.outerHeight() + paneWestPadding );
-    }
+    } 
     // now resize panes to fit new container size
     outerLayout.resizeAll();
 }

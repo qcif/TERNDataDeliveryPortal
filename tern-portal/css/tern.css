@@ -322,7 +322,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 #no-result{
     width: 880px;
-    height: 570px;
+    height: 632px;
     text-align:center;
     background: url("../img/main_bg.jpg") repeat-x  transparent;
     border:1px solid #ccc;
@@ -486,8 +486,8 @@ div#panel_advSearch .ui-widget-header{
 .coverage{display:none;}
 .spatial_center{display:none;}
 .spatial_coverage_center{display:none;}
-#search-result{ border:0; padding-left:10px;}
-
+#search-result{ border:0; padding-left:10px; padding-right:10px;}
+.search_item p{ text-align: justify }
 /* MAP Results*/		
 	#result-map{		
 	    height: 450px;		  
@@ -528,7 +528,9 @@ span.more { display: none;  }
 	background: #95B1CE;
 	display: none;
 	}
-
+.descriptions .full {
+    text-align: justify;
+}       
 #breadcrumb-corner{ line-height:20px;  margin-top:10px; margin-bototm:10px; vertical-align:middle}
 
 #share{ float:left; margin-right: 20px;}
