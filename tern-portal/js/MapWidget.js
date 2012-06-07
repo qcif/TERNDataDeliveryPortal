@@ -42,10 +42,12 @@ String.prototype.capitalize = function() {
  * 
  * 
  */
-function MapWidget(mapId){
+function MapWidget(mapId, overviewMap){
 
     this.map = '';
     this.drawControls = '';
+    this.overviewMap = true;
+    this.overviewMap = overviewMap;
 
     // World Geodetic System 1984 projection (lon/lat)
     this.WGS84 = new OpenLayers.Projection("EPSG:4326");
@@ -95,8 +97,10 @@ function MapWidget(mapId){
     //Enable switch layers (that + button on the map) 
     this.map.addControl(new OpenLayers.Control.LayerSwitcher());
      //Enable Overview Map
-     var options = {minRatio: 0, maximized: true, maxRatio: Number.POSITIVE_INFINITY, autoPan: true};
-    this.map.addControl(new OpenLayers.Control.OverviewMap(options));
+    if(this.overviewMap){
+        var options = {minRatio: 0, maximized: true, maxRatio: Number.POSITIVE_INFINITY, autoPan: true};
+        this.map.addControl(new OpenLayers.Control.OverviewMap(options));
+    }
     // look at Australia 
     if (!this.map.getCenter()) this.map.zoomToExtent(new OpenLayers.Bounds(13237508.34,-5537508.34,16037508.34,-937508.34));
 

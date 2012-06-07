@@ -1,6 +1,6 @@
 function drawMap(){//drawing the map on the left side
 
-		if($('p.coverage').length > 0){//if there is a coverage
+	if($('p.coverage').length > 0){//if there is a coverage
 
                 var latlng = new google.maps.LatLng(-25.397, 133.644);
                     var myOptions2 = {
@@ -19,7 +19,7 @@ function drawMap(){//drawing the map on the left side
 
 
 
-			var myOptions = {
+                   var myOptions = {
 		      zoom: 1,disableDefaultUI: true,center:latlng,panControl: true,zoomControl: true,mapTypeControl: true,scaleControl: true,
 		      streetViewControl: false,overviewMapControl: true,mapTypeId: google.maps.MapTypeId.HYBRID
 		    };
@@ -124,13 +124,20 @@ function drawMap(){//drawing the map on the left side
 
 
 $( '#page' ).live( 'pageinit',function(event){
-
-
+        var mapView;
+        if($('p.coverage').length > 0){//if there is a coverage
        
-        $('#coverage').live('click',function(event){
-               drawMap();
-        });
-
+            $('#coverage').live('click',function(event){
+                    if( typeof mapView === "undefined"){
+                        mapView = new MapWidget("spatial_coverage_map",false);
+                        mapView.addDataLayer(false,"transparent");
+                        mapView.addVectortoDataLayer(".spatial_coverage_center",false);
+                        mapView.addVectortoDataLayer("p.coverage",false);
+                    }else{
+                        
+                    }
+            });
+        }
 });
 
 

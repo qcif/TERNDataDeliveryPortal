@@ -317,7 +317,7 @@ $(function() {
     function openMap(mapWidget){
         $('#overlaymap').dialog('open');
         if(typeof mapWidget === 'undefined'){
-            mapWidget = new MapWidget('spatialmap');
+            mapWidget = new MapWidget('spatialmap',true);
             //add box drawing
             mapWidget.addDrawLayer({
                 geometry: "box", 
@@ -666,7 +666,7 @@ $(function() {
             hideNoResult();
             $('#facetH2').removeClass('ui-state-disabled');  
             if(typeof mapWidget == 'undefined'){
-                mapResult = new MapWidget('result-map');
+                mapResult = new MapWidget('result-map',true);
                 mapResult.addDataLayer(true,"default",true);
                 mapWidget= mapResult;
             }
@@ -1221,7 +1221,7 @@ function initSubjectsSEEALSO(){
 
     
 function initViewMap(mapId, centerSelector,coverageSelector){
-    var mapView = new MapWidget(mapId);
+    var mapView = new MapWidget(mapId,true);
      mapView.addDataLayer(false,"transparent");
      mapView.addVectortoDataLayer(centerSelector,false);
      mapView.addVectortoDataLayer(coverageSelector,false);

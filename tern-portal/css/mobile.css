@@ -46,3 +46,10 @@ li {
 .icon-heading-connections{position:relative;float:left;padding:5px;}
 
 .ui-link{ color:#376500 ! important; }
+ 
+div.olLayerGoogleCopyright,
+div.olLayerGooglePoweredBy
+{
+  display: none !important;
+}
+

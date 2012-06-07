@@ -277,14 +277,17 @@
 <!-- 	<div id="connections-box"><img>
 			<xsl:attribute name="src"><xsl:value-of select="$base_url"/><xsl:text>/img/ajax-loader.gif</xsl:text></xsl:attribute>
 			<xsl:attribute name="class">loading-icon</xsl:attribute></img></div> 	 -->
-                        <div data-role="navbar" class="clearfix">
+                        <div data-role="collapsible">
+                            <h2>Access data</h2>
+                            <div data-role="navbar" class="clearfix">
                             <ul>
                                <!--li><a><xsl:attribute name="class">ui-btn-active</xsl:attribute><xsl:attribute name="href">/m/</xsl:attribute>Send to Email</a></li-->
 
                            <xsl:if test="ro:location/ro:address/ro:electronic/@type='url'">
 				<xsl:apply-templates select="ro:location/ro:address/ro:electronic"/>
-	 		</xsl:if>
+                            </xsl:if>
                             </ul>
+                            </div>
                          </div>
 			<!-- NEW CONNECTION -->
 			<div class="right-box" id="connectionsRightBox" data-role="collapsible">
@@ -522,15 +525,15 @@
 		<xsl:variable name="url">
 
 		<xsl:choose>
-		<xsl:when test="string-length(.)>30">
-		<xsl:value-of select="substring(.,0,30)"/>...
+		<xsl:when test="string-length(.)>45">
+		<xsl:value-of select="substring(.,0,45)"/>...
 		</xsl:when>
 		<xsl:otherwise>
 		<xsl:value-of select="."/>
 		</xsl:otherwise>
 		</xsl:choose>
 		</xsl:variable>
-			<li><a ><xsl:attribute name="class">ui-btn-active</xsl:attribute><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute>Go to Source</a></li>
+			<li><a ><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="$url"/></a></li>
 		</xsl:if>
 	</xsl:template>
 
