@@ -519,8 +519,10 @@
         <xsl:value-of select="."/>
     </xsl:template>
 
+    
 	<xsl:template match="ro:location/ro:address/ro:electronic">
-		<xsl:if test="./@type='url'">
+	    <xsl:choose>
+		<xsl:when test="./@type='url' and .!=''">
 		<xsl:variable name="url">
 
 		<xsl:choose>
@@ -533,7 +535,8 @@
 		</xsl:choose>
 		</xsl:variable>
 			<li><a ><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="$url"/></a></li>
-		</xsl:if>
+		</xsl:when>
+	    </xsl:choose>
 	</xsl:template>
 
 	<xsl:template match="ro:location/ro:address/ro:physical">
