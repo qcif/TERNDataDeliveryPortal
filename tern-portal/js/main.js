@@ -1135,7 +1135,7 @@ var t=removeBracket(tmp)
 
 }
 
-        function getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value){
+function getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value){
 		 $.ajax({
              type:"POST",
              url: base_url+"search/seeAlso/content",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
@@ -1148,7 +1148,7 @@ var t=removeBracket(tmp)
              });
 	}
 
-	function initIdentifiersSEEALSO(){
+function initIdentifiersSEEALSO(){
 		var key_value=$('#key').text();
 		//SEE ALSO FOR IDENTIFIERS
         var identifiers = [];
@@ -1256,7 +1256,7 @@ var t=removeBracket(tmp)
         }
 	}
 
-	function setupConnectionsBtns(){
+function setupConnectionsBtns(){
 		$(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
 		$('.button').button();
         $("#status").html($('#connectionsCurrentPage').html() + '/'+$('#connectionsTotalPage').html());

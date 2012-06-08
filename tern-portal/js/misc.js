@@ -199,7 +199,14 @@ function removeBracket(arr)
     {
           idx=arr[i].indexOf("(");
 
-          t[i]=arr[i].substring(0, idx-1);
+          if(idx>-1)
+          {
+                  t[i]=arr[i].substring(0, idx-1);
+          }else
+          {
+              t[i]=arr[i];
+          }
+          
     }
     return t;
 }
