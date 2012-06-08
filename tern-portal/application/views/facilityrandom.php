@@ -58,7 +58,7 @@ function displayDesc($facid,$partners)
     
 <?php if($header_footer) $this->load->view('tpl/header');?>
 
-<div id="fac-title"><h2><?php  echo  $partners[$fackey]['alt_name'];?></h2>
+<div id="fac-title"><h2><?php  echo  $partners[$fackey]['displayTitle'];?></h2>
 </div>
 
 <div id="fac-content">

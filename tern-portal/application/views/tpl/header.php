@@ -36,14 +36,14 @@ if (isset($description))
 
                     <ul class="sf-menu">
                         <li><?php echo anchor('', 'Home'); ?></li>                     
-                        <li><a>Capabilities</a>
+                        <li><a>Facilities</a>
                             <ul>
                                     <?php		
 	                                if($json && $json->{'response'}->{'docs'}){		
 	                                    foreach($json->{'response'}->{'docs'} as $d){		
 	                                        if(count($d->{'location'})>0){		
 	                                            echo '<li>';		
-	                                            echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. htmlentities($d->{'alt_name'}) . '</a>';		
+	                                            echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. htmlentities($d->{'displayTitle'}) . '</a>';		
 	                                            echo '</li>';		
 	                                         }		
 	                                    }		
@@ -52,7 +52,7 @@ if (isset($description))
                                 
                             </ul>
                         </li>
-                        <li><?php echo anchor('http://www.tern.org.au/Portal_contactus-pg22075.html', 'Contact', 'target="_blank"'); ?></li>
+                        <li><?php echo anchor('http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html', 'Contact', 'target="_blank"'); ?></li>
                     </ul>  
                 </div>
             </div>

@@ -41,21 +41,30 @@ $home = 1;
     </div>
     <div class="ui-layout-west hidden">  
         <div id="capabilities_list">
-             <?php		
+          <?php
+              echo ' <ul style="padding-left:2px">';
+		
                 $facilities_list = array("tddp","auscover","ozflux","ecoinformatics","supersites");
                 if($json && $json->{'response'}->{'docs'}){		
                     foreach($json->{'response'}->{'docs'} as $d){		
                         if(in_array($d->{'key'}, $facilities_list)){		
-                            echo '<div class="flrow"><div class="fl" id="'. $d->{'key'} .'">';		
-                            echo htmlentities($d->{'alt_name'});
-                            echo '</div></div>';		
+                            //echo '<div class="flrow"><div class="fl" id="'. $d->{'key'} .'">';		
+                             echo '<div class="flrow">';		
+                            //echo htmlentities($d->{'alt_name'});
+                            //echo '</div></div>';
+                            echo '<li id ="'. $d->{'key'}.'" class="fl">';
+                            echo ' <input type="image"  src="'. $d->{'description_value'}[0].'" height="50" width="190" name="'. $d->{'key'}.'">';
+                            echo '</li></div>';
                             }		
                     }		
                 }		
-                ?>                               
+ 
+           echo '</ul>';
+           ?>  
         </div>
     </div>
-
+   <!-- <div class="ui-layout-east hidden"> Some exciting logos to be found here   -->
+    </div>
 </div>
 
 <?php $this->load->view('tpl/footer'); ?>
