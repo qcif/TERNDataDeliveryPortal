@@ -602,13 +602,14 @@ div.olLayerGooglePoweredBy
 }
 
 #capabilities_list{ padding-left: 10px; display:table;}
-.flrow { margin-bottom: 10px;}
+.flrow { margin-bottom: 10px;    }
 .fl {
     width: 250px;
     height: 70px;
     padding:5px;
     border:5px solid #ccc;
     display:table-cell;
+    margin-bottom: 10px; 
     cursor: pointer;
     font-size: 18px;
     color:#376500;
@@ -618,7 +619,7 @@ div.olLayerGooglePoweredBy
 }
 
 .fl li {
-    border-bottom:5px solid #ccc;
+    border-bottom:10px solid #ccc;
     padding:50px;
     margin:0 10px 15px 0;
 }
@@ -633,7 +634,7 @@ div.olLayerGooglePoweredBy
     cursor: pointer;
     font-size: 18px;
     color:#376500;
-    text-align: center;
+    text-align: left;
     vertical-align:middle;
 }
 .random-record-list {padding:5px;
@@ -675,7 +676,7 @@ div.browse {background:url(../img/hori_large.png) no-repeat;display:block;width:
 div.right{ background-position: 0 -30px; clear:right; margin-right: 0px;}
 div.right:hover{ background-position:-30px -30px; }
 div.right:active{ background-position:-60px -30px; } 
-    
+
 /* left */
 div.left{margin-left: 0px;} 
 div.left:hover{background-position:-30px 0;}
