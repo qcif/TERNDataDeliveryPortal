@@ -293,6 +293,8 @@ $(function() {
         $("#ui-layout-facetmap").hide();
         $("#head-toolbar").hide();
          $("#no-result").show();
+         $("#search-result").html('');
+         sizeCenterPane();
         $('#no-result div').css({
               position: 'absolute',
               'left' : '50%',
