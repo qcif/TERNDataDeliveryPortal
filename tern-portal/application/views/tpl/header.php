@@ -44,7 +44,7 @@ if (isset($description))
 	                                    foreach($json->{'response'}->{'docs'} as $d){		
 	                                        if(count($d->{'location'})>0){		
 	                                            echo '<li>';		
-	                                            echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. $d->{'displayTitle'} . '</a>';		
+	                                            echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. $d->{'alt_name'} . '</a>';		
 	                                            echo '</li>';		
 	                                         }		
 	                                    }		

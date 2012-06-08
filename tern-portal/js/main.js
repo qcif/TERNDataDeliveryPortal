@@ -292,9 +292,9 @@ $(function() {
        
         $("#ui-layout-facetmap").hide();
         $("#head-toolbar").hide();
-         $("#no-result").show();
-         $("#search-result").html('');
-         sizeCenterPane();
+        $("#no-result").show();
+        $("#search-result").html('');
+        sizeCenterPane();
         $('#no-result div').css({
               position: 'absolute',
               'left' : '50%',
@@ -850,6 +850,16 @@ $(function() {
         });
         
         autocomplete('#search-box');
+        
+        $('.fl').live('click', function(event){
+            var facname=$(this).attr("id");
+            $('.flSelect').attr('class','fl');
+            $(this).attr("class","flSelect");
+
+            handleRandom(facname);    
+
+         }); 
+    
         handleRandom('tddp');
         sizeHomeContent();
     }
@@ -1235,73 +1245,10 @@ function initViewMap(mapId, centerSelector,coverageSelector){
      mapView.addVectortoDataLayer(coverageSelector,false);
 	}
 
-function resetFacilityBorder()
-{
-    var element=document.getElementById("tddp").style;
-        element.border="5px solid #ccc"
-     element=document.getElementById("auscover").style;
-         element.border="5px solid #ccc"
-     element=document.getElementById("ozflux").style;
-        element.border="5px solid #ccc"
-     element=document.getElementById("ecoinformatics").style;
-        element.border="5px solid #ccc"
-     element=document.getElementById("supersites").style;
-          element.border="5px solid #ccc"
-}
-    
 
- $('#auscover').live('click', function(event){
-     resetFacilityBorder();
-        var facname=$(this).attr("id");
-     
-        var element=document.getElementById(facname).style;
-            element.border="5px solid #376500";
-            
-        handleRandom(facname);    
 
-    }); 
+  
     
-     $('#tddp').live('click', function(event){
-        resetFacilityBorder();
-            var facname=$(this).attr("id"); 
-            
-            var element=document.getElementById(facname).style;
-            element.border="5px solid #376500";
-     
-        handleRandom(facname);    
-
-    }); 
-    
-     $('#ozflux').live('click', function(event){
-        resetFacilityBorder();
-        var facname=$(this).attr("id");
-        
-        var element=document.getElementById(facname).style;
-            element.border="5px solid #376500";
-    
-        handleRandom(facname);    
-
-    }); 
-     $('#ecoinformatics').live('click', function(event){
-        resetFacilityBorder();
-        var facname=$(this).attr("id");
-        
-        var element=document.getElementById(facname).style;
-            element.border="5px solid #376500";
-    
-        handleRandom(facname);    
-
-    }); 
-     $('#supersites').live('click', function(event){
-        resetFacilityBorder();
-        var facname=$(this).attr("id");
-        
-        var element=document.getElementById(facname).style;
-            element.border="5px solid #376500";
-    
-        handleRandom(facname);    
-
-    }); 
     function handleRandom(facname)
     {
           $.ajax({

@@ -31,7 +31,7 @@
          {
                 "key": "auscover",
                 "displayTitle": "Auscover",
-                "alt_name": "capabilities",
+                "alt_name": "Satellite Biophysical Data",
                 "description_type": [
                     "logo",
                     "full"
@@ -45,7 +45,7 @@
             {
                 "key": "ozflux",
                 "displayTitle": "OzFlux: Australian and New Zealand Flux Research and Monitoring",
-                "alt_name": "capabilities",
+                "alt_name": "Carbon Dioxide, Energy & Water fluxes",
                 "description_type": [
                     "logo",
                     "full"
@@ -59,7 +59,7 @@
             {
                 "key": "mspn",
                 "displayTitle": "Multi Scale Plot Network",
-                "alt_name": "capabilities",                
+                "alt_name": "Flora and fauna plots",                
                  "description_type": [
                     "logo",
                     "full"
@@ -74,7 +74,7 @@
             {
                 "key": "ausplot",
                 "displayTitle": "AusPlots",
-                "alt_name": "capabilities",                
+                "alt_name": "AusPlots",                
                 "description_type": [
                     "logo",
                     "full"
@@ -88,7 +88,7 @@
             {
                 "key": "ltern",
                 "displayTitle": "LTERN",
-                "alt_name": "capabilities",                
+                "alt_name": "LTERN",                
                 "description_type": [
                     "logo",
                     "full"
@@ -102,7 +102,7 @@
             {
                 "key": "supersites",             
                 "displayTitle": "TERN Supersites",
-                "alt_name": "capabilities",                   
+                "alt_name": "Biogeochemical and Ecological Data",                   
                 "description_type": [
                     "logo",
                     "full"
@@ -116,7 +116,7 @@
             {
                 "key": "soil",
                 "displayTitle": "Soil and Landscape Grid",
-                "alt_name": "capabilities", 
+                "alt_name": "Soils & Landform Data", 
                 "description_type": [
                     "logo",
                     "full"
@@ -130,7 +130,7 @@
             {
                 "key": "coastal",
                 "displayTitle": "Australian Coastal Ecosystems",
-                "alt_name": "capabilities", 
+                "alt_name": "Coastal Zone Data", 
                 "description_type": [
                     "logo",
                     "full"
@@ -144,7 +144,7 @@
             {
                 "key": "ecoinformatics",
                 "displayTitle": "Ecoinformatics",
-                "alt_name": "capabilities",                 
+                "alt_name": "Ecological Data",                 
                  "description_type": [
                     "logo",
                     "full"
@@ -158,7 +158,7 @@
             {
                 "key": "emast",
                 "displayTitle": "Ecosystem Modelling and Scaling Infrastructure",
-                "alt_name": "capabilities",                 
+                "alt_name": "Ecosystem Modelling Tools",                 
                 "description_type": [
                     "logo",
                     "full"
@@ -172,7 +172,7 @@
             {
                 "key": "aceas",
                 "displayTitle": "Australian Centre for Ecological Analysis and Synthesis",
-                "alt_name": "capabilities",                 
+                "alt_name": "Science and Management Synthesis",                 
                 "description_type": [
                     "logo",
                     "full"
@@ -187,7 +187,7 @@
             {
                 "key": "tddp",
                 "displayTitle": "TERN Data Discovery Portal",
-                "alt_name": "capabilities",                 
+                "alt_name": "TERN Data Discovery Portal",                 
                 "description_type": [
                     "logo",
                     "full"

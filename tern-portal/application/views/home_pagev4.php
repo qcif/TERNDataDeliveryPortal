@@ -40,38 +40,20 @@ $home = 1;
 
     </div>
     <div class="ui-layout-west hidden">  
-        <ul>
-             <li id ="tddp" class="fl">
-                <input type="image"  src="/img/tddp.png" height="50" width="190" name="tddp" >
-            </li>
-            <li id ="auscover" class="fl">
-                <input type="image"  src="/img/auscover.png" height="50" width="190" name="auscover">
-            </li>
-            <li id ="ozflux" class="fl">
-                <input type="image"  src="/img/ozflux.png" height="50" width="190" name="ozflux">
-            </li>
-<!--            
-            <li id ="ausplot" class="fl">
-            <input type="image"  src="/img/ausplot.PNG" height="50" width="80" name="ausplot">
-            </li>
--->
-<!--
-            <li  id ="aceas" class="fl">
-            <input type="image"  src="/img/aceas.png" height="50" width="150" name="aceas">
-            </li>
--->
-            <li  id ="ecoinformatics" class="fl">
-                <input type="image"  src="/img/aekos.png" height="50" width="190" name="aekos">
-            </li>
-<!--            
-            <li  id ="emast" class="fl">
-            <input type="image"  src="/img/emast.PNG" height="50" width="100" name="emast">
-            </li>
--->
-            <li  id ="supersites" class="fl">
-                <input type="image"  src="/img/supersite.png" height="50" width="190" name="supersite">
-            </li>
-        </ul>
+        <div id="capabilities_list">
+             <?php		
+                $facilities_list = array("tddp","auscover","ozflux","ecoinformatics","supersites");
+                if($json && $json->{'response'}->{'docs'}){		
+                    foreach($json->{'response'}->{'docs'} as $d){		
+                        if(in_array($d->{'key'}, $facilities_list)){		
+                            echo '<div class="flrow"><div class="fl" id="'. $d->{'key'} .'">';		
+                            echo $d->{'alt_name'};
+                            echo '</div></div>';		
+                            }		
+                    }		
+                }		
+                ?>                               
+        </div>
     </div>
    <!-- <div class="ui-layout-east hidden"> Some exciting logos to be found here   -->
     </div>
