@@ -125,6 +125,13 @@ class Search extends CI_Controller
         $status = $this->input->post('status');
         $source_key = $this->input->post('source_key');
 
+        $fortwo = urldecode($this->input->post('fortwoFilter'));
+        $forfour = urldecode($this->input->post('forfourFilter'));
+        $forsix = urldecode($this->input->post('forsixFilter'));
+        
+        $sort="score desc";
+        $adv=1;
+        
         $extended_query = '';
         if ($source_key != 'undefined')
         {
@@ -136,8 +143,8 @@ class Search extends CI_Controller
             $status = 'All';
         }
 
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $status);
-
+       // $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $status);
+        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $fortwo,$forfour,$forsix, 'PUBLISHED',$sort,$adv);
         $this->load->view('search/service', $data);
     }
 
@@ -152,11 +159,18 @@ class Search extends CI_Controller
         $extended = $this->input->post('extended');
         $excluded_key = $this->input->post('excluded_key');
 
+        $fortwo = "All";
+        $forfour ="All";
+        $forsix = "All";
+        
+        $sort="score desc";
+        $adv=1;
         $extended_query = $extended . '-key:("' . escapeSolrValue($excluded_key) . '")';
         //$extended_query='';
         //$extended_query .=constructFilterQuery('subject_value', $subject).'^100';
 
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, 'PUBLISHED');
+        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $fortwo,$forfour,$forsix, 'PUBLISHED',$sort,$adv);
+ 
         $data['numfound'] = $data['json']->{'response'}->{'numFound'};
         $data['seeAlsoType'] = $seeAlsoType;
 

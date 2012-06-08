@@ -1032,18 +1032,27 @@ function initSubjectsSEEALSO(){
     var subjectSearchstr = '';
     $('.subjectFilter').each(function(){
         //console.log($(this).attr('id'));
-        subjectSearchstr += $(this).attr('id')+';';
+        //subjectSearchstr += $(this).attr('id')+';';
+        subjectSearchstr += $(this).html()+';';
     });
-    subjectSearchstr = subjectSearchstr.substring(0,subjectSearchstr.length -1 );
-    //console.log(subjectSearchstr);
+    
+var arr=subjectSearchstr.split(";");
+var tmp =arr.slice(0,11);
+var t=removeBracket(tmp)
+
+ subjectSearchstr=t.join(";");
+
+    //subjectSearchstr = subjectSearchstr.substring(0,subjectSearchstr.length -1 );
+  //  console.log(subjectSearchstr);
     subjectSearchstr = encodeURIComponent(subjectSearchstr);
+
     $.ajax({
         type:"POST",
         url: base_url+"search/seeAlso/count/subjects",
         data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page=1&spatial_included_ids=&temporal=All&excluded_key="+key_value,
         success:function(msg){
             $("#seeAlso").html(msg);
-            //console.log(msg);
+           // console.log(msg);
             if(parseInt($('#seealso-realnumfound').html())==0){
                 $('#seeAlsoRightBox').hide();
             }
@@ -1113,6 +1122,19 @@ function initSubjectsSEEALSO(){
 
 }
 
+        function getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value){
+		 $.ajax({
+             type:"POST",
+             url: base_url+"search/seeAlso/content",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
+                     success:function(msg){
+                             $(".accordion").html(msg);
+                             $(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
+                             setupSeealsoBtns();
+                     },
+                     error:function(msg){}
+             });
+	}
+        
 	function initIdentifiersSEEALSO(){
 		var key_value=$('#key').text();
 		//SEE ALSO FOR IDENTIFIERS
