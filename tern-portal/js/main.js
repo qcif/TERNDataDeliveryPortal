@@ -979,7 +979,7 @@ function initConnectionsBox(){
                 //console.log("success" + msg);
                 $("#connectionsInfoBox").html(msg);
 
-                $(".accordion").accordion({
+                $(".accordion-seealso").accordion({
                     autoHeight:false, 
                     collapsible:true,
                     active:false
@@ -995,14 +995,14 @@ function initConnectionsBox(){
                         '<': function() {
                             if(connectionsPage > 1){
                                 connectionsPage = connectionsPage - 1;
-                                $('.accordion').html('Loading...');
+                                $('.accordion-seealso').html('Loading...');
                                 getConnectionsAjax(classes,types, connectionsPage, key_value)
                             }
                         },
                         '>': function() {
                             if(connectionsPage < parseInt($('#connectionsTotalPage').html())){
                                 connectionsPage = connectionsPage + 1;
-                                $('.accordion').html('Loading...');
+                                $('.accordion-seealso').html('Loading...');
                                 getConnectionsAjax(classes,types, connectionsPage, key_value)
                             }
                         }
@@ -1071,7 +1071,7 @@ var t=removeBracket(tmp)
                 //console.log("success" + msg);
                 $("#infoBox").html(msg);
 
-                $(".accordion").accordion({
+                $(".accordion-seealso").accordion({
                     autoHeight:false, 
                     collapsible:true,
                     active:false
@@ -1089,14 +1089,14 @@ var t=removeBracket(tmp)
                         '<': function() {
                             if(seeAlsoPage > 1){
                                 seeAlsoPage = seeAlsoPage - 1;
-                                $('.accordion').html('Loading...');
+                                $('.accordion-seealso').html('Loading...');
                                 getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value)
                             }
                         },
                         '>': function() {
                             if(seeAlsoPage < parseInt($('#seeAlsoTotalPage').html())){
                                 seeAlsoPage = seeAlsoPage + 1;
-                                $('.accordion').html('Loading...');
+                                $('.accordion-seealso').html('Loading...');
                                 getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value)
                             }
                         }
@@ -1127,14 +1127,14 @@ var t=removeBracket(tmp)
              type:"POST",
              url: base_url+"search/seeAlso/content",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
                      success:function(msg){
-                             $(".accordion").html(msg);
-                             $(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
+                             $(".accordion-seealso").html(msg);
+                             $(".accordion-seealso").accordion({autoHeight:false, collapsible:true,active:false});
                              setupSeealsoBtns();
                      },
                      error:function(msg){}
              });
 	}
-        
+
 	function initIdentifiersSEEALSO(){
 		var key_value=$('#key').text();
 		//SEE ALSO FOR IDENTIFIERS
@@ -1215,14 +1215,14 @@ var t=removeBracket(tmp)
 	                                        '<': function() {
 	                                                if(seeAlsoPage > 1){
 	                                                        seeAlsoPage = seeAlsoPage - 1;
-	                                                        $('.accordion').html('Loading...');
+	                                                        $('.accordion-seealso').html('Loading...');
 	                                                        getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value)
 	                                                }
 	                                        },
 	                                        '>': function() {
 	                                                if(seeAlsoPage < parseInt($('#seeAlsoTotalPage').html())){
 	                                                        seeAlsoPage = seeAlsoPage + 1;
-	                                                        $('.accordion').html('Loading...');
+	                                                        $('.accordion-seealso').html('Loading...');
 	                                                        getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value)
 	                                                }
 	                                        }

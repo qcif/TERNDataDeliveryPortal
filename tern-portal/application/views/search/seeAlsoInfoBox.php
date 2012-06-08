@@ -24,7 +24,7 @@ $Revision: 1 $
 	//print_r($json);
 	//echo '</pre>';?>
 
-<div class="accordion">
+<div class="accordion-seealso">
 <?php
 foreach($json->{'response'}->{'docs'} as $r)
 {
