@@ -20,7 +20,7 @@ $Revision: 1 $
 *
 **/ 
 ?>
-<div class="accordion">
+<div class="accordion-seealso">
 <?php
 foreach($json->{'response'}->{'docs'} as $r)
 {

@@ -191,6 +191,21 @@ function handlerecordpopupSlide()
         return false;
 	}
 
+function removeBracket(arr)
+{
+    var i,idx;
+    var t=[];
+    for(i=0;i<arr.length;i++)
+    {
+          idx=arr[i].indexOf("(");
 
+          t[i]=arr[i].substring(0, idx-1);
+    }
+    return t;
+}
 
+	function setupSeealsoBtns(){
+		$('.button').button();
+        $("#status").html($('#seeAlsoCurrentPage').html() + '/'+$('#seeAlsoTotalPage').html());
+    }
 

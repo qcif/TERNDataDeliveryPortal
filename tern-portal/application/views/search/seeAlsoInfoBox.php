@@ -24,7 +24,7 @@ $Revision: 1 $
 	//print_r($json);
 	//echo '</pre>';?>
 
-<div class="accordion">
+<div class="accordion-seealso">
 <?php
 foreach($json->{'response'}->{'docs'} as $r)
 {
@@ -48,7 +48,7 @@ foreach($json->{'response'}->{'docs'} as $r)
 		echo '<h4>Keywords</h4><ul class="subjects">';
                 if(is_array($r->{'for_value_six'})){
 		 foreach($r->{'for_value_six'} as $index=>$for_value){
-			echo '<li><a  href="javascript:void(0);" class="forfourFilter" id="'.$for_value. '" >'.$for_value.'</a></li>';
+			echo '<li>'.$for_value.'</a></li>';
                         if($index == 9) { echo '<li>...</li>'; break;  }
                 }
                 }
@@ -56,7 +56,7 @@ foreach($json->{'response'}->{'docs'} as $r)
                         if($index == 9) { 
                             break;
                         }else{
-                            echo '<li><a href="javascript:void(0);" class="subjectFilter" id="'.$r->{'subject_value'}[$index2].'">'.$r->{'subject_value'}[$index2].'</a></li>';
+                            echo '<li>'.$r->{'subject_value'}[$index2].'</a></li>';
                              if(($index + $index2) == 7) { echo '<li>...</li>'; break;  }
                     }
 		}

@@ -36,7 +36,6 @@
             $start = ($page - 1) * $row;
 
         $solr_url = $this->config->item('solr_url');
-
         $filter_query = '';
         if ($classFilter != 'All')
             $filter_query .= constructFilterQuery('class', $classFilter);
@@ -55,7 +54,6 @@
             $filter_query .= constructFilterQuery('for_value_four', $forfour);
         if ($forsix != 'All')
             $filter_query .= constructFilterQuery('for_value_six', $forsix);
-    
         $q = urldecode($q);
        // if ($q != '*:*')
         //     $q = escapeSolrValue($q);
@@ -87,7 +85,8 @@
         rtrim($fields_string, '&');
 
         $fields_string .= $facet; //add the facet bits
-        //$fields_string = urldecode($fields_string);
+        $fields_string = urldecode($fields_string);
+       
         
         //echo urldecode($fields_string).'<hr/>';
         $ch = curl_init();
@@ -100,10 +99,12 @@
         //echo 'json received+<pre>'.$content.'</pre>';
         curl_close($ch); //close the curl
 
+ 
         if ($write_type == 'json')
         {
+
             $json = json_decode($content);
-            
+
             return $json;
         }
         elseif ($write_type == 'xml')
