@@ -176,7 +176,7 @@ ul{
  * Subjects List
  * Used in any instance a subject list is required
  */
-ul.subjects{list-style-type:none;margin:10px 0px 0px 0px;padding:0;margin-top:0}
+ul.subjects{list-style-type:none;padding:0;margin-top:0}
 ul.subjects li{display:inline-block;line-height:1px;width:auto;margin: 5px;}
 ul.subjects li a{text-decoration:none; padding:2px 4px;margin:2px 4px; text-decoration: underline; }
 ul.subjects li a:hover{background: white;}
