@@ -34,8 +34,8 @@
         <div class="ui-widget-header clearfix ">
             <div id="panel" class="olControlEditingToolbar">
                 <?php if($widget_map_drawtoolbar){ ?> 
-                    <div  id="box" class="olControlDrawFeatureBoxItemActive" alt="Draw Box" title="To draw a region: click in the map and drag the mouse to get a rectangle. Release the mouse to finish."></div>
-                    <div  id="drag" class="olControlDragFeatureBoxItemInactive" alt="Move Box" title="To move the region: Click and drag the box around the map"></div>
+                    <div  id="box" class="olControlDrawFeatureBoxItemActive" title="To draw a region: click in the map and drag the mouse to get a rectangle. Release the mouse to finish."></div>
+                    <div  id="drag" class="olControlDragFeatureBoxItemInactive" title="To move the region: Click and drag the box around the map"></div>
                    
                 <?php } ?>
             </div>

@@ -401,7 +401,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 /* WEST SEARCH  */
  .head{ margin-bottom: 5px; }
- #buttonSearch{ margin: 10px; float:right;}
+ .buttonSearch{ margin: 10px; float:right;}
  .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
      color:#333333;
      

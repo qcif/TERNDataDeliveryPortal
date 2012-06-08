@@ -24,6 +24,8 @@ function searchStringInArray (needle, stringArray) {
 }
 
 $(function() {
+    $(":checkbox").attr("autocomplete", "off");
+    
     // GLOBAL VARIABLES
     var hash = window.location.hash;
     var search_term = '';
@@ -136,26 +138,24 @@ $(function() {
         if(classFilter!=$('#classSelect').val()) {
             $('#classSelect').val(classFilter);
         }
-        //console.log('term='+search_term+'page='+page+'tab='+classFilter);
- 
-        if(window.location.href.indexOf('search')>=0) {
-             
-            if(param_q > -1){
+     
+         if(param_q > -1){
                 search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
                 search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
                 
                 $("#loading").show();
                 if(adv==1&&window.location.href.indexOf('/n')>=0)
-                {
+                { 
                         doSpatialSearch();
                 }else{
                         doNormalSearch();
-                    }
-            }
-        }
+                }
+         }
+            
     });
+   
     $(window).hashchange(); //do the hashchange on page load
-    routing();    
+    routing(); 
        
     $('.typeFilter, .groupFilter, .subjectFilter,.fortwoFilter, .forfourFilter, .forsixFilter').live('click', function(event){
         if(event.type=='click'){
@@ -398,7 +398,7 @@ $(function() {
                     $('input[id^="group"][value="' + urldecode(v) + '"]').attr('checked',true);
                 });            
             }
-
+ 
             if(n!='') {
                 populateCoordinates(n,w,s,e);
             } 
@@ -468,7 +468,7 @@ $(function() {
         }).button();
         
         enableCoordsClick();
-
+        
         //Reset Button 
         $('#search_reset').click(function(){
             resetAllFields(temporalWidget);
@@ -584,6 +584,9 @@ $(function() {
             //  }
             
         }).button();    
+        
+         
+           
     }
     
     function doSpatialSearch(){
@@ -1072,7 +1075,7 @@ var t=removeBracket(tmp)
         }
     });
     var seeAlsoPage = 1;
-    $('#seeAlso_subjectNumFound').live('click', function(){
+    $('#seeAlso_subjectNumFound').die('click').live('click', function(){
         $.ajax({
             type:"POST",
             url: base_url+"search/seeAlso/content/subjects",

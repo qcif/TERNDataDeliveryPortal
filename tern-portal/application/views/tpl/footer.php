@@ -4,7 +4,7 @@
                 <?php echo anchor('http://tern.org.au/tern_data_portal_terms_of_use-pg21208.html', 'Terms of use'); ?>
                 </div>
 
-            <div id="info">TERN is supported by the Australian Government through the National<br>Collaborative Research Infrastructure Strategy and the Super Science Initiative.</div>
+            <div id="info">TERN is supported by the Australian Government through the National<br/>Collaborative Research Infrastructure Strategy and the Super Science Initiative.</div>
             <div id="australian_government"></div>
             </div>
 
@@ -44,7 +44,7 @@
         <script type="text/javascript" src="<?php echo base_url();?>js/TemporalWidget.js"></script> <!-- WIDGET TEMPORAL-->
         <?php } ?>
         <?php if($widget_map) { ?>
-        <script src="http://openlayers.org/api/2.11/OpenLayers.js"></script>
+        <script  type="text/javascript" src="http://openlayers.org/api/2.11/OpenLayers.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/MapWidget.js"></script> <!-- WIDGET MAP -->
         <?php } ?>
          <?php if ($this->config->item('GA_enabled')): ?>

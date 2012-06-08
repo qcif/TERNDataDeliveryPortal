@@ -47,7 +47,7 @@ $home = 1;
                     foreach($json->{'response'}->{'docs'} as $d){		
                         if(in_array($d->{'key'}, $facilities_list)){		
                             echo '<div class="flrow"><div class="fl" id="'. $d->{'key'} .'">';		
-                            echo $d->{'alt_name'};
+                            echo htmlentities($d->{'alt_name'});
                             echo '</div></div>';		
                             }		
                     }		

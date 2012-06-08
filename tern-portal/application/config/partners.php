@@ -72,34 +72,6 @@
                 "location": ["http://www.tern.org.au/Multi-Scale-Plot-Network-pg17730.html"]
             },
             {
-                "key": "ausplot",
-                "displayTitle": "AusPlots",
-                "alt_name": "AusPlots",                
-                "description_type": [
-                    "logo",
-                    "full"
-                ],
-                "description_value": [
-                    "http://ozflux.its.monash.edu.au/ecosystem/images/logo/ozflux_small.gif",
-                    "OzFlux is a national ecosystem research network consisting of 10 flux stations at present with a further 6 planned for installation in 2011, all funded under the TERN 1 initiative. Funding for 6 more sites has been requested under the TERN-EIF initiative. The final network of 21 sites will provide the Australian and global ecosystem modelling communities with nationally consistent observations of energy, carbon and water exchange between the atmosphere and key Australian ecosystems. OzFlux is part of an international network (FluxNet) of over 500 flux stations that is designed to provide continuous, long-term micrometeorological measurements to monitor the state of ecosystems globally. "
-                ],
-                "location": ["http://www.tern.org.au/AusPlots-pg17871.html"]
-            },
-            {
-                "key": "ltern",
-                "displayTitle": "LTERN",
-                "alt_name": "LTERN",                
-                "description_type": [
-                    "logo",
-                    "full"
-                ],
-                "description_value": [
-                    "http://ozflux.its.monash.edu.au/ecosystem/images/logo/ozflux_small.gif",
-                    "OzFlux is a national ecosystem research network consisting of 10 flux stations at present with a further 6 planned for installation in 2011, all funded under the TERN 1 initiative. Funding for 6 more sites has been requested under the TERN-EIF initiative. The final network of 21 sites will provide the Australian and global ecosystem modelling communities with nationally consistent observations of energy, carbon and water exchange between the atmosphere and key Australian ecosystems. OzFlux is part of an international network (FluxNet) of over 500 flux stations that is designed to provide continuous, long-term micrometeorological measurements to monitor the state of ecosystems globally. "
-                ],
-                "location": ["http://www.tern.org.au/Long-Term-Ecological-Research-Network-pg17872.html"]
-            },
-            {
                 "key": "supersites",             
                 "displayTitle": "TERN Supersites",
                 "alt_name": "Biogeochemical and Ecological Data",                   

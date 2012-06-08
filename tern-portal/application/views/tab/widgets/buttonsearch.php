@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 ?>
-  <div id="buttonSearch" >
+  <div class="buttonSearch" >
      <button id="search_reset">Reset</button>
      <button id="search_advanced">Search</button>
 
