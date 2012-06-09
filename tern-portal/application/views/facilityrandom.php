@@ -78,7 +78,7 @@ function displayDesc($facid,$partners)
                         printRecord($recordsArr[$i]);
                     }
 
-                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['displayTitle'].'/adv=1','<b>View all '.$partners[$fackey]['alt_name'].' records</b>');
+                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['displayTitle'].'/adv=1','<b>View all '.$partners[$fackey]['displayTitle'].' records</b>');
                     echo '</ul>';
                 }else
                 {
