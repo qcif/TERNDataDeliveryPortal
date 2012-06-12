@@ -55,8 +55,7 @@ $home = 1;
                 ?>                               
         </div>
     </div>
-   <!-- <div class="ui-layout-east hidden"> Some exciting logos to be found here   -->
-    </div>
+
 </div>
 
 <?php $this->load->view('tpl/footer'); ?>
