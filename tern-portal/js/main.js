@@ -856,9 +856,8 @@ $(function() {
         
         $('.fl').live('click', function(event){
             var facname=$(this).attr("id");
-            $('.flSelect').attr('class','fl');
-            $(this).attr("class","flSelect");
-
+            $('.flrowSelect').attr('class','flrow');
+            $(this).parent().attr("class","flrowSelect");
             handleRandom(facname);    
 
          }); 
