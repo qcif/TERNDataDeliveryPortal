@@ -664,7 +664,7 @@ div.browse {background:url(../img/hori_large.png) no-repeat;display:block;width:
 div.right{ background-position: 0 -30px; clear:right; margin-right: 0px;}
 div.right:hover{ background-position:-30px -30px; }
 div.right:active{ background-position:-60px -30px; } 
-
+    
 /* left */
 div.left{margin-left: 0px;} 
 div.left:hover{background-position:-30px 0;}

@@ -9,7 +9,7 @@
                      </div>
                  </div>
                 <div id="search-result" class="ui-layout-search-results"></div>
-                <div id="no-result" class="hide ui-corner-all"><div><h3></h3></div></div>
+                <div id="no-result" class="ui-corner-all"><div><h3></h3></div></div>
             </div>
             <div class="ui-layout-west hidden">    
                 <div id="accordion" class="accordion">

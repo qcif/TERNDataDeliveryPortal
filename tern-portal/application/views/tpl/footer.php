@@ -13,7 +13,7 @@
 
         <div id="footer" class="no_print">
             <div id="footer_padding">
-                <div id="copyright"><a href="#">&copy; 2012 Terrestrial Ecosystem Research Network</a></div>
+                <div id="copyright">&copy; 2012 Terrestrial Ecosystem Research Network</div>
 
             </div>
         </div>
