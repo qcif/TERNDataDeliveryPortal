@@ -602,12 +602,10 @@ div.olLayerGooglePoweredBy
 }
 
 #capabilities_list{ padding-left: 10px; display:table;}
-.flrow { margin-bottom: 10px;}
+.flrow { margin-bottom: 10px;   padding: 5px;  border:5px solid #ccc;}
 .fl {
     width: 250px;
-    height: 70px;
-    padding:5px;
-    border:5px solid #ccc;
+    height: 50px;
     display:table-cell;
     cursor: pointer;
     font-size: 18px;
