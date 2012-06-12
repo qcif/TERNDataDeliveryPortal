@@ -859,7 +859,6 @@ $(function() {
             $('.flSelect').attr('class','fl');
 
             $(this).attr('class','flSelect');
-           // $(this).parent().attr("class","flrowSelect");
             handleRandom(facname);    
 
          }); 

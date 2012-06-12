@@ -42,24 +42,24 @@ $home = 1;
     <div class="ui-layout-west">  
         <div id="capabilities_list" >
           <?php
-              echo ' <ul style="padding-left:2px">';
-		
+          	
                 $facilities_list = array("tddp","auscover","ozflux","ecoinformatics","supersites");
                 if($json && $json->{'response'}->{'docs'}){		
                     foreach($json->{'response'}->{'docs'} as $d){		
                         if(in_array($d->{'key'}, $facilities_list)){		
-                            //echo '<div class="flrow"><div class="fl" id="'. $d->{'key'} .'">';		
-                             echo '<div class="flrow">';		
+                           // echo '<div class="flrow">';		
+                            // echo '<ul class="flrow">';		
                             //echo htmlentities($d->{'alt_name'});
                             //echo '</div></div>';
-                            echo '<li id ="'. $d->{'key'}.'" class="fl">';
+                            echo '<div id ="'. $d->{'key'}.'" class="fl">';
                             echo ' <input type="image"  alt="'. $d->{'key'} .'" src="'. $d->{'description_value'}[0].'" height="50" width="190" name="'. $d->{'key'}.'">';
-                            echo '</li></div>';
+                            echo '</div>';
+                           // echo '</div>';
                             }		
                     }		
                 }		
  
-           echo '</ul>';
+
            ?>  
         </div>
     </div>
