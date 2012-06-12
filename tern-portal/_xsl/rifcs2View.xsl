@@ -202,7 +202,7 @@
  <div class="record-slide hide">
             <xsl:if test="ro:subject/@type='anzsrc-for' or ro:subject/@type='anzsrc-seo' or ro:subject/@type='anzsrc-toa'">
 
-                <div style="padding:5px"><b>ANZSRC</b></div>
+                <div class="padding5"><b>ANZSRC</b></div>
                 <ul class="subjects">
                 <xsl:for-each select="ro:subject">      
                     <xsl:sort select="./@type"/>
@@ -214,7 +214,7 @@
             </xsl:if>
                 
                 <xsl:if test="ro:subject[not(@type = 'anzsrc-for' or  @type = 'anzsrc-seo' or  @type = 'anzsrc-toa')]">
-                   <div style="padding:5px"><b>Keywords</b></div>
+                   <div   class="padding5"><b>Keywords</b></div>
                     <ul class="subjects">
                         <xsl:for-each select="ro:subject">      
                             <xsl:sort select="./@type"/>
@@ -285,7 +285,7 @@
 			</span>
           </div>
 <div class="record-slide hide">          
-           	 	<div id="identifiers" style="padding:5px">
+           	 	<div id="identifiers" class="padding5">
   
     	<p> 	
     	<xsl:apply-templates select="ro:identifier[@type='doi']" mode = "doi"/>
@@ -319,7 +319,7 @@
 			<span class="ui-icon ui-icon-arrowthickstop-1-n toggle-record-popup"></span>
 			</span>
                        
-			<div id="connections" class="record-slide hide" style="padding:5px">
+			<div id="connections" class="record-slide hide padding5">
 				<img>
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/><xsl:text>/img/ajax-loader.gif</xsl:text></xsl:attribute>
 				<xsl:attribute name="class">loading-icon</xsl:attribute>
@@ -351,7 +351,7 @@
                                 </xsl:if>
 		<div class="right-box">
 			<h2>Rights and Licences</h2>
-			<div class="limitHeight300">
+			<div class="limitHeight300 padding5">
  		<!--
 	 		 <xsl:if test="ro:rights">
 					<h3>Rights</h3>	
@@ -412,7 +412,7 @@
 				<div class="right-box" id="seeAlsoRightBox">
 				<div id="infoBox" class="hide"></div>
 				<h2>Suggested Links</h2>
-				<div id="seeAlso">
+				<div id="seeAlso"  class="padding5">
 					<img>
 					<xsl:attribute name="src"><xsl:value-of select="$base_url"/><xsl:text>/img/ajax-loader.gif</xsl:text></xsl:attribute>
 					<xsl:attribute name="class">loading-icon</xsl:attribute>
@@ -426,7 +426,7 @@
 				<div class="right-box" id="seeAlso-Identifier">
 				<div id="infoBox" class="hide"></div>
 				<h2>Suggested Links</h2>
-				<div id="seeAlso-IdentifierBox">
+				<div id="seeAlso-IdentifierBox"  class="padding5">
 					<img>
 					<xsl:attribute name="src"><xsl:value-of select="$base_url"/><xsl:text>/img/ajax-loader.gif</xsl:text></xsl:attribute>
 					<xsl:attribute name="class">loading-icon</xsl:attribute>
@@ -860,9 +860,9 @@ Handle:
 			<xsl:if test="./@type='rights'"><div style="margin-left:3px"><h4 style="margin-top:1px;margin-bottom:1px">Rights statement</h4></div></xsl:if>
 			<xsl:if test="./@type='accessRights'"><div style="margin-left:3px"><h4 style="margin-top:1px;margin-bottom:1px">Access rights</h4></div></xsl:if>
 			<xsl:if test="./@type='licence'"><div style="margin-left:2px"><h4 style="margin-top:1px;margin-bottom:1px">Licence</h4></div></xsl:if>				
-			<p class="rights" style="padding:5px;margin-top:1px;margin-bottom:1px"><xsl:value-of select="." disable-output-escaping="yes"/>
+			<p class="rights padding5" style="margin-top:1px;margin-bottom:1px"><xsl:value-of select="." disable-output-escaping="yes"/>
 			<xsl:if test="./@rightsUri"><br />
-			<a target="_blank" style="padding:5px">
+			<a target="_blank"  class="padding5" >
 			<xsl:attribute name="href"><xsl:value-of select="./@rightsUri"/></xsl:attribute><xsl:value-of select="./@rightsUri"/></a>
 			</xsl:if>	
 			</p>		

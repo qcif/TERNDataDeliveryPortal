@@ -52,7 +52,7 @@ if (isset($description))
                                 
                             </ul>
                         </li>
-                        <li><?php echo anchor('http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html', 'Contact', 'target="_blank"'); ?></li>
+                        <li><?php echo anchor('http://www.tern.org.au/Portal_contactus-pg22075.html', 'Contact', 'target="_blank"'); ?></li>
                     </ul>  
                 </div>
             </div>
