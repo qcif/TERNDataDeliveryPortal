@@ -33,14 +33,14 @@ $home = 1;
 
         <div id="tab">
           
-            <div id="random" class="clearfix">
+            <div id="random" class="clearfix" aria-live="polite" aria-relevant="all" >
 
             </div>
         </div>
 
     </div>
-    <div class="ui-layout-west hidden">  
-        <div id="capabilities_list">
+    <div class="ui-layout-west">  
+        <div id="capabilities_list" >
           <?php
               echo ' <ul style="padding-left:2px">';
 		
@@ -53,7 +53,7 @@ $home = 1;
                             //echo htmlentities($d->{'alt_name'});
                             //echo '</div></div>';
                             echo '<li id ="'. $d->{'key'}.'" class="fl">';
-                            echo ' <input type="image"  src="'. $d->{'description_value'}[0].'" height="50" width="190" name="'. $d->{'key'}.'">';
+                            echo ' <input type="image"  alt="'. $d->{'key'} .'" src="'. $d->{'description_value'}[0].'" height="50" width="190" name="'. $d->{'key'}.'">';
                             echo '</li></div>';
                             }		
                     }		
