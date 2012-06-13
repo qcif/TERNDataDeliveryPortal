@@ -49,7 +49,8 @@ TemporalWidget.prototype.refreshTemporalSearch = function(){
 
     }else{
         $('#dateFrom').attr('disabled','true');
-        $('#dateTo').attr('disabled','true');			
+        $('#dateTo').attr('disabled','true');		 
+        $('#show-temporal-search').removeAttr('checked');	
     }
 }
 
