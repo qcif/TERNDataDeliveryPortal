@@ -15,9 +15,9 @@ function sizeCenterPane() {
     ,       paneWestPadding	= outerWestHeight - $.layout.cssHeight($West, outerWestHeight)
     ;
     var westSizeFix = 675;
-    if(( $Pane.position().top + $Content1.outerHeight() + $Content2.outerHeight() + $Content3.outerHeight()   + panePadding  + 20) >  westSizeFix) { //($West.position().top + $WestContent.outerHeight() + paneWestPadding )) {
+    if(( $Pane.position().top + $Content1.outerHeight() + $Content2.outerHeight() + $Content3.outerHeight()   + panePadding  + 40) >  westSizeFix) { //($West.position().top + $WestContent.outerHeight() + paneWestPadding )) {
         // update the container height - *just* tall enough to accommodate #Content without scrolling
-        $Container.height( $Pane.position().top + $Content1.outerHeight() + $Content2.outerHeight()  + $Content3.outerHeight() + panePadding + 20);
+        $Container.height( $Pane.position().top + $Content1.outerHeight() + $Content2.outerHeight()  + $Content3.outerHeight() + panePadding + 40);
     }else{
         $Container.height(westSizeFix);
         //$Container.height( $West.position().top + $WestContent.outerHeight() + paneWestPadding );
