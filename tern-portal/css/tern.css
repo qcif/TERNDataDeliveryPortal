@@ -649,7 +649,7 @@ div.olLayerGooglePoweredBy
 }
 
 #carousel{}
-#scrollable {position:relative;overflow:hidden;width: 300px;height:120px;}
+#scrollable {position:relative;overflow:hidden;width: 320px;height:120px;}
 #scrollable .items {width:2000em;
        position:absolute;
        clear:both;}
@@ -714,4 +714,10 @@ div.left:active{background-position:-60px 0;}
 
 .h2color{
     color:#396000
+}
+
+.tmptitle{
+    margin-left:900px;
+    font-size: 16px;
+    font-weight:bold;
 }
