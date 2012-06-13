@@ -44,7 +44,7 @@
             },
             {
                 "key": "ozflux",
-                "displayTitle": "OzFlux: Australian and New Zealand Flux Research and Monitoring",
+                "displayTitle": "OzFlux",
                 "alt_name": "Carbon Dioxide, Energy & Water fluxes",
                 "description_type": [
                     "logo",
@@ -73,7 +73,7 @@
             },
             {
                 "key": "supersites",             
-                "displayTitle": "TERN Supersites",
+                "displayTitle": "Australian Supersite Network",
                 "alt_name": "Biogeochemical and Ecological Data",                   
                 "description_type": [
                     "logo",
