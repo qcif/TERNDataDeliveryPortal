@@ -54,7 +54,7 @@
                 ],
                 "description_value": [
                     "/img/ozflux.png",
-                    "OzFlux is a national ecosystem research network consisting of 10 flux stations at present with a further 6 planned for installation in 2011, all funded under the TERN 1 initiative. Funding for 6 more sites has been requested under the TERN-EIF initiative. The final network of 21 sites will provide the Australian and global ecosystem modelling communities with nationally consistent observations of energy, carbon and water exchange between the atmosphere and key Australian ecosystems. OzFlux is part of an international network (FluxNet) of over 500 flux stations that is designed to provide continuous, long-term micrometeorological measurements to monitor the state of ecosystems globally. "
+                    "OzFlux is a national ecosystem research network set up to provide the Australian and global ecosystem modelling communities with nationally consistent observations of energy, carbon and water exchange between the atmosphere and key Australian ecosystems. OzFlux is part of an international network (FluxNet external link) of over 500 flux stations that is designed to provide continuous, long-term micrometeorological measurements to monitor the state of ecosystems globally."
                 ],
                 "location": ["http://www.tern.org.au/OzFlux-pg17729.html"]
             },
@@ -86,7 +86,7 @@
                 ],
                 "description_value": [
                     "/img/supersite.png",
-                    "The Australian Supersite Network (ASN) is part of the Terrestrial Ecosystem Research Network, an Australian Government initiative to collect, store, manage and share scientific data about Australian ecosystems.ASN is part of TERN's Multi-scale Plot Networks (MSPN), which is being developed to deal with issues of scaling in ecosystem measurements - Supersites are the most intensive sites in this plot network.The ASN seeks to understand how key ecosystems will respond to future environmental change by setting up a nationally consistent network of multidisciplinary and intensive ecosystem observatories.Each Supersite is located in a significant Australian biome and the network spans a wide range of environmental conditions. The ASN collects detailed data sets on flora, fauna and biophysical processes from each Supersite."
+                    "The Australian Supersite Network (ASN) is part of the Terrestrial Ecosystem Research Network, an Australian Government initiative to collect, store, manage and share scientific data about Australian ecosystems. ASN is part of TERN's Multi-scale Plot Networks (MSPN), which is being developed to deal with issues of scaling in ecosystem measurements - Supersites are the most intensive sites in this plot network.The ASN seeks to understand how key ecosystems will respond to future environmental change by setting up a nationally consistent network of multidisciplinary and intensive ecosystem observatories.Each Supersite is located in a significant Australian biome and the network spans a wide range of environmental conditions. The ASN collects detailed data sets on flora, fauna and biophysical processes from each Supersite."
                 ],
                 "location": ["http://www.tern.org.au/Australian-Supersite-Network-pg17873.html"]
             },
@@ -177,7 +177,7 @@
                 ],
                 "description_value": [
                     "/img/TERNPortalLogoandName.png",
-                    "Ensuring Australia can maintain, improve and use long-term ecosystem research data collections and infrastructure requires a new and unique set of collective and collaborative links across governments, academia, research, community/non-profit groups and the private sector. The Australian Terrestrial Ecosystem Research Network Data Discovery Portal will serve as the single entry point to TERN meta-data for all levels of users - governments, research organisations, universities, non-government organisations, professional bodies and the public. Once suitable meta-data are located, data are downloaded from Facility portals."                ],
+                    "The TERN Data Discovery Portal will enable data across TERN facilities to be discoverable from a single platform. The portal is a metadata catalogue of research data built by regularly harvesting metadata records from all the TERN facilities. Users can conduct textual and graphical searches on the metadata catalogue using a web interface with temporal, spatial and keywords. Once suitable meta-data are located, data are downloaded from facility data delivery infrastructure. The portal improves the use and accessibility of terrestrial ecosystem research data sets including satellite biophysical, carbon dioxide, energy and water fluxes, biogeochemical, flora and fauna plots, coastal zones and ecological data."                ],
                 "location": ["http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html"]
             }
 
