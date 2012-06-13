@@ -28,7 +28,8 @@ h4{font-size:13px;}
 
 a img{border:0;border:none;}
 
-a:link, a:visited,a:not([href]) {color: #376500;text-decoration:underline; cursor: pointer;}
+a:link, a:visited {color: #376500;text-decoration:underline; cursor: pointer;}
+a:not([href]) {color: #376500;text-decoration:underline; cursor: pointer;}
 a:hover{text-decoration:underline;}
 
 input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
@@ -703,3 +704,14 @@ div.left:active{background-position:-60px 0;}
 }
 
 #wrapper-adv {float:left; width: 660px;margin-left:70px}
+
+.button-border{
+
+    border:2px solid #396000;
+    width:59px;
+    
+}
+
+.h2color{
+    color:#396000
+}
