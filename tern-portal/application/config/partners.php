@@ -32,6 +32,7 @@
                 "key": "auscover",
                 "displayTitle": "Auscover",
                 "alt_name": "Satellite Biophysical Data",
+                "query_name": "Auscover",  
                 "description_type": [
                     "logo",
                     "full"
@@ -46,6 +47,7 @@
                 "key": "ozflux",
                 "displayTitle": "OzFlux",
                 "alt_name": "Carbon Dioxide, Energy & Water fluxes",
+                "query_name": "OzFlux: Australian and New Zealand Flux Research and Monitoring",                 
                 "description_type": [
                     "logo",
                     "full"
@@ -59,7 +61,8 @@
             {
                 "key": "mspn",
                 "displayTitle": "Multi Scale Plot Network",
-                "alt_name": "Flora and fauna plots",                
+                "alt_name": "Flora and fauna plots",  
+                "query_name": "mspn",                 
                  "description_type": [
                     "logo",
                     "full"
@@ -74,7 +77,9 @@
             {
                 "key": "supersites",             
                 "displayTitle": "Australian Supersite Network",
-                "alt_name": "Biogeochemical and Ecological Data",                   
+                "alt_name": "Biogeochemical and Ecological Data", 
+                "query_name": "TERN Supersites",                 
+
                 "description_type": [
                     "logo",
                     "full"
@@ -89,6 +94,7 @@
                 "key": "soil",
                 "displayTitle": "Soil and Landscape Grid",
                 "alt_name": "Soils & Landform Data", 
+                "query_name": "soil",                 
                 "description_type": [
                     "logo",
                     "full"
@@ -103,6 +109,7 @@
                 "key": "coastal",
                 "displayTitle": "Australian Coastal Ecosystems",
                 "alt_name": "Coastal Zone Data", 
+                "query_name": "coastal",               
                 "description_type": [
                     "logo",
                     "full"
@@ -116,7 +123,8 @@
             {
                 "key": "ecoinformatics",
                 "displayTitle": "Ecoinformatics",
-                "alt_name": "Ecological Data",                 
+                "alt_name": "Ecological Data",    
+                "query_name": "Ecoinformatics", 
                  "description_type": [
                     "logo",
                     "full"
@@ -130,7 +138,8 @@
             {
                 "key": "emast",
                 "displayTitle": "Ecosystem Modelling and Scaling Infrastructure",
-                "alt_name": "Ecosystem Modelling Tools",                 
+                "alt_name": "Ecosystem Modelling Tools",  
+                "query_name": "eMast", 
                 "description_type": [
                     "logo",
                     "full"
@@ -144,7 +153,8 @@
             {
                 "key": "aceas",
                 "displayTitle": "Australian Centre for Ecological Analysis and Synthesis",
-                "alt_name": "Science and Management Synthesis",                 
+                "alt_name": "Science and Management Synthesis", 
+                "query_name": "TERN Data Discovery Portal", 
                 "description_type": [
                     "logo",
                     "full"
@@ -160,12 +170,13 @@
                 "key": "tddp",
                 "displayTitle": "TERN Data Discovery Portal",
                 "alt_name": "TERN Data Discovery Portal",                 
+                "query_name": "TERN Data Discovery Portal", 
                 "description_type": [
                     "logo",
                     "full"
                 ],
                 "description_value": [
-                    "/img/tddp.png",
+                    "/img/TERNPortalLogoandName.png",
                     "Ensuring Australia can maintain, improve and use long-term ecosystem research data collections and infrastructure requires a new and unique set of collective and collaborative links across governments, academia, research, community/non-profit groups and the private sector. The Australian Terrestrial Ecosystem Research Network Data Discovery Portal will serve as the single entry point to TERN meta-data for all levels of users - governments, research organisations, universities, non-government organisations, professional bodies and the public. Once suitable meta-data are located, data are downloaded from Facility portals."                ],
                 "location": ["http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html"]
             }

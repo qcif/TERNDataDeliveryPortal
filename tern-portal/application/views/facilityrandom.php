@@ -28,6 +28,7 @@ $half = round($count / 2);
                        $partners[$key]['url']=$d->{'location'}[0];
                        $partners[$key]['displayTitle']=$d->{'displayTitle'};                         
                        $partners[$key]['alt_name']=$d->{'alt_name'};  
+                       $partners[$key]['query_name']=$d->{'query_name'};  
                     }
 
                 }
@@ -78,7 +79,7 @@ function displayDesc($facid,$partners)
                         printRecord($recordsArr[$i]);
                     }
 
-                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['displayTitle'].'/adv=1','<b>View all '.$partners[$fackey]['displayTitle'].' records</b>');
+                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all '.$partners[$fackey]['displayTitle'].' records</b>');
                     echo '</ul>';
                 }else
                 {
