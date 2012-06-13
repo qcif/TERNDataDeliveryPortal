@@ -294,7 +294,7 @@ $(function() {
         $("#head-toolbar").hide();
         $("#no-result").show();
         $("#search-result").html('');
-        sizeCenterPane();
+        //sizeCenterPane();
         $('#no-result div').css({
               position: 'absolute',
               'left' : '50%',
@@ -433,7 +433,7 @@ $(function() {
         var resizeMap = function(){
              if(typeof mapResult !== 'undefined') mapResult.map.updateSize();
           }
-        setupOuterLayout();
+        //setupOuterLayout();
         setupNestedLayout(resizeMap);  
                 
          $("#facetH2").addClass("ui-state-disabled");
@@ -721,7 +721,7 @@ $(function() {
                 return false;
             });
 
-           sizeCenterPane();
+           //sizeCenterPane();
 
 
             //LIMIT 5
@@ -757,7 +757,7 @@ $(function() {
         else{
             showNoResult(1); 
             $('#facetH2').addClass('ui-state-disabled'); 
-            sizeCenterPane();
+           // sizeCenterPane();
         }
            
     } 

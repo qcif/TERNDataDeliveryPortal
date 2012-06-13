@@ -310,6 +310,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
   border-right: 1px solid #AAAAAA;
   border-top: 1px solid #AAAAAA;
   border-bottom: 1px solid #AAAAAA;
+  position: relative;
 
 }
 .ui-layout-center P.ui-layout-content {
@@ -323,6 +324,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
     position:relative;
 }
 
+#result-panel{ float: right; width: 900px}
 #no-result{
     width: 875px;
     height: 651px;
@@ -349,41 +351,13 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
     margin:0;
     padding: 0px 10px;
 }
-/*
-.ui-layout-resizer-west-closed{
-    border-left: 1px solid #BBBBBB;
-    border-top: 1px solid #BBBBBB;
-}
-*/
+#search-panel{  
+    width: 290px;
+    padding: 5px;
+    float:left;
+}  
 .ui-layout-pane{ border:0;}
-/*
-.toggler-west-closed{
-    background: url('/img/icon/pnl_search_green.png') no-repeat;
-    height: 80px;
-}
-.toggler-west-open{
-    background: #AAAAAA;
-}
 
-.innertoggler-west-closed{
-    background: url('/img/icon/pnl_facets_blue.png') no-repeat;
-    height: 80px;
-}
-.innertoggler-west-open{
-    background: #AAAAAA;
-}
-.middletoggler-north-closed{
-    background: url('/img/icon/pnl_map_grey.png') no-repeat;
-    height: 80px;
-}
-.middletoggler-north-open{
-    background: #AAAAAA;
-}
-
-.middletoggler-north-open{
-    background: #AAAAAA;
-}
-*/
 .padding5{
     padding:5px;
 }

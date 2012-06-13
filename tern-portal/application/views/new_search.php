@@ -1,18 +1,8 @@
 <?php $this->load->view('tpl/header'); ?>      
-        <div id="container" class="ui-corner-all">
+        <div id="container" class="ui-corner-all clearfix">
                     <div id="loading"  ><p><img src="/img/ajax-loader.gif" alt="Please wait.." /> Please wait.. </p></div>
-            <div id="ui-layout-center" class="ui-layout-center ">
-                   <div id="no-result" class="ui-corner-all"><div><h3>Please use the search tool</h3></div></div>
-                   <div id="head-toolbar" class="toolbar clearfix hide"></div>
-                 <div id="ui-layout-facetmap">                     
-                       <div id ="ui-layout-map" class="ui-layout-map">
-                          <div id="result-map"></div>                                               
-                     </div>
-                 </div>
-                <div id="search-result" class="ui-layout-search-results"></div>
-             
-            </div>
-            <div class="ui-layout-west hidden">    
+            
+            <div id="search-panel" class="">    
                 <div id="accordion" class="accordion">
                     <h2 id="basicSearchH2"><a href="#">Basic Search</a></h2>
                     <?php $this->load->view('tab/widgets/basicsearch');?>               
@@ -42,10 +32,18 @@
                     <h2 id="facetH2"><a href="#">Refine</a></h2>
                     <div id="facet-frame" ><div id="facet-accordion" class="accordion"></div></div>         
                  </div>
-                   
-               
-           </div> 
-            
+            </div> 
+            <div id="result-panel" class="ui-layout-center ">
+                   <div id="no-result" class="ui-corner-all"><div><h3>Please use the search tool</h3></div></div>
+                   <div id="head-toolbar" class="toolbar clearfix hide"></div>
+                 <div id="ui-layout-facetmap">                     
+                       <div id ="ui-layout-map" class="ui-layout-map">
+                          <div id="result-map"></div>                                               
+                     </div>
+                 </div>
+                <div id="search-result" class="ui-layout-search-results"></div>
+             
+            </div>
  
 
         </div> 
