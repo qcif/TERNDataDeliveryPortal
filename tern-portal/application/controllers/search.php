@@ -124,10 +124,7 @@ class Search extends CI_Controller
         $page = $this->input->post('page');
         $status = $this->input->post('status');
         $source_key = $this->input->post('source_key');
-
-        $fortwo = urldecode($this->input->post('fortwoFilter'));
-        $forfour = urldecode($this->input->post('forfourFilter'));
-        $forsix = urldecode($this->input->post('forsixFilter'));
+        
         
         $sort="score desc";
         $adv=1;
@@ -144,7 +141,7 @@ class Search extends CI_Controller
         }
 
        // $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $status);
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $fortwo,$forfour,$forsix, 'PUBLISHED',$sort,$adv);
+        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, 'All','All','All', 'PUBLISHED',$sort,$adv);
         $this->load->view('search/service', $data);
     }
 

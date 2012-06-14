@@ -87,8 +87,7 @@
 
         $fields_string .= $facet; //add the facet bits
         $fields_string = urldecode($fields_string);
-       
-        
+               
         //echo urldecode($fields_string).'<hr/>';
         $ch = curl_init();
         //set the url, number of POST vars, POST data
