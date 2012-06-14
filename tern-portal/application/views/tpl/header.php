@@ -1,5 +1,6 @@
 <?php
-$md_title = 'Beta Version';
+$md_title = 'TERN Data Discovery Portal (Beta Version)';
+$md_sub = 'Beta Version';
 $md_description = 'TERN Data Discovery Portal (Dev Version)is a mesh of searchable web pages describing (and where possible linking to) terrestrial ecosystem research data collections. ';
 //$md_image = 'http://services.ands.org.au/home/orca/rda/img/rda-design.png';
 if (!isset($title))  $title = $md_title;
@@ -73,6 +74,6 @@ if (isset($description))
   
             </div>
         </div>
-                       <div class="tmptitle"> <?php echo $md_title ?></div>
+                       <div class="tmptitle"> <?php echo $md_sub ?></div>
         <div class="clearfix"></div>    
         <div class="margin10"></div>

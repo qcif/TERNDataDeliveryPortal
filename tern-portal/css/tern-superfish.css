@@ -51,7 +51,7 @@ $Revision: 1 $
 .sf-menu li.sfHover ul {
 	left:			0;
 	top:			2.5em; /* match top ul list item height */
-	z-index:		10000;
+	z-index:		99;
 }
 ul.sf-menu li:hover li ul,
 ul.sf-menu li.sfHover li ul {
@@ -76,23 +76,64 @@ ul.sf-menu li li li.sfHover ul {
 .top-menu-cover{ 
 	height:40px;
         margin-top:10px;
-        float: right;
-        left:-12%;
+        float: right;       
         position:relative;
         text-align: center;
-       /* margin-top: 22px;
-        margin-left: 10px;*/
+       /* margin-top: 22px;*/
+        margin-left: 10px;
       
       /* float:right;*/
 	/*Gradient border:1px solid black;*/
 	/* Old browsers */
+        height:40px;
+	/*Rounded Corners*/
+	-moz-border-radius-topleft: 0px; /*Firefox*/
+	-moz-border-radius-topright: 0px;
+	-moz-border-radius-bottomright: 20px;
+	-moz-border-radius-bottomleft: 20px;
+	border-top-left-radius: 0px; /*Webkit*/
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	
+	/*Gradient*/
+	background: #c0c0c0; /* Old browsers */
+	background: -moz-linear-gradient(top, #c0c0c0 0%, #c0c0c0 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c0c0c0), color-stop(100%,#c0c0c0)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #c0c0c0 0%,#c0c0c0 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #c0c0c0 0%,#c0c0c0 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #c0c0c0 0%,#c0c0c0 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c0c0c0', endColorstr='#c0c0c0',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, #c0c0c0 0%,#c0c0c0 100%); /* W3C */
+	
+	
+	/*Rounded Corners*/
+	-moz-border-radius-topleft: 0px; /*Firefox*/
+	-moz-border-radius-topright: 0px;
+	-moz-border-radius-bottomright: 20px;
+	-moz-border-radius-bottomleft: 20px;
+	border-top-left-radius: 0px; /*Webkit*/
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	
+	/*Bordering*/
+	border-left: 2px solid white;/*No top border*/
+	border-right: 2px solid white;
+	border-bottom: 2px solid white;
+	
+	/*Box Shadow*/
+	-webkit-box-shadow: 0px 5px 5px rgba(0,0,0,0.7);/*Webkit*/
+	-moz-box-shadow: 0px 5px 5px rbga(0,0,0,0.7);/*Firefox*/
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.7);/*Opera*/
+	behavior: url(PIE.htc);zoom:1;
 	
         
 }
 .sf-menu {
 	list-style:none;
         position:relative;
-        left:50%;
+       /* left:50%;*/
 	/*display:inline;*/
 
 	/*General Styling*/
