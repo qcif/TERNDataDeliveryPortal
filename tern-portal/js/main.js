@@ -475,7 +475,7 @@ $(function() {
         }).button();
         
         // If user presses enter in the inputs, submit the form
-        $('.ui-layout-west input').keypress(function(e) {
+        $('#search-panel input').keypress(function(e) {
             if(e.which == 13) {
                  if($( "#accordion" ).accordion( "option", "active" ) == 1 ){
                          $('#search_advanced').trigger('click');

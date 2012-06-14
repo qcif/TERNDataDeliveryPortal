@@ -58,7 +58,7 @@
        // if ($q != '*:*')
         //     $q = escapeSolrValue($q);
         if($adv == 0){ 
-        $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10  OR for_value_two:('. $q.')^10 OR for_value_four:('. $q.')^10 OR for_value_six:('. $q.')^10 OR name_part:(' . $q . ')^30)';
+        $q = '(fulltext:(' . escapeSolrValue($q) . ')OR key:(' . escapeSolrValue($q) . ')^50 OR displayTitle:(' . escapeSolrValue($q) . ')^50 OR listTitle:(' . escapeSolrValue($q) . ')^50 OR description_value:(' . escapeSolrValue($q) . ')^5 OR subject_value:(' . escapeSolrValue($q) . ')^10  OR for_value_two:('. escapeSolrValue($q) . ')^10 OR for_value_four:('. escapeSolrValue($q) .')^10 OR for_value_six:('. escapeSolrValue($q) .')^10 OR name_part:(' . escapeSolrValue($q) . ')^30)';
         }
         if($sort!='score desc') $filter_query.='&sort='.$sort;
         $q.=$filter_query;
