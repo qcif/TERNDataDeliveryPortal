@@ -16,8 +16,6 @@ body {
     color:#333;
     font-weight:normal;
    /* background: url("../img/main_bg.jpg") repeat-x scroll 0 461px transparent */
-   overflow-x:hidden;
-   overflow-y: auto;
 
 }
 
@@ -581,7 +579,7 @@ div.olLayerGooglePoweredBy
     content: " ";
 }
 
-#capabilities_list{ padding-left: 10px; display:table; padding-top: 10px;overflow-x:hidden;overflow-y: auto;}
+#capabilities_list{ padding-left: 10px; display:table; padding-top: 10px;overflow-x:hidden;overflow-y: hidden;}
 .flrow { margin-bottom: 10px;   padding: 5px;  border:5px solid #ccc;}
 .fl { 
     width: 250px;
