@@ -294,7 +294,7 @@ MapWidget.prototype.addExtLayer = function(options){
      */
 MapWidget.prototype.toggleControl = function(element) {
 
-    for(key in this.drawControls) {
+    for(var key in this.drawControls) {
         var control = this.drawControls[key];
         if(element.id == key) {
             if(key=='box'){
