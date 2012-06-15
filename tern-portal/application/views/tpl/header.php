@@ -45,7 +45,7 @@ if (isset($description))
             <div id="header" >
            
                 <div id="logo">
-                    <a href="/"><img src="<?php echo site_url('img/TERNPortalLogoandName.png'); ?>" alt="TERN Logo" id="tern-logo"/></a>
+                    <a href="/"><img src="<?php echo site_url('img/PortalLogoandName.png'); ?>" alt="TERN Logo" id="tern-logo"/></a>
                 </div>
               
                <div class="no_print top-menu-cover">
