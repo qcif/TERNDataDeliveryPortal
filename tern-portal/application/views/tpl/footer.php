@@ -1,13 +1,13 @@
         <div id="sponsor" class="no_print">
             <div class="new-footer">
-            <div id="phone">
-                <?php echo anchor('http://tern.org.au/tern_data_portal_terms_of_use-pg21208.html', 'Terms of use'); ?>
-                </div>
+             <div id="australian_government"></div>
 
             <div id="info">TERN is supported by the Australian Government through the National<br/>Collaborative Research Infrastructure Strategy and the Super Science Initiative.</div>
-            <div id="australian_government"></div>
+           <div id="terms">
+                <?php echo anchor('http://tern.org.au/tern_data_portal_terms_of_use-pg21208.html', 'Terms of use','target="_blank"'); ?>
             </div>
-
+            </div>
+            
         </div>
 
 

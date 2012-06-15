@@ -217,27 +217,43 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 #header{ position:relative;width:1200px;margin: 0 auto; height:140px}
 
 /* footer styles */
-#phone {
-    float:left;
+#terms {
+    float:right;
     color: #336400;
     font-size: 18px;
     line-height: 20px;
-    width: 300px;
-    top: 80px;
+    width: 200px;
+    top: 30px;
     position: relative;
-    text-align:left;
+    text-align:right;
 
 }
-#phone span {
+#terms span {
     color: #B83D10;
 }
-#phone strong {
+#terms strong {
     font-family: Georgia,"Times New Roman",Times,serif;
 }
-#phone div {
+#terms div {
     font-size: 13px;
 }
 
+
+#info {
+    float:left;
+    font-size: 11px;
+    text-align: center;
+    width: 700px;
+    position:relative;
+    top: 30px;
+}
+#australian_government {
+    float:left;
+    background: url("../img/diisr_logo.png") no-repeat scroll left top transparent;
+    width: 298px;
+    height: 70px;
+    text-align: right;
+}
 
 #footer{padding:5px 0px 20px 0px; text-align:center;}
 #sponsor{
@@ -279,22 +295,6 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 }
 
 /*  */
-
-#info {
-    float:left;
-    font-size: 11px;
-    text-align: center;
-    width: 600px;
-    position:relative;
-    top: 80px;
-}
-#australian_government {
-    float:right;
-    background: url("../img/australian_government.jpg") no-repeat scroll left top transparent;
-    height: 127px;
-    width: 171px;
-    text-align: right;
-}
 
 #copyright a{
     color: #999999;
@@ -582,7 +582,7 @@ div.olLayerGooglePoweredBy
 #capabilities_list{ padding-left: 10px; display:table; padding-top: 10px;}
 .flrow { margin-bottom: 10px;   padding: 5px;  border:5px solid #ccc;}
 .fl { 
-    width: 230px;
+    width: 250px;
     cursor: pointer;
     font-size: 18px;
     color:#376500;
@@ -600,7 +600,7 @@ div.olLayerGooglePoweredBy
 }
 
 .flSelect {
-    width: 230px;
+    width: 250px;
     cursor: pointer;
     font-size: 18px;
     color:#376500;
