@@ -14,8 +14,8 @@ if (isset($description))
         <meta property="og:title" content="<?php echo $title; ?>" />
         <meta property="og:description" content="<?php echo $md_description; ?>" />
         <meta property="og:image" content="<?php echo $md_image; ?>"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+        <meta http-equiv="x-ua-compatible" content="IE=8"/>
         <meta name="title" content="<?php echo $title; ?>"/>
         <meta name="description" content="<?php echo $md_description; ?>"/>
         <link href="<?php echo base_url(); ?>css/tern-superfish.css" type="text/css" rel="stylesheet"/>
