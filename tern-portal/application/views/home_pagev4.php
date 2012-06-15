@@ -52,7 +52,7 @@ $home = 1;
                             //echo htmlentities($d->{'alt_name'});
                             //echo '</div></div>';
                             echo '<div id ="'. $d->{'key'}.'" class="fl">';
-                            echo ' <input type="image"  alt="'. $d->{'key'} .'" src="'. $d->{'description_value'}[0].'" height="50" width="150" name="'. $d->{'key'}.'">';
+                            echo ' <input type="image"  alt="'. $d->{'key'} .'" src="'. $d->{'description_value'}[0].'" height="50" width="141" name="'. $d->{'key'}.'">';
                             echo '</div>';
                            // echo '</div>';
                             }		

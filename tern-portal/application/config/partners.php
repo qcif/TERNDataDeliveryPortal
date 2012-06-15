@@ -76,9 +76,9 @@
             },
             {
                 "key": "supersites",             
-                "displayTitle": "Australian Supersite Network",
+                "displayTitle": "Australian Supersites Network",
                 "alt_name": "Biogeochemical and Ecological Data", 
-                "query_name": "TERN Supersites",                 
+                "query_name": "Australian Supersites Network",                 
                 "description_type": [
                     "logo",
                     "full"
