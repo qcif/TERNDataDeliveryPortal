@@ -90,7 +90,7 @@ function displayDesc($facid,$partners)
                     echo      ' <div class="items" id="items" style="left: 0px; ">';
                     echo            '<img id="http://www.tern.org.au/AusCover-pg17728.html" src="../img/auscover.png" height="102" width="194"/>';
                     echo            '<img id="http://www.tern.org.au/OzFlux-pg17729.html" src="../img/ozflux.png" height="102" width="194" />';
-                   // echo            '<img id="http://www.tern.org.au/Multi-Scale-Plot-Network-pg17730.html" src="../img/mspn.png" height="102" width="194"/>';
+                   echo            '<img id="http://www.tern.org.au/Multi-Scale-Plot-Network-pg17730.html" src="../img/mspn.png" height="102" width="194"/>';
                     echo            '<img id="http://www.tern.org.au/AusPlots-pg17871.html" src="../img/ausplot.png" height="102" width="194"" />';
                    // echo            '<img id="http://www.tern.org.au/Long-Term-Ecological-Research-Network-pg17872.html" src="../img/ltern.png" height="102" width="194"  />';
                     echo            '<img id="http://www.tern.org.au/Australian-Supersite-Network-pg17873.html" src="../img/supersite.png" height="102" width="194" />';
