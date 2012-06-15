@@ -39,8 +39,8 @@ $home = 1;
         </div>
 
     </div>
-    <div class="ui-layout-west">  
-        <div id="capabilities_list" >
+    <div id="capabilities_list" class="ui-layout-west">  
+
           <?php
           	
                 $facilities_list = array("tddp","auscover","ozflux","ecoinformatics","supersites");
@@ -61,7 +61,7 @@ $home = 1;
  
 
            ?>  
-        </div>
+
     </div>
     </div>
 
