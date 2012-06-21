@@ -16,9 +16,10 @@ print('<Description>Searches the '.esc(eINSTANCE_TITLE.' '.eAPP_TITLE)." Registr
 print('<Contact>'.esc(eCONTACT_EMAIL)."</Contact>\n");
 print("<Tags>Collection Party Service Activity</Tags>\n");
 print("<SyndicationRight>open</SyndicationRight>\n");
-print('<Url type="application/xml" template="'.esc(eAPP_ROOT).'/search?term={searchTerms}" />'."\n");
+print('<Url type="application/xml" template="'.esc(eAPP_ROOT).'/search?term={searchTerms}&amp;format=xml" />'."\n");
+print('<Url type="application/x-suggestions+json" template="'.esc(eAPP_ROOT).'/search?term={searchTerms}&amp;format=json" />'."\n");
 print("</OpenSearchDescription>\n");
-// END: XML Response
+// END: XML Response    
 // =============================================================================
 //require '../../_includes/finish.php';
 ?>
