@@ -42,19 +42,16 @@ $home = 1;
     <div id="capabilities_list" class="ui-layout-west">  
 
           <?php
-          	
+          	echo '<h2 id="fac-list-title">Search of specific ecosystem capabilities</h2>';
                 $facilities_list = array("tddp","auscover","ozflux","ecoinformatics","supersites");
                 if($json && $json->{'response'}->{'docs'}){		
                     foreach($json->{'response'}->{'docs'} as $d){		
                         if(in_array($d->{'key'}, $facilities_list)){		
-                           // echo '<div class="flrow">';		
-                            // echo '<ul class="flrow">';		
-                            //echo htmlentities($d->{'alt_name'});
-                            //echo '</div></div>';
                             echo '<div id ="'. $d->{'key'}.'" class="fl">';
-                            echo ' <input type="image"  alt="'. $d->{'key'} .'" src="'. $d->{'description_value'}[0].'" height="50" name="'. $d->{'key'}.'">';
+                            echo '<div class="img-list-logo"><input type="image"  alt="'. $d->{'key'} .'" src="'. $d->{'description_value'}[0].'" height="50" name="'. $d->{'key'}.'"></div>';
+                            echo '<div class="img-list-text">'.$d->{'alt_name'}.'</div>';
                             echo '</div>';
-                           // echo '</div>';
+
                             }		
                     }		
                 }		

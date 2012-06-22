@@ -59,15 +59,15 @@ function displayDesc($facid,$partners)
     
 <?php if($header_footer) $this->load->view('tpl/header');?>
 
-<div id="fac-title"><h2><?php  echo  $partners[$fackey]['displayTitle'];?></h2>
-</div>
+
+
 
 <div id="fac-content">
         <div id="fac-random-rec" class="shadow-and-corner">
-
         <?php
                 if ($fackey!==tddp)
                 {
+                    echo '<h2 class="sample-rec-title">Sample data collection records</h2>';
                     echo '<ul>';
                     for($i=0;$i<$half; $i++)
                     {
@@ -79,7 +79,7 @@ function displayDesc($facid,$partners)
                         printRecord($recordsArr[$i]);
                     }
 
-                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all '.$partners[$fackey]['displayTitle'].' records</b>');
+                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all records</b>');
                     echo '</ul>';
                 }else
                 {
@@ -95,7 +95,7 @@ function displayDesc($facid,$partners)
                    // echo            '<img id="http://www.tern.org.au/Long-Term-Ecological-Research-Network-pg17872.html" src="../img/ltern.png" height="102" width="194"  />';
                     echo            '<img id="http://www.tern.org.au/Australian-Supersite-Network-pg17873.html" src="../img/supersite.png" height="102" width="194" />';
                    // echo            '<img id="http://www.tern.org.au/Soil-and-Landscape-Grid-of-Australia-pg17731.html" src="../img/soil.png" height="102" width="194"  /><';
-                  //  echo            '<img id="http://www.tern.org.au/Australian-Coastal-Ecosystems-pg17732.html" src="../img/acef.png" height="102" width="194"  />';
+                    echo            '<img id="http://www.tern.org.au/Australian-Coastal-Ecosystems-pg17732.html" src="../img/acef.png" height="102" width="194"  />';
                     echo            '<img id="http://www.tern.org.au/Eco-informatics-pg17733.html" src="../img/aekos.png" height="102" width="194"  />';
                   //  echo            '<img id="http://www.tern.org.au/Ecosystem-Modelling-and-Scaling-Infrastructure-pg17734.html" src="../img/emast.png" height="102" width="194"  />';
                     echo            '<img id="http://www.tern.org.au/Australian-Centre-for-Ecological-Analysis-and-Synthesis-pg17735.html" src="../img/aceas.png" height="102" width="194"  />';
@@ -114,6 +114,7 @@ function displayDesc($facid,$partners)
         </div>
 
         <div class="facility-desc">
+                       <h2 class="fac-title"><?php  echo  $partners[$fackey]['displayTitle'];?></h2>
                   <?php displayDesc($fackey,$partners);?>
         </div>
 
