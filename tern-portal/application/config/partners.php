@@ -31,7 +31,7 @@
             {
                 "key": "tddp",
                 "displayTitle": "TERN Data Discovery Portal",
-                "alt_name": "TERN Data Discovery Portal",                 
+                "alt_name": "",                 
                 "query_name": "TERN Data Discovery Portal", 
                 "description_type": [
                     "logo",
@@ -39,7 +39,7 @@
                 ],
                 "description_value": [
                     "/img/TERNPortalLogoandName.png",
-                    "The TERN Data Discovery Portal provides:<ul><li>Search and download of a wide range of Australian terrestrial ecosystem data sets across TERN and other research data. Users conduct <a href=\"search#!\/adv=1\">advanced searches</a> on a metadata catalogue using a web interface with temporal, spatial and thematic parameters. Once suitable meta-data are located, data are downloaded from TERN Facility data delivery infrastructure.</li><li>Information regarding the upload of ecosystem data, with meta-data, DOI and licences to selected <a href=\"http:\/\/tern.org.au/Facility-Data-Contacts-pg19931.html\">TERN Capabilities</a></li><li>Access to information explaining the benefits of <a href=\"http:\/\/www.tern.org.au\/Data-Licensing-pg22190.html\">licensing and sharing data</a>.</li></ul>"                
+                    "The TERN Data Discovery Portal provides:<ul><li>Search and download of a wide range of Australian terrestrial ecosystem data sets across TERN and other research data. Users conduct <a href=\"search#!\/adv=1\">advanced searches</a> on a metadata catalogue using a web interface with temporal, spatial and thematic parameters. Once suitable meta-data are located, data are downloaded from TERN Facility data delivery infrastructure.</li><li>Information regarding the upload of ecosystem data, with meta-data, DOI and licences to selected <a href=\"http:\/\/tern.org.au/Facility-Data-Contacts-pg19931.html\" target=\"_blank\">TERN Capabilities</a></li><li>Access to information explaining the benefits of <a href=\"http:\/\/www.tern.org.au\/Data-Licensing-pg22190.html\" target=\"_blank\">licensing and sharing data</a>.</li></ul>"                
                     ],
                 "location": ["http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html"]
             }, 

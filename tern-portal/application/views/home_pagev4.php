@@ -42,7 +42,7 @@ $home = 1;
     <div id="capabilities_list" class="ui-layout-west">  
 
           <?php
-          	echo '<h2 id="fac-list-title">Search of specific ecosystem capabilities</h2>';
+          	echo '<h2 id="fac-list-title">Search specific ecosystem capabilities</h2>';
                 $facilities_list = array("tddp","auscover","ozflux","ecoinformatics","supersites");
                 if($json && $json->{'response'}->{'docs'}){		
                     foreach($json->{'response'}->{'docs'} as $d){		
