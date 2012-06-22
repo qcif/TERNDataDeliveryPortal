@@ -394,7 +394,7 @@ label{vertical-align:middle; font: 11px Arial,Helvetica,sans-serif}
 div.checkitem{ clear: both;}
 
 /*Temporal form */
-div#temporalFilter{ line-height: 23px;vertical-align: middle;  }
+div#temporalFilter{ line-height: 23px;vertical-align: middle;width:280px;  }
 div#temporalFilter img{vertical-align:middle;}
 
 /*SPATIAL form */

@@ -1,3 +1,4 @@
+ 
 function iecheck() {
   if (navigator.platform == "Win32" && navigator.appName == "Microsoft Internet Explorer" && window.attachEvent) {
     var rslt = navigator.appVersion.match(/MSIE (\d+\.\d+)/, '');
@@ -8,7 +9,7 @@ function iecheck() {
 
 
 TERNData = new function() {
-  var BASE_URL = 'http://demo/admin/orca/api/';
+  var BASE_URL = 'http://portal.tern.org.au/admin/orca/api/';
   var STYLESHEET = BASE_URL + "css/api.css"
   var CONTENT_URL = BASE_URL + 'js/list_result.js';
   var ROOT = 'tern_magic_data';
@@ -65,9 +66,17 @@ TERNData = new function() {
 	  }
 	
 	  requestStylesheet(STYLESHEET);
-	  document.write("<div id='" + ROOT + "' style='display: none'></div>");
+//create an empty div for results
+          var _div=document.createElement('div');
+          _div.setAttribute("id", ROOT);
+          _div.setAttribute("style", "display:none");
+          
+          var _body=document.getElementsByTagName('body')[0];
+          _body.appendChild(_div);
+
 	  requestContent();
 	  var no_script = document.getElementById('no_script');
 	  if (no_script) {no_script.style.display = 'none';}
 	}
 }
+ 

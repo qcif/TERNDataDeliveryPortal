@@ -46,8 +46,16 @@ $home = 1;
                 $facilities_list = array("tddp","auscover","ozflux","ecoinformatics","supersites");
                 if($json && $json->{'response'}->{'docs'}){		
                     foreach($json->{'response'}->{'docs'} as $d){		
-                        if(in_array($d->{'key'}, $facilities_list)){		
-                            echo '<div id ="'. $d->{'key'}.'" class="fl">';
+                        if(in_array($d->{'key'}, $facilities_list)){	
+                            if($d->{'key'}=='tddp')
+                            {
+                                echo '<div id ="'. $d->{'key'}.'" class="flSelect">';
+                            }
+                            else
+                            {
+                                echo '<div id ="'. $d->{'key'}.'" class="fl">';
+                            }
+                            
                             echo '<div class="img-list-logo"><input type="image"  alt="'. $d->{'key'} .'" src="'. $d->{'description_value'}[0].'" height="50" name="'. $d->{'key'}.'"></div>';
                             echo '<div class="img-list-text">'.$d->{'alt_name'}.'</div>';
                             echo '</div>';
