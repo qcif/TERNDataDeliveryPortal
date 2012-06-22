@@ -30,7 +30,7 @@ if(getQueryValue('format')=="xml")
 {
     // Set the Content-Type header.
     header("Content-Type: text/xml; charset=UTF-8", true);
-    print $xmloutput=  buildXMLOutput($totalResults,$searchString,$registryObjects,$itemLinkBaseURL);    
+    echo $xmloutput=  buildXMLOutput($totalResults,$searchString,$registryObjects,$itemLinkBaseURL);    
 }
 else if(getQueryValue('format')=="json")
 {
