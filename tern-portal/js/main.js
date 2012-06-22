@@ -937,7 +937,7 @@ function handleRecordPopup(e){
             handlerecordpopupSlide();
             initConnectionsBox()
             initSubjectsSEEALSO()
-            $("#record-popup").dialog('option',{ zIndex: 9988 });
+            $("#record-popup").dialog('option',{zIndex: 9988});
             $("#record-popup").dialog('open');
                         
             initViewMap('spatial_coverage_map','#record-popup .spatial_coverage_center','#record-popup .coverage');
@@ -1287,6 +1287,10 @@ function initViewMap(mapId, centerSelector,coverageSelector){
           
           if(facname=="tddp")
           {
+           document.getElementById('tddp').attr('class','flSelect');
+
+            $(this).attr('class','flSelect');
+            
                   handleRollover();
           }
 
