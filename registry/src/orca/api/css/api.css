@@ -1,0 +1,19 @@
+/* 
+    Document   : api
+    Created on : 21/06/2012, 1:59:07 PM
+    Author     : suny8
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+a:link, a:visited {
+    color: #376500;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.widgetHeader{
+    color:#376500;
+    font-weight: bold;
+    font-size: 18px;
+}
