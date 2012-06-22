@@ -34,7 +34,7 @@ a:link, a:visited {color: #376500;text-decoration:underline; cursor: pointer;}
 a:not([href]) {color: #376500;text-decoration:underline; cursor: pointer;}
 a:hover{text-decoration:underline;}
 
-input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif;width:120px;}
+input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif;}
 
 ul{
     margin-top: 0px;
@@ -728,6 +728,6 @@ div.left:active{background-position:-60px 0;}
 }
 
 .img-list-text{
-    width:50%;
+    width:46%;
     float:right;
 }
