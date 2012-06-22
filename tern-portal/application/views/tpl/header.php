@@ -1,6 +1,6 @@
 <?php
 $md_title = 'TERN Data Discovery Portal (Beta Version)';
-$md_sub = 'Beta Version';
+$md_sub = 'Beta Version - For TERN community use only';
 $md_description = 'TERN Data Discovery Portal (Dev Version)is a mesh of searchable web pages describing (and where possible linking to) terrestrial ecosystem research data collections. ';
 //$md_image = 'http://services.ands.org.au/home/orca/rda/img/rda-design.png';
 if (!isset($title))  $title = $md_title;
@@ -52,7 +52,7 @@ if (isset($description))
 
                     <ul class="sf-menu">
                         <li><?php echo anchor('', 'Home'); ?></li>                     
-                        <li><a>Facilities</a>
+                        <li><a>Capabilities</a>
                             <ul>
                                     <?php		
 	                                if($json && $json->{'response'}->{'docs'}){		
@@ -71,9 +71,9 @@ if (isset($description))
                         <li><?php echo anchor('http://www.tern.org.au/Portal_contactus-pg22075.html', 'Contact', 'target="_blank"'); ?></li>
                     </ul>  
                 </div>
-  
+                         <div class="tmptitle"> <?php echo $md_sub ?></div>
             </div>
         </div>
-                       <div class="tmptitle"> <?php echo $md_sub ?></div>
+
         <div class="clearfix"></div>    
         <div class="margin10"></div>

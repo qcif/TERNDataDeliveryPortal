@@ -28,7 +28,23 @@
         "numFound": 11,
         "start": 0,
         "docs": [
-         {
+            {
+                "key": "tddp",
+                "displayTitle": "TERN Data Discovery Portal",
+                "alt_name": "TERN Data Discovery Portal",                 
+                "query_name": "TERN Data Discovery Portal", 
+                "description_type": [
+                    "logo",
+                    "full"
+                ],
+                "description_value": [
+                    "/img/TERNPortalLogoandName.png",
+                    "The TERN Data Discovery Portal provides:<ul><li>Search and download of a wide range of Australian terrestrial ecosystem data sets across TERN and other research data. Users conduct <a href=\"search#!\/adv=1\">advanced searches</a> on a metadata catalogue using a web interface with temporal, spatial and thematic parameters. Once suitable meta-data are located, data are downloaded from TERN Facility data delivery infrastructure.</li><li>Information regarding the upload of ecosystem data, with meta-data, DOI and licences to selected <a href=\"http:\/\/tern.org.au/Facility-Data-Contacts-pg19931.html\">TERN Capabilities</a></li><li>Access to information explaining the benefits of <a href=\"http:\/\/www.tern.org.au\/Data-Licensing-pg22190.html\">licensing and sharing data</a>.</li></ul>"                
+                    ],
+                "location": ["http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html"]
+            }, 
+        
+        {
                 "key": "auscover",
                 "displayTitle": "Auscover",
                 "alt_name": "Satellite Biophysical Data",
@@ -76,9 +92,9 @@
             },
             {
                 "key": "supersites",             
-                "displayTitle": "Australian Supersites Network",
+                "displayTitle": "Australian Supersite Network",
                 "alt_name": "Biogeochemical and Ecological Data", 
-                "query_name": "Australian Supersites Network",                 
+                "query_name": "TERN Supersites",                 
                 "description_type": [
                     "logo",
                     "full"
@@ -163,22 +179,8 @@
                     "aceas blahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblah"
                 ],
                 "location": ["http://www.tern.org.au/Australian-Centre-for-Ecological-Analysis-and-Synthesis-pg17735.html"]
-            },
-            
-            {
-                "key": "tddp",
-                "displayTitle": "TERN Data Discovery Portal",
-                "alt_name": "TERN Data Discovery Portal",                 
-                "query_name": "TERN Data Discovery Portal", 
-                "description_type": [
-                    "logo",
-                    "full"
-                ],
-                "description_value": [
-                    "/img/TERNPortalLogoandName.png",
-                    "The TERN Data Discovery Portal will enable data across TERN facilities to be discoverable from a single platform. The portal is a metadata catalogue of research data built by regularly harvesting metadata records from all the TERN facilities. Users can conduct textual and graphical searches on the metadata catalogue using a web interface with temporal, spatial and keywords. Once suitable meta-data are located, data are downloaded from facility data delivery infrastructure. The portal improves the use and accessibility of terrestrial ecosystem research data sets including satellite biophysical, carbon dioxide, energy and water fluxes, biogeochemical, flora and fauna plots, coastal zones and ecological data."                ],
-                "location": ["http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html"]
-            }
+            } 
+
 
 
         ]
