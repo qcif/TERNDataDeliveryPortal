@@ -63,9 +63,9 @@ else
     $tmp='<?xml version="1.0" encoding="UTF-8"?>'."\n";
     $tmp=$tmp.'<rss version="2.0" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">'."\n";
     $tmp=$tmp.'  <channel>'."\n";
-    $tmp=$tmp.'    <title>'.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE).' Collections Registry Search Results</title>'.'\n';
+    $tmp=$tmp.'    <title>'.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE).' Ecosystem registry Search</title>'.'\n';
     $tmp=$tmp.'    <link>'.eAPP_ROOT.'orca/api/search.php</link>'."\n";
-    $tmp=$tmp.'    <description>Search results for '.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Collections Registry collection, service, party, and activity metadata</description>\n";
+    $tmp=$tmp.'    <description>Search results for '.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Ecosystem registry Search</description>\n";
     $tmp=$tmp.'    <opensearch:totalResults>'.$totalResults.'</opensearch:totalResults>'."\n";
     $tmp=$tmp.'    <opensearch:Query role="request" searchTerms="'.esc($searchString).'" />'."\n";
 
