@@ -1285,14 +1285,14 @@ function initViewMap(mapId, centerSelector,coverageSelector){
         success:function(msg){
           $("#random").html(msg);
           
-          if(facname=="tddp")
-          {
-           document.getElementById('tddp').attr('class','flSelect');
+         // if(facname=="tddp")
+         // {
+          // document.getElementById('tddp').attr('class','flSelect');
 
-            $(this).attr('class','flSelect');
+         //   $(this).attr('class','flSelect');
             
-                  handleRollover();
-          }
+           //       handleRollover();
+         // }
 
         },
         error:function(msg){
@@ -1303,7 +1303,7 @@ function initViewMap(mapId, centerSelector,coverageSelector){
         
     }
     
-    
+/*    
     function handleRollover()
     {
       $("#scrollable").scrollable({circular: true}).autoscroll(2000);
@@ -1321,15 +1321,7 @@ function initViewMap(mapId, centerSelector,coverageSelector){
 				//$('#display-here a').tipsy({live:true, gravity:'w'});
 			});
 			$("#items img").click(function(){
-                            /*
-				api.seekTo($(this).index()-1);
-				if($(this).hasClass('current-scroll')){
-					//console.log('current');
-					var h1 = $('#display-here a').html();
-					h1 = h1.replace('-','');
-					changeHashTo(formatSearch(h1,1, 'collection'));
-				}
-                                */
+
                                 // alert($(this).attr("id"));                                
                                 window.open($(this).attr("id"));
                                 window.focus();
@@ -1342,3 +1334,4 @@ function initViewMap(mapId, centerSelector,coverageSelector){
 		});
     }
 
+*/
