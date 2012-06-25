@@ -55,9 +55,9 @@ $home = 1;
                             {
                                 echo '<div id ="'. $d->{'key'}.'" class="fl">';
                             }
-                            
-                            echo '<div class="img-list-logo"><input type="image"  alt="'. $d->{'key'} .'" src="'. $d->{'description_value'}[0].'" height="50" name="'. $d->{'key'}.'"></div>';
                             echo '<div class="img-list-text">'.$d->{'alt_name'}.'</div>';
+                            echo '<div class="img-list-logo"><input type="image"  alt="'. $d->{'key'} .'" src="'. $d->{'description_value'}[0].'" height="50" name="'. $d->{'key'}.'"></div>';
+
                             echo '</div>';
 
                             }		
