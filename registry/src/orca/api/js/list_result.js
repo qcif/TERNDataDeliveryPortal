@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-var base_url="http://portal.tern.org.au/admin/orca/api/search";
+var base_url="http://portal-test.tern.org.au/admin/orca/api/search";
 //var base_url="http://demo/admin/orca/api/search";
 var term=TERNData.getTerm();
 
@@ -16,13 +16,14 @@ $(document).ready(function()
             dataType:"jsonp",
             success:function(data){
                 if(data.response!=null)
-                 {
-                        TERNData.serverResponse(data.response.items);
-                 }else
-                 {
-                         TERNData.serverResponse(data);
-                 }
-                        
+                {
+                    TERNData.serverResponse(data.response.item);
+                }else
+                {
+                    TERNData.serverResponse(data);
+                }
+                         
+                       
 
               
             },

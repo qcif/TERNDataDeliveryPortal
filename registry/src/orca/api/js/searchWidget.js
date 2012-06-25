@@ -9,7 +9,7 @@ function iecheck() {
 
 
 TERNData = new function() {
-  var BASE_URL = 'http://portal.tern.org.au/admin/orca/api/';
+  var BASE_URL = 'http://portal-test.tern.org.au/admin/orca/api/';
   //var BASE_URL = 'http://demo/admin/orca/api/';
   var STYLESHEET = BASE_URL + "css/api.css"
   var CONTENT_URL = BASE_URL + 'js/list_result.js';
@@ -31,7 +31,6 @@ TERNData = new function() {
     var script = document.createElement('script');
     script.src = CONTENT_URL;
     
-console.log(term);
     document.getElementsByTagName('head')[0].appendChild(script);
   }
   
@@ -47,7 +46,12 @@ console.log(term);
 	    var div = document.getElementById(ROOT);
 	    var item = "";
 
-            if(data.length>0)
+            if(data.length==undefined)
+            {
+                    item="<li><a href=\""+data.link+"\">"+data.title+"</a></li>"
+                    div.innerHTML = "<h2 class=\"widgetHeader\">Records found in TERN Data Discovery Portal:</h2><ul> " +item+"</ul>";  // assign new HTML into #ROOT
+            }
+            else  if(data.length>0)
             {
                 for (var i = 0; i < data.length; i++) 
                 {
@@ -59,7 +63,7 @@ console.log(term);
 
             }else
             {
-                div.innerHTML = "<h2 class=\"widgetHeader\">No matching records found in TERN Data Discovery Portal:<//h2>";  // assign new HTML into #ROOT  
+                div.innerHTML = "<h2 class=\"widgetHeader\">No matching records found in TERN Data Discovery Portal<//h2>";  // assign new HTML into #ROOT  
             }
                 div.style.display = 'block'; // make element visible
                 div.style.visibility = 'visible'; // make element visible
