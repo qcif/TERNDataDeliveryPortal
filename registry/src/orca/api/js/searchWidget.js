@@ -13,7 +13,6 @@ TERNData = new function() {
   var STYLESHEET = BASE_URL + "css/api.css"
   var CONTENT_URL = BASE_URL + 'js/list_result.js';
   var ROOT = 'tern_magic_data';
-  var JQUERY_URL = BASE_URL + 'js/jquery.js';
   var _args={};
 
 
@@ -31,7 +30,7 @@ TERNData = new function() {
     var script = document.createElement('script');
     script.src = CONTENT_URL;
     
-
+console.log(term);
     document.getElementsByTagName('head')[0].appendChild(script);
   }
   

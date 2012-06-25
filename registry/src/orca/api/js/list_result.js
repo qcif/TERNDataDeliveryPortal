@@ -8,6 +8,7 @@ var term=TERNData.getTerm();
 
 $(document).ready(function() 
 { 
+    console.log(term);
     $.ajax({
             type:'GET',
             url:base_url+"?term="+term+"&format=json&w=1&callback=?",

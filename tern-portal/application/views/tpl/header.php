@@ -71,9 +71,8 @@ if (isset($description))
                         <li><?php echo anchor('http://www.tern.org.au/Portal_contactus-pg22075.html', 'Contact', 'target="_blank"'); ?></li>
                     </ul>  
                 </div>
-                         <div class="tmptitle"> <?php echo $md_sub ?></div>
             </div>
         </div>
-
+                                     <div class="tmptitle"> <?php echo $md_sub ?></div>
         <div class="clearfix"></div>    
         <div class="margin10"></div>

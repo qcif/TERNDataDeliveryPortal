@@ -63,10 +63,11 @@ function displayDesc($facid,$partners)
 
 
 <div id="fac-content">
-        <div id="fac-random-rec" class="shadow-and-corner">
+        
         <?php
                 if ($fackey!==tddp)
                 {
+                    echo '<div id="fac-random-rec" class="shadow-and-corner">';
                     echo '<h2 class="sample-rec-title">Sample data collection records</h2>';
                     echo '<ul>';
                     for($i=0;$i<$half; $i++)
@@ -81,8 +82,15 @@ function displayDesc($facid,$partners)
 
                     echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all records</b>');
                     echo '</ul>';
+                    echo '</div>';
+                    
+                    echo '<div class="facility-desc">';
+
                 }else
                 {
+                    echo '<div class="facility-desc-tddp">';
+
+                    /*
                     echo '<div id="carousel">';
                     echo    '<div class="clearfix">';
                     echo '<div class="prev browse left"></div>';
@@ -104,19 +112,14 @@ function displayDesc($facid,$partners)
                     echo      '<div class="next browse right"></div>';
                     echo  '</div>';
                     echo  '</div>';
-
+                    */
 
                 }
+                
+                    echo '<h2 class="fac-title">'.$partners[$fackey]['displayTitle'].'</h2>';
+                    displayDesc($fackey,$partners);
+                    echo '</div>';
         ?>
-
-
-
-        </div>
-
-        <div class="facility-desc">
-                       <h2 class="fac-title"><?php  echo  $partners[$fackey]['displayTitle'];?></h2>
-                  <?php displayDesc($fackey,$partners);?>
-        </div>
 
 </div>
 <?php  if($header_footer)  $this->load->view('tpl/footer');?>
