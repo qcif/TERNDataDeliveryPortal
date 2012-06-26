@@ -10,7 +10,7 @@ $executionTimeoutSeconds = 10*60;
 ini_set("max_execution_time", "$executionTimeoutSeconds");
 
 $searchString = getQueryValue('term');
-$cnt=0;
+$cnt=5;
 
 if(getQueryValue('count')>0)
 {

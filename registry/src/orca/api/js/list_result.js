@@ -21,11 +21,7 @@ $(document).ready(function()
                 }else
                 {
                     TERNData.serverResponse(data);
-                }
-                         
-                       
-
-              
+                }              
             },
             error:function(msg){
                
