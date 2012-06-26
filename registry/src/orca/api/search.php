@@ -45,7 +45,7 @@ else if(getQueryValue('format')=="json")
 {
     // Set the Content-Type header.
     //header("Content-Type: application/json; charset=UTF-8", true);
-    $out= buildJsonOutput($registryObjects,$itemLinkBaseURL);    
+    $out= buildJsonOutput($totalResults,$searchString,$registryObjects,$itemLinkBaseURL);    
     
     if(getQueryValue('w')!=null)
     {
@@ -84,9 +84,14 @@ else
     return $tmp.$tmpc.$t;
  }
  
- function buildJsonOutput($registryObjects,$itemLinkBaseURL)
+ function buildJsonOutput($totalResults,$searchString,$registryObjects,$itemLinkBaseURL)
  {
      $jtmp='<?xml version="1.0" encoding="UTF-8"?>'."\n".' <response>'."\n";
+     $jtmp=$jtmp.'    <title>'.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE).' Ecosystem registry Search</title>'.'\n';
+     $jtmp=$jtmp.'    <link>'.eAPP_ROOT.'orca/api/search.php</link>'."\n";
+     $jtmp=$jtmp.'    <description>Search results for '.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Ecosystem registry Search</description>\n";
+     $jtmp=$jtmp.'    <opensearch:totalResults>'.$totalResults.'</opensearch:totalResults>'."\n";
+     $jtmp=$jtmp.'    <opensearch:Query role="request" searchTerms="'.esc($searchString).'" />'."\n";     
      $jtmpc= buildXMLContent($registryObjects,$itemLinkBaseURL);
      $jt='  </response>';
      
