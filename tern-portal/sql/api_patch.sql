@@ -60,7 +60,7 @@ FROM
    AND ( data_source_key = $3 OR $3 IS NULL )
    AND ( object_group = $4 OR $4 IS NULL )
    AND ( registry_object_key ~* $1
-        OR $1 = '' OR originating_source~* $1 OR data_source_key~* $1 OR data_source_title~* $1 OR object_group~* $1 OR created_who~* $1 OR registry_object_class~* $1 OR type~* $1 OR identifier_value~* $1 OR identifier_type~* $1 OR status~* $1 OR record_owner~* $1 OR list_title~* $1 OR display_title~* $1
+        OR $1 = '' OR originating_source~* $1 OR data_source_key~* $1 OR data_source_title~* $1 OR object_group~* $1 OR created_who~* $1 OR registry_object_class~* $1 OR type~* $1 OR identifier_value~* $1 OR identifier_type~* $1 OR status~* $1 OR record_owner~* $1 OR list_title~* $1 OR display_title~* $1 OR description_title~* $1
    )
    AND ( status = $8 OR $8 IS NULL )
    AND ( record_owner = $9 OR $9 IS NULL )
