@@ -10,27 +10,35 @@ $executionTimeoutSeconds = 10*60;
 ini_set("max_execution_time", "$executionTimeoutSeconds");
 
 $searchString = getQueryValue('term');
+$cnt=0;
+
+if(getQueryValue('count')>0)
+{
+    $cnt=  getQueryValue('count');
+}
+
 $registryObjects = null;
 
 if( $searchString )
 {
-	$registryObjects = searchRegistryTERN($searchString, '',  null, null, null, null);       
-       
+	$registryObjects = searchRegistryTERN($searchString, '',  null, null, null, null,$cnt);  
+    
 }
 
 $itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/view/dataview?key=';
 
 $totalResults = 0;
-if( $registryObjects )
+if( count($registryObjects)>0 )
 {
 	$totalResults = count($registryObjects);
+
 }
 
 if(getQueryValue('format')=="xml")
 {
     // Set the Content-Type header.
     header("Content-Type: text/xml; charset=UTF-8", true);
-   
+
     print buildXMLOutput($totalResults,$searchString,$registryObjects,$itemLinkBaseURL);    
 }
 else if(getQueryValue('format')=="json")
@@ -135,17 +143,20 @@ function getDescriptionsRSS($registryObjectKey)
 
 function buildXMLContent($registryObjects,$itemLinkBaseURL)
 {
+
     $tmp1='';
-    if( $registryObjects )
-    {
+    if( count($registryObjects)>0 )
+    {                            
 	foreach( $registryObjects as $registryObject )
-	{
-		$registryObjectKey = $registryObject['registry_object_key'];
+  
+	{	
+ 		$registryObjectKey = $registryObject['registry_object_key'];
+
 		$registryObjectName = getNameRSS($registryObjectKey);
 		$registryObjectClass = $registryObject['registry_object_class'];
 		$registryObjectType = $registryObject['type'];
 		$registryObjectDescriptions = getDescriptionsRSS($registryObjectKey);
-		
+
 		$tmp1=$tmp1.'    <item>'."\n";
 		$tmp1=$tmp1.'      <guid>'.esc($registryObjectKey).'</guid>'."\n";
 		$tmp1=$tmp1.'      <title>'.$registryObjectName.'</title>'."\n";
@@ -155,6 +166,8 @@ function buildXMLContent($registryObjects,$itemLinkBaseURL)
 		$tmp1=$tmp1.'    </item>'."\n";
 	}
     }
+    
+
     return $tmp1;
 }
 
