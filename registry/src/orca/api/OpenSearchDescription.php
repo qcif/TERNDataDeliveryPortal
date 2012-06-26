@@ -16,8 +16,8 @@ print('<Description>Searches the '.esc(eINSTANCE_TITLE.' '.eAPP_TITLE)." Registr
 print('<Contact>'.esc(eCONTACT_EMAIL)."</Contact>\n");
 print("<Tags>Collection</Tags>\n");
 print("<SyndicationRight>open</SyndicationRight>\n");
-print('<Url type="application/xml" template="'.esc(eAPP_ROOT).'/search?term={searchTerms}&amp;format=xml" />'."\n");
-print('<Url type="application/x-suggestions+json" template="'.esc(eAPP_ROOT).'/search?term={searchTerms}&amp;format=json" />'."\n");
+print('<Url type="application/xml" template="'.esc(eAPP_ROOT).'/search?term={searchTerms}&amp;format=xml&amp;count={count}" />'."\n");
+print('<Url type="application/x-suggestions+json" template="'.esc(eAPP_ROOT).'/search?term={searchTerms}&amp;format=json&amp;count={count}" />'."\n");
 print("</OpenSearchDescription>\n");
 // END: XML Response    
 // =============================================================================

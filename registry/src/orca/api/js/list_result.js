@@ -12,7 +12,7 @@ $(document).ready(function()
     console.log(term);
     $.ajax({
             type:'GET',
-            url:base_url+"?term="+term+"&format=json&w=1&callback=?",
+            url:base_url+"?term="+term+"&format=json&w=1&count=10&callback=?",
             dataType:"jsonp",
             success:function(data){
                 if(data.response!=null)

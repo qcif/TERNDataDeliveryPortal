@@ -10,7 +10,7 @@ function iecheck() {
 
 TERNData = new function() {
   var BASE_URL = 'http://portal-test.tern.org.au/admin/orca/api/';
-  //var BASE_URL = 'http://demo/admin/orca/api/';
+ // var BASE_URL = 'http://demo/admin/orca/api/';
   var STYLESHEET = BASE_URL + "css/api.css"
   var CONTENT_URL = BASE_URL + 'js/list_result.js';
   var ROOT = 'tern_magic_data';
@@ -49,7 +49,7 @@ TERNData = new function() {
             if(data.length==undefined)
             {
                     item="<li><a href=\""+data.link+"\">"+data.title+"</a></li>"
-                    div.innerHTML = "<h2 class=\"widgetHeader\">Records found in TERN Data Discovery Portal:</h2><ul> " +item+"</ul>";  // assign new HTML into #ROOT
+                    div.innerHTML = "<h2 class=\"widgetHeader\">One Record found in TERN Data Discovery Portal:</h2><ul> " +item+"</ul>";  // assign new HTML into #ROOT
             }
             else  if(data.length>0)
             {
@@ -59,7 +59,7 @@ TERNData = new function() {
                     item=item+"<li><a href=\""+data[i].link+"\">"+data[i].title+"</a></li>"
 	      
                 }
-                div.innerHTML = "<h2 class=\"widgetHeader\">Records found in TERN Data Discovery Portal:</h2><ul> " +item+"</ul>";  // assign new HTML into #ROOT
+                div.innerHTML = "<h2 class=\"widgetHeader\">Top "+data.length+" Records found in TERN Data Discovery Portal:</h2><ul> " +item+"</ul>";  // assign new HTML into #ROOT
 
             }else
             {
