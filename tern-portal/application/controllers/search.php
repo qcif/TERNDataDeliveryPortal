@@ -127,7 +127,7 @@ class Search extends CI_Controller
         
         
         $sort="score desc";
-        $adv=1;
+        $adv=0;
         
         $extended_query = '';
         if ($source_key != 'undefined')
