@@ -9,8 +9,8 @@ function iecheck() {
 
 
 TERNData = new function() {
-  var BASE_URL = 'http://portal-test.tern.org.au/admin/orca/api/';
- // var BASE_URL = 'http://demo/admin/orca/api/';
+  var BASE_URL = 'http://portal.tern.org.au/admin/orca/api/';
+  //var BASE_URL = 'http://demo/admin/orca/api/';
   var STYLESHEET = BASE_URL + "css/api.css"
   var CONTENT_URL = BASE_URL + 'js/list_result.js';
   var ROOT = 'tern_magic_data';
@@ -24,7 +24,7 @@ TERNData = new function() {
     stylesheet.href = stylesheet_url;
     stylesheet.media = "all";
     document.lastChild.firstChild.appendChild(stylesheet);
-  }
+  }   
 
   function requestContent() {
    
@@ -74,10 +74,11 @@ TERNData = new function() {
           var _div=document.createElement('div');
           _div.setAttribute("id", ROOT);
           _div.setAttribute("style", "display:none");
-          
+         
           var _body=document.getElementsByTagName('body')[0];
           _body.appendChild(_div);
 
+//document.write("<div id='" + ROOT + "' style='display: none'></div>");
 	  requestContent();
 	  var no_script = document.getElementById('no_script');
 	  if (no_script) {no_script.style.display = 'none';}

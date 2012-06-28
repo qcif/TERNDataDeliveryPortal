@@ -22,6 +22,7 @@ $registryObjects = null;
 if( $searchString )
 {
 	$registryObjects = searchRegistryTERN($searchString, '',  null, null, null, null,$cnt);  
+       // $registryObjects = searchRegistry($searchString, '',  null, null, null, null);  
     
 }
 
