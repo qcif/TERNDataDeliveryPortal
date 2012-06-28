@@ -76,7 +76,7 @@ function handlerecordpopupSlide()
                 handlerecordpopupSlide();
                 initConnectionsBox();
                 initSubjectsSEEALSO();
-                initViewMap('spatial_coverage_map','spatial_coverage_center','.coverage');
+                initViewMap('spatial_coverage_map','.spatial_coverage_center','.coverage');
 
 	}
         
