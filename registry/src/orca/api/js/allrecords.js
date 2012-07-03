@@ -56,7 +56,8 @@ TERNData = new function() {
                 for (var i = 0; i < data.length; i++) 
                 {
 
-                    item=item+"<li><a href=\""+data[i].link+"\">"+data[i].title+"</a></li>"
+                    item=item+"<li><a href=\""+data[i].link+"\">"+data[i].title+"</a></li>"          
+                    
 	      
                 }
                 div.innerHTML = "<h2 class=\"widgetHeader\">Top "+data.length+" Records found in TERN Data Discovery Portal:</h2><ul> " +item+"</ul>";  // assign new HTML into #ROOT

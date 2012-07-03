@@ -29,7 +29,12 @@ $(document).ready(function()
             }
     });
     
-});  
+}); 
+
+function doSolrSearchTERN()
+{
+
+}
 
         
 
