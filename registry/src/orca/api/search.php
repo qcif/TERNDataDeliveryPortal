@@ -132,7 +132,7 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
         $start = 0;
         $row = $cnt;     
         
-        //$solr_url = "http://demo:8080/orca-solr/";
+       // $solr_url = "http://demo:8080/orca-solr/";
        $solr_url = "http://portal-dev.tern.org.au:8080/orca-solr/";
         
         $q = urldecode($q);
@@ -184,7 +184,7 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
              
              
         }
-        elseif ($format=='html')
+        elseif ($format=='checker')
         {
             $html=buildHTML($totalResults,$searchString,$content,$itemLinkBaseURL);
             echo $html;
@@ -250,9 +250,9 @@ function buildHtmlContent($content,$itemLinkBaseURL)
        
                 $registryObjectKey = $doc->xpath('str[@name="key"]');
                 $registryObjectName=$doc->xpath('str[@name="displayTitle"]');
-		$registryObjectClass=$doc->xpath('str[@name="class"]');
-		$registryObjectType=$doc->xpath('str[@name="type"]');
-		$registryObjectDescriptions=$doc->xpath('arr[@name="description_value"]/str');
+		//$registryObjectClass=$doc->xpath('str[@name="class"]');
+		//$registryObjectType=$doc->xpath('str[@name="type"]');
+		//$registryObjectDescriptions=$doc->xpath('arr[@name="description_value"]/str');
                 
                 $location=$doc->xpath('arr[@name="location"]/str');
 
@@ -263,15 +263,35 @@ function buildHtmlContent($content,$itemLinkBaseURL)
 				                                 
                 for($j=0;$j<count($location);$j++)
                 {
+                    $tstr=  strtok(esc($location[$j]), " ");
+                    while ($tstr !=false)
+                    {
+                        if(strpos($tstr,'http')>-1)
+                        {
 
-                    $tmp1=$tmp1.'      <a href="'.esc($location[$j]).'">'.esc($location[$j]).'</a>'."<br>";
+                            $tmp1=$tmp1.'      <a href="'.$tstr.'">'.$tstr.'</a>'."<br>";
+                        }
+                        
+                        $tstr=  strtok(" ");
+                    }
+                    
                 }
-                
+              
                 for($k=0;$k<count($relatedinfo);$k++)
                 {
-                    list($uri,$desc)=explode(' ',esc($relatedinfo[$k]));
+                    $tstrl=  strtok(esc($relatedinfo[$k]), " ");
+                    while ($tstrl !=false)
+                    {
+                        //print "$tstrl<br/>";
+                        if(strpos($tstrl,"http")>-1)
+                        {
+                            $tmp1=$tmp1.'      <a href="'.$tstrl.'">'.$tstrl.'</a>'."<br>";
+                        }
+                        
+                        $tstrl=  strtok(" ");
+                    }         
 
-                    $tmp1=$tmp1.'      <a href="'.esc($uri).'">'.esc($uri).'</a>'."<br>";
+                   
                 }
                 
 		$tmp1=$tmp1.'    </div><br>'."\n";             
