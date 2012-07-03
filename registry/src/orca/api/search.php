@@ -184,6 +184,11 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
              
              
         }
+        elseif ($format=='html')
+        {
+            $html=buildHTML($totalResults,$searchString,$content,$itemLinkBaseURL);
+            echo $html;
+        }
         else// ($format == 'xml')
         {
           $output= buildXMLOutput($totalResults,$searchString,$content,$itemLinkBaseURL);
@@ -213,5 +218,69 @@ function getCount($xml)
     return $dom->getElementsByTagName('doc')->length;
 }
 
+function buildHTML($totalResults,$searchString,$content,$itemLinkBaseURL)
+{
+    $totalResults= getCount($content);   
+    
+     //==XML response
+    $tmph='<html>'."\n";
+    $tmph=$tmph.'<head>'."\n";
+    $tmph=$tmph.'<title>Dev ORCA Ecosystem registry search</title>'."\n";
+    $tmph=$tmph.'</head>'."\n";
+    $tmph=$tmph.'<body>'."\n";
+   
+    $th=buildHtmlContent($content,$itemLinkBaseURL);
+    
+    
+    $t1='  </body>'."\n"."</html>\n";
+    
+    return $tmph.$th.$t1;
+}
+
+function buildHtmlContent($content,$itemLinkBaseURL)
+{
+     $docs=simplexml_load_string($content);
+   
+    $tmp1='';
+    if( $docs->result!=null )
+    {       
+        
+        foreach( $docs->result->doc as $doc )  
+	{	
+       
+                $registryObjectKey = $doc->xpath('str[@name="key"]');
+                $registryObjectName=$doc->xpath('str[@name="displayTitle"]');
+		$registryObjectClass=$doc->xpath('str[@name="class"]');
+		$registryObjectType=$doc->xpath('str[@name="type"]');
+		$registryObjectDescriptions=$doc->xpath('arr[@name="description_value"]/str');
+                
+                $location=$doc->xpath('arr[@name="location"]/str');
+
+                $relatedinfo=$doc->xpath('arr[@name="relatedInfo"]/str');
+
+		$tmp1=$tmp1.'    <div>'."\n";
+		$tmp1=$tmp1.'      <h3><a href="'.$itemLinkBaseURL.esc($registryObjectKey[0]).'">'.esc($registryObjectName[0]).'</a></h3>'."<br>";
+				                                 
+                for($j=0;$j<count($location);$j++)
+                {
+
+                    $tmp1=$tmp1.'      <a href="'.esc($location[$j]).'">'.esc($location[$j]).'</a>'."<br>";
+                }
+                
+                for($k=0;$k<count($relatedinfo);$k++)
+                {
+                    list($uri,$desc)=explode(' ',esc($relatedinfo[$k]));
+
+                    $tmp1=$tmp1.'      <a href="'.esc($uri).'">'.esc($uri).'</a>'."<br>";
+                }
+                
+		$tmp1=$tmp1.'    </div><br>'."\n";             
+             
+	} 
+    }
+    
+
+    return $tmp1;
+}
 ?>
 
