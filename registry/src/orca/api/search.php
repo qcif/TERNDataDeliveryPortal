@@ -12,7 +12,16 @@ ini_set("max_execution_time", "$executionTimeoutSeconds");
 $searchString = getQueryValue('term');
 $format=  getQueryValue('format');
 
-$cnt=5;
+if(getQueryValue('format')>0 && (getQueryValue('format')=='json')||(getQueryValue('format')=='xml')||(getQueryValue('format')=='checker'))
+{
+    $format=getQueryValue('format');
+}
+else
+{
+    $format='xml';
+}
+
+$cnt=5;//by default , only return 5 results
 
 if(getQueryValue('count')>0)
 {
@@ -132,6 +141,7 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
         $start = 0;
         $row = $cnt;     
         
+        //$row=1000;
        // $solr_url = "http://demo:8080/orca-solr/";
        $solr_url = "http://portal-dev.tern.org.au:8080/orca-solr/";
         
@@ -139,14 +149,16 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
         
         if ($q != '*:*')
             $q = escapeSolrValueTERN($q);
+        else
+            $row=100000;
           
         $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
   
         $fields = array(
-            'q' => $q, 'version' => '2.2', 'start' => $start, 'rows' => $row, 'wt' => $write_type,
+            'q' => $q, 'version' => '2.2', 'start' => $start, 'rows'=>$row,'wt' => $format,
             'fl' => '*,score'
         );
-        
+   
         $fields_string = '';
         foreach ($fields as $key => $value)
         {
