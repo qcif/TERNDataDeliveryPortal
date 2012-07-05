@@ -10,7 +10,7 @@ function iecheck() {
 
 TERNData = new function() {
   var BASE_URL = 'http://portal-dev.tern.org.au/admin/orca/api/';
-  //var BASE_URL = 'http://demo/admin/orca/api/';
+ // var BASE_URL = 'http://demo/admin/orca/api/';
   var STYLESHEET = BASE_URL + "css/api.css"
   var CONTENT_URL = BASE_URL + 'js/list_result.js';
   var ROOT = 'tern_magic_data';
