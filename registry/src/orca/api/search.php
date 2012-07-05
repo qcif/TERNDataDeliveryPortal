@@ -4,7 +4,7 @@
 require '../../_includes/init.php';
 require '../orca_init.php';
 require_once 'xml2json.php';
-
+require '../../global_config.php';
 
 $executionTimeoutSeconds = 10*60;
 ini_set("max_execution_time", "$executionTimeoutSeconds");
@@ -12,13 +12,15 @@ ini_set("max_execution_time", "$executionTimeoutSeconds");
 $searchString = getQueryValue('term');
 $format=  getQueryValue('format');
 
-if(getQueryValue('format')>0 && (getQueryValue('format')=='json')||(getQueryValue('format')=='xml')||(getQueryValue('format')=='checker'))
+if(($format=='json')||($format=='xml')||($format=='checker'))
 {
     $format=getQueryValue('format');
+    
 }
 else
 {
     $format='xml';
+    
 }
 
 $cnt=5;//by default , only return 5 results
@@ -32,7 +34,7 @@ $itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/view/dataview?key=';
 
 $totalResults = 0;
 
-searchRegistryTERNSolr($searchString, $format, $cnt,$totalResults,$itemLinkBaseURL);
+searchRegistryTERNSolr($searchString, $format, $cnt,$totalResults,$itemLinkBaseURL,$solr_url);
 
 
 require '../../_includes/finish.php';
@@ -43,7 +45,7 @@ function buildXMLOutput($totalResults,$searchString,$content,$itemLinkBaseURL)
 
     
     $totalResults= getCount($content);
-    
+
     $tmpc=  buildXMLContent($content,$itemLinkBaseURL);
     
      //==XML response
@@ -63,6 +65,7 @@ function buildXMLOutput($totalResults,$searchString,$content,$itemLinkBaseURL)
 function buildJsonOutput($totalResults,$searchString,$content,$itemLinkBaseURL)
 {
      $totalResults= getCount($content);
+    
      $jtmp='<?xml version="1.0" encoding="UTF-8"?>'."\n".' <response>'."\n";
      $jtmp=$jtmp.'    <title>'.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE).' Ecosystem registry Search</title>'.'\n';
      $jtmp=$jtmp.'    <link>'.eAPP_ROOT.'orca/api/search.php</link>'."\n";
@@ -133,17 +136,13 @@ function buildXMLContent($content,$itemLinkBaseURL)
     return $tmp1;
 }
 
-function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLinkBaseURL)
+function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLinkBaseURL,$solr_url)
 {
         $q = $searchString;
         $q = rawurlencode($q);
         $q = str_replace("%5C%22", "\"", $q); //silly encoding
         $start = 0;
         $row = $cnt;     
-        
-        //$row=1000;
-       // $solr_url = "http://demo:8080/orca-solr/";
-       $solr_url = "http://portal-dev.tern.org.au:8080/orca-solr/";
         
         $q = urldecode($q);
         
@@ -155,7 +154,7 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
         $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
   
         $fields = array(
-            'q' => $q, 'version' => '2.2', 'start' => $start, 'rows'=>$row,'wt' => $format,
+            'q' => $q, 'version' => '2.2', 'start' => $start, 'rows'=>$row,'wt' => 'xml',
             'fl' => '*,score'
         );
    
@@ -181,9 +180,9 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
  
         if ($format == 'json')
         {           
-            
+
                 $output= buildJsonOutput($totalResults,$searchString,$content,$itemLinkBaseURL);
-                
+               
                 $out= xml2json::transformXmlStringToJson($output);
                 if(getQueryValue('w')!=null)
                 {
@@ -226,7 +225,7 @@ function getCount($xml)
 {
     $dom=new DOMDocument;
     $dom->loadXML($xml);
-    
+   // print $xml;
     return $dom->getElementsByTagName('doc')->length;
 }
 

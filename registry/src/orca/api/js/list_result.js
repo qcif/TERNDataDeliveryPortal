@@ -3,8 +3,6 @@
  * and open the template in the editor.
  */
 
-var base_url="http://portal.tern.org.au/admin/orca/api/search";
-//var base_url="http://demo/admin/orca/api/search";
 var term=TERNData.getTerm();
 
 $(document).ready(function() 
@@ -12,7 +10,7 @@ $(document).ready(function()
     console.log(term);
     $.ajax({
             type:'GET',
-            url:base_url+"?term="+term+"&format=json&w=1&count=10&callback=?",
+            url:BASE_URL+"?term="+term+"&format=json&w=1&count=10&callback=?",
             dataType:"jsonp",
             success:function(data){
                 if(data.response!=null)
@@ -23,18 +21,13 @@ $(document).ready(function()
                     TERNData.serverResponse(data);
                 }              
             },
-            error:function(msg){
-               
+            error:function(msg){  
   		
             }
     });
     
 }); 
 
-function doSolrSearchTERN()
-{
-
-}
 
         
 
