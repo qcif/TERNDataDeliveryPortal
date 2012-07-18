@@ -743,3 +743,8 @@ div.left:active{background-position:-60px 0;}
     width:46%;
     float:left;
 }
+
+.selectrecord{
+   width:130px;
+   margin:auto 0;
+}

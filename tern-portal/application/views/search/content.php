@@ -50,7 +50,6 @@ $Revision: 1 $
 
                        $c=1;//record counter 1- 10
                
-                       
 			foreach($json->{'response'}->{'docs'} as $r)
 			{
 				//var_dump($r->{'description_value'});
@@ -86,30 +85,10 @@ $Revision: 1 $
 				}
 
 				echo '<div class="search_item">';
-				
-				//echo get_cookie('show_icons');
-				/*
-				echo '<p class="hide key">'.$ro_key.'</p>';
-				if(get_cookie('show_icons')=='yes'){
-					switch($class){
-						case "collection":echo '<img class="ro-icon" src="'.base_url().'img/icon/collections_32.png" title="Collection"/>';break;
-						case "activity":echo '<img class="ro-icon" src="'.base_url().'img/icon/activities_32.png" title="Activity"/>';break;
-						case "service":echo '<img class="ro-icon" src="'.base_url().'img/icon/services_32.png" title="Service"/>';break;
-						case "party": 
-									if($type=='person'){
-										echo '<img class="ro-icon" src="'.base_url().'img/icon/party_one_32.png" title="Person"/>';
-									}elseif($type=='group'){
-										echo '<img class="ro-icon" src="'.base_url().'img/icon/party_multi_32.png" title="Group"/>';
-									}
-							break;
-					}
-				}*/
+
 				$key_url =  base_url().'view/?key='.urlencode($ro_key);
-				//echo '<h2><span class="count">'. $c . '. </span><a href="'.$key_url.'">'.$name.'</a></h2>';
+
                                 echo '<h2 class="h2color"><span class="count">'. $c . '. </span><a  id="'.$ro_key.'" class="record-list">'.$name.'</a></h2>';
-				
-				//echo '<pre>';
-								
 				if(isset($r->{'alt_listTitle'})){
 					echo '<div class="alternatives">';
 					foreach($r->{'alt_listTitle'} as $listTitle){
@@ -117,8 +96,6 @@ $Revision: 1 $
 					}
 					echo '</div>';
 				}
-				//echo '</pre>';
-				//echo '<h2><a href="#!/view/'.$ro_key.'">'.$name.'</a></h2>';
 				
 				//DESCRIPTIONS';
                                 if($found_brief || $found_full){
@@ -131,10 +108,8 @@ $Revision: 1 $
                                     }
                                 	echo '</p> ';
                                 }
-                                //if($found_full){
-                                //    echo '<br/><span class="read-more">Read more</span>';
-                                //}
-				if($spatial){
+
+                                if($spatial){
                          
 					echo '<ul class="spatial">';
 						foreach($spatial as $s){
@@ -161,7 +136,8 @@ $Revision: 1 $
 			}
 			
 			echo '<div class="toolbar clearfix bottom-corner">';
-			$this->load->view('search/pagination');
+			$this->load->view('search/pagination');                      
+                        
 			echo '</div>';
                         echo '<div id="infoBox"></div>';
 		?>

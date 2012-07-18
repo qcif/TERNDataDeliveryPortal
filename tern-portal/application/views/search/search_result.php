@@ -45,18 +45,14 @@ $Revision: 1 $
                         $class='ui-icon-arrowthickstop-1-w';
                 }
 
-                //echo '<div class="ui-state-default ui-corner-all show-hide-facet"><span class="ui-icon '.$class.'" id="toggle-facets" title="Show/Hide Facet"></span></div>';
-                //echo '<a href="JavaScript:void(0);" id="hide-facets">Expand</a><a href="JavaScript:void(0);" id="show-facets">Collapse (Show Filters)</a>';
-
-
-
                 echo '<div class="result">';
                 echo ''.number_format($realNumFound).' results';
                 echo '</div>';
-
+               
                 $this->load->view('search/pagination');
-
+       
                 echo '</div>';
+
                 ?>          
         <div id="search-results-content" >
                
