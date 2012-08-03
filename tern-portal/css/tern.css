@@ -34,13 +34,21 @@ a:link, a:visited {color: #376500;text-decoration:underline; cursor: pointer;}
 a:not([href]) {color: #376500;text-decoration:underline; cursor: pointer;}
 a:hover{text-decoration:underline;}
 
-input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif}
+input{ vertical-align: middle; font: 11px Arial,Helvetica,sans-serif;}
 
 ul{
     margin-top: 0px;
     margin-bottom: 5px;
 }
 
+.ul-tddp{
+    margin-bottom: 5px;
+    margin-top:10px
+}
+
+.li-tddp{
+    margin-top:18px;
+}
 .top-left-corner{}
 .bottom-corner{}
 .top-corner{}
@@ -394,7 +402,7 @@ label{vertical-align:middle; font: 11px Arial,Helvetica,sans-serif}
 div.checkitem{ clear: both;}
 
 /*Temporal form */
-div#temporalFilter{ line-height: 23px;vertical-align: middle;  }
+div#temporalFilter{ line-height: 23px;vertical-align: middle;width:280px;  }
 div#temporalFilter img{vertical-align:middle;}
 
 /*SPATIAL form */
@@ -587,7 +595,8 @@ div.olLayerGooglePoweredBy
 .fl { 
     width: 250px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 15px;
+    font-weight: bold;
     color:#376500;
     vertical-align:middle;
     height: 50px;
@@ -605,7 +614,8 @@ div.olLayerGooglePoweredBy
 .flSelect {
     width: 250px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 15px;
+    font-weight: bold;
     color:#376500;
     vertical-align:middle;
     height: 50px;
@@ -666,6 +676,11 @@ div.left:active{background-position:-60px 0;}
     width:45%;
     padding-left:5px;
 }
+.facility-desc-tddp{
+    float:left;
+    text-align: justify;
+    padding-right:15px;
+}
 
 .facility-about{
     line-height: 20px;
@@ -679,7 +694,16 @@ div.left:active{background-position:-60px 0;}
     padding-right:5px;
 }
 
-#fac-title{
+#fac-list-title{
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.fac-title{
+    text-align: center;
+}
+
+.sample-rec-title{
     text-align: center;
 }
 
@@ -698,7 +722,7 @@ div.left:active{background-position:-60px 0;}
 
 .tmptitle{
     text-align: center; 
-    font-size: 16px;
+    font-size: 20px;
     font-weight:bold;
 }
 
@@ -708,4 +732,14 @@ div.left:active{background-position:-60px 0;}
     height:25px;
     margin: 0 0 0 0;
     
+}
+
+.img-list-logo{
+    width:52%;
+    float:right;
+}
+
+.img-list-text{
+    width:46%;
+    float:left;
 }

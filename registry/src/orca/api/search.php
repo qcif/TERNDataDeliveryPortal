@@ -3,72 +3,112 @@
 // Include required files and initialisation.
 require '../../_includes/init.php';
 require '../orca_init.php';
+require_once 'xml2json.php';
 
 // Increase the execution timeout as we may have to deal with a large amount of data.
 $executionTimeoutSeconds = 10*60;
 ini_set("max_execution_time", "$executionTimeoutSeconds");
 
-// Set the Content-Type header.
-header("Content-Type: text/xml; charset=UTF-8", true);
-
 $searchString = getQueryValue('term');
+$cnt=5;
+
+if(getQueryValue('count')>0)
+{
+    $cnt=  getQueryValue('count');
+}
+
 $registryObjects = null;
 
 if( $searchString )
 {
-	$registryObjects = searchRegistryTERN($searchString, '',  null, null, null, null);
-       
-       
+	$registryObjects = searchRegistryTERN($searchString, '',  null, null, null, null,$cnt);  
+       // $registryObjects = searchRegistry($searchString, '',  null, null, null, null);  
+    
 }
 
-$itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/view/?key=';
+$itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/view/dataview?key=';
 
 $totalResults = 0;
-if( $registryObjects )
+if( count($registryObjects)>0 )
 {
 	$totalResults = count($registryObjects);
+
 }
 
-
-
-// BEGIN: XML Response
-// =============================================================================
-print('<?xml version="1.0" encoding="UTF-8"?>'."\n");
-print('<rss version="2.0" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">'."\n");
-print('  <channel>'."\n");
-print('    <title>'.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Collections Registry Search Results</title>\n");
-print('    <link>'.eAPP_ROOT.'orca/api/search.php</link>'."\n");
-print('    <description>Search results for '.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Collections Registry collection, service, party, and activity metadata</description>\n");
-print('    <opensearch:totalResults>'.$totalResults.'</opensearch:totalResults>'."\n");
-print('    <opensearch:Query role="request" searchTerms="'.esc($searchString).'" />'."\n");
-
-if( $registryObjects )
+if(getQueryValue('format')=="xml")
 {
-	foreach( $registryObjects as $registryObject )
-	{
-		$registryObjectKey = $registryObject['registry_object_key'];
-		$registryObjectName = getNameRSS($registryObjectKey);
-		$registryObjectClass = $registryObject['registry_object_class'];
-		$registryObjectType = $registryObject['type'];
-		$registryObjectDescriptions = getDescriptionsRSS($registryObjectKey);
-		
-		print('    <item>'."\n");
-		print('      <guid>'.esc($registryObjectKey).'</guid>'."\n");
-		print('      <title>'.$registryObjectName.'</title>'."\n");
-		print('      <link>'.$itemLinkBaseURL.esc($registryObjectKey).'</link>'."\n");
-		print('      <category>'.esc("$registryObjectClass:$registryObjectType").'</category>'."\n");
-		print('      <description>'.$registryObjectDescriptions.'</description>'."\n");
-		print('    </item>'."\n");
-	}
+    // Set the Content-Type header.
+    header("Content-Type: text/xml; charset=UTF-8", true);
+
+    print buildXMLOutput($totalResults,$searchString,$registryObjects,$itemLinkBaseURL);    
 }
-print('  </channel>'."\n");
-print("</rss>\n");
-// END: XML Response
-// =============================================================================
+else if(getQueryValue('format')=="json")
+{
+    // Set the Content-Type header.
+    //header("Content-Type: application/json; charset=UTF-8", true);
+    $out= buildJsonOutput($totalResults,$searchString,$registryObjects,$itemLinkBaseURL);    
+    
+    if(getQueryValue('w')!=null)
+    {
+        echo $_GET['callback'].'('.$out.')';
+    }else
+    {
+        header("Content-Type: application/json; charset=UTF-8", true);
+        echo $out;
+    }
+}
+else
+{
+    print("Invalid request");
+}
+//===END xml output
 
  require '../../_includes/finish.php';
  
 
+ function buildXMLOutput($totalResults,$searchString,$registryObjects,$itemLinkBaseURL)
+ {
+     //==XML response
+    $tmp='<?xml version="1.0" encoding="UTF-8"?>'."\n";
+    $tmp=$tmp.'<rss version="2.0" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">'."\n";
+    $tmp=$tmp.'  <channel>'."\n";
+    $tmp=$tmp.'    <title>'.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE).' Ecosystem registry Search</title>'.'\n';
+    $tmp=$tmp.'    <link>'.eAPP_ROOT.'orca/api/search.php</link>'."\n";
+    $tmp=$tmp.'    <description>Search results for '.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Ecosystem registry Search</description>\n";
+    $tmp=$tmp.'    <opensearch:totalResults>'.$totalResults.'</opensearch:totalResults>'."\n";
+    $tmp=$tmp.'    <opensearch:Query role="request" searchTerms="'.esc($searchString).'" />'."\n";
+
+    $tmpc=  buildXMLContent($registryObjects,$itemLinkBaseURL);
+
+    $t='  </channel>'."\n"."</rss>\n";
+
+    return $tmp.$tmpc.$t;
+ }
+ 
+ function buildJsonOutput($totalResults,$searchString,$registryObjects,$itemLinkBaseURL)
+ {
+     $jtmp='<?xml version="1.0" encoding="UTF-8"?>'."\n".' <response>'."\n";
+     $jtmp=$jtmp.'    <title>'.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE).' Ecosystem registry Search</title>'.'\n';
+     $jtmp=$jtmp.'    <link>'.eAPP_ROOT.'orca/api/search.php</link>'."\n";
+     $jtmp=$jtmp.'    <description>Search results for '.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Ecosystem registry Search</description>\n";
+     $jtmp=$jtmp.'    <opensearch:totalResults>'.$totalResults.'</opensearch:totalResults>'."\n";
+     $jtmp=$jtmp.'    <opensearch:Query role="request" searchTerms="'.esc($searchString).'" />'."\n";     
+     $jtmpc= buildXMLContent($registryObjects,$itemLinkBaseURL);
+     $jt='  </response>';
+     
+     if($jtmpc!='')
+     {
+        $xmlstring=$jtmp.$jtmpc.$jt;
+     }else
+     {
+         $xmlstring=$jtmp.$jt;
+     }
+
+     $o= xml2json::transformXmlStringToJson($xmlstring);
+
+     return $o;
+ }
+ 
 // Local presentation functions.
 function getNameRSS($registryObjectKey)
 {
@@ -106,4 +146,37 @@ function getDescriptionsRSS($registryObjectKey)
 	}
 	return $rss;
 }
+
+function buildXMLContent($registryObjects,$itemLinkBaseURL)
+{
+
+    $tmp1='';
+    if( count($registryObjects)>0 )
+    {                            
+	foreach( $registryObjects as $registryObject )
+  
+	{	
+ 		$registryObjectKey = $registryObject['registry_object_key'];
+
+		$registryObjectName = getNameRSS($registryObjectKey);
+		$registryObjectClass = $registryObject['registry_object_class'];
+		$registryObjectType = $registryObject['type'];
+		$registryObjectDescriptions = getDescriptionsRSS($registryObjectKey);
+
+		$tmp1=$tmp1.'    <item>'."\n";
+		$tmp1=$tmp1.'      <guid>'.esc($registryObjectKey).'</guid>'."\n";
+		$tmp1=$tmp1.'      <title>'.$registryObjectName.'</title>'."\n";
+		$tmp1=$tmp1.'      <link>'.$itemLinkBaseURL.esc($registryObjectKey).'</link>'."\n";
+		$tmp1=$tmp1.'      <category>'.esc("$registryObjectClass:$registryObjectType").'</category>'."\n";
+		$tmp1=$tmp1.'      <description>'.$registryObjectDescriptions.'</description>'."\n";
+		$tmp1=$tmp1.'    </item>'."\n";
+	}
+    }
+    
+
+    return $tmp1;
+}
+
+
 ?>
+

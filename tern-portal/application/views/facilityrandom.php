@@ -59,15 +59,16 @@ function displayDesc($facid,$partners)
     
 <?php if($header_footer) $this->load->view('tpl/header');?>
 
-<div id="fac-title"><h2><?php  echo  $partners[$fackey]['displayTitle'];?></h2>
-</div>
+
+
 
 <div id="fac-content">
-        <div id="fac-random-rec" class="shadow-and-corner">
-
+        
         <?php
                 if ($fackey!==tddp)
                 {
+                    echo '<div id="fac-random-rec" class="shadow-and-corner">';
+                    echo '<h2 class="sample-rec-title">Sample data collection records</h2>';
                     echo '<ul>';
                     for($i=0;$i<$half; $i++)
                     {
@@ -79,10 +80,17 @@ function displayDesc($facid,$partners)
                         printRecord($recordsArr[$i]);
                     }
 
-                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all '.$partners[$fackey]['displayTitle'].' records</b>');
+                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all records</b>');
                     echo '</ul>';
+                    echo '</div>';
+                    
+                    echo '<div class="facility-desc">';
+
                 }else
                 {
+                    echo '<div class="facility-desc-tddp">';
+
+                    /*
                     echo '<div id="carousel">';
                     echo    '<div class="clearfix">';
                     echo '<div class="prev browse left"></div>';
@@ -95,7 +103,7 @@ function displayDesc($facid,$partners)
                    // echo            '<img id="http://www.tern.org.au/Long-Term-Ecological-Research-Network-pg17872.html" src="../img/ltern.png" height="102" width="194"  />';
                     echo            '<img id="http://www.tern.org.au/Australian-Supersite-Network-pg17873.html" src="../img/supersite.png" height="102" width="194" />';
                    // echo            '<img id="http://www.tern.org.au/Soil-and-Landscape-Grid-of-Australia-pg17731.html" src="../img/soil.png" height="102" width="194"  /><';
-                  //  echo            '<img id="http://www.tern.org.au/Australian-Coastal-Ecosystems-pg17732.html" src="../img/acef.png" height="102" width="194"  />';
+                    echo            '<img id="http://www.tern.org.au/Australian-Coastal-Ecosystems-pg17732.html" src="../img/acef.png" height="102" width="194"  />';
                     echo            '<img id="http://www.tern.org.au/Eco-informatics-pg17733.html" src="../img/aekos.png" height="102" width="194"  />';
                   //  echo            '<img id="http://www.tern.org.au/Ecosystem-Modelling-and-Scaling-Infrastructure-pg17734.html" src="../img/emast.png" height="102" width="194"  />';
                     echo            '<img id="http://www.tern.org.au/Australian-Centre-for-Ecological-Analysis-and-Synthesis-pg17735.html" src="../img/aceas.png" height="102" width="194"  />';
@@ -104,18 +112,14 @@ function displayDesc($facid,$partners)
                     echo      '<div class="next browse right"></div>';
                     echo  '</div>';
                     echo  '</div>';
-
+                    */
 
                 }
+                
+                    echo '<h2 class="fac-title">'.$partners[$fackey]['displayTitle'].'</h2>';
+                    displayDesc($fackey,$partners);
+                    echo '</div>';
         ?>
-
-
-
-        </div>
-
-        <div class="facility-desc">
-                  <?php displayDesc($fackey,$partners);?>
-        </div>
 
 </div>
 <?php  if($header_footer)  $this->load->view('tpl/footer');?>
