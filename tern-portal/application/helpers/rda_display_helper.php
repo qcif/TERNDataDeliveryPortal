@@ -129,6 +129,7 @@ function constructFilterQuery($class, $groups){
                 case 'for_value_two':$str='+for_value_two:(';break;
                 case 'for_value_four':$str='+for_value_four:(';break;
                 case 'for_value_six':$str='+for_value_six:(';break;
+                case 'tern_region': $str='+tern_region:(';break;
 	}
 	
 	$classes = explode(';',$groups);

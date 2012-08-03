@@ -45,6 +45,7 @@
 	}
 
 
+
 function handlerecordpopupSlide()
 {
 
@@ -216,3 +217,36 @@ function removeBracket(arr)
         $("#status").html($('#seeAlsoCurrentPage').html() + '/'+$('#seeAlsoTotalPage').html());
     }
 
+
+
+        function initMapProto(){
+            
+            var mapWidget = new MapWidget('spatialmap',true);
+            //add box drawing
+            mapWidget.addDrawLayer({
+                geometry: "box", 
+                allowMultiple: false, 
+                afterDraw: updateCoordinates, 
+                afterDrag: updateCoordinates
+            });
+          /* mapWidget.addExtLayer({
+                url:"aus_east",
+                protocol: "GEOJSON",
+                afterSelect: function(e,WGS1, WGS2){return true;}
+            });*/
+            mapWidget.addExtLayer({
+                url: "aus_east_wms",
+                protocol: "WMS"
+            });
+            //enable clicking button controllers
+            enableToolbarClick(mapWidget);
+                 
+            //changing coordinates on textbox should change the map appearance
+            enableCoordsChange(mapWidget);  
+                    
+
+            
+        }
+        
+        
+        

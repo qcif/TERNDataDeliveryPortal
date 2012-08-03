@@ -25,7 +25,7 @@
         parent::__construct();
     }
 
-    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0)
+    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0, $ternRegionFilter = 'All')
     {
         $q = $query;
         $q = rawurlencode($q);
@@ -54,6 +54,8 @@
             $filter_query .= constructFilterQuery('for_value_four', $forfour);
         if ($forsix != 'All')
             $filter_query .= constructFilterQuery('for_value_six', $forsix);
+        if ($ternRegionFilter != 'All')
+            $filter_query .= constructFilterQuery('tern_region', $ternRegionFilter);
         $q = urldecode($q);
        
         if($adv == 0){ 

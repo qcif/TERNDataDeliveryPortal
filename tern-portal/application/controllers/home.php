@@ -137,6 +137,19 @@ class Home extends CI_Controller {
 		$data['user_agent']=$this->agent->browser();
 		$this->load->view('content/contact_form', $data);
 	}
+         
+        public function mapproto(){
+                $data['widget_map'] = 1;
+              
+                 // get Regions  File
+                $regions = json_decode(file_get_contents('http://' . HOST.  '/api/regions.json', TRUE));
+                $regions = $regions->layers;
+                 for($i=0;$i<count($regions);$i++){                  
+                    $regions[$i]->features =  json_decode(file_get_contents('http://' . REGIONS_URL . '/r/getList/' . $regions[$i]->l_id));                     
+                 }
+                 $data["regions"] = $regions;
+                $this->load->view('content/mapproto',$data);
+        }
 	
 	public function send(){
 		$this->load->library('user_agent');

@@ -67,6 +67,8 @@ $(function() {
    
         }else if(window.location.href.indexOf('preview')>=0){
             initPreviewPage();
+        }else if(window.location.href.indexOf('mapproto')>=0){
+            initMapProto();        
         }else {
             initHomePage();
         }
@@ -312,11 +314,12 @@ $(function() {
          $("#head-toolbar").show();
 
     }
-    /*      Initialize map in overlay
+    /*      Initialize map in overlaying
     *       If the map already exists, just open the dialog, otherwise init map
     *      
     */   
     function openMap(mapWidget){
+        $('#overlaymap').dialog( "option", "zIndex", 8899 );
         $('#overlaymap').dialog('open');
         if(typeof mapWidget === 'undefined'){
             mapWidget = new MapWidget('spatialmap',true);
@@ -330,6 +333,16 @@ $(function() {
             if(n!='') {
                 mapWidget.updateDrawing(mapWidget,w + "," + s+ "," + e + "," + n);
             }
+           /* mapWidget.addExtLayer({
+                url:"aus_east",
+                protocol: "GEOJSON",
+                afterSelect: function(e,WGS1, WGS2){return true;}
+            });
+            mapWidget.addExtLayer({
+                url: "aus_east_wms",
+                protocol: "WMS"
+            });
+            */
             //enable clicking button controllers
             enableToolbarClick(mapWidget);
                  
@@ -343,7 +356,7 @@ $(function() {
             }).button();
 
         }else if($('#box').hasClass("olControlDrawFeatureBoxItemInactive")){
-            $("#box").trigger("click");
+           // $("#box").trigger("click");
         }
         return mapWidget;
     }

@@ -127,7 +127,7 @@ class Search extends CI_Controller
         
         
         $sort="score desc";
-        $adv=1;
+        $adv=0;
         
         $extended_query = '';
         if ($source_key != 'undefined')
@@ -476,7 +476,7 @@ class Search extends CI_Controller
         $fortwoFilter = urldecode($this->input->post('fortwoFilter'));
         $forfourFilter = urldecode($this->input->post('forfourFilter'));
         $forsixFilter = urldecode($this->input->post('forsixFilter'));
-
+        $ternRegionFilter = urldecode($this->input->post('ternRegionFilter'));
         $page = $this->input->post('page');
         $spatial_included_ids = $this->input->post('spatial_included_ids');
         $temporal = $this->input->post('temporal');
@@ -493,7 +493,7 @@ class Search extends CI_Controller
         {
             $extended_query .= $spatial_included_ids;
         }
-        if ($temporal != 'All')
+        if ($temporal != 'All' && $temporal !='')
         {
             $temporal_array = explode('-', $temporal);
             //$extended_query .='+dateFrom:[' . $temporal_array[0] . ' TO *]+dateTo:[* TO ' . $temporal_array[1] . ']';
@@ -505,7 +505,7 @@ class Search extends CI_Controller
         /* Search Part */
 
         $this->load->model('solr');
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, $fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $adv);
+        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, $fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $adv, $ternRegionFilter);
         if ($classFilter == 'collection')
         {
             // $data['result_spatial']= $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter,'PUBLISHED');
