@@ -49,9 +49,10 @@ class Tregion extends CI_Controller {
         ob_end_flush();     // Strange behaviour, will not work
         flush();            // Unless both are called !
         ob_end_clean();
-        
+       
         if($schedules = $this->Scheduler->getOrder(0,$id)){ 
-            $json = $this->load->file(HOST . 'api/regions.json',TRUE);
+            
+            $json = $this->load->file('../api/regions.json',TRUE);
             $rcf = json_decode($json,TRUE);
             
             foreach($schedules as $schedule){

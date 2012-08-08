@@ -132,6 +132,7 @@ define('RDA_ROOT', $rda_root);
 define('HOST', $host);
 define('ORCA_ROOT', $orca_root);
 define('SOLR_URL', $solr_url);
+define('REGIONS_URL', 'regions.demo');
 
 /*
  * ---------------------------------------------------------------

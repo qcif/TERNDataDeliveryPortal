@@ -14,11 +14,12 @@ class Scheduler extends CI_Model {
     function getOrder($cat_id,$batch_id = null){
         if($batch_id){
             $sql = 'SELECT * FROM index_scheduler WHERE run_schedule <= NOW() and under_process=0 and end_run = 0 and cat = ? and batch_id = ? ORDER BY run_schedule ASC LIMIT 1';
-            $q  = $this->db->query($sql, array($cat_id,$batch_id));        
+            $q  = $this->db->query($sql, array($cat_id,$batch_id));  
+            log_message('error', $this->db->last_query());
         }else{
             $sql = 'SELECT * FROM index_scheduler WHERE run_schedule <= NOW() and under_process=0 and end_run = 0 and cat = ? ORDER BY run_schedule ASC LIMIT 1';
             $q  = $this->db->query($sql, $cat_id);
-        }
+        } 
         if(pg_last_error()){
             log_message('error', pg_last_error());
         }
@@ -67,9 +68,14 @@ class Scheduler extends CI_Model {
     }
     
      function setFinishProcess($id,$start_timestamp, $last_run, $rec_start){
-        
+        if ($start_timestamp != '' ){ 
         $sql = 'UPDATE index_scheduler SET under_process=0,end_run=?,start_timestamp=?,rec_start=? WHERE batch_id = ?';
         $q  = $this->db->query($sql, array($last_run, (string) $start_timestamp, $rec_start, $id));
+        }else{
+            $sql = 'UPDATE index_scheduler SET under_process=0,end_run=?,rec_start=? WHERE batch_id = ?';
+        $q  = $this->db->query($sql, array($last_run, $rec_start, $id));
+            
+        }
 
         if(pg_last_error()){
             log_message('error', pg_last_error());

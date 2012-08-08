@@ -26,9 +26,9 @@ class Solr extends CI_Model
     {
         parent::__construct();
         require_once(APPPATH . 'libraries/Solr/Service.php');       
-        $this->solr = new Apache_Solr_Service( 'localhost', '8080', '/orca-solr' );
+        $this->solr = new Apache_Solr_Service( 'demo', '8080', '/orca-solr' );
         
-    }
+    } 
 
     public function getRecords($start_timestamp = '*', $end_timestamp = 'NOW', $rec_start = 0, $rows = 100)
     {
@@ -44,7 +44,7 @@ class Solr extends CI_Model
 
         $offset = $rec_start;
         $query = 'timestamp:[' . $start_timestamp . ' TO ' . $end_timestamp . '] ';
-        $fq = '+class:(collection)+spatial_coverage+:*';
+        $fq = '+class:(collection)+spatial_coverage:*';
         $additionalParameters = array(
             'sort' => 'timestamp asc',         
             'fq' =>$fq

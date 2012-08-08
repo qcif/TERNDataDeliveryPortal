@@ -34,13 +34,13 @@
         <div class="ui-widget-header clearfix ">
             <div id="panel" class="olControlEditingToolbar">
                 <?php if($widget_map_drawtoolbar){ ?> 
-                    <div  id="box" class="olControlDrawFeatureBoxItemActive" title="To draw a region: click in the map and drag the mouse to get a rectangle. Release the mouse to finish."></div>
+                    <div  id="box" class="olControlDrawFeatureBoxItemInactive" title="To draw a region: click in the map and drag the mouse to get a rectangle. Release the mouse to finish."></div>
                     <div  id="drag" class="olControlDragFeatureBoxItemInactive" title="To move the region: Click and drag the box around the map"></div>
                    
                 <?php } ?>
             </div>
              <div id="doneMapDiv" class="clearfix"><input type="button" id="doneMap" value="Done" class=""/></div>    
-             <div id="instructions">To draw a region: click in the map and drag the mouse to get a rectangle. Release the mouse to finish.</div>
+             <div id="instructions">To draw a region click on the box icon. To choose a region, select one of the overlay layers and click on the region.</div>
         </div> 
      
     </div>

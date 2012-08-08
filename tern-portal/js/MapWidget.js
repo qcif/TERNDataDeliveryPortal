@@ -151,10 +151,10 @@ MapWidget.prototype.registerClick = function(layers,callback){
  *  ------------------------------------------------------------
  */
 
-MapWidget.prototype.registerClickInfo = function(layers,callback){
+MapWidget.prototype.registerClickInfo = function(options,callback){
     var obj = this;
     this.map.events.register('click', this.map, function(e){           
-        obj.handleWMSGetInfo(e,callback);   
+        obj.handleWMSGetInfo(e,options,callback);   
          
     });    
      
@@ -196,10 +196,54 @@ MapWidget.prototype.setSelectedId = function(selectedFeatureLayer, selectedFeatu
  *  ------------------------------------------------------------
  */
 
-MapWidget.prototype.handleWMSGetInfo = function(e,callback){
+MapWidget.prototype.handleWMSGetInfo = function(e,options,callback){
+    var options = options || {};
+    var url = options.url || false;
+    if(!this.info){
+     this.info = new OpenLayers.Control.WMSGetFeatureInfo({
+            url: url, 
+            title: 'Identify features by clicking',
+            infoFormat: 'text/html', 
+            queryVisible: true,
+            eventListeners: {
+                getfeatureinfo: function(event) {
+                   
+                    this.map.addPopup(new OpenLayers.Popup.FramedCloud(
+                        "chicken", 
+                        this.map.getLonLatFromPixel(event.xy),
+                        null,
+                        event.text,
+                        null,
+                        true
+                    ));
+                    }
+                } 
+         });
+         this.map.addControl(this.info);
+         this.info.activate();
+    }else{
+        this.info = new OpenLayers.Control.WMSGetFeatureInfo({
+            url: url, 
+            title: 'Identify features by clicking',
+            infoFormat: 'text/html', 
+            queryVisible: true,
+            eventListeners: {
+                getfeatureinfo: function(event) {
+                   
+                    this.map.addPopup(new OpenLayers.Popup.FramedCloud(
+                        "chicken", 
+                        this.map.getLonLatFromPixel(event.xy),
+                        null,
+                        event.text,
+                        null,
+                        true
+                    ));
+                    }
+                } 
+         });
     
-     
-}
+    }
+}   
 
 /*  ------------------------------------------------------------  
  *    addDrawLayer({options})  

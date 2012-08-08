@@ -38,10 +38,12 @@ define('gCURRENT_SCHEMA_VERSION', '1.3');
 // Party identifiers to be treated to special display (NLA-specific)
 $NLAPartyTypeKey = array ("AU-ANL:PEAU");
 
+/*
 // ARC/NHMRC grants (Activities project integration)
 define("eAU_RESEARCH_GRANTS_PREFIX", "http://thisurlwillneverexistatall.ands.org.au/but/they/will/never/remember/qg13r7uy8qg23wrhbuy1tqhsdbuyh78dt6"); // "http://purl.org/au-research/grants/"
 define("eAU_RESEARCH_GRANTS_HARVEST_POINT","https://services.ands.org.au/sandbox/orca/services/getRegistryObjects.php");
 define("eAU_RESEARCH_GRANTS_DATA_SOURCE","AU_RESEARCH_GRANTS");
+*/ 
 
 // New originatingSource identifiers for objects created using manual entry tools
 define("eORIGSOURCE_RMD_SUFFIX", "orca/register_my_data");

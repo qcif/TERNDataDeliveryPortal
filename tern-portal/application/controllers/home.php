@@ -150,7 +150,12 @@ class Home extends CI_Controller {
                  $data["regions"] = $regions;
                 $this->load->view('content/mapproto',$data);
         }
-	
+	public function mapproto_service(){
+                $data['widget_map'] = 1;
+              
+        
+                $this->load->view('content/mapproto_service',$data);
+        }
 	public function send(){
 		$this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();

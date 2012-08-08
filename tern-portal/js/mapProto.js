@@ -69,16 +69,13 @@ $(document).ready(function() {
                     var divs = $(msg).filter(function(){return $(this).is('div')});
                     divs.each(function() {
                            
-                            if($(this).attr('id') == 'search-results-content') {        
+                            if($(this).attr('id') != 'facet-content') {        
                                 $('#results').html($(this).html());
                             }
-                            else if($(this).attr('id') == 'head-toolbar-content'){
-                                $('#head-toolbar').html($(this).html());
-                            }
+                          
                         });         
 
-
-                         
+                   
                 }
                 ,
                 error:function(msg){

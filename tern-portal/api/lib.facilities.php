@@ -1,5 +1,6 @@
 <?php
 $data = array();
+header('Content-type: application/json');
 array_push($data, array('Supersites & OzFlux <br/>Calperum Mallee', '-34.002717', '140.587683','SO|800080|CCCCCC','&#34;Calperum Mallee&#34; AND (Supersite OR OzFlux)'));
 array_push($data, array('Supersites & OzFlux <br/>Cape Tribulation', '-16.103117', '145.446917','SO|800080|CCCCCC','&#34;Cape Tribulation&#34; AND (Supersite OR OzFlux)'));
 array_push($data, array('Supersites & OzFlux <br/>Robson Creek', '-17.117594', '145.630203','SO|800080|CCCCCC','&#34;Robson Creek&#34; AND (Supersite OR OzFlux)'));
