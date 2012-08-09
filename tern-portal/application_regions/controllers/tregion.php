@@ -43,8 +43,7 @@ class Tregion extends CI_Controller {
         header("Connection: close\r\n");
         header("Content-Encoding: none\r\n");
         ob_start();
-        print_r($params);
-        echo ('OK');
+         echo ('OK');
         $size = ob_get_length();
         header("Content-Length: $size");
         ob_end_flush();     // Strange behaviour, will not work
