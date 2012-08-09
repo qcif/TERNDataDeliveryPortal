@@ -14,18 +14,6 @@ SET default_tablespace = '';
 
 SET default_with_oids = false;
 
---
--- Name: indexer_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
---
-
-CREATE SEQUENCE indexer_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
 
 GRANT ALL ON public.indexer_id_seq TO webuser;
 --
