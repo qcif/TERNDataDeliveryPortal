@@ -15,6 +15,17 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: regions_r_id_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE regions_r_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+   
+--
 -- Name: regions; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
 --
 
@@ -26,7 +37,7 @@ CREATE TABLE regions (
 );
 
 
-ALTER TABLE public.regions OWNER TO admin;
+-- ALTER TABLE public.regions OWNER TO admin;
 
 --
 -- Name: r_id_pk; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
@@ -48,8 +59,7 @@ CREATE INDEX l_id_idx ON regions USING btree (l_id);
 --
 
 REVOKE ALL ON TABLE regions FROM PUBLIC;
-REVOKE ALL ON TABLE regions FROM admin;
-GRANT ALL ON TABLE regions TO admin;
+GRANT ALL ON TABLE regions TO postgres;
 GRANT SELECT,INSERT,UPDATE ON TABLE regions TO webuser;
 
 
