@@ -132,7 +132,7 @@ define('RDA_ROOT', $rda_root);
 define('HOST', $host);
 define('ORCA_ROOT', $orca_root);
 define('SOLR_URL', $solr_url);
-define('REGIONS_URL', $orca_root .'/regions');
+define('REGIONS_URL', $host .$rda_root .'/regions');
 
 /*
  * ---------------------------------------------------------------
