@@ -27,7 +27,7 @@ CREATE SEQUENCE indexer_id_seq
 
 
 
-GRANT ALL ON public.indexer_id_seq OWNER TO webuser;
+GRANT ALL ON public.indexer_id_seq TO webuser;
 --
 -- Name: index_scheduler; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
 --
