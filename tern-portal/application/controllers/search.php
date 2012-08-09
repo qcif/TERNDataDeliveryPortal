@@ -141,7 +141,7 @@ class Search extends CI_Controller
         }
 
        // $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $status);
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, 'All','All','All', 'PUBLISHED',$sort,$adv);
+        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, 'All','All','All', 'PUBLISHED',$sort,$adv, 'All');
         $this->load->view('search/service', $data);
     }
 
@@ -166,7 +166,7 @@ class Search extends CI_Controller
         //$extended_query='';
         //$extended_query .=constructFilterQuery('subject_value', $subject).'^100';
 
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $fortwo,$forfour,$forsix, 'PUBLISHED',$sort,$adv);
+        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $fortwo,$forfour,$forsix, 'PUBLISHED',$sort,$adv, 'All');
  
         $data['numfound'] = $data['json']->{'response'}->{'numFound'};
         $data['seeAlsoType'] = $seeAlsoType;
