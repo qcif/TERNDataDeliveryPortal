@@ -34,7 +34,7 @@ class Tregion extends CI_Controller {
     public function index()
     {    
         $default = array('id');
-        $params = $this->uri->uri_to_assoc(3, $default);
+        $params = $this->uri->uri_to_assoc(4, $default);
         
         extract($params);
         

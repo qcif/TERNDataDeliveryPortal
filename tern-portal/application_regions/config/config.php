@@ -29,7 +29,9 @@ $Revision: 1 $
 $config['base_url']	= 'http://'.HOST.'/'.REGIONS_ROOT.'/';
 $config['orca_url'] = 'http://'.HOST.'/'.ORCA_ROOT.'/';
 $config['solr_url'] = SOLR_URL;
-
+$config['solr_host'] = 'localhost';
+$config['solr_port'] = '8080';
+$config['solr_instance'] = 'orca-solr';
 
 /*
  * Default Values

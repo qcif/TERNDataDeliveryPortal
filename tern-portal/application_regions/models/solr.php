@@ -26,7 +26,7 @@ class Solr extends CI_Model
     {
         parent::__construct();
         require_once(APPPATH . 'libraries/Solr/Service.php');       
-        $this->solr = new Apache_Solr_Service( 'demo', '8080', '/orca-solr' );
+        $this->solr = new Apache_Solr_Service( $this->config->item('solr_host'),$this->config->item('solr_port'), $this->config->item('solr_instance') );
         
     } 
 
