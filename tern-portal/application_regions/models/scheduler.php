@@ -120,7 +120,7 @@ class Scheduler extends CI_Model {
             $sql = 'DELETE FROM index_scheduler WHERE cat=? AND under_process=0';
             $q  = $this->db->query($sql, array($cat));
             }   
-            
+           
         return $this->db->affected_rows();    
     }
 }

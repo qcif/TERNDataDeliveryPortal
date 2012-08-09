@@ -34,7 +34,7 @@ class Tregion extends CI_Controller {
     public function index()
     {    
         $default = array('id');
-        $params = $this->uri->uri_to_assoc(4, $default);
+        $params = $this->uri->uri_to_assoc(3, $default);
         
         extract($params);
         
@@ -43,6 +43,7 @@ class Tregion extends CI_Controller {
         header("Connection: close\r\n");
         header("Content-Encoding: none\r\n");
         ob_start();
+        print_r($params);
         echo ('OK');
         $size = ob_get_length();
         header("Content-Length: $size");
