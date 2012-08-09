@@ -12,7 +12,7 @@ function initMapProto(){
            
    
             mapWidget.addExtLayer({
-                url: 'http://demo:8080/geoserver/wms',
+                url: 'http://portal-dev.tern.org.au:8080/geoserver/wms',
                 protocol: "WMS",
                 geoLayer: "nr:ltern",
                 layerName: "LTERN",
