@@ -1,5 +1,5 @@
 <@compress single_line=true>
-<br/><b>Points info</b><br/>s
+<br/><b>Points info</b><br/>
 <table class="featureInfo">
   
   <tr>
