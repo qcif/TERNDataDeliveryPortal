@@ -54,7 +54,7 @@ $(document).ready(function() {
         var id  = $(this).attr("id");
         var l_id = $("#regionSelect h3.ui-state-active").attr("id");
         mapWidget.setSelectedId(l_id, id, $(this).text());        
-        mapWidget.setHighlightLayer(id,mapWidget);
+        mapWidget.setHighlightLayer(id);
         updateSelectedFeature($(this).text());
     });
     

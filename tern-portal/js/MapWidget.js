@@ -5,8 +5,8 @@
 function getURL(keyword, matrixIds){     
     var URLList = {
         "dummy" : base_url + 'api/output.json',
-        "nr:regions" : 'http://portal-dev.tern.org.au:8080/geoserver/wms', 
-        "intersectPt": 'http://portal-dev.tern.org.au/r/intersectPt/',
+        "nr:regions" : 'http://demo:8080/geoserver/wms', 
+        "intersectPt":  base_url + 'regions/r/intersectPt/',
         "aus_east_wmts": {
             name: "WMTS Layer",
             url:  'http://192.168.56.1:3333/geoserver/gwc/service/wmts/',
