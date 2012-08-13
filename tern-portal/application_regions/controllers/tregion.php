@@ -23,7 +23,7 @@ class Tregion extends CI_Controller {
     
     function __construct()
     {
-        if (isset($_SERVER['REMOTE_ADDR']) && ($_SERVER['REMOTE_ADDR'] != '127.0.0.1') && ($_SERVER['REMOTE_ADDR' != 'localhost'])) die($_SERVER['REMOTE_ADDR'] . 'Permission denied');
+        if (isset($_SERVER['REMOTE_ADDR']) && ($_SERVER['REMOTE_ADDR'] != '127.0.0.1') || ($_SERVER['REMOTE_ADDR' != 'localhost'])) die('Permission denied');
     
         parent::__construct();
         $this->load->model('Scheduler');   
