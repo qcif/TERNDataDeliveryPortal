@@ -7,8 +7,8 @@
     <head>   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
         <link type="text/css" href="<?php echo base_url(); ?>css/tern.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
-        <style>
-          
+        <style >
+          .olPopup { border : 0 !important;}
             </style> 
   </head>
     <body>
