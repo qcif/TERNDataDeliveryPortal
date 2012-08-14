@@ -6,7 +6,7 @@
 	var MAX_LOGO_WIDTH = 200;
 	var MAX_LOGO_HEIGHT = 200;
 
-	function testLogo(id, url){
+function testLogo(id, url){
 		var img = $('#'+id)[0]; // Get my img elem
 		//$('#'+id).hide();
 		var pic_real_width, pic_real_height;
@@ -20,7 +20,8 @@
 			});
 	}
 
-	function resizeLogo(image , id)
+
+function resizeLogo(image , id)
 	{
 		var maxWidth = MAX_LOGO_WIDTH; // Max width for the image
 	    var maxHeight = MAX_LOGO_HEIGHT;    // Max height for the image
@@ -58,7 +59,7 @@ function handlerecordpopupSlide()
         });
 }
 
-	function initPrintViewPage(){
+function initPrintViewPage(){
 		//alert('init');
 
 		$('#header').hide();
@@ -72,7 +73,7 @@ function handlerecordpopupSlide()
 		window.print();
 	}
         
-        	function initDataViewPage(){
+function initDataViewPage(){
 
                 handlerecordpopupSlide();
                 initConnectionsBox();
@@ -81,7 +82,7 @@ function handlerecordpopupSlide()
 
 	}
         
-        function initViewPage(){
+function initViewPage(){
 
 		//hide all descriptions and headings
 		//$('.descriptions div, .descriptions h3').hide();
@@ -212,11 +213,10 @@ function removeBracket(arr)
     return t;
 }
 
-	function setupSeealsoBtns(){
+function setupSeealsoBtns(){
 		$('.button').button();
         $("#status").html($('#seeAlsoCurrentPage').html() + '/'+$('#seeAlsoTotalPage').html());
     }
-
 
 
         function initMapProto(){
@@ -250,3 +250,4 @@ function removeBracket(arr)
         
         
         
+

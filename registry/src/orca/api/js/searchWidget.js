@@ -9,14 +9,13 @@ function iecheck() {
 
 
 TERNData = new function() {
-  var BASE_URL = 'http://portal.tern.org.au/admin/orca/api/';
-  //var BASE_URL = 'http://demo/admin/orca/api/';
+  var BASE_URL = 'http://portal-dev.tern.org.au/admin/orca/api/';
+ // var BASE_URL = 'http://demo/admin/orca/api/';
   var STYLESHEET = BASE_URL + "css/api.css"
   var CONTENT_URL = BASE_URL + 'js/list_result.js';
   var ROOT = 'tern_magic_data';
   var _args={};
-
-
+ 
   function requestStylesheet(stylesheet_url) {
     stylesheet = document.createElement("link");
     stylesheet.rel = "stylesheet";
@@ -34,15 +33,16 @@ TERNData = new function() {
     document.getElementsByTagName('head')[0].appendChild(script);
   }
   
-
-	this.init = function(Args) {
+  this.init = function(Args) {
            _args = Args;
            
            this.getTerm=function(){
                return _args;
            }
-	  this.serverResponse = function(data) {
-	   // if (!data) return;
+
+           this.serverResponse = function(data) {
+	   
+           // if (!data) return;
 	    var div = document.getElementById(ROOT);
 	    var item = "";
 
@@ -70,6 +70,7 @@ TERNData = new function() {
 	  }
 	
 	  requestStylesheet(STYLESHEET);
+          
 //create an empty div for results
           var _div=document.createElement('div');
           _div.setAttribute("id", ROOT);

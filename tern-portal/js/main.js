@@ -2,6 +2,7 @@
 function urldecode(str) {
     return decodeURIComponent((str+'').replace(/\+/g, '%20'));
 }
+
 function trimwords(theString, numWords) {
     
     if(theString!=null)
@@ -48,6 +49,7 @@ $(function() {
     var mapResult;
     var param_q;
     var spatial_included_ids = '';
+    var num=10;
     
     // ROUTING 
     function routing(){
@@ -149,8 +151,14 @@ $(function() {
                 search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
                 search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
                 
-                $("#loading").show();
-                if(adv==1&&window.location.href.indexOf('/n')>=0)
+                $("#loading").show();                             
+    
+                if(getCookie("selection")!=null)
+                {                   
+                    num=getCookie("selection");
+                }
+        
+                if(adv==1&&window.location.href.indexOf('/n')>=0&&window.location.href.indexOf('/s')>=0&&window.location.href.indexOf('/w')>=0&&window.location.href.indexOf('/e')>=0)
                 { 
                         doSpatialSearch();
                 }else{
@@ -268,7 +276,13 @@ $(function() {
     }
    
     /*Create Hash URL from search terms and filters*/
-    function formatSearch(term, page, classFilter){
+    function formatSearch(term, page, classFilter,numToDisplay){
+        
+        if(typeof numToDisplay === 'undefined')
+        {
+            numToDisplay=num;
+        }
+           
         if(term=='') term ='*:*';
         var res = 'search#!/q='+term+'/p='+page;
         res+='/tab='+classFilter;
@@ -283,7 +297,9 @@ $(function() {
         if(n!=''){
             res+='/n='+n+'/e='+e+'/s='+s+'/w='+w;
         }
-        res+='/adv=' +(adv);
+        res+='/adv=' +(adv)+'/num='+(numToDisplay); //local variable to pass in number of records
+        
+        
         //alert(res);
         return res;
 
@@ -511,8 +527,8 @@ $(function() {
         $('#search_basic').click(function(){
             resetAllSearchVals();
             search_term = $('#search-box').val();
-      
-            changeHashTo(formatSearch(search_term, 1, classFilter));
+          
+            changeHashTo(formatSearch(search_term, 1, classFilter,num));
         }).button();     
         
         //Submit button
@@ -597,6 +613,7 @@ $(function() {
              
             }   		
 	    */
+
             changeHashTo(formatSearch(search_term, 1, classFilter));
 
             //  }
@@ -607,27 +624,27 @@ $(function() {
            
     }
     
-    function doSpatialSearch(){
+    function doSpatialSearch()
+    {
 	
         $.ajax({
-  			type:"POST",
-  			url: base_url+"/search/spatial/",
-  			data:"north="+n+"&south="+s+"&east="+e+"&west="+w,
-                        
-  				success:function(msg){
-  					spatial_included_ids = msg;
-                                       
-  					//console.log(spatial_included_ids);
-  					doNormalSearch();
-                                         $("#loading").hide();
-                                        
-  				},
-  				error:function(msg){
-                                     $("#loading").hide();
-  					//console.log('spatial: error'+msg);
-  				}
+                    type:"POST",
+                    url: base_url+"/search/spatial/",
+                    data:"north="+n+"&south="+s+"&east="+e+"&west="+w,
+
+                    success:function(msg)
+                    {
+                        spatial_included_ids = msg;
+
+                        doNormalSearch();
+                        $("#loading").hide();
+                    },
+                    error:function(msg)
+                    {
+                        $("#loading").hide();
+                    }
   		});
-	}
+    }
         
     /* Reset all search values */
     function resetAllSearchVals(){
@@ -779,21 +796,31 @@ $(function() {
         }
            
     } 
-           
  
- 
-    function doNormalSearch(){
-        //spatial_included_ids='';
-        //alert(spatial_included_ids);
+    function doNormalSearch(){        
         $.ajax({
             type:"POST",
             url: base_url+"/search/filter/",
-            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv + "&ternRegionFilter=" + ternRegionFilter,
+
+//            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv + "&ternRegionFilter=" + ternRegionFilter,
+
+            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv+"&num="+num,
+
         
             success: function(msg,textStatus){
                 handleResults(msg,mapResult);
                  $("#loading").hide();
-            }
+                 
+                 var opt=document.getElementById('viewrecord');
+                 for(var i=0;i<opt.options.length;i++)
+                 {
+                     if(opt.options[i].text===num.toString())
+                     {                         
+                         opt.selectedIndex=i;
+                         break;
+                     }
+                 }
+             }
             ,
             error:function(msg){
                 console.log('error');
@@ -850,7 +877,14 @@ $(function() {
             search_term = $('#search-box').val();
 
             if(search_term=='')search_term='*:*';
-            changeHashTo(formatSearch(search_term, 1, classFilter));
+            
+                  
+           if(getCookie("selection")!=null)
+           {
+              num=getCookie("selection");
+
+           }
+            changeHashTo(formatSearch(search_term, 1, classFilter,num));
 
         });     
          
@@ -885,13 +919,13 @@ $(function() {
         sizeHomeContent();
     }
 
-function resetFilter(){
+    function resetFilter(){
     subjectFilter = 'All';
     classFilter= 'collection';
     groupFilter= 'All';
 }
         
-function initPreviewPage(){
+    function initPreviewPage(){
     $("ul.sf-menu").superfish();
 	       initConnectionsBox()		
 	       initSubjectsSEEALSO()		
@@ -915,11 +949,47 @@ function initPreviewPage(){
 	        initViewMap('spatial_coverage_map','.spatial_coverage_center','.coverage');		
 			
 	   }		
-	});
+	
+      
+    $('#viewrecord').live('change',function(){
+     
+     console.log($(this).find(":selected").val());
+     
+     var selected=$(this).find(":selected").val();
+     switch(selected)
+     {
+         case "10":
+                 num=10;
+                 setCookie('selection',10,365);
+                 break;
+         case "25":
+                 num=25;
+                 setCookie('selection',25,365);             
+             break;
+         case "50":
+                 num=50;
+                 setCookie('selection',50,365);             
+             break;
+         case "100":
+                 num=100;
+                 setCookie('selection',100,365);             
+             break;
+         default:
+                 num=10;
+                 setCookie('selection',10,365);
+          
+     }         
+           
+     doNormalSearch();   
+     changeHashTo(formatSearch(search_term, 1, classFilter,num));    
+     
+ });
+ 
+});
    
 
 
-function autocomplete(id){
+    function autocomplete(id){
        
     /*
     * Auto complete for main search boxtrus
@@ -941,7 +1011,7 @@ function autocomplete(id){
 
 }
 
-function handleRecordPopup(e){
+    function handleRecordPopup(e){
     
     var rokey=e.attr('id');
      $("#loading").show();                      
@@ -970,7 +1040,7 @@ function handleRecordPopup(e){
      
 } 
 
-function initConnectionsBox(){
+    function initConnectionsBox(){
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //NEW CONNECTIONS
@@ -1056,7 +1126,7 @@ function initConnectionsBox(){
     });
 }
         
-function initSubjectsSEEALSO(){
+    function initSubjectsSEEALSO(){
     //SEE ALSO FOR SUBJECTS
     var group_value = encodeURIComponent($('#group_value').html());
     //console.log(group_value);
@@ -1154,7 +1224,7 @@ var t=removeBracket(tmp)
 
 }
 
-function getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value){
+    function getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value){
 		 $.ajax({
              type:"POST",
              url: base_url+"search/seeAlso/content",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
@@ -1167,7 +1237,7 @@ function getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value){
              });
 	}
 
-function initIdentifiersSEEALSO(){
+    function initIdentifiersSEEALSO(){
 		var key_value=$('#key').text();
 		//SEE ALSO FOR IDENTIFIERS
         var identifiers = [];
@@ -1275,24 +1345,19 @@ function initIdentifiersSEEALSO(){
         }
 	}
 
-function setupConnectionsBtns(){
+    function setupConnectionsBtns(){
 		$(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
 		$('.button').button();
         $("#status").html($('#connectionsCurrentPage').html() + '/'+$('#connectionsTotalPage').html());
     }
-
     
-function initViewMap(mapId, centerSelector,coverageSelector){
+    function initViewMap(mapId, centerSelector,coverageSelector){
     var mapView = new MapWidget(mapId,true);
      mapView.addDataLayer(false,"transparent");
      mapView.addVectortoDataLayer(centerSelector,false);
      mapView.addVectortoDataLayer(coverageSelector,false);
 	}
-
-
-
-  
-    
+   
     function handleRandom(facname)
     {
           $.ajax({
@@ -1320,7 +1385,35 @@ function initViewMap(mapId, centerSelector,coverageSelector){
         
         
     }
+ 
+
+ function getCookie(c_name)
+ {
+    var i,x,y,ARRcookies=document.cookie.split(";");
+    for (i=0;i<ARRcookies.length;i++)
+    {
+        x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+        y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+        x=x.replace(/^\s+|\s+$/g,"");
     
+        if (x==c_name)
+        {
+            return unescape(y);
+        }
+    }
+ }
+
+function setCookie(c_name,value,exdays)
+{
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    
+    var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+    
+    document.cookie=c_name + "=" + c_value;
+}
+
+ 
 /*    
     function handleRollover()
     {

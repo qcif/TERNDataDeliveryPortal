@@ -159,8 +159,7 @@ limitations under the License.
 
     function spatial($north, $east, $south, $west)
     {
-        
-       // print_r($north);
+       
     	return $this->db->query('select distinct rs.registry_object_key from dba.tbl_registry_objects rs, dba.tbl_spatial_extents se
 where rs.registry_object_key = se.registry_object_key 
 and se.bound_box && box ((point('.$north.','.$west.')),(point('.$south.','.$east.')))');

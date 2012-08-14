@@ -3,13 +3,13 @@
  * and open the template in the editor.
  */
 
-var base_url="http://portal.tern.org.au/admin/orca/api/search";
-//var base_url="http://demo/admin/orca/api/search";
 var term=TERNData.getTerm();
+//var base_url='http://demo/api/search';
+var base_url='http://portal-dev.tern.org.au/api/search';
 
 $(document).ready(function() 
 { 
-    console.log(term);
+   // console.log(term);
     $.ajax({
             type:'GET',
             url:base_url+"?term="+term+"&format=json&w=1&count=10&callback=?",
@@ -23,13 +23,13 @@ $(document).ready(function()
                     TERNData.serverResponse(data);
                 }              
             },
-            error:function(msg){
-               
+            error:function(msg){  
   		
             }
     });
     
-});  
+}); 
+
 
         
 

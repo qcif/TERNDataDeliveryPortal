@@ -25,13 +25,17 @@
         parent::__construct();
     }
 
-    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0, $ternRegionFilter = 'All')
+
+//    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0, $ternRegionFilter = 'All')
+
+    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0,$num)
+
     {
         $q = $query;
         $q = rawurlencode($q);
         $q = str_replace("%5C%22", "\"", $q); //silly encoding
         $start = 0;
-        $row = 10;     
+        $row = $num;     
         if ($page != 1)
             $start = ($page - 1) * $row;
 
@@ -57,7 +61,7 @@
         if ($ternRegionFilter != 'All')
             $filter_query .= constructFilterQuery('tern_region', $ternRegionFilter);
         $q = urldecode($q);
-       
+
         if($adv == 0){ 
             if ($q != '*:*')
             $q = escapeSolrValue($q);

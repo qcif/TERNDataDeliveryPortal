@@ -35,17 +35,28 @@
             </div> 
             <div id="result-panel" class="ui-layout-center ">
                    <div id="no-result" class="ui-corner-all"><div><h3>Please use the search tool</h3></div></div>
-                   <div id="head-toolbar" class="toolbar clearfix hide"></div>
+                   <div id="head-toolbar" class="toolbar clearfix hide"></div>                                
+                         
+                   <div class="selectrecord">
+                       <b>View</b><select id="viewrecord">				
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>				
+                            <option value="100">100</option>			
+                        </select><b>records</b> 
+                   </div> 
+                   
                  <div id="ui-layout-facetmap">                     
                        <div id ="ui-layout-map" class="ui-layout-map">
                           <div id="result-map"></div>                                               
                      </div>
                  </div>
-                <div id="search-result" class="ui-layout-search-results"></div>
-             
-            </div>
- 
+                  
+            <?php// $this->load->view('search/loadmore');?>
 
+                <div id="search-result" class="ui-layout-search-results"></div>
+            
+            </div>
         </div> 
 
 <?php $this->load->view('tpl/footer');?>
