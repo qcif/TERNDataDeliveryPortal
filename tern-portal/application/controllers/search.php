@@ -523,7 +523,7 @@ class Search extends CI_Controller
 
 //        $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $adv, $ternRegionFilter); //just for the tabbing mechanism (getting the numbers right)
 
-        $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $adv,$num); //just for the tabbing mechanism (getting the numbers right)
+        $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $adv,$ternRegionFilter,$num); //just for the tabbing mechanism (getting the numbers right)
 
         /* just that! and json_tab is used in tab view */
 
