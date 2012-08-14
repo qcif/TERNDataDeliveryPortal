@@ -64,7 +64,7 @@ $(document).ready(function() {
             $.ajax({
                 type:"POST",
                 url: base_url+"/search/filter/",
-                data:"q=&classFilter=All&typeFilter=All&groupFilter=All&subjectFilter=All&fortwoFilter=All&forfourFilter=All&forsixFilter=All&page=1&temporal=All&adv=0&ternRegionFilter="+ mapWidget.getSelectedId() ,            
+                data:"q=&classFilter=All&typeFilter=All&groupFilter=All&subjectFilter=All&fortwoFilter=All&forfourFilter=All&forsixFilter=All&page=1&temporal=All&adv=0&ternRegionFilter="+ mapWidget.getSelectedId()  +"&num=100",            
                 success: function(msg,textStatus){
                     var divs = $(msg).filter(function(){return $(this).is('div')});
                     divs.each(function() {

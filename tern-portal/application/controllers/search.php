@@ -516,8 +516,7 @@ class Search extends CI_Controller
         {
             // $data['result_spatial']= $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter,'PUBLISHED');
         }
-        //print_r($data['json']);
-
+        
         /*         * getting the tabbing right* */
         $query_tab = $q;
 
