@@ -57,12 +57,15 @@ String.prototype.capitalize = function() {
  * 
  * 
  */
-function MapWidget(mapId, overviewMap){
+function MapWidget(mapId, overviewMap, options){
 
     this.map = '';
     this.drawControls = '';
     this.overviewMap = true;
     this.overviewMap = overviewMap;
+    
+    // get Options 
+    var options = options || {};
     
     // World Geodetic System 1984 projection (lon/lat)
     this.WGS84 = new OpenLayers.Projection("EPSG:4326");
@@ -97,18 +100,28 @@ function MapWidget(mapId, overviewMap){
      *  ------------------------------------------------------------
      */
   
-    var gphy = new OpenLayers.Layer.Google("Google", 
-    {
-        type: google.maps.MapTypeId.HYBRID, 
-        sphericalMercator: true, 
-        minZoomLevel: 2, 
-        maxZoomLevel: 15, 
-        wrapDateLine:false, 
-        maxExtent : this.mapBounds,
-        zoomWheelEnabled: true
-    });	
-   
-    this.map.addLayer(gphy);          
+      
+    var gphy = new OpenLayers.Layer.Google(
+        "Google Physical",
+        {type: google.maps.MapTypeId.TERRAIN}
+    );
+    var gmap = new OpenLayers.Layer.Google(
+        "Google Streets", // the default
+        {numZoomLevels: 20}
+    );
+    var ghyb = new OpenLayers.Layer.Google(
+        "Google Hybrid",
+        {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
+    );
+    var gsat = new OpenLayers.Layer.Google(
+        "Google Satellite",
+        {type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22}
+    );
+    var layers = options.layer || [gphy, gmap, ghyb, gsat]; 
+    
+    
+    this.map.addLayers(layers);
+            
     //this.layers.push(gphy); 
     
     //Enable switch layers (that + button on the map) 
@@ -204,16 +217,22 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
             queryVisible: true,
             eventListeners: {
                 getfeatureinfo: function(event) {     
-                    var content = $(event.text).find('div').html();
-                    if(content && content != ''){
-                        this.map.addPopup(new OpenLayers.Popup.FramedCloud(
-                            "chicken", 
+                    var length = event.text.length;
+                     while( this.map.popups.length ) {
+                        this.map.removePopup(this.map.popups[0]);
+                    }
+
+                    if(length > 657){
+                       var popup = new OpenLayers.Popup.FramedCloud(
+                            "chicken",
                             this.map.getLonLatFromPixel(event.xy),
-                            null,
+                            null, 
                             event.text,
                             null,
                             true
-                        ));
+                        );
+                    popup.maxSize = new OpenLayers.Size(400,200);
+                    this.map.addPopup(popup);
                     }
                 }
             }
@@ -548,6 +567,17 @@ MapWidget.prototype.setHighlightLayer = function(r_id){
 }
 
 
+
+/*  ------------------------------------------------------------  
+ *    getExtentCoords()
+ *    returns the coordinates for the map extent as a bounds object 
+ *    
+ *  ------------------------------------------------------------
+ */
+
+MapWidget.prototype.getExtentCoords = function(){
+        return coords = this.map.getExtent().transform(this.WGS84_google_mercator, this.WGS84);       
+}
 /*  ------------------------------------------------------------  
  *    handleMapClick(e,  layers, callback)
  *    e : Click Event

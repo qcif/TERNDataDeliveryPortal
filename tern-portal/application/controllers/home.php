@@ -156,6 +156,14 @@ class Home extends CI_Controller {
         
                 $this->load->view('content/mapproto_service',$data);
         }
+        
+        public function mapproto_viewport(){
+                $data['widget_map'] = 1;
+              
+        
+                $this->load->view('content/mapproto_viewport',$data);
+        }
+        
 	public function send(){
 		$this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();

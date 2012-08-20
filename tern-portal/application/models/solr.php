@@ -67,11 +67,11 @@
             $q = escapeSolrValue($q);
         $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
         }
-        if($sort!='score desc') $filter_query.='&sort='.$sort;
-        $q.=$filter_query;
+       $q.=$filter_query;
 
         $q.=($extended_query);
-        
+        if($sort!='score desc') $filter_query.='&sort='.$sort;
+       
         //$filter_query .=$extended_query;//for spatial and temporal
         //$q .=$extended_query;//extended for spatial
         $fields = array(
