@@ -87,6 +87,7 @@ function MapWidget(mapId, overviewMap, options){
     this.options = {
         units : 'm',
         numZoomLevels : 12,
+        minZoomLevel: 4,
         maxExtent : this.mapBounds,
         maxResolution:'auto', 
         projection: this.WGS84_google_mercator,
@@ -128,13 +129,24 @@ function MapWidget(mapId, overviewMap, options){
     this.map.addControl(new OpenLayers.Control.LayerSwitcher());
     //Enable Overview Map
     if(this.overviewMap){
-        var options = {
-            minRatio: 0, 
-            maximized: true, 
-            maxRatio: Number.POSITIVE_INFINITY, 
+        var options = { 
+            mapOptions: { numZoomLevels: 1,  
+                maxExtent : this.mapBounds,           
+                projection: this.WGS84_google_mercator,
+                displayProjection: this.WGS84,
+                minZoomLevel: 2
+        },
+        
+          minRatio: this.map.getResolution()/this.map.getResolutionForZoom(5), 
+           // isSuitableOverview: function() {return true;},
+         
+         //  units: "m",
+           maximized: true,
+         //  numZoomLevels: 1,
+            maxRatio: this.map.getResolution()/this.map.getResolutionForZoom(5),//Number.POSITIVE_INFINITY, 
             autoPan: true
         };
-        this.map.addControl(new OpenLayers.Control.OverviewMap(options));
+        this.map.addControl(new OpenLayers.Control.OverviewMap( options));
     }
     // look at Australia 
     if (!this.map.getCenter()) this.map.zoomToExtent(new OpenLayers.Bounds( 11548635,-5889094,18604187,-597430));

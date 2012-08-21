@@ -41,8 +41,16 @@
             }
         
         ?>
-        
         </div>
+            
+<select id="regionTypeSelect"><?php
+            for($i=0;$i<count($regions);$i++){
+                 ?>
+<option id="<?php echo $regions[$i]->l_id;?>" value="<?php echo $regions[$i]->geo_name;?>" ><?php echo $regions[$i]->l_name;?></option>
+<?php } ?>
+</select>
+
+            
         </div>
         
 <div id="overlaymap" style="width:430px;margin:auto;">
