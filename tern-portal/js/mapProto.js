@@ -41,9 +41,15 @@ function switchLayer(e,i,mapWidget){
 }
 
 $(document).ready(function() {
-   
+   $("#regionTypeSelect").change(function(){
+      $('#regionSelect').dropdownchecklist("destroy");
+      $('#regionSelect').html($("#regionSelect" + $(this).val()).html());
+       $('#regionSelect select').dropdownchecklist();
+           
+       });
+     
     var mapWidget = initMapProto();
-    $("#regionSelect").accordion({
+    /*$("#regionSelect").accordion({
         autoHeight: false, 
         fillSpace: true,
         change: function(e,i){
@@ -57,7 +63,7 @@ $(document).ready(function() {
         mapWidget.setHighlightLayer(id);
         updateSelectedFeature($(this).text());
     });
-    
+    */
     $("button").bind('click', function() {
         if(mapWidget.getSelectedId()!=""){ 
             

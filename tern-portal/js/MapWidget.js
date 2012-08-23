@@ -222,11 +222,20 @@ MapWidget.prototype.setSelectedId = function(selectedFeatureLayer, selectedFeatu
 MapWidget.prototype.handleWMSGetInfo = function(options,callback){
     var options = options || {};
     var url = options.url || false;
+    var layers = options.layers;
+    var arrLayer = [];
+     for(var j=0;j<layers.length; j++){
+        for(var i=0;i<this.extLayers.length; i++){
+                if(this.extLayers[i].name == layers[j]) { 
+                     arrLayer.push(this.extLayers[i]);}                     
+        }
+     }
     this.info = new OpenLayers.Control.WMSGetFeatureInfo({
             url: url, 
             title: 'Identify features by clicking',
             infoFormat: 'text/html', 
-            queryVisible: true,
+            queryVisible: true, 
+            layers: arrLayer,
             eventListeners: {
                 getfeatureinfo: function(event) {     
                     var length = event.text.length;
