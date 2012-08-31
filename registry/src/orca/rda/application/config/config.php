@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 /**
+=======
+/** 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 Copyright 2011 The Australian National University
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,6 +18,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ***************************************************************************
 *
+<<<<<<< HEAD
 **/
 ?>
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
@@ -34,6 +39,19 @@ $config['datacite_solr_url'] = DATACITE_SOLR_URL;
 $config['enable_warning_notices'] = $enable_warning_notices;
 $config['warning_notices'] = $warning_notices;
 
+=======
+**/ 
+?>
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+
+/*
+ * Change me
+ */
+$config['base_url']	= 'http://'.HOST.'/'.RDA_ROOT.'/';
+$config['orca_url'] = 'http://'.HOST.'/'.ORCA_ROOT.'/';
+$config['solr_url'] = SOLR_URL;
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 
 /*
@@ -41,6 +59,7 @@ $config['warning_notices'] = $warning_notices;
  * Used in the helper to return the real URLs
  */
 
+<<<<<<< HEAD
 $config['orca_service_point'] 	= 'services/getRegistryObjectsSOLR.php';
 $config['orca_view_point'] 		= 'view.php';
 
@@ -54,6 +73,13 @@ date_default_timezone_set('Australia/Canberra');
 $config['subjects_categories'] = $subjects_categories;
 //default categories
 
+=======
+$config['orca_service_point'] = 'services/getRegistryObjectsSOLR.php';
+$config['orca_view_point'] = 'view.php';
+
+$config['GA_enabled'] = false;
+$config['GA_code']='';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 
 /*
@@ -167,7 +193,11 @@ $config['subclass_prefix'] = 'MY_';
 |
 */
 //$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+<<<<<<< HEAD
 $config['permitted_uri_chars'] = '@ a-z 0-9~%.,():_-';
+=======
+$config['permitted_uri_chars'] = '@ a-z 0-9~%.:_-';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 
 /*

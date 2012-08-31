@@ -4,9 +4,13 @@ $half = round($count / 2);
 
 function printRecord($r){
      $ro_key = $r->{'key'};
+<<<<<<< HEAD
             //$name =  $r->{'displayTitle'};  //commented 8.1
             $name =  $r->{'display_title'};  //added 8.1
                 
+=======
+            $name =  $r->{'displayTitle'};
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
            /* $descriptions = array();if(isset($r->{'description_value'})) $descriptions = $r->{'description_value'};
             $description_type=array();if(isset($r->{'description_type'})) $description_type = $r->{'description_type'};
 	    $brief = '';$found_brief = false;

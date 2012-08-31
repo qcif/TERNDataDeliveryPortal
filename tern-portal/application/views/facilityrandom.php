@@ -26,8 +26,12 @@ $half = round($count / 2);
                        $partners[$key]['description_value']=$d->{'description_value'}[1];
                                     
                        $partners[$key]['url']=$d->{'location'}[0];
+<<<<<<< HEAD
                       // $partners[$key]['displayTitle']=$d->{'displayTitle'};                         
                         $partners[$key]['display_title']=$d->{'display_title'};                         
+=======
+                       $partners[$key]['displayTitle']=$d->{'displayTitle'};                         
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                        $partners[$key]['alt_name']=$d->{'alt_name'};  
                        $partners[$key]['query_name']=$d->{'query_name'};  
                     }
@@ -39,8 +43,12 @@ $half = round($count / 2);
         
 function printRecord($r){
      $ro_key = $r->{'key'};
+<<<<<<< HEAD
            // $name =  $r->{'displayTitle'}; //commented 8.1
             $name =  $r->{'display_title'}; //added 8.1
+=======
+            $name =  $r->{'displayTitle'};
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
             echo '<li class="random-record-list">'; 
             echo '<a href="view/dataview?key='.$ro_key.'" class="record-list">'.$name.'</a>';            
@@ -118,8 +126,12 @@ function displayDesc($facid,$partners)
 
                 }
                 
+<<<<<<< HEAD
                   //  echo '<h2 class="fac-title">'.$partners[$fackey]['displayTitle'].'</h2>'; //commented 8.1
                 echo '<h2 class="fac-title">'.$partners[$fackey]['display_title'].'</h2>';   //added 8.1
+=======
+                    echo '<h2 class="fac-title">'.$partners[$fackey]['displayTitle'].'</h2>';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                     displayDesc($fackey,$partners);
                     echo '</div>';
         ?>

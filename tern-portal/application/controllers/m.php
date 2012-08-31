@@ -120,9 +120,13 @@ class M extends CI_Controller {
                         $content = htmlspecialchars_decode($this->ro->get($key));
                         $data['key']= $key;
                         $this->load->model('Solr', 'solr');
+<<<<<<< HEAD
                         //$connection = $this->load->view('mobile/connections', $this->connections("count",null,null,"relatedObject_key:".$key,null,$key),true);
                         
                         $connection = $this->load->view('mobile/connections', $this->connections("count",null,null,"related_object_key:".$key,null,$key),true); 
+=======
+                        $connection = $this->load->view('mobile/connections', $this->connections("count",null,null,"relatedObject_key:".$key,null,$key),true);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
                         $data['content'] = $this->transform($content, 'rifcs2ViewMobile.xsl',urlencode($key),$connection);
 			//$data['content'] = $content;
@@ -161,10 +165,15 @@ class M extends CI_Controller {
 		$this->load->model('solr');
 		$object = $this->solr->getObjects($related,null,null,null);
 		if(isset($object->{'response'}->{'docs'}[0])){
+<<<<<<< HEAD
 		//$keyList = $object->{'response'}->{'docs'}[0]->{'relatedObject_key'};
                 $keyList = $object->{'response'}->{'docs'}[0]->{'related_object_key'};
 		//$relationshipList = $object->{'response'}->{'docs'}[0]->{'relatedObject_relation'};
                 $relationshipList = $object->{'response'}->{'docs'}[0]->{'related_object_relation'};
+=======
+		$keyList = $object->{'response'}->{'docs'}[0]->{'relatedObject_key'};
+		$relationshipList = $object->{'response'}->{'docs'}[0]->{'relatedObject_relation'};
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
                 return getRelationship($keyList, $relationshipList);
                 }
@@ -191,6 +200,7 @@ class M extends CI_Controller {
          		$relatedKeys = array();
         		foreach($data[$class]['json'][0]->{'response'}->{'docs'} as $r)
         		{
+<<<<<<< HEAD
         			//$relatedNum = count($r->{'relatedObject_key'});
 
                                 $relatedNum = count($r->{'related_object_key'});
@@ -206,6 +216,18 @@ class M extends CI_Controller {
                                                 $relatedKeys[] = $r->{'related_object_key'}[$i];
         					//$data[$class]['relationship'][] = $r->{'relatedObject_relation'}[$i];
                                                 $data[$class]['relationship'][] = $r->{'related_object_relation'}[$i];
+=======
+        			$relatedNum = count($r->{'relatedObject_key'});
+
+        			$relatedKeys = '';
+        			$relationship = '';
+        			for($i = 0; $i<$relatedNum;$i++)
+        			{
+        				if($r->{'relatedObject_relatedObjectClass'}[$i]==$class)
+        				{
+        					$relatedKeys[] = $r->{'relatedObject_key'}[$i];
+        					$data[$class]['relationship'][] = $r->{'relatedObject_relation'}[$i];
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         				}
         			}
         		}
@@ -253,6 +275,7 @@ class M extends CI_Controller {
         		$relatedKeys = array();
         		foreach($data[$types]['json'][0]->{'response'}->{'docs'} as $r)
         		{
+<<<<<<< HEAD
         			//$relatedNum = count($r->{'relatedObject_key'});
                                 $relatedNum = count($r->{'related_object_key'});
         			$relatedKeys = '';
@@ -265,6 +288,16 @@ class M extends CI_Controller {
                                             $relatedKeys[] = $r->{'related_object_key'}[$i];
         					//$data[$types]['relationship'][] = $r->{'relatedObject_relation'}[$i];
                                             $data[$types]['relationship'][] = $r->{'related_object_relation'}[$i];
+=======
+        			$relatedNum = count($r->{'relatedObject_key'});
+        			$relatedKeys = '';
+        			for($i = 0; $i<$relatedNum;$i++)
+        			{
+        				if($r->{'relatedObject_relatedObjectType'}[$i]==$types)
+        				{
+        					$relatedKeys[] = $r->{'relatedObject_key'}[$i];
+        					$data[$types]['relationship'][] = $r->{'relatedObject_relation'}[$i];
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
          				}
         			}
         		}
@@ -311,6 +344,7 @@ class M extends CI_Controller {
         	$relatedKeys = array();
         	foreach($data['json']->{'response'}->{'docs'} as $r)
         	{
+<<<<<<< HEAD
         		//$relatedNum = count($r->{'relatedObject_key'});
                     $relatedNum = count($r->{'related_object_key'});
         		$relatedKeys = '';
@@ -321,6 +355,15 @@ class M extends CI_Controller {
         			{
         				//$relatedKeys[] = $r->{'relatedObject_key'}[$i];
                                         $relatedKeys[] = $r->{'related_object_key'}[$i];
+=======
+        		$relatedNum = count($r->{'relatedObject_key'});
+        		$relatedKeys = '';
+        		for($i = 0; $i<$relatedNum;$i++)
+        		{
+        			if($r->{'relatedObject_relatedObjectClass'}[$i]==$class)
+        			{
+        				$relatedKeys[] = $r->{'relatedObject_key'}[$i];
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
          			}
         		}
         	}

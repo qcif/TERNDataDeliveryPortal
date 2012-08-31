@@ -16,16 +16,27 @@ limitations under the License.
 // Required Files
 // -----------------------------------------------------------------------------
 // Include environment settings.
+<<<<<<< HEAD
 require '../../global_config.php';
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 require '_environment/application_env.php';
 
 // Help content access checking.
 // -----------------------------------------------------------------------------
 // Make sure that the request came from this instance's help page
+<<<<<<< HEAD
 /*if( !isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER'] !== eAPP_ROOT.'help.php' )
+=======
+if( !isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER'] !== eAPP_ROOT.'help.php' )
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 {
 	// Build an empty string and stop execution.
 	print '';
 	exit;
+<<<<<<< HEAD
 }*/
+=======
+}
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 ?>

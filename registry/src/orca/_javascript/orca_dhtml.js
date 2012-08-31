@@ -5,8 +5,11 @@ $Revision: 1665 $
 var clearPressed = false;
 var cosiImageRoot = rootAppPath + "_images/";
 var orcaImageRoot = rootAppPath + "orca/_images/";
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 function setHarvestMethodDependents()
 {
    var tableRow = 'table-row';
@@ -234,12 +237,55 @@ function setClear()
 
 function runQualityCheck()
 {
+<<<<<<< HEAD
    
    $.get($('#quality_report_url').val() + '&data_source=' + $('#data_source_key').val(), function(data){
 	   $('#qualityCheckresult').html(data).fadeIn(100);
 	   $('#printableReportContainer').html('<a target="_blank" id="printable_report" href="data_source_report.php?type=quality&standalone=true&data_source=' + $('#data_source_key').val()  +'" class="right">printable report</a>');
 	   
    })
+=======
+   var dataSourceKey = document.getElementById("data_source_key").value;
+   var dataurl = document.getElementById("data-url").value;
+   var itemurl = document.getElementById("item-url").value;
+   var qTestURL = document.getElementById("qTestURL").value;
+   var xmlhttp;
+   var qURL = qTestURL + "?dataSourceKey=" + dataSourceKey + "&item-url=" + itemurl;
+   var qualityCheckresultDiv = getObject('qualityCheckresult');
+
+       if( window.XMLHttpRequest )
+       {
+           xmlhttp=new XMLHttpRequest();
+       }
+       else if( window.ActiveXObject )
+       {
+           xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+       }
+
+       if( xmlhttp )
+       {
+           qualityCheckresultDiv.innerHTML = '<div class="rs-header" style="color: #aaaaaa;">Loading...</div>';
+           xmlhttp.open("GET", qURL ,true);
+           xmlhttp.onreadystatechange = function()
+           {
+               if( xmlhttp.readyState == 4 )
+               {
+                   if( xmlhttp.status == 200 )
+                   {
+                       qualityCheckresultDiv.innerHTML = xmlhttp.responseText;
+                   }
+               }
+           };
+           if( window.XMLHttpRequest )
+           {
+               xmlhttp.send(null);
+           }
+           else
+           {
+               xmlhttp.send();
+           }
+       }
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function showDeleteModal()
@@ -357,6 +403,7 @@ function doSolrSearch()
 }
 
 
+<<<<<<< HEAD
 
 function getGoldRecords()
 {
@@ -422,6 +469,10 @@ $().ready(function(){
 
   
 
+=======
+$().ready(function(){
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	/*
 	 * CC-47
 	 * RIFCS-BUTTON on view page
@@ -544,10 +595,13 @@ $().ready(function(){
        });
        $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI);
    });
+<<<<<<< HEAD
 
    //chosen on data source;
    if($('select[name=data_source_key]').length>0)$('select[name=data_source_key]').chosen();
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 });
 
 function formatErrorDesciption(description, title)
@@ -814,6 +868,7 @@ descContent = '<HR><h3>Error Description:</h3><HR><img src="../_images/error_ico
    descContent += description;
 return descContent;
 }
+<<<<<<< HEAD
 
 function setInstitutionalPage(theValue, theGroups, theDataSource)
 {
@@ -889,3 +944,5 @@ function setInstitutionalPage(theValue, theGroups, theDataSource)
 	}
 		
 }
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794

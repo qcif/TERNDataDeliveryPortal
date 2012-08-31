@@ -24,6 +24,7 @@ limitations under the License.
 	foreach($json->{'response'}->{'docs'} as $d){
 		$key = $d->{'key'};
 		$keys[] = $key;
+<<<<<<< HEAD
 		if(isset($d->{'description_type'}))
 		{
 		foreach($d->{'description_type'} as $index=>$type){
@@ -32,12 +33,23 @@ limitations under the License.
 				$partners[$key]['full']='<h3><a href="search#!/q='.str_replace('-','',trim($d->{'display_title'})).'/tab=activity">'.$d->{'display_title'}.'</a></h3>'
 											.''.
 											$d->{'description_value'}[$index].
+=======
+		foreach($d->{'description_type'} as $index=>$type){
+			if($type=='logo') $partners[$key]['logo']=$d->{'description_value'}[$index];
+			if($type=='brief') {
+				$partners[$key]['full']='<h3><a href="search#!/q='.str_replace('-','',trim($d->{'displayTitle'})).'/tab=activity">'.$d->{'displayTitle'}.'</a></h3>'
+											.''.
+											$d->{'description_value'}[$index].''.
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 											'<p><a href="'.trim($d->{'location'}[0]).'" title="Visit Partner Portal">'.$d->{'location'}[0].'</a></p>';
 			}
 			$partners[$key]['url']=$d->{'location'}[0];
 		}
 	}
+<<<<<<< HEAD
 	}
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 ?>
 <div id="search-result">
 
@@ -108,6 +120,7 @@ limitations under the License.
 	</div>
 	
 	<div class="clearfix"></div>
+<<<<<<< HEAD
 	<div style="float:left;">
 		<div style="float:left;margin:0px 5px;">
 			<img src="<?php echo base_url();?>img/feed_icon.png"/><img src="<?php echo base_url();?>img/twitter_icon.png"/>
@@ -116,6 +129,8 @@ limitations under the License.
 			<h4 style="margin-top:3px;">RSS,ATOM and Twitter feeds are now available. <?php echo anchor('home/feeds','Learn more here....');?></h4>
 		</div>
 	</div>
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	<div style="float:right;">
 		 <!-- AddToAny BEGIN -->   
         <p>
@@ -151,6 +166,10 @@ limitations under the License.
 	</div>
 </div>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 <div class="box shadow" itemscope itemtype="http://schema.org/Article">
 	<center><img src="<?php echo base_url();?>img/DIISRTE_stacked.jpg" style="height:200px;" alt="DIISRTE Logo"/></center>
 	<p style="text-align:center" itemprop="articleBody">
@@ -172,4 +191,8 @@ limitations under the License.
 	?>
 </div>
 </div>
+<<<<<<< HEAD
 <?php $this->load->view('tpl/footer');?>
+=======
+<?php $this->load->view('tpl/footer');?>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794

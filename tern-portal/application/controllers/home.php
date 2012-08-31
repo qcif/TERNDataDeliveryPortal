@@ -72,7 +72,11 @@ class Home extends CI_Controller {
 
             $this->load->model('Solr');
             $data['json'] = $this->Solr->getTERNPartners();
+<<<<<<< HEAD
        
+=======
+             
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             $data['recordsArr'] = $this->handleRandomTab(10,$fac);
 
             $data['fackey']=$fac;
@@ -156,6 +160,17 @@ class Home extends CI_Controller {
         
                 $this->load->view('content/mapproto_service',$data);
         }
+<<<<<<< HEAD
+=======
+        
+        public function mapproto_viewport(){
+                $data['widget_map'] = 1;
+              
+        
+                $this->load->view('content/mapproto_viewport',$data);
+        }
+        
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	public function send(){
 		$this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();

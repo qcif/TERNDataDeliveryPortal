@@ -20,6 +20,7 @@ limitations under the License.
 <?php $this->load->view('tpl/mid');?>
 <div class="box" id="about">
 <h1>About Research Data Australia</h1>
+<<<<<<< HEAD
 <!-- <h2>A Window on the Australian Research Data Commons</h2>
 <p>Research Data Australia is a mesh of searchable web pages describing (and where possible linking to) Australian research data collections. Research Data Australia is provided by the <a href="http://www.ands.org.au">Australian National Data Service (ANDS)</a>.</p>
 <p>ANDS seeks to support public access to as much publicly funded research data as can be provided within the constraints of privacy, copyright and technology.</p>
@@ -44,11 +45,21 @@ input.</p>
 <p>ANDS is funded by the Australian Government through the National
 Collaborative Research Infrastructure Strategy (<a href="http://ncris.innovation.gov.au" target="_blank">NCRIS</a>)
 and the Education Investment Fund (EIF) Super Science Initiative. </p>
+=======
+<h2>A Window on the Australian Research Data Commons</h2>
+<p>Research Data Australia is a mesh of searchable web pages describing (and where possible linking to) Australian research data collections. Research Data Australia is provided by the <a href="http://www.ands.org.au">Australian National Data Service (ANDS)</a>.</p>
+<p>ANDS seeks to support public access to as much publicly funded research data as can be provided within the constraints of privacy, copyright and technology.</p>
+<p>ANDS is supported by the Australian Government through the <a href="http://ncris.innovation.gov.au/">National Collaborative Research Infrastructure Strategy Program</a> and the Education Investment Fund (EIF) Super Science Initiative.</p>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 </div>
 
 <div class="box" id="contact">
 	<h1>More Information</h1>
+<<<<<<< HEAD
 	<p><a href="http://services.ands.org.au/documentation/andsbrochure.pdf">Download the ANDS Brochure</a></p>
+=======
+	<p><a href="http://services.ands.org.au/documentation/ANDS_Brochure.pdf">Download the ANDS Brochure</a></p>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	<p>If you are interested in contributing to Research Data Australia please email <a href="mailto:services@ands.org.au">services@ands.org.au</a></p>
 </div>
 

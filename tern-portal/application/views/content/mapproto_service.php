@@ -9,11 +9,19 @@
         <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
         <style >
           .olPopup { border : 0 !important;}
+<<<<<<< HEAD
+=======
+          #spatialmap { height: 700px !important; width: 700px !important;}
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             </style> 
   </head>
     <body>
      
+<<<<<<< HEAD
 <div id="overlaymap" style="width:430px;margin:auto;">
+=======
+<div id="overlaymap" style="width:700px;margin:auto;">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     <div id="spatialmap" class=""></div>
    
 </div>

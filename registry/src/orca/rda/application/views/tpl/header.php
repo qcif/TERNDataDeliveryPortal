@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 /**
+=======
+/** 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 Copyright 2011 The Australian National University
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,6 +18,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ***************************************************************************
 *
+<<<<<<< HEAD
 **/
 ?>
 
@@ -45,16 +50,47 @@ limitations under the License.
 	<?php endif;?>
 
 
+=======
+**/ 
+?>
+<?php
+	$md_title = 'Research Data Australia';
+	$md_description = 'Research Data Australia is a mesh of searchable web pages describing (and where possible linking to) Australian research data collections. Research Data Australia is provided by the Australian National Data Service (ANDS).';
+	$md_image = 'http://services.ands.org.au/home/orca/rda/img/rda-design.png';
+	if(isset($title))$md_title = $title .' - Research Data Australia';
+	if(isset($description))$md_description = htmlentities($description);
+?>
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+	<title><?php echo $md_title;?></title>
+	<meta property="og:title" content="<?php echo $md_title;?>" />
+	<meta property="og:description" content="<?php echo $md_description;?>" />
+	<meta property="og:image" content="<?php echo $md_image;?>"/>
+	
+	<meta name="title" content="<?php echo $md_title;?>"/>
+	<meta name="description" content="<?php echo $md_description;?>"/>
+	
+	<?php if ($user_agent!='Internet Explorer'):?>
+    	<link href="<?php echo base_url();?>css/superfish.css" media="screen" type="text/css" rel="stylesheet">
+	<?php endif;?>
+	 
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	<link href="<?php echo base_url();?>css/reset.css" media="reset" type="text/css" rel="stylesheet">
 	<link type="text/css" href="<?php echo base_url();?>css/smoothness/jquery-ui-1.8.14.custom.css" rel="stylesheet" />
 	<link type="text/css" href="<?php echo base_url();?>css/tipsy.css" rel="stylesheet" />
 	<link href="<?php echo base_url();?>css/screen.css" type="text/css" rel="stylesheet">
+<<<<<<< HEAD
 	<link href="<?php echo base_url();?>css/print.css" media="print" type="text/css" rel="stylesheet">
+=======
+	<link href="<?php echo base_url();?>css/print.css" media="print" type="text/css" rel="stylesheet">	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	<?php if ($user_agent=='Internet Explorer'):?>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/ie.superfish.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/ie.screen.css" />
 	<?php endif;?>
 
+<<<<<<< HEAD
 	<link rel="stylesheet" href="<?php echo base_url();?>css/jquery.fancybox.css?v=2.0.6" type="text/css" media="screen" />
 
 	<link rel="stylesheet" href="<?php echo base_url();?>js/qtip/jquery.qtip.css" type="text/css" media="screen" />
@@ -68,6 +104,14 @@ limitations under the License.
 	  _gaq.push(['_setAccount', ga_code]);
 	  _gaq.push(['_trackPageview']);
 
+=======
+	<?php if($this->config->item('GA_enabled')):?>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-8380487-7']);
+	  _gaq.push(['_trackPageview']);
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	  (function() {
 	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
@@ -75,27 +119,48 @@ limitations under the License.
 	  })();
 	</script>
 	<?php endif;?>
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 </head>
 
 <body>
 <div class="hide">Research Data Australia</div>
 	<div id="container">
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		<div id="header" class="no_print">
 			<div class="top-menu-cover">
 				<a href="http://ands.org.au"><img src="<?php echo site_url('img/ands_logo_white.png');?>" id="ands-logo-white" alt="ANDS Logo"/></a>
 			<ul class="sf-menu">
 				<li><?php echo anchor('','Home');?></li>
+<<<<<<< HEAD
 				<li><?php echo anchor('browse/', 'Browse');?></li>
 				<li><?php echo anchor('search/browse/All/collection', 'Collections');?></li>
 				<li><?php echo anchor('search/browse/All/party', 'Parties');?></li>
 				<li><?php echo anchor('search/browse/All/activity', 'Activities');?></li>
 				<li><?php echo anchor('search/browse/All/service', 'Services');?></li>
 				<li><?php echo anchor('topic', 'Topics');?></li>
+=======
+				<li><?php echo anchor('search/browse/All/collection', 'Collections');?></li>
+				<li><?php echo anchor('search/browse/All/party', 'Parties');?></li>
+				<li><?php echo anchor('search/browse/All/activity', 'Activities');?></li>
+				<li><?php echo anchor('search/browse/All/service', 'Services');?></li>	
+				</li>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				<li><?php echo anchor('home/about','About');?></li>
 				<li><?php echo anchor('home/contact','Contact');?></li>
 			</ul>
 			</div>
 		</div>
+<<<<<<< HEAD
 		<span class="hide" id="rda_activity_name"><?php echo (isset($activity_name) ? $activity_name : 'unknown'); ?></span>
+=======
+		
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794

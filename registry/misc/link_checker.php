@@ -31,6 +31,7 @@ include '_includes/_functions/database_functions.php';
 include '_includes/_functions/data_functions.php';
 include '_includes/_environment/database_env.php';
 
+<<<<<<< HEAD
 
 // Set the default context stream to emulate firefox (avoid being blitted by over-protective sysadmins)
 $default_opts = array(
@@ -43,6 +44,8 @@ $default_opts = array(
 stream_context_set_default($default_opts);
 
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 //chdir($deployementDir."orca/admin");
 // Connect to the database.
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -52,7 +55,11 @@ $dataSources = getDataSources(null, null);
 $searchResults = array();
 $validationResults = Array();
 $i = 0;
+<<<<<<< HEAD
 
+=======
+date_default_timezone_set('Australia/Melbourne');
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 $dateString = date('d-m-y',time());
 $subject = "Link Check Result for: ".$orca_db_name." on: ".$dateString;
 $fileContent = "<html><body><h2>".$subject."</h2>\n";
@@ -82,16 +89,28 @@ if($dataSources)
 	    						$httpCode = substr($headers[0], 9, 1);
 								if($httpCode == 4 || $httpCode == 5)
 								{
+<<<<<<< HEAD
 									$validationResults[$i++] = Array("identifier" => $relatedInfo['identifier'],"registry_object_key" => $registryObject['registry_object_key'], "response_code" => $headers[0]);
+=======
+									$validationResults[$i++] = Array("identifier" => $relatedInfo['identifier'],"registry_object_key" => $registryObject['registry_object_key'], "response_code" => $headers[0]); 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 								}
 							}
 							else
 							{
+<<<<<<< HEAD
 								$validationResults[$i++] = Array("identifier" => $relatedInfo['identifier'],"registry_object_key" => $registryObject['registry_object_key'], "response_code" => 'request timed out');
 							}
 						}
 					}
 				}
+=======
+								$validationResults[$i++] = Array("identifier" => $relatedInfo['identifier'],"registry_object_key" => $registryObject['registry_object_key'], "response_code" => 'request timed out'); 								
+							}
+						}
+					}
+				}	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			}
 
 			if($i > 0)
@@ -99,7 +118,11 @@ if($dataSources)
 				$fileContent .= "<h3>Datasource :" .$dataSource['data_source_key']." has ". $i . " invalid link(s)</h3>\n";
 				$fileContent .= "<ul>\n";
 				for($j=0; $j < sizeof($validationResults) ; $j++)
+<<<<<<< HEAD
 				{
+=======
+				{	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 					$fileContent .="<li>uri: ".$validationResults[$j]['identifier']." for registry_object_key: ".$validationResults[$j]['registry_object_key']." response code: ".$validationResults[$j]['response_code']."</li>\n";
 				}
 				$fileContent .="</ul><br/>\n";
@@ -109,8 +132,13 @@ if($dataSources)
 		$registryObjects = null;
 		$relatedInfos = null;
 		$totalErrors += $i;
+<<<<<<< HEAD
 		$i = 0;
 
+=======
+		$i = 0;			
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 }
 if($totalErrors > 0 || !$emalOnErrorOnly)
@@ -120,7 +148,10 @@ if($totalErrors > 0 || !$emalOnErrorOnly)
 	$footer = "<p>links checked: ".$linkChecked."<br/>number of bad links: ".$totalErrors."</body></html>";
 	mail(eCONTACT_EMAIL, $subject, $fileContent.$footer, $headers);
 }
+<<<<<<< HEAD
 
 
 require '_includes/finish.php';
 ?>
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794

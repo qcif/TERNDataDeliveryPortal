@@ -54,7 +54,11 @@
                   
             <?php// $this->load->view('search/loadmore');?>
 
+<<<<<<< HEAD
                 <div id="search-result1" class="ui-layout-search-results"></div>
+=======
+                <div id="search-result" class="ui-layout-search-results"></div>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             
             </div>
         </div> 

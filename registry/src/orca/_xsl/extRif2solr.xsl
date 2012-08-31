@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <xsl:stylesheet xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:extRif="http://ands.org.au/standards/rif-cs/extendedRegistryObjects" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" exclude-result-prefixes="ro extRif">
 
+=======
+<xsl:stylesheet xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:extRif="http://ands.org.au/standards/rif-cs/ExtendedregistryObjects" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" exclude-result-prefixes="ro extRif">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     <xsl:output indent="yes" />
     <xsl:strip-space elements="*"/>
 <xsl:template match="/">
@@ -9,6 +13,7 @@
     
  <xsl:template match="ro:registryObjects">
      <add>
+<<<<<<< HEAD
     <xsl:apply-templates select="ro:registryObject"/>
      </add>
  </xsl:template> 
@@ -63,6 +68,30 @@
       			
         	</xsl:otherwise>
         </xsl:choose>
+=======
+    <xsl:apply-templates/>
+     </add>
+ </xsl:template> 
+  <!-- 
+      <extRif:keyHash>0001ea993f9e1744df376b853d22af896c2c7bc4</extRif:keyHash>
+      <extRif:dataSourceKeyHash>f546de82a493af449cdfc461a38ed690098988a0</extRif:dataSourceKeyHash>
+      <extRif:searchBaseScore>125</extRif:searchBaseScore>
+  
+  --> 
+    <xsl:template match="ro:registryObject">
+        <doc>
+            <xsl:apply-templates select="ro:key"/>
+            <xsl:apply-templates select="extRif:extendedMetadata/extRif:keyHash"/>
+            <xsl:apply-templates select="extRif:extendedMetadata/extRif:status"/>
+            <xsl:apply-templates select="extRif:extendedMetadata/extRif:reverseLinks"/> 
+            <xsl:apply-templates select="extRif:extendedMetadata/extRif:searchBaseScore"/>
+            <xsl:apply-templates select="ro:originatingSource"/>
+            <xsl:apply-templates select="extRif:extendedMetadata/extRif:dataSourceKey"/> 
+            <xsl:apply-templates select="extRif:extendedMetadata/extRif:dataSourceKeyHash"/> 
+            <xsl:apply-templates select="extRif:extendedMetadata/extRif:displayTitle"/> 
+            <xsl:apply-templates select="extRif:extendedMetadata/extRif:listTitle"/>
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
             <xsl:element name="field">
                 <xsl:attribute name="name">group</xsl:attribute>
@@ -80,6 +109,7 @@
         </xsl:element>       
     </xsl:template>
     
+<<<<<<< HEAD
     <xsl:template match="extRif:urlSlug">
         <xsl:element name="field">
             <xsl:attribute name="name">url_slug</xsl:attribute>
@@ -88,6 +118,8 @@
     </xsl:template>
 	
 	
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     <xsl:template match="extRif:keyHash">
         <xsl:element name="field">
             <xsl:attribute name="name">key_hash</xsl:attribute>
@@ -95,6 +127,7 @@
         </xsl:element>       
     </xsl:template>
     
+<<<<<<< HEAD
 
     <xsl:template match="extRif:flag">
         <xsl:element name="field">
@@ -194,6 +227,8 @@
         </xsl:element>       
     </xsl:template>
     
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     <xsl:template match="extRif:status">
         <xsl:element name="field">
             <xsl:attribute name="name">status</xsl:attribute>
@@ -207,6 +242,7 @@
             <xsl:value-of select="."/>
         </xsl:element>       
     </xsl:template>
+<<<<<<< HEAD
 
 
 	<xsl:template match="extRif:registryDateModified">
@@ -215,6 +251,8 @@
             <xsl:value-of select="."/>
         </xsl:element>       
     </xsl:template>
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     
     <xsl:template match="extRif:reverseLinks">
         <xsl:element name="field">
@@ -246,7 +284,11 @@
     
     <xsl:template match="extRif:displayTitle">
         <xsl:element name="field">
+<<<<<<< HEAD
             <xsl:attribute name="name">display_title</xsl:attribute>
+=======
+            <xsl:attribute name="name">display_itle</xsl:attribute>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             <xsl:value-of select="."/>
         </xsl:element>       
     </xsl:template>
@@ -267,10 +309,17 @@
             <xsl:attribute name="name">type</xsl:attribute>
             <xsl:value-of select="@type"/>
         </xsl:element>  
+<<<<<<< HEAD
         <!--xsl:element name="field">
             <xsl:attribute name="name">date_modified</xsl:attribute>
             <xsl:value-of select="@dateModified"/>
         </xsl:element-->  
+=======
+        <xsl:element name="field">
+            <xsl:attribute name="name">date_modified</xsl:attribute>
+            <xsl:value-of select="@dateModified"/>
+        </xsl:element>  
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         <xsl:apply-templates select="ro:identifier" mode="value"/>
         <xsl:apply-templates select="ro:identifier" mode="type"/>
         <xsl:apply-templates select="ro:name"/>
@@ -278,6 +327,7 @@
         <xsl:apply-templates select="ro:subject" mode="value"/>
         <xsl:apply-templates select="ro:subject" mode="resolved_value"/>
         <xsl:apply-templates select="ro:subject" mode="type"/>
+<<<<<<< HEAD
         <xsl:apply-templates select="ro:subject" mode="vocab_uri"/>
         
         <xsl:apply-templates select="ro:subject[@type='anzsrc-for']" mode="code"/> <!--tern -->
@@ -298,6 +348,11 @@
         	</xsl:otherwise>
         </xsl:choose>
 
+=======
+        
+        <xsl:apply-templates select="extRif:description" mode="value"/>
+        <xsl:apply-templates select="extRif:description" mode="type"/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         
         <xsl:apply-templates select="ro:displayTitle"/>
         <xsl:apply-templates select="ro:listTitle"/>
@@ -343,6 +398,7 @@
     <xsl:template match="ro:relatedObject">
 
             <xsl:apply-templates/>
+<<<<<<< HEAD
       
     </xsl:template>
      <xsl:template match="ro:relatedObject/ro:relation/ro:description">
@@ -351,6 +407,11 @@
             <xsl:value-of select="."/>.....      
     </xsl:element>  
     </xsl:template>      
+=======
+       
+    </xsl:template>
+    
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     <xsl:template match="ro:relatedObject/ro:key">
         <xsl:element name="field">
             <xsl:attribute name="name">related_object_key</xsl:attribute>
@@ -381,7 +442,11 @@
     
     <xsl:template match="ro:relatedObject/extRif:relatedObjectDisplayTitle">
         <xsl:element name="field">
+<<<<<<< HEAD
             <xsl:attribute name="name">related_object_display_title</xsl:attribute>
+=======
+            <xsl:attribute name="name">related_object_diplay_title</xsl:attribute>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             <xsl:value-of select="."/>
         </xsl:element>       
     </xsl:template>
@@ -389,6 +454,7 @@
     <xsl:template match="ro:relatedObject/ro:relation">
     <xsl:element name="field">
         <xsl:attribute name="name">related_object_relation</xsl:attribute>
+<<<<<<< HEAD
         <xsl:choose>
         	<xsl:when test="@extRif:type">
         		 <xsl:value-of select="@extRif:type"/>
@@ -421,6 +487,40 @@
     </xsl:template>
     
     <xsl:template match="ro:address | ro:electronic | ro:physical | ro:coverage | ro:temporal | extRif:spatial">
+=======
+        <xsl:value-of select="@type"/>
+    </xsl:element>  
+    </xsl:template>
+
+    
+    <xsl:template match="ro:coverage/ro:temporal/extRif:date[@type = 'dateFrom'] | ro:coverage/ro:temporal/extRif:date[@type = 'dateTo']">
+        <xsl:variable name="dateString"><xsl:value-of select="."/></xsl:variable>
+        <xsl:variable name="dateValue">
+            <xsl:choose>
+                <xsl:when test="contains($dateString ,'-')">
+                    <xsl:value-of select="substring-before($dateString ,'-')"/>
+                </xsl:when>
+                <xsl:when test="contains($dateString ,'/')">
+                    <xsl:value-of select="substring-before($dateString ,'/')"/>
+                </xsl:when>
+                <xsl:when test="contains($dateString ,'T')">
+                    <xsl:value-of select="substring-before($dateString ,'T')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:if test="number($dateValue) != NaN">
+	        <xsl:element name="field">
+	            <xsl:attribute name="name"><xsl:value-of select="@type"/></xsl:attribute>
+	            <xsl:value-of select="$dateValue"/>           
+	        </xsl:element>     
+        </xsl:if>  
+    </xsl:template>
+    
+    <xsl:template match="ro:address | ro:electronic | ro:physical | ro:coverage | ro:temporal">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             <xsl:apply-templates/>
     </xsl:template>
     
@@ -463,6 +563,7 @@
         </xsl:element>
     </xsl:template>
     
+<<<<<<< HEAD
     <xsl:template match="ro:subject" mode="vocab_uri">
         <xsl:element name="field">
             <xsl:attribute name="name">subject_vocab_uri</xsl:attribute>
@@ -501,32 +602,48 @@
 
     
     <xsl:template match="extRif:description | ro:description" mode="value">
+=======
+    <xsl:template match="extRif:description" mode="value">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         <xsl:element name="field">
             <xsl:attribute name="name">description_value</xsl:attribute>
             <xsl:value-of select="."/>
         </xsl:element>       
     </xsl:template>
     
+<<<<<<< HEAD
     <xsl:template match="extRif:description | ro:description" mode="type">
+=======
+    <xsl:template match="extRif:description" mode="type">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         <xsl:element name="field">
             <xsl:attribute name="name">description_type</xsl:attribute>
             <xsl:value-of select="@type"/>
         </xsl:element>
     </xsl:template>
     <!-- ignore list -->
+<<<<<<< HEAD
     <xsl:template match="ro:location/extRif:spatial/extRif:coords | ro:coverage/extRif:spatial/extRif:coords">
+=======
+    <xsl:template match="ro:location/extRif:spatial | ro:coverage/extRif:spatial">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         <xsl:element name="field">
             <xsl:attribute name="name">spatial_coverage</xsl:attribute>
             <xsl:value-of select="."/>
         </xsl:element>
     </xsl:template>
     
+<<<<<<< HEAD
     <xsl:template match="ro:location/extRif:spatial/extRif:center | ro:coverage/extRif:spatial/extRif:center">
+=======
+    <xsl:template match="ro:location/extRif:center | ro:coverage/extRif:center">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         <xsl:element name="field">
             <xsl:attribute name="name">spatial_coverage_center</xsl:attribute>
             <xsl:value-of select="."/>
         </xsl:element>
     </xsl:template>
+<<<<<<< HEAD
     
      <xsl:template match="extRif:rights[@licence_group!='']" mode="licence_group">
         <xsl:element name="field">
@@ -609,5 +726,13 @@
 
     </xsl:template>
 <!-- end -->
+=======
+   
+    <xsl:template match="ro:date | ro:description"/>
+    
+    <xsl:template match="ro:name"/>
+   		
+   
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 </xsl:stylesheet>
 

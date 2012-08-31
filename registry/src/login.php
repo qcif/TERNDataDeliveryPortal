@@ -249,7 +249,10 @@ require '_includes/header.php';
 			</form>
 		<?php } ?>	
 <?php } else { ?>
+<<<<<<< HEAD
 	<!-- WHY is even a TABLLEEE?!-->
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	<table class="formTable" summary="layout" style="margin: 0px;">
 		<tbody>
 			<tr>
@@ -259,6 +262,7 @@ require '_includes/header.php';
 				
 				<p>You can <i>Logout</i> using the link at the upper left.</p></td>
 			</tr>
+<<<<<<< HEAD
 			<tr>
 				<td style="width:100px"></td>
 				<td>
@@ -298,6 +302,8 @@ if ( stristr($_SERVER['HTTP_USER_AGENT'], 'chromeframe') ) {
 					?>
 				</td>
 			</tr>
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		</tbody>
 	</table>	
 <?php } ?>

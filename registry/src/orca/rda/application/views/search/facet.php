@@ -17,7 +17,11 @@ limitations under the License.
 **/ 
 ?>
 <?php 
+<<<<<<< HEAD
 if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($licenceFilter!='All'))
+=======
+if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All'))
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 {
 	echo '<div class="right-box shadow">';
 	echo '<h2>Selected</h2>';
@@ -31,6 +35,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 		}
 		if($typeFilter!='All') displaySelectedFacet('type',$typeFilter,$json);
 		if($groupFilter!='All') displaySelectedFacet('group',$groupFilter,$json);
+<<<<<<< HEAD
 		if($subjectFilter!='All') {
 			//echo $subjectFilter;
 			if (substr(rawurldecode($subjectFilter), 0, 7) === 'http://'){
@@ -52,12 +57,16 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 		}
 		//if($subjectFilter!='All') displaySelectedFacet('subject_vocab_uri',$subjectFilter,$json);
 		if($licenceFilter!='All') displaySelectedFacet('licence_group',$licenceFilter,$json);
+=======
+		if($subjectFilter!='All') displaySelectedFacet('subject_value',$subjectFilter,$json);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		echo '</ul>';
 	echo '</div>';
 	echo '</div>';
 }
 
 ?>
+<<<<<<< HEAD
 <div class="right-box shadow">
 	<h2>Subjects</h2>
 	<div id="facet-content">
@@ -66,6 +75,8 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 		<div id="anzsrc-subject-facet-result" class="hide"></div>
 	</div>
 </div>
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 <?php
 	/*
@@ -74,10 +85,16 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 	echo '</pre>';
 	 * displayFacet is in helpers
 	*/
+<<<<<<< HEAD
 	//displayFacet('subject_value_resolved', $subjectFilter, $json_subject_facet, $classFilter);
 	//displayFacet('subject_vocab_uri', $subjectFilter, $json, $classFilter);
 	displayFacet('group', $groupFilter, $json, $classFilter);
 	//displayFacet('subject_value_resolved', $subjectFilter, $json, $classFilter);
 	displayFacet('type', $typeFilter, $json, $classFilter);
 	displayFacet('licence_group', $licenceFilter, $json, $classFilter);
+=======
+	displayFacet('group', $groupFilter, $json, $classFilter);
+	displayFacet('subject_value', $subjectFilter, $json, $classFilter);
+	displayFacet('type', $typeFilter, $json, $classFilter);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 ?>

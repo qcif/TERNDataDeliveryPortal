@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 /**
+=======
+/** 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 Copyright 2011 The Australian National University
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,11 +18,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ***************************************************************************
 *
+<<<<<<< HEAD
 **/
 ?>
 <?php $this->load->view('tpl/header');?>
 <?php $this->load->view('tpl/mid');?>
 <?php
+=======
+**/ 
+?>
+<?php $this->load->view('tpl/header');?>
+<?php $this->load->view('tpl/mid');?>
+<?php 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$partners = array();
 	$keys = array();
 	foreach($json->{'response'}->{'docs'} as $d){
@@ -41,15 +53,24 @@ limitations under the License.
 	<div class="hp-left" itemscope itemtype="http://schema.org/Article">
 		<h2 itemprop="name">What's in Research Data Australia</h2>
 		<div class="hp-class" itemprop="articleBody">
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			<div class="hp-icons">
 				<a href="search#!/tab=collection"><img src="<?php echo base_url();?>img/icon/collections_64.png" class="active" id="collection"/></a>
 				<a href="search#!/tab=party"><img src="<?php echo base_url();?>img/icon/party_multi_64.png" id="party"/></a>
 				<a href="search#!/tab=service"><img src="<?php echo base_url();?>img/icon/services_64.png" id="service"/></a>
 				<a href="search#!/tab=activity"><img src="<?php echo base_url();?>img/icon/activities_64.png" id="activity"/></a>
 			</div>
+<<<<<<< HEAD
 
 
+=======
+			
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				<div id="hp-content-collection" class="hp-icon-content">
 					<p>Research datasets or collections of research materials.</p>
 					<p><a href="search#!/tab=collection">Browse All Collections <span id="hp-browse-collection"></span></a></p>
@@ -66,24 +87,40 @@ limitations under the License.
 					<p>Projects or programs that create research datasets or collections.</p>
 					<p><a href="search#!/tab=activity">Browse All Activities <span id="hp-browse-activity"></span></a></p>
 				</div>
+<<<<<<< HEAD
 
 
 
+=======
+			
+			
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		</div>
 		<div class="clearfix"></div>
 		<div id="hp-stat">
 			Loading Stats...
 		</div>
 		<div class="clearfix"></div>
+<<<<<<< HEAD
 
 	</div>
 
+=======
+		
+	</div>
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	<div class="hp-right">
 		<h2>NCRIS Partner Spotlight</h2>
 			<div id="carousel">
 				<div class="clearfix">
 					<div class="prev browse left"></div>
+<<<<<<< HEAD
 					<div id="scrollable">
+=======
+					<div id="scrollable">     
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 					   <!-- root element for the items -->
 					   <div class="items" id="items" style="left: 0px; ">
 					   		<?php
@@ -105,7 +142,11 @@ limitations under the License.
 			</div>
 </div>
 	</div>
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	<div class="clearfix"></div>
 </div>
 
@@ -114,16 +155,28 @@ limitations under the License.
 
 
 <div class="box">
+<<<<<<< HEAD
 	<center><img src="<?php echo base_url(); ?>img/DIISRTE_stacked.jpg"/></center>
 	<p>
 		ANDS is supported by the Australian Government through the <a href="http://ncris.innovation.gov.au/">National Collaborative Research Infrastructure Strategy Program</a> and the Education Investment Fund (EIF) Super Science Initiative.
 	</p>
 
+=======
+	<center><img src="http://services.ands.org.au/home/orca/rda/img/DIISRTE_stacked.jpg"/></center>
+	<p>
+		ANDS is supported by the Australian Government through the <a href="http://ncris.innovation.gov.au/">National Collaborative Research Infrastructure Strategy Program</a> and the Education Investment Fund (EIF) Super Science Initiative.
+	</p>
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 </div>
 
 
 <div class="hide">
+<<<<<<< HEAD
 	<?php
+=======
+	<?php 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	foreach($keys as $key){
 		$d = '';
 		if(isset($partners[$key]['full'])){

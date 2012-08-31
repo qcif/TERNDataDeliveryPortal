@@ -5,7 +5,11 @@
 function getURL(keyword, matrixIds){     
     var URLList = {
         "dummy" : base_url + 'api/output.json',
+<<<<<<< HEAD
         "nr:regions" : 'http://portal-dev.tern.org.au:8080/geoserver/wms', 
+=======
+        "nr:regions" : 'http://demo:8080/geoserver/wms', 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         "intersectPt":  base_url + 'regions/r/intersectPt/',
         "aus_east_wmts": {
             name: "WMTS Layer",
@@ -57,13 +61,23 @@ String.prototype.capitalize = function() {
  * 
  * 
  */
+<<<<<<< HEAD
 function MapWidget(mapId, overviewMap){
+=======
+function MapWidget(mapId, overviewMap, options){
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
     this.map = '';
     this.drawControls = '';
     this.overviewMap = true;
     this.overviewMap = overviewMap;
     
+<<<<<<< HEAD
+=======
+    // get Options 
+    var options = options || {};
+    
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     // World Geodetic System 1984 projection (lon/lat)
     this.WGS84 = new OpenLayers.Projection("EPSG:4326");
 
@@ -84,6 +98,10 @@ function MapWidget(mapId, overviewMap){
     this.options = {
         units : 'm',
         numZoomLevels : 12,
+<<<<<<< HEAD
+=======
+        minZoomLevel: 4,
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         maxExtent : this.mapBounds,
         maxResolution:'auto', 
         projection: this.WGS84_google_mercator,
@@ -97,6 +115,7 @@ function MapWidget(mapId, overviewMap){
      *  ------------------------------------------------------------
      */
   
+<<<<<<< HEAD
     var gphy = new OpenLayers.Layer.Google("Google", 
     {
         type: google.maps.MapTypeId.HYBRID, 
@@ -109,12 +128,37 @@ function MapWidget(mapId, overviewMap){
     });	
    
     this.map.addLayer(gphy);          
+=======
+      
+    var gphy = new OpenLayers.Layer.Google(
+        "Google Physical",
+        {type: google.maps.MapTypeId.TERRAIN}
+    );
+    var gmap = new OpenLayers.Layer.Google(
+        "Google Streets", // the default
+        {numZoomLevels: 20}
+    );
+    var ghyb = new OpenLayers.Layer.Google(
+        "Google Hybrid",
+        {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
+    );
+    var gsat = new OpenLayers.Layer.Google(
+        "Google Satellite",
+        {type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22}
+    );
+    var layers = options.layer || [gphy, gmap, ghyb, gsat]; 
+    
+    
+    this.map.addLayers(layers);
+            
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     //this.layers.push(gphy); 
     
     //Enable switch layers (that + button on the map) 
     this.map.addControl(new OpenLayers.Control.LayerSwitcher());
     //Enable Overview Map
     if(this.overviewMap){
+<<<<<<< HEAD
         var options = {
             minRatio: 0, 
             maximized: true, 
@@ -122,6 +166,26 @@ function MapWidget(mapId, overviewMap){
             autoPan: true
         };
         this.map.addControl(new OpenLayers.Control.OverviewMap(options));
+=======
+        var options = { 
+            mapOptions: { numZoomLevels: 1,  
+                maxExtent : this.mapBounds,           
+                projection: this.WGS84_google_mercator,
+                displayProjection: this.WGS84,
+                minZoomLevel: 2
+        },
+        
+          minRatio: this.map.getResolution()/this.map.getResolutionForZoom(5), 
+           // isSuitableOverview: function() {return true;},
+         
+         //  units: "m",
+           maximized: true,
+         //  numZoomLevels: 1,
+            maxRatio: this.map.getResolution()/this.map.getResolutionForZoom(5),//Number.POSITIVE_INFINITY, 
+            autoPan: true
+        };
+        this.map.addControl(new OpenLayers.Control.OverviewMap( options));
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     }
     // look at Australia 
     if (!this.map.getCenter()) this.map.zoomToExtent(new OpenLayers.Bounds( 11548635,-5889094,18604187,-597430));
@@ -197,10 +261,22 @@ MapWidget.prototype.setSelectedId = function(selectedFeatureLayer, selectedFeatu
 MapWidget.prototype.handleWMSGetInfo = function(options,callback){
     var options = options || {};
     var url = options.url || false;
+<<<<<<< HEAD
+=======
+    var layers = options.layers;
+    var arrLayer = [];
+     for(var j=0;j<layers.length; j++){
+        for(var i=0;i<this.extLayers.length; i++){
+                if(this.extLayers[i].name == layers[j]) { 
+                     arrLayer.push(this.extLayers[i]);}                     
+        }
+     }
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     this.info = new OpenLayers.Control.WMSGetFeatureInfo({
             url: url, 
             title: 'Identify features by clicking',
             infoFormat: 'text/html', 
+<<<<<<< HEAD
             queryVisible: true,
             eventListeners: {
                 getfeatureinfo: function(event) {     
@@ -214,6 +290,28 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
                             null,
                             true
                         ));
+=======
+            queryVisible: true, 
+            layers: arrLayer,
+            eventListeners: {
+                getfeatureinfo: function(event) {     
+                    var length = event.text.length;
+                     while( this.map.popups.length ) {
+                        this.map.removePopup(this.map.popups[0]);
+                    }
+
+                    if(length > 657){
+                       var popup = new OpenLayers.Popup.FramedCloud(
+                            "chicken",
+                            this.map.getLonLatFromPixel(event.xy),
+                            null, 
+                            event.text,
+                            null,
+                            true
+                        );
+                    popup.maxSize = new OpenLayers.Size(400,200);
+                    this.map.addPopup(popup);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                     }
                 }
             }
@@ -548,6 +646,20 @@ MapWidget.prototype.setHighlightLayer = function(r_id){
 }
 
 
+<<<<<<< HEAD
+=======
+
+/*  ------------------------------------------------------------  
+ *    getExtentCoords()
+ *    returns the coordinates for the map extent as a bounds object 
+ *    
+ *  ------------------------------------------------------------
+ */
+
+MapWidget.prototype.getExtentCoords = function(){
+        return coords = this.map.getExtent().transform(this.WGS84_google_mercator, this.WGS84);       
+}
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 /*  ------------------------------------------------------------  
  *    handleMapClick(e,  layers, callback)
  *    e : Click Event

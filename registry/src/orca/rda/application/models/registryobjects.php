@@ -35,7 +35,11 @@ limitations under the License.
 	       	if($dataSourceKey==''){
 	       		$url = $service_url.'?key='.urlencode($key);
 			}else $url = $service_url.'?draftKey='.$key.'&dataSourceKey='.$dataSourceKey;
+<<<<<<< HEAD
 			// echo '<div>'.$url.'</div>';
+=======
+			//echo '<div class="hide">'.$url.'</div>';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			$content='Nothing Returned';
 			if(get_http_response_code($url)!='400'){
 				$content = file_get_contents($url, 0, null, null);
@@ -44,6 +48,7 @@ limitations under the License.
 			//$json = json_decode($content);
 			return $content;
 	    }
+<<<<<<< HEAD
 		
 	    function getByHash($hash){
 		  	$service_url = service_url();
@@ -58,6 +63,8 @@ limitations under the License.
 			return $content;
 	    }
 		
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     
 		/*
 		 * getSearchHistory
@@ -65,7 +72,10 @@ limitations under the License.
 		 * Normally use for search suggestion
 		 */ 
 	    function getSearchHistory(){
+<<<<<<< HEAD
 	    	$this->load->database();
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	    	return $this->db->get('dba.tbl_search_statistics');
 	    }
     
@@ -74,7 +84,10 @@ limitations under the License.
 		 * update the statistics from searches
 		 */ 
 	    function updateStatistic($query, $class, $group, $subject, $type, $temporal){
+<<<<<<< HEAD
 	    	$this->load->database();
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	    	$terms = array($query, 'class:'.$class, 'type:'.$type, 'subject:'.$subject, 'group:'.$group, 'type:'.$type, 'temporal:'.$temporal);
 	    	foreach($terms as $t){
 	    		//check if term exists
@@ -97,7 +110,11 @@ limitations under the License.
 					//echo 'inserted '.$t.' ';
 	    		}
 	    	}
+<<<<<<< HEAD
 	    	echo 'search stat updated';
+=======
+	    	//echo 'search stat updated';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	    }
 		
 		
@@ -172,11 +189,17 @@ limitations under the License.
 
 	    function spatial($north, $east, $south, $west)
 	    {
+<<<<<<< HEAD
 	    	$query = 'select distinct rs.registry_object_key from dba.tbl_registry_objects rs, dba.tbl_spatial_extents se
 	where rs.registry_object_key = se.registry_object_key 
 	and se.bound_box && box ((point('.$north.','.$west.')),(point('.$south.','.$east.')))';
 			return $query;
 	    	return $this->db->query($query);
+=======
+	    	return $this->db->query('select distinct rs.registry_object_key from dba.tbl_registry_objects rs, dba.tbl_spatial_extents se
+	where rs.registry_object_key = se.registry_object_key 
+	and se.bound_box && box ((point('.$north.','.$west.')),(point('.$south.','.$east.')))');
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	    }
     
     

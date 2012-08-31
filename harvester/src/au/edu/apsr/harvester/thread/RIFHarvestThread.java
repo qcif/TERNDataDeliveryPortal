@@ -159,8 +159,11 @@ public class RIFHarvestThread extends HarvestThread
             setPMHArguments();
 
             ListRecords listRecords;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             
             if (getResumptionToken() == null || getResumptionToken().length() == 0)
             {
@@ -173,6 +176,7 @@ public class RIFHarvestThread extends HarvestThread
                     setSet(harvest.getSet());
                 }
                 log.info("first ListRecords call for " + harvest.getHarvestID());
+<<<<<<< HEAD
                 log.debug("source="+harvest.getSourceURL() + " from=" + getFrom() + " until=" + getUntil() + " set=" + getSet() + " mp=" + getMetadataPrefix());       
 
                 //if the harvest is not incremental, remove datefrom and dateuntil from list records
@@ -183,6 +187,9 @@ public class RIFHarvestThread extends HarvestThread
                 }
 
                 log.info("source="+harvest.getSourceURL() + " from=" + getFrom() + " until=" + getUntil() + " set=" + getSet() + " mp=" + getMetadataPrefix());
+=======
+                log.debug("source="+harvest.getSourceURL() + " from=" + getFrom() + " until=" + getUntil() + " set=" + getSet() + " mp=" + getMetadataPrefix());                
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                 listRecords = 
                     new ListRecords(harvest.getSourceURL(), getFrom(), getUntil(), getSet(), getMetadataPrefix());
             }
@@ -243,7 +250,11 @@ public class RIFHarvestThread extends HarvestThread
                 Document doc = listRecords.getDocument();
                 Fragment frag = getFragment(docToString(doc), "ListRecords");
 
+<<<<<<< HEAD
                 if ((listRecords.getResumptionToken().length()==0)  || (harvest.getMode().equals(Constants.MODE_TEST))) 
+=======
+                if ((listRecords.getResumptionToken().length()==0) || getResumptionToken() == listRecords.getResumptionToken() || (harvest.getMode().equals(Constants.MODE_TEST))) 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                 {
                     last = true;
                 }
@@ -257,10 +268,16 @@ public class RIFHarvestThread extends HarvestThread
                 }
                 log.info(harvest.getHarvestID() + " OLD resumption token = " + getResumptionToken());
                 log.info(harvest.getHarvestID() + " resumption token = " + listRecords.getResumptionToken());
+<<<<<<< HEAD
                 if (listRecords.getResumptionToken().length() > 0)
                 {
                 	log.info("setting resumption token");
                 	setResumptionToken(listRecords.getResumptionToken());
+=======
+                if (listRecords.getResumptionToken().length() > 0 && getResumptionToken() != listRecords.getResumptionToken())
+                {
+                    setResumptionToken(listRecords.getResumptionToken());
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                 }
                 else
                 {
@@ -275,7 +292,11 @@ public class RIFHarvestThread extends HarvestThread
                 
                 harvest.setResumptionToken(getResumptionToken());
                 harvest.update();
+<<<<<<< HEAD
                 log.info("harvester is updated");
+=======
+                
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                 if (getResumptionToken() == null || getResumptionToken().length() == 0)
                 {
                     log.info("harvest " + harvest.getHarvestID() + " has no ListRecords resumption token, no more records will be retrieved.");
@@ -297,8 +318,13 @@ public class RIFHarvestThread extends HarvestThread
             {
                 //end of harvest - set next from/until dates
                 //uncomment the following lines for incremental harvesting
+<<<<<<< HEAD
                 harvest.setFrom(getNextFromDate());
                 harvest.setUntil(null);
+=======
+                //harvest.setFrom(getNextFromDate());
+                //harvest.setUntil(null);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                 threadManager.setThreadComplete(harvest);
                 log.info("harvest id completed: " + harvest.getHarvestID());
                 log.debug(harvest.getHarvestID() + " total records received:" + numRecordsRcvd);

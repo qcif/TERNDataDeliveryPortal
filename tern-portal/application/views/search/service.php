@@ -57,8 +57,12 @@ $Revision: 1 $
 		//print_r($r);
 		$type = $r->{'type'};
 		$ro_key = $r->{'key'};
+<<<<<<< HEAD
 		//$name = $r->{'listTitle'};
                 $name = $r->{'list_title'};
+=======
+		$name = $r->{'listTitle'};
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$class = $r->{'class'};
 		$group = $r->{'group'};
 		echo '<a href="'.$this->config->item('orca_view_point').'?key='.urlencode($ro_key).'">'.$name.'</a> <br/>';
@@ -70,6 +74,7 @@ $Revision: 1 $
 		$description_type=array();if(isset($r->{'description_type'})) $description_type = $r->{'description_type'};
 		
 		$relations = array();
+<<<<<<< HEAD
 		//if(isset($r->{'relatedObject_relation'})){
                 if(isset($r->{'related_object_relation'})){
 			//$relations = $r->{'relatedObject_relation'};
@@ -79,6 +84,12 @@ $Revision: 1 $
                         $related_name = $r->{'related_object_list_title'};
 			//$related_key = $r->{'relatedObject_key'};
                         $related_key = $r->{'related_object_key'};
+=======
+		if(isset($r->{'relatedObject_relation'})){
+			$relations = $r->{'relatedObject_relation'};
+			$related_name = $r->{'relatedObject_relatedObjectListTitle'};
+			$related_key = $r->{'relatedObject_key'};
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			echo '<span class="resultListItemLabel">Relations: </span> ';
 			foreach($relations as $key=>$relation){
 				echo '<a href="'.$orca.'view.php?key='.urlencode($related_key[$key]).'">'.$related_name[$key].'</a> | ';
@@ -87,11 +98,17 @@ $Revision: 1 $
 		}
 		
 		$subjects=array();$subjects_type=array();
+<<<<<<< HEAD
 //		if(isset($r->{'subject_value'})){
 //			$subjects = $r->{'subject_value'};
 		if(isset($r->{'subject_value_resolved'})){
 			$subjects = $r->{'subject_value_resolved'};
                 $subjects_type = $r->{'subject_type'};
+=======
+		if(isset($r->{'subject_value'})){
+			$subjects = $r->{'subject_value'};
+			$subjects_type = $r->{'subject_type'};
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			echo '<span class="resultListItemLabel">Subjects: </span> ';
 			foreach($subjects_type as $key=>$t){
 				echo '<span class="attribute">'.$t.'</span> '.'<a href="#" class="subjectFilter" name="'.$subjects[$key].'">'.$subjects[$key].'</a> ';

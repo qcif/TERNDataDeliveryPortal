@@ -19,8 +19,12 @@
 				<li><a href="{$base_url}">Home</a></li>
 				<li><a href="{$base_url}search/browse/{ro:registryObject/@group}"><xsl:value-of select="ro:registryObject/@group"/></a></li>
 				<li><a href="{$base_url}search/browse/{ro:registryObject/@group}/{$objectClass}"><xsl:value-of select="$objectClass"/></a></li>
+<<<<<<< HEAD
 				<!---<li><xsl:value-of select="//ro:displayTitle"/></li> -->
                                 <li><xsl:value-of select="//ro:display_title"/></li>
+=======
+				<li><xsl:value-of select="//ro:displayTitle"/></li>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			</ul>
 			</div>				
 	</xsl:template>

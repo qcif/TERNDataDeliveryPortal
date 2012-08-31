@@ -20,6 +20,7 @@ limitations under the License.
 
 class View extends CI_Controller {
 
+<<<<<<< HEAD
     public function __construct()
     {
          parent::__construct();
@@ -91,6 +92,28 @@ class View extends CI_Controller {
 			$theGroup = getInstitutionPage($doc->{'group'});
 			$data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key),$theGroup);	
 			$data['title'] = $doc->{'display_title'};
+=======
+
+	public function index()
+	{
+		parse_str($_SERVER['QUERY_STRING'], $_GET);
+		
+		if(isset($_GET['key'])){
+			$key = ($_GET['key']);
+			//echo $key;
+			$this->load->model('RegistryObjects', 'ro');
+			$this->load->model('solr');
+	       	$content = $this->ro->get($key);
+	       	$data['key']= $key;
+			$data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key));	
+			
+			$obj = $this->solr->getByKey($key);
+			$numFound = $obj->{'response'}->{'numFound'};
+			$doc = ($obj->{'response'}->{'docs'}[0]);
+			//echo $numFound;
+			
+			$data['title'] = $doc->{'displayTitle'};
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			
 			if(isset($doc->{'description_value'}[0]))$data['description']=htmlentities($doc->{'description_value'}[0]);
 			$data['doc'] = $doc;
@@ -98,12 +121,17 @@ class View extends CI_Controller {
 			
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();
+<<<<<<< HEAD
 
 			$data['activity_name'] = 'view';
+=======
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			
 			if($numFound>0){
 				$this->load->view('xml-view', $data);
 			}else show_404('page');
+<<<<<<< HEAD
 		}
 		else 
 		{
@@ -111,12 +139,19 @@ class View extends CI_Controller {
 
 		}
 	
+=======
+			
+		}else{
+			show_404('page');
+		}
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 
 	public function viewitem($key){
 		redirect('view/?key='.$key);
 	}
 	
+<<<<<<< HEAD
 	public function group(){
 		parse_str($_SERVER['QUERY_STRING'], $_GET);	
 
@@ -150,6 +185,8 @@ class View extends CI_Controller {
 		}
 		
 	}	
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	public function printview(){
 		parse_str($_SERVER['QUERY_STRING'], $_GET);
 		
@@ -158,19 +195,27 @@ class View extends CI_Controller {
 			$this->load->model('RegistryObjects', 'ro');
 	       	$content = $this->ro->get($key);
 	       	$data['key']= $key;  	
+<<<<<<< HEAD
 			$data['content'] = $this->transform($content, 'rifcs2View.xsl',$key,false);	
+=======
+			$data['content'] = $this->transform($content, 'rifcs2View.xsl',$key);	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();
 			
+<<<<<<< HEAD
 			$data['activity_name'] = 'print-view';
 			
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			$this->load->view('print-view', $data);
 		}else{
 			show_404('page');
 		}
 		
 	}	
+<<<<<<< HEAD
 	public function printcontributor(){
 		parse_str($_SERVER['QUERY_STRING'], $_GET);
 	
@@ -223,6 +268,10 @@ class View extends CI_Controller {
 	}
 	
 	private function transform($registryObjectsXML, $xslt,$key,$group){
+=======
+	
+	private function transform($registryObjectsXML, $xslt,$key){
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$qtestxsl = new DomDocument();
 		$registryObjects = new DomDocument();
 		$registryObjects->loadXML($registryObjectsXML);
@@ -233,7 +282,10 @@ class View extends CI_Controller {
 		$orca_view = view_url();
 		$proc->setParameter('','orca_view',$orca_view);
 		$proc->setParameter('','key',$key);
+<<<<<<< HEAD
 		$proc->setParameter('','theGroup',$group);		
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$transformResult = $proc->transformToXML($registryObjects);	
 		return $transformResult;
 	}

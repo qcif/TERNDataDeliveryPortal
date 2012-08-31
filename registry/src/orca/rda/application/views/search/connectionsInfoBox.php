@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 /**
+=======
+/** 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 Copyright 2011 The Australian National University
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,13 +18,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ***************************************************************************
 *
+<<<<<<< HEAD
 **/
+=======
+**/ 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 ?>
 <div class="accordion">
 <?php
 foreach($json->{'response'}->{'docs'} as $r)
 {
+<<<<<<< HEAD
 	$autoLink = '';
+=======
+	$autoLink = '';	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if($externalKeys)
 		{
 			for($j=0;$j<count($externalKeys);$j++)
@@ -29,7 +41,11 @@ foreach($json->{'response'}->{'docs'} as $r)
 				$autoLink = '<span class="faded">(Automatic link)</span>';
 			}
 		}
+<<<<<<< HEAD
 	echo '<h3><a href="#">'.$r->{'list_title'}.' '.$autoLink.'</a></h3>';
+=======
+	echo '<h3><a href="#">'.$r->{'listTitle'}.' '.$autoLink.'</a></h3>';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$something = '';
 	$logostr = '';
 	echo '<div>';
@@ -38,9 +54,15 @@ foreach($json->{'response'}->{'docs'} as $r)
 			if($description_type=='logo')
 			{
 				$logostr = '<div><img id="party_logo"  style="max-width:130px;max-height:63px;" src="'.$r->{'description_value'}[$index].'"/></div>';
+<<<<<<< HEAD
 			}
 			if($something==''){
 
+=======
+			}						
+			if($something==''){
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				if(($description_type!='rights') && ($description_type!='logo')){
 					$something = $r->{'description_value'}[$index];
 				}
@@ -50,6 +72,7 @@ foreach($json->{'response'}->{'docs'} as $r)
 		echo $logostr.$something;
 		echo '<hr/>';
 	}
+<<<<<<< HEAD
 
 
 
@@ -57,10 +80,20 @@ foreach($json->{'response'}->{'docs'} as $r)
 		echo '<ul class="subjects">';
 		foreach($r->{'subject_type'} as $index=>$subject_type){
 			echo '<li><a href="javascript:void(0);" class="subjectFilter" id="'.$r->{'subject_value_resolved'}[$index].'">'.$r->{'subject_value_resolved'}[$index].'</a></li>';
+=======
+	
+	
+	
+	if(isset($r->{'subject_type'})){
+		echo '<ul class="subjects">';
+		foreach($r->{'subject_type'} as $index=>$subject_type){
+			echo '<li><a href="javascript:void(0);" class="subjectFilter" id="'.$r->{'subject_value'}[$index].'">'.$r->{'subject_value'}[$index].'</a></li>';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		}
 		echo '</ul>';
 		echo '<hr/>';
 	}
+<<<<<<< HEAD
 
 	if ($r->{'url_slug'})
 	{
@@ -72,18 +105,34 @@ foreach($json->{'response'}->{'docs'} as $r)
 	}
 	echo '</div>';
 
+=======
+	
+	echo anchor('view/?key='.urlencode($r->{'key'}),'View Record', array('class'=>'button'));
+	echo '</div>';
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 echo '</div>';
 echo '<div class="hide">';
 
+<<<<<<< HEAD
 	$numFound = $json->{'response'}->{'numFound'};
+=======
+	$numFound = $json->{'response'}->{'numFound'};	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 	$row = $json->{'responseHeader'}->{'params'}->{'rows'};
 
 	$start = $json->{'responseHeader'}->{'params'}->{'start'};
+<<<<<<< HEAD
 
 	$end = $start + $row;
 
+=======
+	
+	$end = $start + $row;
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$totalPage = ceil($numFound / $row);
 	$currentPage = ceil($start / $row) + 1;
 	echo '<div id="connectionsTotalPage">'.$totalPage.'</div>';

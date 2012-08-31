@@ -48,6 +48,7 @@ if($type=='xml'){
 	// =============================================================================
 	require '../../_includes/finish.php';
 	
+<<<<<<< HEAD
 }
 else if($type=='download')
 {
@@ -65,6 +66,37 @@ else if($type=='download')
 		header("Content-Description: File Transfer"); 
 		header('Content-Disposition: attachment; filename='.$registryObject[0]['url_slug'].'-rifcs-download.xml');
 		//header('Expires: 0');
+=======
+}elseif($type=='plain'){
+	if(!$dataSource){
+		// BEGIN: XML Response
+		// =============================================================================
+		$rifcs ='<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" '."\n";
+		$rifcs .='                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
+		$rifcs .='                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF_SCHEMA_URI.'">'."\n";
+		if( $registryObject )
+		{
+			$rifcs .= getRegistryObjectXML($registryObject[0]['registry_object_key']);
+		}
+		$rifcs .= "</registryObjects>\n";
+		// TODO : this is needed untill we stop having rifcs 1.0 elements in the database!!!
+		// so delete it once the green and orange is imp[lemented + all data is migrated to rifcs 1.2 placeholders!!
+		$rifc2 = transformToRif2XML($rifcs);
+		print $rifc2;
+	}elseif($type=='download'){
+		// Set the Content-Type header.
+		header("Cache-Control: public"); 
+		header('Pragma: public');
+		header("Content-Type: text/xml; charset=UTF-8", true);
+		header('Content-Disposition: attachment; filename='.$registryObject[0]['registry_object_key'].'-rifcs-download.xml');
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		header("Content-Transfer-Encoding: binary");
+		header("Content-Type: application/force-download"); 
+		header("Content-Type: application/octet-stream"); 
+		header("Content-Type: application/download"); 
+		header("Content-Description: File Transfer"); 
+		header('Expires: 0');
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		
 		
 		$rifcs = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
@@ -81,14 +113,22 @@ else if($type=='download')
 		$rifcs .= "</registryObjects>\n";
 		// TODO : this is needed untill we stop having rifcs 1.0 elements in the database!!!
 		// so delete it once the green and orange is imp[lemented + all data is migrated to rifcs 1.2 placeholders!!
+<<<<<<< HEAD
 
 		$rifcs = transformToRif2XML($rifcs);
 		
 		header('Content-Length: ' . strlen($rifcs));
+=======
+		$rifc2 = transformToRif2XML($rifcs);
+		
+		header('Content-Length: ' . filesize($rifc2));
+		print $rifc2;
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		
 		// END: XML Response
 		// =============================================================================
 		require '../../_includes/finish.php';
+<<<<<<< HEAD
 }
 elseif($type=='plain')
 {
@@ -122,6 +162,11 @@ elseif($type=='plain')
 		{
 			echo $registryObject[0]['rifcs'];
 		}
+=======
+	}elseif($dataSource){
+		$registryObject = getDraftRegistryObject(getQueryValue('key'), getQueryValue('ds'));
+		print($registryObject[0]['rifcs']);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 }
 ?>

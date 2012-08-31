@@ -42,7 +42,11 @@ $gApplicationStylesheets = array();
 function setTheme($theme)
 {
 	global $eThemes;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	global $gAppLogoImagePath;
 	global $gAppMarginClass;
 	global $gAppTitleTextColour;
@@ -61,7 +65,11 @@ function importApplicationStylesheet($uri)
 function printApplicationStylesheets()
 {
 		global $gApplicationStylesheets;
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		foreach($gApplicationStylesheets as $uri)
 		{
 			print("@import url(\"$uri\");\n");
@@ -78,18 +86,30 @@ function drawDateTimeInput($fieldNameAndID, $unsafeValue, $format)
 }
 
 function drawDateTimeZoneInput($fieldNameAndID, $unsafeValue, $format)
+<<<<<<< HEAD
 {
+=======
+{	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	print '<script>
 	$(function() {
 		$( "#'.$fieldNameAndID.'" ).datetimepicker({
 			changeMonth: true,
+<<<<<<< HEAD
 			changeYear: true,
+=======
+			changeYear: true,			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		    showOtherMonths: true,
 		    useTimeSelects: true,
 		    selectOtherMonths: true,
 		    showButtonPanel: false,
 		    showTimezone: true,
+<<<<<<< HEAD
 		    timeFormat: "hh:mm:ss z",
+=======
+		    timeFormat: "hh:mm:ss z",		    
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		    yearRange: "c-100:c+100",
 			dateFormat: "yy-mm-dd",
 			showOn: "button",
@@ -107,6 +127,7 @@ function drawMonthYearInput($field1NameAndID, $unsafeValue1,$field2NameAndID, $u
 {
 	if(!$unsafeValue1) $unsafeValue1=date("m");
 	if(!$unsafeValue2) $unsafeValue2=date("Y");
+<<<<<<< HEAD
 
 	print '<select name="'.$field1NameAndID.'" id="'.$field1NameAndID.'"  />';
 	 for($i=1;$i<13;$i++)
@@ -128,6 +149,29 @@ function drawMonthYearInput($field1NameAndID, $unsafeValue1,$field2NameAndID, $u
 	}
 
 	print'</select>'."\n";
+=======
+		
+	print '<select name="'.$field1NameAndID.'" id="'.$field1NameAndID.'"  />';
+	 for($i=1;$i<13;$i++)
+	{ 
+		print('<option value="'.$i.'"');
+		if($i==intval($unsafeValue1)) print(" selected"); 
+		print('>'.date("M",mktime($hour=null,$minute=null,$second=null,$month=$i,$day=date("d"),$year=date("Y"))).'</option>');
+	
+	}
+	print'</select>'."\n";
+	
+	print '<select name="'.$field2NameAndID.'" id="'.$field2NameAndID.'"  />';
+	for($i=(date("Y")-100);$i<(date("Y")+100);$i++)
+	{ 
+		print('<option value="'.$i.'"');
+		if($i==$unsafeValue2) print(" selected");
+		print('>'.$i.'</option>');
+	
+	} 
+	
+	print'</select>'."\n";	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	print '&nbsp;<span class="inputFormat">MM -YYYY</span>';
 }
 function getFormattedDatetimeWithMask($datetime, $mask)
@@ -143,7 +187,11 @@ function getFormattedDatetimeWithMask($datetime, $mask)
 function formatDateTimeWithMask($datetime, $mask)
 {
 
+<<<<<<< HEAD
 	$formatDate = "";
+=======
+	$formatDate = "";	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$TZpos = strpos($datetime, "+");
 	//if($TZpos === false)
 	//	$TZpos = strpos($datetime, "-");
@@ -158,7 +206,11 @@ function formatDateTimeWithMask($datetime, $mask)
 			$Tpos = strpos($datetime, " ");
 		if($Tpos > 0 && sizeof($timeZoneArray) > 2)
 		{
+<<<<<<< HEAD
 			// these are the buggy timestamps!!
+=======
+			// these are the buggy timestamps!!			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			$time = substr($datetime,$Tpos+1, ($TZpos - $Tpos -1));
 			$timeArray = explode(":", $time);
 
@@ -168,6 +220,7 @@ function formatDateTimeWithMask($datetime, $mask)
 			//if($timeArray[$i] != null && $timeZoneArray[$i] != null)
 			//	$timeArray[$i] = $timeArray[$i] - $timeZoneArray[$i];
 			//}
+<<<<<<< HEAD
 
 			$datetime = substr($datetime,0, $Tpos)."T".$timeArray[0].":00:00".$gmt_p_m.$timeZoneArray[0];
 		}
@@ -178,16 +231,34 @@ function formatDateTimeWithMask($datetime, $mask)
 	{
 
 		if(!date_create($datetime))
+=======
+			$datetime = substr($datetime,0, $Tpos)."T".$timeArray[0].":00:00".$gmt_p_m.$timeZoneArray[0];
+		}		
+	}
+	
+	
+	if( $datetime != "" && $datetime != null )
+	{
+		date_create($datetime);
+		if( error_get_last() )
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		{
 			$formatDate = $datetime;
 		}
 		else
 		{
 			$maskFragments = array("YYYY", "MM", "DD", "hh", "mm", "ss", "OOOO", "AM");
+<<<<<<< HEAD
 
 			// Default to 24 hour time.
 			$hoursFormat = 'H';
 
+=======
+			
+			// Default to 24 hour time.
+			$hoursFormat = 'H';
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			if( strpos($mask, "AM") > 0 ){
 				// Use 12 hour time.
 				$hoursFormat = 'h';
@@ -195,15 +266,25 @@ function formatDateTimeWithMask($datetime, $mask)
 
 			// Get the local timezone as set in application_env.php.
 			$timezone = new DateTimeZone(date_default_timezone_get());
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			// Parse the string into a date.
 			// If no timezone offset is supplied in the datetime string
 			// then the local timezone will be used by the function (as set in the previous step).
 			// Otherwise, if the datetime string includes a timezone offset, then the local timezone will be ignored and overridden.
 			$objDate = new DateTime($datetime, $timezone);
+<<<<<<< HEAD
 
 			// If the mask has a "Z" in it, then the output will be representing a UTC/GMT date,
 			// and we need to convert the date to UTC.
+=======
+			
+			// If the mask has a "Z" in it, then the output will be representing a UTC/GMT date, 
+			// and we need to convert the date to UTC. 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			// The conversion will be done by setting the timezone so...
 			if( strpos($mask, "Z") > 0 )
 			{
@@ -213,10 +294,17 @@ function formatDateTimeWithMask($datetime, $mask)
 			// So, we now set the timezone to convert the date to local time,
 			// or to UTC, as has been determined in the previous steps.
 			$objDate->setTimezone($timezone);
+<<<<<<< HEAD
 
 			// Get the values for each component of the date.
 			$fragmentValues = array($objDate->format("Y"), $objDate->format("m"), $objDate->format("d"), $objDate->format($hoursFormat), $objDate->format("i"), $objDate->format("s"), $objDate->format("O"), $objDate->format("A"));
 
+=======
+			
+			// Get the values for each component of the date.
+			$fragmentValues = array($objDate->format("Y"), $objDate->format("m"), $objDate->format("d"), $objDate->format($hoursFormat), $objDate->format("i"), $objDate->format("s"), $objDate->format("O"), $objDate->format("A"));
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			// Replace all of the fragments in the mask with the values for each fragment that we calculated in the last step.
 			$formatDate = str_replace($maskFragments, $fragmentValues, $mask);
 		}
@@ -235,11 +323,16 @@ function formatDateTime($datetime, $type=gDATETIME)
 	if (preg_match("/^[0-9]{4}$/",$datetime))
 	{
 		return $datetime;
+<<<<<<< HEAD
 	}
+=======
+	} 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	elseif (preg_match("/^[0-9]{4}[\/\-]{1}[0-9]{2}$/",$datetime))
 	{
 		return $datetime;
 	}
+<<<<<<< HEAD
 
 	$formatDate = "";
 	if( $datetime != "" && $datetime != null )
@@ -249,11 +342,26 @@ function formatDateTime($datetime, $type=gDATETIME)
 			$formatDate = new DateTime($datetime);
 		}
 		catch (Exception $e)
+=======
+	
+	$formatDate = "";
+	if( $datetime != "" && $datetime != null )
+	{
+		
+		try {
+			$formatDate = new DateTime($datetime);
+		}
+		catch (Exception $e) 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		{
 			// Return the plain text representation
 			return $datetime;
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		switch( $type )
 		{
 			case gDATE:
@@ -266,11 +374,19 @@ function formatDateTime($datetime, $type=gDATETIME)
 				$mask = $eDateTimeFormat;
 				break;
 		}
+<<<<<<< HEAD
 
 
 		$formatDate = formatDateTimeWithMask($datetime, $mask);
 	}
 
+=======
+		
+		
+		$formatDate = formatDateTimeWithMask($datetime, $mask);
+	}
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $formatDate;
 }
 
@@ -361,7 +477,11 @@ function isChosen($name, $value)
 			{
 				$chosen = true;
 			}
+<<<<<<< HEAD
 		}
+=======
+		} 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		else
 		{
 			if( getPostedValue($name) == $value )
@@ -370,7 +490,11 @@ function isChosen($name, $value)
 			}
 		}
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( isset($_GET[$name]) )
 	{
 		if( is_array(getQueryValue($name)) )
@@ -379,7 +503,11 @@ function isChosen($name, $value)
 			{
 				$chosen = true;
 			}
+<<<<<<< HEAD
 		}
+=======
+		} 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		else
 		{
 			if( getQueryValue($name) == $value )
@@ -395,7 +523,11 @@ function getNumPages($numItems, $itemsPerPage, &$pageNumber=0)
 {
 	$numPages =  (int)(($numItems+$itemsPerPage-1)/$itemsPerPage);
 	if( $pageNumber > $numPages )
+<<<<<<< HEAD
 	{
+=======
+	{ 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$pageNumber = $numPages;
 	}
 	return $numPages;
@@ -440,8 +572,13 @@ function drawResultsFooter($numPages, $pageNumber, $startPage, $endPage, $uri)
 	{
 		print("<p class=\"resultListFooter\">");
 		drawPagination($numPages, $pageNumber, $startPage, $endPage, $uri);
+<<<<<<< HEAD
 		print("</p>\n");
 	}
+=======
+		print("</p>\n");			
+	}		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function drawPagination($numPages, $pageNumber, $startPage, $endPage, $uri)
@@ -481,7 +618,11 @@ function drawPagination($numPages, $pageNumber, $startPage, $endPage, $uri)
 			print("<span style=\"color: #cccccc;\"><img src=\"".gPAG_CONTROL_PATH."last_disabled.gif\" alt=\"Last page\" width=\"14\" height=\"12\" /></span>\n");
 		}
 		print("&nbsp;");
+<<<<<<< HEAD
 	}
+=======
+	}	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 
@@ -489,6 +630,7 @@ function drawPagination($numPages, $pageNumber, $startPage, $endPage, $uri)
 // Only display if we tracking ID is specified
 function getAnalyticsTrackingCode($trackingID)
 {
+<<<<<<< HEAD
 
 	if ($trackingID != "") {
 
@@ -504,11 +646,29 @@ function getAnalyticsTrackingCode($trackingID)
 			  _gaq.push(['_setAccount', '".$trackingID."']);
 			  _gaq.push(['_trackPageview']);
 
+=======
+	
+	if ($trackingID != "") {
+		
+		// Asynchronous tracking snippet
+		// from http://code.google.com/apis/analytics/docs/tracking/asyncTracking.html
+			
+		echo "
+		
+		 	<!-- Begin Google Analytics tracking code -->
+			<script type=\"text/javascript\">
+	
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', '".$trackingID."']);
+			  _gaq.push(['_trackPageview']);
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			  (function() {
 			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 			  })();
+<<<<<<< HEAD
 
 			</script>
 			<!-- End Google Analytics tracking code -->
@@ -591,5 +751,20 @@ function elipsesLimit($string, $maxlen)
 	}
 }
 
+=======
+			
+			</script>
+			<!-- End Google Analytics tracking code -->
+			
+			";
+	
+	}
+	
+}
+
+
+
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 ?>

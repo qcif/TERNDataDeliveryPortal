@@ -19,7 +19,11 @@ limitations under the License.
 <?php $this->load->view('tpl/header');?>
 <?php $this->load->view('tpl/mid');?>
 
+<<<<<<< HEAD
 <div id="item-view" class="top-corner">
+=======
+<div id="item-view" class="shadow-and-corner">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	<!--  the following hidden elements dfine content to be used in further ajax calls --> 
 	<span id="originating_source" class="hide"><?php echo $doc->{'originating_source'};?></span>
     <div id="group_value" class="hide"><?php echo $doc->{'group'};?></div>

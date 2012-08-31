@@ -56,8 +56,12 @@ $Revision: 1 $
 				//var_dump($r->{'description_value'});
 				$type = $r->{'type'};
 				$ro_key = $r->{'key'};
+<<<<<<< HEAD
 				//$name = $r->{'listTitle'};
                                 $name = $r->{'list_title'};
+=======
+				$name = $r->{'listTitle'};
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				$descriptions = array();if(isset($r->{'description_value'})) $descriptions = $r->{'description_value'};
 				$description_type=array();if(isset($r->{'description_type'})) $description_type = $r->{'description_type'};
 				$class = '';if(isset($r->{'class'})) $class = $r->{'class'};
@@ -81,12 +85,19 @@ $Revision: 1 $
 					$center = $r->{'spatial_coverage_center'}[0];
 				}
 				$subjects='';
+<<<<<<< HEAD
 //				if(isset($r->{'subject_value'})){
 //					$subjects = $r->{'subject_value'};
 //				}
 				if(isset($r->{'subject_value_resolved'})){
 					$subjects = $r->{'subject_value_resolved'};
 				}
+=======
+				if(isset($r->{'subject_value'})){
+					$subjects = $r->{'subject_value'};
+				}
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				echo '<div class="search_item">';
 				
 				//echo get_cookie('show_icons');

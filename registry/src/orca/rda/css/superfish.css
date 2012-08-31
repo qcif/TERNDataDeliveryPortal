@@ -127,8 +127,12 @@ ul.sf-menu li li li.sfHover ul {
 }
 .sf-menu a {
 	color:white;
+<<<<<<< HEAD
 
 	padding:12px 12px;
+=======
+	padding:11px 15px;
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	text-decoration:none;
 }
 .sf-menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
@@ -136,8 +140,13 @@ ul.sf-menu li li li.sfHover ul {
 	color:white;
 	text-decoration:none;
 	font-variant: small-caps;
+<<<<<<< HEAD
 	font-size: 1.2em;
 
+=======
+	font-size: 18px;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	/*Text Shadow*/
 	text-shadow: 0px 1px 5px #000000; /*Modern*/
 	filter: dropshadow(color=#000000, offx=0, offy=0); /*IE*/

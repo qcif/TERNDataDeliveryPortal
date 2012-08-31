@@ -25,7 +25,11 @@ $registryObjectKey = null;
 $dataSourceKey = null;
 $registryObjectRecordOwner = null;
 $registryObjectDataSourceRecordOwner = null;
+<<<<<<< HEAD
 $dataSource = null;
+=======
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 if( !$registryObject )
 {
 	responseRedirect('../manage/my_records.php');
@@ -59,15 +63,24 @@ if( strtoupper(getPostedValue('action')) == "DELETE" )
 	if( $result != '' )
 	{
 		$actions = '    '.$result;
+<<<<<<< HEAD
 		
 	}
 	$actions .= deleteSolrHashKey(sha1($registryObjectKey));
     $actions .= queueSyncDataSource($dataSourceKey);
+=======
+	}
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	// Log the datasource activity.
 	insertDataSourceEvent($dataSourceKey, "DELETE REGISTRY OBJECT\nKey: ".$registryObjectKey."\n  ACTIONS\n".$actions);
 	
 	
+<<<<<<< HEAD
 	responseRedirect('../manage/my_records.php?data_source='.esc($dataSourceKey));
+=======
+	responseRedirect('../manage/my_records.php');
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 // -----------------------------------------------------------------------------
 // Begin the XHTML response. Any redirects must occur before this point.
@@ -79,9 +92,13 @@ if( $registryObject )
 	
 	$registryObjectClass = $registryObject[0]['registry_object_class'];
 	$registryObjectType = $registryObject[0]['type'];
+<<<<<<< HEAD
 	$dataSourceTitle = $dataSource[0]['title'];
 	
 	
+=======
+	$dataSourceTitle = $registryObject[0]['data_source_title'];
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 ?>
 
 <form id="registry_object_delete" action="registry_object_delete.php?key=<?php printSafe(urlencode($registryObjectKey)) ?>" method="post">

@@ -1,13 +1,20 @@
 <?xml version="1.0"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<<<<<<< HEAD
     xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:extRif="http://ands.org.au/standards/rif-cs/extendedRegistryObjects" exclude-result-prefixes="ro">
+=======
+    xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" exclude-result-prefixes="ro">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     <xsl:output method="html" encoding="UTF-8" indent="no" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="dataSource" select="//ro:originatingSource"/>
     <xsl:param name="dateCreated"/>
     <xsl:param name="base_url" select="'https://test.ands.org.au/orca/'"/>  
     <xsl:param name="orca_view"/>  
+<<<<<<< HEAD
     <xsl:param name="theGroup"/>     
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     <xsl:param name="key"/>        
     <xsl:variable name="objectClass" >
         <xsl:choose>
@@ -22,9 +29,14 @@
 			<xsl:when test="//ro:collection">collections</xsl:when>
 			<xsl:when test="//ro:activity">activities</xsl:when>
 			<xsl:when test="//ro:party/@type='group'">party_multi</xsl:when>
+<<<<<<< HEAD
 			<xsl:when test="//ro:party/@type='person'">party_one</xsl:when>		
 			<xsl:when test="//ro:party">party_multi</xsl:when>	
 			<xsl:when test="//ro:service">services</xsl:when>	
+=======
+			<xsl:when test="//ro:party/@type='person'">party_one</xsl:when>			
+			<xsl:when test="//ro:service">services</xsl:when>			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		</xsl:choose>		
 	</xsl:variable>		                    
     <xsl:template match="ro:registryObject">
@@ -44,17 +56,26 @@
 
 		<xsl:variable name="theTitle">	
 		<xsl:choose>
+<<<<<<< HEAD
 		<xsl:when test="string-length(/extRif:extendedMetadata/extRif:displayTitle)>30">
 		<xsl:value-of select="substring(/extRif:extendedMetadata/extRif:displayTitle,0,30)"/>...
 		</xsl:when>
 		<xsl:otherwise>
 		<xsl:value-of select="/extRif:extendedMetadata/extRif:displayTitle"/>
+=======
+		<xsl:when test="string-length(//ro:displayTitle)>30">
+		<xsl:value-of select="substring(//ro:displayTitle,0,30)"/>...
+		</xsl:when>
+		<xsl:otherwise>
+		<xsl:value-of select="//ro:displayTitle"/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		</xsl:otherwise>
 		</xsl:choose>
 		</xsl:variable>			
     	<div id="top" class="top-corner">
 			<ul id="breadcrumb" class="top-corner">
 				<li><a href="{$base_url}" class="crumb">Home</a></li>
+<<<<<<< HEAD
 				<xsl:if test="$theGroup">
 					<li><a class="crumb">
 					<xsl:attribute name="href">
@@ -65,6 +86,9 @@
 				<li><a href="{$base_url}search/browse/{./@group}" class="crumb"><xsl:value-of select="$group"/></a></li>				
 				</xsl:if>
 
+=======
+				<li><a href="{$base_url}search/browse/{./@group}" class="crumb"><xsl:value-of select="$group"/></a></li>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				<li><a href="{$base_url}search/browse/{./@group}/{$objectClass}" class="crumb"><xsl:value-of select="$objectClass"/></a></li>
 				<li><xsl:value-of select="$theTitle"/></li>
 				
@@ -125,10 +149,15 @@
 	
 		<div id="left">           
  		<xsl:choose>
+<<<<<<< HEAD
 
 	        <xsl:when test="../extRif:extendedMetadata/extRif:displayTitle!=''">
 	        	<xsl:apply-templates select="../extRif:extendedMetadata/extRif:displayTitle"/>
 
+=======
+	        <xsl:when test="ro:displayTitle!=''">
+	        	<xsl:apply-templates select="ro:displayTitle"/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	        	
 	        </xsl:when>
 	         <xsl:otherwise>
@@ -161,7 +190,11 @@
         </xsl:choose>    
         <div class="clearfix"></div>  
 
+<<<<<<< HEAD
         <xsl:apply-templates select="../extRif:extendedMetadata/extRif:displayLogo"/>
+=======
+        <xsl:apply-templates select="ro:displayLogo"/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
         <div class="clearfix"></div>  
 
@@ -170,6 +203,7 @@
                 
         <div class="clearfix"></div>
         <xsl:if test="ro:description">
+<<<<<<< HEAD
 
             <div class="descriptions" style="position:relative;clear:both;">
 				<xsl:apply-templates select="extRif:description[@type= 'brief']" mode="content"/>
@@ -178,6 +212,14 @@
 				<xsl:apply-templates select="extRif:description[@type= 'notes']" mode="content"/>	
 				<xsl:apply-templates select="extRif:description[not(@type =  'notes' or @type =  'significanceStatement' or @type =  'full' or @type =  'brief' or @type =  'logo' or @type =  'rights' or @type =  'accessRights')]" mode="content"/>											
 
+=======
+            <div class="descriptions" style="position:relative;clear:both;" itemprop="descriptions">
+				<xsl:apply-templates select="ro:description[@type= 'brief']" mode="content"/>
+				<xsl:apply-templates select="ro:description[@type= 'full']" mode="content"/>
+				<xsl:apply-templates select="ro:description[@type= 'significanceStatement']" mode="content"/>		
+				<xsl:apply-templates select="ro:description[@type= 'notes']" mode="content"/>	
+				<xsl:apply-templates select="ro:description[not(@type =  'notes' or @type =  'significanceStatement' or @type =  'full' or @type =  'brief' or @type =  'logo' or @type =  'rights' or @type =  'accessRights')]" mode="content"/>											
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				
             </div>
         </xsl:if>
@@ -188,6 +230,7 @@
             <xsl:apply-templates select="ro:relatedInfo"/> 
          </xsl:if>
                         
+<<<<<<< HEAD
         <xsl:if test="ro:coverage/extRif:spatial or ro:location/extRif:spatial or ro:coverage/ro:temporal">
             <xsl:variable name="coverageLabel">
             <xsl:choose>
@@ -198,6 +241,18 @@
             <xsl:text>Location:</xsl:text>
             </xsl:when>
              <xsl:when test="ro:coverage/extRif:spatial or ro:coverage/ro:temporal">
+=======
+        <xsl:if test="ro:coverage or ro:location/ro:spatial">
+            <xsl:variable name="coverageLabel">
+            <xsl:choose>
+            <xsl:when test="ro:coverage/ro:spatial and ro:location/ro:spatial">
+            <xsl:text>Coverage And Location:</xsl:text>
+            </xsl:when>
+            <xsl:when test="ro:location/ro:spatial">
+            <xsl:text>Location:</xsl:text>
+            </xsl:when>
+             <xsl:when test="ro:coverage/ro:spatial">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             <xsl:text>Coverage:</xsl:text>
             </xsl:when>
             
@@ -205,19 +260,28 @@
             </xsl:variable>
             <p><b><xsl:value-of select="$coverageLabel"/></b></p>
             <xsl:variable name="needMap">   
+<<<<<<< HEAD
                 <xsl:for-each select="ro:coverage/extRif:spatial"> 
+=======
+                <xsl:for-each select="ro:coverage/ro:spatial"> 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
              	<xsl:if test="not(./@type) or (./@type!='text' and ./@type!='dcmiPoint')">        	
                       <xsl:text>yes</xsl:text>
                </xsl:if>
                </xsl:for-each>    
+<<<<<<< HEAD
 
              	<xsl:for-each select="ro:location/extRif:spatial"> 
+=======
+             	<xsl:for-each select="ro:location/ro:spatial"> 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
              	<xsl:if test="not(./@type) or (./@type!='text' and ./@type!='dcmiPoint')">        	
                       <xsl:text>yes</xsl:text>
                </xsl:if>            
                </xsl:for-each>               
         	</xsl:variable>
         
+<<<<<<< HEAD
             <xsl:if test="ro:coverage/extRif:spatial/extRif:coords | ro:location/extRif:spatial/extRif:coords">
               <xsl:apply-templates select="ro:coverage/extRif:spatial/extRif:coords | ro:location/extRif:spatial/extRif:coords"/>
               <xsl:if test="$needMap!=''">
@@ -251,6 +315,25 @@
                 <xsl:apply-templates select="ro:coverage/ro:temporal/ro:text"/> 
                 </p>    
             </xsl:if> 
+=======
+            <xsl:if test="ro:coverage/ro:spatial | ro:location/ro:spatial">
+               	 	<xsl:apply-templates select="ro:coverage/ro:spatial | ro:location/ro:spatial"/>
+               	 	<xsl:if test="$needMap!=''">
+                  		<div id="spatial_coverage_map"></div>
+                  	</xsl:if>
+            </xsl:if>   
+            
+            <xsl:if test="ro:coverage/ro:center | ro:location/ro:center">
+                <xsl:apply-templates select="ro:coverage/ro:center | ro:location/ro:center"/>
+            </xsl:if>   
+         
+            <xsl:if test="ro:coverage/ro:temporal/ro:date">
+                <p>Time Period:<br />
+                <xsl:apply-templates select="ro:coverage/ro:temporal/ro:date"/> 
+                </p>    
+            </xsl:if> 
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         </xsl:if>
             
         <xsl:if test="ro:subject">
@@ -321,7 +404,11 @@
             <div style="position:relative;clear:both;"><p><b>Identifiers:</b></p>
            	 	<div id="identifiers">
      
+<<<<<<< HEAD
     		
+=======
+    	<p> 	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     	<xsl:apply-templates select="ro:identifier[@type='doi']" mode = "doi"/>
     	<xsl:apply-templates select="ro:identifier[@type='ark']" mode = "ark"/>    	
      	<xsl:apply-templates select="ro:identifier[@type='AU-ANL:PEAU']" mode = "nla"/>  
@@ -329,7 +416,11 @@
      	<xsl:apply-templates select="ro:identifier[@type='purl']" mode = "purl"/>
     	<xsl:apply-templates select="ro:identifier[@type='uri']" mode = "uri"/> 
  		<xsl:apply-templates select="ro:identifier[not(@type =  'doi' or @type =  'ark' or @type =  'AU-ANL:PEAU' or @type =  'handle' or @type =  'purl' or @type =  'uri')]" mode="other"/>											   	
+<<<<<<< HEAD
    		
+=======
+   		</p>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	
             	</div>
             </div>
@@ -358,6 +449,7 @@
 				<p><xsl:apply-templates select="ro:location/ro:address/ro:electronic"/></p>	
 	 		</xsl:if>
 	 		
+<<<<<<< HEAD
 	 		 <xsl:if test="extRif:rights or ro:rights">
 					<h3>Rights</h3>	
 			</xsl:if>
@@ -368,11 +460,21 @@
 			<xsl:apply-templates select="extRif:rights[@type='licence']"/>	
 	
 			<xsl:apply-templates select="extRif:rights[@type!='licence']"/>			
+=======
+	 		 <xsl:if test="ro:rights">
+					<h3>Rights</h3>	
+			</xsl:if>
+				
+			<!-- <xsl:apply-templates select="ro:description[@type = 'accessRights' or @type = 'rights']" mode="right"/>	 -->	
+			<xsl:apply-templates select="ro:rights"/>		
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		 	<xsl:if test="ro:location/ro:address/ro:electronic/@type='email' or ro:location/ro:address/ro:physical">
 		 		<h3>Contacts</h3>
 		 		<xsl:if test="ro:location/ro:address/ro:electronic/@type='email'">
 					<p><xsl:apply-templates select="ro:location/ro:address/ro:electronic/@type"/></p>	
 				</xsl:if>
+<<<<<<< HEAD
 		 		<xsl:if test="ro:location/ro:address/ro:physical">
 					<p>
 					<xsl:if test="ro:location/ro:address/ro:physical/ro:addressPart/@type='telephoneNumber'">
@@ -389,6 +491,14 @@
 					
 					<xsl:apply-templates select="ro:location/ro:address/ro:physical"/></p>	
 				</xsl:if>		
+=======
+			 	<xsl:if test="ro:location/ro:address/ro:physical/@type='telephoneNumber'">
+					<p><xsl:apply-templates select="ro:location/ro:address/ro:physical"/></p>	
+				</xsl:if>				
+		 		<xsl:if test="ro:location/ro:address/ro:physical">
+					<p><xsl:apply-templates select="ro:location/ro:address/ro:physical"/></p>	
+				</xsl:if>				
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	 		</xsl:if>			
 			                        
 			</div>
@@ -421,6 +531,7 @@
 					<xsl:attribute name="class">loading-icon</xsl:attribute>
 					<xsl:attribute name="alt">Loading…</xsl:attribute>
 					</img>
+<<<<<<< HEAD
 					</div>
 				<div id="seeAlsoDataCite">
 					<img>
@@ -429,6 +540,9 @@
 					<xsl:attribute name="alt">Loading…</xsl:attribute>
 					</img>
 				</div>				
+=======
+				</div>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				</div>
 			</xsl:if>
 			
@@ -452,7 +566,11 @@
     </xsl:template>
 
 <!--  the following templates will format the view page content -->
+<<<<<<< HEAD
     <xsl:template match="extRif:displayTitle">   
+=======
+    <xsl:template match="ro:displayTitle">   
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         <div id="displaytitle">
         	<h1><xsl:value-of select="."/></h1>
         	<xsl:for-each select="//ro:existenceDates">
@@ -471,7 +589,11 @@
 		</div>   
     </xsl:template>
     
+<<<<<<< HEAD
     <xsl:template match="extRif:displayLogo">   
+=======
+    <xsl:template match="ro:displayLogo">   
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         <div>
         <img id="party_logo" style="max-width:130px;">
         	<xsl:attribute name="src"><xsl:value-of select="."/></xsl:attribute>
@@ -483,7 +605,16 @@
     <xsl:template match="ro:name[@type='alternative']/ro:displayTitle">   
         <p class="alt_displayTitle"><xsl:value-of select="."/></p>
     </xsl:template> 
+<<<<<<< HEAD
         	    	 	 	
+=======
+  
+ 
+        	    	 	 	
+
+
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     <xsl:template match="ro:title">
         <xsl:value-of select="."/>    
     </xsl:template>
@@ -492,6 +623,7 @@
         <xsl:value-of select="."/>   
     </xsl:template> 
     
+<<<<<<< HEAD
 
     <xsl:template match="ro:coverage/extRif:spatial/extRif:coords">
       <xsl:if test="not(./@type) or (./@type!= 'text' and ./@type!= 'dcmiPoint')">
@@ -504,6 +636,22 @@
       </xsl:if>
     </xsl:template>   
     <xsl:template match="extRif:center">
+=======
+    <xsl:template match="ro:spatial">
+
+          <xsl:if test="not(./@type) or (./@type!= 'text' and ./@type!= 'dcmiPoint')">
+
+        <p class="coverage" name="{@type}"><xsl:value-of select="."/></p>
+
+      </xsl:if>
+      <xsl:if test="./@type= 'text' or ./@type= 'dcmiPoint'">
+     	 <p class="coverage_text"><xsl:value-of select="./@type"/>: <xsl:value-of select="."/></p>
+      </xsl:if>     
+
+    </xsl:template>
+    
+    <xsl:template match="ro:center">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         <p class="spatial_coverage_center"><xsl:value-of select="."/></p>
     </xsl:template>
     
@@ -516,6 +664,7 @@
         </xsl:if>       
         <xsl:value-of select="."/>          
     </xsl:template> 
+<<<<<<< HEAD
       <xsl:template match="ro:location[@dateFrom!=''] | ro:location[@dateTo!='']">  
         <xsl:if test="./@dateFrom != ''">
             From         <xsl:value-of select="./@dateFrom"/>     
@@ -527,6 +676,16 @@
     </xsl:template>   
     <xsl:template match="ro:subject">   
             <li><a href="javascript:void(0);" class="subjectFilter" id="{@extRif:resolvedValue}" title="{.}"><xsl:value-of select="@extRif:resolvedValue"/></a></li>       
+=======
+    
+    <xsl:template match="ro:subject">   
+        <xsl:if test="./@type='anzsrc-for' or ./@type='anzsrc-seo' or ./@type='anzsrc-toa'">
+            <li><a href="javascript:void(0);" class="subjectFilter" id="{.}"><xsl:value-of select="."/></a></li>
+        </xsl:if>
+        <xsl:if test="./@type != 'anzsrc-for' and ./@type != 'anzsrc-seo' and ./@type!='anzsrc-toa'">
+            <li><a href="javascript:void(0);" class="subjectFilter" id="{.}"><xsl:value-of select="."/></a></li>
+        </xsl:if>           
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     </xsl:template>
     
    <xsl:template match="ro:relatedInfo">
@@ -549,6 +708,7 @@
         </p>        
     </xsl:template>
   <xsl:template match="ro:identifier" mode="ark">
+<<<<<<< HEAD
     <p>
 ARK: 
 	<xsl:variable name="theidentifier">    			
@@ -663,18 +823,131 @@ DOI:
  </xsl:template>
  <xsl:template match="ro:identifier" mode="purl">     
     <p>			
+=======
+ARK: 
+      			    <xsl:variable name="theidentifier">    			
+    				<xsl:choose>	
+    			    	<xsl:when test="string-length(substring-after(.,'http://'))>0">
+    			     		<xsl:value-of select="(substring-after(.,'http://'))"/>
+    			     	</xsl:when>	    							
+	     	
+    			     	<xsl:otherwise>
+    			     		<xsl:value-of select="."/>
+    			     	</xsl:otherwise>		
+    				</xsl:choose>
+ 					</xsl:variable>  
+ 					<xsl:if test="string-length(substring-after(.,'/ark:/'))>0">    			     
+    				<a>
+    				<xsl:attribute name="href"><xsl:text>http://</xsl:text> <xsl:value-of select="$theidentifier"/></xsl:attribute>
+    				<xsl:attribute name="title"><xsl:text>Resolve this ARK identifier</xsl:text></xsl:attribute>    				
+    				<xsl:value-of select="."/>
+    				</a>
+    				</xsl:if>
+    				<xsl:if test="string-length(substring-after(.,'/ark:/'))&lt;1">
+    					<xsl:value-of select="."/>
+    				</xsl:if>
+    				 <br />		 
+</xsl:template>
+ <xsl:template match="ro:identifier" mode="nla">
+ NLA: 
+       			    <xsl:variable name="theidentifier">    			
+    				<xsl:choose>				
+    			    	<xsl:when test="string-length(substring-after(.,'nla.gov.au/'))>0">
+    			     		<xsl:value-of select="substring-after(.,'nla.gov.au/')"/>
+    			     	</xsl:when>		     	
+    			     	<xsl:otherwise>
+    			     		<xsl:value-of select="."/>
+    			     	</xsl:otherwise>		
+    				</xsl:choose>
+ 					</xsl:variable>  
+ 					<xsl:if test="string-length(substring-after(.,'nla.party'))>0">		
+    				<a>
+    				<xsl:attribute name="href"><xsl:text>http://nla.gov.au/</xsl:text> <xsl:value-of select="$theidentifier"/></xsl:attribute>
+    				<xsl:attribute name="title"><xsl:text>View the record for this party in Trove</xsl:text></xsl:attribute>    				
+    				<xsl:value-of select="."/>
+    				</a> 	<br />
+  				</xsl:if> 
+  					<xsl:if test="string-length(substring-after(.,'nla.party'))&lt;1">		
+   				
+    				<xsl:value-of select="."/>
+    			<br />
+  				</xsl:if> 
+ </xsl:template>
+ <xsl:template match="ro:identifier" mode="doi">   					
+DOI: 
+        			    <xsl:variable name="theidentifier">    			
+    				<xsl:choose>				
+    			    	<xsl:when test="string-length(substring-after(.,'doi.org/'))>0">
+    			     		<xsl:value-of select="substring-after(.,'doi.org/')"/>
+    			     	</xsl:when>		     	
+    			     	<xsl:otherwise>
+    			     		<xsl:value-of select="."/>
+    			     	</xsl:otherwise>		
+    				</xsl:choose>
+ 					</xsl:variable>   	  
+  					<xsl:if test="string-length(substring-after(.,'10.'))>0">		
+      				<a>
+    				<xsl:attribute name="href"><xsl:text>http://dx.doi.org/</xsl:text> <xsl:value-of select="$theidentifier"/></xsl:attribute>
+    				<xsl:attribute name="title"><xsl:text>Resolve this DOI</xsl:text></xsl:attribute>    				
+    				<xsl:value-of select="."/>
+    				</a> 		 <br />
+  				</xsl:if> 
+  					<xsl:if test="string-length(substring-after(.,'10.'))&lt;1">		
+   				
+    				<xsl:value-of select="."/>
+    			<br />
+  				</xsl:if> 					 			
+
+    			
+ </xsl:template>
+ <xsl:template match="ro:identifier" mode="handle">      			
+Handle: 
+      			    <xsl:variable name="theidentifier">    			
+    				<xsl:choose>
+     			    	<xsl:when test="string-length(substring-after(.,'hdl:'))>0">
+    			     		<xsl:text>http://hdl.handle.net/</xsl:text><xsl:value-of select="substring-after(.,'hdl:')"/>
+    			     	</xsl:when> 
+      			    	<xsl:when test="string-length(substring-after(.,'hdl.handle.net/'))>0">
+    			     		<xsl:text>http://hdl.handle.net/</xsl:text><xsl:value-of select="substring-after(.,'hdl.handle.net/')"/>
+    			     	</xsl:when>   			     	     				
+    			    	<xsl:when test="string-length(substring-after(.,'http:'))>0">
+    			     		<xsl:text></xsl:text><xsl:value-of select="."/>
+    			     	</xsl:when>    										     	
+    			     	<xsl:otherwise>
+    			     		<xsl:text>http://hdl.handle.net/</xsl:text><xsl:value-of select="."/>
+    			     	</xsl:otherwise>		
+    				</xsl:choose>
+ 					</xsl:variable>
+    			     
+    				<a>
+    				<xsl:attribute name="href"> <xsl:value-of select="$theidentifier"/></xsl:attribute>
+    				<xsl:attribute name="title"><xsl:text>Resolve this handle</xsl:text></xsl:attribute>    				
+    				<xsl:value-of select="."/>
+    				</a> 	 
+    			<br />
+ </xsl:template>
+ <xsl:template match="ro:identifier" mode="purl">     			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
  	PURL: 
     <xsl:variable name="theidentifier">    			
     <xsl:choose>				
     	<xsl:when test="string-length(substring-after(.,'purl.org/'))>0">
+<<<<<<< HEAD
     		<a class="identifier"><xsl:value-of select="substring-after(.,'purl.org/')"/></a>
     	</xsl:when>		     	
     	<xsl:otherwise>
     		<a class="identifier"><xsl:value-of select="."/></a>
+=======
+    		<xsl:value-of select="substring-after(.,'purl.org/')"/>
+    	</xsl:when>		     	
+    	<xsl:otherwise>
+    		<xsl:value-of select="."/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     	</xsl:otherwise>		
     </xsl:choose>
  	</xsl:variable>   	   			
     <a>
+<<<<<<< HEAD
         <xsl:attribute name="class">identifier</xsl:attribute>
         <xsl:attribute name="href"><xsl:text>http://purl.org/</xsl:text> <xsl:value-of select="$theidentifier"/></xsl:attribute>
         <xsl:attribute name="title"><xsl:text>Resolve this purl identifier</xsl:text></xsl:attribute>    				
@@ -684,10 +957,20 @@ DOI:
   </xsl:template>
   <xsl:template match="ro:identifier" mode="uri">    
   <p> 			
+=======
+    <xsl:attribute name="href"><xsl:text>http://purl.org/</xsl:text> <xsl:value-of select="$theidentifier"/></xsl:attribute>
+    <xsl:attribute name="title"><xsl:text>Resolve this purl identifier</xsl:text></xsl:attribute>    				
+    <xsl:value-of select="."/>
+    </a>  
+    	<br /> 
+  </xsl:template>
+  <xsl:template match="ro:identifier" mode="uri">     			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
  	URI: 
    <xsl:variable name="theidentifier">    			
     <xsl:choose>				
     	<xsl:when test="string-length(substring-after(.,'http'))>0">
+<<<<<<< HEAD
     		<a class="identifier"><xsl:value-of select="."/></a>
     	</xsl:when>		     	
     	<xsl:otherwise>
@@ -696,6 +979,12 @@ DOI:
                 <xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute>
                 <xsl:value-of select="."/>
             </a>
+=======
+    		<xsl:value-of select="."/>
+    	</xsl:when>		     	
+    	<xsl:otherwise>
+    		http://<xsl:value-of select="."/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     	</xsl:otherwise>		
     </xsl:choose>
  	</xsl:variable>   	        			
@@ -704,16 +993,23 @@ DOI:
     <xsl:attribute name="title"><xsl:text>Resolve this uri</xsl:text></xsl:attribute>    				
     <xsl:value-of select="."/>  
     </a>   		 
+<<<<<<< HEAD
    </p>
   </xsl:template> 
  <xsl:template match="ro:identifier" mode="other">   
  <p>  			 			 	    			 			
+=======
+   	<br />
+  </xsl:template> 
+ <xsl:template match="ro:identifier" mode="other">     			 			 	    			 			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
    <!--  <xsl:attribute name="name"><xsl:value-of select="./@type"/></xsl:attribute>  -->
    <xsl:choose>
    <xsl:when test="./@type='arc' or ./@type='abn' or ./@type='isil'">
  		<xsl:value-of select="translate(./@type,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>: <xsl:value-of select="."/>  
    </xsl:when>
     <xsl:when test="./@type='local'">
+<<<<<<< HEAD
  		Local: <a class="identifier"><xsl:value-of select="."/></a>
    </xsl:when>  
    <xsl:otherwise>
@@ -721,6 +1017,15 @@ DOI:
 	</xsl:otherwise>
 	</xsl:choose>
 	</p>
+=======
+ 		Local: <xsl:value-of select="."/>    
+   </xsl:when>  
+   <xsl:otherwise>
+	<xsl:value-of select="./@type"/>: <xsl:value-of select="."/>
+	</xsl:otherwise>
+	</xsl:choose>
+	<br />
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
   </xsl:template>  
   
     <xsl:template match="ro:citationInfo/ro:fullCitation">
@@ -860,8 +1165,12 @@ DOI:
 						<xsl:apply-templates select="./ro:addressPart[@type='country']"/>		
 						<xsl:apply-templates select="./ro:addressPart[@type='locationdescriptor']"/>
 						<xsl:apply-templates select="./ro:addressPart[@type='deliverypointidentifier']"/>	
+<<<<<<< HEAD
 												
 						<xsl:apply-templates select="./ro:addressPart[not(@type='organizationname' or @type='fullname' or @type='buildingorpropertyname' or @type='flatorunitnumber' or @type='floororlevelnumber' or @type='lotnumber' or @type='housenumber' or @type='streetname' or @type='postaldeliverynumberprefix' or @type='postaldeliverynumbervalue' or @type='postaldeliverynumbersuffix' or @type='addressline' or @type='suburborplaceorlocality' or @type='stateorterritory' or @type='country' or @type='locationdescriptor' or @type='deliverypointidentifier' or @type='postcode' or @type='telephoneNumber' or @type='faxNumber' )]"/>	
+=======
+						<xsl:apply-templates select="./ro:addressPart[not(@type='organizationname' or @type='fullname' or @type='buildingorpropertyname' or @type='flatorunitnumber' or @type='floororlevelnumber' or @type='lotnumber' or @type='housenumber' or @type='streetname' or @type='postaldeliverynumberprefix' or @type='postaldeliverynumbervalue' or @type='postaldeliverynumbersuffix' or @type='addressline' or @type='suburborplaceorlocality' or @type='stateorterritory' or @type='country' or @type='locationdescriptor' or @type='deliverypointidentifier' or @type='postcode')]"/>	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 						<!--xsl:apply-templates select="./ro:addressPart[not(@type='addressLine') or @type!='deliveryPointIdentifier' or @type='locationDescriptor' or @type='country' or @type='stateOrTerritory' or @type='suburbOrPlaceOrLocality' or @type='suburbOrPlaceOrLocality' or @type='addressLine' or @type='postalDeliveryNumberSuffix])"/-->
 				</xsl:when>
 				<xsl:otherwise>
@@ -873,6 +1182,7 @@ DOI:
 
 	<xsl:template match="ro:addressPart">			
 			<xsl:value-of select="." disable-output-escaping="yes"/><br />
+<<<<<<< HEAD
 	</xsl:template> 
 		
 
@@ -915,6 +1225,23 @@ DOI:
 
 	
 	<xsl:template match="extRif:description" mode="content">     
+=======
+	</xsl:template>
+		
+	<xsl:template match="ro:rights">
+			
+			<xsl:if test="./@type='rights'"><h4>Rights statement</h4></xsl:if>
+			<xsl:if test="./@type='accessRights'"><h4>Access rights</h4></xsl:if>
+			<xsl:if test="./@type='licence'"><h4>Licence</h4></xsl:if>				
+			<p class="rights"><xsl:value-of select="." disable-output-escaping="yes"/>
+			<xsl:if test="./@rightsUri"><br />
+			<a target="_blank">
+			<xsl:attribute name="href"><xsl:value-of select="./@rightsUri"/></xsl:attribute><xsl:value-of select="./@rightsUri"/></a>
+			</xsl:if>	
+			</p>		
+	</xsl:template>
+	<xsl:template match="ro:description" mode="content">     
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         <div><xsl:attribute name="class"><xsl:value-of select="@type"/></xsl:attribute>
            <p><xsl:value-of select="." disable-output-escaping="yes"/></p>
         </div>

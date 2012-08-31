@@ -229,7 +229,11 @@ a.search:active
   position:absolute;
   left:0;
   top:0;
+<<<<<<< HEAD
   z-index:999;
+=======
+  z-index:9000;
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
   background-color:#000;
   display:none;
 }
@@ -239,7 +243,11 @@ a.search:active
   width:500px;
   height:180px;
   display:none;
+<<<<<<< HEAD
   z-index:1000;
+=======
+  z-index:9999;
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
   padding:20px;
   border: 5px solid #555555;
   background-color: #F0F0D8;	
@@ -248,6 +256,10 @@ a.search:active
 padding:0px 2px;	
 }
 
+<<<<<<< HEAD
+=======
+.hide{display:none;}
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 .closeBlockUI{cursor:pointer;}
 
 /*RIFCS POPUP*/
@@ -257,6 +269,7 @@ padding:0px 2px;
 #rifcs_popup li a{text-decoration:none;color:white;display:block;padding:5px;}
 #rifcs_popup a:hover{background:white;color:#333;}
 #rifcs_plain_content{width:600px;max-height:600px;min-height:400px;}
+<<<<<<< HEAD
 
 
 
@@ -725,3 +738,5 @@ a.borderless{
     height:auto;
 }
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794

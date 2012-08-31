@@ -15,11 +15,16 @@ limitations under the License.
 */
 /*======================================
 	- Modify This File
+<<<<<<< HEAD
+=======
+	- And the .htaccess file inside the RDA folder
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 ======================================*/
 
 /*====================================
 	LOCAL WEB SERVER ENVIRONMENT
 ====================================*/
+<<<<<<< HEAD
 $host 				= 'devl.ands.org.au';
 $default_protocol	= 'http';
 $cosi_root 			= 'workareas/minh/ands/registry/src';
@@ -88,6 +93,30 @@ date_default_timezone_set('Australia/Canberra');
 // MAINTENANCE & IP FILTER
 $maintenance = false;
 //======================================
+=======
+$host 			= 'devl.ands.org.au';
+$default_protocol	= 'https';
+$cosi_root 		= 'workareas/minh/ands/registry/src';
+$orca_root 		= $cosi_root.'/orca';
+$rda_root 		= $orca_root.'/rda';
+
+//======================================
+$solr_url 		= 'http://devl.ands.org.au:8080/solr/';
+$harvester_ip 		= '';
+$pids_url		= "https://devl.ands.org.au:8443/pids/";
+$pids_app_id		= '';
+
+$harvest_url		= '';
+$harvest_ip		= '';
+
+//======================================
+$deploy_as		= 'PROD';
+$rda_environment	= 'production';
+$debug 			= false;
+$error 			= false;
+$maintenance 	= false;
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 //White List IP are IPs that are allowed to access the system regardless of maitenance status
 $white_list_ip 	= array(
 	'xx.xx.xx.xx'
@@ -95,7 +124,11 @@ $white_list_ip 	= array(
 //Black List IP are IPs that are not allowed to access the system
 $black_list_ip 	= array();
 
+<<<<<<< HEAD
 //Find the IP
+=======
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 if ( isset($_SERVER["HTTP_X_FORWARDED_FOR"]) )    {
 $ip=$_SERVER["HTTP_X_FORWARDED_FOR"];
 } else if ( isset($_SERVER["HTTP_CLIENT_IP"]) )    {
@@ -103,8 +136,12 @@ $ip=$_SERVER["HTTP_CLIENT_IP"];
 } else if ( isset($_SERVER["REMOTE_ADDR"]) )    {
 $ip=$_SERVER["REMOTE_ADDR"];
 } 
+<<<<<<< HEAD
 
 //Filter the IP
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 if($maintenance & !in_array($ip, $white_list_ip)){
 	print("<html><body>");
 	print("<center><div style='border:1px solid #C7D7BA; width:400px;'>");
@@ -114,6 +151,7 @@ if($maintenance & !in_array($ip, $white_list_ip)){
 	exit;	
 }
 
+<<<<<<< HEAD
 //DEBUG SET (USEFUL WHEN DEBUGGING PRODUCTION ENVIRONMENT
 $testers_list_ip 	= array(
 	'xx.xx.xx.xx'
@@ -132,12 +170,23 @@ if(in_array($ip, $testers_list_ip)){
 // These will be used by user roles that specify AUTHENTICATION_LDAP.
 $eLDAPHost = "ldap://ldap.anu.edu.au";
 $eLDAPPort = 389; //636 | 389
+=======
+
+/*====================================
+	LDAP AUTHENTICATION SERVER (optional)
+====================================*/
+// -----------------------------------------------------------------------------
+// These will be used by user roles that specify AUTHENTICATION_LDAP.
+$eLDAPHost = "ldaps://ldap.anu.edu.au"; 
+$eLDAPPort = 636; //636 | 389
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 // The resource distinguished name.
 // The string @@ROLE_ID@@ will be replace with the user role_id, and escaped
 // for LDAP reserved characters before the bind is attempted.
 $eLDAPBaseDN = "ou=People, o=anu.edu.au";
 $eLDAPuid = "uid=@@ROLE_ID@@";
 $eLDAPDN = "$eLDAPuid, $eLDAPBaseDN";
+<<<<<<< HEAD
 $eShibbolethSessionInitiator = "Login";
 
 
@@ -254,4 +303,25 @@ $subjects_categories = array(
 			)
 		
 );
+=======
+
+
+/*====================================
+	DATABASE ENVIRONMENT
+====================================*/
+$cosi_db_host = 'devl.ands.org.au';
+$cosi_db_name = 'dbs_work_leo_cosi_2';
+//======================================
+$orca_db_host = $cosi_db_host;
+$orca_db_name = 'dbs_work_leo_orca_2';
+//======================================
+$pids_db_host = $cosi_db_host;
+$pids_db_name = 'pids';
+//======================================
+$dois_db_host = $cosi_db_host;
+$dois_db_name = 'dois';
+//======================================
+
+define('eAPPLICATION_ROOT', dirname(__FILE__) . "/");
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 ?>

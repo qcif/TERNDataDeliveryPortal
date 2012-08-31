@@ -62,10 +62,14 @@ limitations under the License.
 			</div>
 
 			<div id="search-result-content" class="bottom-corner">
+<<<<<<< HEAD
 				<?php  
 					$data['queryStr']= $queryStr;
 					$this->load->view('search/content', $data);
 				?>
+=======
+				<?php $this->load->view('search/content');?>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			</div>
 
 		</div>

@@ -74,6 +74,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 				else
                	{
 					$importErrors = importRegistryObjects($registryObject,$dataSourceKey, $resultMessage, getLoggedInUser(), PUBLISHED, getThisOrcaUserIdentity(), null, true);       
+<<<<<<< HEAD
 					//runQualityLevelCheckForRegistryObject($_GET['key'], $dataSourceKey);
 					$result = syncKey($_GET['key'], $dataSourceKey);
 					//$result = addSolrIndex($_GET['key']);
@@ -81,6 +82,12 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 					{
 						$deleteErrors = deleteDraftRegistryObject($dataSourceValue, esc($_GET['key']));
 						deleteSolrHashKey(sha1(esc($_GET['key']).$dataSourceKey));
+=======
+					$result = addSolrIndex($_GET['key']);
+					if( !$importErrors )
+					{
+						$deleteErrors = deleteDraftRegistryObject($dataSourceValue, esc($_GET['key']));
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 					}                                       
 					if( $deleteErrors || $importErrors )
 					{
@@ -88,10 +95,15 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 					}
 					else
 					{
+<<<<<<< HEAD
 						//print("<p>RESULT OF SOLR INDEXING:.$result.ENDRSULT</p>");
 						print("<script>$(window.location).attr('href','".eAPP_ROOT."orca/view.php?key=".esc($_GET['key'])."');</script>");
 					}
 					queueSyncDataSource($dataSourceKey);
+=======
+						print("<script>$(window.location).attr('href','".eAPP_ROOT."orca/view.php?key=".esc($_GET['key'])."');</script>");
+					}
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				}
 			}
 

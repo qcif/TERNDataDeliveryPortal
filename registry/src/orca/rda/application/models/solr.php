@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 /**
+=======
+/** 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 Copyright 2011 The Australian National University
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,16 +18,25 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ***************************************************************************
 *
+<<<<<<< HEAD
 **/
+=======
+**/ 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 ?>
 <?php
 	class Solr extends CI_Model {
 
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     function __construct()
     {
         parent::__construct();
     }
+<<<<<<< HEAD
 
 	function search($query, $extended_query, $write_type='json', $page, $classFilter ='All', $groupFilter ='All', $typeFilter ='All', $subjectFilter = 'All', $licenceFilter='All', $status='All', $sort='score desc')
     {
@@ -33,12 +46,23 @@ limitations under the License.
 		$start = 0;$row = 10;
 		if($page!=1) $start = ($page - 1) * $row;
 
+=======
+    
+	function search($query, $extended_query, $write_type='json', $page, $classFilter ='All', $groupFilter ='All', $typeFilter ='All', $subjectFilter = 'All', $status='All', $sort='score desc')
+    {
+        $q=$query;
+		$q=rawurlencode($q);$q=str_replace("%5C%22", "\"", $q);//silly encoding
+		$start = 0;$row = 10;
+		if($page!=1) $start = ($page - 1) * $row;
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$solr_url = $this->config->item('solr_url');
 
     	$filter_query = '';
     	if($classFilter!='All') $filter_query .= constructFilterQuery('class', $classFilter);
     	if($typeFilter!='All') $filter_query .= constructFilterQuery('type', $typeFilter);
     	if($groupFilter!='All') $filter_query .= constructFilterQuery('group', $groupFilter);
+<<<<<<< HEAD
 
     	if($subjectFilter!='All') {
     		// treat http://-style subject searches as URI searches
@@ -82,6 +106,34 @@ limitations under the License.
 
 		if($sort!='score desc') $filter_query.='&sort='.$sort;
 		$q.=$filter_query;
+=======
+    	if($subjectFilter!='All') $filter_query .= constructFilterQuery('subject_value', $subjectFilter);
+    	if($status!='All') $filter_query .= constructFilterQuery('status', $status);
+    	
+    	//echo $status;
+    	
+		//echo $extended_query;
+    	
+		//echo urldecode($q).'<br/>';
+		
+		
+		$q = urldecode($q);
+		
+		//if($q!='*:*')$q = escapeSolrValue($q);
+		
+		//$r = '(fulltext:('.$q.') OR key:('.$q.')^50 OR displayTitle:('.$q.')^50 OR listTitle:('.$q.')^50 OR description_value:('.$q.')^5 OR subject_value:('.$q.')^10 OR name_part:('.$q.')^30)';
+		//$q .= $r . ' OR (fulltext:('.$q.') -data_source_key:("AU_RESEARCH_GRANTS"))^3000 OR (fulltext:('.$q.') -data_source_key:("nhmrc.gov.au"))^3000';
+		$q = '(fulltext:('.$q.') OR key:('.$q.')^50 OR displayTitle:('.$q.')^50 OR listTitle:('.$q.')^50 OR description_value:('.$q.')^5 OR subject_value:('.$q.')^10 OR name_part:('.$q.')^30 OR ((fulltext:('.$q.') -data_source_key:("AU_RESEARCH_GRANTS"))^3000 OR (fulltext:('.$q.') -data_source_key:("nhmrc.gov.au"))^3000))';
+
+		//$q .= $r;
+		//OR (fulltext:('.$q.') -data_source_key:("AU_RESEARCH_GRANTS"))^3000 OR (fulltext:('.$q.') -data_source_key:("nhmrc.gov.au"))^3000
+		
+		
+		if($sort!='score desc') $filter_query.='&sort='.$sort;
+		$q.=$filter_query;
+		
+		$q.=($extended_query);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		//echo $filter_query;
 		//$filter_query .=$extended_query;//for spatial and temporal
 		//$q .=$extended_query;//extended for spatial
@@ -91,20 +143,35 @@ limitations under the License.
 		);
 		//if($filter_query!='') $fields['fq']=urlencode($filter_query);
 		//print_r($fields);
+<<<<<<< HEAD
 
 		$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=licence_group&facet.field=subject_vocab_uri&f.subject_value_resolved.facet.mincount=1&facet.sort=count';
 
+=======
+		
+		$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&f.subject_value.facet.mincount=1&facet.sort=count';
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		/*prep*/
 		$fields_string='';
     	foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }//build the string
     	rtrim($fields_string,'&');
     	$fields_string .= $facet;//add the facet bits
+<<<<<<< HEAD
 
     	//$fields_string = urldecode($fields_string);
 
     	//echo $fields_string.'<hr/>';
 
 
+=======
+    	
+    	//$fields_string = urldecode($fields_string);
+    	
+    	//echo $fields_string.'<hr/>';
+		
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     	$ch = curl_init();
     	//set the url, number of POST vars, POST data
 		curl_setopt($ch,CURLOPT_URL,$solr_url.'select');//post to SOLR
@@ -112,10 +179,17 @@ limitations under the License.
 		curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);//post the field strings
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);//return to variable
     	$content = curl_exec($ch);//execute the curl
+<<<<<<< HEAD
 
     	//echo 'json received+<pre>'.$content.'</pre>';
 		curl_close($ch);//close the curl
 
+=======
+    	
+    	//echo 'json received+<pre>'.$content.'</pre>';
+		curl_close($ch);//close the curl
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if($write_type=='json'){
 			$json = json_decode($content);
 			return $json;
@@ -123,6 +197,7 @@ limitations under the License.
 			return $content;
 		}
     }
+<<<<<<< HEAD
 
     //WORK IN PROGRESS
     public function constructQuery($params){
@@ -516,6 +591,28 @@ limitations under the License.
 			'fl'=>'related_object_key'
 		);
 		$filter_query = '+key:("'.$key.'")+related_object_relation:(';
+=======
+   
+ 
+    public function getRelated($key, $class, $type){	
+    	$fields = array(
+			'q'=>'key:"'.escapeSolrValue($key).'"','version'=>'2.2','start'=>'0','indent'=>'on', 'wt'=>'json'
+		);
+		$filter_query = '+relatedObject_relatedObjectClass:("'.$class.'")';
+		if($type) $filter_query = '+relatedObject_relatedObjectType:("'.$type.'")'; 
+		$fields['fq']=$filter_query;
+		$json = $this->fireSearch($fields, '');
+		return $json;
+    }   
+    
+    
+    public function getRelatedKeys($key, $relationType=array()){
+    	$fields = array(
+			'q'=>'*:*','version'=>'2.2','start'=>'0','rows'=>'100','indent'=>'on', 'wt'=>'json',
+			'fl'=>'relatedObject_key'
+		);
+		$filter_query = '+key:("'.$key.'")+relatedObject_relation:(';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$first = true;
 		foreach($relationType as $re){
 			if($first){
@@ -529,6 +626,7 @@ limitations under the License.
 		$json = $this->fireSearch($fields, '');
 		return $json;
     }
+<<<<<<< HEAD
 
 	public function getConnections($key, $class, $type, $exclude,$reverseLinks,$dataSourceKey){
 
@@ -539,6 +637,16 @@ limitations under the License.
 
 			$excludes = array_keys($exclude);
 			//return $exclude;
+=======
+    
+	public function getConnections($key, $class, $type, $exclude,$reverseLinks,$dataSourceKey){	
+		//echo $key."<br />";
+		$excludeKeys = '';
+		if(count($exclude)>1)
+		{		
+		
+			$excludes = array_keys($exclude);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			$excludeKeys = '(';
 
 			for($i=0;$i<count($exclude);$i++)
@@ -547,6 +655,7 @@ limitations under the License.
 			}
 			$excludeKeys = trim($excludeKeys,'OR ');
 			$excludeKeys .= ")";
+<<<<<<< HEAD
 		}elseif(implode($exclude)!=''){
 			$excludeKeys = '(';
 			$excludeKeys .= '"'.implode($exclude).'"';
@@ -562,11 +671,27 @@ limitations under the License.
 		if($reverseLinks=="EXT")$filter_query .= '-data_source_key:("'.$dataSourceKey.'")';
 
 		if($excludeKeys!='')$filter_query .= '-key: '.escapeSolrValue($excludeKeys).' -key: '.escapeSolrValue($key);
+=======
+		}else{
+			$excludeKeys = '(';
+			$excludeKeys .= '"'.$exclude.'"';	
+			$excludeKeys .= ")";		
+		}
+    	$fields = array(
+			'q'=>'relatedObject_key:"'.$key.'"','version'=>'2.2','rows'=>'200000','start'=>'0','indent'=>'on', 'wt'=>'json','fl'=>'key,class,type,data_source_key'
+		);
+		$filter_query = '+class:("'.$class.'")';
+		if($type) $filter_query = '+type:("'.$type.'")'; 
+		if($reverseLinks=="INT")$filter_query .= '+data_source_key:("'.$dataSourceKey.'")';
+		if($reverseLinks=="EXT")$filter_query .= '-data_source_key:("'.$dataSourceKey.'")';		
+		if($excludeKeys)$filter_query .= '-key: '.escapeSolrValue($excludeKeys);  
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 		$fields['fq']=$filter_query;
 		$json = $this->fireSearch($fields, '');
 
 		return $json;
+<<<<<<< HEAD
     }
 
 	public function getObjects($keys, $class, $type, $page){
@@ -587,21 +712,49 @@ limitations under the License.
 		if(count($keys)>0)
  		{
  		for($i=0;$i<count($keys);$i++)
+=======
+    } 
+    
+	public function getObjects($keys, $class, $type, $page){	
+		//echo $keys[0];
+		if($page!=null){
+			$start = 0;
+			$rows = 10;
+			if($page!=1) $start = (($page - 1) * $rows) + 0;			
+		}else{
+			$start = 0;
+			$rows = 2000;			
+		}
+	
+		$getkeys = '(';
+		if(count($keys)>0)
+ 		{
+			for($i=0;$i<count($keys);$i++)
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			{
 				$getkeys .= '"'.escapeSolrValue($keys[$i]).'" OR ';
 			}
 		}else{
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			$getkeys .= '"'.$keys.'"';
 		}
 		$getkeys = trim($getkeys,'OR ');
 		$getkeys .= ")";
+<<<<<<< HEAD
 //if(count($keys)>2 ){echo $getkeys;}
+=======
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     	$fields = array(
 			'q'=>'key:'.$getkeys.' +status:(PUBLISHED)','version'=>'2.2','rows'=>$rows,'start'=>$start,'indent'=>'on', 'wt'=>'json'
 		);
 
 		$json = $this->fireSearch($fields, '');
+<<<<<<< HEAD
 	//	if(count($keys)>3){print_r($json);}
 		return $json;
     }
@@ -620,12 +773,31 @@ limitations under the License.
     	$fields = array(
 			'q'=>'group:NCRIS','version'=>'2.2','start'=>'0','rows'=>'100','indent'=>'on', 'wt'=>'json',
 			'fl'=>'description_value, description_type, key, display_title, location'
+=======
+		return $json;
+    }  
+       
+	public function getByKey($key){
+		return $this->getRegistryObjectSOLR($key, '*', 'json');
+	}
+    
+    
+    public function getNCRISPartners(){
+    	$fields = array(
+			'q'=>'group:NCRIS','version'=>'2.2','start'=>'0','rows'=>'100','indent'=>'on', 'wt'=>'json',
+			'fl'=>'description_value, description_type, key, displayTitle, location'
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		);
 		$json = $this->fireSearch($fields, '');
 		return $json;
     }
+<<<<<<< HEAD
 
 
+=======
+    
+       
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     function seeAlso($key, $type){
     	$result = null;
     	switch($type){
@@ -633,15 +805,24 @@ limitations under the License.
     	}
     	return $result;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     private function seeAlsoSubject($key){
     	//get only the subjects of the registry object
     	$ro = $this->getRegistryObjectSOLR($key, 'subject_value subject_type', 'json');
     	//loop through the subjects and construct the filter query
     	return $ro;
     }
+<<<<<<< HEAD
 
 
+=======
+    
+    
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     /*
      * Takes a key and returns the registry Object searched through SOLR
      * key is the registryObject key
@@ -656,6 +837,7 @@ limitations under the License.
 		$result = $this->fireSearch($fields, '');//no facet
 		return $result;
     }
+<<<<<<< HEAD
     /*
      * Takes a hash and returns the registry Object searched through SOLR
      * hash is the registryObject hash
@@ -672,6 +854,9 @@ limitations under the License.
     }
 
 
+=======
+    
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     /*
      * Returns the statistics with all facets
      */
@@ -681,6 +866,7 @@ limitations under the License.
 			'fl'=>'key', 'q.alt'=>'*:*','fq'=>'status:PUBLISHED'
 		);
 		if($type=='collection') $fields['fq'].='+class:collection';
+<<<<<<< HEAD
 		$facet = 'facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.sort=index&facet.mincount=0&facet.limit=-1';
 		$json = $this->fireSearch($fields, $facet);
 		return $json;
@@ -736,6 +922,13 @@ limitations under the License.
 		$json = $this->fireSearch($fields, $facet);
 		return $json;
     }
+=======
+		$facet = 'facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&facet.sort=index&facet.mincount=1';
+		$json = $this->fireSearch($fields, $facet);
+		return $json;
+    }
+    
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	function getDictionary($sort){
     	$fields = array(
 			'q'=>'*:*','version'=>'2.2','start'=>'0','rows'=>'100','indent'=>'on', 'wt'=>'json',
@@ -748,6 +941,7 @@ limitations under the License.
     /*
      * Fire a search, given an array of fields and a string of facets
      */
+<<<<<<< HEAD
 	function fireSearch($fields, $facet){
 		/*prep*/
 		$fields_string='';
@@ -760,6 +954,21 @@ limitations under the License.
 
 	//echo $fields_string."....<br />";
 
+=======
+	private function fireSearch($fields, $facet){
+		/*prep*/
+		$fields_string='';
+		//foreach($fields as $key=>$value) { $fields_string .= $key.'='.str_replace("+","%2B",$value).'&'; }//build the string
+		foreach($fields as $key=>$value) { 
+		//echo $value."<br />";
+			$fields_string .= $key.'='.$value.'&'; 				
+		}//build the string
+    	$fields_string .= $facet;//add the facet bits
+    	rtrim($fields_string,'&');
+	
+	//echo $fields_string."....<br />";
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     	$ch = curl_init();
     	$solr_url = $this->config->item('solr_url');
     	//set the url, number of POST vars, POST data
@@ -768,6 +977,7 @@ limitations under the License.
 		curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);//post the field strings
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);//return to variable
     	$content = curl_exec($ch);//execute the curl
+<<<<<<< HEAD
 
     	//echo 'json received+<pre>'.$content.'</pre>';
 		curl_close($ch);//close the curl
@@ -781,6 +991,15 @@ limitations under the License.
 			echo 'ERROR:'.$content.'<br/> QUERY: '.$fields_string;
 		}
 		//echo  "*********".$content;
+=======
+    	
+    	//echo 'json received+<pre>'.$content.'</pre>';
+		curl_close($ch);//close the curl
+		
+		
+		
+		$json = json_decode($content);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		return $json;
     }
 }

@@ -35,8 +35,12 @@
 				//var_dump($r->{'description_value'});
 				$type = $r->{'type'};
 				$ro_key = $r->{'key'};
+<<<<<<< HEAD
 				//$name = $r->{'listTitle'};
                                 $name = $r->{'list_title'};
+=======
+				$name = $r->{'listTitle'};
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				$descriptions = array();if(isset($r->{'description_value'})) $descriptions = $r->{'description_value'};
 				$description_type=array();if(isset($r->{'description_type'})) $description_type = $r->{'description_type'};
 				$class = '';if(isset($r->{'class'})) $class = $r->{'class'};
@@ -61,12 +65,19 @@
 				}
 */
 				$subjects='';
+<<<<<<< HEAD
 				//if(isset($r->{'subject_value'})){
 			//		$subjects = $r->{'subject_value'};
 		//		}
                                   if(isset($r->{'subject_value_resolved'})){
 					$subjects = $r->{'subject_value_resolved'};
 				}
+=======
+				if(isset($r->{'subject_value'})){
+					$subjects = $r->{'subject_value'};
+				}
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				echo '<div class="search_item">';
 
 				$key_url =  base_url().'m/view/?key='.urlencode($ro_key);
@@ -74,11 +85,17 @@
 
 				//echo '<pre>';
 
+<<<<<<< HEAD
 //				if(isset($r->{'alt_listTitle'})){
                                 if(isset($r->{'alt_list_title'})){
 					echo '<div class="alternatives">';
 					//foreach($r->{'alt_listTitle'} as $listTitle){
                                         foreach($r->{'alt_list_title'} as $listTitle){                                            
+=======
+				if(isset($r->{'alt_listTitle'})){
+					echo '<div class="alternatives">';
+					foreach($r->{'alt_listTitle'} as $listTitle){
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 						echo '<p class="alt_listTitle">'.$listTitle.'</p>';
 					}
 					echo '</div>';

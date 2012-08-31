@@ -18,7 +18,11 @@ limitations under the License.
 function getIdForColumn($column_identifier)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$id = null;
 	$strQuery = 'SELECT dba.udf_get_id($1) AS id';
 	$params = array($column_identifier);
@@ -33,7 +37,11 @@ function getIdForColumn($column_identifier)
 function getDraftCountByStatus($data_source_key, $status=DRAFT)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$count = 0;
 	$strQuery = 'SELECT dba.udf_get_draft_count_by_status($1, $2) AS count';
 	$params = array($data_source_key, $status);
@@ -49,27 +57,40 @@ function getDraftCountByStatus($data_source_key, $status=DRAFT)
 function getDataProviderTypes()
 {
 	global $gORCA_PROVIDER_TYPES;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $gORCA_PROVIDER_TYPES;
 }
 
 function getHarvestMethods()
 {
 	global $gORCA_HARVEST_METHODS;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $gORCA_HARVEST_METHODS;
 }
 
 function getHarvesterFrequencies()
 {
 	global $gORCA_HARVESTER_FREQUENCIES;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $gORCA_HARVESTER_FREQUENCIES;
 }
 
 function insertDataSource()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_data_source($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34)';
@@ -117,6 +138,16 @@ function insertDataSource()
 	//print_r($_POST);
 	//var_dump($params);
 	//print("</pre>");
+=======
+	
+	$errors = "";
+	$strQuery = 'SELECT dba.udf_insert_data_source($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34)';
+	$params = getParams(array(getLoggedInUser()), $_POST, 34);
+		//print("<pre>");
+	//print_r($_POST);
+	//var_dump($params);
+	//print("</pre>");	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	//exit();
 	foreach($params as &$param)
 	{
@@ -126,20 +157,28 @@ function insertDataSource()
 		}
 	}
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
 	}
+<<<<<<< HEAD
 
 	getDataSourceHashForKey($params[1]);
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $errors;
 }
 
 function updateDataSource()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_update_data_source($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35)';
@@ -190,6 +229,17 @@ function updateDataSource()
 			getPostedValue("harvest_frequency")			
 		);
 	
+=======
+	
+	$errors = "";
+	$strQuery = 'SELECT dba.udf_update_data_source($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34)';
+	$params = getParams(array(getLoggedInUser()), $_POST, 34);
+	//print("<pre>");
+	//print_r($_POST);
+	//var_dump($params);
+	//print("</pre>");	
+	//exit();
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	foreach($params as &$param)
 	{
 		if( $param == '' )
@@ -199,25 +249,40 @@ function updateDataSource()
 	}
 
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to update the record.";
 	}
+<<<<<<< HEAD
 
 	getDataSourceHashForKey($params[1]);
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $errors;
 }
 function deleteDataSource($key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_delete_data_source($1)';
 	$params = array($key);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to delete the record.";
@@ -240,7 +305,11 @@ function insertHarvestRequest($harvest_request_id, $data_source_key, $harvester_
 	$strQuery = 'SELECT dba.udf_insert_harvest_request($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)';
 	$params = array($harvest_request_id, $data_source_key, $harvester_base_uri, $harvester_ip, $response_target_uri, $source_uri, $method, $OAISet, $harvestDate, $harvestFrequency, $mode, $created_who, $status);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -251,12 +320,20 @@ function insertHarvestRequest($harvest_request_id, $data_source_key, $harvester_
 function updateHarvestRequest($harvest_request_id, $modified_who, $status)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_update_harvest_request($1, $2, $3)';
 	$params = array($harvest_request_id, $modified_who, $status);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to update the record.";
@@ -267,12 +344,20 @@ function updateHarvestRequest($harvest_request_id, $modified_who, $status)
 function deleteHarvestRequest($harvest_request_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_delete_harvest_request($1)';
 	$params = array($harvest_request_id);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to delete the record.";
@@ -283,12 +368,20 @@ function deleteHarvestRequest($harvest_request_id)
 function getHarvestRequests($harvest_request_id, $data_source_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_harvest_requests($1, $2)';
 	$params = array($harvest_request_id, $data_source_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
@@ -303,12 +396,20 @@ function insertDataSourceEvent($data_source_key, $event_description, $log_type="
 		$created_who = getUserAgent();
 	}
 	$request_ip = getRemoteAddress();
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_data_source_event($1, $2, $3, $4, $5, $6)';
 	$params = array($event_id, $data_source_key, $created_who, $request_ip, substr($event_description, 0, 2000), $log_type);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -319,24 +420,40 @@ function insertDataSourceEvent($data_source_key, $event_description, $log_type="
 function getDataSourceLog($key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_data_source_log($1)';
 	$params = array($key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function deleteDataSourceLog($key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_delete_data_source_log($1)';
 	$params = array($key);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to delete the record.";
@@ -347,12 +464,20 @@ function deleteDataSourceLog($key)
 function getDataSources($key, $filter)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_data_sources($1, $2)';
 	$params = array($key, $filter);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
@@ -366,7 +491,11 @@ function getTermsForVocab($vocabName, $term = "")
 	$strQuery = 'SELECT * FROM dba.udf_search_terms_in_vocabs($1,$2)';
 	$params = array($vocabName,$term);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
@@ -379,7 +508,11 @@ function getTermsForVocabByIdentifier($vocabName, $term = "")
 	$strQuery = 'SELECT * FROM dba.udf_search_terms_in_vocabs_by_identifier($1,$2)';
 	$params = array($vocabName,$term);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
@@ -399,18 +532,30 @@ function getChildTerms($parent_id, $term = "")
 function getRegistryObjectCount($data_source_key, $group=null, $className=null, $status='PUBLISHED')
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$count = 0;
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_get_registry_object_count($1, $2, $3, $4) AS count';
 	$params = array($data_source_key, $group, $className, $status);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( $resultSet )
 	{
 		$count = $resultSet[0]['count'];
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $count;
 }
 
@@ -423,23 +568,36 @@ function getRegistryObjectFilterCount($className, $indexLetter)
 	$strQuery = 'SELECT dba.udf_filter_registry_count($1, $2) AS count';
 	$params = array($indexLetter, $className);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( $resultSet )
 	{
 		$count = $resultSet[0]['count'];
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $count;
 }
 
 function getRegistryObjectKeysForDataSource($key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_registry_objects_for_data_source($1)';
 	$params = array($key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
 	return $resultSet;
 }
@@ -467,23 +625,35 @@ function getDraftsForPurge($data_source_key, $harvest_id)
 	$params = array($data_source_key, $harvest_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function deleteRegistryObject($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	//deleteSolrIndex($registryObjectkey);
 	//$result = deleteSolrIndex($registry_object_key);
 	// Unreference the SLUG (set the mapping to a null registry object)
 	$slug = getRegistryObjectURLSlug($registry_object_key);
 	deleteSLUGMapping($slug);
+=======
+	//deleteSolrIndex($registryObjectkey); 
+	$result = deleteSolrIndex($registry_object_key);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_delete_registry_object($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to delete the record.";
@@ -494,13 +664,21 @@ function deleteRegistryObject($registry_object_key)
 function insertRegistryObject($registry_object_key, $registry_object_class, $type, $originating_source, $originating_source_type, $data_source_key, $object_group, $date_accessioned, $date_modified, $created_who, $status, $record_owner, $schema_version = gCURRENT_SCHEMA_VERSION)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_registry_object($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)';
 	$params = array($registry_object_key, $registry_object_class, substr($type, 0, 32), substr($originating_source, 0, 512), substr($originating_source_type, 0, 512), $data_source_key, substr($object_group, 0, 512), $date_accessioned, $date_modified, $created_who, $status, $record_owner, $schema_version);
 	$z = 0;
 	$b=999;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	foreach($params as &$param)
 	{
 		$z++;
@@ -523,13 +701,21 @@ function insertRegistryObject($registry_object_key, $registry_object_class, $typ
 function updateRegistryObjectStatus($registry_object_key, $status)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_update_registry_object_status($1, $2, $3)';
 	$params = array($registry_object_key, $status, getLoggedInUser());
 
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to update the record.";
@@ -537,6 +723,7 @@ function updateRegistryObjectStatus($registry_object_key, $status)
 	return $errors;
 }
 
+<<<<<<< HEAD
 
 function updateRegistryObjectDateModified($registry_object_key, $new_date_modified)
 {
@@ -554,11 +741,21 @@ function insertIdentifier($identifier_id, $registry_object_key, $value, $type)
 {
 	global $gCNN_DBS_ORCA;
 
+=======
+function insertIdentifier($identifier_id, $registry_object_key, $value, $type)
+{
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_identifier($1, $2, $3, $4)';
 	$params = array($identifier_id, $registry_object_key, substr($value, 0, 512), substr($type, 0, 512));
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -569,7 +766,11 @@ function insertIdentifier($identifier_id, $registry_object_key, $value, $type)
 function insertComplexName($complex_name_id, $registry_object_key, $type, $date_from, $date_to, $lang)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_complex_name($1, $2, $3, $4, $5, $6)';
 	$params = array($complex_name_id, $registry_object_key, substr($type, 0, 512), $date_from, $date_to, substr($lang, 0, 64));
@@ -581,7 +782,11 @@ function insertComplexName($complex_name_id, $registry_object_key, $type, $date_
 		}
 	}
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -592,12 +797,20 @@ function insertComplexName($complex_name_id, $registry_object_key, $type, $date_
 function insertNamePart($name_part_id, $complex_name_id, $value, $type)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_name_part($1, $2, $3, $4)';
 	$params = array($name_part_id, $complex_name_id, substr($value, 0, 512), substr($type, 0, 512));
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -608,10 +821,17 @@ function insertNamePart($name_part_id, $complex_name_id, $value, $type)
 function insertLocation($location_id, $registry_object_key, $date_from, $date_to, $type=null)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_location($1, $2, $3, $4, $5)';
 	$params = array($location_id, $registry_object_key, $date_from, $date_to, $type);
+=======
+	
+	$errors = "";
+	$strQuery = 'SELECT dba.udf_insert_location($1, $2, $3, $4, $5)';
+	$params = array($location_id, $registry_object_key, $date_from, $date_to, $type);	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	foreach($params as &$param)
 	{
 		if( $param == '' )
@@ -620,7 +840,11 @@ function insertLocation($location_id, $registry_object_key, $date_from, $date_to
 		}
 	}
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -631,12 +855,20 @@ function insertLocation($location_id, $registry_object_key, $date_from, $date_to
 function insertAddressLocation($address_id, $location_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_address_location($1, $2)';
 	$params = array($address_id, $location_id);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -647,12 +879,20 @@ function insertAddressLocation($address_id, $location_id)
 function insertElectronicAddress($electronic_address_id, $address_id, $value, $type)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_electronic_address($1, $2, $3, $4)';
 	$params = array($electronic_address_id, $address_id, substr($value, 0, 512), substr($type, 0, 512));
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -663,12 +903,20 @@ function insertElectronicAddress($electronic_address_id, $address_id, $value, $t
 function insertElectronicAddressArg($electronic_address_arg_id, $electronic_address_id, $name, $required, $type, $use)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_electronic_address_arg($1, $2, $3, $4, $5, $6)';
 	$params = array($electronic_address_arg_id, $electronic_address_id, substr($name, 0, 512), $required, substr($type, 0, 512), substr($use, 0, 512));
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -679,7 +927,11 @@ function insertElectronicAddressArg($electronic_address_arg_id, $electronic_addr
 function insertPhysicalAddress($physical_address_id, $address_id, $type, $lang)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_physical_address($1, $2, $3, $4)';
 	$params = array($physical_address_id, $address_id, substr($type, 0, 512), substr($lang, 0, 64));
@@ -691,7 +943,11 @@ function insertPhysicalAddress($physical_address_id, $address_id, $type, $lang)
 		}
 	}
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -702,12 +958,20 @@ function insertPhysicalAddress($physical_address_id, $address_id, $type, $lang)
 function insertAddressPart($address_part_id, $physical_address_id, $value, $type)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_address_part($1, $2, $3, $4)';
 	$params = array($address_part_id, $physical_address_id, substr($value, 0, 512), substr($type, 0, 512));
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -718,7 +982,11 @@ function insertAddressPart($address_part_id, $physical_address_id, $value, $type
 function insertSpatialLocation($spatial_location_id, $location_id, $value, $type, $lang)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_spatial_location($1, $2, $3, $4, $5)';
 	$params = array($spatial_location_id, $location_id, substr($value, 0, 512), substr($type, 0, 512), $lang);
@@ -730,7 +998,11 @@ function insertSpatialLocation($spatial_location_id, $location_id, $value, $type
 		}
 	}
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -741,7 +1013,11 @@ function insertSpatialLocation($spatial_location_id, $location_id, $value, $type
 function insertSpatialCoverage($spatial_coverage_id, $coverage_id, $value, $type, $lang)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_spatial_coverage($1, $2, $3, $4, $5)';
 	$params = array($spatial_coverage_id, $coverage_id, substr($value, 0, 512), substr($type, 0, 512), $lang);
@@ -753,7 +1029,11 @@ function insertSpatialCoverage($spatial_coverage_id, $coverage_id, $value, $type
 		}
 	}
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -764,13 +1044,21 @@ function insertSpatialCoverage($spatial_coverage_id, $coverage_id, $value, $type
 function insertSpatialExtent($spatial_location_id, $location_id, $registryObjectKey, $north, $south, $west, $east)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	if($north !== null && $south !== null && $west !== null && $east !== null)
 	{
 		$strQuery = 'SELECT dba.udf_insert_spatial_extent($1, $2, $3, $4, $5, $6, $7)';
 		$params = array($spatial_location_id, $location_id, $registryObjectKey, $north, $south, $west, $east);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		foreach($params as &$param)
 		{
 			if( $param === '' )
@@ -779,7 +1067,11 @@ function insertSpatialExtent($spatial_location_id, $location_id, $registryObject
 			}
 		}
 		$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( !$resultSet )
 		{
 			$errors = "An error occurred when trying to insert the record.";
@@ -787,8 +1079,13 @@ function insertSpatialExtent($spatial_location_id, $location_id, $registryObject
 	}
 	else
 	{
+<<<<<<< HEAD
 		$errors = "SpatialExtent wasn't calculated for ".$registryObjectKey ;
 
+=======
+		$errors = "SpatialExtent wasn't calculated for ".$registryObjectKey ;	
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 	return $errors;
 }
@@ -797,12 +1094,20 @@ function insertSpatialExtent($spatial_location_id, $location_id, $registryObject
 function insertRelatedObject($relation_id, $registry_object_key, $related_registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_related_object($1, $2, $3)';
 	$params = array($relation_id, $registry_object_key, $related_registry_object_key);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -813,12 +1118,20 @@ function insertRelatedObject($relation_id, $registry_object_key, $related_regist
 function insertFullCitationInformation($id, $registry_object_key, $style, $value)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_citation_information($1, $2, $3, $4)';
 	$params = array($id, $registry_object_key, $style, $value);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -826,16 +1139,28 @@ function insertFullCitationInformation($id, $registry_object_key, $style, $value
 	return $errors;
 }
 
+<<<<<<< HEAD
 function insertCitationMetadata($id, $registry_object_key, $identifier, $identifier_type, $title, $edition, $placePublished, $url, $context, $publisher)
 {
 
 	global $gCNN_DBS_ORCA;
 
+=======
+function insertCitationMetadata($id, $registry_object_key, $identifier, $identifier_type, $title, $edition, $placePublished, $url, $context, $publisher) 
+{
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_citation_information($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
 	$params = array($id, $registry_object_key, $identifier, $identifier_type, $title, $edition, $placePublished, $url, $context, $publisher);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -844,16 +1169,28 @@ function insertCitationMetadata($id, $registry_object_key, $identifier, $identif
 
 }
 
+<<<<<<< HEAD
 function insertExistenceDates($dates_id, $registryObjectKey, $start_date, $start_date_format, $end_date, $end_date_format)
 {
 
 	global $gCNN_DBS_ORCA;
 
+=======
+function insertExistenceDates($dates_id, $registryObjectKey, $start_date, $start_date_format, $end_date, $end_date_format) 
+{
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_existence_dates($1, $2, $3, $4, $5, $6)';
 	$params = array($dates_id, $registryObjectKey, $start_date, $start_date_format, $end_date, $end_date_format);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -865,30 +1202,49 @@ function insertExistenceDates($dates_id, $registryObjectKey, $start_date, $start
 function getExistenceDates($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_existence_dates($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function insertRights($rights_id, $registryObjectKey, $rights_statement, $rights_statement_uri, $licence, $licence_uri, $access_rights, $access_rights_uri, $licence_type='', $access_rights_type='')
 {
+<<<<<<< HEAD
 
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_rights($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
 	$params = array($rights_id, $registryObjectKey, $rights_statement, $rights_statement_uri, $licence, $licence_uri, $access_rights, $access_rights_uri, $licence_type, $access_rights_type);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
 	}
 	return $errors;
+<<<<<<< HEAD
 
 }
 
@@ -897,11 +1253,25 @@ function insertCitationDate($id, $citation_info_id, $value, $type)
 
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+}
+
+function insertCitationDate($id, $citation_info_id, $value, $type) 
+{
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_citation_date($1, $2, $3, $4)';
 	$params = array( $id, $citation_info_id, $value, $type );
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -912,94 +1282,161 @@ function insertCitationDate($id, $citation_info_id, $value, $type)
 
 function insertCitationContributor($id, $citation_info_id, $seq)
 {
+<<<<<<< HEAD
 
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	if($seq == '')
 	$seq = null;
 	$strQuery = 'SELECT dba.udf_insert_citation_contributor($1, $2, $3)';
 	$params = array( $id, $citation_info_id, $seq );
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
 	}
 	return $errors;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 
 function insertCoverage($id, $registry_object_key)
 {
+<<<<<<< HEAD
 
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_coverage($1, $2)';
 	$params = array( $id, $registry_object_key );
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
 	}
 	return $errors;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function insertTemporalCoverage($id, $coverage_id)
 {
+<<<<<<< HEAD
 
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_temporal_coverage($1, $2)';
 	$params = array( $id, $coverage_id );
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
 	}
 	return $errors;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function insertTemporalCoverageText($id, $temporal_coverage_id, $value)
 {
+<<<<<<< HEAD
 
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_temporal_coverage_text($1, $2, $3)';
 	$params = array( $id, $temporal_coverage_id, $value );
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
 	}
 	return $errors;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function insertTemporalCoverageDate($id, $temporal_coverage_id, $value, $type, $date_format, $timestamp)
 {
+<<<<<<< HEAD
 
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_temporal_coverage_date($1, $2, $3, $4, $5, $6)';
 	$params = array( $id, $temporal_coverage_id, $value, $type, $date_format, $timestamp );
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
 	}
 	return $errors;
+<<<<<<< HEAD
 
 
 }
@@ -1009,28 +1446,56 @@ function insertCitationContributorNamePart ($id, $citation_contributor_id, $valu
 
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+	
+}
+
+function insertCitationContributorNamePart ($id, $citation_contributor_id, $value, $type) 
+{
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_contributor_name_part($1, $2, $3, $4)';
 	$params = array( $id,$citation_contributor_id, $value, $type );
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
 	}
+<<<<<<< HEAD
 	return $errors;
 
+=======
+	return $errors;	
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function insertRelationDescription($relation_description_id, $relation_id, $description, $type, $lang, $url)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_relation_description($1, $2, $3, $4, $5, $6)';
 	$params = array($relation_description_id, $relation_id, substr($description, 0, 512), substr($type, 0, 512), substr($lang, 0, 64), substr($url, 0, 512));
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -1041,12 +1506,20 @@ function insertRelationDescription($relation_description_id, $relation_id, $desc
 function insertSubject($subject_id, $registry_object_key, $value, $type, $termIdentifier, $lang)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_subject($1, $2, $3, $4, $5, $6)';
 	$params = array($subject_id, $registry_object_key, substr($value, 0, 512), substr($type, 0, 512), substr($termIdentifier, 0, 512), substr($lang, 0, 64));
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -1057,12 +1530,21 @@ function insertSubject($subject_id, $registry_object_key, $value, $type, $termId
 function insertDescription($description_id, $registry_object_key, $value, $type, $lang)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_description($1, $2, $3, $4, $5)';
 	$params = array($description_id, $registry_object_key, substr($value, 0, 12000), substr($type, 0, 512), substr($lang, 0, 64));
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
 
+=======
+	
+	$errors = "";
+	$strQuery = 'SELECT dba.udf_insert_description($1, $2, $3, $4, $5)';
+	$params = array($description_id, $registry_object_key, substr($value, 0, 4000), substr($type, 0, 512), substr($lang, 0, 64));
+	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -1073,12 +1555,20 @@ function insertDescription($description_id, $registry_object_key, $value, $type,
 function insertAccessPolicy($access_policy_id, $registry_object_key, $value)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_access_policy($1, $2, $3)';
 	$params = array($access_policy_id, $registry_object_key, substr($value, 0, 512));
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -1090,12 +1580,20 @@ function insertAccessPolicy($access_policy_id, $registry_object_key, $value)
 function insertRelatedInfoOld($related_info_id, $registry_object_key, $value)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_related_info_old($1, $2, $3)';
 	$params = array($related_info_id, $registry_object_key, substr($value, 0, 512));
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -1107,7 +1605,11 @@ function insertRelatedInfoOld($related_info_id, $registry_object_key, $value)
 function insertRelatedInfo($related_info_id, $registry_object_key, $info_type, $identifier = null, $identifier_type = null, $title = null, $notes = null)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	// v1.0 to v1.2 (for backwards compatibility)
 	if ($identifier === null) {
 		$identifier = $info_type;
@@ -1116,12 +1618,20 @@ function insertRelatedInfo($related_info_id, $registry_object_key, $info_type, $
 		$title = null;
 		$notes = null;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_related_info($1, $2, $3, $4, $5, $6, $7)';
 	$params = array($related_info_id, $registry_object_key, $info_type, substr($identifier, 0, 512), $identifier_type, $title, $notes);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -1133,9 +1643,15 @@ function insertRelatedInfo($related_info_id, $registry_object_key, $info_type, $
 function getRegistryObject($registry_object_key, $overridePermissions = false)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.tbl_registry_objects where registry_object_key = $1';
+=======
+	
+	$resultSet = null;
+	$strQuery = 'SELECT * FROM dba.udf_get_registry_object($1)';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
 	if( $resultSet )
@@ -1143,7 +1659,11 @@ function getRegistryObject($registry_object_key, $overridePermissions = false)
 		// Get the values that we'll need to check for conditional display and access.
 		$registryObjectRecordOwner = $resultSet[0]['record_owner'];
 		$registryObjectStatus = trim($resultSet[0]['status']);
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		// Check access.
 		if( !(in_array($registryObjectStatus, array(PUBLISHED, APPROVED)) || userIsORCA_ADMIN() || userIsRegistryObjectRecordOwner($registryObjectRecordOwner)) && !$overridePermissions )
 		{
@@ -1163,7 +1683,11 @@ function getDraftRegistryObject($draft_key, $data_source)
 	$strQuery = 'SELECT * FROM dba.udf_get_draft_registry_object($1, $2)';
 	$params = array($draft_key, $data_source);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
@@ -1172,7 +1696,11 @@ function getDraftRegistryObject($draft_key, $data_source)
 function getObjectGroups()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_object_groups() AS object_group';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
@@ -1183,7 +1711,11 @@ function getObjectGroups()
 function getStatuses()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_statuses() AS status';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
@@ -1194,7 +1726,11 @@ function getStatuses()
 function getDistinctDataSourceKeyObjectGroups()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT DISTINCT data_source_key, object_group FROM dba.tbl_registry_objects ORDER BY object_group ASC';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
@@ -1205,7 +1741,11 @@ function getDistinctDataSourceKeyObjectGroups()
 function getRegistryObjectClasses()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT DISTINCT registry_object_class FROM dba.tbl_registry_objects';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
@@ -1216,7 +1756,11 @@ function getRegistryObjectClasses()
 function getDistinctDataSourceKeyObjectGroupRegistryObjectClasses()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT DISTINCT data_source_key, object_group, registry_object_class FROM dba.tbl_registry_objects ORDER BY registry_object_class ASC';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
@@ -1227,7 +1771,11 @@ function getDistinctDataSourceKeyObjectGroupRegistryObjectClasses()
 function getRegistryObjectTypes()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT DISTINCT type FROM dba.tbl_registry_objects ORDER BY type ASC';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
@@ -1238,7 +1786,11 @@ function getRegistryObjectTypes()
 function getDistinctDataSourceKeyObjectGroupRegistryObjectClassTypes()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT DISTINCT data_source_key, object_group, registry_object_class, type FROM dba.tbl_registry_objects ORDER BY registry_object_class, type ASC';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
@@ -1249,7 +1801,11 @@ function getDistinctDataSourceKeyObjectGroupRegistryObjectClassTypes()
 function getSubjectTypes()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT DISTINCT type FROM dba.tbl_subjects ORDER BY type ASC';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
@@ -1260,18 +1816,30 @@ function getSubjectTypes()
 function getAllSubjects()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.tbl_subjects ORDER BY registry_object_key ASC';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
 
+=======
+	
+	$resultSet = null;
+	$strQuery = 'SELECT * FROM dba.tbl_subjects ORDER BY registry_object_key ASC';
+	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getRegistryObjects()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.vw_registry_objects ORDER BY registry_object_key ASC';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
@@ -1282,20 +1850,34 @@ function getRegistryObjects()
 function getAllRegistryObjectKey()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$resultSet = null;
 	$strQuery = 'select registry_object_key from dba.tbl_registry_objects';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
 
+=======
+	
+	$resultSet = null;
+	$strQuery = 'select registry_object_key from dba.tbl_registry_objects';
+	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, null);
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function searchRegistry($search_string, $classes, $data_source_key, $object_group, $created_before_equals, $created_after_equals, $status=PUBLISHED, $record_owner=null)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$search_string = str_replace("%", "\%", $search_string);
 
+=======
+	
+	$search_string = str_replace("%", "\%", $search_string);
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_search_registry($1, $2, $3, $4, $5, $6, $7, $8)';
 	$params = array($search_string, $classes, $data_source_key, $object_group, $created_before_equals, $created_after_equals, $status, $record_owner);
@@ -1303,18 +1885,44 @@ function searchRegistry($search_string, $classes, $data_source_key, $object_grou
 
 	return $resultSet;
 }
+<<<<<<< HEAD
 function getSpecialObjectSet($specialSetFlag, $class)
 {
 	global $gCNN_DBS_ORCA;
 
 
+=======
+
+function searchRegistryTERN($search_string, $classes, $data_source_key, $object_group, $created_before_equals, $created_after_equals, $cnt,$status=PUBLISHED, $record_owner=null)
+{
+	global $gCNN_DBS_ORCA;
+	$search_string = str_replace("%", "\%", $search_string);
+	
+	$resultSet = null;
+	$strQuery = 'SELECT * FROM dba.udf_search_registry_tern($1, $2, $3, $4, $5, $6, $7, $8,$9)';
+	$params = array($search_string, $classes, $data_source_key, $object_group, $created_before_equals, $created_after_equals,$cnt, $status, $record_owner);
+	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+
+	return $resultSet;
+}
+
+function getSpecialObjectSet($specialSetFlag, $class)
+{
+	global $gCNN_DBS_ORCA;
+	
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	if($specialSetFlag=="nlaSet")
 	{
 		$strQuery = 'SELECT * FROM dba.udf_get_nla_set($1)';
 		$params = array($class);
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
 
 	return $resultSet;
@@ -1324,7 +1932,11 @@ function getSpecialObjectSet($specialSetFlag, $class)
 function getDraftsByDataSource($data_source)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_draft_registry_object(NULL, $1)';
 	$params = array($data_source);
@@ -1336,7 +1948,11 @@ function getDraftsByDataSource($data_source)
 function getDraftsByKey($draft_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_draft_registry_object($1, NULL)';
 	$params = array($draft_key);
@@ -1348,7 +1964,11 @@ function getDraftsByKey($draft_key)
 function insertDraftRegistryObject($draft_owner, $draft_key, $draft_class, $draft_group, $draft_type, $draft_title, $draft_data_source,  $date_created, $date_modified, $rifcs, $quality_test_result, $error_count, $warning_count, $status='DRAFT')
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_draft_registry_object($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)';
 	$params = array($draft_owner, $draft_key, $draft_class, $draft_group, $draft_type, $draft_title, $draft_data_source,  $date_created, $date_modified, $rifcs, $quality_test_result, $error_count, $warning_count, $status);
@@ -1360,7 +1980,11 @@ function insertDraftRegistryObject($draft_owner, $draft_key, $draft_class, $draf
 		}
 	}
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -1372,7 +1996,11 @@ function insertDraftRegistryObject($draft_owner, $draft_key, $draft_class, $draf
 function insertRawRecord($registry_object_key, $data_source, $created_when, $created_who, $rifcs)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_raw_record($1, $2, $3, $4, $5)';
 	$params = array($registry_object_key, $data_source, $created_when, $created_who, $rifcs);
@@ -1384,7 +2012,11 @@ function insertRawRecord($registry_object_key, $data_source, $created_when, $cre
 		}
 	}
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the raw record.";
@@ -1395,16 +2027,28 @@ function insertRawRecord($registry_object_key, $data_source, $created_when, $cre
 
 function getRawRecords($registry_object_key, $data_source_key, $created_when = NULL)
 {
+<<<<<<< HEAD
 
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_raw_records($1, $2, $3)';
 	$params = array($registry_object_key, $data_source_key, $created_when);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
 	return $resultSet;
 
+=======
+	
+	return $resultSet;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 
@@ -1437,14 +2081,22 @@ function getRegistryObjectsInBound($north, $south, $west, $east)
 	if(floatval($west) < -90 && floatval($east) > 90)
 	{ // over the meridian
 	$strQuery = 'SELECT * FROM dba.udf_get_registry_objects_inbound_two($1, $2, $3, $4, $5, $6, $7, $8)';
+<<<<<<< HEAD
 	$params = array($north, $south, $west, -180, $north, $south, 180, $east);
+=======
+	$params = array($north, $south, $west, -180, $north, $south, 180, $east);	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 	else
 	{
 	$strQuery = 'SELECT * FROM dba.udf_get_registry_objects_inbound($1, $2, $3, $4)';
 	$params = array($north, $south, $west, $east);
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
 
 	return $resultSet;
@@ -1452,9 +2104,15 @@ function getRegistryObjectsInBound($north, $south, $west, $east)
 
 function getGroups ($restrictions="", $limit = 10) {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$strQuery = 'SELECT DISTINCT object_group FROM dba.tbl_registry_objects ' . $restrictions .' LIMIT ' . $limit;
 	return executeQuery($gCNN_DBS_ORCA, $strQuery);
+=======
+	
+	$strQuery = 'SELECT DISTINCT object_group FROM dba.tbl_registry_objects ' . $restrictions .' LIMIT ' . $limit; 
+	return executeQuery($gCNN_DBS_ORCA, $strQuery);	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function searchRegistryObjectsInBound($north, $south, $west, $east, $search_string, $classes)
@@ -1464,13 +2122,21 @@ function searchRegistryObjectsInBound($north, $south, $west, $east, $search_stri
 	if(floatval($west) < -90 && floatval($east) > 90)
 	{ // over the meridian
 	$strQuery = 'SELECT * FROM dba.udf_search_registry_objects_inbound_two($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
+<<<<<<< HEAD
 	$params = array($north, $south, $west, -180, $north, $south, 180, $east, $search_string, $classes);
+=======
+	$params = array($north, $south, $west, -180, $north, $south, 180, $east, $search_string, $classes);	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 	else
 	{
 	$strQuery = 'SELECT * FROM dba.udf_search_registry_objects_inbound($1, $2, $3, $4, $5, $6)';
 	$params = array($north, $south, $west, $east, $search_string, $classes);
+<<<<<<< HEAD
 	}
+=======
+	}	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
 
 	return $resultSet;
@@ -1479,7 +2145,11 @@ function searchRegistryObjectsInBound($north, $south, $west, $east, $search_stri
 function filterRegistry($filter_string, $classes, $group=null)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_filter_registry($1, $2, $3)';
 	$params = array($filter_string, $classes, $group);
@@ -1491,7 +2161,11 @@ function filterRegistry($filter_string, $classes, $group=null)
 function getNames($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_registry_object_names($1)';
 	$params = array($registry_object_key);
@@ -1504,6 +2178,7 @@ function getNLAPartyIdentifier($registry_object_key)
 {
 	global $NLAPartyTypeKey;
 	$NLAPartyKey = null;
+<<<<<<< HEAD
 
 	$identifiers = getIdentifiers($registry_object_key);
 	if ($identifiers) {
@@ -1512,6 +2187,16 @@ function getNLAPartyIdentifier($registry_object_key)
 				$NLAPartyKey = $identifier['value'];
 		}
 	}
+=======
+	
+	$identifiers = getIdentifiers($registry_object_key);
+	if ($identifiers) {
+		foreach ($identifiers AS $identifier) {
+			if (in_array(strtoupper($identifier['type']), $NLAPartyTypeKey)) 
+				$NLAPartyKey = $identifier['value'];
+		}
+	}	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 	return $NLAPartyKey;
 }
@@ -1519,7 +2204,11 @@ function getNLAPartyIdentifier($registry_object_key)
 function getSimpleNames($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_simple_names($1)';
 	$params = array($registry_object_key);
@@ -1531,7 +2220,11 @@ function getSimpleNames($registry_object_key)
 function getComplexNames($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_complex_names($1)';
 	$params = array($registry_object_key);
@@ -1543,7 +2236,11 @@ function getComplexNames($registry_object_key)
 function getNameParts($complex_name_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_name_parts($1)';
 	$params = array($complex_name_id);
@@ -1555,7 +2252,11 @@ function getNameParts($complex_name_id)
 function getIdentifiers($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_identifiers($1)';
 	$params = array($registry_object_key);
@@ -1567,30 +2268,50 @@ function getIdentifiers($registry_object_key)
 function getSubjects($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_subjects($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getDescriptions($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_descriptions($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 function getRights($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_rights($1)';
 	$params = array($registry_object_key);
@@ -1600,14 +2321,22 @@ function getRights($registry_object_key)
 
 /*
  * Get the value of the registry object's description[@type='logo'] (if any)
+<<<<<<< HEAD
  * If multiple are returned, will either choose randomly ($random=true) or
+=======
+ * If multiple are returned, will either choose randomly ($random=true) or 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
  * pop the last logo off the end (working under the assumption that getDescriptions
  * returns descriptions in ascending order of ids)
  */
 function getDescriptionLogo($registry_object_key, $random=true)
 {
 	$all_descriptions = getDescriptions($registry_object_key);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$logos = array();
 	if (!$all_descriptions) { return false; }
 	foreach ($all_descriptions AS $description)
@@ -1615,13 +2344,20 @@ function getDescriptionLogo($registry_object_key, $random=true)
 		if (strtolower($description['type']) == "logo")
 		{
 			$logos[] = $description['value'];
+<<<<<<< HEAD
 		}
 	}
 
+=======
+		}	
+	}
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if (count($logos) > 0)
 	{
 		if ($random)
 		{
+<<<<<<< HEAD
 			return strip_tags($logos[array_rand($logos)]);
 		}
 		else
@@ -1629,6 +2365,15 @@ function getDescriptionLogo($registry_object_key, $random=true)
 			return strip_tags(array_pop($logos));
 		}
 	}
+=======
+			return $logos[array_rand($logos)];
+		}
+		else 
+		{
+			return array_pop($logos);
+		}
+	} 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	else
 	{
 		return false;
@@ -1638,35 +2383,59 @@ function getDescriptionLogo($registry_object_key, $random=true)
 function getRelatedObjects($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_related_objects($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getInternalReverseRelatedObjects($registry_object_key, $data_source_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_internal_reverse_related_objects($1,$2)';
 	$params = array($registry_object_key, $data_source_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 function getExternalReverseRelatedObjects($registry_object_key, $data_source_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_external_reverse_related_objects($1,$2)';
 	$params = array($registry_object_key, $data_source_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
@@ -1674,208 +2443,348 @@ function getExternalReverseRelatedObjects($registry_object_key, $data_source_key
 function getRelationDescriptions($relation_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_relation_descriptions($1)';
 	$params = array($relation_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getAccessPolicies($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_access_policies($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 function getExistenceDate($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_existence_dates($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 function getRelatedInfo($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_related_info($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getLocations($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_locations($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getAddressLocations($location_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_address_locations($1)';
 	$params = array($location_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getSpatialLocations($location_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_spatial_locations($1)';
 	$params = array($location_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getRegistryObjectSpatialLocations($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_registry_object_spatial_locations($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getPhysicalAddresses($address_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_physical_addresses($1)';
 	$params = array($address_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getRegistryObjectPhysicalAddresses($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_registry_object_physical_addresses($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getAddressParts($physical_address_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_address_parts($1)';
 	$params = array($physical_address_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getElectronicAddresses($address_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_electronic_addresses($1)';
 	$params = array($address_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getRegistryObjectElectronicAddresses($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_registry_object_electronic_addresses($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getElectronicAddressArgs($electronic_address_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_electronic_address_args($1)';
 	$params = array($electronic_address_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getMinCreatedWhen()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_earliest_created_when() AS min_created_when';
 	$params = array();
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$minCreatedWhen = '';
 	if( $resultSet )
 	{
 		$minCreatedWhen = $resultSet[0]['min_created_when'];
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $minCreatedWhen;
 }
 
 function getResumptionToken($resumption_token_id, $complete_list_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_resumption_token($1, $2)';
 	$params = array($resumption_token_id, $complete_list_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getIncompleteList($complete_list_id, $first_record_number)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_incomplete_list($1, $2, $3)';
 	$params = array($complete_list_id, $first_record_number, OAI_LIST_SIZE);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
@@ -1891,31 +2800,53 @@ function cleanupCompleteLists()
 function insertCompleteList()
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$complete_list_id = getIdForColumn('dba.tbl_oai_rt_complete_lists.complete_list_id');
 
+=======
+	
+	$complete_list_id = getIdForColumn('dba.tbl_oai_rt_complete_lists.complete_list_id');
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_complete_list($1)';
 	$params = array($complete_list_id);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$complete_list_id = null;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $complete_list_id;
 }
 
 function insertCompleteListRecord($complete_list_id, $record_number, $registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_complete_list_record($1, $2, $3)';
 	$params = array($complete_list_id, $record_number, $registry_object_key);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -1926,16 +2857,28 @@ function insertCompleteListRecord($complete_list_id, $record_number, $registry_o
 function insertResumptionToken($complete_list_id, $first_record_number, $complete_list_size, $metadata_prefix)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$resumption_token_id = strtoupper(sha1($complete_list_id.':'.microtime(false)));
 	$status              = OAI_RT_LATEST;
 	$expiration_date     = date('c', strtotime("now") + (OAI_RT_EXPIRES_MINUTES*60));
 
+=======
+	
+	$resumption_token_id = strtoupper(sha1($complete_list_id.':'.microtime(false)));
+	$status              = OAI_RT_LATEST;
+	$expiration_date     = date('c', strtotime("now") + (OAI_RT_EXPIRES_MINUTES*60));
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_resumption_token($1, $2, $3, $4, $5, $6, $7)';
 	$params = array($resumption_token_id, $complete_list_id, $status, $first_record_number, $complete_list_size, $expiration_date, $metadata_prefix);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -1951,7 +2894,11 @@ function updateResumptionTokens($complete_list_id)
 	$strQuery = 'SELECT dba.udf_update_resumption_tokens($1)';
 	$params = array($complete_list_id);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
@@ -1961,9 +2908,15 @@ function updateResumptionTokens($complete_list_id)
 
 function updateRegistryObjectTitles ($registry_object_key, $display_title='', $list_title='')
 {
+<<<<<<< HEAD
 
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_update_registry_object_titles($1, $2, $3);';
@@ -1974,20 +2927,32 @@ function updateRegistryObjectTitles ($registry_object_key, $display_title='', $l
 	{
 		$errors = "An error occurred when trying to insert the record.";
 	}
+<<<<<<< HEAD
 	return $errors;
 
+=======
+	return $errors;	
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 
 function updateRegistryObjectQualityTestResult($registry_object_key, $quality_test_result, $error_count, $warning_count)
 {
+<<<<<<< HEAD
 
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_update_registry_quality_test_result($1, $2, $3, $4);';
 	$params = array($registry_object_key, $quality_test_result, $error_count, $warning_count);
+<<<<<<< HEAD
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
 	if(!$resultSet){
 		$errors = 'An Error Occurred When Updating Quality Test Result';
@@ -2052,39 +3017,72 @@ function updateDraftRegistryObjectQualityTestResult($registryObjectKey, $dataSou
 {
 	global $gCNN_DBS_ORCA;
 
+=======
+	$result = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+	return $result;	
+	
+}
+
+
+function updateDraftRegistryObjectQualityTestResult($registryObjectKey, $dataSourceKey, $qualityTestResult, $errorCount, $warningCount)                           
+{
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$errors = "";
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_update_draft_quality_test_result($1, $2, $3, $4, $5);';
 	$params = array($registryObjectKey, $dataSourceKey, $qualityTestResult, $errorCount, $warningCount);
 	$result = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 	return $result;
 
+=======
+	return $result;	
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 
 function getHighlightedQueryText($text, $queryText)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_get_highlighted_querytext($1, $2) AS text';
 	$params = array($text, $queryText);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
 
 	$markedText = '';
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( $resultSet )
 	{
 		$markedText = $resultSet[0]['text'];
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $markedText;
 }
 
 function deleteRelatedObject($registryObjectKey, $relatedRegistryObjectKey)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( $relatedObjects = getRelatedObjects($registryObjectKey) )
 	{
 		foreach( $relatedObjects as $relatedObject )
@@ -2106,35 +3104,56 @@ function deleteRelatedObject($registryObjectKey, $relatedRegistryObjectKey)
 function getCoverage($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_coverage($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getSpatialCoverage($coverage_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_spatial_coverage($1)';
 	$params = array($coverage_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getTemporalCoverage($coverage_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_temporal_coverage($1)';
 	$params = array($coverage_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
 	return $resultSet;
 }
@@ -2144,47 +3163,85 @@ function getTemporalCoverageText($temporal_coverage_id)
 {
 	global $gCNN_DBS_ORCA;
 
+=======
+	
+	return $resultSet;
+}
+
+function getTemporalCoverageText($temporal_coverage_id)
+{
+	global $gCNN_DBS_ORCA;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_temporal_coverage_text($1)';
 	$params = array($temporal_coverage_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getTemporalCoverageDate($temporal_coverage_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_temporal_coverage_dates($1)';
 	$params = array($temporal_coverage_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getCitationInformation($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_citation_information($1)';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getCitationDates($citation_info_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_citation_dates($1)';
 	$params = array($citation_info_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
@@ -2192,24 +3249,40 @@ function getCitationDates($citation_info_id)
 function getCitationContributors($citation_info_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_citation_contributors($1)';
 	$params = array($citation_info_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function getCitationContributorNameParts($citation_contributor_id)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_contributor_name_parts($1)';
 	$params = array($citation_contributor_id);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
@@ -2217,7 +3290,11 @@ function getCitationContributorNameParts($citation_contributor_id)
 function searchForNameParts($searchText, $objectClass, $dataSourceKey, $limit)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_search_names($1,$2,$3,$4)';
 	$params = array($searchText, $objectClass, $dataSourceKey, $limit);
@@ -2225,6 +3302,7 @@ function searchForNameParts($searchText, $objectClass, $dataSourceKey, $limit)
 	$values = array();
 	if(isset($resultSet ) && $resultSet )
 	{
+<<<<<<< HEAD
 		while ($registryObjectKey = current($resultSet))
 		{
 	        $values[] = $registryObjectKey['udf_search_names'];
@@ -2326,17 +3404,46 @@ function searchByName($searchText, $objectClass, $dataSourceKey, $limit)
 	$strQuery = 'SELECT * FROM dba.udf_search_by_name($1,$2,$3,$4)';
 	$params = array($searchText, $objectClass, $dataSourceKey, $limit);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+=======
+		while ($registryObjectKey = current($resultSet)) 
+		{
+	        $values[] = $registryObjectKey['udf_search_names'];       
+	    	next($resultSet);
+		}
+	}
+	
+	
+	return $values;
+}
+
+function searchByName($searchText, $objectClass, $dataSourceKey, $limit)
+{
+	global $gCNN_DBS_ORCA;
+	
+	$resultSet = null;
+	$strQuery = 'SELECT * FROM dba.udf_search_by_name($1,$2,$3,$4)';
+	$params = array($searchText, $objectClass, $dataSourceKey, $limit);
+	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
 function searchDraftByName($searchText, $objectClass, $dataSourceKey, $limit)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_search_draft_by_name($1,$2,$3,$4)';
 	$params = array($searchText, $objectClass, $dataSourceKey, $limit);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+=======
+	
+	$resultSet = null;
+	$strQuery = 'SELECT * FROM dba.udf_search_draft_by_name($1,$2,$3,$4)';
+	$params = array($searchText, $objectClass, $dataSourceKey, $limit);
+	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $resultSet;
 }
 
@@ -2348,123 +3455,206 @@ function searchDraftByName($searchText, $objectClass, $dataSourceKey, $limit)
 function getDataSourceCount($created_when=null)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$count = 0;
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_get_data_source_count($1) AS count';
 	$params = array($created_when);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( $resultSet )
 	{
 		$count = $resultSet[0]['count'];
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $count;
 }
 
 function getPublishMyDataCount($created_when=null)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$count = 0;
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_get_publish_my_data_object_count($1) AS count';
 	$params = array($created_when);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( $resultSet )
 	{
 		$count = $resultSet[0]['count'];
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $count;
 }
 
 function getHarvestMethodCount($created_when=null,$harvest_method)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$count = 0;
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_get_harvest_method_count($1,$2) AS count';
 	$params = array($created_when,$harvest_method);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( $resultSet )
 	{
 		$count = $resultSet[0]['count'];
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $count;
 }
 
 function getRegistryObjectStatCount($created_when=null,$registry_object_class)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$count = 0;
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_get_registry_object_stat_count($1,$2) AS count';
 	$params = array($created_when,$registry_object_class);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( $resultSet )
 	{
 		$count = $resultSet[0]['count'];
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $count;
 }
 
 function getStoredStatCount($created_when=null,$table_column)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$count = 0;
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_stored_stat_count($1,$2)';
 	$params = array($created_when,$table_column);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( $resultSet )
 	{
 		$count = $resultSet[0][$table_column];
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $count;
 }
 
 function getRegistryObjectTypeCount($created_when=null,$registry_object_class=null,$object_type=null)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_get_registry_object_type_count($1,$2,$3) AS count';
 	$params = array($created_when,$registry_object_class,$object_type);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
 	return $resultSet;
+=======
+	
+	return $resultSet;	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 function getDescriptionTypeCount($created_when=null)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_get_descriptions_type_count($1) AS count';
 	$params = array($created_when);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
 	return $resultSet;
+=======
+	
+	return $resultSet;	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 function getRelatedInfoTypeCount($created_when=null)
 {
 	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$resultSet = null;
 	$strQuery = 'SELECT dba.udf_get_related_info_type_count($1) AS count';
 	$params = array($created_when);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+<<<<<<< HEAD
 
 	return $resultSet;
 }
@@ -2512,11 +3702,17 @@ function getIncomingRelatedObjectCount($registry_object_key)
 		return $resultSet[0]['count'];
 }
 
+=======
+	
+	return $resultSet;	
+}
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 // function defined to obtain real subject values for dc xml
 //------------------------------------------------------------
 function getSubjectValue($identifier=NULL)
 {
  	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$resultSet = null;
 	$value = null;
@@ -2526,36 +3722,69 @@ function getSubjectValue($identifier=NULL)
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
 
 	return $resultSet[0]["name"] ;
+=======
+	
+	$resultSet = null;
+	$value = null;
+	$strQuery = 'SELECT * FROM dba.udf_get_subject_value($1)';
+	
+	$params = array($identifier);
+	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+
+	return $resultSet[0]["name"] ; 	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 // functions defined to obtain nla identifier keys
 //------------------------------------------------------------
 function getPartyIdentifiers()
 {
  	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_nla_nonlinked_related_objects() AS "partyIdentifier"';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery,null);
 
 	return $resultSet ;
+=======
+	
+	$resultSet = null;
+	$strQuery = 'SELECT * FROM dba.udf_get_nla_nonlinked_related_objects() AS "partyIdentifier"';
+	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery,null);	
+
+	return $resultSet ; 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function getPartyNLAIdentifiers()
 {
  	global $gCNN_DBS_ORCA;
+<<<<<<< HEAD
 
 	$resultSet = null;
 	$strQuery = 'SELECT * FROM dba.udf_get_party_nla_identifiers() AS "partyIdentifier"';
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery,null);
 
 	return $resultSet ;
+=======
+	
+	$resultSet = null;
+	$strQuery = 'SELECT * FROM dba.udf_get_party_nla_identifiers() AS "partyIdentifier"';
+	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery,null);	
+
+	return $resultSet ; 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 // functions to format name parts
 function getOrderedNames($registry_object_key, $isParty=false, $asDisplayTitle=true, $chooseRandom=true)
 {
 	$display_title = "";
+<<<<<<< HEAD
 	// Get the primary name (if available)
+=======
+	// Get the primary name (if available)	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$complexNames = getComplexNames($registry_object_key);
 	$primaryNames = array();
 
@@ -2563,6 +3792,7 @@ function getOrderedNames($registry_object_key, $isParty=false, $asDisplayTitle=t
 	{
 		$display_title = "(no name/title)";
 	}
+<<<<<<< HEAD
 	else
 	{
 		$primary_name_id = null;
@@ -2570,12 +3800,25 @@ function getOrderedNames($registry_object_key, $isParty=false, $asDisplayTitle=t
 		// Get primary names
 		foreach ($complexNames AS $complexName)
 		{
+=======
+	else 
+	{
+		$primary_name_id = null;
+		
+		// Get primary names
+		foreach ($complexNames AS $complexName)
+		{	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			if ($complexName['type'] == "primary")
 			{
 				$primaryNames[] = $complexName['complex_name_id'];
 			}
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		// Pick a primary name
 		if (count($primaryNames) == 0)
 		{
@@ -2584,11 +3827,19 @@ function getOrderedNames($registry_object_key, $isParty=false, $asDisplayTitle=t
 		}
 		else
 		{
+<<<<<<< HEAD
 			$primary_name_id = $primaryNames[array_rand($primaryNames)];
 		}
 
 		$nameParts = getNameParts($primary_name_id);
 
+=======
+			$primary_name_id = $primaryNames[array_rand($primaryNames)];	
+		}
+
+		$nameParts = getNameParts($primary_name_id);
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if (!is_array($nameParts) || count($nameParts) == 0)
 		{
 			$display_title = "(no name/title)";
@@ -2597,7 +3848,11 @@ function getOrderedNames($registry_object_key, $isParty=false, $asDisplayTitle=t
 		{
 			$display_title = $nameParts[0]['value'];
 		}
+<<<<<<< HEAD
 		else
+=======
+		else 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		{
 			if ($isParty)
 			{
@@ -2608,18 +3863,28 @@ function getOrderedNames($registry_object_key, $isParty=false, $asDisplayTitle=t
 				$partyNameParts['given'] = array();
 				$partyNameParts['family'] = array();
 				$partyNameParts['user_specified_type'] = array();
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				foreach ($nameParts AS $namePart)
 				{
 					if (in_array(strtolower($namePart['type']), array_keys($partyNameParts)))
 					{
 						$partyNameParts[strtolower($namePart['type'])][] = trim($namePart['value']);
+<<<<<<< HEAD
 					}
 					else
+=======
+					} 
+					else 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 					{
 						$partyNameParts['user_specified_type'][] = trim($namePart['value']);
 					}
 				}
+<<<<<<< HEAD
 
 				if ($asDisplayTitle)
 				{
@@ -2629,6 +3894,17 @@ function getOrderedNames($registry_object_key, $isParty=false, $asDisplayTitle=t
 										(count($partyNameParts['family']) > 0 ? implode(" ", $partyNameParts['family']) . " " : "") .
 										(count($partyNameParts['suffix']) > 0 ? implode(" ", $partyNameParts['suffix']) . " " : "") .
 										(count($partyNameParts['user_specified_type']) > 0 ? implode(" ", $partyNameParts['user_specified_type']) . " " : "");
+=======
+				
+				if ($asDisplayTitle)
+				{
+					$display_title = 	(count($partyNameParts['title']) > 0 ? implode(" ", $partyNameParts['title']) . " " : "") . 
+										(count($partyNameParts['given']) > 0 ? implode(" ", $partyNameParts['given']) . " " : "") . 
+										(count($partyNameParts['initial']) > 0 ? implode(" ", $partyNameParts['initial']) . " " : "") . 
+										(count($partyNameParts['family']) > 0 ? implode(" ", $partyNameParts['family']) . " " : "") . 
+										(count($partyNameParts['suffix']) > 0 ? implode(" ", $partyNameParts['suffix']) . " " : "") . 
+										(count($partyNameParts['user_specified_type']) > 0 ? implode(" ", $partyNameParts['user_specified_type']) . " " : ""); 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				}
 				else
 				{
@@ -2636,11 +3912,16 @@ function getOrderedNames($registry_object_key, $isParty=false, $asDisplayTitle=t
 					{
 						$givenName = (strlen($givenName) == 1 ? $givenName . "." : $givenName);
 					}
+<<<<<<< HEAD
 
+=======
+					
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 					foreach ($partyNameParts['initial'] AS &$initial)
 					{
 						$initial = $initial . ".";
 					}
+<<<<<<< HEAD
 
 					$display_title = 	(count($partyNameParts['family']) > 0 ? implode(" ", $partyNameParts['family']) : "") .
 										(count($partyNameParts['given']) > 0 ? ", " . implode(" ", $partyNameParts['given']) : "") .
@@ -2650,6 +3931,17 @@ function getOrderedNames($registry_object_key, $isParty=false, $asDisplayTitle=t
 										(count($partyNameParts['user_specified_type']) > 0 ? " " . implode(" ", $partyNameParts['user_specified_type']) . " " : "");
 				}
 
+=======
+					
+					$display_title = 	(count($partyNameParts['family']) > 0 ? implode(" ", $partyNameParts['family']) : "") .
+										(count($partyNameParts['given']) > 0 ? ", " . implode(" ", $partyNameParts['given']) : "") . 
+										(count($partyNameParts['initial']) > 0 ? " " . implode(" ", $partyNameParts['initial']) : "") . 
+										(count($partyNameParts['title']) > 0 ? ", " . implode(" ", $partyNameParts['title']) : "") . 
+										(count($partyNameParts['suffix']) > 0 ? ", " . implode(" ", $partyNameParts['suffix']) : "") . 
+										(count($partyNameParts['user_specified_type']) > 0 ? " " . implode(" ", $partyNameParts['user_specified_type']) . " " : ""); 
+				}
+				
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			}
 			else
 			{
@@ -2658,6 +3950,7 @@ function getOrderedNames($registry_object_key, $isParty=false, $asDisplayTitle=t
 				{
 					$np[] = trim($namePart['value']);
 				}
+<<<<<<< HEAD
 
 				$display_title = implode(" ", $np);
 			}
@@ -2665,6 +3958,15 @@ function getOrderedNames($registry_object_key, $isParty=false, $asDisplayTitle=t
 
 	}
 
+=======
+				
+				$display_title = implode(" ", $np);
+			}
+		}
+		
+	}
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $display_title;
 }
 
@@ -2676,6 +3978,7 @@ function setDraftFlag($draft_key, $data_source, $flag)
 		global $gCNN_DBS_ORCA;
         $strQuery = 'UPDATE dba.tbl_draft_registry_objects SET flag = $1 WHERE draft_key = $2 AND registry_object_data_source = $3';
         $params = array($flag, $draft_key, $data_source);
+<<<<<<< HEAD
         $resultSet = @executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
 	}
 }
@@ -2701,10 +4004,59 @@ function getGoldFlag($key)
 		$r = $resultSet[0]['gold_status_flag'];
 	}
 	return $r;
+=======
+        $resultSet = @executeQuery($gCNN_DBS_ORCA, $strQuery, $params);	  		
+	}
+}
+
+
+function replaceCodeWithStringValue($transformResult)
+{
+    global $gCNN_DBS_ORCA;
+    
+    $resultSet = null;
+    $strQuery = 'SELECT name FROM dba.tbl_terms where identifier=$1';
+    $xml=  simplexml_load_string($transformResult);
+     $att="name";
+    foreach($xml->doc as $doc)
+    {
+        foreach($doc->field as $f)
+        {
+            if($f->attributes()->$att=="for_value_two" ||$f->attributes()->$att=="for_value_four" ||$f->attributes()->$att=="for_value_six")
+            {
+                $params = array($f);
+                $resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+               // print($resultSet[0]["name"]);
+               // print($f);
+                $name=$resultSet[0]["name"];
+                $f[0][0]=$name;     
+              
+            }
+            
+            
+        }       
+    }
+//print_r($xml->asXML());
+    
+    return $xml->asXML();
+    
+/*    
+	global $gCNN_DBS_ORCA;
+	
+	$resultSet = null;
+	$strQuery = 'SELECT name FROM dba.tbl_terms where identifier=$1';
+	$params = array($harvest_request_id);
+	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
+	
+	return $resultSet;
+ *
+ */
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 
 
+<<<<<<< HEAD
 function insertTaskRequest($task_type, $created_by, $param_1='', $param_2='', $param_3='', $trigger_time)
 {
 	global $gCNN_DBS_ORCA;
@@ -3391,5 +4743,7 @@ function replaceCodeWithStringValue($transformResult)
     return $xml->asXML();
 
 }
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 ?>

@@ -34,7 +34,10 @@ class Preview extends CI_Controller {
 			$data['content'] = $this->transform($content, 'rifcs2Preview.xsl', $ds);	
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();	
+<<<<<<< HEAD
 			$data['activity_name'] = 'preview';
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			$this->load->view('xml-view', $data);
 		}else{
 			show_404('Preview Draft');
@@ -49,7 +52,11 @@ class Preview extends CI_Controller {
 		$proc = new XSLTProcessor();
 		$proc->importStyleSheet($qtestxsl);
 		$proc->setParameter('','base_url',base_url());
+<<<<<<< HEAD
 		$proc->setParameter('','orca_home',$this->config->item('orca_url'));
+=======
+		$proc->setParameter('','orca_home',getHTTPs($this->config->item('orca_url')));
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$proc->setParameter('','dataSource',$ds);
 		$transformResult = $proc->transformToXML($registryObjects);	
 		return $transformResult;

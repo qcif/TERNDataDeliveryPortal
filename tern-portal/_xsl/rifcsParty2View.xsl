@@ -20,12 +20,17 @@
 
 		<div id="party_box">
  		<xsl:choose>
+<<<<<<< HEAD
                     <!--
 	        <xsl:when test="ro:displayTitle!=''">
 	        	<xsl:apply-templates select="ro:displayTitle"/>
                        -->
                        	        <xsl:when test="ro:display_title!=''">
 	        	<xsl:apply-templates select="ro:display_title"/>
+=======
+	        <xsl:when test="ro:displayTitle!=''">
+	        	<xsl:apply-templates select="ro:displayTitle"/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	        </xsl:when>
 	         <xsl:otherwise>
 	                <div id="displayname" ><h1><xsl:value-of select="../ro:key"/></h1></div>
@@ -38,8 +43,12 @@
 
         <div class="personal_details"><h2>Personal details</h2>
        
+<<<<<<< HEAD
         <!--<xsl:apply-templates select="ro:name[@type='alternative']/ro:displayTitle"/>-->
         <xsl:apply-templates select="ro:name[@type='alternative']/ro:display_title"/>
+=======
+        <xsl:apply-templates select="ro:name[@type='alternative']/ro:displayTitle"/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
        
         <xsl:if test="ro:description">
@@ -66,11 +75,17 @@
 				</xsl:if>
 	 		</xsl:if>
   
+<<<<<<< HEAD
         <!--<xsl:if test="ro:relatedInfo">-->
         <xsl:if test="ro:related_info">
         <p><b>More Information:</b> </p>
             <!--<xsl:apply-templates select="ro:relatedInfo"/>-->
             <xsl:apply-templates select="ro:related_info"/>
+=======
+        <xsl:if test="ro:relatedInfo">
+        <p><b>More Information:</b> </p>
+            <xsl:apply-templates select="ro:relatedInfo"/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
          </xsl:if>
 
         <xsl:if test="ro:coverage or ro:location/ro:spatial">
@@ -155,12 +170,17 @@
                         <xsl:text>ctx_ver=Z39.88-2004</xsl:text>
                         <xsl:text>&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc</xsl:text>
                         <xsl:text>&amp;rfr_id=info%3Asid%2FTERN</xsl:text>
+<<<<<<< HEAD
                         <!--
                         <xsl:text>&amp;rft.title=</xsl:text><xsl:value-of select="//ro:displayTitle"/>
                         <xsl:text>&amp;rft.description=</xsl:text><xsl:value-of select="//ro:displayTitle"/>
                         -->
                         <xsl:text>&amp;rft.title=</xsl:text><xsl:value-of select="//ro:display_title"/>
                         <xsl:text>&amp;rft.description=</xsl:text><xsl:value-of select="//ro:display_title"/>
+=======
+                        <xsl:text>&amp;rft.title=</xsl:text><xsl:value-of select="//ro:displayTitle"/>
+                        <xsl:text>&amp;rft.description=</xsl:text><xsl:value-of select="//ro:displayTitle"/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                         </xsl:attribute>
                         </span><span class="Z3988"></span>
                     </xsl:otherwise>

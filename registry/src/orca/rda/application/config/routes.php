@@ -59,8 +59,12 @@ limitations under the License.
 $route['default_controller'] = "home";
 //$route['view/(:any)'] = "view/viewitem/$1";
 $route['404_override'] = '';
+<<<<<<< HEAD
 // insert any pre-defined routes before the (:any) declaration
 $route['(:any)'] = 'dispatcher/$1';
+=======
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

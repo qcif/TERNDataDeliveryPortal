@@ -1,10 +1,19 @@
 <?xml version="1.0"?>
+<<<<<<< HEAD
 <xsl:stylesheet xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:extRif="http://ands.org.au/standards/rif-cs/extendedRegistryObjects" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" exclude-result-prefixes="ro extRif">
     <xsl:output method="html" encoding="UTF-8" indent="no" omit-xml-declaration="yes"/>
     <xsl:param name="dataSource"/>
     <xsl:param name="reverseLinks" select ="'true'"/>
     <xsl:param name="output" select="'script'"/>
     <xsl:param name="relatedObjectClassesStr" select="'true'"/>
+=======
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" exclude-result-prefixes="ro">
+    <xsl:output method="html" encoding="UTF-8" indent="no" omit-xml-declaration="yes"/>
+    <xsl:param name="dataSource"/>
+    <xsl:param name="output" select="'script'"/>
+    <xsl:param name="relatedObjectClassesStr" select="''"/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
     <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>
@@ -103,6 +112,7 @@
     
     <!--  COLLECTION/PARTY/ACTIVITY LEVEL CHECKS -->
     <xsl:template match="ro:collection">
+<<<<<<< HEAD
     <xsl:variable name="CP_roError_cont">
 	<xsl:if test="$reverseLinks = 'true'">
 	<xsl:text> &lt;i&gt;If you have created the relationship from the Party to the Collection, please ignore this message.&lt;/i&gt;</xsl:text>
@@ -114,6 +124,10 @@
 	</xsl:if>
     </xsl:variable>
 	<xsl:if test="not(ro:name[@type='primary'])">
+=======
+    
+		<xsl:if test="not(ro:name[@type='primary'])">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         	<xsl:choose>
 			    <xsl:when test="$output = 'script'">
             		<xsl:text>SetWarnings("errors_name","At least one primary name is required for the Collection record.","REQ_PRIMARY_NAME");</xsl:text>
@@ -127,10 +141,17 @@
         <xsl:if test="not(ro:description[@type='brief']) and not(ro:description[@type='full'])">
         	<xsl:choose>
 			    <xsl:when test="$output = 'script'">
+<<<<<<< HEAD
             		<xsl:text>SetWarnings("errors_description","At least one description (brief and/or full) is required for the Collection.","REQ_DESCRIPTION_FULL");</xsl:text>
 			    </xsl:when>
 			    <xsl:otherwise>
 					<span class="warning">At least one description (brief and/or full) is required for the Collection.</span>
+=======
+            		<xsl:text>SetWarnings("errors_description","At least one description (brief and/or full) is required for the Collection. The description must be longer than 9 characters.","REQ_DESCRIPTION_FULL");</xsl:text>
+			    </xsl:when>
+			    <xsl:otherwise>
+					<span class="warning">At least one description (brief and/or full) is required for the Collection. The description must be longer than 9 characters.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			    </xsl:otherwise>
 	    	</xsl:choose>
         </xsl:if>
@@ -156,6 +177,7 @@
         </xsl:if>  
         
         <xsl:if test="not(ro:relatedObject/ro:key[@roclass = 'Activity']) and $output = 'script'">
+<<<<<<< HEAD
             <xsl:text>SetInfos("errors_relatedObject","The Collection must be related to at least one Activity record where available.</xsl:text><xsl:value-of select="$CA_roError_cont"/><xsl:text>","REC_RELATED_OBJECT_ACTIVITY");</xsl:text>
 		</xsl:if>
 		
@@ -169,6 +191,21 @@
         
         <xsl:if test="not(contains($relatedObjectClassesStr, 'Party') or ro:relatedObject/ro:key[@roclass = 'Party'] or ro:relatedObject/ro:key[@roclass = 'party']) and $output = 'html'">
 			<span class="warning">The Collection must be related to at least one Party record.<xsl:value-of select="$CP_roError_cont"/></span>
+=======
+            <xsl:text>SetInfos("errors_relatedObject","The Collection must be related to at least one Activity record where available.","REC_RELATED_OBJECT_ACTIVITY");</xsl:text>
+		</xsl:if>
+		
+        <xsl:if test="not(contains($relatedObjectClassesStr, 'Activity') or ro:relatedObject/ro:key[@roclass = 'Activity'] or ro:relatedObject/ro:key[@roclass = 'activity']) and $output = 'html'">
+			<span class="info">The Collection must be related to at least one Activity record where available.</span>
+        </xsl:if>
+        
+        <xsl:if test="not(ro:relatedObject/ro:key[@roclass = 'Party']) and $output = 'script'">
+            <xsl:text>SetWarnings("errors_relatedObject","The Collection must be related to at least one Party record.","REQ_RELATED_OBJECT_PARTY");</xsl:text>
+        </xsl:if>
+        
+        <xsl:if test="not(contains($relatedObjectClassesStr, 'Party') or ro:relatedObject/ro:key[@roclass = 'Party'] or ro:relatedObject/ro:key[@roclass = 'party']) and $output = 'html'">
+			<span class="warning">The Collection must be related to at least one Party record.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         </xsl:if>
   	
         <xsl:if test="not(ro:identifier)">
@@ -228,6 +265,7 @@
    </xsl:template>
     
     <xsl:template match="ro:party">
+<<<<<<< HEAD
     <xsl:variable name="PC_roError_cont">
 	<xsl:if test="$reverseLinks = 'true'">
 	<xsl:text> &lt;i&gt;If you have created the relationship from the Collection to the Party, please ignore this message.&lt;/i&gt;</xsl:text>
@@ -240,6 +278,9 @@
     </xsl:variable>
 
 	<xsl:if test="not(ro:name[@type='primary'])">
+=======
+		<xsl:if test="not(ro:name[@type='primary'])">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             <xsl:choose>
 			    <xsl:when test="$output = 'script'">
             		<xsl:text>SetWarnings("errors_name","At least one primary name is required for the Party record.","REQ_PRIMARY_NAME");</xsl:text>
@@ -273,6 +314,7 @@
         </xsl:if>    
                
         <xsl:if test="not(ro:relatedObject/ro:key[@roclass = 'Activity']) and $output = 'script'">
+<<<<<<< HEAD
             <xsl:text>SetInfos("errors_relatedObject","It is recommended that the Party be related to at least one Activity record.</xsl:text><xsl:value-of select="$PA_roError_cont"/><xsl:text>","REC_RELATED_OBJECT_ACTIVITY");</xsl:text>
 		</xsl:if>
 		
@@ -286,15 +328,37 @@
         
         <xsl:if test="not(contains($relatedObjectClassesStr, 'Collection') or ro:relatedObject/ro:key[@roclass = 'Collection'] or ro:relatedObject/ro:key[@roclass = 'collection']) and $output = 'html'">
 			<span class="warning">The Party must be related to at least one Collection record.<xsl:value-of select="$PC_roError_cont"/></span>
+=======
+            <xsl:text>SetInfos("errors_relatedObject","It is recommended that the Party be related to at least one Activity record.","REC_RELATED_OBJECT_ACTIVITY");</xsl:text>
+		</xsl:if>
+		
+        <xsl:if test="not(contains($relatedObjectClassesStr, 'Activity') or ro:relatedObject/ro:key[@roclass = 'Activity'] or ro:relatedObject/ro:key[@roclass = 'activity']) and $output = 'html'">
+			<span class="info">It is recommended that the Party be related to at least one Activity record.</span>
+        </xsl:if>
+        
+        <xsl:if test="not(ro:relatedObject/ro:key[@roclass = 'Collection']) and $output = 'script'">
+            <xsl:text>SetWarnings("errors_relatedObject","The Party must be related to at least one Collection record.","REQ_RELATED_OBJECT_COLLECTION");</xsl:text>
+        </xsl:if>
+        
+        <xsl:if test="not(contains($relatedObjectClassesStr, 'Collection') or ro:relatedObject/ro:key[@roclass = 'Collection'] or ro:relatedObject/ro:key[@roclass = 'collection']) and $output = 'html'">
+			<span class="warning">The Party must be related to at least one Collection record.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         </xsl:if>
                       
         <xsl:if test="not(ro:description[@type='brief']) and not(ro:description[@type='full'])">
             <xsl:choose>
 			    <xsl:when test="$output = 'script'">
+<<<<<<< HEAD
             		<xsl:text>SetInfos("errors_description","At least one description (brief and/or full) is recommended for the Party.","REC_DESCRIPTION_FULL");</xsl:text>
 			    </xsl:when>
 			    <xsl:otherwise>
 					<span class="info">At least one description (brief and/or full) is recommended for the Party.</span>
+=======
+            		<xsl:text>SetInfos("errors_description","At least one description (brief and/or full) is recommended for the Party. The description must be longer than 9 characters.","REC_DESCRIPTION_FULL");</xsl:text>
+			    </xsl:when>
+			    <xsl:otherwise>
+					<span class="info">At least one description (brief and/or full) is recommended for the Party. The description must be longer than 9 characters.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			    </xsl:otherwise>
 	    	</xsl:choose>
         </xsl:if>
@@ -324,6 +388,7 @@
     
     
     <xsl:template match="ro:activity">
+<<<<<<< HEAD
     <xsl:variable name="AC_roError_cont">
 	<xsl:if test="$reverseLinks = 'true'">
 	<xsl:text> &lt;i&gt;If you have created the relationship from the Collection to the Activity, please ignore this message.&lt;/i&gt;</xsl:text>
@@ -335,6 +400,9 @@
 	</xsl:if>
     </xsl:variable>
 	<xsl:if test="not(ro:name[@type='primary'])">
+=======
+		<xsl:if test="not(ro:name[@type='primary'])">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             <xsl:choose>
 			    <xsl:when test="$output = 'script'">
             		<xsl:text>SetWarnings("errors_name","At least one primary name is required for the Activity record.","REQ_PRIMARY_NAME");</xsl:text>
@@ -348,10 +416,17 @@
         <xsl:if test="not(ro:description[@type='brief']) and not(ro:description[@type='full'])">
             <xsl:choose>
 			    <xsl:when test="$output = 'script'">
+<<<<<<< HEAD
             		<xsl:text>SetWarnings("errors_description","At least one description (brief and/or full) is required for the Activity.","REQ_DESCRIPTION_FULL");</xsl:text>
 			    </xsl:when>
 			    <xsl:otherwise>
 					<span class="warning">At least one description (brief and/or full) is required for the Activity.</span>
+=======
+            		<xsl:text>SetWarnings("errors_description","At least one description (brief and/or full) is required for the Activity. The description must be longer than 9 characters.","REQ_DESCRIPTION_FULL");</xsl:text>
+			    </xsl:when>
+			    <xsl:otherwise>
+					<span class="warning">At least one description (brief and/or full) is required for the Activity. The description must be longer than 9 characters.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			    </xsl:otherwise>
 	    	</xsl:choose>
         </xsl:if>
@@ -368,6 +443,7 @@
         </xsl:if>    
         
         <xsl:if test="not(ro:relatedObject/ro:key[@roclass = 'Party']) and $output = 'script'">
+<<<<<<< HEAD
             <xsl:text>SetWarnings("errors_relatedObject","The Activity must be related to at least one Party record.</xsl:text><xsl:value-of select="$AP_roError_cont"/><xsl:text>","REQ_RELATED_OBJECT_PARTY");</xsl:text>
 		</xsl:if>
 		
@@ -381,6 +457,21 @@
         
         <xsl:if test="not(contains($relatedObjectClassesStr, 'Collection') or ro:relatedObject/ro:key[@roclass = 'Collection'] or ro:relatedObject/ro:key[@roclass = 'collection']) and $output = 'html'">
 			<span class="info">The Activity must be related to at least one Collection record if available.<xsl:value-of select="$AC_roError_cont"/></span>
+=======
+            <xsl:text>SetWarnings("errors_relatedObject","The Activity must be related to at least one Party record.","REQ_RELATED_OBJECT_PARTY");</xsl:text>
+		</xsl:if>
+		
+        <xsl:if test="not(contains($relatedObjectClassesStr, 'Party') or ro:relatedObject/ro:key[@roclass = 'Party'] or ro:relatedObject/ro:key[@roclass = 'party']) and $output = 'html'">
+			<span class="warning">The Activity must be related to at least one Party record.</span>
+        </xsl:if>
+              
+       <xsl:if test="not(ro:relatedObject/ro:key[@roclass = 'Collection']) and $output = 'script'">
+            <xsl:text>SetInfos("errors_relatedObject","The Activity must be related to at least one Collection record if available.","REC_RELATED_OBJECT_COLLECTION");</xsl:text>
+        </xsl:if>
+        
+        <xsl:if test="not(contains($relatedObjectClassesStr, 'Collection') or ro:relatedObject/ro:key[@roclass = 'Collection'] or ro:relatedObject/ro:key[@roclass = 'collection']) and $output = 'html'">
+			<span class="info">The Activity must be related to at least one Collection record if available.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         </xsl:if>             
         <xsl:if test="not(ro:subject) or not(ro:subject[string-length(.) &gt; 0] and ro:subject[string-length(@type) &gt; 0])">
             <xsl:choose>
@@ -407,6 +498,7 @@
     
     
     <xsl:template match="ro:service">
+<<<<<<< HEAD
     <xsl:variable name="SC_roError_cont">
 	<xsl:if test="$reverseLinks = 'true'">
 	<xsl:text> &lt;i&gt;If you have created the relationship from the Collection to the Service, please ignore this message.&lt;/i&gt;</xsl:text>
@@ -418,6 +510,9 @@
 	</xsl:if>
     </xsl:variable>
 	<xsl:if test="not(ro:name[@type='primary'])">
+=======
+		<xsl:if test="not(ro:name[@type='primary'])">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             <xsl:choose>
 			    <xsl:when test="$output = 'script'">
             		<xsl:text>SetWarnings("errors_name","At least one primary name is required for the Service record.","REQ_PRIMARY_NAME");</xsl:text>
@@ -429,6 +524,7 @@
         </xsl:if>
         
         <xsl:if test="not(ro:relatedObject/ro:key[@roclass = 'Party']) and $output = 'script'">
+<<<<<<< HEAD
             <xsl:text>SetInfos("errors_relatedObject","It is recommended that the Service be related to at least one Party record.</xsl:text><xsl:value-of select="$SP_roError_cont"/><xsl:text>", "REC_RELATED_OBJECT_PARTY");</xsl:text>
 		</xsl:if>
 		
@@ -442,15 +538,37 @@
         
         <xsl:if test="not(contains($relatedObjectClassesStr, 'Collection') or ro:relatedObject/ro:key[@roclass = 'Collection'] or ro:relatedObject/ro:key[@roclass = 'collection']) and $output = 'html'">
 			<span class="warning">The Service must be related to at least one Collection record.<xsl:value-of select="$SC_roError_cont"/></span>
+=======
+            <xsl:text>SetInfos("errors_relatedObject","It is recommended that the Service be related to at least one Party record.", "REC_RELATED_OBJECT_PARTY");</xsl:text>
+		</xsl:if>
+		
+        <xsl:if test="not(contains($relatedObjectClassesStr, 'Party') or ro:relatedObject/ro:key[@roclass = 'Party'] or ro:relatedObject/ro:key[@roclass = 'party']) and $output = 'html'">
+			<span class="info">It is recommended that the Service be related to at least one Party record.</span>
+        </xsl:if>
+        
+        <xsl:if test="not(ro:relatedObject/ro:key[@roclass = 'Collection']) and $output = 'script'">
+            <xsl:text>SetWarnings("errors_relatedObject","The Service must be related to at least one Collection record.","REQ_RELATED_OBJECT_COLLECTION");</xsl:text>
+        </xsl:if>
+        
+        <xsl:if test="not(contains($relatedObjectClassesStr, 'Collection') or ro:relatedObject/ro:key[@roclass = 'Collection'] or ro:relatedObject/ro:key[@roclass = 'collection']) and $output = 'html'">
+			<span class="warning">The Service must be related to at least one Collection record.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         </xsl:if> 
                
         <xsl:if test="not(ro:description[@type='brief']) and not(ro:description[@type='full'])">
             <xsl:choose>
 			    <xsl:when test="$output = 'script'">
+<<<<<<< HEAD
             		<xsl:text>SetInfos("errors_description","At least one description (brief and/or full) is recommended for the Service.","REC_DESCRIPTION_FULL");</xsl:text>
 			    </xsl:when>
 			    <xsl:otherwise>
 					<span class="info">At least one description (brief and/or full) is recommended for the Service.</span>
+=======
+            		<xsl:text>SetInfos("errors_description","At least one description (brief and/or full) is recommended for the Service. The description must be longer than 9 characters.","REC_DESCRIPTION_FULL");</xsl:text>
+			    </xsl:when>
+			    <xsl:otherwise>
+					<span class="info">At least one description (brief and/or full) is recommended for the Service. The description must be longer than 9 characters.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			    </xsl:otherwise>
 	    	</xsl:choose>
         </xsl:if>
@@ -568,6 +686,7 @@
             </xsl:when>
         </xsl:choose>
         <xsl:choose>
+<<<<<<< HEAD
             <xsl:when test="string-length(.) &gt; 12000">
                 <xsl:choose>
 				    <xsl:when test="$output = 'script'">
@@ -575,6 +694,15 @@
 				    </xsl:when>
 				    <xsl:otherwise>
 						<span class="error">Description must be less than 12000 characters.</span>
+=======
+            <xsl:when test="string-length(.) &gt; 4000">
+                <xsl:choose>
+				    <xsl:when test="$output = 'script'">
+               			 <xsl:text>SetErrors("errors_</xsl:text><xsl:value-of select="@field_id"/><xsl:text>_value","Description Value must be less than 4000 characters.");</xsl:text>
+				    </xsl:when>
+				    <xsl:otherwise>
+						<span class="error">Description must be less than 4000 characters.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				    </xsl:otherwise>
 		    	</xsl:choose>
             </xsl:when>
@@ -588,7 +716,11 @@
 				    </xsl:otherwise>
 		    	</xsl:choose>
             </xsl:when>
+<<<<<<< HEAD
             <!-- xsl:when test="string-length(.) &lt; 9">
+=======
+            <xsl:when test="string-length(.) &lt; 9">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                 <xsl:choose>
 				    <xsl:when test="$output = 'script'">
                 		<xsl:text>SetErrors("errors_</xsl:text><xsl:value-of select="@field_id"/><xsl:text>_value","Description Value must be 9 characters or more.");</xsl:text>
@@ -597,7 +729,11 @@
 						<span class="error">Description must be 9 characters or more.</span>
 				    </xsl:otherwise>
 		    	</xsl:choose>
+<<<<<<< HEAD
             </xsl:when-->
+=======
+            </xsl:when>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         </xsl:choose>
     </xsl:template>
     
@@ -633,16 +769,27 @@
     </xsl:template>
     
     <xsl:template match="ro:namePart">
+<<<<<<< HEAD
         <!--xsl:if test="string-length(@type) = 0 and ancestor::ro:party[@type = 'person']">
+=======
+        <xsl:if test="string-length(@type) = 0 and ancestor::ro:party[@type = 'person']">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
             <xsl:choose>
 			    <xsl:when test="$output = 'script'">
             		<xsl:text>SetWarnings("errors_</xsl:text><xsl:value-of select="@field_id"/><xsl:text>_type","A Name Part Type must be specified.");</xsl:text>
 			    </xsl:when>
 			    <xsl:otherwise>
+<<<<<<< HEAD
 					<span class="warning">Name Part must have a type.</span>
 			    </xsl:otherwise>
 	    	</xsl:choose>
         </xsl:if-->
+=======
+					<span class="error">Name Part must have a type.</span>
+			    </xsl:otherwise>
+	    	</xsl:choose>
+        </xsl:if>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         <xsl:if test="string-length(@type) &gt; 512">
             <xsl:choose>
 			    <xsl:when test="$output = 'script'">
@@ -1429,6 +1576,7 @@
     </xsl:template>
         
     <xsl:template match="ro:rights/ro:rightsStatement">
+<<<<<<< HEAD
         <xsl:if test="string-length(.) &gt; 12000">
             <xsl:choose>
 			    <xsl:when test="$output = 'script'">
@@ -1436,6 +1584,15 @@
 			    </xsl:when>
 			    <xsl:otherwise>
 					<span class="error">Rights Statement must be less than 12000 characters.</span>
+=======
+        <xsl:if test="string-length(.) &gt; 4000">
+            <xsl:choose>
+			    <xsl:when test="$output = 'script'">
+            		<xsl:text>SetErrors("errors_</xsl:text><xsl:value-of select="@field_id"/><xsl:text>_value","Rights Statement must be less than 4000 characters.");</xsl:text>
+			    </xsl:when>
+			    <xsl:otherwise>
+					<span class="error">Rights Statement must be less than 4000 characters.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			    </xsl:otherwise>
 	    	</xsl:choose>
         </xsl:if>
@@ -1452,6 +1609,7 @@
     </xsl:template>
     
     <xsl:template match="ro:rights/ro:licence">
+<<<<<<< HEAD
         <xsl:if test="string-length(.) &gt; 12000">
             <xsl:choose>
 			    <xsl:when test="$output = 'script'">
@@ -1459,6 +1617,15 @@
 			    </xsl:when>
 			    <xsl:otherwise>
 					<span class="error">Licence must be less than 12000 characters.</span>
+=======
+        <xsl:if test="string-length(.) &gt; 4000">
+            <xsl:choose>
+			    <xsl:when test="$output = 'script'">
+            		<xsl:text>SetErrors("errors_</xsl:text><xsl:value-of select="@field_id"/><xsl:text>_value","Licence must be less than 4000 characters.");</xsl:text>
+			    </xsl:when>
+			    <xsl:otherwise>
+					<span class="error">Licence must be less than 4000 characters.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			    </xsl:otherwise>
 	    	</xsl:choose>
         </xsl:if>
@@ -1475,6 +1642,7 @@
     </xsl:template>
     
     <xsl:template match="ro:rights/ro:accessRights">
+<<<<<<< HEAD
         <xsl:if test="string-length(.) &gt; 12000">
             <xsl:choose>
 			    <xsl:when test="$output = 'script'">
@@ -1482,6 +1650,15 @@
 			    </xsl:when>
 			    <xsl:otherwise>
 					<span class="error">Access Rights must be less than 12000 characters.</span>
+=======
+        <xsl:if test="string-length(.) &gt; 4000">
+            <xsl:choose>
+			    <xsl:when test="$output = 'script'">
+            		<xsl:text>SetErrors("errors_</xsl:text><xsl:value-of select="@field_id"/><xsl:text>_value","Access Rights must be less than 4000 characters.");</xsl:text>
+			    </xsl:when>
+			    <xsl:otherwise>
+					<span class="error">Access Rights must be less than 4000 characters.</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			    </xsl:otherwise>
 	    	</xsl:choose>
         </xsl:if>

@@ -24,14 +24,22 @@ importApplicationStylesheet(eAPP_ROOT.'orca/_styles/jquery-ui-1.8.9.custom.css')
 
 // Page processing
 // -----------------------------------------------------------------------------
+<<<<<<< HEAD
 $keyValue = getQueryValue('key');
+=======
+$keyValue = getQueryValue('key');	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 $readOnly = isset($_GET['readOnly']);
 
 if ($readOnly)
 $action = 'View ';
 elseif ($keyValue)
 $action = 'Edit ';
+<<<<<<< HEAD
 else
+=======
+else 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 $action = 'Add ';
 // -----------------------------------------------------------------------------
 // Begin the XHTML response. Any redirects must occur before this point.
@@ -40,7 +48,11 @@ require '../../_includes/header.php';
 // =============================================================================
 ?>
 
+<<<<<<< HEAD
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/jquery-ui-1.8.9.custom.min.js"></script>
+=======
+<script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/jquery-ui-1.8.9.custom.min.js"></script>	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 <script type="text/javascript" src="<?php print ePROTOCOL ?>://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/orca_dhtml.js"></script>
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/regmydata_dhtml.js"></script>
@@ -54,8 +66,13 @@ require '../../_includes/header.php';
 <script type="text/javascript">
 
 	var tabs = new Array();
+<<<<<<< HEAD
 	// Tabs which should be created for this page, including the name of the tab and the link to the Content Provider's Guide
 	// which will be displayed when the user selects the [?] help button.
+=======
+	// Tabs which should be created for this page, including the name of the tab and the link to the Content Provider's Guide 
+	// which will be displayed when the user selects the [?] help button. 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	tabs["#mandatoryInformation"] = {name:"Record Administration", cpg:"http://ands.org.au/guides/cpguide/cpgcollection.html"};
 	tabs["#name"] = {name:"Name/Title", cpg:"http://ands.org.au/guides/cpguide/cpgname.html"};
 	tabs["#description"] = {name:"Descriptions/Rights",cpg:"http://ands.org.au/guides/cpguide/cpgdescription.html"};
@@ -68,8 +85,13 @@ require '../../_includes/header.php';
 	tabs["#relatedInfo"] = {name:"Related Info",cpg:"http://ands.org.au/guides/cpguide/cpgrelatedinfo.html"};
 
 	<?php
+<<<<<<< HEAD
 
 	if ($readOnly)
+=======
+	
+	if ($readOnly) 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	{
 		echo 'tabs["#preview"] = {name:"Preview Draft",cpg:"http://ands.org.au/guides/content-providers-guide.html"};';
 	}
@@ -77,38 +99,66 @@ require '../../_includes/header.php';
 	{
 		echo 'tabs["#preview"] = {name:"<img id=\"saveButton\" src=\"'. eAPP_ROOT . 'orca/_images/save.png\" style=\"padding-top:4px;\" alt=\"Save and Preview this Draft\" /> Save Draft",cpg:"http://ands.org.au/guides/content-providers-guide.html"};';
 	}
+<<<<<<< HEAD
 
 	?>
 
 	function quagmire_reset()
+=======
+	
+	?>
+
+	function quagmire_reset() 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	{
 		quagmire_init();
 		// Required List
 		quagmire_append('REQ_PRIMARY_NAME', REQUIRED,'At least one primary name is required for the Collection record');
 		quagmire_append('REQ_LOCATION_ADDRESS', REQUIRED,'At least one location address is required for the Collection.');
 		quagmire_append('REQ_RELATED_OBJECT_PARTY', REQUIRED,'The Collection must be related to at least one Party record.');
+<<<<<<< HEAD
 		quagmire_append('REQ_DESCRIPTION_FULL', REQUIRED,'At least one description (brief and/or full) is required for the Collection.');
 		quagmire_append('REQ_RIGHT', REQUIRED,'At least one right is required for the Collection.');
+=======
+		quagmire_append('REQ_DESCRIPTION_FULL', REQUIRED,'At least one description (brief and/or full) is required for the Collection. The description must be longer than 9 characters.');
+		quagmire_append('REQ_RIGHT', REQUIRED,'At least one right is required for the Collection.');		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 		// Recommended List
 		quagmire_append('REC_IDENTIFIER', RECOMMENDED,'At least one identifier is recommended for the Collection.');
 		quagmire_append('REC_RELATED_OBJECT_ACTIVITY', RECOMMENDED,'The Collection must be related to at least one Activity record where possible.'); // "Required if available"...
+<<<<<<< HEAD
 		quagmire_append('REC_SUBJECT', RECOMMENDED,'At least one subject (e.g. anzsrc-for code) is recommended for the Collection.');
 		quagmire_append('REC_SPATIAL_COVERAGE', RECOMMENDED,'At least one spatial coverage for the Collection is recommended.');
 		quagmire_append('REC_TEMPORAL_COVERAGE', RECOMMENDED,'At least one temporal coverage entry for the collection is recommended.');
 		quagmire_append('REC_CITATION', RECOMMENDED,'Citation data for the collection is recommended.');
+=======
+		quagmire_append('REC_SUBJECT', RECOMMENDED,'At least one subject (e.g. anzsrc-for code) is recommended for the Collection.');		
+		quagmire_append('REC_SPATIAL_COVERAGE', RECOMMENDED,'At least one spatial coverage for the Collection is recommended.');
+		quagmire_append('REC_TEMPORAL_COVERAGE', RECOMMENDED,'At least one temporal coverage entry for the collection is recommended.');
+		quagmire_append('REC_CITATION', RECOMMENDED,'Citation data for the collection is recommended.');		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 	quagmire_reset();
 </script>
 
 
 
+<<<<<<< HEAD
 <input type="hidden" id="baseRDAURL" value="<?php print "http://" . $host . "/" . $rda_root; ?>" />
 <input type="hidden" id="baseURL" value="<?php print eAPP_ROOT . "orca/" ?>" />
 <input type="hidden" id="elementSourceURL" value="<?php print eAPP_ROOT . "orca/fetch_element.php" ?>" />
 <input type="hidden" id="elementCategory" value="collection" />
 <input type="hidden" id="contributor_page" value="" name="contributor_page"/>
 
+=======
+
+<input type="hidden" id="baseURL" value="<?php print eAPP_ROOT . "orca/" ?>" />
+<input type="hidden" id="ternURL" value="<?php print eTERN_ROOT ?>" />
+
+<input type="hidden" id="elementSourceURL" value="<?php print eAPP_ROOT . "orca/fetch_element.php" ?>" />
+<input type="hidden" id="elementCategory" value="collection" />
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 <div id="mmr_datasource_alert" style="display:none;">
 	<div id="mmr_datasource_alert_title" class="clearfix">
@@ -117,7 +167,11 @@ require '../../_includes/header.php';
 	</div>
 	<div id="mmr_datasource_alert_msg">
 	</div>
+<<<<<<< HEAD
 	<!-- input type="button" onclick="location.reload();" value="Continue" style="vertical-align:bottom;"/-->
+=======
+	<input type="button" onclick="location.reload();" value="Continue" style="vertical-align:bottom;"/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 </div>
 
 <form id="registry_object_add" action="registry_object_add.php" method="post">
@@ -128,6 +182,7 @@ require '../../_includes/header.php';
 
 <input type="hidden" id="object.objectClass" name="object.objectClass" value="Collection" />
 
+<<<<<<< HEAD
 <table id="outer-table" summary="<?php print $action ?> Registry Object">
 	<tbody>
 		<tr>
@@ -136,10 +191,21 @@ require '../../_includes/header.php';
 
 			<div class="heading" style="width:95%"><h3><span id="heading_action"><?php print $action ?></span>Collection</h3>
 
+=======
+<table id="outer-table" summary="<?php print $action ?> Registry Object">	
+	<tbody>
+		<tr>
+		
+		<td id="content-cell">
+		
+			<div class="heading" style="width:95%"><h3><span id="heading_action"><?php print $action ?></span>Collection</h3>
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				<div id="options_bar">
 					<div id="status_bar">
 						Status: <span id="status_span"></span>
 					</div>
+<<<<<<< HEAD
 
 
 					<div id="tool_bar">
@@ -148,10 +214,21 @@ require '../../_includes/header.php';
 						<span style="float:right;">or go back to <a href="<?php print eAPP_ROOT . "orca/manage/my_records.php?data_source=" . getQueryValue('data_source'); ?>">Manage My Records</a></span>
 					</div>
 
+=======
+				
+					
+					<div id="tool_bar">
+						You are currently viewing this record in Read Only mode. 		
+						<input id="enableBtn" type="button" value="Enable Editing" disabled="disabled" /><br/>
+						<span style="float:right;">or go back to <a href="<?php print eAPP_ROOT . "orca/manage/my_records.php?data_source=" . getQueryValue('data_source'); ?>">Manage My Records</a></span>
+					</div>
+					
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				</div>
 				<br/>
 				<div id="button_bar">
 				</div>
+<<<<<<< HEAD
 
 			</div>
 
@@ -161,10 +238,22 @@ require '../../_includes/header.php';
 
 				<div id="rmd_interface">
 
+=======
+			
+			</div>
+			
+			
+			
+			<div id="table-cell">	
+				
+				<div id="rmd_interface">	
+				
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 					<ul id="tabList" class="tabs">
 					</ul>
 
 
+<<<<<<< HEAD
 
 					<div id="panel_container">
 					</div>
@@ -184,14 +273,41 @@ require '../../_includes/header.php';
 			</div>
 		</td>
 	</tr>
+=======
+					
+					<div id="panel_container">			   
+					</div>
+		
+
+			
+				
+					<div id="formButtons">
+					
+					</div>		
+				
+				</div>
+				
+				<div id="rmd_loading"></div>
+				<div id="rmd_scripts"></div>
+				
+			</div>		
+		</td>
+	</tr>		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	</tbody>
 </table>
 
 </form>
 
+<<<<<<< HEAD
 <script type="text/javascript">
  getRemoteElement("#formButtons", "buttons");
  <?php if ($readOnly) { echo "userMode = 'readOnly';disableEditing();$('#tool_bar').show();"; } ?>
+=======
+<script type="text/javascript"> 
+ getRemoteElement("#formButtons", "buttons");
+ <?php if ($readOnly) { echo "userMode = 'readOnly';disableEditing();$('#tool_bar').show();"; } ?> 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 </script>
 
 <?php

@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 *******************************************************************************/
 
+<<<<<<< HEAD
 
 
 $gXPath = null; // An XPATH object to use for parsing the XML.
@@ -32,6 +33,15 @@ $rmdQualityLevel->load(eAPPLICATION_ROOT.'orca/_xsl/gen_quality_level_report.xsl
 $qualityLevelProc = new XSLTProcessor();
 $qualityLevelProc->importStyleSheet($rmdQualityLevel);
 
+=======
+$gXPath = null; // An XPATH object to use for parsing the XML.
+$xs = 'rif';    // The default namespace prefix to register for use by XPATH.
+$dataSourceKey = '';
+$rmdQualityTest = new DomDocument();
+$rmdQualityTest->load(eAPPLICATION_ROOT.'/orca/_xsl/rmd_quality_test.xsl');
+$qaProc = new XSLTProcessor();
+$qaProc->importStyleSheet($rmdQualityTest);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMessage, $created_who=SYSTEM, $status=PUBLISHED, $record_owner=SYSTEM, $xPath=NULL, $override_qa=false)
 {
@@ -44,18 +54,30 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 		$tempXPath = $gXPath;
 		$gXPath = $xPath;
 	}
+<<<<<<< HEAD
 
 	$totalElements = 0;
 	$totalRegistryObjectElements = 0;
 
 	$recordsCached = 0;
+=======
+	
+	$totalElements = 0;
+	$totalRegistryObjectElements = 0;
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$totalRegistryObjectInserts = 0;
 	$totalRegistryObjectDeletes = 0;
 	$totalRegistryObjectChanges = 0;
 	$totalAttemptedInserts = 0;
+<<<<<<< HEAD
 	$SUBMITTED_FOR_ASSESSMENT_Inserts = 0;
 	$totalInserts = 0;
 
+=======
+	$totalInserts = 0;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$runErrors = '';
 	$errors = null;
 	if($dataSourceKey == 'PUBLISH_MY_DATA')
@@ -69,9 +91,15 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 		$manuallyPublish = $dataSource[0]['auto_publish'];
 		$qaFlag = $dataSource[0]['qa_flag'];
 	}
+<<<<<<< HEAD
 
 	if ($override_qa)
 	{
+=======
+		
+	if ($override_qa)
+	{ 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$qaFlag = 'f';
 	}
 	if($manuallyPublish == 'f')
@@ -82,20 +110,29 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 	{
 		$status = APPROVED;
 	}
+<<<<<<< HEAD
 
 	$currentUrlSlug = '';
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	// Get an xpath object to use for parsing the XML.
 	$gXPath = new DOMXpath($registryObjects);
 	// Get the default namespace of the registryObjects object.
 	$defaultNamespace = $gXPath->evaluate('/*')->item(0)->namespaceURI;
 	// Register a prefix for the default namespace so that we can actually use the xpath object.
 	$gXPath->registerNamespace($xs, $defaultNamespace);
+<<<<<<< HEAD
 
 	$totalElements = $gXPath->evaluate("//*")->length;
 
 	$ignoredRegistryObjectCount=0;
 
+=======
+	
+	$totalElements = $gXPath->evaluate("//*")->length;
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	// Registry Objects
 	// =========================================================================
 	$registryObjectList = $gXPath->evaluate("$xs:registryObject");
@@ -104,12 +141,16 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 	{
 		// Registry Object
 		// =====================================================================
+<<<<<<< HEAD
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$registryObject = $registryObjectList->item($i);
 		$deleted = true;
 		// Registry Object Key
 		// =====================================================================
 		$registryObjectKey = substr($gXPath->evaluate("$xs:key", $registryObject)->item(0)->nodeValue, 0, 512);
+<<<<<<< HEAD
 		$oldRegistryObject = getRegistryObject($registryObjectKey);
 
 		$oldHarvestID = $oldRegistryObject[0]['created_who'];
@@ -580,12 +621,434 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 		else{
 			$ignoredRegistryObjectCount++;	
 		}// END checking for duplicates in the same harvest!!
+=======
+		
+		if( $registryObjectKey )
+		{
+			// Check if this object exists already, and delete it if it does.
+			if( $oldRegistryObject = getRegistryObject($registryObjectKey) )
+			{
+				// Delete this object and all associated records from the registry (if qaflag is true, don't delete existing one
+				if($dataSourceKey == $oldRegistryObject[0]['data_source_key'])
+				{
+					if ($qaFlag != 't')
+					{
+						$errors = deleteRegistryObject($registryObjectKey);
+						if( !$errors ) 
+						{ 
+							$totalRegistryObjectDeletes++;         						
+						} 
+						else 
+						{ 
+							$runErrors .= "Failed to delete Registry Object with key $registryObjectKey\n"; 
+						}
+					}
+				}
+				else
+				{ 
+					$deleted = false;
+					$runErrors .= "Registry Object with key $registryObjectKey already exists in a different datasource\n"; 
+				}
+				
+				/*
+				 * Check for previous revisions, compare equality and add a new revision if appropriate
+				 */
+				$previousRegistryObjects = getRawRecords($registryObjectKey,$dataSourceKey, NULL);
+				
+				// Check if this object exists already, and delete it if it does.
+				if( $previousRegistryObjects && count ($previousRegistryObjects) > 0)
+				{
+					// Check if the object has changed since its last import
+					$currentRecordFragment = $registryObject->ownerDocument->saveXML($registryObject);
+				
+					// Get the most recent record fragment
+					$previousRecordFragment = @array_pop($previousRegistryObjects);
+					if ($previousRecordFragment === NULL)
+					{
+						$runErrors .= "Failed to find comparable Raw Record Fragment for $registryObjectKey\n"; 
+					} 
+					else 
+					{
+						
+						// Wrap registryObject in the XML wrappers (this will cause records to mismatch if gRIF_SCHEMA_URI is changed
+						// in orca/_includes/init.php
+						if (!compareLooseXMLEquivalent($currentRecordFragment, $previousRecordFragment['rifcs_fragment']))
+						{
+							insertRawRecord($registryObjectKey, $dataSourceKey, date('Y-m-d H:i:s'), $created_who, $currentRecordFragment);
+							$totalRegistryObjectChanges++;
+						}
+					}
+				}
+			}
+			else 
+			{
+				$currentRecordFragment = $registryObject->ownerDocument->saveXML($registryObject);
+				insertRawRecord($registryObjectKey, $dataSourceKey, date('Y-m-d H:i:s'), $created_who, $currentRecordFragment);
+			}
+			
+			// Registry Object Originating Source
+			// =====================================================================
+			$originatingSource = $gXPath->evaluate("$xs:originatingSource", $registryObject)->item(0);
+			$originatingSourceValue = $originatingSource->nodeValue;
+			$originatingSourceType = $originatingSource->getAttribute("type");
+			
+			
+			
+			// We're all set to insert the new/replacement registry object.
+			// Registry Object
+			// =====================================================================
+			$object_group = $registryObject->getAttribute("group");
+			
+	
+			// Activity
+			// =====================================================================
+			
+			if($qaFlag == 't')
+			{
+								
+				if($activity = $gXPath->evaluate("$xs:activity", $registryObject)->item(0))
+				{
+				 	$draft_type = $activity->getAttribute("type");
+				 	//$date_modified = $activity->getAttribute("dateModified");
+				 	$eClass = 'activity';
+				 	$draft_class = 'Activity';
+				}
+				else if($collection = $gXPath->evaluate("$xs:collection", $registryObject)->item(0))
+				{
+					$draft_type= $collection->getAttribute("type");
+					//$date_modified = $collection->getAttribute("dateModified");	
+					$eClass = 'collection';
+					$draft_class = 'Collection';
+				}
+				else if($party = $gXPath->evaluate("$xs:party", $registryObject)->item(0))
+				{
+					$draft_type = $party->getAttribute("type");
+					//$date_modified = $party->getAttribute("dateModified");
+					$eClass = 'party';
+					$draft_class = 'Party';
+				}
+				else if($service = $gXPath->evaluate("$xs:service", $registryObject)->item(0))
+				{
+					$draft_type = $service->getAttribute("type");
+					//$date_modified = $service->getAttribute("dateModified");
+					$eClass = 'service';
+					$draft_class = 'Service';
+				}
+				$date_modified = date('Y-m-d H:i:s');
+				$title = '';
+				$possibleNames = null;
+				$possibleNames = $gXPath->evaluate("$xs:$eClass/$xs:name[@type='primary']", $registryObject);
+				if ($possibleNames->length > 0)
+				{
+	
+					$parts = $gXPath->evaluate("$xs:$eClass/$xs:name[@type='primary']/$xs:namePart", $registryObject);
+					if ($parts->length > 0)
+					{
+						$title = "";
+						for($k=0; $k<$parts->length; $k++)
+						{
+							$title .= $parts->item($k)->nodeValue . " ";
+						}
+						$title = trim($title);
+					}
+				}
+				else 
+				{
+					$possibleNames = $gXPath->evaluate("$xs:$eClass/$xs:name/$xs:namePart", $registryObject);
+					
+					if ($possibleNames->length > 0)
+					{ 
+						$title = "";
+						for($k=0; $k<$possibleNames->length; $k++)
+						{
+							$title .= $possibleNames->item($k)->nodeValue . " ";
+						}
+						$title = trim($title);
+					}
+				}
+				
+				if (strlen($title) === 0)
+				{
+					$title = '(no name/title)';
+				}
+				
+				$rifcs = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
+				$rifcs .= '<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" '."\n";
+				$rifcs .= '                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
+				$rifcs .= '                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF_SCHEMA_URI.'">'."\n";
+				$rifcs .= $registryObjects->saveXML($registryObject);
+				$rifcs .= '</registryObjects>';
+					
+				if ($dataSourceKey != 'PUBLISH_MY_DATA' && getDraftCountByStatus($dataSourceKey, SUBMITTED_FOR_ASSESSMENT) == 0)
+				{
+					send_email(
+						$dataSource[0]['assessement_notification_email_addr'],
+						"Records from " . $dataSource[0]['title'] . " are ready for your assessment",
+						$dataSource[0]['title'] . " has submitted " . count($totalRegistryObjectElements) . " record(s) for your assessment by Harvest. \n\n" .
+						"Your action is required to review these records by visiting the Manage My Records screen or accessing the Data Source directly by the following link:\n" .
+						eHTTP_APP_ROOT . "orca/manage/my_records.php?data_source=" . $dataSourceKey . "\n\n"
+					);
+				}
+				$runResultMessage .=  insertDraftRegistryObject(($dataSourceKey == 'PUBLISH_MY_DATA' ? $record_owner : $created_who), $registryObjectKey, $draft_class, $object_group, $draft_type, $title, $dataSourceKey, date('Y-m-d H:i:s'), $date_modified , $rifcs, '', 0, 0, SUBMITTED_FOR_ASSESSMENT);
+				$runResultMessage  .= "\nRegistry Object with key $registryObjectKey is SUBMITTED_FOR_ASSESSMENT"; 
+			}
+			else
+			{
+				if($deleted && !$errors && $activity = $gXPath->evaluate("$xs:activity", $registryObject)->item(0) )
+				{
+					$activityType = $activity->getAttribute("type");
+					$date_modified = $activity->getAttribute("dateModified");
+					
+					$errors = insertRegistryObject($registryObjectKey, 'Activity', $activityType, $originatingSourceValue, $originatingSourceType, $dataSourceKey, $object_group, null, $date_modified, $created_who, $status, $record_owner);
+					$totalAttemptedInserts++;				
+					if( !$errors ) { $totalRegistryObjectInserts++; $totalInserts++; } else { $runErrors .= "Failed to insert Activity with key $registryObjectKey\n"; }
+					
+					// identifier
+					// -----------------------------------------------------------------
+					importIdentifierTypes($registryObjectKey, $activity, "identifier", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// name
+					// -----------------------------------------------------------------
+					importComplexNameTypes($registryObjectKey, $activity, "name", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// location
+					// -----------------------------------------------------------------
+					importLocations($registryObjectKey, $activity, "location", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// relatedObject
+					// -----------------------------------------------------------------
+					importRelatedObjectTypes($registryObjectKey, $activity, "relatedObject", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// subject
+					// -----------------------------------------------------------------
+					importSubjectTypes($registryObjectKey, $activity, "subject", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// description
+					// -----------------------------------------------------------------
+					importDescriptionTypes($registryObjectKey, $activity, "description", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+	
+					// coverage
+					// -----------------------------------------------------------------
+					importCoverage($registryObjectKey, $activity, "coverage", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+	
+					// citationInfo
+					// -----------------------------------------------------------------
+					importCitationInfo($registryObjectKey, $activity, "citationInfo", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// rights
+					// -----------------------------------------------------------------
+					importRights($registryObjectKey, $activity, "rights", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// existenceDates
+					// -----------------------------------------------------------------
+					importExistenceDates($registryObjectKey, $activity, "existenceDates", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// relatedInfo
+					// -----------------------------------------------------------------
+					importRelatedInfo($registryObjectKey, $activity, "relatedInfo", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+				} // Activity
+				
+				// Collection
+				// =====================================================================
+				if($deleted && !$errors && $collection = $gXPath->evaluate("$xs:collection", $registryObject)->item(0) )
+				{
+					$collectionType = $collection->getAttribute("type");
+					
+					$date_accessioned = $collection->getAttribute("dateAccessioned");
+					$date_modified = $collection->getAttribute("dateModified");
+					
+					$errors = insertRegistryObject($registryObjectKey, 'Collection', $collectionType, $originatingSourceValue, $originatingSourceType, $dataSourceKey, $object_group, $date_accessioned, $date_modified, $created_who, $status, $record_owner);
+					$totalAttemptedInserts++;				
+					if( !$errors ) { $totalRegistryObjectInserts++; $totalInserts++; } else { $runErrors .= "Failed to insert Collection with key $registryObjectKey\n(aaa".$errors; }
+					
+					// identifier
+					// -----------------------------------------------------------------
+					importIdentifierTypes($registryObjectKey, $collection, "identifier", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// name
+					// -----------------------------------------------------------------
+					importComplexNameTypes($registryObjectKey, $collection, "name", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// location
+					// -----------------------------------------------------------------
+					importLocations($registryObjectKey, $collection, "location", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// relatedObject
+					// -----------------------------------------------------------------
+					importRelatedObjectTypes($registryObjectKey, $collection, "relatedObject", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// subject
+					// -----------------------------------------------------------------
+					importSubjectTypes($registryObjectKey, $collection, "subject", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// description
+					// -----------------------------------------------------------------
+					importDescriptionTypes($registryObjectKey, $collection, "description", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+	
+					// coverage
+					// -----------------------------------------------------------------
+					importCoverage($registryObjectKey, $collection, "coverage", &$runErrors, &$totalAttemptedInserts, &$totalInserts);	
+					
+					// citationInfo
+					// -----------------------------------------------------------------
+					importCitationInfo($registryObjectKey, $collection, "citationInfo", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// rights
+					// -----------------------------------------------------------------
+					importRights($registryObjectKey, $collection, "rights", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// existenceDates
+					// -----------------------------------------------------------------
+					importExistenceDates($registryObjectKey, $collection, "existenceDates", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					
+					// relatedInfo
+					// -----------------------------------------------------------------
+					importRelatedInfo($registryObjectKey, $collection, "relatedInfo", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+				} // Collection
+				
+				// Party
+				// =====================================================================
+				if($deleted && !$errors && $party = $gXPath->evaluate("$xs:party", $registryObject)->item(0) )
+				{
+					$partyType = $party->getAttribute("type");
+					$date_modified = $party->getAttribute("dateModified");
+					
+					//echo $registryObjectKey.' Party '.$partyType.' '.$originatingSourceValue.' '.$originatingSourceType.' '.$dataSourceKey.' '.$object_group.' '.$date_modified.' '.$created_who.' '.$status.' '.$record_owner;
+					$errors = insertRegistryObject($registryObjectKey, 'Party', $partyType, $originatingSourceValue, $originatingSourceType, $dataSourceKey, $object_group, null, $date_modified, $created_who, $status, $record_owner);
+					//echo $errors;
+					//exit;
+					$totalAttemptedInserts++;				
+					if( !$errors ) { $totalRegistryObjectInserts++; $totalInserts++; } else { $runErrors .= "Failed to insert Party with key $registryObjectKey\n"; }
+					
+					// identifier
+					// -----------------------------------------------------------------
+					importIdentifierTypes($registryObjectKey, $party, "identifier", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// name
+					// -----------------------------------------------------------------
+					importComplexNameTypes($registryObjectKey, $party, "name", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// location
+					// -----------------------------------------------------------------
+					importLocations($registryObjectKey, $party, "location", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// relatedObject
+					// -----------------------------------------------------------------
+					importRelatedObjectTypes($registryObjectKey, $party, "relatedObject", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// subject
+					// -----------------------------------------------------------------
+					importSubjectTypes($registryObjectKey, $party, "subject", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// description
+					// -----------------------------------------------------------------
+					importDescriptionTypes($registryObjectKey, $party, "description", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+	
+					// coverage
+					// -----------------------------------------------------------------
+					importCoverage($registryObjectKey, $party, "coverage", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// citationInfo
+					// -----------------------------------------------------------------
+					importCitationInfo($registryObjectKey, $party, "citationInfo", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+
+					// rights
+					// -----------------------------------------------------------------
+					importRights($registryObjectKey, $party, "rights", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// existenceDates
+					// -----------------------------------------------------------------
+					importExistenceDates($registryObjectKey, $party, "existenceDates", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// relatedInfo
+					// -----------------------------------------------------------------
+					importRelatedInfo($registryObjectKey, $party, "relatedInfo", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+				} // Party
+				
+				// Service
+				// =====================================================================
+				if($deleted && !$errors && $service = $gXPath->evaluate("$xs:service", $registryObject)->item(0) )
+				{
+					$serviceType = $service->getAttribute("type");
+					$date_modified = $service->getAttribute("dateModified");
+					
+					$errors = insertRegistryObject($registryObjectKey, 'Service', $serviceType, $originatingSourceValue, $originatingSourceType, $dataSourceKey, $object_group, null, $date_modified, $created_who, $status, $record_owner);
+					$totalAttemptedInserts++;				
+					if( !$errors ) { $totalRegistryObjectInserts++; $totalInserts++; } else { $runErrors .= "Failed to insert Service with key $registryObjectKey\n"; }
+					
+					// identifier
+					// -----------------------------------------------------------------
+					importIdentifierTypes($registryObjectKey, $service, "identifier", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// name
+					// -----------------------------------------------------------------
+					importComplexNameTypes($registryObjectKey, $service, "name", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// location
+					// -----------------------------------------------------------------
+					importLocations($registryObjectKey, $service, "location", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// relatedObject
+					// -----------------------------------------------------------------
+					importRelatedObjectTypes($registryObjectKey, $service, "relatedObject", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// subject
+					// -----------------------------------------------------------------
+					importSubjectTypes($registryObjectKey, $service, "subject", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// description
+					// -----------------------------------------------------------------
+					importDescriptionTypes($registryObjectKey, $service, "description", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+	
+					// coverage
+					// -----------------------------------------------------------------
+					importCoverage($registryObjectKey, $service, "coverage", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+				
+					// citationInfo
+					// -----------------------------------------------------------------
+					importCitationInfo($registryObjectKey, $service, "citationInfo", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// accessPolicy
+					// -----------------------------------------------------------------
+					importAccessPolicy($registryObjectKey, $service, "accessPolicy", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+
+					// rights
+					// -----------------------------------------------------------------
+					importRights($registryObjectKey, $service, "rights", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// existenceDates
+					// -----------------------------------------------------------------
+					importExistenceDates($registryObjectKey, $service, "existenceDates", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+					// relatedInfo
+					// -----------------------------------------------------------------
+					importRelatedInfo($registryObjectKey, $service, "relatedInfo", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
+					
+				} // Service
+			
+		// Add a default and list title for the registry object
+		updateRegistryObjectTitles ($registryObjectKey, 
+                                    getOrderedNames($registryObjectKey, (isset($party) && $party), true), 
+                                    getOrderedNames($registryObjectKey, (isset($party) && $party), false));	                       
+			}			
+		}
+		else
+		{
+			$runErrors .= "Couldn't create Registry Object without key.\n";
+		}// registryObjectKey
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	} // Next registryObject.
 	// Useful result information.
 	$runResultMessage .= "  SOURCE DATA\n";
 	$runResultMessage .= "    $totalRegistryObjectElements registryObject element/s.\n";
 	$runResultMessage .= "    $totalElements elements.\n";
 	$runResultMessage .= "  ACTIONS\n";
+<<<<<<< HEAD
 	if($SUBMITTED_FOR_ASSESSMENT_Inserts > 0)
 	{
 	$runResultMessage .= "    $SUBMITTED_FOR_ASSESSMENT_Inserts records Submitted for assessment.\n";
@@ -603,6 +1066,12 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 	{
 		$runResultMessage .= "    $ignoredRegistryObjectCount records were already received in this harvest.\n";
 	}
+=======
+	$runResultMessage .= "    $totalRegistryObjectDeletes Registry Object/s deleted.\n";
+	$runResultMessage .= "    $totalRegistryObjectInserts Registry Object/s inserted.\n";
+	$runResultMessage .= "    $totalAttemptedInserts attempted inserts.\n";
+	$runResultMessage .= "    $totalInserts inserts.\n";
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 
 	// Reset the old xPath variable
@@ -610,6 +1079,7 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 	{
 		$gXPath = $tempXPath;
 	}
+<<<<<<< HEAD
 
 	return $runErrors;
 }
@@ -731,6 +1201,12 @@ function approveDraft($key, $data_source_key){
 }
 
 
+=======
+	
+	return $runErrors;
+}
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 // Datatype handlers
 // =============================================================================
 
@@ -745,6 +1221,7 @@ function importIdentifierTypes($registryObjectKey, $node, $elementName, $runErro
 		$id = getIdForColumn('dba.tbl_identifiers.identifier_id');
 		$value = $list->item($j)->nodeValue;
 		$type = $list->item($j)->getAttribute("type");
+<<<<<<< HEAD
 
 
 		/** ACTIVITIES PULLBACK FROM SANDBOX - QUICKFIX FOR MONICA **/
@@ -762,18 +1239,45 @@ function importIdentifierTypes($registryObjectKey, $node, $elementName, $runErro
 					//$runErrors .= "Related Object with this key could not be found in Data Source.\n";
 				}
 				else
+=======
+		
+		
+		/** ACTIVITIES PULLBACK FROM SANDBOX - QUICKFIX FOR MONICA **/
+		// If this related object is an ARC/NHMRC grant, we should grab it from sandbox (if we haven't already)
+		if (defined("eAU_RESEARCH_GRANTS_PREFIX") && eAU_RESEARCH_GRANTS_PREFIX != "" && strpos($value, eAU_RESEARCH_GRANTS_PREFIX) === 0) 
+		{
+			if (!getRegistryObject($value, true))
+			{
+				
+				$errors = "";
+				$remoteRIFCS = file_get_contents(eAU_RESEARCH_GRANTS_HARVEST_POINT . "?search=".rawurlencode($value)."&activities=activity");
+				if (strpos($remoteRIFCS, "<key>" . $value . "</key>") === FALSE) 
+				{
+					//$runErrors .= "Failed to fetch related Activity record for: $relatedRegistryObjectKey\n"; 
+					//$runErrors .= "Related Object with this key could not be found in Data Source.\n";
+				}
+				else 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				{
 					$relatedObjectDOM = new DOMDocument();
 					$result = $relatedObjectDOM->loadXML($remoteRIFCS);
 					$errors = error_get_last();
 					if( $errors )
 					{
+<<<<<<< HEAD
 						//$runErrors .= "Failed to fetch related Activity record for: $relatedRegistryObjectKey\n";
+=======
+						//$runErrors .= "Failed to fetch related Activity record for: $relatedRegistryObjectKey\n"; 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 						//$runErrors .= "Document Load Error: ".$errors['message']."\n";
 					}
 					// Get an xpath object to use for parsing the XML.
 					$localXPath = new DOMXpath($relatedObjectDOM);
+<<<<<<< HEAD
 
+=======
+					
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 					$defaultNamespace = $localXPath->evaluate('/*')->item(0)->namespaceURI;
 					$localXPath->registerNamespace($xs, $defaultNamespace);
 					importRegistryObjects($relatedObjectDOM, eAU_RESEARCH_GRANTS_DATA_SOURCE, $errors, SYSTEM, PUBLISHED, SYSTEM, $localXPath);
@@ -781,12 +1285,21 @@ function importIdentifierTypes($registryObjectKey, $node, $elementName, $runErro
 				}
 
 			}
+<<<<<<< HEAD
 
 		}
 
 
 
 
+=======
+			
+		}
+		
+		
+		
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertIdentifier($id, $registryObjectKey, $value, $type);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert identifier for key $registryObjectKey\n"; }
@@ -797,7 +1310,11 @@ function importComplexNameTypes($registryObjectKey, $node, $elementName, $runErr
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:$elementName", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
@@ -806,7 +1323,11 @@ function importComplexNameTypes($registryObjectKey, $node, $elementName, $runErr
 		$date_from = $list->item($j)->getAttribute("dateFrom");
 		$date_to = $list->item($j)->getAttribute("dateTo");
 		$lang = $list->item($j)->getAttribute("xml:lang");
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertComplexName($id, $registryObjectKey, $type, $date_from, $date_to, $lang);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert complexName for key $registryObjectKey\n"; }
@@ -819,25 +1340,41 @@ function importNameParts($complex_name_id, $node, $runErrors, $totalAttemptedIns
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:namePart", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$id = getIdForColumn('dba.tbl_name_parts.name_part_id');
 		$value = $list->item($j)->nodeValue;
 		$type = $list->item($j)->getAttribute("type");
+<<<<<<< HEAD
 
 		$errors = insertNamePart($id, $complex_name_id, $value, $type);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert namePart for complexName $complex_name_id\n"; }
 	}
+=======
+		
+		$errors = insertNamePart($id, $complex_name_id, $value, $type);
+		$totalAttemptedInserts++;
+		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert namePart for complexName $complex_name_id\n"; }
+	}	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function importLocations($registryObjectKey, $node, $elementName, $runErrors, $totalAttemptedInserts, $totalInserts)
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:$elementName", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
@@ -845,7 +1382,11 @@ function importLocations($registryObjectKey, $node, $elementName, $runErrors, $t
 		$date_from = $list->item($j)->getAttribute("dateFrom");
 		$date_to = $list->item($j)->getAttribute("dateTo");
 		$type = $list->item($j)->getAttribute("type");
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertLocation($id, $registryObjectKey, $date_from, $date_to, $type);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert location for key $registryObjectKey\n"; }
@@ -864,11 +1405,19 @@ function importAddresses($location_id, $node, $runErrors, $totalAttemptedInserts
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$id = getIdForColumn('dba.tbl_address_locations.address_id');
+<<<<<<< HEAD
 
 		$errors = insertAddressLocation($id, $location_id);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert address for location $location_id\n"; }
 
+=======
+		
+		$errors = insertAddressLocation($id, $location_id);
+		$totalAttemptedInserts++;
+		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert address for location $location_id\n"; }
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		importElectronicAddressTypes($id, $list->item($j), &$runErrors, &$totalAttemptedInserts, &$totalInserts);
 		importPhysicalAddressTypes($id, $list->item($j), &$runErrors, &$totalAttemptedInserts, &$totalInserts);
 	}
@@ -878,18 +1427,30 @@ function importElectronicAddressTypes($address_id, $node, $runErrors, $totalAtte
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:electronic", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$id = getIdForColumn('dba.tbl_electronic_addresses.electronic_address_id');
 		$value = $list->item($j)->getElementsByTagName("value")->item(0)->nodeValue;
 		$type = $list->item($j)->getAttribute("type");
+<<<<<<< HEAD
 
 		$errors = insertElectronicAddress($id, $address_id, $value, $type);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert electronicAddress for address $address_id\n"; }
 
+=======
+		
+		$errors = insertElectronicAddress($id, $address_id, $value, $type);
+		$totalAttemptedInserts++;
+		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert electronicAddress for address $address_id\n"; }
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		importElectronicAddressArgs($id, $list->item($j), &$runErrors, &$totalAttemptedInserts, &$totalInserts);
 	}
 }
@@ -898,7 +1459,11 @@ function importElectronicAddressArgs($electronic_address_id, $node, $runErrors, 
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:arg", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
@@ -907,29 +1472,49 @@ function importElectronicAddressArgs($electronic_address_id, $node, $runErrors, 
 		$required = $list->item($j)->getAttribute("required");
 		$type = $list->item($j)->getAttribute("type");
 		$use = $list->item($j)->getAttribute("use");
+<<<<<<< HEAD
 
 		$errors = insertElectronicAddressArg($id, $electronic_address_id, $name, $required, $type, $use);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert arg for electronicAddress $physical_address_id\n"; }
 	}
+=======
+		
+		$errors = insertElectronicAddressArg($id, $electronic_address_id, $name, $required, $type, $use);
+		$totalAttemptedInserts++;
+		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert arg for electronicAddress $physical_address_id\n"; }
+	}	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function importPhysicalAddressTypes($address_id, $node, $runErrors, $totalAttemptedInserts, $totalInserts)
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:physical", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$id = getIdForColumn('dba.tbl_physical_addresses.physical_address_id');
 		$type = $list->item($j)->getAttribute("type");
 		$lang = $list->item($j)->getAttribute("xml:lang");
+<<<<<<< HEAD
 
 		$errors = insertPhysicalAddress($id, $address_id, $type, $lang);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert physicalAddress for address $address_id\n"; }
 
+=======
+		
+		$errors = insertPhysicalAddress($id, $address_id, $type, $lang);
+		$totalAttemptedInserts++;
+		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert physicalAddress for address $address_id\n"; }
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		importAddressParts($id, $list->item($j), &$runErrors, &$totalAttemptedInserts, &$totalInserts);
 	}
 }
@@ -938,25 +1523,41 @@ function importAddressParts($physical_address_id, $node, $runErrors, $totalAttem
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:addressPart", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$id = getIdForColumn('dba.tbl_address_parts.address_part_id');
 		$value = $list->item($j)->nodeValue;
 		$type = $list->item($j)->getAttribute("type");
+<<<<<<< HEAD
 
 		$errors = insertAddressPart($id, $physical_address_id, $value, $type);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert addressPart for physicalAddress $physical_address_id\n"; }
 	}
+=======
+		
+		$errors = insertAddressPart($id, $physical_address_id, $value, $type);
+		$totalAttemptedInserts++;
+		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert addressPart for physicalAddress $physical_address_id\n"; }
+	}	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function importSpatialTypes($location_id, $node, $runErrors, $totalAttemptedInserts, $totalInserts, $registryObjectKey)
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:spatial", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
@@ -964,12 +1565,21 @@ function importSpatialTypes($location_id, $node, $runErrors, $totalAttemptedInse
 		$value = $list->item($j)->nodeValue;
 		$type = $list->item($j)->getAttribute("type");
 		$lang = $list->item($j)->getAttribute("xml:lang");
+<<<<<<< HEAD
 
 		$errors = insertSpatialLocation($id, $location_id, $value, $type, $lang);
 		if(!$errors && ($type == 'gmlKmlPolyCoords' || $type == 'kmlPolyCoords' || $type == 'iso19139dcmiBox'))
 		{
 		$errors = importSpatialExtent($id, $value, $type, $registryObjectKey);
 		}
+=======
+		
+		$errors = insertSpatialLocation($id, $location_id, $value, $type, $lang);
+		if(!$errors && ($type == 'gmlKmlPolyCoords' || $type == 'kmlPolyCoords' || $type == 'iso19139dcmiBox'))
+		{
+		$errors = importSpatialExtent($id, $value, $type, $registryObjectKey);				
+		}		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$totalAttemptedInserts++;
 		//if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert spatial for location $location_id\n"; }
 	}
@@ -992,7 +1602,11 @@ function importSpatialExtent($id, $value, $type, $registryObjectKey)
 			//$msg = $msg.'<br/>lat ' .$keyValue[1]. ' long '.$keyValue[0];
 			if(is_numeric($keyValue[1]) && is_numeric($keyValue[0]))
 				{
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				$lng = floatval($keyValue[0]);
 				$lat = floatval($keyValue[1]);
 				//$msg = $msg.'<br/>lat ' .$lat. ' long '.$lng;
@@ -1013,9 +1627,15 @@ function importSpatialExtent($id, $value, $type, $registryObjectKey)
 				 $east = $lng;
 				}
 			}
+<<<<<<< HEAD
 			$tok = strtok(" ");
 		}
 
+=======
+			$tok = strtok(" ");	
+		}	
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 	if($type == 'iso19139dcmiBox')
 	{
@@ -1030,6 +1650,7 @@ function importSpatialExtent($id, $value, $type, $registryObjectKey)
 			$keyValue = explode("=",$tok);
 			if(strtolower(trim($keyValue[0])) == 'northlimit' && is_numeric($keyValue[1]))
 			{
+<<<<<<< HEAD
 			  $north = floatval($keyValue[1]);
 			}
 			if(strtolower(trim($keyValue[0])) == 'southlimit' && is_numeric($keyValue[1]))
@@ -1046,6 +1667,24 @@ function importSpatialExtent($id, $value, $type, $registryObjectKey)
 			}
 		  	$tok = strtok(";");
 		}
+=======
+			  $north = floatval($keyValue[1]);			
+			} 
+			if(strtolower(trim($keyValue[0])) == 'southlimit' && is_numeric($keyValue[1]))
+			{
+			  $south = floatval($keyValue[1]);				
+			}
+			if(strtolower(trim($keyValue[0])) == 'westlimit' && is_numeric($keyValue[1]))
+			{
+			  $west = floatval($keyValue[1]);				
+			}
+			if(strtolower(trim($keyValue[0])) == 'eastlimit' && is_numeric($keyValue[1]))
+			{
+			  $east = floatval($keyValue[1]);				
+			}
+		  	$tok = strtok(";");
+		}		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 	//$msg = $msg.'<br/> north:'.$north.' south:'.$south.' west:'.$west.' east:'.$east;
 
@@ -1057,12 +1696,17 @@ function importRelatedObjectTypes($registryObjectKey, $node, $elementName, $runE
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:$elementName", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$id = getIdForColumn('dba.tbl_related_objects.relation_id');
 		$relatedRegistryObjectKey = $gXPath->evaluate("$xs:key", $list->item($j))->item(0)->nodeValue;
+<<<<<<< HEAD
 
 		/** ACTIVITIES PULLBACK FROM SANDBOX - QUICKFIX FOR MONICA **/
 		// If this related object is an ARC/NHMRC grant, we should grab it from sandbox (if we haven't already)
@@ -1079,18 +1723,44 @@ function importRelatedObjectTypes($registryObjectKey, $node, $elementName, $runE
 					//$runErrors .= "Related Object with this key could not be found in Data Source.\n";
 				}
 				else
+=======
+		
+		/** ACTIVITIES PULLBACK FROM SANDBOX - QUICKFIX FOR MONICA **/
+		// If this related object is an ARC/NHMRC grant, we should grab it from sandbox (if we haven't already)
+		if (defined("eAU_RESEARCH_GRANTS_PREFIX") && eAU_RESEARCH_GRANTS_PREFIX != "" && strpos($relatedRegistryObjectKey, eAU_RESEARCH_GRANTS_PREFIX) === 0) 
+		{
+			if (!getRegistryObject($relatedRegistryObjectKey, true))
+			{
+				
+				$errors = "";
+				$remoteRIFCS = file_get_contents(eAU_RESEARCH_GRANTS_HARVEST_POINT . "?search=".rawurlencode($relatedRegistryObjectKey)."&activities=activity");
+				if (strpos($remoteRIFCS, "<key>" . $relatedRegistryObjectKey . "</key>") === FALSE) 
+				{
+					//$runErrors .= "Failed to fetch related Activity record for: $relatedRegistryObjectKey\n"; 
+					//$runErrors .= "Related Object with this key could not be found in Data Source.\n";
+				}
+				else 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				{
 					$relatedObjectDOM = new DOMDocument();
 					$result = $relatedObjectDOM->loadXML($remoteRIFCS);
 					$errors = error_get_last();
 					if( $errors )
 					{
+<<<<<<< HEAD
 						//$runErrors .= "Failed to fetch related Activity record for: $relatedRegistryObjectKey\n";
+=======
+						//$runErrors .= "Failed to fetch related Activity record for: $relatedRegistryObjectKey\n"; 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 						//$runErrors .= "Document Load Error: ".$errors['message']."\n";
 					}
 					// Get an xpath object to use for parsing the XML.
 					$localXPath = new DOMXpath($relatedObjectDOM);
+<<<<<<< HEAD
 
+=======
+					
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 					$defaultNamespace = $localXPath->evaluate('/*')->item(0)->namespaceURI;
 					$localXPath->registerNamespace($xs, $defaultNamespace);
 					importRegistryObjects($relatedObjectDOM, eAU_RESEARCH_GRANTS_DATA_SOURCE, $errors, SYSTEM, PUBLISHED, SYSTEM, $localXPath);
@@ -1098,9 +1768,15 @@ function importRelatedObjectTypes($registryObjectKey, $node, $elementName, $runE
 				}
 
 			}
+<<<<<<< HEAD
 
 		}
 
+=======
+			
+		}
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertRelatedObject($id, $registryObjectKey, $relatedRegistryObjectKey);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert relatedObject for key $registryObjectKey\n"; }
@@ -1112,22 +1788,37 @@ function importRelationDescriptions($relation_id, $node, $runErrors, $totalAttem
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:relation", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$id = getIdForColumn('dba.tbl_relation_description_id.relation_description_id');
 		$type = $list->item($j)->getAttribute("type");
+<<<<<<< HEAD
 
 		$description = null;
 		$lang = null;
 
+=======
+		
+		$description = null;
+		$lang = null;
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $descrElement = $gXPath->evaluate("$xs:description", $list->item($j))->item(0) )
 		{
 			$description = $descrElement->nodeValue;
 			$lang = $descrElement->getAttribute("xml:lang");
 		}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$url = '';
 		if( $gXPath->evaluate("$xs:url", $list->item($j))->item(0) )
 		{
@@ -1136,14 +1827,22 @@ function importRelationDescriptions($relation_id, $node, $runErrors, $totalAttem
 		$errors = insertRelationDescription($id, $relation_id, $description, $type, $lang, $url);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert description for relation $relation_id\n"; }
+<<<<<<< HEAD
 	}
+=======
+	}	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function importSubjectTypes($registryObjectKey, $node, $elementName, $runErrors, $totalAttemptedInserts, $totalInserts)
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:$elementName", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
@@ -1152,19 +1851,31 @@ function importSubjectTypes($registryObjectKey, $node, $elementName, $runErrors,
 		$type = $list->item($j)->getAttribute("type");
 		$lang = $list->item($j)->getAttribute("xml:lang");
 		$termIdentifier = $list->item($j)->getAttribute("termIdentifier");
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertSubject($id, $registryObjectKey, $value, $type, $termIdentifier, $lang);
 		$totalAttemptedInserts++;
 
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert subject for key $registryObjectKey\n"; }
+<<<<<<< HEAD
 	}
+=======
+	}	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function importDescriptionTypes($registryObjectKey, $node, $elementName, $runErrors, $totalAttemptedInserts, $totalInserts)
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:$elementName", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
@@ -1172,26 +1883,42 @@ function importDescriptionTypes($registryObjectKey, $node, $elementName, $runErr
 		$value = $list->item($j)->nodeValue;
 		$type = $list->item($j)->getAttribute("type");
 		$lang = $list->item($j)->getAttribute("xml:lang");
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertDescription($id, $registryObjectKey, $value, $type, $lang);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert description for key $registryObjectKey\n"; }
 	}
 }
 
+<<<<<<< HEAD
 /*
+=======
+/* 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
  * OLD v1.0 version Related Info ingest
 function importRelatedInfo($registryObjectKey, $node, $elementName, $runErrors, $totalAttemptedInserts, $totalInserts)
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:$elementName", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$id = getIdForColumn('dba.tbl_related_info.related_info_id');
 		$value = $list->item($j)->nodeValue;
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertRelatedInfo($id, $registryObjectKey, $value);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert relatedInfo for key $registryObjectKey\n"; }
@@ -1203,7 +1930,11 @@ function importRelatedInfo($registryObjectKey, $node, $elementName, $runErrors, 
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:$elementName", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
@@ -1213,26 +1944,43 @@ function importRelatedInfo($registryObjectKey, $node, $elementName, $runErrors, 
 		$identifier_type = '';
 		$title = '';
 		$notes = '';
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $identifierElement = $gXPath->evaluate("$xs:identifier", $list->item($j))->item(0) )
 		{
 			$identifier = $identifierElement->nodeValue;
 			$identifier_type = $identifierElement->getAttribute("type");
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $titleElement = $gXPath->evaluate("$xs:title", $list->item($j))->item(0) )
 		{
 			$title = $titleElement->nodeValue;
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $notesElement = $gXPath->evaluate("$xs:notes", $list->item($j))->item(0) )
 		{
 			$notes = $notesElement->nodeValue;
 		}
 		if(!$identifier)
 		{// old rifcs probably :-(
+<<<<<<< HEAD
 			$value = $list->item($j)->nodeValue;
 			$errors = insertRelatedInfoOld($id, $registryObjectKey, $value);
+=======
+			$value = $list->item($j)->nodeValue;		
+			$errors = insertRelatedInfoOld($id, $registryObjectKey, $value);		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		}
 		else
 		{
@@ -1248,7 +1996,11 @@ function importRights($registryObjectKey, $node, $elementName, $runErrors, $tota
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:$elementName", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
@@ -1260,31 +2012,52 @@ function importRights($registryObjectKey, $node, $elementName, $runErrors, $tota
 		$licence_type = '';
 		$access_rights = '';
 		$access_rights_uri = '';
+<<<<<<< HEAD
 		$access_rights_type = '';
 
+=======
+		$access_rights_type = '';		
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $rightsStatement = $gXPath->evaluate("$xs:rightsStatement", $list->item($j))->item(0) )
 		{
 			$rights_statement = $rightsStatement->nodeValue;
 			$rights_statement_uri = $rightsStatement->getAttribute("rightsUri");
 		}
+<<<<<<< HEAD
 
 		if( $licenceElement = $gXPath->evaluate("$xs:licence", $list->item($j))->item(0) )
 		{
 			//echo "in here<br />";
+=======
+		
+		if( $licenceElement = $gXPath->evaluate("$xs:licence", $list->item($j))->item(0) )
+		{
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			$licence = $licenceElement->nodeValue;
 			$licence_uri = $licenceElement->getAttribute("rightsUri");
 			$licence_type = $licenceElement->getAttribute("type");
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $accessRights = $gXPath->evaluate("$xs:accessRights", $list->item($j))->item(0) )
 		{
 			$access_rights = $accessRights->nodeValue;
 			$access_rights_uri = $accessRights->getAttribute("rightsUri");
 			$access_rights_type = $accessRights->getAttribute("type");
 		}
+<<<<<<< HEAD
 
 		$errors = insertRights($id, $registryObjectKey, $rights_statement, $rights_statement_uri, $licence, $licence_uri, $access_rights, $access_rights_uri, $licence_type, $access_rights_type);
 		//$errors =
+=======
+		
+		$errors = insertRights($id, $registryObjectKey, $rights_statement, $rights_statement_uri, $licence, $licence_uri, $access_rights, $access_rights_uri);
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert rights for key $registryObjectKey\n"; }
 	}
@@ -1294,7 +2067,11 @@ function importExistenceDates($registryObjectKey, $node, $elementName, $runError
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:$elementName", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
@@ -1303,21 +2080,35 @@ function importExistenceDates($registryObjectKey, $node, $elementName, $runError
 		$start_date_format = '';
 		$end_date = '';
 		$end_date_format = '';
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $startDate = $gXPath->evaluate("$xs:startDate", $list->item($j))->item(0) )
 		{
 			$start_date = $startDate->nodeValue;
 			$start_date_format = $startDate->getAttribute("dateFormat");
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $endDate = $gXPath->evaluate("$xs:endDate", $list->item($j))->item(0) )
 		{
 			$end_date = $endDate->nodeValue;
 			$end_date_format = $endDate->getAttribute("dateFormat");
 		}
+<<<<<<< HEAD
 
 		$errors = insertExistenceDates($id, $registryObjectKey, $start_date, $start_date_format, $end_date, $end_date_format);
 
+=======
+		
+		$errors = insertExistenceDates($id, $registryObjectKey, $start_date, $start_date_format, $end_date, $end_date_format);
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert existence dates for key $registryObjectKey\n"; }
 	}
@@ -1327,6 +2118,7 @@ function importCoverage($registryObjectKey, $node, $elementName, $runErrors, $to
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
 	$list = $gXPath->evaluate("$xs:$elementName", $node);
 	for( $j=0; $j < $list->length; $j++ )
@@ -1370,6 +2162,51 @@ function importCoverage($registryObjectKey, $node, $elementName, $runErrors, $to
 			$totalAttemptedInserts++;
 			if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert temporal coverage for key $registryObjectKey\n"; }
 
+=======
+	
+	$list = $gXPath->evaluate("$xs:$elementName", $node);
+	for( $j=0; $j < $list->length; $j++ )
+	{
+		
+		// Add the coverage
+		$coverageId = getIdForColumn('dba.tbl_coverage.coverage_id');
+		
+		$errors = insertCoverage($coverageId, $registryObjectKey);
+		$totalAttemptedInserts++;
+		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert coverage for key $registryObjectKey\n"; }
+		
+		
+		// Spatial coverages
+		$spatialCoverageElements = $gXPath->evaluate("$xs:spatial", $list->item($j));
+		for( $k=0; $k < $spatialCoverageElements->length; $k++ ) {
+			
+			$id = getIdForColumn('dba.tbl_spatial_locations.spatial_location_id');
+			
+			$value = $spatialCoverageElements->item($k)->nodeValue;
+			$type = $spatialCoverageElements->item($k)->getAttribute("type");
+			$lang = $spatialCoverageElements->item($k)->getAttribute("xml:lang");
+			
+			$errors = insertSpatialCoverage($id, $coverageId, $value, $type, $lang);
+			if(!$errors && ($type == 'gmlKmlPolyCoords' || $type == 'kmlPolyCoords' || $type == 'iso19139dcmiBox'))
+			{
+			$errors = importSpatialExtent($id, $value, $type, $registryObjectKey);				
+			}		
+			$totalAttemptedInserts++;
+			//if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert spatial for coverage $coverageId\n"; }
+				
+		}
+		
+		// Temporal coverages
+		$temporalCoverageElements = $gXPath->evaluate("$xs:temporal", $list->item($j));
+		for( $k=0; $k < $temporalCoverageElements->length; $k++ ) {
+			
+			$temporalCoverageId = getIdForColumn('dba.tbl_temporal_coverage.temporal_coverage_id');
+			
+			$errors = insertTemporalCoverage($temporalCoverageId, $coverageId);
+			$totalAttemptedInserts++;
+			if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert temporal coverage for key $registryObjectKey\n"; }
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			importTemporalCoverageDates($temporalCoverageId, $temporalCoverageElements->item($k), &$runErrors, &$totalAttemptedInserts, &$totalInserts);
 			importTemporalCoverageText($temporalCoverageId, $temporalCoverageElements->item($k), &$runErrors, &$totalAttemptedInserts, &$totalInserts);
 		}
@@ -1378,6 +2215,7 @@ function importCoverage($registryObjectKey, $node, $elementName, $runErrors, $to
 }
 
 
+<<<<<<< HEAD
 function importTemporalCoverageText($temporalCoverageId, $node, $runErrors, $totalAttemptedInserts, $totalInserts)
 {
 	global $gXPath;
@@ -1406,11 +2244,42 @@ function importTemporalCoverageDates($temporalCoverageId, $node, $runErrors, $to
 	$dateElements = $gXPath->evaluate("$xs:date", $node);
 	for( $k=0; $k < $dateElements->length; $k++ ) {
 
+=======
+function importTemporalCoverageText($temporalCoverageId, $node, $runErrors, $totalAttemptedInserts, $totalInserts) 
+{
+	global $gXPath;
+	global $xs;
+	
+	$textElements = $gXPath->evaluate("$xs:text", $node);
+	for( $k=0; $k < $textElements->length; $k++ ) {
+	
+		$temporalTextId = getIdForColumn('dba.tbl_temporal_coverage_text.coverage_text_id');
+		$value = $textElements->item($k)->nodeValue;
+		
+		$errors = insertTemporalCoverageText($temporalTextId, $temporalCoverageId, $value);
+		$totalAttemptedInserts++;
+		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert temporal coverage text for key $registryObjectKey\n"; }
+		
+		
+	}
+	
+}
+
+function importTemporalCoverageDates($temporalCoverageId, $node, $runErrors, $totalAttemptedInserts, $totalInserts) 
+{
+	global $gXPath;
+	global $xs;
+	
+	$dateElements = $gXPath->evaluate("$xs:date", $node);
+	for( $k=0; $k < $dateElements->length; $k++ ) {
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$temporalDateId = getIdForColumn('dba.tbl_temporal_coverage_dates.coverage_date_id');
 		$value = $dateElements->item($k)->nodeValue;
 		$type = $dateElements->item($k)->getAttribute("type");
 		$dateFormat = $dateElements->item($k)->getAttribute("dateFormat");
 		$timestamp = null; /// XXX: TODO: Parse value in dateFormat into timestamp
+<<<<<<< HEAD
 
 		$errors = insertTemporalCoverageDate($temporalDateId, $temporalCoverageId, $type, $dateFormat, $value, $timestamp);
 		$totalAttemptedInserts++;
@@ -1419,6 +2288,16 @@ function importTemporalCoverageDates($temporalCoverageId, $node, $runErrors, $to
 
 	}
 
+=======
+		
+		$errors = insertTemporalCoverageDate($temporalDateId, $temporalCoverageId, $type, $dateFormat, $value, $timestamp);
+		$totalAttemptedInserts++;
+		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert temporal coverage date for key $registryObjectKey\n"; }
+		
+		
+	}
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 
@@ -1427,7 +2306,11 @@ function importCitationInfo($registryObjectKey, $node, $elementName, $runErrors,
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	// First enter fullCitation
 	$list = $gXPath->evaluate("$xs:$elementName/$xs:fullCitation", $node);
 	for( $j=0; $j < $list->length; $j++ )
@@ -1435,12 +2318,20 @@ function importCitationInfo($registryObjectKey, $node, $elementName, $runErrors,
 		$id = getIdForColumn('dba.tbl_citation_information.citation_info_id');
 		$value = $list->item($j)->nodeValue;
 		$style = $list->item($j)->getAttribute("style");
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertFullCitationInformation($id, $registryObjectKey, $style, $value);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert fullCitation for key $registryObjectKey\n"; }
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	// Now handle citationMetadata
 	$list = $gXPath->evaluate("$xs:$elementName/$xs:citationMetadata", $node);
 	for( $j=0; $j < $list->length; $j++ )
@@ -1455,43 +2346,75 @@ function importCitationInfo($registryObjectKey, $node, $elementName, $runErrors,
 		$placePublished = '';
 		$url = '';
 		$context = '';
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $identiferElement = $gXPath->evaluate("$xs:identifier", $list->item($j))->item(0) )
 		{
 			$identifier = $identiferElement->nodeValue;
 			$identifier_type = $identiferElement->getAttribute("type");
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $titleElement = $gXPath->evaluate("$xs:title", $list->item($j))->item(0) )
 		{
 			$title = $titleElement->nodeValue;
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $editionElement = $gXPath->evaluate("$xs:edition", $list->item($j))->item(0) )
 		{
 			$edition = $editionElement->nodeValue;
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $publisherElement = $gXPath->evaluate("$xs:publisher", $list->item($j))->item(0) )
 		{
 			$publisher = $publisherElement->nodeValue;
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $placeElement = $gXPath->evaluate("$xs:placePublished", $list->item($j))->item(0) )
 		{
 			$placePublished = $placeElement->nodeValue;
 		}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $urlElement = $gXPath->evaluate("$xs:url", $list->item($j))->item(0) )
 		{
 			$url = $urlElement->nodeValue;
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $contextElement = $gXPath->evaluate("$xs:context", $list->item($j))->item(0) )
 		{
 			$context = $contextElement->nodeValue;
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertCitationMetadata($id, $registryObjectKey, $identifier, $identifier_type, $title, $edition, $placePublished, $url, $context, $publisher);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert citationMetadata for key $registryObjectKey\n"; }
@@ -1505,14 +2428,22 @@ function importCitationDates($citationInfoId, $node, $runErrors, $totalAttempted
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:date", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$id = getIdForColumn('dba.tbl_citation_dates.metadata_date_id');
 		$value = $list->item($j)->nodeValue;
 		$type = $list->item($j)->getAttribute("type");
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertCitationDate($id, $citationInfoId, $value, $type);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert citationMetadata date for key $registryObjectKey\n"; }
@@ -1524,12 +2455,17 @@ function importCitationContributors($citationInfoId, $node, $runErrors, $totalAt
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs" . ":contributor", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$seq = '';
 		$id = getIdForColumn('dba.tbl_citation_contributors.citation_contributor_id');
+<<<<<<< HEAD
 
 		$seq = $list->item($j)->getAttribute("seq");
 
@@ -1537,6 +2473,15 @@ function importCitationContributors($citationInfoId, $node, $runErrors, $totalAt
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert citationMetadata contributor for key $citationInfoId\n"; }
 
+=======
+		
+		$seq = $list->item($j)->getAttribute("seq");
+		
+		$errors = insertCitationContributor($id, $citationInfoId, $seq);
+		$totalAttemptedInserts++;
+		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert citationMetadata contributor for key $citationInfoId\n"; }
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		importCitationContributorNameParts($id, $list->item($j), &$runErrors, &$totalAttemptedInserts, &$totalInserts);
 	}
 }
@@ -1545,21 +2490,33 @@ function importCitationContributorNameParts($citationContributorId, $node, $runE
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs" . ":namePart", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$type = '';
 		$value = '';
 		$id = getIdForColumn('dba.tbl_name_parts.name_part_id');
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$type = $list->item($j)->getAttribute("type");
 		if($type == 'unknown')
 		{
 			$type = '';
 		}
 		$value = $list->item($j)->nodeValue;
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertCitationContributorNamePart($id, $citationContributorId, $value, $type);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert citationMetadata contributor namePart for key $citationContributorId\n"; }
@@ -1574,13 +2531,21 @@ function importAccessPolicy($registryObjectKey, $node, $elementName, $runErrors,
 {
 	global $gXPath;
 	global $xs;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $gXPath->evaluate("$xs:$elementName", $node);
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$id = getIdForColumn('dba.tbl_access_policies.access_policy_id');
 		$value = $list->item($j)->nodeValue;
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$errors = insertAccessPolicy($id, $registryObjectKey, $value);
 		$totalAttemptedInserts++;
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert accessPolicy for key $registryObjectKey\n"; }
@@ -1591,6 +2556,7 @@ function getUserPartyObject()
 {
 	// Get the owner handle. (This will create a new owner handle if one doesn't already exist.)
 	$partyObjectKey = pidsGetOwnerHandle();
+<<<<<<< HEAD
 
 	// Check to see if we have a party object already.
 	$partyObject = getRegistryObject($partyObjectKey);
@@ -1598,11 +2564,21 @@ function getUserPartyObject()
 	{
 		$partyObject = getDraftRegistryObject($partyObjectKey,'PUBLISH_MY_DATA');
 	}
+=======
+	
+	// Check to see if we have a party object already.
+	$partyObject = getRegistryObject($partyObjectKey);
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( !$partyObject )
 	{
 		$dataSourceKey = 'PUBLISH_MY_DATA';
 		$objectGroup = 'Publish My Data';
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		// Create a party object in the registry.
 		// Build the RIF-CS from the posted data.
 		// =====================================================================
@@ -1613,6 +2589,7 @@ function getUserPartyObject()
 		// ---------------------------------------------------------------------
 		// registryObject
 		$rifcs .= '  <registryObject group="'.esc($objectGroup).'">'."\n";
+<<<<<<< HEAD
 		// ---------------------------------------------------------------------
 		// key
 		$rifcs .= '    <key>'.esc($partyObjectKey).'</key>'."\n";
@@ -1620,6 +2597,15 @@ function getUserPartyObject()
 		// originatingSource
 		$rifcs .= '    <originatingSource>'.esc(eAPP_ROOT.'orca').'</originatingSource>'."\n";
 		// ---------------------------------------------------------------------
+=======
+		// ---------------------------------------------------------------------		
+		// key
+		$rifcs .= '    <key>'.esc($partyObjectKey).'</key>'."\n";
+		// ---------------------------------------------------------------------		
+		// originatingSource
+		$rifcs .= '    <originatingSource>'.esc(eAPP_ROOT.'orca').'</originatingSource>'."\n";
+		// ---------------------------------------------------------------------		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		// party
 		$rifcs .= '    <party type="publisher">'."\n";
 		// ---------------------------------------------------------------------
@@ -1635,7 +2621,11 @@ function getUserPartyObject()
 		$rifcs .= '  </registryObject>'."\n";
 		// ---------------------------------------------------------------------
 		$rifcs .= "</registryObjects>\n";
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		// Check the xml.
 		// =====================================================================
 		$errorMessages = '';
@@ -1651,11 +2641,16 @@ function getUserPartyObject()
 			$errorMessages .= esc($errors['message']);
 			$errorMessages .= "</div>\n";
 		}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( !$errorMessages )
 		{
 			// Validate it against the orca schema.
 			// XXX: libxml2.6 workaround (Save to local filesystem before validating)
+<<<<<<< HEAD
 
 			// Create temporary file and save manually created DOMDocument.
 			$tempFile = "/tmp/" . time() . '-' . rand() . '-document.tmp';
@@ -1665,11 +2660,26 @@ function getUserPartyObject()
 			$registryObjects = new DOMDocument();
 			$registryObjects->load($tempFile);
 
+=======
+				  
+			// Create temporary file and save manually created DOMDocument.
+			$tempFile = "/tmp/" . time() . '-' . rand() . '-document.tmp';
+			$registryObjects->save($tempFile);
+				 
+			// Create temporary DOMDocument and re-load content from file.
+			$registryObjects = new DOMDocument();
+			$registryObjects->load($tempFile);
+				  
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			// Delete temporary file.
 			if (is_file($tempFile))
 			{
 			  unlink($tempFile);
+<<<<<<< HEAD
 			}
+=======
+			}		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			$result = $registryObjects->schemaValidate(gRIF_SCHEMA_PATH); //xxx
 			$errors = error_get_last();
 			if( $errors )
@@ -1681,11 +2691,16 @@ function getUserPartyObject()
 			}
 			else
 			{
+<<<<<<< HEAD
 				$runErrors = importRegistryObjects($registryObjects, $dataSourceKey, $resultMessage, getLoggedInUser(), SUBMITTED_FOR_ASSESSMENT, getThisOrcaUserIdentity());
+=======
+				$runErrors = importRegistryObjects($registryObjects, $dataSourceKey, $resultMessage, getLoggedInUser(), PENDING, getThisOrcaUserIdentity());
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				if( $runErrors )
 				{
 					$errorMessages .= "Import Errors";
 				}
+<<<<<<< HEAD
 				syncDraftKey($partyObjectKey, 'PUBLISH_MY_DATA');
 				// Log the datasource activity.
 				insertDataSourceEvent($dataSourceKey, "ADD REGISTRY OBJECT\nKey: ".$partyObjectKey."\n".$resultMessage);
@@ -1698,6 +2713,16 @@ function getUserPartyObject()
 		{
 			$partyObject = getDraftRegistryObject($partyObjectKey,'PUBLISH_MY_DATA');
 		}
+=======
+				
+				// Log the datasource activity.
+				insertDataSourceEvent($dataSourceKey, "ADD REGISTRY OBJECT\nKey: ".getPostedValue('key')."\n".$resultMessage);
+			}
+		}
+		
+		// Get the pary object so we can display it.
+		$partyObject = getRegistryObject($partyObjectKey);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 	return $partyObject;
 }
@@ -1706,15 +2731,26 @@ function updateUserPartyObject($name, $email=null)
 {
 	// Get the owner handle. (This will create a new owner handle if one doesn't already exist.)
 	$partyObjectKey = pidsGetOwnerHandle();
+<<<<<<< HEAD
 
 	// Check to see if we have a party object already.
 	$partyObject = getRegistryObject($partyObjectKey);
 
+=======
+	
+	// Check to see if we have a party object already.
+	$partyObject = getRegistryObject($partyObjectKey);
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( $partyObject )
 	{
 		$dataSourceKey = 'PUBLISH_MY_DATA';
 		$objectGroup = 'Publish My Data';
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		// Create a party object in the registry.
 		// Build the RIF-CS from the posted data.
 		// =====================================================================
@@ -1725,6 +2761,7 @@ function updateUserPartyObject($name, $email=null)
 		// ---------------------------------------------------------------------
 		// registryObject
 		$rifcs .= '  <registryObject group="'.esc($objectGroup).'">'."\n";
+<<<<<<< HEAD
 		// ---------------------------------------------------------------------
 		// key
 		$rifcs .= '    <key>'.esc($partyObjectKey).'</key>'."\n";
@@ -1732,6 +2769,15 @@ function updateUserPartyObject($name, $email=null)
 		// originatingSource
 		$rifcs .= '    <originatingSource>'.esc(eAPP_ROOT.'orca').'</originatingSource>'."\n";
 		// ---------------------------------------------------------------------
+=======
+		// ---------------------------------------------------------------------		
+		// key
+		$rifcs .= '    <key>'.esc($partyObjectKey).'</key>'."\n";
+		// ---------------------------------------------------------------------		
+		// originatingSource
+		$rifcs .= '    <originatingSource>'.esc(eAPP_ROOT.'orca').'</originatingSource>'."\n";
+		// ---------------------------------------------------------------------		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		// party
 		$rifcs .= '    <party type="person">'."\n";
 		// ---------------------------------------------------------------------
@@ -1751,12 +2797,21 @@ function updateUserPartyObject($name, $email=null)
 			$rifcs .= '        </address>'."\n";
 			$rifcs .= '      </location>'."\n";
 		}
+<<<<<<< HEAD
 
 
 		// ---------------------------------------------------------------------
 		// related objects
 		$rifcs .= getRelatedObjectTypesXML($partyObjectKey, 'relatedObject');
 
+=======
+		
+			
+		// ---------------------------------------------------------------------
+		// related objects
+		$rifcs .= getRelatedObjectTypesXML($partyObjectKey, 'relatedObject');
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		// ---------------------------------------------------------------------
 		// party
 		$rifcs .= '    </party>'."\n";
@@ -1765,7 +2820,11 @@ function updateUserPartyObject($name, $email=null)
 		$rifcs .= '  </registryObject>'."\n";
 		// ---------------------------------------------------------------------
 		$rifcs .= "</registryObjects>\n";
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		// Check the xml.
 		// =====================================================================
 		$errorMessages = '';
@@ -1781,11 +2840,16 @@ function updateUserPartyObject($name, $email=null)
 			$errorMessages .= esc($errors['message']);
 			$errorMessages .= "</div>\n";
 		}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( !$errorMessages )
 		{
 			// Validate it against the orca schema.
 			// XXX: libxml2.6 workaround (Save to local filesystem before validating)
+<<<<<<< HEAD
 
 			// Create temporary file and save manually created DOMDocument.
 			$tempFile = "/tmp/" . time() . '-' . rand() . '-document.tmp';
@@ -1795,11 +2859,26 @@ function updateUserPartyObject($name, $email=null)
 			$registryObjects = new DOMDocument();
 			$registryObjects->load($tempFile);
 
+=======
+				  
+			// Create temporary file and save manually created DOMDocument.
+			$tempFile = "/tmp/" . time() . '-' . rand() . '-document.tmp';
+			$registryObjects->save($tempFile);
+				 
+			// Create temporary DOMDocument and re-load content from file.
+			$registryObjects = new DOMDocument();
+			$registryObjects->load($tempFile);
+				  
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			// Delete temporary file.
 			if (is_file($tempFile))
 			{
 			  unlink($tempFile);
+<<<<<<< HEAD
 			}
+=======
+			}		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			$result = $registryObjects->schemaValidate(gRIF_SCHEMA_PATH); //xxx
 			$errors = error_get_last();
 			if( $errors )
@@ -1816,12 +2895,20 @@ function updateUserPartyObject($name, $email=null)
 				{
 					$errorMessages .= "Import Errors";
 				}
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				// Log the datasource activity.
 				insertDataSourceEvent($dataSourceKey, "ADD REGISTRY OBJECT\nKey: ".getPostedValue('key')."\n".$resultMessage);
 			}
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		// Get the pary object so we can display it.
 		$partyObject = getRegistryObject($partyObjectKey);
 	}
@@ -1832,14 +2919,22 @@ function addCollectionRelationToUserParty($partyObjectKey, $collectionKey)
 {
 	$relationId = getIdForColumn('dba.tbl_related_objects.relation_id');
 	$relationDescriptionId = getIdForColumn('dba.tbl_relation_description_id.relation_description_id');
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	insertRelatedObject($relationId, $partyObjectKey, $collectionKey);
 	insertRelationDescription($relationDescriptionId, $relationId, null, 'hasAssociationWith', null, null);
 }
 
 function removeCollectionRelationFromUserParty($collectionKey)
 {
+<<<<<<< HEAD
 	$partyObjectKey = pidsGetOwnerHandle();
+=======
+	$partyObjectKey = pidsGetOwnerHandle();	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	deleteRelatedObject($partyObjectKey, $collectionKey);
 }
 
@@ -1847,26 +2942,42 @@ function getRelatedObjectClass($relatedRegistryObjectKey, $dataSourceKey)
 {
 	$classStr = "";
 		if($relatedRegistryObject = getRegistryObject($relatedRegistryObjectKey,true))
+<<<<<<< HEAD
 		{
 			$classStr = "###".$relatedRegistryObject[0]['registry_object_class'];
 		}
 		else if($relatedRegistryObject = getDraftRegistryObject($relatedRegistryObjectKey,null))
 		{
 			$classStr = "###".$relatedRegistryObject[0]['class'];
+=======
+		{	
+			$classStr = "###".$relatedRegistryObject[0]['registry_object_class'];			
+		} 
+		else if($relatedRegistryObject = getDraftRegistryObject($relatedRegistryObjectKey,null))
+		{	
+			$classStr = "###".$relatedRegistryObject[0]['class'];							
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		}
 	return $classStr;
 }
 
 
+<<<<<<< HEAD
 function getAllRelatedObjectClass($RegistryObject, $dataSourceKey, $registryObjectKey)
 {
 
+=======
+function getAllRelatedObjectClass($RegistryObject, $dataSourceKey)
+{
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$list = $RegistryObject->getElementsByTagName("key");
 	$j=0;
 	$relatedObjectClassesStr = "";
 	for( $j=0; $j < $list->length; $j++ )
 	{
 		$relatedRegistryObjectKey = $list->item($j)->nodeValue;
+<<<<<<< HEAD
 		$relatedObjectClassesStr .= getRelatedObjectClass($relatedRegistryObjectKey, $dataSourceKey);
 	}
 
@@ -1893,6 +3004,18 @@ function getAllRelatedObjectClass($RegistryObject, $dataSourceKey, $registryObje
 		$relatedObjectClassesStr .= '###'.$dataSourceInfo[0]['class_1'];
 	if(isset($dataSourceInfo[0]['class_2']))
 		$relatedObjectClassesStr .= '###'.$dataSourceInfo[0]['class_2'];
+=======
+		$relatedObjectClassesStr .= getRelatedObjectClass($relatedRegistryObjectKey, $dataSourceKey);			
+	}
+	
+	$dataSourceInfo = getDataSources($dataSourceKey, $filter=null);
+	
+	if(isset($dataSourceInfo[0]['class_1']))
+		$relatedObjectClassesStr .= '###'.$dataSourceInfo[0]['class_1'];
+	if(isset($dataSourceInfo[0]['class_2']))
+		$relatedObjectClassesStr .= '###'.$dataSourceInfo[0]['class_2'];	
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	return $relatedObjectClassesStr;
 }
 
@@ -1903,17 +3026,26 @@ function getRelatedXml($dataSource,$rifcs,$objectClass){
 	$dataSourceInfo = getDataSources($dataSource, $filter=null);
 
 	$rifObject = new DomDocument();
+<<<<<<< HEAD
 	//var_dump($rifcs);
 	$rifObject->loadXML($rifcs);
 	$theclasses = $rifObject->getElementsByTagName($objectClass);
 	if($theclasses->length<1) 	$theclasses = $rifObject->getElementsByTagName($objectClass = strtolower($objectClass));
 	$therelations = $rifObject->getElementsByTagName('relatedObject');
 	$theKey = $rifObject->getElementsByTagName('key');
+=======
+	$rifObject->loadXML($rifcs);
+	$theclasses = $rifObject->getElementsByTagName($objectClass);
+	if($theclasses->length<1) 	$theclasses = $rifObject->getElementsByTagName($objectClass = strtolower($objectClass));
+	$therelations = $rifObject->getElementsByTagName('relatedObject');	
+	$theKey = $rifObject->getElementsByTagName('key');	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$therealkey = $theKey->item(0)->firstChild->nodeValue;
 	$relCount = $therelations->length;
 	$theclass = $theclasses->item(0);
 	$theRels = array();
 	for($i=0;$i<$relCount;$i++)
+<<<<<<< HEAD
 	{
 		$theRels[$therelations->item($i)->firstChild->nodeValue] = $therelations->item($i)->firstChild->nodeValue;
 	}
@@ -1937,12 +3069,32 @@ function getRelatedXml($dataSource,$rifcs,$objectClass){
 		}
 	}
 
+=======
+	{	
+		$theRels[$therelations->item($i)->firstChild->nodeValue] = $therelations->item($i)->firstChild->nodeValue;
+	}
+	
+	
+	$theDescriptions = $rifObject->getElementsByTagName('description');	
+	$descCount = $theDescriptions->length;
+	for($i=0;$i<$descCount;$i++)
+	{	
+		$value = $theDescriptions->item($i)->firstChild->nodeValue;		
+		if(str_replace("/>","",$value)==$value&&str_replace("</","",$value)==$value)
+		{
+			$value =  nl2br(str_replace("\t", "&#xA0;&#xA0;&#xA0;&#xA0;", $value));
+		}
+		$theDescriptions->item($i)->firstChild->nodeValue = $value;		
+	} 
+						
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 	if(isset($dataSourceInfo[0]['primary_key_1'])&& $dataSourceInfo[0]['primary_key_1']!= $therealkey &&(!array_key_exists($dataSourceInfo[0]['primary_key_1'],$theRels)))
 	{
 		$relCount++;
 		$newrelatedObject = $rifObject->createElement('relatedObject');
 		$newnode = $theclass->appendChild($newrelatedObject);
+<<<<<<< HEAD
 		//$newrelatedObject->setAttribute('field_id',"relatedObject_".$relCount);
 		//$newrelatedObject->setAttribute('tab_id',"relatedObject");
 
@@ -1961,6 +3113,26 @@ function getRelatedXml($dataSource,$rifcs,$objectClass){
 		$newrelatedObject->appendChild($newRelatedRelation);
 		$newRelationUrl = $rifObject->createElement('url');
 		$newRelatedRelation->appendChild($newRelationUrl);
+=======
+		//$newrelatedObject->setAttribute('field_id',"relatedObject_".$relCount);			
+		//$newrelatedObject->setAttribute('tab_id',"relatedObject");	
+
+				
+		$newRelatedKey = $rifObject->createElement('key',$dataSourceInfo[0]['primary_key_1']);
+		$newRelatedKey->setAttribute('roclass',ucwords($dataSourceInfo[0]['class_1']));		
+		//$newRelatedKey->setAttribute('field_id',"relatedObject_".$relCount."_key_1");				
+		//$newRelatedKey->setAttribute('tab_id',"relatedObject");				
+		$newrelatedObject->appendChild($newRelatedKey);
+		
+		$newRelatedRelation = $rifObject->createElement('relation');
+		$newRelatedRelation->setAttribute('type',$dataSourceInfo[0][strtolower($objectClass)."_rel_1"]);
+		//$newRelatedRelation->setAttribute('field_id',"relatedObject_".$relCount."_relation_1");						
+		//$newRelatedRelation->setAttribute('tab_id',"relatedObject");	
+				
+		$newrelatedObject->appendChild($newRelatedRelation);	
+		$newRelationUrl = $rifObject->createElement('url');
+		$newRelatedRelation->appendChild($newRelationUrl);							
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 	}
 	if(isset($dataSourceInfo[0]['primary_key_2'])&& $dataSourceInfo[0]['primary_key_2']!= $therealkey &&(!array_key_exists($dataSourceInfo[0]['primary_key_2'],$theRels)))
@@ -1968,6 +3140,7 @@ function getRelatedXml($dataSource,$rifcs,$objectClass){
 		$relCount++;
 		$newrelatedObject = $rifObject->createElement('relatedObject');
 		$newnode = $theclass->appendChild($newrelatedObject);
+<<<<<<< HEAD
 		//$newrelatedObject->setAttribute('field_id',"relatedObject_".$relCount);
 		//$newrelatedObject->setAttribute('tab_id',"relatedObject");
 
@@ -2050,6 +3223,59 @@ function runQualityLevelCheckonDom($registryObjects, $relatedObjectClassesStr,$r
 }
 
 function runQualityResultsforDataSourceDIEDIEDIE($dataSourceKey,$itemurl)
+=======
+		//$newrelatedObject->setAttribute('field_id',"relatedObject_".$relCount);			
+		//$newrelatedObject->setAttribute('tab_id',"relatedObject");	
+
+				
+		$newRelatedKey = $rifObject->createElement('key',$dataSourceInfo[0]['primary_key_2']);
+		$newRelatedKey->setAttribute('roclass',ucwords($dataSourceInfo[0]['class_2']));		
+		//$newRelatedKey->setAttribute('field_id',"relatedObject_".$relCount."_key_2");				
+		//$newRelatedKey->setAttribute('tab_id',"relatedObject");				
+		$newrelatedObject->appendChild($newRelatedKey);
+		
+		$newRelatedRelation = $rifObject->createElement('relation');
+		$newRelatedRelation->setAttribute('type',$dataSourceInfo[0][strtolower($objectClass)."_rel_2"]);
+		//$newRelatedRelation->setAttribute('field_id',"relatedObject_".$relCount."_relation_1");						
+		//$newRelatedRelation->setAttribute('tab_id',"relatedObject");	
+				
+		$newrelatedObject->appendChild($newRelatedRelation);	
+		$newRelationUrl = $rifObject->createElement('url');
+		$newRelatedRelation->appendChild($newRelationUrl);							
+								
+	}
+
+		$newrifcs = $rifObject->saveXML();
+		return $newrifcs;
+} 
+
+function runQualityCheck($rifcs, $objectClass, $dataSource, $output, $relatedObjectClassesStr='')
+{
+	global $qaProc;
+	$relRifcs = getRelatedXml($dataSource,$rifcs,$objectClass);
+	$registryObjects = new DomDocument();
+	$registryObjects->loadXML($relRifcs);
+	$qaProc->setParameter('', 'dataSource', $dataSource);
+	$qaProc->setParameter('', 'output', $output);
+	$qaProc->setParameter('', 'relatedObjectClassesStr', $relatedObjectClassesStr);
+	$result = $qaProc->transformToXML($registryObjects);
+	return $result;		
+}
+
+
+function runQualityCheckonDom($registryObjects, $dataSource, $output, $relatedObjectClassesStr)
+{
+	global $qaProc;
+	$qaProc->setParameter('', 'dataSource', $dataSource);
+	$qaProc->setParameter('', 'output', $output);
+	$qaProc->setParameter('', 'relatedObjectClassesStr', $relatedObjectClassesStr);
+	$result = $qaProc->transformToXML($registryObjects);
+	return $result;		
+}
+
+
+function runQualityResultsforDataSource($dataSourceKey,$itemurl)
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 {
 	$dataSource = getDataSources($dataSourceKey, null);
 	$qaFlag = $dataSource[0]['qa_flag'];
@@ -2065,18 +3291,28 @@ function runQualityResultsforDataSourceDIEDIEDIE($dataSourceKey,$itemurl)
 				$message .= $registryObjectKeys[$i]['registry_object_class'].": " .$registryObjectKeys[$i]['list_title']." : <a href=\"".$itemurl.$registryObjectKeys[$i]['registry_object_key']."\">".$registryObjectKeys[$i]['registry_object_key']."</a> (".$registryObjectKeys[$i]['status'].")<br/>";
 				$message .= str_replace("</span>","</span><br />",$registryObjectKeys[$i]['quality_test_result']);
 				$message = str_replace('class="info"','class="recommended-info"',$message);
+<<<<<<< HEAD
 				$message = str_replace('class="warning"','class="error-info"',$message);
 				$message = str_replace('class="error"','class="hidden"',$message);
+=======
+				$message = str_replace('class="warning"','class="error-info"',$message);	
+				$message = str_replace('class="error"','class="hidden"',$message);								
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			}
 		}
 	}
 
 	if($draftObjectKeys = getDraftRegistryObject(null, $dataSourceKey))
+<<<<<<< HEAD
 	{
+=======
+	{			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		for( $i=0; $i < count($draftObjectKeys); $i++ )
 		{
 			if($draftObjectKeys[$i]['quality_test_result']!="")
 			{
+<<<<<<< HEAD
 
 				$class = "/orca/manage/add_".strtolower($draftObjectKeys[$i]['class'])."_registry_object.php?readOnly&data_source=".$dataSourceKey."&key=";
 				$itemurlDraft = str_replace("/orca/view.php?key=",$class,$itemurl);
@@ -2090,10 +3326,26 @@ function runQualityResultsforDataSourceDIEDIEDIE($dataSourceKey,$itemurl)
 	}
 
 	return $message;
+=======
+				
+				$class = "/orca/manage/add_".strtolower($draftObjectKeys[$i]['class'])."_registry_object.php?readOnly&data_source=".$dataSourceKey."&key=";
+				$itemurlDraft = str_replace("/orca/view.php?key=",$class,$itemurl);				
+				$message .= $draftObjectKeys[$i]['class'].": ".$draftObjectKeys[$i]['registry_object_title']." : <a href=\"".$itemurlDraft.$draftObjectKeys[$i]['draft_key']."\">".$draftObjectKeys[$i]['draft_key']."</a> (".$draftObjectKeys[$i]['status'].")<br/>";
+				$message .= str_replace("</span>","</span><br />",$draftObjectKeys[$i]['quality_test_result']);				
+				$message = str_replace('class="info"','class="recommended-info"',$message);
+				$message = str_replace('class="warning"','class="error-info"',$message);
+				$message = str_replace('class="error"','class="hidden"',$message);											
+			}
+		}
+	}
+	
+	return $message;	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 
 
+<<<<<<< HEAD
 function runQualityLevelCheckforDataSource($dataSourceKey)
 {
 	$dataSource = getDataSources($dataSourceKey, null);
@@ -2120,6 +3372,9 @@ function runQualityLevelCheckforDataSource($dataSourceKey)
 }
 
 function runQualityLevelCheckforDataSourceDIEDIEDIE($dataSourceKey)
+=======
+function runQualityCheckforDataSource($dataSourceKey)
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 {
 	$dataSource = getDataSources($dataSourceKey, null);
 	$qaFlag = $dataSource[0]['qa_flag'];
@@ -2129,13 +3384,18 @@ function runQualityLevelCheckforDataSourceDIEDIEDIE($dataSourceKey)
 	{
 		for( $i=0; $i < count($registryObjectKeys); $i++ )
 		{
+<<<<<<< HEAD
 			runQualityLevelCheckForRegistryObject($registryObjectKeys[$i]['registry_object_key'], $dataSourceKey)."\n";
+=======
+			$message .= runQualityCheckForRegistryObject($registryObjectKeys[$i]['registry_object_key'], $dataSourceKey);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		}
 	}
 	if($draftRegistryObjectKeys = getDraftRegistryObject(null, $dataSourceKey))
 	{
 		for( $i=0; $i < count($draftRegistryObjectKeys); $i++ )
 		{
+<<<<<<< HEAD
 			runQualityLevelCheckForDraftRegistryObject($draftRegistryObjectKeys[$i]['draft_key'], $dataSourceKey)."\n";
 		}
 	}
@@ -2173,12 +3433,51 @@ function runQualityLevelCheckforDataSourceDIEDIEDIE($dataSourceKey)
 		}
 
 		$relRifcs = getRelatedXml($dataSourceKey,$rifcs,$objectClass);
+=======
+			$message .= runQualityCheckForDraftRegistryObject($draftRegistryObjectKeys[$i]['draft_key'], $dataSourceKey);
+		}
+	}
+
+	return $message;	
+}
+
+
+function runQualityCheckForRegistryObject($registryObjectKey, $dataSourceKey)
+{
+	
+		$rifcs = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
+		$rifcs .= '<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" '."\n";
+		$rifcs .= '                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
+		$rifcs .= '                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF_SCHEMA_URI.'">'."\n";
+		$rifcs .= getRegistryObjectXML($registryObjectKey);
+		$rifcs .= '</registryObjects>'; 
+		$objectClass = "";
+		if(str_replace("<Collection","",$rifcs)!=$rifcs||str_replace("<collection","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Collection";			
+		}
+		elseif(str_replace("<Service","",$rifcs)!=$rifcs||str_replace("<service","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Service";			
+		}
+		elseif(str_replace("<Activity","",$rifcs)!=$rifcs||str_replace("<activity","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Activity";			
+		}	
+		elseif(str_replace("<Party","",$rifcs)!=$rifcs||str_replace("<party","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Party";			
+		}
+	
+		$relRifcs = getRelatedXml($dataSourceKey,$rifcs,$objectClass);  
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 		$RegistryObjects = new DOMDocument();
 		$RegistryObjects->loadXML($relRifcs);
 		$relatedObjectClassesStr = '';
 		$relatedObjectClassesStr = getAllRelatedObjectClass($RegistryObjects, $dataSourceKey);
 		$qualityTestResult = runQualityCheckonDom($RegistryObjects, $dataSourceKey, 'html', $relatedObjectClassesStr);
+<<<<<<< HEAD
 	    $errorCount = substr_count($qualityTestResult, 'class="error"');
 		$warningCount = substr_count($qualityTestResult, 'class="warning"') + substr_count($qualityTestResult, 'class="info"');
         $result = updateRegistryObjectQualityTestResult($registryObjectKey, $qualityTestResult, $errorCount, $warningCount);
@@ -2383,6 +3682,86 @@ function runQualityCheckForDraftRegistryObjectDIEDIEDIE($registryObjectKey, $dat
 	    $warningCount = substr_count($qualityTestResult, 'class="warning"') + substr_count($qualityTestResult, 'class="info"');
         $result = updateDraftRegistryObjectQualityTestResult($registryObjectKey, $dataSourceKey, $qualityTestResult, $errorCount, $warningCount);
         //return $result;// $registryObjectKey.','.$dataSourceKey.','.$qualityTestResult.','.$errorCount.','.$warningCount.'<br/>';
+=======
+	    $errorCount = substr_count($qualityTestResult, 'class="error"'); 
+		$warningCount = substr_count($qualityTestResult, 'class="warning"') + substr_count($qualityTestResult, 'class="info"');                              
+        $result = updateRegistryObjectQualityTestResult($registryObjectKey, $qualityTestResult, $errorCount, $warningCount);                            
+		//return $result;
+}
+
+function runQuagmireCheckForRegistryObject($registryObjectKey, $dataSourceKey)
+{
+	
+		$rifcs = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
+		$rifcs .= '<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" '."\n";
+		$rifcs .= '                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
+		$rifcs .= '                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF_SCHEMA_URI.'">'."\n";
+		$rifcs .= getRegistryObjectXML($registryObjectKey);
+		$rifcs .= '</registryObjects>'; 
+		$objectClass = "";
+		if(str_replace("<Collection","",$rifcs)!=$rifcs||str_replace("<collection","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Collection";			
+		}
+		elseif(str_replace("<Service","",$rifcs)!=$rifcs||str_replace("<service","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Service";			
+		}
+		elseif(str_replace("<Activity","",$rifcs)!=$rifcs||str_replace("<activity","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Activity";			
+		}	
+		elseif(str_replace("<Party","",$rifcs)!=$rifcs||str_replace("<party","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Party";			
+		}
+	
+		$relRifcs = getRelatedXml($dataSourceKey,$rifcs,$objectClass);  
+
+		$RegistryObjects = new DOMDocument();
+		$RegistryObjects->loadXML($relRifcs);
+		$relatedObjectClassesStr = '';
+		$relatedObjectClassesStr = getAllRelatedObjectClass($RegistryObjects, $dataSourceKey);
+		$qualityTestResult = runQualityCheckonDom($RegistryObjects, $dataSourceKey, 'html', $relatedObjectClassesStr);
+	  //  $errorCount = substr_count($qualityTestResult, 'class="error"'); 
+		//$warningCount = substr_count($qualityTestResult, 'class="warning"') + substr_count($qualityTestResult, 'class="info"');                              
+      //  $result = updateRegistryObjectQualityTestResult($registryObjectKey, $qualityTestResult, $errorCount, $warningCount);                            
+		return $qualityTestResult;
+}
+function runQualityCheckForDraftRegistryObject($registryObjectKey, $dataSourceKey)
+{
+		$registryObject = getDraftRegistryObject($registryObjectKey,$dataSourceKey);
+		$relatedObjectClassesStr = '';
+		$rifcs = $registryObject[0]['rifcs'];	
+		$objectClass = "";
+		if(str_replace("<Collection","",$rifcs)!=$rifcs||str_replace("<collection","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Collection";			
+		}
+		elseif(str_replace("<Service","",$rifcs)!=$rifcs||str_replace("<service","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Service";			
+		}
+		elseif(str_replace("<Activity","",$rifcs)!=$rifcs||str_replace("<activity","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Activity";			
+		}	
+		elseif(str_replace("<Party","",$rifcs)!=$rifcs||str_replace("<party","",$rifcs)!=$rifcs)
+		{
+			$objectClass = "Party";			
+		}	
+		
+		$relRifcs = getRelatedXml($dataSourceKey,$rifcs,$objectClass);				
+				
+		$RegistryObjects = new DOMDocument();
+		$RegistryObjects->loadXML($relRifcs);
+		$relatedObjectClassesStr = getAllRelatedObjectClass($RegistryObjects, $dataSourceKey);
+		$qualityTestResult = runQualityCheckonDom($RegistryObjects, $dataSourceKey, 'html', $relatedObjectClassesStr);
+		$errorCount = substr_count($qualityTestResult, 'class="error"');                              
+	    $warningCount = substr_count($qualityTestResult, 'class="warning"') + substr_count($qualityTestResult, 'class="info"');                              
+        $result = updateDraftRegistryObjectQualityTestResult($registryObjectKey, $dataSourceKey, $qualityTestResult, $errorCount, $warningCount);     
+        //return $result;// $registryObjectKey.','.$dataSourceKey.','.$qualityTestResult.','.$errorCount.','.$warningCount.'<br/>';                    		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 ?>

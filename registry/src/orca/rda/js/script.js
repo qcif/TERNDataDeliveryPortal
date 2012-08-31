@@ -1,23 +1,33 @@
 $(document).ready(function(){
+<<<<<<< HEAD
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	var search_term = $('#search-box').val();
 	var page = 1;
 	var classFilter = $('#classSelect').val();
 	var typeFilter = 'All';
 	var groupFilter = 'All';
 	var subjectFilter = 'All';
+<<<<<<< HEAD
 	var licenceFilter = 'All';
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	var advanced_search_term = '';
 	var spatial_included_ids = '';
 	var temporal = 'All';
 	var doTemporalSearch = false;
 	var n = '';var e = '';var s='';var w='';
 	var resultSort = 'score desc';
+<<<<<<< HEAD
 	var limitRows = '100';
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	var researchGroupSort = 'index';
 	var subjectSort = 'index';
 	var typeSort = 'index';
 
+<<<<<<< HEAD
 	
 	//set up the tooltip for the rss link
 	$('.tiprss').tipsy({live:true, gravity:'s'});
@@ -37,22 +47,37 @@ $(document).ready(function(){
 	var warningDiv = $('<div id="warningDiv"></div>');
 		$(warningDiv).css('opacity','0.8');
 	$(warningDiv).html(warningMessage);
+=======
+
+	var enableWarning = false;
+	var warningMessage = 'this is DEMO <a href="javascript:void(0);" id="dismiss_warning">[x]</a>';
+	var warningDiv = $('<div id="warningDiv"></div>');
+		$(warningDiv).css('opacity','0.8');
+	$(warningDiv).html(warningMessage);
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$('#dismiss_warning').live('click', function(){
 		$('#warningDiv').fadeOut();
 	});
 
 	if(enableWarning) $('body').prepend(warningDiv);
 
+<<<<<<< HEAD
 	//RDA only uses http
 	if(window.location.href==secure_base_url){
 		window.location.href=base_url;
 	}
+=======
+
+	//router
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if(window.location.href.indexOf('https://')==0){
 		var thisurl = window.location.href;
 		thisurl = thisurl.replace('https://','http://');
 		window.location.href=thisurl;
 	}
 		
+<<<<<<< HEAD
 	var rda_activity_name = $('#rda_activity_name').text();
 	switch(rda_activity_name){
 		case 'view':initViewPage();break;
@@ -352,6 +377,26 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 			
 		});
 	}
+=======
+	if(window.location.href.indexOf('/view')>=0){
+		initViewPage();
+		if(window.location.href.indexOf('printview')>=0) initPrintViewPage();
+	}else if((window.location.href==base_url) || (window.location.href==base_url+'index.php')){
+		initHomePage();
+	}else if(window.location.href==secure_base_url){
+		window.location.href=base_url;
+	}else if(window.location.href.indexOf('search')>=0){
+		initSearchPage();
+	}else if(window.location.href.indexOf('contact')>=0){
+		initContactPage();
+	}else if(window.location.href.indexOf('help')>=0){
+		initHelpPage();
+	}else if(window.location.href.indexOf('preview')>=0){
+		initPreviewPage();
+	}
+	$('#clearSearch').tipsy({live:true, gravity:'se'});
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 	function initSearchPage(){
 		$('.disable-info').live('click',function(){
@@ -360,7 +405,10 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 			if(info=='spatial-info') $.cookie('spatial-info','read');
 			$(this).parent().parent().fadeOut();
 		});
+<<<<<<< HEAD
 		
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 	
 	var hash = window.location.hash;
@@ -400,19 +448,28 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 				case 'group':groupFilter=encodeURIComponent(decodeURIComponent(value));break;
 				case 'type':typeFilter=encodeURIComponent(decodeURIComponent(value));break;
 				case 'subject':subjectFilter=encodeURIComponent(decodeURIComponent(value));break;
+<<<<<<< HEAD
 				case 'vocabUriFilter':vocabUriFilter=encodeURIComponent(decodeURIComponent(value));break;
 				case 'licence':licenceFilter=encodeURIComponent(decodeURIComponent(value));break;
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				case 'temporal':temporal=value;break;
 				case 'n':n=value;break;
 				case 'e':e=value;break;
 				case 's':s=value;break;
 				case 'w':w=value;break;
 				case 'resultSort':resultSort=value;break;
+<<<<<<< HEAD
 				case 'limitRows':limitRows=value;break;
 				case 'researchGroupSort':researchGroupSort=value;break;
 				case 'subjectSort':subjectSort=value;break;
 				case 'typeSort':typeSort=value;break;
 				case 'licenceSort':typeSort=value;break;
+=======
+				case 'researchGroupSort':researchGroupSort=value;break;
+				case 'subjectSort':subjectSort=value;break;
+				case 'typeSort':typeSort=value;break;
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			}
 		});
 		if(classFilter!=$('#classSelect').val()) {
@@ -420,7 +477,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		}
 		//console.log('term='+search_term+'page='+page+'tab='+classFilter);
 		search_term = decodeURIComponent(search_term);
+<<<<<<< HEAD
 		if(window.location.href.indexOf('/search#!/')>=0) {
+=======
+		if(window.location.href.indexOf('search')>=0) {
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			//console.log('yea');
 			search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
 			search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
@@ -534,7 +595,10 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		if(typeFilter!='All') res+='/type='+(typeFilter);
 		if(groupFilter!='All') res+='/group='+(groupFilter);
 		if(subjectFilter!='All') res+='/subject='+(subjectFilter);
+<<<<<<< HEAD
 		if(licenceFilter!='All') res+='/licence='+(licenceFilter);
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if(temporal!='All') res+='/temporal='+(temporal);
 		if(n!=''){
 			res+='/n='+n+'/e='+e+'/s='+s+'/w='+w;
@@ -562,8 +626,12 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		delimiter:/(,|;)\s*/,
 		select: function( event, ui ) {
 			$('#search-box').val = ui.item.value;
+<<<<<<< HEAD
 			search_term = ui.item.value;
 			changeHashTo(formatSearch(search_term, page, classFilter));
+=======
+			doSearch();
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		}
 	});
 
@@ -595,8 +663,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 	$('#clearSearch').live('click', function(){	//clearing search box, also clears everything
 		clearEverything();
 	});
+<<<<<<< HEAD
 
 	
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	
 	function clearEverything(){
 		//clearing the values
@@ -629,7 +700,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 	
 	function clearFilter(){
 		search_term='';$('#search-box').val('');page = 1;
+<<<<<<< HEAD
 		classFilter = $('#classSelect').val();typeFilter = 'All';groupFilter = 'All';subjectFilter = 'All';licenceFilter= 'All';
+=======
+		classFilter = $('#classSelect').val();typeFilter = 'All';groupFilter = 'All';subjectFilter = 'All';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		advanced_search_term = '';spatial_included_ids = '';temporal = 'All';
 		$('#clearSearch').hide();
 		if(doTemporalSearch){
@@ -713,6 +788,7 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		$('.descriptions div').height('auto');
 		$('.showall_descriptions').hide();
 		$('.tipsy').hide();
+<<<<<<< HEAD
 		initViewPage();
 		window.print();
 	}
@@ -736,6 +812,16 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 			console.log("Map could not be loaded/drawn.");
 		}
 
+=======
+		window.print();
+	}
+	
+	function initViewPage(){
+
+		drawMap();//map drawing
+		
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if(!$.browser.msie){
 		//hide all descriptions and headings
 		$('.descriptions div, .descriptions h3').hide();
@@ -750,7 +836,10 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		});
 		
 		
+<<<<<<< HEAD
 		
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		//if there is no brief, brief will be the first full
 		if(brief==null){
 			$('.descriptions div').each(function(){
@@ -788,14 +877,20 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		
 		var key = $('#key').html();
 		var itemClass = $('#class').text();
+<<<<<<< HEAD
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		//console.log(key);
 		
 		initConnectionsBox();//setup the connections Box
 		
 		if(itemClass=='Collection') {
 			initSubjectsSEEALSO();
+<<<<<<< HEAD
 			initDataCiteSEEALSO();
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		}else if(itemClass=='Party') {
 			initIdentifiersSEEALSO();
 		}
@@ -835,6 +930,7 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
         }
         return false;
 	}
+<<<<<<< HEAD
 ///////////////////////
 // Set up the institutional page views by using ajax to load all the group stats
 /////////////////////////
@@ -1018,15 +1114,21 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 	
 	
 	
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	
 	function setupSeealsoBtns(){
 		$('.button').button();
         $("#status").html($('#seeAlsoCurrentPage').html() + '/'+$('#seeAlsoTotalPage').html());
     }
+<<<<<<< HEAD
 	function setupSeealsoDataCiteBtns(){
 		$('.button').button();
         $("#status").html($('#seeAlsoDataCiteCurrentPage').html() + '/'+$('#seeAlsoDataCiteTotalPage').html());
     }	
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	function initConnectionsBox(){
 
 		   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1036,13 +1138,22 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		key_value = key_value.replace(/[+]/gi,"%2B");
         $.ajax({
                 type:"POST",
+<<<<<<< HEAD
                 url: base_url+"view/viewConnections/",data:"key="+key_value,
+=======
+                url: base_url+"search/connections/count",data:"q=relatedObject_key:"+key_value+"&key="+key_value,
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                         success:function(msg){ 
                         	//alert(key_value);
                                 $("#connections").html(msg);
                                 $('ul.connection_list li a').tipsy({live:true, gravity:'s'});
+<<<<<<< HEAD
                                if(parseInt($('#connections-realnumfound').html())==0){
 	                           	$('#connectionsRightBox').hide();
+=======
+                                if(parseInt($('#connections-realnumfound').html())==0){
+	                            	$('#connectionsRightBox').hide();
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	                            }
                                 
                         },
@@ -1100,6 +1211,7 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 	        return false;
         });
 	}
+<<<<<<< HEAD
 	function initDataCiteSEEALSO(){
 		var displayTitle = $('#displaytitle').text();
 	       $.ajax({
@@ -1198,6 +1310,8 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 	   });
 	}
 	
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	
 	function initSubjectsSEEALSO(){
 		//SEE ALSO FOR SUBJECTS
@@ -1214,6 +1328,7 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
         subjectSearchstr = encodeURIComponent(subjectSearchstr);
         $.ajax({
                 type:"POST",
+<<<<<<< HEAD
                 url: base_url+"search/seeAlso/count/subjects",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&licenceFilter=All&page=1&spatial_included_ids=&temporal=All&excluded_key="+key_value,
                         success:function(msg){
                                 $("#seeAlso").html(msg);
@@ -1222,17 +1337,33 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 	                            	$('#seeAlso').hide();
                             	
 	                           }
+=======
+                url: base_url+"search/seeAlso/count/subjects",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page=1&spatial_included_ids=&temporal=All&excluded_key="+key_value,
+                        success:function(msg){
+                                $("#seeAlso").html(msg);
+                                //console.log(msg);
+                                if(parseInt($('#seealso-realnumfound').html())==0){
+	                            	$('#seeAlsoRightBox').hide();
+	                            }
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                         },
                         error:function(msg){
                                 //console.log("error" + msg);
                         }
         });
 		var seeAlsoPage = 1;
+<<<<<<< HEAD
 
         $('#seeAlso_subjectNumFound').live('click', function(){
 	        $.ajax({
                 type:"POST",
                 url: base_url+"search/seeAlso/content/subjects",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&licenceFilter=All&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
+=======
+        $('#seeAlso_subjectNumFound').live('click', function(){
+	        $.ajax({
+                type:"POST",
+                url: base_url+"search/seeAlso/content/subjects",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                     success:function(msg){
                             //console.log("success" + msg);
                             $("#infoBox").html(msg);
@@ -1285,6 +1416,10 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		//SEE ALSO FOR IDENTIFIERS
         var identifiers = [];
         $.each($('#identifiers p'), function(){//find in every identifiers
+<<<<<<< HEAD
+=======
+        	identifiers.push($(this).html());
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         	var ident = $(this).html();
         	if(ident.indexOf('nla.party-')>=0){
         		if(ident.indexOf('http://')==0){
@@ -1295,6 +1430,7 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 					$('#endlink').prepend('<a href="http://'+ident+'">View the record for this Party in Trove</a><br/>');
         		}
         	}
+<<<<<<< HEAD
         	
         });
 
@@ -1308,6 +1444,10 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 
         });
     
+=======
+        });
+        
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         $.each($('.descriptions p'), function(){//find in every descriptions that contains the identifier some where for NLA parties
         	if($(this).html().indexOf('nla.party-') > 0){
         		var foundit = $(this).html();
@@ -1353,9 +1493,14 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 	        $.ajax({
 	            type:"POST",
 	            url: base_url+"search/seeAlso/count/identifiers"+relatedClass,
+<<<<<<< HEAD
 	            data:"q=*:*&classFilter=party&typeFilter=All&groupFilter=All&subjectFilter=All&licenceFilter=All&page=1&spatial_included_ids=&temporal=All&excluded_key="+key_value+'&extended='+identifierSearchString,
 	                    success:function(msg){
 	                    	//console.log(msg);
+=======
+	            data:"q=*:*&classFilter=party;activity&typeFilter=All&groupFilter=All&subjectFilter=All&page=1&spatial_included_ids=&temporal=All&excluded_key="+key_value+'&extended='+identifierSearchString,
+	                    success:function(msg){
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	                            $("#seeAlso-IdentifierBox").html(msg);
 	                            if(parseInt($('#seealso-realnumfound').html())==0){
 	                            	$('#seeAlso-Identifier').hide();
@@ -1370,7 +1515,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		        $.ajax({
 	                type:"POST",
 	                url: base_url+"search/seeAlso/content/identifiers",
+<<<<<<< HEAD
 	                data:"q=*:*&classFilter=party&typeFilter=All&groupFilter=All&subjectFilter=All&licenceFilter=All&page=1&spatial_included_ids=&temporal=All&excluded_key="+key_value+'&extended='+identifierSearchString,
+=======
+	                data:"q=*:*&classFilter=party;activity&typeFilter=All&groupFilter=All&subjectFilter=All&page=1&spatial_included_ids=&temporal=All&excluded_key="+key_value+'&extended='+identifierSearchString,
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	                    success:function(msg){
 	                            $("#infoBox").html(msg);
 	                            $(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
@@ -1417,7 +1566,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 	function getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value){
 		 $.ajax({
              type:"POST",
+<<<<<<< HEAD
              url: base_url+"search/seeAlso/content",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&licenceFilter="+licenceFilter+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
+=======
+             url: base_url+"search/seeAlso/content",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                      success:function(msg){
                              $(".accordion").html(msg);
                              $(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
@@ -1426,6 +1579,7 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
                      error:function(msg){}
              });
 	}
+<<<<<<< HEAD
 	function getSeeAlsoDataCiteAjax(displayTitle, seeAlsoDataCitePage){
 		//alert('hit this now ' + displayTitle + ' the page ' + seeAlsoDataCitePage);
 		 $.ajax({
@@ -1441,6 +1595,9 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
                     }
             });
 	}	
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	function getConnectionsAjax(classes,types,connectionsPage, key_value){
 		 $.ajax({
             type:"POST",
@@ -1469,7 +1626,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		    //console.log(coverages.html());
 		    //console.log(coverages.text());
 		    
+<<<<<<< HEAD
 		    var mapContainsOnlyMarkers = true; // if there is only marker, then zoom out to a default depth (markers get "bounded" at max zoom level)
+=======
+		    
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		    var locationText = [];
 		    
 		    $.each(coverages, function(){
@@ -1486,7 +1647,10 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 						//console.log(split.length);
 						
 						if(split.length>1){
+<<<<<<< HEAD
 							mapContainsOnlyMarkers = false;
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 							coords = [];
 							$.each(split, function(){
 								coord = stringToLatLng(this);
@@ -1513,8 +1677,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 					            raiseOnDrag:false,
 					            visible:true
 					        });
+<<<<<<< HEAD
 					        // CC-197/CC-304 - Center map on markers
 					        bounds.extend(stringToLatLng($(this).html()));
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 						}
 						
 						
@@ -1530,7 +1697,10 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		    		
 		    	}else{
 		    		drawable = true;
+<<<<<<< HEAD
 		    		mapContainsOnlyMarkers = false;
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		    		//there is a northlimit in the coverage text
 		    		//console.log(coverages);
 
@@ -1595,6 +1765,7 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		            visible:true
 		        });
 			});
+<<<<<<< HEAD
 			
 			map2.fitBounds(bounds);
 			
@@ -1609,6 +1780,9 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 					});
 			}
 			
+=======
+			map2.fitBounds(bounds);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			if(!drawable) $('#spatial_coverage_map').hide();
 		}
 	}
@@ -1629,6 +1803,7 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 	 * Used in initSearchPage()
 	 * */
 	function doSearch(){
+<<<<<<< HEAD
 		//$('#advanced, #mid').css('opacity','0.5');
 		$('#result-placeholder').html('Loading...');
 		$('#loading').show();$('#clearSearch').hide();
@@ -1651,6 +1826,19 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 			$("html, body").animate({ scrollTop: 0 }, "slow");
 		});
 
+=======
+			//$('#advanced, #mid').css('opacity','0.5');
+			$('#result-placeholder').html('Loading...');
+			$('#loading').show();$('#clearSearch').hide();
+			$('#map-stuff').hide();
+			$('.ui-autocomplete').hide();
+			$('#map-help-stuff').html('Please wait...');
+			if(n!=''){
+				doSpatialSearch();
+			}else{
+				doNormalSearch();
+			}
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 	
 	function doSpatialSearch(){
@@ -1679,7 +1867,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		$.ajax({
   			type:"POST",
   			url: base_url+"search/filter/",
+<<<<<<< HEAD
   			data:"q="+decodeURIComponent(search_term)+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&licenceFilter="+licenceFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+'&sort='+resultSort,   
+=======
+  			data:"q="+decodeURIComponent(search_term)+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+'&sort='+resultSort,   
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
   				success:function(msg){
   					$("#search-result").html(msg);
   					$('#loading').hide();
@@ -1693,7 +1885,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
   						$.ajax({
   				  			type:"POST",
   				  			url: base_url+"search/updateStatistic/",
+<<<<<<< HEAD
   				  			data:"q="+decodeURIComponent(search_term)+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&licenceFilter="+licenceFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal,   
+=======
+  				  			data:"q="+decodeURIComponent(search_term)+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal,   
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
   				  				success:function(msg){},
   				  				error:function(msg){}
   				  			});
@@ -1705,14 +1901,21 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
   		});	
 	}
 	
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	/*
 	 * Execute the functions only available in home page
 	 */
 	function initHomePage(){
 
 		loadHPStat('score');
+<<<<<<< HEAD
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		//$('#content').sortable();
 		$('.hp-icons img').hover(function(){
 			id = $(this).attr('id');
@@ -1757,7 +1960,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 
 		$('.hp-class-item').live('click', function(){
 			var id = $(this).attr('id');
+<<<<<<< HEAD
 			resultSort='s_list_title asc';
+=======
+			resultSort='listTitle asc';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			changeHashTo(formatSearch(search_term,1,id));
 		});
 		
@@ -1777,7 +1984,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 	  					$("#hp-browse-activity").html('('+$('#hp-count-activity').html()+')');
 	  					$("#hp-browse-service").html('('+$('#hp-count-service').html()+')');
 
+<<<<<<< HEAD
 	  					$('#hp-groups').makeacolumnlists({cols:4,colWidth:0,equalHeight:'ul',startN:1});
+=======
+	  					$('#hp-groups').makeacolumnlists({cols:4,colWidth:0,equalHeight:false,startN:1});
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	  				},
 	  				error:function(msg){
 	  					//$('#debug').append('doSearch error: '+msg+'<br/>');
@@ -1786,7 +1997,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		}
 		$('#clearSearch').hide();
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	function sortAlpha(mylist){
 		var listitems = mylist.children('li').get();
 		listitems.sort(function(a, b) {
@@ -1863,7 +2078,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 	 * TYPE FACETS
 	 * This is called everywhere there is a type, group or subjects that needs to fire a search based on their ID
 	 */
+<<<<<<< HEAD
 	$('.typeFilter, .groupFilter, .subjectFilter, .licenceFilter').live('click', function(event){
+=======
+	$('.typeFilter, .groupFilter, .subjectFilter').live('click', function(event){
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if(event.type=='click'){
 			page = 1;
 			if($(this).hasClass('typeFilter')){
@@ -1875,10 +2094,14 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 			}else if($(this).hasClass('subjectFilter')){
 				subjectFilter = encodeURIComponent($(this).attr('id'));
 				changeHashTo(formatSearch(search_term, 1, classFilter));
+<<<<<<< HEAD
 			}else if($(this).hasClass('licenceFilter')){
 				licenceFilter = encodeURIComponent($(this).attr('id'));
 				changeHashTo(formatSearch(search_term, 1, classFilter));
 			}			
+=======
+			}
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			scrollToTop();
 		}
 	});
@@ -1913,12 +2136,15 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 			changeHashTo(formatSearch(search_term,1,classFilter));
 			//doSearch();
 		}
+<<<<<<< HEAD
 
 
 		//Subjects Facet
 		initSubjectBrowse();
 		
 		
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		
 		
 		/*
@@ -2029,8 +2255,13 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		
 		//LIMIT 5
 		$("ul.more").each(function() {
+<<<<<<< HEAD
 		    $("li:gt(4)", this).hide(); 
 		    if($('li', this).length>5)$("li:nth-child(5)", this).after("<a href='#' class=\"more\">More...</a>");
+=======
+		    $("li:gt(5)", this).hide(); 
+		    $("li:nth-child(6)", this).after("<a href='#' class=\"more\">More...</a>");
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		});
 		$("a.more").live("click", function() {
 			//console.log($(this).parent());
@@ -2096,11 +2327,16 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		//$('#result-placeholder').html($('.result').html());
 		//$('.result').hide();
 		$('#show-facets').hide();
+<<<<<<< HEAD
 		$('.typeFilter, .groupFilter, .subjectFilter, .licenceFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({live:true, gravity:'sw'});
+=======
+		$('.typeFilter, .groupFilter, .subjectFilter, .ro-icon, .clearFilter, .toggle-facets').tipsy({live:true, gravity:'sw'});
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		$('#customise-dialog').tipsy({live:true, gravity:'se'});
 		$('#search-tabs li a').tipsy({live:true, gravity:'s'});
 		refreshTemporalSearch();
 		
+<<<<<<< HEAD
 	}//end initFormat
 
 	function initSubjectBrowse(){
@@ -2239,6 +2475,8 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 			temporal: temporal
 		};
 		return params;
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 
 	/*
@@ -2251,8 +2489,11 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 			groupFilter = 'All';
 		}else if($(this).hasClass('clearSubjects')){
 			subjectFilter = 'All';
+<<<<<<< HEAD
 		}else if($(this).hasClass('clearLicence')){
 			licenceFilter = 'All';
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		}
 		changeHashTo(formatSearch(search_term,1,classFilter));
 	});
@@ -2446,7 +2687,10 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		subjectFilter = 'All';
 		classFilter= $('#classSelect').val();
 		groupFilter= 'All';
+<<<<<<< HEAD
 		licenceFilter = 'All';
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 	
 	/*
@@ -2468,7 +2712,32 @@ $('.getConcept').tipsy({live:true, gravity:'sw'});
 		}
 	}
 	
+<<<<<<< HEAD
 	
+=======
+	/*PAGINATION*/
+	$('#next').live('click', function(){
+		var current_page = parseInt(page);
+		var next_page =  current_page + 1;
+		changeHashTo(formatSearch(search_term, next_page, classFilter));
+		page = next_page;
+	});
+	
+	$('#prev').live('click', function(){
+		var current_page = parseInt(page);
+		var next_page =  current_page - 1;
+		var term = '#'+search_term+'/p'+next_page;
+		changeHashTo(formatSearch(search_term, next_page, classFilter));
+		page = next_page;
+	});
+	
+	$('.gotoPage').live('click', function(){
+		var id = $(this).attr('id');
+		var term = '#'+search_term+'/p'+id;
+		changeHashTo(formatSearch(search_term, id, classFilter));
+		page = id;
+	});
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 	
 	/*GOOGLE MAP*/

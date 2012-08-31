@@ -39,8 +39,13 @@ $config['solr_url'] = SOLR_URL;
 $config['orca_service_point'] = 'services/getRegistryObjectsSOLR.php';
 $config['orca_view_point'] = 'view.php';
 
+<<<<<<< HEAD
 $config['GA_enabled'] = true;
 $config['GA_code']='UA-24538204-1';
+=======
+$config['GA_enabled'] = false;
+$config['GA_code']='';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 
 /*

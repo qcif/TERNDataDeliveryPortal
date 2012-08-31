@@ -56,6 +56,10 @@ $Revision: 1 $
                 ?>          
         <div id="search-results-content" >
                
+<<<<<<< HEAD
                 <?php $this->load->view('search/content');?>        
+=======
+                <?php $this->load->view('search/content');?>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         <?php $this->load->view('tab/widgets/recordpopup');?>
 <?php endif;?>

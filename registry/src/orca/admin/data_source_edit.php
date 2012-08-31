@@ -14,18 +14,29 @@ See the License for the specific language governing permissions and
 limitations under the License.
 *******************************************************************************/
 // Include required files and initialisation.
+<<<<<<< HEAD
 //require '../../_includes/init.php';
 //ini_set('display_errors',1); 
 //error_reporting(E_ALL);
 //require '../orca_init.php';
 require '../manage/process_registry_object.php';
+=======
+require '../../_includes/init.php';
+//ini_set('display_errors',1); 
+//error_reporting(E_ALL);
+require '../orca_init.php';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 // Page processing
 // -----------------------------------------------------------------------------
 
 
 $data_Source = getQueryValue('data_source_key');
+<<<<<<< HEAD
 $taskWaiting = '';
 $taskWaiting = scheduledTaskCheck($data_Source);
+=======
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 $dataSource = getDataSources(getQueryValue('data_source_key'), null);
 if( !$dataSource )
@@ -52,7 +63,10 @@ if($dataSource[0]['time_zone_value']!='')
 	$harvestDate = str_replace("+10"," +10:00",str_replace("+11"," +11:00",$dataSource[0]['harvest_date']));
 }
 $harvestFrequency = $dataSource[0]['harvest_frequency'];
+<<<<<<< HEAD
 $institutionalPages = $dataSource[0]['institution_pages'];
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 $contactName = $dataSource[0]['contact_name'];
 $contactEmail = $dataSource[0]['contact_email'];
 $notes = $dataSource[0]['notes'];
@@ -81,6 +95,7 @@ $party_rel_2 = $dataSource[0]['party_rel_2'];
 $assessementNotificationEmailAddr = $dataSource[0]['assessement_notification_email_addr'];
 $autoPublish = $dataSource[0]['auto_publish'];
 $qaFlag = $dataSource[0]['qa_flag'];
+<<<<<<< HEAD
 $advancedHarvestingMode = $dataSource[0]['advanced_harvesting_mode'];
 
 $post_code = $dataSource[0]['post_code'];
@@ -89,6 +104,8 @@ $address_line_2 = $dataSource[0]['address_line_2'];
 $city = $dataSource[0]['city'];
 $state = $dataSource[0]['state'];
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 $errorMessages = '';
 $dataSourceKeyLabelClass = '';
@@ -96,11 +113,16 @@ $titleLabelClass = '';
 $uriLabelClass = '';
 $providerTypeLabelClass = '';
 $harvestMethodLabelClass = '';
+<<<<<<< HEAD
 $advancedHarvestingModeLabelClass = '';
 $pushNLALabelClass = '';
 $createPrimaryClass = '';
 $institutionPagesClass = '';
 $dateLabelClass = '';
+=======
+$pushNLALabelClass = '';
+$createPrimaryClass = '';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 $draft_array = getDraftRegistryObject(null, $dataSourceKey);
 $draft_record_set = array(
 						MORE_WORK_REQUIRED => 0,
@@ -122,8 +144,11 @@ $numRegistryObjects = getRegistryObjectCount($dataSourceKey);
 $numRegistryObjectsApproved = getRegistryObjectCount($dataSourceKey, null, null, APPROVED);
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 if( strtoupper(getPostedValue('action')) == "CANCEL" )
 {
 	responseRedirect("data_source_view.php?data_source_key=".urlencode($dataSourceKey));
@@ -132,6 +157,7 @@ if( strtoupper(getPostedValue('action')) == "CANCEL" )
 if( strtoupper(getPostedValue('action')) == "SAVE" )
 {
 
+<<<<<<< HEAD
 	//Lets deal with the three possible scenarios for institutional pages and then clear all of the excess post variables so we don't muck up the data_source update function
 	$pagesChoice = getPostedValue('institution_pages');
 	$groups = getDataSourceGroups($dataSourceKey);	
@@ -240,12 +266,15 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 			break;		
 	}
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$title = getPostedValue('title');
 	if( $title == '' )
 	{ 
 		$titleLabelClass = gERROR_CLASS;
 		$errorMessages .= "Title is a mandatory field.<br />";
 	}
+<<<<<<< HEAD
 
 	$post_code = getPostedValue('post_code');
 	$address_line_1 = getPostedValue('address_line_1');
@@ -253,18 +282,25 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 	$city = getPostedValue('city');
 	$state = getPostedValue('state');
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$uri = getPostedValue('uri');
 	if( $uri == '' )
 	{ 
 		$uriLabelClass = gERROR_CLASS;
 		$errorMessages .= "URI is a mandatory field.<br />";
 	}	
+<<<<<<< HEAD
 	
 	if(getPostedValue('uri')!='' && (!filter_var(getPostedValue('uri'), FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED) || strpos(getPostedValue('uri'), "file://")===0))
   	{
 		$uriLabelClass = gERROR_CLASS;
 		$errorMessages .= "URI <em>".filter_var(getPostedValue('uri'))."</em> is not a valid URI.<br />";
   	}
+=======
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$providerType = getPostedValue('provider_type');
 	if( $providerType == '' )
 	{ 
@@ -278,18 +314,25 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 		$harvestMethodLabelClass = gERROR_CLASS;
 		$errorMessages .= "Harvest Method is a mandatory field.<br />";
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( trim(getPostedValue('isil_value')) == '' && getPostedValue('push_to_nla'))
 	{ 
 		$pushNLALabelClass = gERROR_CLASS;
 		$errorMessages .= "You must provide an ISIL if you wish to push party records to NLA.<br />";
 	}
+<<<<<<< HEAD
 	if(getPostedValue('institution_pages') == '')
 	{
 		$institutionPagesClass = gERROR_CLASS;
 		$errorMessages .= "You must select one of the options for handling your institutional pages.<br />";
 		$institutionalPages = '';		
 	}
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$primary_key_1 = getPostedValue('primary_key_1');
 	$class_1 = getPostedValue('class_1');
 	$service_rel_1 = getPostedValue('service_rel_1');
@@ -307,20 +350,32 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 	{
 		$_POST['create_primary_relationships'] = '0';
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( getPostedValue('create_primary_relationships') && (trim(getPostedValue('class_1'))==''||trim(getPostedValue('primary_key_1'))==''||trim(getPostedValue('service_rel_1'))==''||trim(getPostedValue('activity_rel_1'))==''||trim(getPostedValue('collection_rel_1'))==''||trim(getPostedValue('party_rel_1'))==''))
 	{ 
 		//echo getPostedValue('class_1')."::".getPostedValue('pprimary_key_1')."::".getPostedValue('service_rel_1')."::".getPostedValue('activity_rel_1')."::".getPostedValue('party_rel_1')."::".getPostedValue('collection_rel_1');
 		$createPrimaryClass = gERROR_CLASS;
 		$errorMessages .= "You must provide a class ,registered key and all relationship types for the primary relationship.<br />";		
 	}	
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if(trim(getPostedValue('class_2'))=='' && (trim(getPostedValue('primary_key_2'))!=''||trim(getPostedValue('service_rel_2'))!=''||trim(getPostedValue('activity_rel_2'))!=''||trim(getPostedValue('collection_rel_2'))!=''||trim(getPostedValue('party_rel_2'))!=''))
 	{
 		$createPrimaryClass = gERROR_CLASS;		
 		$errorMessages .= "You must provide a class ,registered key and all relationship types for the primary relationship.<br />";	
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( trim(getPostedValue('class_2'))!=''&&(trim(getPostedValue('primary_key_2'))==''||trim(getPostedValue('service_rel_2'))==''||trim(getPostedValue('activity_rel_2'))==''||trim(getPostedValue('collection_rel_2'))==''||trim(getPostedValue('party_rel_2'))==''))
 	{ 
 		//echo getPostedValue('class_2')."::".getPostedValue('pprimary_key_2')."::".getPostedValue('service_rel_2')."::".getPostedValue('activity_rel_2')."::".getPostedValue('party_rel_2')."::".getPostedValue('collection_rel_2');
@@ -368,6 +423,7 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 	}	
 	$oaiSet = getPostedValue('oai_set');
 	$harvestDate = getPostedValue('harvest_date');
+<<<<<<< HEAD
 	if($harvestMethod!='DIRECT')
 	{
 		$pattern = "/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(:(\d{2}))?(?:([-+])(\d{2}):?(\d{2})|(Z))?/";
@@ -380,6 +436,8 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 		$_POST['harvest_date']='';
 	}
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$harvestFrequency = getPostedValue('harvest_frequency');
 	$contactName = getPostedValue('contact_name');
 	$contactEmail = getPostedValue('contact_email');
@@ -389,7 +447,11 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 	$allowReverseInternalLinks = getPostedValue('allow_reverse_internal_links');
 	$allowReverseExternalLinks = getPostedValue('allow_reverse_external_links');
 	$create_primary_relationships = getPostedValue('create_primary_relationships');
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$class_1 = getPostedValue('class_1');
 	$service_rel_1 =  getPostedValue('service_rel_1');
 	$activity_rel_1 =  getPostedValue('activity_rel_1');
@@ -400,20 +462,31 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 	$activity_rel_2 =  getPostedValue('activity_rel_2');
 	$party_rel_2 =  getPostedValue('party_rel_2');
 	$collection_rel_2 =  getPostedValue('collection_rel_2');	
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$assessementNotificationEmailAddr = getPostedValue('assessement_notification_email_addr');
 	$autoPublishOld = $autoPublish;
 	$qaFlagOld = $qaFlag;
 	$autoPublish = getPostedValue('auto_publish');
 	$qaFlag = getPostedValue('qa_flag');
 
+<<<<<<< HEAD
 	$advancedHarvestingMode = getPostedValue('advanced_harvesting_mode');
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( getPostedValue('record_owner') )
 	{ 
 		$recordOwner = getPostedValue('record_owner');
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	// Check the harvest method against the provider type.
 	if( $providerType && $harvestMethod && !in_array($providerType, $gORCA_HARVEST_PROVIDER_SETS[$harvestMethod], true) )
 	{
@@ -423,6 +496,7 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 		$errorMessages .= 'This Harvest Method does not support this Provider Type.<br />';
 	}
 	
+<<<<<<< HEAD
 	
 	// Check the advanced harvest mode compatibility
 	if( $providerType && $harvestMethod && $advancedHarvestingMode == "INCREMENTAL" && $providerType != "OAI_RIF")
@@ -436,12 +510,18 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 		$errorMessages .= 'This advanced harvesting mode is not compatible with your harvest method <br/>Note: Full Refresh harvesting only available in harvested feeds (consider Harvester DIRECT instead).<br />'; 
 	}
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	if( $errorMessages == '' )
 	{
 		// Update the record.
 
 		$_POST['theZone'] = $_POST['harvest_date'];
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		unset($_POST['object_relatedObject']);
 		unset($_POST['object_primary_key_1_name']);			
 		unset($_POST['object_primary_key_2_name']);
@@ -450,10 +530,14 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 
 		$errors = updateDataSource();
 		$errors .= updateRecordsForDataSource($dataSourceKey, $autoPublish, $autoPublishOld , $qaFlag , $qaFlagOld,$create_primary_relationships, $create_primary_relationships_old,$class_1,$class_1_old,$class_2,$class_2_old);
+<<<<<<< HEAD
 		$errors .= updateAdvancedHarvestingModeForDataSource($dataSourceKey, $advancedHarvestingMode);
 		$errors .= updatePostCodeForDataSource( $dataSourceKey, $post_code );
 		$errors .= updateAddressForDataSource( $dataSourceKey, $address_line_1, $address_line_2, $city, $state );
 		
+=======
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		if( $errors == "" )
 		{
 			responseRedirect('data_source_view.php?data_source_key='.urlencode($dataSourceKey));
@@ -472,7 +556,11 @@ require '../../_includes/header.php';
 ?>
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/orca_dhtml.js"></script>
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/data_source_functions.js"></script>
+<<<<<<< HEAD
 <input type="hidden" id="dataSourceKey" value="<?php echo $dataSourceKey; ?>" />
+=======
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 <form id="data_source_edit" action="data_source_edit.php?data_source_key=<?php print(urlencode($dataSourceKey)); ?>" method="post" onSubmit="return checkModalId(this)">
 <div  style="width:1000px;overflow:auto">
 <table class="formTable" summary="Edit Data Source">
@@ -481,7 +569,10 @@ require '../../_includes/header.php';
 			<td>&nbsp;</td>
 			<td>Edit Data Source.</td>
 		</tr>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	</thead>	
 	<?php if( $errorMessages ) { ?>
 	<tbody>
@@ -493,7 +584,11 @@ require '../../_includes/header.php';
 	<?php } ?>
 	<tbody class="formFields">
 	<tr style="border-bottom:2px solid black;">
+<<<<<<< HEAD
 		<td colspan="2" style="border-bottom:2px solid black;"><span style="float:left;">Account Administration Information</span>
+=======
+		<td colspan="2"><span style="float:left;">Account Administration Information</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		</td>
 		</tr>
 		<tr>
@@ -542,6 +637,7 @@ require '../../_includes/header.php';
 			<td class="">Notes:</td>
 			<td><textarea name="notes" id="notes" cols="50" rows="5"><?php printSafe($notes) ?></textarea></td>
 		</tr>
+<<<<<<< HEAD
 
 		<tr>
 			<td></td>
@@ -607,6 +703,10 @@ require '../../_includes/header.php';
 		
 		<tr style="border-bottom:2px solid black;">
 		<td colspan="2" style="border-bottom:2px solid black;"><span style="float:left;">Records Management Settings</span>
+=======
+		<tr style="border-bottom:2px solid black;">
+		<td colspan="2"><span style="float:left;">Records Management Settings</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		</td>
 		</tr>
 		<tr>
@@ -820,6 +920,7 @@ require '../../_includes/header.php';
 				<input type="hidden" id="assessement_notification_email_addr" name="assessement_notification_email_addr" value="<?php printSafe($assessementNotificationEmailAddr); ?>" />
 			 <?php endif; ?>
 			</td>
+<<<<<<< HEAD
 		</tr>				
 			<?php 
 			$groups = '';
@@ -924,6 +1025,11 @@ require '../../_includes/header.php';
 		</tr>			
 		<tr style="border-bottom:2px solid black;">
 		<td colspan="2" style="border-bottom:2px solid black;"><span style="float:left;">Harvester Settings</span>
+=======
+		</tr>	
+		<tr style="border-bottom:2px solid black;">
+		<td colspan="2"><span style="float:left;">Harvester Settings</span>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		</td>
 		</tr>	
 		
@@ -976,6 +1082,7 @@ require '../../_includes/header.php';
 			<td class="">OAI Set:</td>
 			<td><input type="text" name="oai_set" id="oai_set" size="30" maxlength="128" value="<?php printSafe($oaiSet) ?>" /></td>
 		</tr>
+<<<<<<< HEAD
 		
 		<tr id="advanced_harvesting_options_row">
 			<td <?php echo $advancedHarvestingModeLabelClass; ?>>Advanced Harvest Mode:</td>
@@ -1005,6 +1112,11 @@ require '../../_includes/header.php';
 				$currentZone = "&nbsp;&nbsp;(GMT ".$current.")";
 				$currentNum = number_format($current);
 			?>
+=======
+
+		<tr id="harvest_date_row">
+			<td class="">Harvest Date:</td>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		<!-- 			<td><?php drawDateTimeZoneInput('harvest_date', $harvestDate, eDCT_FORMAT_ISO8601_DATE_TIME."X") ?>
 			<span id="gmtZone" class="inputFormat"><?php if(isset($theString)){ echo $theString;} else { echo $currentZone ;} ?> </span>
 			<input name="theZone" id="theZone" type="hidden" value="<?php if(isset($newNum)){echo $newNum;}else { echo $currentNum ; }?>"/>
@@ -1047,8 +1159,13 @@ require '../../_includes/header.php';
 	</tbody>
 	<tbody>
 		<tr>
+<<<<<<< HEAD
 			<td width="175"></td>
 			<td><input type="submit" name="action" value="Save" onClick="return nlaPushCheck();"/>&nbsp;&nbsp;<input type="submit" name="action" value="Cancel" />&nbsp;&nbsp;</td>
+=======
+			<td width="128"></td>
+			<td><input type="submit" name="action" value="Cancel" />&nbsp;&nbsp;<input type="submit" name="action" value="Save"  onClick="return nlaPushCheck();"/>&nbsp;&nbsp;</td>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		</tr>
 		<tr>
 			<td></td>

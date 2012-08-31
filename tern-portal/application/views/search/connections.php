@@ -147,8 +147,12 @@ if(isset($groups)&&$groups['numfound']>0){
 		//echo '<li><a href="'.base_url().'view/?key='.urlencode($groups['json']->{'response'}->{'docs'}[$i]->{'key'}).'" title="'.$groups['relationship'][$i].' '.$autoLinkTitle.'">';
                 //echo '<li><a>';
                 echo '<li>';
+<<<<<<< HEAD
 		//echo $groups['json']->{'response'}->{'docs'}[$i]->{'displayTitle'};   //commented for upgrade to 8.1
                 echo $groups['json']->{'response'}->{'docs'}[$i]->{'display_title'};  //added 8.1
+=======
+		echo $groups['json']->{'response'}->{'docs'}[$i]->{'displayTitle'};
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		//echo '</a>'.$autoLink.$logostr.'</li>';
                 echo $autoLink.$logostr.'</li>';
 	}

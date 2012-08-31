@@ -278,12 +278,15 @@ public class RegisterHarvestServlet extends HttpServlet
         {
             harvest.setSet(set);
         }
+<<<<<<< HEAD
 
         String ahm = (String)request.getParameter("ahm");        
         if (ahm != null && ahm.length() > 0)
         {
             harvest.setAHM(ahm);
         }
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         
         String runDate = (String)request.getParameter("date");        
         if (runDate != null && runDate.length() > 0)

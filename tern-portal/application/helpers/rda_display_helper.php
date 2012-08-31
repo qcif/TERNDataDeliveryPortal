@@ -34,8 +34,12 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
 			}else $name = 'Types';				
 			$class="typeFilter";break;
 		case "group":$clear = 'clearGroup';$name='Facilities';$class="groupFilter";break;
+<<<<<<< HEAD
 		//case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
                 case "subject_value_resolved":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
+=======
+		case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
            
 	}
 	$object_type="";
@@ -91,8 +95,12 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
 	switch($facet_name){
 		case "type":$clear = 'clearType';$name='Types';$class="typeFilter";break;
 		case "group":$clear = 'clearGroup';$name='Facilities';$class="groupFilter";break;
+<<<<<<< HEAD
 		//case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
                 case "subject_value_resolved":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
+=======
+		case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                 case "for_value_two":$clear = 'clearFortwo';$name="FOR";$class="fortwoFilter";break;
                 case "for_value_four":$clear = 'clearForfour';$name="FOR";$class="forfourFilter";break;
                 case "for_value_six":$clear = 'clearForsix';$name="FOR";$class="forsixFilter";break;
@@ -125,8 +133,12 @@ function constructFilterQuery($class, $groups){
 		case 'class':$str='+class:(';break;
 		case 'type':$str='+type:(';break;
 		case 'group':$str='+group:(';break;
+<<<<<<< HEAD
 		//case 'subject_value':$str='+subject_value:(';break;
                 case 'subject_value_resolved':$str='+subject_value:(';break;
+=======
+		case 'subject_value':$str='+subject_value:(';break;
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
                 case 'subject_code': $str='+subject_code:(';break;
 		case 'status':$str='+status:(';break;
                 case 'for_value_two':$str='+for_value_two:(';break;
@@ -283,8 +295,12 @@ function displayFacet4Mobile($facet_name, $facetFilter, $json, $ro_class, $obj){
 			}else $name = 'Types';
 			$class="typeFilter";break;
 		case "group":$clear = 'clearGroup';$name='Facilities';$class="groupFilter";break;
+<<<<<<< HEAD
 		//case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
                 case "subject_value_resolved":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
+=======
+		case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	}
 
 
@@ -330,7 +346,11 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetFilter, $json, $ro
 	$object_type2 = $json->{'facet_counts'}->{'facet_fields'}->{$facettwo};
         $object_type4 = $json->{'facet_counts'}->{'facet_fields'}->{$facetfour};
         $object_type6 = $json->{'facet_counts'}->{'facet_fields'}->{$facetsix};
+<<<<<<< HEAD
 //print_r($object_type4);
+=======
+//print_r($object_type2);
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 /*       
 for($j=0;$j<count($object_type2);$j=$j+2)
 {

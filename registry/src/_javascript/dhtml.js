@@ -41,7 +41,10 @@ function initDHTML(containerID)
 	setLinksToNewWindows();
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 //Set the rel="help" and rel="preview" hyperlinks to open in a new window
 function setLinksToNewWindows()
 {  

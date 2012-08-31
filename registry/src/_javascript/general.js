@@ -13,7 +13,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 *******************************************************************************/
 var rootAppPath = '';
+<<<<<<< HEAD
 
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 function setRootPath(path)
 {
 	rootAppPath = path;
@@ -65,6 +68,7 @@ function nlaPushCheck()
 				" See http://ands.org.au/guides/ardc-party-infrastructure-awareness.html.")
 		if(!answer){
 			return false;
+<<<<<<< HEAD
 		}
 		
 	}
@@ -94,6 +98,18 @@ function nlaPushCheck()
 		
 	}
 	return true;
+=======
+		}else{
+			return true;
+		}
+		
+	}
+	else
+	{
+		return true
+	}
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 }
 
 function toggle_checkbox(id)

@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 /**
+=======
+/** 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 Copyright 2011 The Australian National University
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,7 +18,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ***************************************************************************
 *
+<<<<<<< HEAD
 **/
+=======
+**/ 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 ?>
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*

@@ -155,6 +155,7 @@
 			</xsl:attribute>
 		</xsl:if>
 	</xsl:template>
+<<<<<<< HEAD
 
 	<xsl:template match="licence" mode="attribute">
 		<xsl:if test=". != ''">
@@ -163,6 +164,11 @@
 			</xsl:attribute>
 		</xsl:if>
 	</xsl:template>
+=======
+	
+	
+
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 	<xsl:template match="node() | value[parent::electronic]">
 		<xsl:param name="id"/>
@@ -180,7 +186,11 @@
 			<xsl:apply-templates select="roclass" mode="attribute"/>
 			<xsl:apply-templates select="seq" mode="attribute"/>
 			<xsl:apply-templates select="rightsUri" mode="attribute"/>
+<<<<<<< HEAD
 			<xsl:apply-templates select="rights/licence" mode="attribute"/>			
+=======
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			<xsl:variable name="tabId">
 				<xsl:choose>
 					<xsl:when test="$tab_id = '' and id != '' ">
@@ -256,9 +266,15 @@
 	<xsl:template match="startDate[not(value/text()) and not(dateFormat/text())]"/>
 	<xsl:template match="endDate[not(value/text()) and not(dateFormat/text())]"/>
 	<xsl:template match="accessRights[not(value/text()) and not(rightsUri/text())]"/>
+<<<<<<< HEAD
 	<xsl:template match="licence[not(value/text()) and not(rightsUri/text()) and not(type/text())]"/>
 	<xsl:template match="rightsStatement[not(value/text()) and not(rightsUri/text())]"/>
 	<xsl:template match="rights[not(rightsStatement/value/text()) and not(rightsStatement/rightsUri/text()) and not(licence/value/text()) and not(licence/rightsUri/text()) and not(accessRights/value/text()) and not(accessRights/rightsUri/text()) and not(licence/type/text())]"/>
+=======
+	<xsl:template match="licence[not(value/text()) and not(rightsUri/text())]"/>
+	<xsl:template match="rightsStatement[not(value/text()) and not(rightsUri/text())]"/>
+	<xsl:template match="rights[not(rightsStatement/value/text()) and not(rightsStatement/rightsUri/text()) and not(licence/value/text()) and not(licence/rightsUri/text()) and not(accessRights/value/text()) and not(accessRights/rightsUri/text())]"/>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	<xsl:template match="accessPolicy[not(value/text())]"/>
 
 	<xsl:template
@@ -268,10 +284,13 @@
 		<xsl:value-of select="."/>
 	</xsl:template>
 	
+<<<<<<< HEAD
 	<xsl:template match="value[ancestor::electronic and parent::value]">
 		<xsl:value-of select="translate(. ,' ', '+')"/>
 	</xsl:template>
 	
+=======
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 	
 

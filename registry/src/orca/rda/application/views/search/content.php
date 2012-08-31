@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 /**
+=======
+/** 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 Copyright 2011 The Australian National University
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,14 +18,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ***************************************************************************
 *
+<<<<<<< HEAD
 **/
 ?>
 <?php
+=======
+**/ 
+?>
+<?php
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	//$numFound = $json->{'response'}->{'numFound'};
 	$realNumFound = $json->{'response'}->{'numFound'};
 	$numFound = $json_tab->{'response'}->{'numFound'};
 	$timeTaken = $json->{'responseHeader'}->{'QTime'};
 	$timeTaken = $timeTaken / 1000;
+<<<<<<< HEAD
 
 	//print_r($json->{'responseHeader'}->{'params'});
 
@@ -34,11 +46,26 @@ limitations under the License.
 
 	if ($h_end > $numFound) $h_end = $numFound;
 
+=======
+	
+	//print_r($json->{'responseHeader'}->{'params'});
+	
+	$row = $json->{'responseHeader'}->{'params'}->{'rows'};
+	$start = $json->{'responseHeader'}->{'params'}->{'start'};
+	$end = $start + $row;
+	
+	$h_start = $start + 1;//human start
+	$h_end = $end + 1;//human end
+	
+	if ($h_end > $numFound) $h_end = $numFound;
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	$totalPage = ceil($numFound / $row);
 	$currentPage = ceil($start / $row)+1;
 ?>
 		<?php
 			echo '<div class="toolbar clearfix">';
+<<<<<<< HEAD
 
 			echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
 
@@ -46,6 +73,15 @@ limitations under the License.
 
 			//echo $this->input->cookie('facets');
 
+=======
+			
+			echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
+			
+			
+			
+			//echo $this->input->cookie('facets');
+			
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			$class='';
 			if($this->input->cookie('facets')!=''){
 				if($this->input->cookie('facets')=='yes'){
@@ -56,6 +92,7 @@ limitations under the License.
 			}else{
 				$class='ui-icon-arrowthickstop-1-w';
 			}
+<<<<<<< HEAD
 
 			echo '<div class="ui-state-default ui-corner-all show-hide-facet"><span class="ui-icon '.$class.'" id="toggle-facets" title="Show/Hide Facet"></span></div>';
 			//echo '<a href="JavaScript:void(0);" id="hide-facets">Expand</a><a href="JavaScript:void(0);" id="show-facets">Collapse (Show Filters)</a>';
@@ -77,12 +114,40 @@ limitations under the License.
 				$type = $r->{'type'};
 				$ro_key = $r->{'key'};
 				$name = $r->{'list_title'};
+=======
+			
+			echo '<div class="ui-state-default ui-corner-all show-hide-facet"><span class="ui-icon '.$class.'" id="toggle-facets" title="Show/Hide Facet"></span></div>';
+			//echo '<a href="JavaScript:void(0);" id="hide-facets">Expand</a><a href="JavaScript:void(0);" id="show-facets">Collapse (Show Filters)</a>';
+			
+			echo '<div class="result">';
+			echo ''.number_format($realNumFound).' results ('.$timeTaken.' seconds)';
+			echo '</div>';
+			
+			$this->load->view('search/pagination');
+			
+			echo '</div>';
+			
+			if($realNumFound==0){
+				$this->load->view('search/no_result');
+			}
+			
+			foreach($json->{'response'}->{'docs'} as $r)
+			{
+				//var_dump($r->{'description_value'});
+				$type = $r->{'type'};
+				$ro_key = $r->{'key'};
+				$name = $r->{'listTitle'};
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				if($name=='')$name='(no name/title)';
 				$descriptions = array();if(isset($r->{'description_value'})) $descriptions = $r->{'description_value'};
 				$description_type=array();if(isset($r->{'description_type'})) $description_type = $r->{'description_type'};
 				$class = '';if(isset($r->{'class'})) $class = $r->{'class'};
 				$type = '';if(isset($r->{'type'})) $type = strtolower($r->{'type'});
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				$brief = '';$found_brief = false;
 				$full = '';$found_full = false;
 				foreach($description_type as $key=>$t){
@@ -94,12 +159,17 @@ limitations under the License.
 						$found_full = true;
 					}
 				}
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				$spatial ='';$center = '';
 				if(isset($r->{'spatial_coverage'})){
 					$spatial = $r->{'spatial_coverage'};
 					$center = $r->{'spatial_coverage_center'}[0];
 				}
+<<<<<<< HEAD
 
 				$subjects='';
 				if(isset($r->{'subject_value_resolved'})){
@@ -108,6 +178,15 @@ limitations under the License.
 
 				echo '<div class="search_item" itemscope itemType="http://schema.org/Thing">';
 
+=======
+				$subjects='';
+				if(isset($r->{'subject_value'})){
+					$subjects = $r->{'subject_value'};
+				}
+
+				echo '<div class="search_item" itemscope itemType="http://schema.org/Thing">';
+				
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				//echo get_cookie('show_icons');
 				echo '<p class="hide key">'.$ro_key.'</p>';
 				if(get_cookie('show_icons')=='yes'){
@@ -115,7 +194,11 @@ limitations under the License.
 						case "collection":echo '<img itemprop="image" class="ro-icon" src="'.base_url().'img/icon/collections_32.png" title="Collection" alt="Collection"/>';break;
 						case "activity":echo '<img itemprop="image" class="ro-icon" src="'.base_url().'img/icon/activities_32.png" title="Activity" alt="Activity"/>';break;
 						case "service":echo '<img itemprop="image" class="ro-icon" src="'.base_url().'img/icon/services_32.png" title="Service" alt="Service"/>';break;
+<<<<<<< HEAD
 						case "party":
+=======
+						case "party": 
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 									if($type=='person'){
 										echo '<img itemprop="image" class="ro-icon" src="'.base_url().'img/icon/party_one_32.png" title="Person" alt="Person"/>';
 									}elseif($type=='group'){
@@ -124,6 +207,7 @@ limitations under the License.
 							break;
 					}
 				}
+<<<<<<< HEAD
 				$theGroup = getInstitutionPage($r->{'group'});
 				
 				if($theGroup==$ro_key){
@@ -141,6 +225,14 @@ limitations under the License.
 
 				//echo '<pre>';
 
+=======
+				$key_url =  base_url().'view/?key='.urlencode($ro_key);
+				//echo $key_url;
+				echo '<h2 itemprop="name"><a itemprop="url" href="'.$key_url.'">'.$name.'</a></h2>';
+				
+				//echo '<pre>';
+								
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				if(isset($r->{'alt_listTitle'})){
 					echo '<div class="alternatives">';
 					foreach($r->{'alt_listTitle'} as $listTitle){
@@ -150,7 +242,11 @@ limitations under the License.
 				}
 				//echo '</pre>';
 				//echo '<h2><a href="#!/view/'.$ro_key.'">'.$name.'</a></h2>';
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				//DESCRIPTIONS';
 				echo '<p itemprop="description">';
 				if($found_brief){
@@ -159,7 +255,11 @@ limitations under the License.
 					echo strip_tags(htmlspecialchars_decode($full));
 				}
 				echo '</p>';
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				if($spatial){
 					echo '<ul class="spatial">';
 						foreach($spatial as $s){
@@ -168,7 +268,11 @@ limitations under the License.
 					echo '</ul>';
 					echo '<a class="spatial_center">'.$center.'</a>';
 				}
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 				if(get_cookie('show_subjects')=='yes'){
 					if($subjects){
 						echo '<div class="subject-container">';
@@ -182,11 +286,16 @@ limitations under the License.
 				}
 				echo '</div>';
 			}
+<<<<<<< HEAD
 			echo '<div class="toolbar clearfix bottom-corner">';
 			if(displaySubscriptions() )
 			{
 				echo "<div id='subscriptions'><div class='rss_icon'></div>Subscribe to this web feed. <a href='".base_url()."search/rss/".$queryStr."&subscriptionType=rss' title='Stay informed with RSS when any updates are made to this search query.' class='tiprss'>RSS</a>/<a href='".base_url()."search/atom/".$queryStr."&subscriptionType=atom' title='Stay informed with ATOM when any updates are made to this search query.' class='tiprss'>ATOM</a></div>";
 			}
+=======
+			
+			echo '<div class="toolbar clearfix bottom-corner">';
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			$this->load->view('search/pagination');
 			echo '</div>';
 		?>

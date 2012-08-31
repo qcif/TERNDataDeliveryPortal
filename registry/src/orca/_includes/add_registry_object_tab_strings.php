@@ -585,6 +585,7 @@ $_strings['*_preview'] = <<<HTMLEND
 			<table class="inner-table">
 					<tr>
 						<td>
+<<<<<<< HEAD
 							<div id="save_notification" class="save_notification"></div>
 														
 						</td>
@@ -610,15 +611,30 @@ $_strings['*_preview'] = <<<HTMLEND
 
 					<tr>
 						<td colspan="2" id="field_container">
+=======
+							<div style="height:22px;">&nbsp;</div>				
+							<div id="errors_preview"></div>						
+						</td>
+					</tr>
+					<tr>
+						<td id="field_container">
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 							<div id="rmd_saving" class="loadingPlaceholder">
 								<img src="{$cosiImgRoot}_icons/ajax_loading.gif" alt="Loading Image" style="padding-left:35px;" />
 								<br/><br/>Saving &amp; Validating...
 								<br/><br/><br/>
 							</div>
+<<<<<<< HEAD
 
 							<div id="rmd_preview" style="display:inline-block; width:100%;">
 							
 							</div>
+=======
+							<div id="rmd_preview" style="display:inline-block; width:100%;">
+							</div>
+							
+							<a style="float:right; font-size:10px; font-weight:bold;" class="rda_preview" href="" target="_blank"><img src="{$orcaImgRoot}globe.png" />Preview in Research Data Australia</a>
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 							</form>
 						</td>
 					</tr>

@@ -14,9 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 *******************************************************************************/
 
+<<<<<<< HEAD
 // Make sure valid user is accessing the content (session-based authentication)
 //session_start();
 //$_SESSION["timeout"] += 30;
+=======
+// Make sure valid user is accessing the content (session-based authentication)
+//session_start();
+//$_SESSION["timeout"] += 30;
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 define('gDEFAULT_CONTEXT_ERROR', "Invalid Context");
 define('gDEFAULT_TAGNOTFOUND_ERROR', "Element not available");
@@ -169,8 +175,12 @@ switch ($context)
 		echo json_encode( array("rawHTML" => $element_content, "cbc" => (isset($_GET['cbc'])?$_GET['cbc']:''))); // array("context" => ""),
 			
 	break;
+<<<<<<< HEAD
 
 	case "SOLR_get_stuff":echo "yeah";break;
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 	
 	// By default, just print the element content "as is"
 	case "":
