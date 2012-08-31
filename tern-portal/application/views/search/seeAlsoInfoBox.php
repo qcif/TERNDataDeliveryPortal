@@ -28,12 +28,10 @@ $Revision: 1 $
 <?php
 foreach($json->{'response'}->{'docs'} as $r)
 {
-<<<<<<< HEAD
+
 	//echo '<h3><a href="#">'.$r->{'listTitle'}.'</a></h3>';
     echo '<h3><a href="#">'.$r->{'list_title'}.'</a></h3>';
-=======
-	echo '<h3><a href="#">'.$r->{'listTitle'}.'</a></h3>';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
 	$something = '';
 	echo '<div>';
 	if(isset($r->{'description_type'})){
@@ -61,12 +59,10 @@ foreach($json->{'response'}->{'docs'} as $r)
                         if($index == 9) { 
                             break;
                         }else{
-<<<<<<< HEAD
+
                            // echo '<li>'.$r->{'subject_value'}[$index2].'</a></li>';
                              echo '<li>'.$r->{'subject_value_resolved'}[$index2].'</a></li>';
-=======
-                            echo '<li>'.$r->{'subject_value'}[$index2].'</a></li>';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                              if(($index + $index2) == 7) { echo '<li>...</li>'; break;  }
                     }
 		}

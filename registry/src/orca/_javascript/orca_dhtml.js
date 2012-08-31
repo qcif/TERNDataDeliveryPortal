@@ -5,16 +5,6 @@ $Revision: 1665 $
 var clearPressed = false;
 var cosiImageRoot = rootAppPath + "_images/";
 var orcaImageRoot = rootAppPath + "orca/_images/";
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 function setHarvestMethodDependents()
 {
    var tableRow = 'table-row';
@@ -242,18 +232,6 @@ function setClear()
 
 function runQualityCheck()
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-   
-   $.get($('#quality_report_url').val() + '&data_source=' + $('#data_source_key').val(), function(data){
-	   $('#qualityCheckresult').html(data).fadeIn(100);
-	   $('#printableReportContainer').html('<a target="_blank" id="printable_report" href="data_source_report.php?type=quality&standalone=true&data_source=' + $('#data_source_key').val()  +'" class="right">printable report</a>');
-	   
-   })
-<<<<<<< HEAD
-=======
    var dataSourceKey = document.getElementById("data_source_key").value;
    var dataurl = document.getElementById("data-url").value;
    var itemurl = document.getElementById("item-url").value;
@@ -294,9 +272,6 @@ function runQualityCheck()
                xmlhttp.send();
            }
        }
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 
 function showDeleteModal()
@@ -414,10 +389,6 @@ function doSolrSearch()
 }
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 function getGoldRecords()
 {
@@ -448,52 +419,8 @@ function getGoldRecords()
        });
 }
 
-var dsIsBGTaskQueued = false;
-
-function checkDataSourceScheduleTask(){
-    var content = 'A background task is currently in progress for this data source. Please try reloading the screen again shortly.';
-    var dataSourcekey = $('#dataSourceKey').length;
-    var dsKey = $('#dataSourceKey').val();
-    //console.log(dataSourcekey);
-    if(dataSourcekey==1){
-     
-      //console.log(rootAppPath+"orca/manage/process_registry_object.php?task=dataSourceBackgroundStatus&data_source="+dsKey);
-      $.ajax({
-        type:"POST",   
-        url:rootAppPath+"orca/manage/process_registry_object.php?task=dataSourceBackgroundStatus&data_source="+dsKey,   
-        success:function(msg){
-          
-          if(msg=='1'){
-          	dsIsBGTaskQueued = true;
-            $('#dataSourceStatus').show();
-            $('#dataSourceStatus').html(content);
-          }else{
-          	if (dsIsBGTaskQueued == true)
-          	{
-          		location.reload();	
-          	}
-            $('#dataSourceStatus').hide();
-          }
-        }
-    });
-    }
-  }
-
-<<<<<<< HEAD
-$().ready(function(){
-
-  
-
-=======
 $().ready(function(){
 	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-$().ready(function(){
-
-  
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	/*
 	 * CC-47
 	 * RIFCS-BUTTON on view page
@@ -616,19 +543,6 @@ $().ready(function(){
        });
        $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI);
    });
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-
-   //chosen on data source;
-   if($('select[name=data_source_key]').length>0)$('select[name=data_source_key]').chosen();
-
-<<<<<<< HEAD
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 });
 
 function formatErrorDesciption(description, title)
@@ -895,10 +809,6 @@ descContent = '<HR><h3>Error Description:</h3><HR><img src="../_images/error_ico
    descContent += description;
 return descContent;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 function setInstitutionalPage(theValue, theGroups, theDataSource)
 {
@@ -956,7 +866,7 @@ function setInstitutionalPage(theValue, theGroups, theDataSource)
 			searchStr += '<tbody class="formFields andsorange">';
 			searchStr += '<tr><td>Search by name:</td><td><input type="text" id="object_institution_key_'+(i+1)+'_name" autocomplete="on" name="object_institution_key_'+(i+1)+'_name" maxlength="512" size="30"/></td></tr>';
 			searchStr += '<tr><td>Select object class:</td><td><span style="color:#666666">Party</span><input type="hidden" id="select_institution_key_'+(i+1)+'_class" value = "Party"/></td></tr>';
-			searchStr += '<tr><td>Data source:<input type="hidden" id="select_institution_key_'+(i+1)+'_group" value="'+datasources[0]+'"/><input type="hidden" id="select_institution_key_'+(i+1)+'_dataSource" value="'+theDataSource+'"/></td><td>'+theDataSource+'</td></tr>';
+			searchStr += '<tr><td>Data source:<input type="hidden" id="select_institution_key_'+(i+1)+'_group" value="'+datasources[0]+'"/></td><td><select id="select_institution_key_'+(i+1)+'_dataSource">'+datasourceStr+'</select></td></tr>';
 			searchStr += '<tr><td><input type="button" value="Choose Selected" onClick=\'setRelatedId("object_institution_key_'+(i+1)+'");\'/></td><td></td></tr>';
 			searchStr += '</table>';				
 			searchStr += '</div>'; 
@@ -974,8 +884,3 @@ function setInstitutionalPage(theValue, theGroups, theDataSource)
 	}
 		
 }
-<<<<<<< HEAD
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

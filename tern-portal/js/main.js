@@ -412,12 +412,10 @@ $(function() {
                         var fieldNterm = v.split(':');
                         //fulltext, searchterm
                         $.each(fieldNterm,function(fieldNtermIndex,fieldNtermValue){
-<<<<<<< HEAD
+
                             if(this.toString()=='fulltext' || this.toString() == "displayTitle" || this.toString() == "description" || this.toString() == "subject"){ //not changed need to check
                             
-=======
-                            if(this.toString()=='fulltext' || this.toString() == "displayTitle" || this.toString() == "description" || this.toString() == "subject"){
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                                 $('select[name^="fields"]').eq(index).val(fieldNtermValue);
                             }else{
                                 $('input[name^="keyword"]').eq(index).val(fieldNtermValue);
@@ -579,23 +577,19 @@ $(function() {
                         if($.trim($(this).val())!='') {
                             switch($("[name^=fields]").get(index).value){
                                 case 'displayTitle':
-<<<<<<< HEAD
+
                                    // field = 'displayTitle';
                                     field = 'display_title';//added 8.1
-=======
-                                    field = 'displayTitle';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                                     break;
                                 case 'description':
                                     field = 'description_value';
                                     break;
                                 case 'subject':
-<<<<<<< HEAD
+
                                     //field = 'subject_value' ;
                                     field = 'subject_value_resolved' ;
-=======
-                                    field = 'subject_value' ;
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                                     break;
                                 default:
                                     field='fulltext';
@@ -1065,12 +1059,10 @@ $(function() {
     $.ajax({
         type:"POST",
         url: base_url+"search/connections/count",
-<<<<<<< HEAD
+
         //data:"q=relatedObject_key:"+key_value+"&key="+key_value,
         data:"q=related_object_key:"+key_value+"&key="+key_value,
-=======
-        data:"q=relatedObject_key:"+key_value+"&key="+key_value,
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         success:function(msg){
             //alert(msg);
             $("#connections").html(msg);
@@ -1095,12 +1087,10 @@ $(function() {
         $.ajax({
             type:"POST",
             url: base_url+"search/connections/content/"+classes+"/"+types,
-<<<<<<< HEAD
+
             //data:"q=relatedObject_key:"+key_value+"&key="+key_value+"&page="+connectionsPage,
             data:"q=related_object_key:"+key_value+"&key="+key_value+"&page="+connectionsPage,
-=======
-            data:"q=relatedObject_key:"+key_value+"&key="+key_value+"&page="+connectionsPage,
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
             success:function(msg){
                 //console.log("success" + msg);
                 $("#connectionsInfoBox").html(msg);

@@ -10,10 +10,9 @@
     <head>   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
         <link type="text/css" href="<?php echo base_url(); ?>css/tern.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
-<<<<<<< HEAD
-=======
+
          <link type="text/css" href="<?php echo base_url(); ?>css/ui.dropdownchecklist.themeroller.css" rel="stylesheet" />
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         <style>
             #regionSelect{
                 width: 400px;
@@ -27,15 +26,12 @@
                 list-style: none;
                 padding:0; 
             }
-<<<<<<< HEAD
-=======
-            
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
             </style> 
   </head>
     <body>
         <div id="left">
-<<<<<<< HEAD
+
         <div id="regionSelect"><?php
             for($i=0;$i<count($regions);$i++){
                  ?>
@@ -54,7 +50,7 @@
         </div>
         </div>
         
-=======
+
         
             
 <select id="regionTypeSelect"><?php
@@ -73,12 +69,7 @@
             </select>
             </div>
  <?php } ?>
-<div id="regionSelect" >       </div>
-            
-            
-        </div>
-       
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
 <div id="overlaymap" style="width:430px;margin:auto;">
     <div id="spatialmap" class=""></div>
     <div id="featurename"></div>
@@ -92,17 +83,13 @@
   		var secure_base_url = "<?php echo getHTTPs(base_url());?>";
 		var service_url = "<?php echo service_url();?>";
 	</script>
-<<<<<<< HEAD
-   <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.2.min.js"></script> <!-- jQuery -->
-	<script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui-1.8.20.custom.min.js"></script> <!-- jQuery UI-->
-    	<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.6&amp;sensor=false"></script> <!--Google Map v3 from Google-->
-=======
+
         
    <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.2.min.js"></script> <!-- jQuery -->
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui-1.8.20.custom.min.js"></script> <!-- jQuery UI-->
     	<script type="text/javascript" src="<?php echo base_url();?>js/ui.dropdownchecklist-1.4-min.js"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.6&amp;sensor=false"></script> <!--Google Map v3 from Google-->
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         <script  type="text/javascript" src="http://openlayers.org/api/2.11/OpenLayers.js"></script>
          <script type="text/javascript" src="<?php echo base_url();?>js/mapProto.js"></script>  
        <script type="text/javascript" src="<?php echo base_url();?>js/MapWidget.js"></script> <!-- WIDGET MAP -->

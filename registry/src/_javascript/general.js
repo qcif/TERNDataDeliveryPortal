@@ -13,14 +13,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 *******************************************************************************/
 var rootAppPath = '';
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 function setRootPath(path)
 {
 	rootAppPath = path;
@@ -72,8 +64,6 @@ function nlaPushCheck()
 				" See http://ands.org.au/guides/ardc-party-infrastructure-awareness.html.")
 		if(!answer){
 			return false;
-<<<<<<< HEAD
-<<<<<<< HEAD
 		}
 		
 	}
@@ -85,7 +75,7 @@ function nlaPushCheck()
 			theNew = document.forms[0].institution_pages[i].value;
 		}
 	}
-	var noAutoPage = document.getElementById("noAutoPage");
+
 	if(theOld  == '0' && (theNew == '1' || theNew == '2'))
 	{
 		var answer = confirm("The Contributor home page will be a public web document representing your organisation.\nANDS advises that you should use only approved text and consult apprpriate authorities within your organisation.")
@@ -94,54 +84,8 @@ function nlaPushCheck()
 		}
 		
 	}
-	if(theOld  == '1' && theNew == '1' && noAutoPage)
-	{
-		var answer = confirm("Contributor pages will be generated for the new group(s) located in this data source.\nThe contributor home page will be a public web document representing your organisatio.\nANDS advises that you should use only approved text and consult apprpriate authorities within your organisation.")
-		if(!answer){
-			return false;
-		}
-		
-	}
+
 	return true;
-=======
-		}else{
-			return true;
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-		}
-		
-	}
-	// This submit check will now also check if the contributor pages have been reset from non to either auto or manual
-	var theOld = document.getElementById('currentPage').innerHTML;
-	var theNew = '5';
-	for (i=0;i<document.forms[0].institution_pages.length;i++) {
-		if (document.forms[0].institution_pages[i].checked) {
-			theNew = document.forms[0].institution_pages[i].value;
-		}
-	}
-	var noAutoPage = document.getElementById("noAutoPage");
-	if(theOld  == '0' && (theNew == '1' || theNew == '2'))
-	{
-		var answer = confirm("The Contributor home page will be a public web document representing your organisation.\nANDS advises that you should use only approved text and consult apprpriate authorities within your organisation.")
-		if(!answer){
-			return false;
-		}
-		
-	}
-<<<<<<< HEAD
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	if(theOld  == '1' && theNew == '1' && noAutoPage)
-	{
-		var answer = confirm("Contributor pages will be generated for the new group(s) located in this data source.\nThe contributor home page will be a public web document representing your organisatio.\nANDS advises that you should use only approved text and consult apprpriate authorities within your organisation.")
-		if(!answer){
-			return false;
-		}
-		
-	}
-	return true;
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 
 function toggle_checkbox(id)

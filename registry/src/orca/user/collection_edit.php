@@ -175,20 +175,7 @@ if( strtoupper(getPostedValue('verb')) == "SAVE" )
 		
 		// Get the party object.
 		$partyObject = getUserPartyObject();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-		if(isset($partyObject[0]['registry_object_key']))
-				$partyObjectKey = $partyObject[0]['registry_object_key'];
-		else
-				$partyObjectKey = $partyObject[0]['draft_key'];
-<<<<<<< HEAD
-=======
 		$partyObjectKey = $partyObject[0]['registry_object_key'];
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 		// Build the RIF-CS from the posted data.
 		// =====================================================================
@@ -347,17 +334,7 @@ if( strtoupper(getPostedValue('verb')) == "SAVE" )
 				{
 					$errorMessages .= "Import Errors";
 				}
-<<<<<<< HEAD
-<<<<<<< HEAD
-				syncDraftKey($registryObjectKey, 'PUBLISH_MY_DATA');
-				queueSyncDataSource('PUBLISH_MY_DATA');
-=======
 				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				syncDraftKey($registryObjectKey, 'PUBLISH_MY_DATA');
-				queueSyncDataSource('PUBLISH_MY_DATA');
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				// Log the datasource activity.
 				insertDataSourceEvent($dataSourceKey, "ADD REGISTRY OBJECT\nKey: ".$registryObjectKey."\n".$resultMessage);
 			}

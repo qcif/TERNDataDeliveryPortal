@@ -31,12 +31,10 @@ $Revision: 1 $
 		foreach($d->{'description_type'} as $index=>$type){
 			if($type=='logo') $partners[$key]['logo']=$d->{'description_value'}[$index];
 			if($type=='full' || $type=='brief') {
-<<<<<<< HEAD
+
 				//$partners[$key]['full']='<h1><a href="search#!/q='.str_replace('-','',trim($d->{'displayTitle'})).'/tab=activity">'.$d->{'displayTitle'}.'</a></h1>'
                             $partners[$key]['full']='<h1><a href="search#!/q='.str_replace('-','',trim($d->{'display_title'})).'/tab=activity">'.$d->{'display_title'}.'</a></h1>'
-=======
-				$partners[$key]['full']='<h1><a href="search#!/q='.str_replace('-','',trim($d->{'displayTitle'})).'/tab=activity">'.$d->{'displayTitle'}.'</a></h1>'
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
 											.'<p><a href="'.$d->{'location'}[0].'" title="Visit Partner Portal">'.$d->{'location'}[0].'</a></p>'
 											.$d->{'description_value'}[$index];
 			}

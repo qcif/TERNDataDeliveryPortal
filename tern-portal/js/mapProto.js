@@ -41,11 +41,11 @@ function switchLayer(e,i,mapWidget){
 }
 
 $(document).ready(function() {
-<<<<<<< HEAD
+
    
     var mapWidget = initMapProto();
     $("#regionSelect").accordion({
-=======
+
    $("#regionTypeSelect").change(function(){
       $('#regionSelect').dropdownchecklist("destroy");
       $('#regionSelect').html($("#regionSelect" + $(this).val()).html());
@@ -53,7 +53,7 @@ $(document).ready(function() {
            
        });
      
-    var mapWidget = initMapProto();
+ 
     /*$("#regionSelect").accordion({
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         autoHeight: false, 
@@ -73,7 +73,7 @@ $(document).ready(function() {
     
 =======
     */
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
     $("button").bind('click', function() {
         if(mapWidget.getSelectedId()!=""){ 
             

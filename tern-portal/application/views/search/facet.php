@@ -35,12 +35,10 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 		}
 		//if($typeFilter!='All') displaySelectedFacet('type',$typeFilter,$json);
 		if($groupFilter!='All') displaySelectedFacet('group',$groupFilter,$json);
-<<<<<<< HEAD
+
 		//if($subjectFilter!='All') displaySelectedFacet('subject_value',$subjectFilter,$json);
                 if($subjectFilter!='All') displaySelectedFacet('subject_value_resolved',$subjectFilter,$json);
-=======
-		if($subjectFilter!='All') displaySelectedFacet('subject_value',$subjectFilter,$json);
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                 //if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
                  if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
                //   if($forsixFilter!='All') displaySelectedFacet('for_value_six',$forsixFilter,$json);
@@ -59,12 +57,10 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 	echo '</pre>';
 	*/
 	//displayFacet('type', $typeFilter, $json, $classFilter, $this);
-<<<<<<< HEAD
+
 	//displayFacet('subject_value', $subjectFilter, $json, $classFilter);
 displayFacet('subject_value_resolved', $subjectFilter, $json, $classFilter);
-=======
-	displayFacet('subject_value', $subjectFilter, $json, $classFilter);
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
        
         displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$json, $classFilter, $this);      
 

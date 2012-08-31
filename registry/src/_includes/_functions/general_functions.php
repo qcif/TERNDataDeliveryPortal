@@ -386,10 +386,7 @@ function compareLooseXMLEquivalent ($xmlFragment1, $xmlFragment2, $stripWhitespa
 	// Loosely assume fragments are equivalent
 	return true;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
+
 
 
 $BENCHMARK_TIME = array(0,0,0,0,0,0,0,0,0,0);
@@ -408,11 +405,6 @@ function bench($idx = 0)
 		return $diff;
 	}
 }
-<<<<<<< HEAD
+
 ?>
-=======
-?>
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-?>
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
+

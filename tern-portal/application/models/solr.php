@@ -28,11 +28,9 @@
 
 //    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0, $ternRegionFilter = 'All')
 
-<<<<<<< HEAD
+
     function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0,$ternRegionFilter='All', $num=10)
-=======
-    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0,$ternRegionFilter='All', $num = 10)
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
 
     {
         $q = $query;
@@ -52,12 +50,10 @@
         if ($groupFilter != 'All') 
             $filter_query .= constructFilterQuery('group', $groupFilter);     
         if ($subjectFilter != 'All')
-<<<<<<< HEAD
+
             //$filter_query .= constructFilterQuery('subject_value', $subjectFilter);
             $filter_query .= constructFilterQuery('subject_value_resolved', $subjectFilter);
-=======
-            $filter_query .= constructFilterQuery('subject_value', $subjectFilter);
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         if ($status != 'All')
             $filter_query .= constructFilterQuery('status', $status);
 
@@ -74,7 +70,7 @@
         if($adv == 0){ 
             if ($q != '*:*')
             $q = escapeSolrValue($q);
-<<<<<<< HEAD
+
         //$q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
         $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR display_title:(' . $q . ')^50 OR list_title:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value_resolved:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';    
         }
@@ -83,15 +79,7 @@
 
         $q.=($extended_query);
       
-=======
-        $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
-        }
-       $q.=$filter_query;
 
-        $q.=($extended_query);
-        if($sort!='score desc') $filter_query.='&sort='.$sort;
-       
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         //$filter_query .=$extended_query;//for spatial and temporal
         //$q .=$extended_query;//extended for spatial
         $fields = array(
@@ -102,11 +90,9 @@
         //print_r(urldecode($fields[q]));
         
 //        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&f.subject_value.facet.mincount=1&facet.sort=count';
-<<<<<<< HEAD
+
         $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value_resolved.facet.mincount=1&facet.sort=count';
-=======
-        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value.facet.mincount=1&facet.sort=count';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         /* prep */
         $fields_string = '';
         foreach ($fields as $key => $value)
@@ -165,12 +151,10 @@
         if ($groupFilter != 'All')
             $filter_query .= constructFilterQuery('group', $groupFilter);
         if ($subjectFilter != 'All')
-<<<<<<< HEAD
+
             //$filter_query .= constructFilterQuery('subject_value', $subjectFilter);
         $filter_query .= constructFilterQuery('subject_value_resolved', $subjectFilter);
-=======
-            $filter_query .= constructFilterQuery('subject_value', $subjectFilter);
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         if ($status != 'All')
             $filter_query .= constructFilterQuery('status', $status);
 
@@ -185,23 +169,19 @@
         //$q .=$extended_query;//extended for spatial
         $fields = array(
             'q' => $q, 'version' => '2.2', 'start' => $start, 'rows' => $row, 'wt' => $write_type,
-<<<<<<< HEAD
+
             //'fl' => 'spatial_coverage_center,displayTitle,key,score'
             'fl' => 'spatial_coverage_center,display_title,key,score'
-=======
-            'fl' => 'spatial_coverage_center,displayTitle,key,score'
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         );
         //if($filter_query!='') $fields['fq']=urlencode($filter_query);
         //print_r(urldecode($fields[q]));
  
 
         //$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&f.subject_value.facet.mincount=1&facet.sort=index';
-<<<<<<< HEAD
+
 $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value_resolved.facet.mincount=1&facet.sort=index';
-=======
-$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value.facet.mincount=1&facet.sort=index';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
 
         /* prep */
         $fields_string = '';
@@ -242,17 +222,13 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         $fields = array(
             'q' => 'key:"' . escapeSolrValue($key) . '"', 'version' => '2.2', 'start' => '0', 'indent' => 'on', 'wt' => 'json'
         );
-<<<<<<< HEAD
+
        // $filter_query = '+relatedObject_relatedObjectClass:("' . $class . '")';
          $filter_query = '+related_object_class:("' . $class . '")';
         if ($type)
             //$filter_query = '+relatedObject_relatedObjectType:("' . $type . '")';
             $filter_query = '+related_object_type:("' . $type . '")';
-=======
-        $filter_query = '+relatedObject_relatedObjectClass:("' . $class . '")';
-        if ($type)
-            $filter_query = '+relatedObject_relatedObjectType:("' . $type . '")';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         $fields['fq'] = $filter_query;
         $json = $this->fireSearch($fields, '');
         return $json;
@@ -262,17 +238,13 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
     {
         $fields = array(
             'q' => '*:*', 'version' => '2.2', 'start' => '0', 'rows' => '100', 'indent' => 'on', 'wt' => 'json',
-<<<<<<< HEAD
+
             //'fl' => 'relatedObject_key'
             'fl' => 'related_object_key'
         );
         //$filter_query = '+key:("' . $key . '")+relatedObject_relation:(';
         $filter_query = '+key:("' . $key . '")+related_object_relation:(';
-=======
-            'fl' => 'relatedObject_key'
-        );
-        $filter_query = '+key:("' . $key . '")+relatedObject_relation:(';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         $first = true;
         foreach ($relationType as $re)
         {
@@ -318,12 +290,10 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
              }
         }
         $fields = array(
-<<<<<<< HEAD
+
             //'q' => 'relatedObject_key:"' . $key . '"', 'version' => '2.2', 'rows' => '200000', 'start' => '0', 'indent' => 'on', 'wt' => 'json', 'fl' => 'key,class,type,data_source_key'
             'q' => 'related_object_key:"' . $key . '"', 'version' => '2.2', 'rows' => '200000', 'start' => '0', 'indent' => 'on', 'wt' => 'json', 'fl' => 'key,class,type,data_source_key'
-=======
-            'q' => 'relatedObject_key:"' . $key . '"', 'version' => '2.2', 'rows' => '200000', 'start' => '0', 'indent' => 'on', 'wt' => 'json', 'fl' => 'key,class,type,data_source_key'
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         );
 		$filter_query = '+class:("'.$class.'")';
 		if($type) $filter_query = '+type:("'.$type.'")'; 
@@ -441,10 +411,9 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
     {
         //get only the subjects of the registry object
         $ro = $this->getRegistryObjectSOLR($key, 'subject_value subject_type', 'json');
-<<<<<<< HEAD
+
         $ro = $this->getRegistryObjectSOLR($key, 'subject_value_resolved subject_type', 'json');
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         //loop through the subjects and construct the filter query
         return $ro;
     }
@@ -479,11 +448,9 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         if ($type == 'collection')
             $fields['fq'] = '+class:collection';
        // $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&facet.sort=index&facet.mincount=1';
-<<<<<<< HEAD
+
           $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value_resolved.facet.mincount=1&facet.sort=index';        
-=======
-          $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value.facet.mincount=1&facet.sort=index';        
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
 
         $json = $this->fireSearch($fields, $facet);
         return $json;
@@ -509,17 +476,13 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
          }
 
          $fields = array(
-<<<<<<< HEAD
+
             'q' => 'class:collection AND data_source_key:'.$fac, 'version' => '2.2', 'start' => '0', 'rows' => $num, 'indent' => 'on', 'wt' => 'json',
 //            'fl' => 'key,displayTitle,description_value,description_type', 'sort' => 'random_' . mt_rand(1,10000) . ' desc'
              'fl' => 'key,display_title,description_value,description_type', 'sort' => 'random_' . mt_rand(1,10000) . ' desc'
         );
          
-=======
-            'q' => 'class:collection and data_source_key:'.$fac, 'version' => '2.2', 'start' => '0', 'rows' => $num, 'indent' => 'on', 'wt' => 'json',
-            'fl' => 'key,displayTitle,description_value,description_type', 'sort' => 'random_' . mt_rand(1,10000) . ' desc'
-        );
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         $json = $this->fireSearch($fields, '');
 
         return $json;
@@ -537,19 +500,13 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         {
             $fields_string .= $key . '=' . $value . '&';
         }//build the string
-<<<<<<< HEAD
+
         $fields_string .= $facet; //add the facet bits              
 
         rtrim($fields_string, '&');
         $ch = curl_init();
         $solr_url = $this->config->item('solr_url');
 
-=======
-        $fields_string .= $facet; //add the facet bits
-        rtrim($fields_string, '&');
-        $ch = curl_init();
-        $solr_url = $this->config->item('solr_url');
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
         //set the url, number of POST vars, POST data
         curl_setopt($ch, CURLOPT_URL, $solr_url . 'select'); //post to SOLR
         curl_setopt($ch, CURLOPT_POST, count($fields)); //number of POST var
@@ -558,14 +515,11 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         $content = curl_exec($ch); //execute the curl
         //echo 'json received+<pre>'.$content.'</pre>';
         curl_close($ch); //close the curl
-<<<<<<< HEAD
+
         $json = json_decode($content);
         
    //     print_r ($content);
-=======
-     
-        $json = json_decode($content);
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         return $json;
     }
 

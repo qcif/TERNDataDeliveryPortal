@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php  $subject = NULL?>
 =======
 <?php  $subject = array (
@@ -16,4 +16,3 @@
   ),
   'UNCATEGORIZED' => 51,
 )?>
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794

@@ -116,10 +116,7 @@ class Search extends CI_Controller
 
     public function service()
     {//orca search service
-<<<<<<< HEAD
-        
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         $this->load->model('solr');
         $query = $this->input->post('query');
         $class = $this->input->post('class');
@@ -129,10 +126,7 @@ class Search extends CI_Controller
         $status = $this->input->post('status');
         $source_key = $this->input->post('source_key');
         
-<<<<<<< HEAD
-=======
-        
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         $sort="score desc";
         $adv=0;
         
@@ -202,12 +196,10 @@ class Search extends CI_Controller
             $relation_types2 = array('custodian', 'isManagedBy');
             echo '<pre>';
             print_r($relation =
-<<<<<<< HEAD
+
                     //$this->getRelatedObjects($r->{'relatedObject_key'}[$index],
                             $this->getRelatedObjects($r->{'related_object_key'}[$index],
-=======
-                    $this->getRelatedObjects($r->{'relatedObject_key'}[$index],
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                             $relation_types2));
             echo '</pre>';
         }
@@ -245,15 +237,12 @@ class Search extends CI_Controller
         $object = $this->solr->getObjects($related, null, null, null);
         if (isset($object->{'response'}->{'docs'}[0]))
         {
-<<<<<<< HEAD
+
             //$keyList = $object->{'response'}->{'docs'}[0]->{'relatedObject_key'};
             $keyList = $object->{'response'}->{'docs'}[0]->{'related_object_key'};
             //$relationshipList = $object->{'response'}->{'docs'}[0]->{'relatedObject_relation'};
             $relationshipList = $object->{'response'}->{'docs'}[0]->{'related_object_relation'};
-=======
-            $keyList = $object->{'response'}->{'docs'}[0]->{'relatedObject_key'};
-            $relationshipList = $object->{'response'}->{'docs'}[0]->{'relatedObject_relation'};
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
 
             for ($i = 0; $i < count($keyList); $i++)
             {
@@ -299,18 +288,16 @@ class Search extends CI_Controller
                  
                 foreach ($data[$class]['json'][0]->{'response'}->{'docs'} as $r)
                 {
-<<<<<<< HEAD
+
                     //$relatedNum = count($r->{'relatedObject_key'});
                     $relatedNum = count($r->{'related_object_key'});
-=======
-                    $relatedNum = count($r->{'relatedObject_key'});
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
 
                     $relatedKeys = '';
                     $relationship = '';
                     for ($i = 0; $i < $relatedNum; $i++)
                     {
-<<<<<<< HEAD
+
                         //if ($r->{'relatedObject_relatedObjectClass'}[$i] == $class)
                         if ($r->{'related_object_class'}[$i] == $class)
                         {
@@ -318,12 +305,7 @@ class Search extends CI_Controller
                             $relatedKeys[] = $r->{'related_object_key'}[$i];
                             //$data[$class]['relationship'][] = $r->{'relatedObject_relation'}[$i];
                             $data[$class]['relationship'][] = $r->{'related_object_relation'}[$i];
-=======
-                        if ($r->{'relatedObject_relatedObjectClass'}[$i] == $class)
-                        {
-                            $relatedKeys[] = $r->{'relatedObject_key'}[$i];
-                            $data[$class]['relationship'][] = $r->{'relatedObject_relation'}[$i];
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                         }
                     }
                 }
@@ -372,7 +354,7 @@ class Search extends CI_Controller
                 $relatedKeys = array();
                 foreach ($data[$types]['json'][0]->{'response'}->{'docs'} as $r)
                 {
-<<<<<<< HEAD
+
                     //$relatedNum = count($r->{'relatedObject_key'});
                     $relatedNum = count($r->{'related_object_key'});
                     $relatedKeys = '';
@@ -385,16 +367,7 @@ class Search extends CI_Controller
                             $relatedKeys[] = $r->{'related_object_key'}[$i];
                             //$data[$types]['relationship'][] = $r->{'relatedObject_relation'}[$i];
                             $data[$types]['relationship'][] = $r->{'related_object_relation'}[$i];
-=======
-                    $relatedNum = count($r->{'relatedObject_key'});
-                    $relatedKeys = '';
-                    for ($i = 0; $i < $relatedNum; $i++)
-                    {
-                        if ($r->{'relatedObject_relatedObjectType'}[$i] == $types)
-                        {
-                            $relatedKeys[] = $r->{'relatedObject_key'}[$i];
-                            $data[$types]['relationship'][] = $r->{'relatedObject_relation'}[$i];
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                         }
                     }
                 }
@@ -445,7 +418,7 @@ class Search extends CI_Controller
             $relatedKeys = array();
             foreach ($data['json']->{'response'}->{'docs'} as $r)
             {
-<<<<<<< HEAD
+
                 //$relatedNum = count($r->{'relatedObject_key'});
                 $relatedNum = count($r->{'related_object_key'});
                 $relatedKeys = '';
@@ -456,15 +429,7 @@ class Search extends CI_Controller
                     {
                         //$relatedKeys[] = $r->{'relatedObject_key'}[$i];
                         $relatedKeys[] = $r->{'related_object_key'}[$i];
-=======
-                $relatedNum = count($r->{'relatedObject_key'});
-                $relatedKeys = '';
-                for ($i = 0; $i < $relatedNum; $i++)
-                {
-                    if ($r->{'relatedObject_relatedObjectClass'}[$i] == $class)
-                    {
-                        $relatedKeys[] = $r->{'relatedObject_key'}[$i];
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                     }
                 }
             }
@@ -561,12 +526,10 @@ class Search extends CI_Controller
         {
             $temporal_array = explode('-', $temporal);
             //$extended_query .='+dateFrom:[' . $temporal_array[0] . ' TO *]+dateTo:[* TO ' . $temporal_array[1] . ']';
-<<<<<<< HEAD
+
              //$extended_query .='+dateFrom:[* TO '. $temporal_array[1].']+dateTo:['.$temporal_array[0] . ' TO *]';
               $extended_query .='+date_from:[* TO '. $temporal_array[1].']+date_to:['.$temporal_array[0] . ' TO *]';
-=======
-             $extended_query .='+dateFrom:[* TO '. $temporal_array[1].']+dateTo:['.$temporal_array[0] . ' TO *]';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         }
 
         //echo $query;
@@ -653,12 +616,10 @@ class Search extends CI_Controller
         if ($temporal != 'All')
         {
             $temporal_array = explode('-', $temporal);
-<<<<<<< HEAD
+
             //$extended_query .='+dateFrom:[* TO '. $temporal_array[1].']+dateTo:['.$temporal_array[0] . ' TO *]';
             $extended_query .='+date_from:[* TO '. $temporal_array[1].']+date_to:['.$temporal_array[0] . ' TO *]';
-=======
-            $extended_query .='+dateFrom:[* TO '. $temporal_array[1].']+dateTo:['.$temporal_array[0] . ' TO *]';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
         }
 
         /* Search Part */
@@ -769,12 +730,10 @@ class Search extends CI_Controller
         if ($temporal != 'All')
         {
             $temporal_array = explode('-', $temporal);
-<<<<<<< HEAD
+
             //$extended_query .='+dateFrom:[* TO '. $temporal_array[1].']+dateTo:['.$temporal_array[0] . ' TO *]';
             $extended_query .='+date_from:[* TO '. $temporal_array[1].']+date_to:['.$temporal_array[0] . ' TO *]';
-=======
-            $extended_query .='+dateFrom:[* TO '. $temporal_array[1].']+dateTo:['.$temporal_array[0] . ' TO *]';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
        }
 
 

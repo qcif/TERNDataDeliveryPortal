@@ -110,15 +110,7 @@ else
 		print("<!-- Data Source -->\n");
 		print("<p class=\"resultListItem\">\n");
 		print("<a href=\"data_source_view.php?data_source_key=".urlencode($dataSourceKey)."\" title=\"Click to view details\">".esc($dataSourceTitle).'</a>'."\n");
-<<<<<<< HEAD
-<<<<<<< HEAD
-		print('<br />'."<span class=\"resultListItemLabel\">Published Records:</span> ".esc($numRegistryObjects).' <a href="../search.php?source_key='.esc(urlencode($dataSourceKey)).'&amp;collections=collection&amp;services=service&amp;parties=party&amp;activities=activity&amp;search=&amp;action=Search">List Records</a>'."\n");
-=======
 		print('<br />'."<span class=\"resultListItemLabel\">Records From Source:</span> ".esc($numRegistryObjects).' <a href="../search.php?source_key='.esc(urlencode($dataSourceKey)).'&amp;collections=collection&amp;services=service&amp;parties=party&amp;activities=activity&amp;search=&amp;action=Search">List Records</a>'."\n");
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-		print('<br />'."<span class=\"resultListItemLabel\">Published Records:</span> ".esc($numRegistryObjects).' <a href="../search.php?source_key='.esc(urlencode($dataSourceKey)).'&amp;collections=collection&amp;services=service&amp;parties=party&amp;activities=activity&amp;search=&amp;action=Search">List Records</a>'."\n");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		print('<br />'."<span class=\"resultListItemLabel\">Key:</span> ".esc($dataSourceKey)."\n");
 		print('<br />'."<span class=\"resultListItemLabel\">URI:</span> ".esc($uri)."\n");
 		print('<br />'."<span class=\"resultListItemLabel\">Provider Type:</span> ".esc($providerType)."\n");

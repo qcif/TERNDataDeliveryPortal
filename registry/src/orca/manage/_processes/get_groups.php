@@ -13,15 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 *******************************************************************************/
-<<<<<<< HEAD
-<<<<<<< HEAD
-//if (!IN_ORCA) die('No direct access to this file is permitted.');
-=======
 if (!IN_ORCA) die('No direct access to this file is permitted.');
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-//if (!IN_ORCA) die('No direct access to this file is permitted.');
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 // Execute the search.
 $rawResults = getDataSources(null, null);
@@ -34,15 +26,7 @@ if( $rawResults )
 	{
 		if( (userIsDataSourceRecordOwner($dataSource['record_owner']) || userIsORCA_ADMIN()) )
 		{
-<<<<<<< HEAD
-<<<<<<< HEAD
-			$dataSources[] = esc($dataSource["data_source_key"]);
-=======
 			$dataSources[] = $dataSource["data_source_key"];
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-			$dataSources[] = esc($dataSource["data_source_key"]);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		}		
 	}
 }

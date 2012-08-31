@@ -249,14 +249,6 @@ require '_includes/header.php';
 			</form>
 		<?php } ?>	
 <?php } else { ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<!-- WHY is even a TABLLEEE?!-->
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	<!-- WHY is even a TABLLEEE?!-->
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	<table class="formTable" summary="layout" style="margin: 0px;">
 		<tbody>
 			<tr>
@@ -266,54 +258,6 @@ require '_includes/header.php';
 				
 				<p>You can <i>Logout</i> using the link at the upper left.</p></td>
 			</tr>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-			<tr>
-				<td style="width:100px"></td>
-				<td>
-					<?php 
-//Chrome Frame message
-// We test the user browser and the presence of the Chrome Frame plug-in
-$message = '<div style="padding: 10px;border: 1px solid #444;margin: 0px -10px;">
-			The ANDS Registry is optimised for use in modern web browsers (such as <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Firefox</a>, <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a> and <a href="http://windows.microsoft.com/en-AU/internet-explorer/products/ie/home" target="_blank">Internet Explorer 9+</a>).<br/>
-			We have detected that you may be using an <b>older</b> browser. <br/>
-			<br/>
-			Whilst we strongly recommend upgrading to one of the modern browsers listed above, <br/>
-			you can also experience similar performance by enabling the <a href="http://www.google.com/chromeframe/?user=true&quickenable=true?redirect=true" target="_blank">Google Chrome extension for Internet Explorer</a><sub>[1]</sub>.<br/> 
-			<br/>
-			ANDS continues to support Internet Explorer 7 & 8,0 however some features may degrade in performance when using these browsers.<br/>
-			<br/>
-			Please contact <a href="mailto:services@ands.org.au">services@ands.org.au</a> for further information.<br/>
-			<br/>
-			<sub>[1] Google Chrome Frame is a free extension that seamlessly brings many features of modern browsers to Internet Explorer. <br/>
-			Google Chrome Frame can usually be enabled on systems where upgrading to a modern browser is not possible (such as corporate networks). <br/>
-			Google Chrome is used by more than 30% of the world\'s internet users and provides state-of-the-art web technologies and improved browser security. <br/></sub>
-
-			</div>';
-if ( stristr($_SERVER['HTTP_USER_AGENT'], 'chromeframe') ) {
-	//chrome frame is installed
-}elseif ( strstr($_SERVER['HTTP_USER_AGENT'], '; MSIE 6') ) {
-	print $message;
-} elseif ( strstr($_SERVER['HTTP_USER_AGENT'], '; MSIE 7') ) {
-	print $message;
-} elseif ( strstr($_SERVER['HTTP_USER_AGENT'], '; MSIE 8' ) ) {
-	print $message;
-} elseif ( strstr($_SERVER['HTTP_USER_AGENT'], '; MSIE 9' ) ) {
-	//print $message;
-} else {//good browser
-	//nothing to do here, move along
-	//print $message;
-}
-					?>
-				</td>
-			</tr>
-<<<<<<< HEAD
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		</tbody>
 	</table>	
 <?php } ?>

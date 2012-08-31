@@ -15,34 +15,22 @@ limitations under the License.
 */
 /*======================================
 	- Modify This File
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-	- And the .htaccess file inside the RDA folder
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ======================================*/
 
 /*====================================
 	LOCAL WEB SERVER ENVIRONMENT
 ====================================*/
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-$host 				= 'devl.ands.org.au';
+$host 				= 'demo';
 $default_protocol	= 'http';
-$cosi_root 			= 'workareas/minh/ands/registry/src';
+$cosi_root 			= 'admin';
 $orca_root 			= $cosi_root.'/orca';
-$rda_root 			= $orca_root.'/rda';
-<<<<<<< HEAD
+$rda_root 			= '';
 
 //======================================
-$solr_url 			= 'http://devl.ands.org.au:8080/solr1/';
+$solr_url 			= 'http://demo:8080/orca-solr/';
 $datacite_solr_url 	= 'http://search.datacite.org/api';
-$harvest_url		= '';
-$harvester_ip 		= '';
+$harvest_url		= 'https://demo:8443/harvester/';
+$harvester_ip 		= '192.168.56.100';
 $harvest_ip			= $harvester_ip;
 $pids_url			= "https://devl.ands.org.au:8443/pids/";
 $pids_app_id		= '';
@@ -57,13 +45,13 @@ $error 				= false;
 /*====================================
         DATABASE ENVIRONMENT
 ====================================*/
-$cosi_db_host = 'devl.ands.org.au';
+$cosi_db_host = 'localhost';
 $cosi_db_port = 5432;
-$cosi_db_name = 'dbs_develop_cosi';
+$cosi_db_name = 'dbs_cosi';
 //======================================
 $orca_db_host = $cosi_db_host;
 $orca_db_port = $cosi_db_port;
-$orca_db_name = 'dbs_develop_orca';
+$orca_db_name = 'dbs_orca';
 //======================================
 $pids_db_host = $cosi_db_host;
 $pids_db_port = $cosi_db_port;
@@ -82,9 +70,9 @@ define("eAPP_TITLE", "Minh Workarea");
 // The name of this installed instance of the application.
 // eINSTANCE_TITLE_SHORT will be used in the window title.
 // eINSTANCE_TITLE will be used as the logo alt/title.
-define("eINSTANCE_TITLE", "Minh");
-define("eINSTANCE_TITLE_SHORT", "Minh");
-define("eCONTACT_EMAIL", "minh.nguyen@ands.org.au");
+define("eINSTANCE_TITLE", "Yi");
+define("eINSTANCE_TITLE_SHORT", "Yi");
+define("eCONTACT_EMAIL", "y14.sun@qut.edu.au");
 define("eCONTACT_NAME", "Feedback");
 define("eCOPYRIGHT_NOTICE", "copyright notice goes here");
 // Session will expire/timeout after this period of inactivity 
@@ -100,82 +88,6 @@ date_default_timezone_set('Australia/Canberra');
 // MAINTENANCE & IP FILTER
 $maintenance = false;
 //======================================
-=======
-$host 			= 'devl.ands.org.au';
-$default_protocol	= 'https';
-$cosi_root 		= 'workareas/minh/ands/registry/src';
-$orca_root 		= $cosi_root.'/orca';
-$rda_root 		= $orca_root.'/rda';
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-
-//======================================
-$solr_url 			= 'http://devl.ands.org.au:8080/solr1/';
-$datacite_solr_url 	= 'http://search.datacite.org/api';
-$harvest_url		= '';
-$harvester_ip 		= '';
-$harvest_ip			= $harvester_ip;
-$pids_url			= "https://devl.ands.org.au:8443/pids/";
-$pids_app_id		= '';
-
-//======================================
-$deploy_as			= 'DEVELOPMENT';
-$rda_environment	= 'development';
-$doi_environment	= 'development';
-$debug 				= false;
-$error 				= false;
-
-/*====================================
-        DATABASE ENVIRONMENT
-====================================*/
-$cosi_db_host = 'devl.ands.org.au';
-$cosi_db_port = 5432;
-$cosi_db_name = 'dbs_develop_cosi';
-//======================================
-$orca_db_host = $cosi_db_host;
-$orca_db_port = $cosi_db_port;
-$orca_db_name = 'dbs_develop_orca';
-//======================================
-$pids_db_host = $cosi_db_host;
-$pids_db_port = $cosi_db_port;
-$pids_db_name = 'pids';
-//======================================
-$dois_db_host = $cosi_db_host;
-$dois_db_port = $cosi_db_port;
-$dois_db_name = 'dois';
-//======================================
-
-<<<<<<< HEAD
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-//=====================================
-// APPLICATION VARIABLES
-//=====================================
-define("eAPP_TITLE", "Minh Workarea");
-// The name of this installed instance of the application.
-// eINSTANCE_TITLE_SHORT will be used in the window title.
-// eINSTANCE_TITLE will be used as the logo alt/title.
-define("eINSTANCE_TITLE", "Minh");
-define("eINSTANCE_TITLE_SHORT", "Minh");
-define("eCONTACT_EMAIL", "minh.nguyen@ands.org.au");
-define("eCONTACT_EMAIL_FROM", "ands.orca@gmail.com");
-define("eCONTACT_NAME", "Feedback");
-define("eCOPYRIGHT_NOTICE", "copyright notice goes here");
-// Session will expire/timeout after this period of inactivity 
-// (ie if there have been no requests in that time).
-$gSessionTimeoutMinutes = 120;
-//Application ROOT defines the current directory of COSI
-define('eAPPLICATION_ROOT', dirname(__FILE__) . "/");
-date_default_timezone_set('Australia/Canberra');
-
-
-
-//======================================
-// MAINTENANCE & IP FILTER
-$maintenance = false;
-//======================================
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 //White List IP are IPs that are allowed to access the system regardless of maitenance status
 $white_list_ip 	= array(
 	'xx.xx.xx.xx'
@@ -183,15 +95,7 @@ $white_list_ip 	= array(
 //Black List IP are IPs that are not allowed to access the system
 $black_list_ip 	= array();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 //Find the IP
-=======
-
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-//Find the IP
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 if ( isset($_SERVER["HTTP_X_FORWARDED_FOR"]) )    {
 $ip=$_SERVER["HTTP_X_FORWARDED_FOR"];
 } else if ( isset($_SERVER["HTTP_CLIENT_IP"]) )    {
@@ -199,17 +103,8 @@ $ip=$_SERVER["HTTP_CLIENT_IP"];
 } else if ( isset($_SERVER["REMOTE_ADDR"]) )    {
 $ip=$_SERVER["REMOTE_ADDR"];
 } 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 //Filter the IP
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-//Filter the IP
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 if($maintenance & !in_array($ip, $white_list_ip)){
 	print("<html><body>");
 	print("<center><div style='border:1px solid #C7D7BA; width:400px;'>");
@@ -219,10 +114,6 @@ if($maintenance & !in_array($ip, $white_list_ip)){
 	exit;	
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 //DEBUG SET (USEFUL WHEN DEBUGGING PRODUCTION ENVIRONMENT
 $testers_list_ip 	= array(
 	'xx.xx.xx.xx'
@@ -233,7 +124,6 @@ if(in_array($ip, $testers_list_ip)){
 	$error 				= true;	
 }  
 
-<<<<<<< HEAD
 
 /*====================================
         LDAP AUTHENTICATION SERVER (optional)
@@ -242,31 +132,12 @@ if(in_array($ip, $testers_list_ip)){
 // These will be used by user roles that specify AUTHENTICATION_LDAP.
 $eLDAPHost = "ldap://ldap.anu.edu.au";
 $eLDAPPort = 389; //636 | 389
-=======
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-
-/*====================================
-        LDAP AUTHENTICATION SERVER (optional)
-====================================*/
-// -----------------------------------------------------------------------------
-// These will be used by user roles that specify AUTHENTICATION_LDAP.
-<<<<<<< HEAD
-$eLDAPHost = "ldaps://ldap.anu.edu.au"; 
-$eLDAPPort = 636; //636 | 389
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-$eLDAPHost = "ldap://ldap.anu.edu.au";
-$eLDAPPort = 389; //636 | 389
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 // The resource distinguished name.
 // The string @@ROLE_ID@@ will be replace with the user role_id, and escaped
 // for LDAP reserved characters before the bind is attempted.
 $eLDAPBaseDN = "ou=People, o=anu.edu.au";
 $eLDAPuid = "uid=@@ROLE_ID@@";
 $eLDAPDN = "$eLDAPuid, $eLDAPBaseDN";
-<<<<<<< HEAD
-<<<<<<< HEAD
 $eShibbolethSessionInitiator = "Login";
 
 
@@ -316,7 +187,7 @@ define('eCACHE_ENABLED', $gCacheEnabled);
 
 //======================================
 // TASK MANAGEMENT
-$gearman_server = 'localhost';
+$gearman_server = '127.0.0.1';
 
 //======================================
 // INDEXING OPTIONS
@@ -383,128 +254,4 @@ $subjects_categories = array(
 			)
 		
 );
-=======
-=======
-$eShibbolethSessionInitiator = "Login";
-
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-
-
-/*====================================
-			DOI ENVIRONMENTS
-====================================*/
-define('gDOIS_DATACENTRE_BASE_URI', "https://mds.datacite.org/datacentre");
-define('gDOIS_DATACENTRE_USERNAME', "***");
-define('gDOIS_DATACENTRE_PASSWORD', "***");
-define('gDOIS_DATACENTRE_NAME_PREFIX', "ANDS");
-define('gDOIS_DATACENTRE_NAME_MIDDLE', "CENTRE");  //for production
-$gDOIS_PREFIX_TYPES = array( '10.4225/','10.4226/','10.4227/','10.5072/');
-
-// Service configuration.
-define('gDOIS_SERVICE_BASE_URI', "https://mds.datacite.org/");
-define('gDOIS_DATACITE_PASSWORD', "****");
-define('gDOIS_RESPONSE_SUCCESS', 'OK');
-$dataciteSchema['2.0'] = 'http://schema.datacite.org/meta/kernel-2.0/metadata.xsd';
-$dataciteSchema['2.1'] = 'http://schema.datacite.org/meta/kernel-2.1/metadata.xsd';
-$dataciteSchema['2.2'] = 'http://schema.datacite.org/meta/kernel-2.2/metadata.xsd';
-
-
-
-/*====================================
-			VOCAB ENVIRONMENTS
-====================================*/
-$gVOCAB_RESOLVER_SERVICE =  array(
-	'anzsrc-for' => array('resolvingService' => 'http://devl.ands.org.au:8080/sissvoc/api/anzsrc-for/', 'uriprefix' => 'http://purl.org/au-research/vocabulary/anzsrc-for/2008/'),
-	'anzsrc-for2' => array('resolvingService' => 'http://devl.ands.org.au:8080/sissvoc/api/anzsrc-for/', 'uriprefix' => 'http://purl.org/au-research/vocabulary/anzsrc-for/2008/')
-);
-$gVOCAB_RESOLVER_RESULTS = array();
-// maybe one day :-) 'local' => array('resolvingService' => 'http://devl.ands.org.au:8080/sissvoc/api/anzsrc-for/', 'uriprefix' => 'http://purl.org/au-research/vocabulary/anzsrc-for/2008/'));
-
-
-
-//======================================
-// CACHING OPTIONS
-$gCacheEnabled = true; // is caching enabled?
-//======================================
-define('eCACHE_DIRECTORY', '/var/www/orca_' . 'cache'); // what directory do we store our cache files in? (relative)
-define('eCACHE_CURRENT_NAME','current'); // what filename do we use for the latest version symlink
-define('eCACHE_PERMISSION',0775); // octal representation of default directory permissions
-$gCacheExtended = true; // are we caching "extended RIFCS" (rich) or plain vanilla? (not backwards compatible)
-define('eCACHE_ENABLED', $gCacheEnabled);
-
-//======================================
-// TASK MANAGEMENT
-$gearman_server = 'localhost';
-
-//======================================
-// INDEXING OPTIONS
-define('eBOOST_DEFAULT_BASE', 100);
-define('eBOOST_RELATED_OBJECT_ADJUSTMENT', 5);
-define('eBOOST_INCOMING_RELATED_OBJECT_ADJUSTMENT', 10);
-
-<<<<<<< HEAD
-define('eAPPLICATION_ROOT', dirname(__FILE__) . "/");
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-//======================================
-// WARNING NOTICES
-$enable_warning_notices		= true;
-$warning_notices 			= 'Demonstration Environment ONLY';
-
-//======================================
-// GOOGLE ANALYTICS (enable FOR PRODUCTION ONLY)
-$enable_google_analytic		= false;
-$google_analytic_code		= 'UA-8380487-7'; //FOR PRODUCTION ONLY
-
-// BACKGROUND TASK VARIABLE
-$runningInBackgroundTask = false;
-
-//======================================
-// SUBJECT CATEGORIES for FACET SEARCHING
-$subjects_categories = array(
-	'keywords' 
-		=> array(
-			'display' => 'Keywords',
-			'list'=> array('anzlic-theme', 'australia', 'caab', 'external_territories', 'cultural_group', 'DEEDI eResearch Archive Subjects', 'ISO Keywords', 'iso639-3', 'keyword', 'Local', 'local', 'marlin_regions', 'marlin_subjects', 'ocean_and_sea_regions', 'person_org', 'states/territories', 'Subject Keywords')
-			),
-	'scot' 
-		=> array(
-			'display' => 'Schools of Online Thesaurus',
-			'list' => array('scot')
-			),
-	'pont' 
-		=> array(
-			'display' => 'Powerhouse Museum Object Name Thesaurus',
-			'list' => array('pmont', 'pont')
-			),
-		
-	'psychit' 
-		=> array(
-			'display' => 'Thesaurus of psychological index terms',
-			'list' => array('Psychit', 'psychit')
-			),
-	'anzsrc' 
-		=> array(
-			'display' => 'ANZSRC',
-			'list' => array('ANZSRC', 'anzsrc', 'anzsrc-rfcd', 'anzsrc-seo', 'anzsrc-toa')
-			),
-	'apt' 
-		=> array(
-			'display' => 'Australian Pictorial Thesaurus',
-			'list' => array('apt')
-			),
-	'gcmd' 
-		=> array(
-			'display' => 'GCMD Keywords',
-		'list' => array('gcmd')
-			),
-	'lcsh' 
-		=> array(
-			'display' => 'LCSH',
-			'list' => array('lcsh')
-			)
-		
-);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>

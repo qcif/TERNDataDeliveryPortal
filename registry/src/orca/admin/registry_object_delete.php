@@ -25,15 +25,7 @@ $registryObjectKey = null;
 $dataSourceKey = null;
 $registryObjectRecordOwner = null;
 $registryObjectDataSourceRecordOwner = null;
-<<<<<<< HEAD
-<<<<<<< HEAD
-$dataSource = null;
-=======
 
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-$dataSource = null;
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 if( !$registryObject )
 {
 	responseRedirect('../manage/my_records.php');
@@ -67,35 +59,13 @@ if( strtoupper(getPostedValue('action')) == "DELETE" )
 	if( $result != '' )
 	{
 		$actions = '    '.$result;
-<<<<<<< HEAD
-<<<<<<< HEAD
-		
-	}
-	$actions .= deleteSolrHashKey(sha1($registryObjectKey));
-    $actions .= queueSyncDataSource($dataSourceKey);
-=======
 	}
 	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-		
-	}
-	$actions .= deleteSolrHashKey(sha1($registryObjectKey));
-    $actions .= queueSyncDataSource($dataSourceKey);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// Log the datasource activity.
 	insertDataSourceEvent($dataSourceKey, "DELETE REGISTRY OBJECT\nKey: ".$registryObjectKey."\n  ACTIONS\n".$actions);
 	
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-	responseRedirect('../manage/my_records.php?data_source='.esc($dataSourceKey));
-=======
 	responseRedirect('../manage/my_records.php');
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	responseRedirect('../manage/my_records.php?data_source='.esc($dataSourceKey));
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 // -----------------------------------------------------------------------------
 // Begin the XHTML response. Any redirects must occur before this point.
@@ -107,19 +77,7 @@ if( $registryObject )
 	
 	$registryObjectClass = $registryObject[0]['registry_object_class'];
 	$registryObjectType = $registryObject[0]['type'];
-<<<<<<< HEAD
-<<<<<<< HEAD
-	$dataSourceTitle = $dataSource[0]['title'];
-	
-	
-=======
 	$dataSourceTitle = $registryObject[0]['data_source_title'];
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	$dataSourceTitle = $dataSource[0]['title'];
-	
-	
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>
 
 <form id="registry_object_delete" action="registry_object_delete.php?key=<?php printSafe(urlencode($registryObjectKey)) ?>" method="post">

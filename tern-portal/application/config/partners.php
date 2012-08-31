@@ -17,11 +17,9 @@
             "wt": "json",
             "rows": "1",
             "version": "2.2",
-<<<<<<< HEAD
+
             "fl": "description_value, description_type, key, display_title, location",
-=======
-            "fl": "description_value, description_type, key, displayTitle, location",
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
             "start": "0",
             "q": "group:(\"Facilities\")",
             "qt": "",
@@ -34,11 +32,9 @@
         "docs": [
             {
                 "key": "tddp",
-<<<<<<< HEAD
+
                 "display_title": "TERN Data Discovery Portal",
-=======
-                "displayTitle": "TERN Data Discovery Portal",
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                 "alt_name": "Terrestial Ecosystem Data",                 
                 "query_name": "TERN Data Discovery Portal", 
                 "description_type": [
@@ -54,11 +50,9 @@
         
         {
                 "key": "auscover",
-<<<<<<< HEAD
+
                 "display_title": "Auscover",
-=======
-                "displayTitle": "Auscover",
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                 "alt_name": "Satellite Biophysical Data",
                 "query_name": "Auscover",  
                 "description_type": [
@@ -73,11 +67,9 @@
             },
             {
                 "key": "ozflux",
-<<<<<<< HEAD
+
                 "display_title": "OzFlux",
-=======
-                "displayTitle": "OzFlux",
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                 "alt_name": "Carbon Dioxide, Energy & Water fluxes",
                 "query_name": "OzFlux: Australian and New Zealand Flux Research and Monitoring",                 
                 "description_type": [
@@ -92,11 +84,9 @@
             },
             {
                 "key": "mspn",
-<<<<<<< HEAD
+
                 "display_title": "Multi Scale Plot Network",
-=======
-                "displayTitle": "Multi Scale Plot Network",
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                 "alt_name": "Flora and fauna plots",  
                 "query_name": "mspn",                 
                  "description_type": [
@@ -112,11 +102,9 @@
             },
             {
                 "key": "supersites",             
-<<<<<<< HEAD
+
                 "display_title": "Australian Supersite Network",
-=======
-                "displayTitle": "Australian Supersite Network",
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                 "alt_name": "Biogeochemical and Ecological Data", 
                 "query_name": "TERN Supersites",                 
                 "description_type": [
@@ -131,11 +119,9 @@
             },
             {
                 "key": "soil",
-<<<<<<< HEAD
+
                 "display_title": "Soil and Landscape Grid",
-=======
-                "displayTitle": "Soil and Landscape Grid",
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                 "alt_name": "Soils & Landform Data", 
                 "query_name": "soil",                 
                 "description_type": [
@@ -150,11 +136,9 @@
             },            
             {
                 "key": "coastal",
-<<<<<<< HEAD
+
                 "display_title": "Australian Coastal Ecosystems",
-=======
-                "displayTitle": "Australian Coastal Ecosystems",
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                 "alt_name": "Coastal Zone Data", 
                 "query_name": "coastal",               
                 "description_type": [
@@ -169,11 +153,9 @@
             },
             {
                 "key": "ecoinformatics",
-<<<<<<< HEAD
+
                 "display_title": "Ecoinformatics",
-=======
-                "displayTitle": "Ecoinformatics",
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                 "alt_name": "Ecological Data",    
                 "query_name": "Ecoinformatics", 
                  "description_type": [
@@ -188,11 +170,9 @@
             },
             {
                 "key": "emast",
-<<<<<<< HEAD
+
                 "display_title": "Ecosystem Modelling and Scaling Infrastructure",
-=======
-                "displayTitle": "Ecosystem Modelling and Scaling Infrastructure",
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                 "alt_name": "Ecosystem Modelling Tools",  
                 "query_name": "eMast", 
                 "description_type": [
@@ -207,11 +187,9 @@
             } ,
             {
                 "key": "aceas",
-<<<<<<< HEAD
+
                 "display_title": "Australian Centre for Ecological Analysis and Synthesis",
-=======
-                "displayTitle": "Australian Centre for Ecological Analysis and Synthesis",
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
                 "alt_name": "Science and Management Synthesis", 
                 "query_name": "TERN Data Discovery Portal", 
                 "description_type": [

@@ -33,11 +33,7 @@
 
 	function xml(){	
 		global $api_version;		
-<<<<<<< HEAD
-		$xml = ''; $error = '';
-=======
 		$xml = '';
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$debug = $this->input->get('debug');
 		
 		if($debug && $debug == 'true')	
@@ -51,20 +47,11 @@
 		if(!$response_type)	$response_type = 'string';		
 		$api_version = $this->input->get('api_version');
 		if(!$api_version)	$api_version = '1.0';	
-<<<<<<< HEAD
-		
-		if(!$doi_id)
-		{
-			$error = doisGetUserMessage("MT010", $doi_id ,$response_type,$app_id=NULL, "You must provide the doi value to obtain it's xml",$urlValue=NULL);
-		}	
-		if(!$error)
-=======
 		if(!$doi_id)
 		{
 			$xml = doisGetUserMessage("MT010", $doi_id ,$response_type,$app_id=NULL, "You must provide the doi value to obtain it's xml",$urlValue=NULL);
 		}	
 		if($xml=='')
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		{
 			$doidata = getxml($doi_id);		
 			if($doidata->num_rows() > 0){			
@@ -72,53 +59,18 @@
 				{
 					if($row->status=='ACTIVE')
 					{
-<<<<<<< HEAD
-						$xml = $row->datacite_xml;							
-					}else{				
-						$error = doisGetUserMessage("MT012", $doi_id, $response_type,$app_id=NULL, "",$urlValue=NULL);
-=======
 						$xml = $row->datacite_xml;
 						header('Content-type: text/xml');											
 					}else{				
 						$xml = doisGetUserMessage("MT012", $doi_id, $response_type,$app_id=NULL, "",$urlValue=NULL);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					}
 				}
 
 			}else{			
-<<<<<<< HEAD
-				$error = doisGetUserMessage("MT011", $doi_id, $response_type,$app_id=NULL, "",$urlValue=NULL);		
-			}	
-		}
-		
-		if ($error)
-		{
-			echo $error;
-		}
-		elseif ($response_type == "json")
-		{
-			// Backwards compatible fix for CC-213 to address XML geting returned as unwrapped XML (even when JSON requested)
-			header('Content-type: application/json');
-			echo doisGetUserMessage("MT013", $doi_id, $response_type, NULL, $xml, NULL);
-		}
-		elseif ($response_type == "xml")
-		{
-			// Keep existing behaviour for backwards compatibility
-			header('Content-type: text/xml');
-			echo $xml;
-		}
-		elseif ($response_type == "string")
-		{
-			echo $xml;
-		}
-		
-		
-=======
 				$xml = doisGetUserMessage("MT011", $doi_id, $response_type,$app_id=NULL, "",$urlValue=NULL);		
 			}	
 		}
 		echo $xml;
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	
 	function update(){
@@ -132,8 +84,7 @@
 		$outstr = '';
 		$doiObjects = null;
 		$response1 = "OK";
-		$response2 = "OK";
-		$testing = 'no';	
+		$response2 = "OK";	
 
 		$debug = $this->input->get('debug');
 		
@@ -142,11 +93,6 @@
 			$this->debugOn();
 		}		
 		$app_id = $this->input->get('app_id');		//passed as a parameter
-		if(substr($app_id,0,4)=='TEST')
-		{
-			$app_id = substr($app_id,4,strlen($app_id));
-			$testing = 'yes';
-		}
 		$urlValue = $this->input->get('url');		//passed as a parameter
 		$urlValue = rawurldecode($urlValue);
 		$doiValue = $this->input->get('doi');		//passed as a parameter
@@ -294,8 +240,7 @@
 	
 	function mint(){
 		global $dataciteSchema;
-		global $api_version;	
-		global $gDOIS_PREFIX_TYPES;			
+		global $api_version;				
 		if ( isset($_SERVER["HTTP_X_FORWARDED_FOR"]) )    {
 			$ip=$_SERVER["HTTP_X_FORWARDED_FOR"];
 		} else if ( isset($_SERVER["HTTP_CLIENT_IP"]) )    {
@@ -317,7 +262,6 @@
 		$doiValue = '';
 		$verbosemessage = '';
 		$errors = '';
-		$testing = 'no';
 		$doiObjects = null;
 		$response1 = "OK";
 		$response2 = "OK";	
@@ -329,13 +273,8 @@
 		}
 		
 		$app_id = $this->input->get('app_id');		//passed as a parameter
-		if(substr($app_id,0,4)=='TEST')
-		{
-			$app_id = substr($app_id,4,strlen($app_id));
-			$testing = 'yes';
-		}
 		$urlValue = $this->input->get('url');		//passed as a parameter
-		$urlValue = rawurldecode($urlValue);
+		$urlValue = rawurldecode($doiValue);
 		$response_type = $this->input->get('response_type');
 		if(!$response_type) $response_type = 'string';		
 		$api_version = $this->input->get('api_version');
@@ -352,11 +291,7 @@
 		}
 		if($errorMessages == '')
 		{
-<<<<<<< HEAD
 			$client_id = checkDoisValidClient($ip,$app_id);
-=======
-			$client_id = checkDoisValidClient($ip,trim($app_id));
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			
 			if(!$client_id)
 			{
@@ -389,13 +324,7 @@
 					$client_id2 = $clientDetail->client_id;
 				}
 			}
-			if($testing=='yes')
-			{
-				$datacite_prefix = $gDOIS_PREFIX_TYPES[3];
-			}else{
-				$datacite_prefix = $clientDetail->datacite_prefix;
-			}
-
+			$datacite_prefix = $clientDetail->datacite_prefix;
 				
 			$doiValue = strtoupper($datacite_prefix.$client_id2.'/'.uniqid());	//generate a unique suffix for this doi for this client 
 			
@@ -561,11 +490,6 @@
 			$this->debugOn();
 		}
 		$app_id = $this->input->get('app_id');		//passed as a parameter
-		if(substr($app_id,0,4)=='TEST')
-		{
-			$app_id = substr($app_id,4,strlen($app_id));
-			$testing = 'yes';
-		}
 		$doiValue = $this->input->get('doi');		//passed as a parameter	
 		$doiValue = rawurldecode($doiValue);
 		$response_type = $this->input->get('response_type');		//passed as a parameter			
@@ -701,11 +625,6 @@
 			$this->debugOn();
 		}
 		$app_id = $this->input->get('app_id');		//passed as a parameter
-		if(substr($app_id,0,4)=='TEST')
-		{
-			$app_id = substr($app_id,4,strlen($app_id));
-			$testing = 'yes';
-		}
 		$doiValue = $this->input->get('doi');		//passed as a parameter	
 		$doiValue = rawurldecode($doiValue);
 		$response_type = $this->input->get('response_type');		//passed as a parameter			
@@ -829,7 +748,7 @@
 			}	
 		}
 		
-		
+		date_default_timezone_set('Antarctica/Macquarie');
 		$message .= "There are ".$unavailableCount." doi urls unavailable on ".date("d/m/Y h:m:s")."\n"; 
 		$message .= $notifyMessage;
 		mail($recipient,$subject,$message);	
@@ -936,8 +855,4 @@
 		}		
 	}    
 	}
-<<<<<<< HEAD
  ?>
-=======
- ?>
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

@@ -14,18 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 *******************************************************************************/
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 require_once(dirname(__FILE__).'/../../global_config.php');
 
 
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-require_once(dirname(__FILE__).'/../../global_config.php');
-
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 // If not running within COSI, include COSI's environment variables
 // (needed for "lightweight" activities such as fetch_element)
 if (!defined("eHOST")) { require '../_includes/_environment/application_env.php'; }
@@ -43,29 +34,17 @@ define('IN_ORCA', true);
 // note: changing this will cause all reharvested records to have a "new record revision" created
 define('gRIF_SCHEMA_PATH', eAPPLICATION_ROOT.'/orca/schemata/registryObjects.xsd'); 
 
-<<<<<<< HEAD
 define('gRIF_SCHEMA_URI', 'http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd');
-=======
-define('gRIF_SCHEMA_URI', 'http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd');
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 define('gCURRENT_SCHEMA_VERSION', '1.3');
 
 // Party identifiers to be treated to special display (NLA-specific)
 $NLAPartyTypeKey = array ("AU-ANL:PEAU");
 
-<<<<<<< HEAD
-=======
-/*
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 // ARC/NHMRC grants (Activities project integration)
 define("eAU_RESEARCH_GRANTS_PREFIX", "http://thisurlwillneverexistatall.ands.org.au/but/they/will/never/remember/qg13r7uy8qg23wrhbuy1tqhsdbuyh78dt6"); // "http://purl.org/au-research/grants/"
 define("eAU_RESEARCH_GRANTS_HARVEST_POINT","https://services.ands.org.au/sandbox/orca/services/getRegistryObjects.php");
 define("eAU_RESEARCH_GRANTS_DATA_SOURCE","AU_RESEARCH_GRANTS");
-<<<<<<< HEAD
-=======
-*/ 
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
 // New originatingSource identifiers for objects created using manual entry tools
 define("eORIGSOURCE_RMD_SUFFIX", "orca/register_my_data");
@@ -106,7 +85,7 @@ define('gORCA_HARVEST_METHOD_HARVESTER_OAIPMH', 'RIF');
 
 $gORCA_HARVEST_METHODS = array( gORCA_HARVEST_METHOD_DIRECT => 'DIRECT'
 							  );
-							  
+
 // If we have a harvester configured, then add the methods supported by the harvester.
 if( gORCA_HARVESTER_BASE_URI )
 {
@@ -121,13 +100,13 @@ define('gORCA_PROVIDER_TYPE_OAI_RIF', 'OAI_RIF');
 $gORCA_PROVIDER_TYPES = array( gORCA_PROVIDER_TYPE_RIF     => 'RIF',
 							   gORCA_PROVIDER_TYPE_OAI_RIF => 'RIF OAI-PMH'
 							 );
-							 
+
 // Supported provider types for harvest methods.
 $gORCA_HARVEST_PROVIDER_SETS = array( gORCA_HARVEST_METHOD_DIRECT           => array(gORCA_PROVIDER_TYPE_RIF),
 									  gORCA_HARVEST_METHOD_HARVESTER_DIRECT => array(gORCA_PROVIDER_TYPE_RIF),
 									  gORCA_HARVEST_METHOD_HARVESTER_OAIPMH => array(gORCA_PROVIDER_TYPE_OAI_RIF)
 									);
-									
+
 // Harvester harvest frequencies.
 $gORCA_HARVESTER_FREQUENCIES = array('daily', 'weekly', 'fortnightly', 'monthly' );
 
@@ -135,32 +114,13 @@ $gORCA_HARVESTER_FREQUENCIES = array('daily', 'weekly', 'fortnightly', 'monthly'
 $gRDA_RIGHTSURL_RIGHTSLOGO = array( 'https://df.arcs.org.au/ARCS/projects/PICCLOUD' => 'http://polarcommons.org/images/PIC_print_small.png');
 
 $gORCA_STATUS_INFO = array (	
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 							"PUBLISHED"=>array("colour"=>"#32CD32", "span"=>"PUBLISHED", "short_span"=>"PUBLISHED", "display"=>"Published"),
 							"APPROVED"=>array("colour"=>"#EDD155", "span"=>"APPROVED", "short_span"=>"APPROVED", "display"=>"Approved"),
 							"ASSESSMENT_IN_PROGRESS"=>array("colour"=>"#0B2E59", "span"=>"ASSESSMENT IN PROGRESS", "short_span"=>"IN PROGRESS", "display"=>"Assessment in Progress"),
 							"SUBMITTED_FOR_ASSESSMENT"=>array("colour"=>"#688EDE", "span"=>"SUBMITTED FOR ASSESSMENT", "short_span"=>"SUBMITTED","display"=>"Submitted for Assessment"),
-<<<<<<< HEAD
 							"MORE_WORK_REQUIRED"=>array("colour"=>"#6A4A3C", "span"=>"MORE WORK REQUIRED", "short_span"=>"WORK REQUIRED", "display"=>"More Work Required"),
 							"DRAFT"=>array("colour"=>"#cc6600", "span"=>"DRAFT", "short_span"=> "DRAFT", "display"=>"Draft"),
 							"DELETED"=>array("colour"=>"#D64040", "span"=>"DELETED", "short_span"=>"DELETED", "display"=>"Deleted"),
-=======
-							"PUBLISHED"=>array("colour"=>"#32CD32", "span"=>"PUBLISHED", "short_span"=>"PUBLISHED", "display"=>"Records Published in the last 7 days"),
-							"APPROVED"=>array("colour"=>"#EDD155", "span"=>"APPROVED", "short_span"=>"APPROVED", "display"=>"Approved Records"),
-							"ASSESSMENT_IN_PROGRESS"=>array("colour"=>"#0B2E59", "span"=>"ASSESSMENT IN PROGRESS", "short_span"=>"IN PROGRESS", "display"=>"Record Assessment in Progress"),
-							"SUBMITTED_FOR_ASSESSMENT"=>array("colour"=>"#688EDE", "span"=>"SUBMITTED FOR ASSESSMENT", "short_span"=>"SUBMITTED","display"=>"Records Submitted for Assessment"),
-							"MORE_WORK_REQUIRED"=>array("colour"=>"#6A4A3C", "span"=>"MORE WORK REQUIRED", "short_span"=>"WORK REQUIRED", "display"=>"More Work Required"),
-							"DRAFT"=>array("colour"=>"#cc6600", "span"=>"DRAFT", "short_span"=> "DRAFT", "display"=>"Draft Records"),
-							"DELETED"=>array("colour"=>"#D64040", "span"=>"DELETED", "short_span"=>"DELETED", "display"=>"Deleted Records"),
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-							"MORE_WORK_REQUIRED"=>array("colour"=>"#6A4A3C", "span"=>"MORE WORK REQUIRED", "short_span"=>"WORK REQUIRED", "display"=>"More Work Required"),
-							"DRAFT"=>array("colour"=>"#cc6600", "span"=>"DRAFT", "short_span"=> "DRAFT", "display"=>"Draft"),
-							"DELETED"=>array("colour"=>"#D64040", "span"=>"DELETED", "short_span"=>"DELETED", "display"=>"Deleted"),
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 );
 
 
@@ -172,12 +132,6 @@ $gORCA_STATUS_INFO = array (
 // PIDS environment settings.
 // -----------------------------------------------------------------------------
 // Service configuration.
-<<<<<<< HEAD
 define('gPIDS_SERVICE_BASE_URI', $pids_url);
 define('gPIDS_APP_ID', $pids_app_id);
 define('gSOLR_UPDATE_URL' , $solr_url . "update");
-=======
-//define('gPIDS_SERVICE_BASE_URI', $pids_url);
-//define('gPIDS_APP_ID', $pids_app_id);
-define('gSOLR_UPDATE_URL' ,  $solr_url . "update");
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794

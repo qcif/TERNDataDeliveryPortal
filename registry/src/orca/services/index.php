@@ -46,11 +46,7 @@ require '../../_includes/header.php';
 		</tr>
 		<tr>
 			<td>Service Base URI:</td>
-<<<<<<< HEAD
 			<td><a href="<?php printSafe(eAPP_ROOT.'orca/services/OpenSearch.php') ?>"><?php printSafe(eAPP_ROOT.'orca/services/OpenSearch.php'); ?></a></td>
-=======
-			<td><a href="<?php printSafe(eAPP_ROOT.'orca/api/search.php') ?>"><?php printSafe(eAPP_ROOT.'orca/api/search.php'); ?></a></td>
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		</tr>
 		<tr>
 			<td>Method:</td>
@@ -59,22 +55,14 @@ require '../../_includes/header.php';
 		<tr>
 			<td>Parameters:</td>
 			<td>
-<<<<<<< HEAD
 				Specified in <a href="<?php printSafe(eAPP_ROOT.'orca/services/OpenSearchDescription.php') ?>"><?php printSafe(eAPP_ROOT.'orca/services/OpenSearchDescription.php'); ?></a>
-=======
-				Specified in <a href="<?php printSafe(eAPP_ROOT.'orca/api/OpenSearchDescription.php') ?>"><?php printSafe(eAPP_ROOT.'orca/api/OpenSearchDescription.php'); ?></a>
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			</td>
 		</tr>
 		<tr>
 			<td>Response Data&nbsp;<br />XML Schema:</td>
 			<td>
 				RSS 2.0 with OpenSearch extensions.<br />
-<<<<<<< HEAD
 				<a href="<?php printSafe(eAPP_ROOT.'orca/services/OpenSearch.php?search=Australia') ?>">Example query response.</a>
-=======
-				<a href="<?php printSafe(eAPP_ROOT.'orca/api/search.php?search=Australia') ?>">Example query response.</a>
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 			</td>
 		</tr>
 	</tbody>

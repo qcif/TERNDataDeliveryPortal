@@ -44,15 +44,7 @@ function wcInit(imagePath)
 	aryPics[9] = wcImagesRootPath + "running_10.png";
 	
 	// Put the control on the page, but in a place where it's not visible.
-<<<<<<< HEAD
-<<<<<<< HEAD
 	document.write('<div id="waitControl" style="display: block; position: absolute; z-index: 200; width: 380px; right: -100000px;"></div>');
-=======
-	document.write('<div id="waitControl" style="display: block; position: absolute; z-index: 200; width: 380px; right: -1000px;"></div>');
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	document.write('<div id="waitControl" style="display: block; position: absolute; z-index: 200; width: 380px; right: -100000px;"></div>');
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	
 	// Set up the animation pics, and get the browser to preload and cache the required images.
 	var waitControl = getObject('waitControl');
@@ -194,5 +186,4 @@ function wcDisposeWait()
 	waitControl.innerHTML = '';
 	window.clearTimeout(wcTimeout);
 }
-
 

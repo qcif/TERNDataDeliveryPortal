@@ -50,12 +50,10 @@ class View extends CI_Controller {
 			$doc = ($obj->{'response'}->{'docs'}[0]);
 			//echo $numFound;
 
-<<<<<<< HEAD
+
 			//$data['title'] = $doc->{'displayTitle'};
                         $data['title'] = $doc->{'display_title'};
-=======
-			$data['title'] = $doc->{'displayTitle'};
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
 			
 			if(isset($doc->{'description_value'}[0]))$data['description']=htmlentities($doc->{'description_value'}[0]);
 			$data['doc'] = $doc;

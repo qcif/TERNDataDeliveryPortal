@@ -23,15 +23,7 @@ define("OAI_RT_EXPIRES_MINUTES", 10);
 
 define("OAI_RT_LATEST",   0);
 define("OAI_RT_PREVIOUS", 1);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-                           
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 // OAI-PMH error codes.
 define('OAIbadArgument'             , 'badArgument');
 define('OAIbadResumptionToken'      , 'badResumptionToken');
@@ -62,24 +54,10 @@ define('OAI_DC_METADATA_PREFIX', 'oai_dc');
 define('OAI_RIF_METADATA_PREFIX', 'rif');
 
 $gORCA_OAI_METADATA_PREFIXES = array(
-<<<<<<< HEAD
-<<<<<<< HEAD
 	      OAI_DC_METADATA_PREFIX  => array( OAI_SCHEMA_URI => 'http://www.openarchives.org/OAI/2.0/oai_dc.xsd',
 	                                        OAI_NAMESPACE  => 'http://www.openarchives.org/OAI/2.0/oai_dc/'
 	                                       ),
 	      OAI_RIF_METADATA_PREFIX => array( OAI_SCHEMA_URI => gRIF_SCHEMA_URI,
-=======
-	      OAI_DC_METADATA_PREFIX  => array( OAI_SCHEMA_URI => 'http://www.openarchives.org/OAI/2.0/oai_dc.xsd', 
-	                                        OAI_NAMESPACE  => 'http://www.openarchives.org/OAI/2.0/oai_dc/'
-	                                       ),
-	      OAI_RIF_METADATA_PREFIX => array( OAI_SCHEMA_URI => gRIF_SCHEMA_URI, 
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	      OAI_DC_METADATA_PREFIX  => array( OAI_SCHEMA_URI => 'http://www.openarchives.org/OAI/2.0/oai_dc.xsd',
-	                                        OAI_NAMESPACE  => 'http://www.openarchives.org/OAI/2.0/oai_dc/'
-	                                       ),
-	      OAI_RIF_METADATA_PREFIX => array( OAI_SCHEMA_URI => gRIF_SCHEMA_URI,
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	                                        OAI_NAMESPACE  => 'http://ands.org.au/standards/rif-cs/registryObjects'
 	                                      )
                                     );
@@ -97,21 +75,9 @@ function getArgValue($argName, $args)
 function getOAIBaseURL()
 {
 	global $gActivities;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 	$activity = getObject($gActivities, 'aORCA_SERVICE_OAI_DATA_PROVIDER');
 
-=======
-	
-	$activity = getObject($gActivities, 'aORCA_SERVICE_OAI_DATA_PROVIDER');
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-	$activity = getObject($gActivities, 'aORCA_SERVICE_OAI_DATA_PROVIDER');
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	return esc($activity->path);
 }
 
@@ -184,24 +150,10 @@ function printOAIGetRecordXML($args, $requestAttributes)
 		if( !$registryObject )
 		{
 			$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 			$xml .= getOAIErrorXML(OAIidDoesNotExist, "");
 		}
 	}
 
-=======
-			$xml .= getOAIErrorXML(OAIidDoesNotExist, "");			
-		}
-	}
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-			$xml .= getOAIErrorXML(OAIidDoesNotExist, "");
-		}
-	}
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// Check for the required metadataPrefix argument.
 	// -------------------------------------------------------------------------
 	$metadataPrefix = getArgValue('metadataPrefix', $args);
@@ -219,8 +171,6 @@ function printOAIGetRecordXML($args, $requestAttributes)
 		if( !isset($gORCA_OAI_METADATA_PREFIXES[$metadataPrefix]) )
 		{
 			$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 			$xml .= getOAIErrorXML(OAIcannotDisseminateFormat, "");
 		}
 	}
@@ -228,22 +178,6 @@ function printOAIGetRecordXML($args, $requestAttributes)
 	printOAIRequestAttributes($requestAttributes);
 	print($xml);
 
-=======
-			$xml .= getOAIErrorXML(OAIcannotDisseminateFormat, "");	
-=======
-			$xml .= getOAIErrorXML(OAIcannotDisseminateFormat, "");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-		}
-	}
-
-	printOAIRequestAttributes($requestAttributes);
-	print($xml);
-<<<<<<< HEAD
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// Generate the ouput.
 	// -------------------------------------------------------------------------
 	if( !$errors )
@@ -262,15 +196,7 @@ function printOAIGetRecordXML($args, $requestAttributes)
 		print "        <setSpec>".esc($group)."</setSpec>\n";
 		print "        <setSpec>".esc($source)."</setSpec>\n";
 		print "      </header>\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if( $metadataPrefix == OAI_RIF_METADATA_PREFIX )
 		{
 			print "      <metadata>\n";
@@ -278,24 +204,10 @@ function printOAIGetRecordXML($args, $requestAttributes)
 			print '                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
 			print '                         xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF_SCHEMA_URI.'">'."\n";
 			print getRegistryObjectXML($identifier);
-<<<<<<< HEAD
-<<<<<<< HEAD
 			print "        </registryObjects>\n";
 			print "      </metadata>\n";
 		}
 
-=======
-			print "        </registryObjects>\n";	
-			print "      </metadata>\n";
-		}
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-			print "        </registryObjects>\n";
-			print "      </metadata>\n";
-		}
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if( $metadataPrefix == OAI_DC_METADATA_PREFIX )
 		{
 			print "      <metadata>\n";
@@ -304,24 +216,10 @@ function printOAIGetRecordXML($args, $requestAttributes)
 			print '                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
 			print '                   xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">'."\n";
 			print getRegistryObjectOAIDCXMLElements($identifier);
-<<<<<<< HEAD
-<<<<<<< HEAD
 			print "        </oai_dc:dc>\n";
 			print "      </metadata>\n";
 		}
 
-=======
-			print "        </oai_dc:dc>\n";	
-			print "      </metadata>\n";
-		}
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-			print "        </oai_dc:dc>\n";
-			print "      </metadata>\n";
-		}
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		print "    </record>\n";
 		print "  </GetRecord>\n";
 	}
@@ -332,50 +230,20 @@ function printOAIGetRecordXML($args, $requestAttributes)
 function printOAIIdentifyXML($requestAttributes)
 {
 	printOAIRequestAttributes($requestAttributes);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$xml  = "  <Identify>\n";
 	$xml .= "    <repositoryName>".esc(eINSTANCE_TITLE.' '.eAPP_TITLE)."</repositoryName>\n";
 	$xml .= "    <baseURL>".getOAIBaseURL()."</baseURL>\n";
 	$xml .= "    <protocolVersion>2.0</protocolVersion>\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$adminEmail = gORCA_INSTANCE_ADMIN_EMAIL;
 	// An admin e-mail of some sort is required by the protocol so...
 	if( $adminEmail == '' ){ $adminEmail = 'oai@example.com'; }
 	$xml .= "    <adminEmail>".esc($adminEmail)."</adminEmail>\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 	$earliestDateStamp = getEarliestDateStamp();
 	$xml .= "    <earliestDatestamp>".esc($earliestDateStamp)."</earliestDatestamp>\n";
 
-=======
-	
-	$earliestDateStamp = getEarliestDateStamp();
-	$xml .= "    <earliestDatestamp>".esc($earliestDateStamp)."</earliestDatestamp>\n";
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-	$earliestDateStamp = getEarliestDateStamp();
-	$xml .= "    <earliestDatestamp>".esc($earliestDateStamp)."</earliestDatestamp>\n";
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$xml .= "    <deletedRecord>no</deletedRecord>\n";
 	$xml .= "    <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>\n";
 	$xml .= "  </Identify>\n";
@@ -390,30 +258,14 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 	$errors = false;
 	$xml = '';
 	$resumptionTokenXML = '';
-<<<<<<< HEAD
-<<<<<<< HEAD
 	$registryObjects = null;
-=======
-	$registryObjects = null;		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	$registryObjects = null;
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$classes = '';
 	$dataSourceKey = null;
 	$objectGroup = null;
 	$createdAfterInclusive = null;
 	$createdBeforeInclusive = null;
 	$resumptionTokenId = null;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// Check for the exclusive resumptionToken argument.
 	// -------------------------------------------------------------------------
 	if( isset($args['resumptionToken']) )
@@ -424,15 +276,7 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 			$errors = true;
 			$xml .= getOAIErrorXML(OAIbadResumptionToken, '[1] The value of the resumptionToken argument is invalid or expired.');
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// If there are other args then resumptionToken isn't exlusive so...
 		if( count($args) > 2 )
 		{
@@ -454,8 +298,6 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 		}
 		else
 		{
-<<<<<<< HEAD
-<<<<<<< HEAD
 			// Check that we support this metadata format.
 			if( !isset($gORCA_OAI_METADATA_PREFIXES[$metadataPrefix]) )
 			{
@@ -464,23 +306,6 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 			}
 		}
 
-=======
-			// Check that we support this metadata format.		
-=======
-			// Check that we support this metadata format.
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-			if( !isset($gORCA_OAI_METADATA_PREFIXES[$metadataPrefix]) )
-			{
-				$errors = true;
-				$xml .= getOAIErrorXML(OAIcannotDisseminateFormat, "");
-			}
-		}
-<<<<<<< HEAD
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// Check for the optional from argument.
 		// -------------------------------------------------------------------------
 		$from = getArgValue('from', $args);
@@ -497,24 +322,10 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 			{
 				$requestAttributes = "";
 				$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'from' is not a valid ISO8601 UTC date.");
 			}
 		}
 
-=======
-				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'from' is not a valid ISO8601 UTC date.");	
-			}
-		}
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'from' is not a valid ISO8601 UTC date.");
-			}
-		}
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// Check for the optional until argument.
 		// -------------------------------------------------------------------------
 		$until = getArgValue('until', $args);
@@ -524,109 +335,45 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 			if( strtotime($until) )
 			{
 				$untilMask = getOAIDateGranularityMask($until);
-<<<<<<< HEAD
-<<<<<<< HEAD
 				$createdBeforeInclusive = formatDateTimeWithMask($until, $untilMask);
 
-=======
-				$createdBeforeInclusive = formatDateTimeWithMask($until, $untilMask);	
-				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				$createdBeforeInclusive = formatDateTimeWithMask($until, $untilMask);
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if( $from && $fromMask != $untilMask )
 				{
 					$requestAttributes = "";
 					$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not the same granularity as 'from'.");
 				}
 
 				if( $untilMask == eDCT_FORMAT_ISO8601_DATE ){ $createdBeforeInclusive .= "T23:59:59Z"; }
 
-=======
-					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not the same granularity as 'from'.");	
-=======
-					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not the same granularity as 'from'.");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-				}
-
-				if( $untilMask == eDCT_FORMAT_ISO8601_DATE ){ $createdBeforeInclusive .= "T23:59:59Z"; }
-<<<<<<< HEAD
-				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				$earliestDateStamp = formatDateTimeWithMask(getEarliestDateStamp(), $untilMask);
 				if( strtotime($createdBeforeInclusive) < strtotime($earliestDateStamp) )
 				{
 					$requestAttributes = "";
 					$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is before the earliest datestamp.");
-=======
-					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is before the earliest datestamp.");	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is before the earliest datestamp.");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				}
 			}
 			else
 			{
 				$requestAttributes = "";
 				$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not a valid ISO8601 UTC date.");
 			}
 		}
 
-=======
-				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not a valid ISO8601 UTC date.");	
-			}
-		}
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not a valid ISO8601 UTC date.");
-			}
-		}
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// Check for the optional set argument.
 		// -------------------------------------------------------------------------
 		$set = getArgValue('set', $args);
 		if( $set )
 		{
 			$setSpec = explode(":", $set);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if( count($setSpec) == 2 )
 			{
 				$setKey = $setSpec[0];
 				$setValue = $setSpec[1];
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				switch( $setKey )
 				{
 					case 'class':
@@ -635,8 +382,6 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 							case 'activity':
 								$classes = $setValue;
 								break;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 							case 'collection':
 								$classes = $setValue;
@@ -668,73 +413,17 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 					default:
 						$errors = true;
 						$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
-=======
-								
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-							case 'collection':
-								$classes = $setValue;
-								break;
-
-							case 'party':
-								$classes = $setValue;
-								break;
-
-							case 'service':
-								$classes = $setValue;
-								break;
-
-							default:
-								$errors = true;
-								$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
-								break;
-						}
-						break;
-
-					case 'group':
-						$objectGroup = decodeOAISetSpec($setValue);
-						break;
-
-					case 'dataSource':
-						$dataSourceKey = decodeOAISetSpec($setValue);
-						break;
-
-					default:
-						$errors = true;
-<<<<<<< HEAD
-						$xml .= getOAIErrorXML(OAInoRecordsMatch, "");	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-						$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 						break;
 				}
 			}
 			else
 			{
 				$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
 			}
 		}
 	} // end no resumptionToken
 
-=======
-				$xml .= getOAIErrorXML(OAInoRecordsMatch, "");				
-=======
-				$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-			}
-		}
-	} // end no resumptionToken
-<<<<<<< HEAD
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// Get the records that match the arguments.
 	// -------------------------------------------------------------------------
 	if( !$errors )
@@ -751,15 +440,7 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 				$completeListSize  = $resumptionToken[0]['complete_list_size'];
 				$status            = $resumptionToken[0]['status'];
 				$metadataPrefix    = $resumptionToken[0]['metadata_prefix'];
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				$registryObjects = getIncompleteList($completeListId, $firstRecordNumber);
 
 				if( ($firstRecordNumber + OAI_LIST_SIZE - 1) < $completeListSize )
@@ -771,24 +452,10 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 						// Delete any existing OAI_RT_PREVIOUS resumptionToken and
 						// set the status of this resumptionToken to OAI_RT_PREVIOUS.
 						updateResumptionTokens($completeListId);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 						// Create a new resumptionToken for the next incomplete list.
 						insertResumptionToken($completeListId, $firstRecordNumber+OAI_LIST_SIZE, $completeListSize, $metadataPrefix);
 
-=======
-						
-						// Create a new resumptionToken for the next incomplete list.
-						insertResumptionToken($completeListId, $firstRecordNumber+OAI_LIST_SIZE, $completeListSize, $metadataPrefix);
-						
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-						// Create a new resumptionToken for the next incomplete list.
-						insertResumptionToken($completeListId, $firstRecordNumber+OAI_LIST_SIZE, $completeListSize, $metadataPrefix);
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					}
 					// Get the resumptionTokenXML.
 					$resumptionTokenXML = getResumptionTokenXML($completeListId);
@@ -810,115 +477,50 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 		{
 			// It's a new request.
 			$registryObjects = searchRegistry('', $classes, $dataSourceKey, $objectGroup, $createdBeforeInclusive, $createdAfterInclusive);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if( $registryObjects && count($registryObjects) > OAI_LIST_SIZE )
 			{
 				// The list is larger than the incomplete list size so...
 				$completeListId = insertCompleteList();
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if( $completeListId )
 				{
 					// Create a new resumptionToken for the next incomplete list.
 					$firstRecordNumber = 1;
 					$completeListSize = count($registryObjects);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 					$error = insertResumptionToken($completeListId, $firstRecordNumber+OAI_LIST_SIZE, $completeListSize, $metadataPrefix);
 
 					if( !$error )
 					{
 						// Build the complete list.
-=======
-					
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-					$error = insertResumptionToken($completeListId, $firstRecordNumber+OAI_LIST_SIZE, $completeListSize, $metadataPrefix);
-
-					if( !$error )
-					{
-<<<<<<< HEAD
-						// Build the complete list. 
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-						// Build the complete list.
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 						for( $i = 0; $i < $completeListSize; $i++ )
 						{
 							insertCompleteListRecord($completeListId, $i+1, $registryObjects[$i]['registry_object_key']);
 						}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 						// Get the first incomplete list.
 						$registryObjects = getIncompleteList($completeListId, $firstRecordNumber);
 
-=======
-				
-						// Get the first incomplete list.
-						$registryObjects = getIncompleteList($completeListId, $firstRecordNumber);
-				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-						// Get the first incomplete list.
-						$registryObjects = getIncompleteList($completeListId, $firstRecordNumber);
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 						// Get the resumptionTokenXML.
 						$resumptionTokenXML = getResumptionTokenXML($completeListId);
 					}
 					else
 					{
 						$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 						$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");
-=======
-						$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-						$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					}
 				}
 				else
 				{
 					$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 					$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");
-=======
-					$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-					$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				}
 			}
 		}
 		if( !$registryObjects )
 		{
 			$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 			$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
 		}
 	}
@@ -926,23 +528,6 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 	printOAIRequestAttributes($requestAttributes);
 	print($xml);
 
-=======
-			$xml .= getOAIErrorXML(OAInoRecordsMatch, "");	
-		}			
-=======
-			$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
-		}
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-	}
-
-	printOAIRequestAttributes($requestAttributes);
-	print($xml);
-<<<<<<< HEAD
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// Generate the ouput.
 	// -------------------------------------------------------------------------
 	if( !$errors )
@@ -955,15 +540,7 @@ function printOAIListIdentifiersXML($args, $requestAttributes)
 			$class = 'class:'.strtolower($registryObject['registry_object_class']);
 			$group = 'group:'.encodeOAISetSpec($registryObject['object_group']);
 			$source = 'dataSource:'.encodeOAISetSpec($registryObject['data_source_key']);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			print "    <header>\n";
 			print "      <identifier>".esc($identifier)."</identifier>\n";
 			print "      <datestamp>".esc($dateStamp)."</datestamp>\n";
@@ -986,15 +563,7 @@ function printOAIListMetadataFormatsXML($args, $requestAttributes)
 	$xml = '';
 
 	// Check for the optional identifier argument.
-<<<<<<< HEAD
-<<<<<<< HEAD
 	// -------------------------------------------------------------------------
-=======
-	// -------------------------------------------------------------------------		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	// -------------------------------------------------------------------------
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$identifier = getArgValue('identifier', $args);
 	if( $identifier )
 	{
@@ -1002,8 +571,6 @@ function printOAIListMetadataFormatsXML($args, $requestAttributes)
 		if( !$registryObject )
 		{
 			$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 			$xml .= getOAIErrorXML(OAIidDoesNotExist, "");
 		}
 	}
@@ -1015,54 +582,18 @@ function printOAIListMetadataFormatsXML($args, $requestAttributes)
 	// -------------------------------------------------------------------------
 	if( !$errors )
 	{
-=======
-			$xml .= getOAIErrorXML(OAIidDoesNotExist, "");			
-=======
-			$xml .= getOAIErrorXML(OAIidDoesNotExist, "");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-		}
-	}
-
-	printOAIRequestAttributes($requestAttributes);
-	print($xml);
-
-	// Generate the ouput.
-	// -------------------------------------------------------------------------
-	if( !$errors )
-<<<<<<< HEAD
-	{	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	{
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		print "  <ListMetadataFormats>\n";
 		foreach( $gORCA_OAI_METADATA_PREFIXES as $prefix => $values)
 		{
 		    $metadataPrefix = $prefix;
 		    $schema = $values[OAI_SCHEMA_URI];
 		    $metadataNamespace = $values[OAI_NAMESPACE];
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			print "    <metadataFormat>\n";
 		    print "      <metadataPrefix>$metadataPrefix</metadataPrefix>\n";
 		    print "      <schema>$schema</schema>\n";
 		    print "      <metadataNamespace>$metadataNamespace</metadataNamespace>\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
 		    print "    </metadataFormat>\n";
-=======
-		    print "    </metadataFormat>\n";		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-		    print "    </metadataFormat>\n";
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		}
 		print "  </ListMetadataFormats>\n";
 	}
@@ -1076,15 +607,7 @@ function printOAIListRecordsXML($args, $requestAttributes)
 	$errors = false;
 	$xml = '';
 	$resumptionTokenXML = '';
-<<<<<<< HEAD
-<<<<<<< HEAD
 	$registryObjects = null;
-=======
-	$registryObjects = null;		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	$registryObjects = null;
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$classes = '';
 	$dataSourceKey = null;
 	$objectGroup = null;
@@ -1092,15 +615,7 @@ function printOAIListRecordsXML($args, $requestAttributes)
 	$createdBeforeInclusive = null;
 	$resumptionTokenId = null;
 	$nlaSet = null;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// Check for the exclusive resumptionToken argument.
 	// -------------------------------------------------------------------------
 	if( isset($args['resumptionToken']) )
@@ -1111,15 +626,7 @@ function printOAIListRecordsXML($args, $requestAttributes)
 			$errors = true;
 			$xml .= getOAIErrorXML(OAIbadResumptionToken, '[1] The value of the resumptionToken argument is invalid or expired.');
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// If there are other args then resumptionToken isn't exlusive so...
 		if( count($args) > 2 )
 		{
@@ -1141,8 +648,6 @@ function printOAIListRecordsXML($args, $requestAttributes)
 		}
 		else
 		{
-<<<<<<< HEAD
-<<<<<<< HEAD
 			// Check that we support this metadata format.
 			if( !isset($gORCA_OAI_METADATA_PREFIXES[$metadataPrefix]) )
 			{
@@ -1151,23 +656,6 @@ function printOAIListRecordsXML($args, $requestAttributes)
 			}
 		}
 
-=======
-			// Check that we support this metadata format.		
-=======
-			// Check that we support this metadata format.
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-			if( !isset($gORCA_OAI_METADATA_PREFIXES[$metadataPrefix]) )
-			{
-				$errors = true;
-				$xml .= getOAIErrorXML(OAIcannotDisseminateFormat, "");
-			}
-		}
-<<<<<<< HEAD
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// Check for the optional from argument.
 		// -------------------------------------------------------------------------
 		$from = getArgValue('from', $args);
@@ -1184,24 +672,10 @@ function printOAIListRecordsXML($args, $requestAttributes)
 			{
 				$requestAttributes = "";
 				$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'from' is not a valid ISO8601 UTC date.");
 			}
 		}
 
-=======
-				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'from' is not a valid ISO8601 UTC date.");	
-			}
-		}
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'from' is not a valid ISO8601 UTC date.");
-			}
-		}
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// Check for the optional until argument.
 		// -------------------------------------------------------------------------
 		$until = getArgValue('until', $args);
@@ -1211,109 +685,45 @@ function printOAIListRecordsXML($args, $requestAttributes)
 			if( strtotime($until) )
 			{
 				$untilMask = getOAIDateGranularityMask($until);
-<<<<<<< HEAD
-<<<<<<< HEAD
 				$createdBeforeInclusive = formatDateTimeWithMask($until, $untilMask);
 
-=======
-				$createdBeforeInclusive = formatDateTimeWithMask($until, $untilMask);	
-				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				$createdBeforeInclusive = formatDateTimeWithMask($until, $untilMask);
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if( $from && $fromMask != $untilMask )
 				{
 					$requestAttributes = "";
 					$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not the same granularity as 'from'.");
 				}
 
 				if( $untilMask == eDCT_FORMAT_ISO8601_DATE ){ $createdBeforeInclusive .= "T23:59:59Z"; }
 
-=======
-					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not the same granularity as 'from'.");	
-=======
-					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not the same granularity as 'from'.");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-				}
-
-				if( $untilMask == eDCT_FORMAT_ISO8601_DATE ){ $createdBeforeInclusive .= "T23:59:59Z"; }
-<<<<<<< HEAD
-				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				$earliestDateStamp = formatDateTimeWithMask(getEarliestDateStamp(), $untilMask);
 				if( strtotime($createdBeforeInclusive) < strtotime($earliestDateStamp) )
 				{
 					$requestAttributes = "";
 					$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is before the earliest datestamp.");
-=======
-					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is before the earliest datestamp.");	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-					$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is before the earliest datestamp.");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				}
 			}
 			else
 			{
 				$requestAttributes = "";
 				$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not a valid ISO8601 UTC date.");
 			}
 		}
 
-=======
-				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not a valid ISO8601 UTC date.");	
-			}
-		}
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				$xml .= getOAIErrorXML(OAIbadArgument, "Optional argument 'until' is not a valid ISO8601 UTC date.");
-			}
-		}
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// Check for the optional set argument.
 		// -------------------------------------------------------------------------
 		$set = getArgValue('set', $args);
 		if( $set )
 		{
 			$setSpec = explode(":", $set);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if( count($setSpec) == 2 )
 			{
 				$setKey = $setSpec[0];
 				$setValue = $setSpec[1];
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				switch( $setKey )
 				{
 					case 'class':
@@ -1322,8 +732,6 @@ function printOAIListRecordsXML($args, $requestAttributes)
 							case 'activity':
 								$classes = $setValue;
 								break;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 							case 'collection':
 								$classes = $setValue;
@@ -1359,65 +767,13 @@ function printOAIListRecordsXML($args, $requestAttributes)
 					default:
 						$errors = true;
 						$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
-=======
-								
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-							case 'collection':
-								$classes = $setValue;
-								break;
-
-							case 'party':
-								$classes = $setValue;
-								break;
-
-							case 'service':
-								$classes = $setValue;
-								break;
-
-							default:
-								$errors = true;
-								$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
-								break;
-						}
-						break;
-
-					case 'group':
-						$objectGroup = decodeOAISetSpec($setValue);
-						break;
-
-					case 'dataSource':
-						$dataSourceKey = decodeOAISetSpec($setValue);
-						break;
-
-					case 'nlaSet':
-						$nlaSet = decodeOAISetSpec($setValue);
-						break;
-
-					default:
-						$errors = true;
-<<<<<<< HEAD
-						$xml .= getOAIErrorXML(OAInoRecordsMatch, "");	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-						$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 						break;
 				}
 			}
 			else
 			{
 				$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
-=======
-				$xml .= getOAIErrorXML(OAInoRecordsMatch, "");				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			}
 		}
 	} // end no resumptionToken
@@ -1438,24 +794,10 @@ function printOAIListRecordsXML($args, $requestAttributes)
 				$completeListSize  = $resumptionToken[0]['complete_list_size'];
 				$status            = $resumptionToken[0]['status'];
 				$metadataPrefix    = $resumptionToken[0]['metadata_prefix'];
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
 				//$registryObjects = 	getIncompleteListNLA($completeListId, $firstRecordNumber);
 				$registryObjects = 	getIncompleteList($completeListId, $firstRecordNumber);
-=======
-				
-
-				//$registryObjects = 	getIncompleteListNLA($completeListId, $firstRecordNumber);
-				$registryObjects = 	getIncompleteList($completeListId, $firstRecordNumber);			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-
-				//$registryObjects = 	getIncompleteListNLA($completeListId, $firstRecordNumber);
-				$registryObjects = 	getIncompleteList($completeListId, $firstRecordNumber);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 				if( ($firstRecordNumber + OAI_LIST_SIZE - 1) < $completeListSize )
 				{
@@ -1466,24 +808,10 @@ function printOAIListRecordsXML($args, $requestAttributes)
 						// Delete any existing OAI_RT_PREVIOUS resumptionToken and
 						// set the status of this resumptionToken to OAI_RT_PREVIOUS.
 						updateResumptionTokens($completeListId);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 						// Create a new resumptionToken for the next incomplete list.
 						insertResumptionToken($completeListId, $firstRecordNumber+OAI_LIST_SIZE, $completeListSize, $metadataPrefix);
 
-=======
-						
-						// Create a new resumptionToken for the next incomplete list.
-						insertResumptionToken($completeListId, $firstRecordNumber+OAI_LIST_SIZE, $completeListSize, $metadataPrefix);
-						
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-						// Create a new resumptionToken for the next incomplete list.
-						insertResumptionToken($completeListId, $firstRecordNumber+OAI_LIST_SIZE, $completeListSize, $metadataPrefix);
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					}
 					// Get the resumptionTokenXML.
 					$resumptionTokenXML = getResumptionTokenXML($completeListId);
@@ -1506,8 +834,6 @@ function printOAIListRecordsXML($args, $requestAttributes)
 			// It's a new request.
 			if($nlaSet==null)
 			{
-<<<<<<< HEAD
-<<<<<<< HEAD
 				$registryObjects = searchRegistry('', $classes, $dataSourceKey, $objectGroup, $createdBeforeInclusive, $createdAfterInclusive);
 			}
 			else
@@ -1515,125 +841,50 @@ function printOAIListRecordsXML($args, $requestAttributes)
 				$registryObjects = getSpecialObjectSet('nlaSet', $nlaSet);
 			}
 
-=======
-				$registryObjects = searchRegistry('', $classes, $dataSourceKey, $objectGroup, $createdBeforeInclusive, $createdAfterInclusive);	
-=======
-				$registryObjects = searchRegistry('', $classes, $dataSourceKey, $objectGroup, $createdBeforeInclusive, $createdAfterInclusive);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-			}
-			else
-			{
-				$registryObjects = getSpecialObjectSet('nlaSet', $nlaSet);
-			}
-<<<<<<< HEAD
-			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if( $registryObjects && count($registryObjects) > OAI_LIST_SIZE )
 			{
 				// The list is larger than the incomplete list size so...
 				$completeListId = insertCompleteList();
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if( $completeListId )
 				{
 					// Create a new resumptionToken for the next incomplete list.
 					$firstRecordNumber = 1;
 					$completeListSize = count($registryObjects);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 					$error = insertResumptionToken($completeListId, $firstRecordNumber+OAI_LIST_SIZE, $completeListSize, $metadataPrefix);
 
 					if( !$error )
 					{
 						// Build the complete list.
-=======
-					
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-					$error = insertResumptionToken($completeListId, $firstRecordNumber+OAI_LIST_SIZE, $completeListSize, $metadataPrefix);
-
-					if( !$error )
-					{
-<<<<<<< HEAD
-						// Build the complete list. 
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-						// Build the complete list.
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 						for( $i = 0; $i < $completeListSize; $i++ )
 						{
 							insertCompleteListRecord($completeListId, $i+1, $registryObjects[$i]['registry_object_key']);
 						}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
 						$registryObjects = getIncompleteList($completeListId, $firstRecordNumber);
 
 
-=======
-				
-
-						$registryObjects = getIncompleteList($completeListId, $firstRecordNumber);
-						
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-
-						$registryObjects = getIncompleteList($completeListId, $firstRecordNumber);
-
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 						// Get the resumptionTokenXML.
 						$resumptionTokenXML = getResumptionTokenXML($completeListId);
 					}
 					else
 					{
 						$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 						$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");
-=======
-						$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-						$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					}
 				}
 				else
 				{
 					$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 					$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");
-=======
-					$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-					$xml .= getOAIErrorXML(OAInoRecordsMatch, "A server error resulted in no records being returned.");
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				}
 			}
 		}
 		if( !$registryObjects )
 		{
 			$errors = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 			$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
 		}
 	}
@@ -1641,23 +892,6 @@ function printOAIListRecordsXML($args, $requestAttributes)
 	printOAIRequestAttributes($requestAttributes);
 	print($xml);
 
-=======
-			$xml .= getOAIErrorXML(OAInoRecordsMatch, "");	
-		}	
-=======
-			$xml .= getOAIErrorXML(OAInoRecordsMatch, "");
-		}
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-	}
-
-	printOAIRequestAttributes($requestAttributes);
-	print($xml);
-<<<<<<< HEAD
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// Generate the ouput.
 	// -------------------------------------------------------------------------
 	if( !$errors )
@@ -1672,15 +906,7 @@ function printOAIListRecordsXML($args, $requestAttributes)
 			$source = 'dataSource:'.encodeOAISetSpec($registryObject['data_source_key']);
 			if($nlaSet)
 			$isil = 'isil:'.$registryObject['isil_value'];
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			print "    <record>\n";
 			print "      <header>\n";
 			print "        <identifier>".esc($identifier)."</identifier>\n";
@@ -1691,15 +917,7 @@ function printOAIListRecordsXML($args, $requestAttributes)
 			if($nlaSet){
 			print "        <setSpec>".esc($isil)."</setSpec>\n";}
 			print "      </header>\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if( $metadataPrefix == OAI_RIF_METADATA_PREFIX )
 			{
 				print "      <metadata>\n";
@@ -1707,24 +925,10 @@ function printOAIListRecordsXML($args, $requestAttributes)
 				print '                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
 				print '                         xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF_SCHEMA_URI.'">'."\n";
 				print getRegistryObjectXML($identifier);
-<<<<<<< HEAD
-<<<<<<< HEAD
 				print "        </registryObjects>\n";
 				print "      </metadata>\n";
 			}
 
-=======
-				print "        </registryObjects>\n";	
-				print "      </metadata>\n";
-			}
-			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				print "        </registryObjects>\n";
-				print "      </metadata>\n";
-			}
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if( $metadataPrefix == OAI_DC_METADATA_PREFIX )
 			{
 				print "      <metadata>\n";
@@ -1733,8 +937,6 @@ function printOAIListRecordsXML($args, $requestAttributes)
 				print '                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
 				print '                   xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">'."\n";
 				print getRegistryObjectOAIDCXMLElements($identifier);
-<<<<<<< HEAD
-<<<<<<< HEAD
 				print "        </oai_dc:dc>\n";
 				print "      </metadata>\n";
 			}
@@ -1743,23 +945,6 @@ function printOAIListRecordsXML($args, $requestAttributes)
 		print "    $resumptionTokenXML\n";
 		print "  </ListRecords>\n";
 	}
-=======
-				print "        </oai_dc:dc>\n";	
-=======
-				print "        </oai_dc:dc>\n";
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-				print "      </metadata>\n";
-			}
-			print "    </record>\n";
-		}
-		print "    $resumptionTokenXML\n";
-		print "  </ListRecords>\n";
-<<<<<<< HEAD
-	}	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	}
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 
 // OAI-PMH Specification 4.6 ListSets
@@ -1769,15 +954,7 @@ function printOAIListSetsXML($args, $requestAttributes)
 	global $gORCA_OAI_SET_SPECS;
 	$errors = false;
 	$xml = '';
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// We never issue a resumptionToken for ListSets so...
 	// -------------------------------------------------------------------------
 	if( isset($args['resumptionToken']) )
@@ -1785,46 +962,20 @@ function printOAIListSetsXML($args, $requestAttributes)
 		$errors = true;
 		$xml .= getOAIErrorXML(OAIbadResumptionToken, '[1] The value of the resumptionToken argument is invalid or expired.');
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	printOAIRequestAttributes($requestAttributes);
 	print($xml);
 
 	// Generate the ouput.
-<<<<<<< HEAD
-<<<<<<< HEAD
 	// -------------------------------------------------------------------------
 	if( !$errors )
 	{
 		print "  <ListSets>\n";
 
-=======
-	// -------------------------------------------------------------------------	
-	if( !$errors )
-	{
-		print "  <ListSets>\n";
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	// -------------------------------------------------------------------------
-	if( !$errors )
-	{
-		print "  <ListSets>\n";
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// The classes of registry object - class:
 		print "    <set>\n";
 	    print "      <setSpec>class:activity</setSpec>\n";
 	    print "      <setName>Activities</setName>\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
 	    print "    </set>\n";
 		print "    <set>\n";
 	    print "      <setSpec>class:collection</setSpec>\n";
@@ -1834,37 +985,11 @@ function printOAIListSetsXML($args, $requestAttributes)
 	    print "      <setSpec>class:party</setSpec>\n";
 	    print "      <setName>Parties</setName>\n";
 	    print "    </set>\n";
-=======
-	    print "    </set>\n";		
-=======
-	    print "    </set>\n";
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-		print "    <set>\n";
-	    print "      <setSpec>class:collection</setSpec>\n";
-	    print "      <setName>Collections</setName>\n";
-	    print "    </set>\n";
-		print "    <set>\n";
-	    print "      <setSpec>class:party</setSpec>\n";
-	    print "      <setName>Parties</setName>\n";
-<<<<<<< HEAD
-	    print "    </set>\n";	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	    print "    </set>\n";
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		print "    <set>\n";
 	    print "      <setSpec>class:service</setSpec>\n";
 	    print "      <setName>Services</setName>\n";
 	    print "    </set>\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	    
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	    // Registry Object Groups - group:
 	    $groups = getObjectGroups();
 	    if( $groups )
@@ -1888,15 +1013,7 @@ function printOAIListSetsXML($args, $requestAttributes)
 			    print "      <setSpec>dataSource:".esc(encodeOAISetSpec($dataSource['data_source_key']))."</setSpec>\n";
 			    print "      <setName>Registry objects from data source '".esc($dataSource['title'])."'</setName>\n";
 			    print "    </set>\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
 			}
-=======
-			}	    	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-			}
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	    }
 
 		print "  </ListSets>\n";
@@ -1917,29 +1034,12 @@ function getResumptionTokenXML($completeListId)
 			$firstRecordNumber = $resumptionToken[0]['first_record_number'];
 			$expirationDate   = $resumptionToken[0]['expiration_date'];
 			$completeListSize  = $resumptionToken[0]['complete_list_size'];
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 			$cursor = $firstRecordNumber - OAI_LIST_SIZE - 1;
 
 			$xml .= ' expirationDate="'.esc(getXMLDateTime($expirationDate)).'"';
 			$xml .= ' completeListSize="'.esc($completeListSize).'"';
 			$xml .= ' cursor="'.esc($cursor).'"';
-=======
-			
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-			$cursor = $firstRecordNumber - OAI_LIST_SIZE - 1;
-
-			$xml .= ' expirationDate="'.esc(getXMLDateTime($expirationDate)).'"';
-			$xml .= ' completeListSize="'.esc($completeListSize).'"';
-<<<<<<< HEAD
-			$xml .= ' cursor="'.esc($cursor).'"';	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-			$xml .= ' cursor="'.esc($cursor).'"';
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		}
 		$xml .= '>'.esc($resumptionTokenId);
 	}
@@ -1948,21 +1048,9 @@ function getResumptionTokenXML($completeListId)
 		$xml .= '>';
 	}
 	$xml .= '</resumptionToken>';
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 	cleanupCompleteLists();
 
-=======
-	
-	cleanupCompleteLists();
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-	cleanupCompleteLists();
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	return $xml;
 }
 
@@ -1970,23 +1058,13 @@ function getResumptionTokenXML($completeListId)
 function encodeOAISetSpec($rawSpec)
 {
 	$encodedSpec = preg_replace('/%([0-9][0-9])/', '0x$1', rawurlencode($rawSpec));
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	return $encodedSpec;
 }
 
 function decodeOAISetSpec($encodedSpec)
 {
 	$rawSpec = rawurldecode(preg_replace('/0x([0-9][0-9])/', '%$1', $encodedSpec));
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 	return $rawSpec;
 }
@@ -1996,24 +1074,6 @@ function getOAIErrorXML($code, $description)
 {
 	global $aoiErrors;
 
-=======
-	
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-	return $rawSpec;
-}
-
-// =============================================================================
-function getOAIErrorXML($code, $description)
-{
-	global $aoiErrors;
-<<<<<<< HEAD
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	if( !$description )
 	{
 		// Get the generic description.
@@ -2026,23 +1086,10 @@ function getOAIErrorXML($code, $description)
 // =============================================================================
 function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
 	global $host, $rda_root;
 	$xml = '';
 	$registryObject = getRegistryObject($registryObjectKey);
 
-=======
-	$xml = '';
-	$registryObject = getRegistryObject($registryObjectKey);
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	global $host, $rda_root;
-	$xml = '';
-	$registryObject = getRegistryObject($registryObjectKey);
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	if( $registryObject )
 	{
 		//<element ref="dc:title"/>
@@ -2064,49 +1111,21 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 			$xml .=	"</dc:title>\n";
 		}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	    //<element ref="dc:identifier"/>
 		$electronicAddresses = getRegistryObjectElectronicAddresses($registryObjectKey);
 		if($electronicAddresses)
 		{
 			foreach($electronicAddresses as $electronicAddress)
 			{
-<<<<<<< HEAD
-<<<<<<< HEAD
 				// spec: collection/location/address/electronic[@type='url']/value
-=======
-				// spec: collection/location/address/electronic[@type='url']/value   
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				// spec: collection/location/address/electronic[@type='url']/value
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if (strtolower($electronicAddress['type']) == "url")
 				{
 					$xml .= "          <dc:identifier>".esc($electronicAddress['value'])."</dc:identifier>\n";
 				}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 			}
 		}
-=======
-				
-			}						
-		}	    
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-			}
-		}
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$identifiers = getIdentifiers($registryObjectKey);
 		if( $identifiers )
 		{
@@ -2120,8 +1139,6 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 				}
 				elseif($identifier['type']=="url"||$identifier['type']=="uri"||$identifier['type']=="purl")
 				{
-<<<<<<< HEAD
-<<<<<<< HEAD
 					$xml .= "          <dc:identifier>".esc($identifier['value'])."</dc:identifier>\n";
 				}
 				else
@@ -2133,28 +1150,6 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 
 		$xml .= "          <dc:identifier>http://".$host.'/'.$rda_root . '/view.php?key='.esc(urlencode($registryObjectKey))."</dc:identifier>\n";
 
-=======
-					$xml .= "          <dc:identifier>".esc($identifier['value'])."</dc:identifier>\n";					
-=======
-					$xml .= "          <dc:identifier>".esc($identifier['value'])."</dc:identifier>\n";
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-				}
-				else
-				{
-					$xml .= "          <dc:identifier>".esc($identifier['value'])." (".esc($identifier['type']).")</dc:identifier>\n";
-				}
-			}
-		}
-<<<<<<< HEAD
-		
-		$xml .= "          <dc:identifier>".eHTTP_APP_ROOT.'orca/rda/view.php?key='.esc(urlencode($registryObjectKey))."</dc:identifier>\n";			
-	    
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-		$xml .= "          <dc:identifier>http://".$host.'/'.$rda_root . '/view.php?key='.esc(urlencode($registryObjectKey))."</dc:identifier>\n";
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		//<element ref="dc:description"/>
 	    //<element ref="dc:rights" />
 		$descriptions = getDescriptions($registryObjectKey);
@@ -2167,28 +1162,12 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 					$xml .= "          <dc:rights>".esc($description['value'])."</dc:rights>\n";
 				}
 				else
-<<<<<<< HEAD
-<<<<<<< HEAD
 				{
-=======
-				{			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				{
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					$xml .= "          <dc:description>".esc($description['value'])."</dc:description>\n";
 				}
 			}
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-						    
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		//<element ref="dc:subject"/>
 		$subjects = getSubjects($registryObjectKey);
 		if( $subjects )
@@ -2205,8 +1184,6 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 					case 'RFCD':
 						$value = getNameForVocabSubject('rfcd',  $subject["value"]);
 						break;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 					// ---------------------------------------------
 					// ANZSRC
@@ -2231,39 +1208,6 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 					{
 						$xml .= "          <dc:subject>".esc($value)."</dc:subject>\n";
 					}
-=======
-		    
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-					// ---------------------------------------------
-					// ANZSRC
-					// ---------------------------------------------
-					case 'ANZSRC-FOR':
-						$value = getNameForVocabSubject('ANZSRC-FOR', $subject["value"]);
-						break;
-
-					case 'ANZSRC-SEO':
-						$value = getNameForVocabSubject('ANZSRC-SEO', $subject["value"]);
-						break;
-
-					case 'ANZSRC-TOA':
-						$value = getNameForVocabSubject('ANZSRC-TOA', $subject["value"]);
-						break;
-
-		    		default:
-		    			break;
-					}
-
-					if($value)
-					{
-						$xml .= "          <dc:subject>".esc($value)."</dc:subject>\n";
-<<<<<<< HEAD
-					}		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-					}
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					else
 					{
 						// Monica has asked for this to be removed if it doesn't match a valid code
@@ -2275,45 +1219,19 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 			}
 		}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 		//<element ref="dc:type"/>
 		if($registryObject[0]['type']){
 				$xml .= "          <dc:type>".esc($registryObject[0]['type'])."</dc:type>\n";
 		}
 
 		//<element ref="dc:coverage"/>
-=======
-		//<element ref="dc:type"/>	
-		if($registryObject[0]['type']){
-				$xml .= "          <dc:type>".esc($registryObject[0]['type'])."</dc:type>\n";
-		}
-				
-		//<element ref="dc:coverage"/>	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-		//<element ref="dc:type"/>
-		if($registryObject[0]['type']){
-				$xml .= "          <dc:type>".esc($registryObject[0]['type'])."</dc:type>\n";
-		}
-
-		//<element ref="dc:coverage"/>
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$coverages = getCoverage($registryObjectKey);
 		if( $coverages )
 		{
 			foreach( $coverages as $coverage )
 			{
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 				$spatialCoverages = getSpatialCoverage($coverage['coverage_id']);
-=======
-				$spatialCoverages = getSpatialCoverage($coverage['coverage_id']);	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				$spatialCoverages = getSpatialCoverage($coverage['coverage_id']);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if($spatialCoverages)
 				{
 					foreach($spatialCoverages as $spatialCoverage)
@@ -2321,18 +1239,8 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 						$xml .= "          <dc:coverage>Spatial:".str_replace("text","",esc($spatialCoverage['type'])).":".esc($spatialCoverage['value'])."</dc:coverage>\n";
 					}
 				}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 				$temporalCoverages = getTemporalCoverage($coverage['coverage_id']);
-=======
-				
-				$temporalCoverages = getTemporalCoverage($coverage['coverage_id']);	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-				$temporalCoverages = getTemporalCoverage($coverage['coverage_id']);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if($temporalCoverages)
 				{
 					foreach($temporalCoverages as $temporalCoverage)
@@ -2341,8 +1249,6 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 							$coverageDates = '';
 							foreach($temporalDates as $temporalDate)
 							{
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 								if($temporalDate['type']=='dateFrom')
 								{
@@ -2376,71 +1282,15 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 		}
 
 		//<element ref="dc:contributor"/>
-=======
-													
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-								if($temporalDate['type']=='dateFrom')
-								{
-									$coverageDates .= ' from '.str_replace("T00:00:00Z","",str_replace("T23:59:59Z","",esc($temporalDate['value'])));
-								}
-
-								if($temporalDate['type']=='dateTo')
-								{
-									$coverageDates .= ' to '.str_replace("T00:00:00Z","",str_replace("T23:59:59Z","",esc($temporalDate['value'])));
-								}
-
-							}
-							$xml .= "          <dc:coverage>Temporal:".$coverageDates."</dc:coverage>\n";
-
-							$temporalTexts = getTemporalCoverageText($temporalCoverage['temporal_coverage_id']);
-							if($temporalTexts){
-								foreach($temporalTexts as $temporalText)
-								{
-									$xml .= "          <dc:coverage>Temporal:".esc($temporalText['value'])."</dc:coverage>\n";
-								}
-							}
-					}
-				}
-
-			}
-		}
-
-		//<element ref="dc:publisher"/>
-		if($registryObject[0]['object_group']!='Publish My Data'){
-			$xml .= "          <dc:publisher>".$registryObject[0]['object_group']."</dc:publisher>\n";
-<<<<<<< HEAD
-		}				
-						
-		//<element ref="dc:contributor"/>			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-		}
-
-		//<element ref="dc:contributor"/>
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$contributors = getRelatedObjects($registryObjectKey);
 		if($contributors)
 		{
 			foreach($contributors as $contributor)
 			{
 				$relations = getRelationDescriptions(esc($contributor['relation_id']));
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 				$Names = getNames($contributor['related_registry_object_key']);
 
-=======
-				
-				$Names = getNames($contributor['related_registry_object_key']);
-				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-				$Names = getNames($contributor['related_registry_object_key']);
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if($Names)
 				{
 					$contributorName ='';
@@ -2449,31 +1299,13 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 						$contributorName .= esc($Name['value']);
 					}
 				}
-<<<<<<< HEAD
-<<<<<<< HEAD
 				if(trim($contributorName)){
 					$xml .= "          <dc:contributor>".$contributorName." (".esc($relations[0]['type']) .")</dc:contributor>\n";
-=======
-				if(trim($contributorName)){	
-					$xml .= "          <dc:contributor>".$contributorName." (".esc($relations[0]['type']) .")</dc:contributor>\n";				
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				if(trim($contributorName)){
-					$xml .= "          <dc:contributor>".$contributorName." (".esc($relations[0]['type']) .")</dc:contributor>\n";
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				}
 				$contributorName ='';
 			}
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$relatedInfos = getRelatedInfo($registryObjectKey);
 		if( $relatedInfos )
 		{
@@ -2481,15 +1313,7 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 			{
 				if($relatedInfo['identifier_type']=="url"||$relatedInfo['identifier_type']=="uri"||$relatedInfo['identifier_type']=="purl"||$relatedInfo['identifier_type']=="handle")
 				{
-<<<<<<< HEAD
-<<<<<<< HEAD
 					$xml .= "          <dc:relation>".esc($relatedInfo['identifier'])."</dc:relation>\n";
-=======
-					$xml .= "          <dc:relation>".esc($relatedInfo['identifier'])."</dc:relation>\n";			
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-					$xml .= "          <dc:relation>".esc($relatedInfo['identifier'])."</dc:relation>\n";
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				}
 				else
 				{
@@ -2501,21 +1325,9 @@ function getRegistryObjectOAIDCXMLElements($registryObjectKey)
 					}
 				}
 			}
-<<<<<<< HEAD
-<<<<<<< HEAD
 		}
 
 
-=======
-		}		
-		
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-		}
-
-
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	return $xml;
 }
@@ -2528,22 +1340,8 @@ function getNameForVocabSubject($vocabId, $vocabTermId)
 	{
 		$termName = $term[0]['name'];
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 	return $termName;
 
 }
-=======
-	
-	return $termName;
-
-} 
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-
-	return $termName;
-
-}
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>

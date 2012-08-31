@@ -59,12 +59,10 @@ if (isset($description))
 	                                    foreach($json->{'response'}->{'docs'} as $d){		
 	                                        if(count($d->{'location'})>0){		
 	                                            echo '<li>';		
-<<<<<<< HEAD
+
 	                                           // echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. htmlentities($d->{'displayTitle'}) . '</a>';	 //commented 8.1
                                                     echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. htmlentities($d->{'display_title'}) . '</a>';   //added 8.1
-=======
-	                                            echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. htmlentities($d->{'displayTitle'}) . '</a>';		
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
 	                                            echo '</li>';		
 	                                         }		
 	                                    }		

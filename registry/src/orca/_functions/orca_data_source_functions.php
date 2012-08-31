@@ -16,30 +16,17 @@ limitations under the License.
 
 define('gORCA_HARVEST_REQUEST_STATUS_PROCESSING', 'PROCESSING HARVESTER PUT REQUEST');
 
-$rif2solrXSL = new DomDocument();
-$rif2solrXSL->load(eAPPLICATION_ROOT.'/orca/_xsl/rif2solr.xsl');
-$solrXSLTProc = new XSLTProcessor();
-$solrXSLTProc->importStyleSheet($rif2solrXSL);
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
+//$rif2solrXSL = new DomDocument();
+//$rif2solrXSL->load(eAPPLICATION_ROOT.'/orca/_xsl/rif2solr.xsl');
+//$solrXSLTProc = new XSLTProcessor();
+//$solrXSLTProc->importStyleSheet($rif2solrXSL);
+ 
 $qtestxsl = new DomDocument();
 $qtestxsl->load(eAPPLICATION_ROOT.'orca/_xsl/extRif2solr.xsl');
 $extRif2solrProc = new XSLTProcessor();
 $extRif2solrProc->importStyleSheet($qtestxsl);
 
 
-<<<<<<< HEAD
-=======
-	
-	
-	
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 function runImport($dataSource, $testOnly)
 {
 	$dataSourceProviderType  = $dataSource[0]['provider_type'];
@@ -53,16 +40,9 @@ function runImport($dataSource, $testOnly)
 	$errors = null;
 	$log_type = "INFO";
 	$startTime = microtime(true);
-<<<<<<< HEAD
-<<<<<<< HEAD
 	$advancedHarvestingMethod = $dataSource[0]['advanced_harvesting_mode'];
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	$advancedHarvestingMethod = $dataSource[0]['advanced_harvesting_mode'];
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$mode = 'harvest'; if( $testOnly ){ $mode = 'test'; }
-	
+
 	// DIRECT HARVEST
 	// =========================================================================
 	if( $dataSourceHarvestMethod == gORCA_HARVEST_METHOD_DIRECT )
@@ -71,20 +51,11 @@ function runImport($dataSource, $testOnly)
 		$registryObjects = new DOMDocument();
 		$result = $registryObjects->load($dataSourceURI);
 		$errors = error_get_last();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if(!filter_var($dataSourceURI, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED))
   		{
   			 $errors['message'] =  " I/O warning : failed to load external entity . URI \"".$dataSourceURI."\" is not a valid URI";
   		}
 
-<<<<<<< HEAD
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if( $errors )
 		{
 			$runErrors .= "Document Load Error: ".$errors['message']."\n";
@@ -104,15 +75,15 @@ function runImport($dataSource, $testOnly)
 		{
 			  // Validate it against the orca schema.
 			  // XXX: libxml2.6 workaround (Save to local filesystem before validating)
-			  
+
 			  // Create temporary file and save manually created DOMDocument.
 			  $tempFile = "/tmp/" . time() . '-' . rand() . '-document.tmp';
 			  $registryObjects->save($tempFile);
-			 
+
 			  // Create temporary DOMDocument and re-load content from file.
 			  $registryObjects = new DOMDocument();
 			  $registryObjects->load($tempFile);
-			  
+
 			  // Delete temporary file.
 			  if (is_file($tempFile))
 			  {
@@ -128,12 +99,12 @@ function runImport($dataSource, $testOnly)
 				$log_type = "DOCUMENT_VALIDATION_ERROR";
 			}
 		}
-		
+
 		$actions  = "IMPORT\n";
 		$actions .= "URI: $dataSourceURI\n";
 		$actions .= "Provider Type: $dataSourceProviderType\n";
 		$actions .= "Harvest Method: $dataSourceHarvestMethod\n";
-		
+
 		if( !$testOnly )
 		{
 			if( !$runErrors )
@@ -142,16 +113,7 @@ function runImport($dataSource, $testOnly)
 				$runErrors = importRegistryObjects($registryObjects, $dataSourceKey, $runResultMessage);
 				$timeTaken = substr((string)(microtime(true) - $startTime), 0, 5);
 				$actions  .= "Time Taken: $timeTaken seconds\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
-				
-=======
-				runQualityCheckforDataSource($dataSourceKey);
-				runSolrIndexForDatasource($dataSourceKey);
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
+
 			}
 
 
@@ -164,19 +126,12 @@ function runImport($dataSource, $testOnly)
 			{
 				$actions .= ">>SUCCESS\n".$runResultMessage."\n";
 			}
-<<<<<<< HEAD
-<<<<<<< HEAD
 			queueSyncDataSource($dataSourceKey);
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-			queueSyncDataSource($dataSourceKey);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		}
 		else
 		{
 			$actions .= "## TEST ##\n";
-			
+
 			// Check for errors in the data.
 			if( $runErrors )
 			{
@@ -186,30 +141,30 @@ function runImport($dataSource, $testOnly)
 			else
 			{	
 				$actions .= ">>SUCCESS\n";
-				
+
 				// Get some information about the data.
 				$actions .= "  SOURCE DATA\n";
 				$actions .= '    '.$registryObjects->getElementsByTagName("registryObject")->length." registryObject element/s.\n";
 				$actions .= '    '.$registryObjects->getElementsByTagName("*")->length." elements.\n";
 			}
 		}
-			
+
 		// Log the activity.
 		insertDataSourceEvent($dataSourceKey, $actions, $log_type);
-		
+
 	}
-	
+
 	// HARVESTER HARVEST
 	// =========================================================================
 	else
 	{
 		$harvestRequestId = strtoupper(sha1($dataSourceKey.microtime(false)));
-		
+
 		$actions  = "SUBMIT HARVEST REQUEST\n";
 		$actions .= "Harvest Request ID: $harvestRequestId\n";
 		$actions .= "URI: $dataSourceURI\n";
 		$actions .= "Provider Type: $dataSourceProviderType\n";
-		
+
 		// Check the harvester configuration.
 		if( !gORCA_HARVESTER_BASE_URI || !gORCA_HARVESTER_IP )
 		{
@@ -219,22 +174,22 @@ function runImport($dataSource, $testOnly)
 		}
 		else
 		{
-			
+
 			global $gActivities;
 			$responseTargetURI = getObject($gActivities, 'aORCA_SERVICE_PUT_HARVEST_DATA')->path;
-			
+
 			$OAISet = '';
 			if( isset($dataSource[0]['oai_set']) )
 			{
 				$OAISet = $dataSource[0]['oai_set'];
 			}
-			
+
 			$harvestDate = null;
 			if( isset($dataSource[0]['harvest_date']) )
 			{
 				$harvestDate = formatDateTimeWithMask($dataSource[0]['harvest_date'], eDCT_FORMAT_ISO8601_DATETIMESEC_UTC);
 			}
-			
+
 			$harvestFrequency = '';
 			if( isset($dataSource[0]['harvest_frequency']) )
 			{
@@ -254,7 +209,7 @@ function runImport($dataSource, $testOnly)
 			$actions .= "Harvest Date: $harvestDate\n";
 			$actions .= "Harvest Frequency: $harvestFrequency\n";
 			$actions .= "Mode: $mode\n";
-			
+
 			$harvestRequest  = 'requestHarvest?';
 			$harvestRequest .= 'responsetargeturl='.urlencode($responseTargetURI);
 			$harvestRequest .= '&harvestid='.urlencode($harvestRequestId);
@@ -267,18 +222,11 @@ function runImport($dataSource, $testOnly)
 			$harvestRequest .= '&date='.urlencode($harvestDate);
 			$harvestRequest .= '&frequency='.urlencode($harvestFrequency);
 			$harvestRequest .= '&mode='.urlencode($mode);
-<<<<<<< HEAD
-<<<<<<< HEAD
 			$harvestRequest .= '&ahm='.urlencode($advancedHarvestingMethod);
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-			$harvestRequest .= '&ahm='.urlencode($advancedHarvestingMethod);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-			
+
 			// Submit the request.
 			$runErrors = submitHarvestRequest(gORCA_HARVESTER_BASE_URI.$harvestRequest);
-			
+
 			if( $runErrors )
 			{
 				$actions .= ">>ERRORS\n";
@@ -301,38 +249,29 @@ function runImport($dataSource, $testOnly)
 	}
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 function getRecordCountsByStatusForDataSource($data_source_key)
 {
 	global $solr_url;
 	$statuses = array();
 	$statuses["PUBLISHED"] = 0;
-	
+
 	$result = json_decode(file_get_contents($solr_url."select/?wt=json&q=data_source_key:(\"".rawurlencode($data_source_key)."\")&facet=true&facet.field=status&facet.mincount=1&rows=0"), true);
 
 	if (isset($result['facet_counts']['facet_fields']['status']))
 	{
-		
+
 		for ( $i = 0; $i<count($result['facet_counts']['facet_fields']['status']); $i+=2)
 		{
 			$statuses[$result['facet_counts']['facet_fields']['status'][$i]] = $result['facet_counts']['facet_fields']['status'][$i+1];
 		}
 	}
 
-	
+
 	return $statuses;
-	
+
 }
 
 
-<<<<<<< HEAD
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 function runClear($dataSource, $action)
 {
 	$actions = "";
@@ -342,11 +281,11 @@ function runClear($dataSource, $action)
 	$log_type = "INFO";
 	// Delete all the related Registry Objects associated with this data source.
 	$runErrors = deleteDataSourceRegistryObjects($dataSourceKey, $runResultMessage, $action);
-	
+
 	$timeTaken = substr((string)(microtime(true) - $startTime), 0, 5);
-	
+
 	$actions  = "$action ($timeTaken seconds)\n";
-	
+
 	if( $runErrors )
 	{
 		$actions .= ">>ERRORS\n".$runResultMessage."\n";
@@ -357,16 +296,9 @@ function runClear($dataSource, $action)
 	{
 		$actions .= ">>SUCCESS\n".$runResultMessage."\n";
 	}
-	
+
 	// Log the activity.
-<<<<<<< HEAD
-<<<<<<< HEAD
 	queueSyncDataSource($dataSourceKey);
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	queueSyncDataSource($dataSourceKey);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	insertDataSourceEvent($dataSourceKey, $actions, $log_type);
 
 }
@@ -427,15 +359,7 @@ function deleteDataSourceRegistryObjects($dataSourceKey, &$resultMessage, $actio
 	$resultMessage .= "    $registryObjectCount Registry Object/s from this source.\n";
 	$resultMessage .= "  ACTIONS\n";
 	$resultMessage .= "    $successfulDeletes Registry Object/s deleted.\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
 	queueSyncDataSource($dataSourceKey);
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	queueSyncDataSource($dataSourceKey);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	return $errors;
 }
 
@@ -473,7 +397,7 @@ function getDataSourceLogHTML($dataSourceKey)
 			{
 				$logTypeColour = "#66D207";
 			}
-					
+
 			$html .= "<tr>\n";
 			$html .= "<td id='".$row."' style=\"background: ".$logTypeColour."; border-top: 1px solid #ffffff; border-bottom: 1px solid #aaaaaa; border-right: 1px solid #c8c5c3; text-align: right; font-weight: bold; font-style: italic; width: 2%;color:white; border:none; \">[$row]&nbsp;</td>\n";
 			$html .= "<td style=\"background: #dfddda URL('".eIMAGE_ROOT."_layout/bg_dark.gif') no-repeat;  border-top: 1px solid #ffffff; border-bottom: 1px solid #aaaaaa; border-right: 1px solid #c8c5c3; text-align: left; width: 7%; white-space: nowrap;\">".esc(formatDateTimeWithMask($event['created_when'], eDCT_FORMAT_ISO8601_DATE_TIMESEC))."</td>\n";
@@ -524,7 +448,7 @@ function getDataSourceLogText($dataSourceKey)
 function submitHarvestRequest($harvestRequest)
 {
 	$runErrors = '';
-	
+
 	// Submit the harvestRequest to the harvester.
 	$resultMessage = new DOMDocument();
 	$result = $resultMessage->load($harvestRequest);
@@ -537,7 +461,7 @@ function submitHarvestRequest($harvestRequest)
 	{
 		$responseType = strtoupper($resultMessage->getElementsByTagName("response")->item(0)->getAttribute("type"));
 		$message = $resultMessage->getElementsByTagName("message")->item(0)->nodeValue;
-		
+
 		if( $responseType != 'SUCCESS' )
 		{
 			$runErrors = "harvestRequest Error[2]: $message";
@@ -549,10 +473,10 @@ function submitHarvestRequest($harvestRequest)
 function getHarvestRequestStatus($harvestRequestId, $dataSourceKey)
 {
 	$runErrors = '';
-	
+
 	// Get the harvest request.
 	$harvestRequest = getHarvestRequests($harvestRequestId, null);
-	
+
 	$actions  = "GET HARVEST REQUEST STATUS\n";
 	$actions .= "Harvest Request ID: $harvestRequestId\n";
 
@@ -560,12 +484,12 @@ function getHarvestRequestStatus($harvestRequestId, $dataSourceKey)
 	{
 		$harvesterBaseURI = $harvestRequest[0]['harvester_base_uri'];
 		$status = $harvestRequest[0]['status'];
-		
+
 		if( $status != gORCA_HARVEST_REQUEST_STATUS_PROCESSING )
 		{
 			// Submit a getHarvestStatus to the harvester.
 			$request = $harvesterBaseURI."getHarvestStatus?harvestid=".esc($harvestRequestId);
-		
+
 			// Submit the request.
 			$runErrors = '';
 			$resultMessage = new DOMDocument();
@@ -579,7 +503,7 @@ function getHarvestRequestStatus($harvestRequestId, $dataSourceKey)
 			{
 				$responseType = strtoupper($resultMessage->getElementsByTagName("response")->item(0)->getAttribute("type"));
 				$message = $resultMessage->getElementsByTagName("message")->item(0)->nodeValue;
-				
+
 				if( $responseType == 'SUCCESS' )
 				{
 					$status = $message;
@@ -600,12 +524,12 @@ function getHarvestRequestStatus($harvestRequestId, $dataSourceKey)
 	{
 		$runErrors = 'The harvest request does not exist.';
 	}	
-	
+
 	if( $runErrors )
 	{
 		$actions .= ">>ERRORS\n";
 		$actions .= $runErrors;
-		
+
 		// Log the problem.
 		insertDataSourceEvent($dataSourceKey, $actions);
 	}
@@ -616,21 +540,21 @@ function cancelHarvestRequest($harvestRequestId, $dataSourceKey)
 
 	// Get the harvest request.
 	$harvestRequest = getHarvestRequests($harvestRequestId, null);
-	
+
 	$actions  = "DELETE HARVEST REQUEST\n";
 	$actions .= "Harvest Request ID: $harvestRequestId\n";
 	$actions .= "Submitted: ".formatDateTimeWithMask($harvestRequest[0]['created_when'], eDCT_FORMAT_ISO8601_DATE_TIMESEC)."\n";
 	$actions .= "Last Status Update: ".formatDateTimeWithMask($harvestRequest[0]['modified_when'], eDCT_FORMAT_ISO8601_DATE_TIMESEC)."\n";
 	$actions .= "Status: ".$harvestRequest[0]['status']."\n";
-	
-	
+
+
 	if( $harvestRequest )
 	{
 		$harvesterBaseURI = $harvestRequest[0]['harvester_base_uri'];
-		
+
 		// Submit a deleteHarvestRequest to the harvester.
 		$request = $harvesterBaseURI."deleteHarvestRequest?harvestid=".esc($harvestRequestId);
-		
+
 		// Submit the request.
 		$runErrors = '';
 		$resultMessage = new DOMDocument();
@@ -644,13 +568,13 @@ function cancelHarvestRequest($harvestRequestId, $dataSourceKey)
 		{
 			$responseType = strtoupper($resultMessage->getElementsByTagName("response")->item(0)->getAttribute("type"));
 			$message = $resultMessage->getElementsByTagName("message")->item(0)->nodeValue;
-			
+
 			if( $responseType != 'SUCCESS' )
 			{
 				$runErrors = "deleteHarvestRequest Error[2]: $message";
 			}
 		}
-		
+
 		if( $runErrors )
 		{
 			$actions .= ">>ERRORS\n";
@@ -699,10 +623,6 @@ $transformResult = $proc->transformToXML($registryObjects);
 return $transformResult;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 function transformToStripFormData($registryObjectsXML)
 {
 $qtestxsl = new DomDocument();
@@ -715,22 +635,7 @@ $transformResult = $proc->transformToXML($registryObjects);
 return $transformResult;
 }
 
-function transformToSolr($registryObjectsXML)
-{	
-<<<<<<< HEAD
-            
 
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-	global $extRif2solrProc;
-	$registryObjects = new DomDocument();
-	$registryObjects->loadXML($registryObjectsXML);
-	$transformResult = $extRif2solrProc->transformToXML($registryObjects);	
-<<<<<<< HEAD
-	//return $transformResult;       
-
-        $result=replaceCodeWithStringValue($transformResult);
-=======
 function transformToSolr($registryObjectsXML)
 {
     
@@ -743,12 +648,10 @@ $proc->importStyleSheet($qtestxsl);
 $transformResult = $proc->transformToXML($registryObjects); 
 
 $result=replaceCodeWithStringValue($transformResult);
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
 //return $transformResult;
 return $result;
-=======
-	return $transformResult;
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
+
 }
 
 function runSolrIndexForDatasource($dataSourceKey)
@@ -756,15 +659,7 @@ function runSolrIndexForDatasource($dataSourceKey)
 	$rifcsContent = '';
 	$allKeys = getRegistryObjectKeysForDataSource($dataSourceKey);
 	$arraySize = sizeof($allKeys);
-<<<<<<< HEAD
-<<<<<<< HEAD
 	$result ='';
-=======
-	$result = 'Solr Indexing run';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	$result ='';
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$publishedRecords = 0;
 	for($i = 0; $i < $arraySize ; $i++)
 	{				
@@ -772,15 +667,8 @@ function runSolrIndexForDatasource($dataSourceKey)
 		//{
 		$key = $allKeys[$i]['registry_object_key'];	
 		$publishedRecords++;	
-<<<<<<< HEAD
-<<<<<<< HEAD
 		$rifcsContent = getRegistryObjectXMLforSOLR($key, true);
 		$rifcs = wrapRegistryObjects($rifcsContent);
-
-=======
-		$rifcsContent = getRegistryObjectXMLforSOLR($key, true);
-		$rifcs = wrapRegistryObjects($rifcsContent);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$rifcs = transformToSolr($rifcs);		
 		//	echo $key . '<br/>';						
 		$result .= curl_post(gSOLR_UPDATE_URL, $rifcs);					
@@ -788,68 +676,27 @@ function runSolrIndexForDatasource($dataSourceKey)
 		//echo $result;
 		$result ='';flush(); ob_flush();	
 	//	$result .= curl_post(gSOLR_UPDATE_URL.'?optimize=true', '<optimize waitFlush="false" waitSearcher="false"/>');
-	
-<<<<<<< HEAD
-		//}	
-	}
-		$result .= curl_post(gSOLR_UPDATE_URL.'?optimize=true', '<optimize waitFlush="false" waitSearcher="false"/>');
-	/*if($publishedRecords > 0)
-	{
-		$rifcs = wrapRegistryObjects($rifcsContent);
-		$rifcs = transformToSolr($rifcs);									
-		$result .= curl_post(gSOLR_UPDATE_URL, $rifcs);					
-		$result .= curl_post(gSOLR_UPDATE_URL.'?commit=true', '<commit waitFlush="false" waitSearcher="false"/>');
-		$result .= curl_post(gSOLR_UPDATE_URL.'?optimize=true', '<optimize waitFlush="false" waitSearcher="false"/>');	
-	}*/
-=======
-		$rifcsContent .= getRegistryObjectXMLforSOLR($key, true);
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-		//}	
-	}
-		$result .= curl_post(gSOLR_UPDATE_URL.'?optimize=true', '<optimize waitFlush="false" waitSearcher="false"/>');
-	/*if($publishedRecords > 0)
-	{
-<<<<<<< HEAD
-				
-		$rifcs = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
-		$rifcs .='<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" '."\n";
-		$rifcs .='                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '."\n";
-		$rifcs .='                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects '.gRIF_SCHEMA_URI.'">'."\n";	
-		$rifcs .= $rifcsContent;			
-		$rifcs .= "</registryObjects>\n";	
- 
-        	$rifcs = transformToSolr($rifcs);									
 
-		$result .= curl_post(gSOLR_UPDATE_URL, $rifcs);					
-		$result .= curl_post(gSOLR_UPDATE_URL.'?commit=true', '<commit waitFlush="false" waitSearcher="false"/>');
-		$result .= curl_post(gSOLR_UPDATE_URL.'?optimize=true', '<optimize waitFlush="false" waitSearcher="false"/>');	
+		//}	
 	}
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
+		$result .= curl_post(gSOLR_UPDATE_URL.'?optimize=true', '<optimize waitFlush="false" waitSearcher="false"/>');
+	/*if($publishedRecords > 0)
+	{
 		$rifcs = wrapRegistryObjects($rifcsContent);
 		$rifcs = transformToSolr($rifcs);									
 		$result .= curl_post(gSOLR_UPDATE_URL, $rifcs);					
 		$result .= curl_post(gSOLR_UPDATE_URL.'?commit=true', '<commit waitFlush="false" waitSearcher="false"/>');
 		$result .= curl_post(gSOLR_UPDATE_URL.'?optimize=true', '<optimize waitFlush="false" waitSearcher="false"/>');	
 	}*/
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
     return $result;	
 }
 
 function updateRecordsForDataSource($dataSourceKey, $manuallyPublish,$manuallyPublishOld, $qaFlag, $qaFlagOld,$createPrimary,$oldCreatePrimary,$class_1,$class_1_old,$class_2,$class_2_old)
 {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	$actions = '';
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	$actions = '';
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	if($createPrimary=='0') $createPrimary='f';
-	
+
 	if(($manuallyPublish == 0 || $manuallyPublish == 'f') && $manuallyPublishOld == 't')
 	{
 		// set Approved to Published for all registry Objects
@@ -859,46 +706,20 @@ function updateRecordsForDataSource($dataSourceKey, $manuallyPublish,$manuallyPu
 			for( $i=0; $i < count($registryObjectKeys); $i++ )
 			{
 				updateRegistryObjectStatus($registryObjectKeys[$i]['registry_object_key'], PUBLISHED);
-<<<<<<< HEAD
-<<<<<<< HEAD
 				//$actions .= $registryObjectKeys[$i]['registry_object_key'].' changed status to PUBLISHED';
 			}
 		}
-		
+
 		insertDataSourceEvent($dataSourceKey, $actions);
 	}
 	//echo $createPrimary." = new :: ".$oldCreatePrimary." = old ";
 	//if($createPrimary!=$oldCreatePrimary||$class_1!=$class_1_old||$class_2!=$class_2_old)
 	//{
-		
+
 	//}
-=======
-				optimiseSolrIndex();
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-				//$actions .= $registryObjectKeys[$i]['registry_object_key'].' changed status to PUBLISHED';
-			}
-		}
-		
-		insertDataSourceEvent($dataSourceKey, $actions);
-	}
-	//echo $createPrimary." = new :: ".$oldCreatePrimary." = old ";
-<<<<<<< HEAD
-	if($createPrimary!=$oldCreatePrimary||$class_1!=$class_1_old||$class_2!=$class_2_old)
-	{
-		runSolrIndexForDatasource($dataSourceKey);			
-		runQualityCheckforDataSource($dataSourceKey);
-	}
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	//if($createPrimary!=$oldCreatePrimary||$class_1!=$class_1_old||$class_2!=$class_2_old)
-	//{
-		
-	//}
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	if(($qaFlag == 0 || $qaFlag == 'f') && $qaFlagOld == 't')
 	{
-			
+
 		if($manuallyPublish == 1 || $manuallyPublish == 't')
 		{
 			$status = APPROVED;
@@ -907,44 +728,23 @@ function updateRecordsForDataSource($dataSourceKey, $manuallyPublish,$manuallyPu
 		{
 			$status = PUBLISHED;
 		}
-		
+
 		// change status in draft MORE_WORK => DRAFT
-		
+
 		// move ASSESSMENT_IN_PROGRESS AND SUBMITTED_FOR_ASSESSMENT into either APPROVED or PUBLISHED (depending on $autoPublish flag)
 		if($registryObjectKeys = getDraftRegistryObject(null, $dataSourceKey))
 		{
 			for( $i=0; $i < count($registryObjectKeys); $i++ )
 			{
-<<<<<<< HEAD
-<<<<<<< HEAD
-				
+
 				if($registryObjectKeys[$i]['status'] == MORE_WORK_REQUIRED)
 				{
 					$actions .= $registryObjectKeys[$i]['draft_key']." Changed Status to DRAFT\n";
-=======
-				if($registryObjectKeys[$i]['status'] == MORE_WORK_REQUIRED)
-				{
-					$actions .= $registryObjectKeys[$i]['draft_key'].' Changed Status to DRAFT';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-				
-				if($registryObjectKeys[$i]['status'] == MORE_WORK_REQUIRED)
-				{
-					$actions .= $registryObjectKeys[$i]['draft_key']." Changed Status to DRAFT\n";
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					updateDraftRegistryObjectStatus($registryObjectKeys[$i]['draft_key'],$dataSourceKey,DRAFT);
 				}
 				else if($registryObjectKeys[$i]['status'] == ASSESSMENT_IN_PROGRESS || $registryObjectKeys[$i]['status'] == SUBMITTED_FOR_ASSESSMENT)
 				{
-<<<<<<< HEAD
-<<<<<<< HEAD
 					$actions .= "PUBLISHING records\n";
-=======
-					$actions .= 'PUBLISHING records\n';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-					$actions .= "PUBLISHING records\n";
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					$rifcs = new DomDocument();
 					$rifcs->loadXML($registryObjectKeys[$i]['rifcs']);
 					$stripFromData = new DomDocument();
@@ -958,57 +758,35 @@ function updateRecordsForDataSource($dataSourceKey, $manuallyPublish,$manuallyPu
 			        $error = error_get_last();
 				    $tempFile = "/tmp/" . time() . '-' . rand() . '-document.tmp';
 				    $registryObject->save($tempFile);
-				 
+
 				    // Create temporary DOMDocument and re-load content from file.
 				    $registryObject = new DOMDocument();
 				    $registryObject->load($tempFile);
-				    
+
 				    // Delete temporary file.
 				    if (is_file($tempFile))
 				    {
 				      unlink($tempFile);
 				    }
-				  
+
 					$registryObject->schemaValidate(gRIF_SCHEMA_PATH); //xxx
 
 					$importErrors = importRegistryObjects($registryObject,$dataSourceKey, $resultMessage, getLoggedInUser(), $status, $owner, null, true);       
 					if( !$importErrors )
 					{
 						$deleteErrors = deleteDraftRegistryObject($dataSourceKey,$registryObjectKey);
-<<<<<<< HEAD
-<<<<<<< HEAD
 						$actions .= $registryObjectKeys[$i]['draft_key'].' Imported to Registry as '.$status."\n";
-=======
-						$actions .= $registryObjectKeys[$i]['draft_key'].' Imported to Registry as '.$status.'\n';
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-						$actions .= $registryObjectKeys[$i]['draft_key'].' Imported to Registry as '.$status."\n";
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					}
-										
+
 				}
 			}
-						
+
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 		insertDataSourceEvent($dataSourceKey, $actions);	
 	}
 	queueSyncDataSource($dataSourceKey);
-=======
-		runSolrIndexForDatasource($dataSourceKey);	
-		insertDataSourceEvent($dataSourceKey, $actions);	
-	}
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
 
-		insertDataSourceEvent($dataSourceKey, $actions);	
-	}
-	queueSyncDataSource($dataSourceKey);
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
-	
 }
 
 
@@ -1024,8 +802,6 @@ function deleteDataSourceDrafts($dataSourceKey , $message)
 			$errors .= deleteDraftRegistryObject($dataSourceKey, $draft_key);
 		}
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
 	$message = "DELETED ".count($drafts)." DRAFTS\n";
 	queueSyncDataSource($dataSourceKey);
 	return $errors;	
@@ -1072,58 +848,4 @@ function purgeDataSource($dataSourceKey, $harvestRequestId){
 		return false;
 	}
 }
-=======
-	$message = "DELETED ".count($drafts)." DARFTS\n";
-	return $errors;	
-}
-
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-	$message = "DELETED ".count($drafts)." DRAFTS\n";
-	queueSyncDataSource($dataSourceKey);
-	return $errors;	
-}
-
-/*
-   Delete all records that are in the database and have a different HarvestID to the current Harvest 
-   (NB: manually created records should be excluded -- they should stay, even if REFRESH is on)	
-*/
-function purgeDataSource($dataSourceKey, $harvestRequestId){
-	$ahm = getDataSourceAdvancedHarvestingMode($dataSourceKey);
-	if($ahm=='REFRESH'){//only if the advanced harvesting mode is REFRESH
-		$message = '';
-		$total = 0;
-		$total_drafts = 0;
-
-		$keys = getRegistryObjectKeysForPurge($dataSourceKey, $harvestRequestId);
-		if($keys){
-			for( $i=0; $i < count($keys); $i++ ){
-				$key  = $keys[$i]['registry_object_key'];
-				if(ctype_alnum($keys[$i]['record_owner'])){
-					$message .= deleteRegistryObject($key);
-					$total++;
-				}
-			}
-		}
-
-		$drafts = getDraftsForPurge($dataSourceKey, $harvestRequestId);
-		if($drafts){
-			for( $i=0; $i < count($drafts); $i++ ){
-				$key  = $drafts[$i]['draft_key'];
-				if(ctype_alnum($drafts[$i]['draft_owner'])){
-					$message .= deleteDraftRegistryObject($dataSourceKey, $key);
-					$total_drafts++;
-				}
-			}
-		}
-
-		//$total = count($keys) + count($drafts);
-		if($total>0)$message .= "DELETED ".$total." REGISTRY OBJECTS NOT IN HARVEST: $harvestRequestId\n";
-		if($total_drafts>0)$message .= "DELETED ".$total_drafts." DRAFTS NOT IN HARVEST: $harvestRequestId\n";
-		return $message;
-	}else{
-		return false;
-	}
-}
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>
