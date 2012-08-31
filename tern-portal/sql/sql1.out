@@ -1,0 +1,7 @@
+psql:sql_patch_1.sql:6: ERROR:  relation "vw_minmax_date" already exists
+ALTER TABLE
+REVOKE
+REVOKE
+GRANT
+GRANT
+GRANT

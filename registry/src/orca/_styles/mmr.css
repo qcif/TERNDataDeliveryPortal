@@ -1,0 +1,68 @@
+
+#select_ds_container div.content_block{height:62px;float:left;line-height:37px;margin:0 3px;}
+
+.flex {margin:0;padding:0;}
+.flex th{font-size:1em;font-weight:none;font-style:normal;margin:0;padding:0;}
+.flex thead td{padding:0;margin:0;}
+
+
+
+div.flexigrid{font-size:1.1em;}
+div.DRAFT_table{border-left:10px solid #C60;}
+div.SUBMITTED_FOR_ASSESSMENT_table{border-left:10px solid #688EDE;}
+div.ASSESSMENT_IN_PROGRESS_table{border-left:10px solid #0B2E59;}
+div.PUBLISHED_table{border-left:10px solid limeGreen;}
+div.APPROVED_table{border-left:10px solid #EDD155;}
+div.MORE_WORK_REQUIRED_table{border-left:10px solid #6A4A3C;}
+
+div.flexigrid a{text-decoration:none;}
+
+/*#summaryTable{border-collapse:collapse;}
+#summaryTable td{border:1px solid #ccc;padding:5px;}*/
+
+
+.DRAFT_status{background: #C60 !important; color:white;text-shadow: 0 1px 0 #000;font-weight:bold;}
+.SUBMITTED_FOR_ASSESSMENT_status{background: #688EDE !important;color:white;text-shadow: 0 1px 0 #000;font-weight:bold;}
+.ASSESSMENT_IN_PROGRESS_status{background: #0B2E59 !important;color:white;text-shadow: 0 1px 0 #000;font-weight:bold;}
+.PUBLISHED_status{background: limeGreen !important;color:white;text-shadow: 0 1px 0 #000;font-weight:bold;}
+.APPROVED_status{background: #EDD155 !important;color:white;text-shadow: 0 1px 0 #000;font-weight:bold;}
+.MORE_WORK_REQUIRED_status{background: #6A4A3C !important;color:white;text-shadow: 0 1px 0 #000;font-weight:bold;}
+
+
+
+.infoDiv{padding:4px 10px;clear:both;}
+
+
+
+.qa_ok{display:block;border:1px solid;}
+.qa_error{display:block;border:1px solid;}
+.qa_container{border:1px solid black;margin:4px 1px;padding:7px;}
+.toggleQAtip{font-size:16px;padding:10px 2px;cursor:pointer;line-height: 20px;}
+.hasError{background:#C92020; color:white;}
+.info, .success, .warning, .error, .validation {
+    border: 1px solid;
+    background-repeat: no-repeat;
+    background-position: 97% 15px;
+    margin: 7px auto;
+    padding: 10px 20px 15px 10px;
+}
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url('../_images/info.png');
+}
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url('../_images/check_16.png');
+}
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('../_images/required_small.png');
+}
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('../_images/error.png');
+}
