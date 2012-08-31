@@ -32,6 +32,9 @@ class View_part extends CI_Controller {
 		$this->load->view('stat-view', $data);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	public function cannedText(){
 		$sort = $this->input->get('sort');
 		$group = $this->input->get('group');	
@@ -76,10 +79,13 @@ class View_part extends CI_Controller {
 		$data['group']=$group;			
 		$this->load->view('group-view', $data);
 	}	
+<<<<<<< HEAD
 =======
 	
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	public function getDictionaryTerms(){
 		$q = strtolower($_GET["term"]);
 		$this->load->model('Registryobjects', 'ro');

@@ -25,6 +25,7 @@ limitations under the License.
 		$key = $d->{'key'};
 		$keys[] = $key;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if(isset($d->{'description_type'}))
 		{
 		foreach($d->{'description_type'} as $index=>$type){
@@ -34,22 +35,34 @@ limitations under the License.
 											.''.
 											$d->{'description_value'}[$index].
 =======
+=======
+		if(isset($d->{'description_type'}))
+		{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		foreach($d->{'description_type'} as $index=>$type){
 			if($type=='logo') $partners[$key]['logo']=$d->{'description_value'}[$index];
 			if($type=='brief') {
-				$partners[$key]['full']='<h3><a href="search#!/q='.str_replace('-','',trim($d->{'displayTitle'})).'/tab=activity">'.$d->{'displayTitle'}.'</a></h3>'
+				$partners[$key]['full']='<h3><a href="search#!/q='.str_replace('-','',trim($d->{'display_title'})).'/tab=activity">'.$d->{'display_title'}.'</a></h3>'
 											.''.
+<<<<<<< HEAD
 											$d->{'description_value'}[$index].''.
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+											$d->{'description_value'}[$index].
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 											'<p><a href="'.trim($d->{'location'}[0]).'" title="Visit Partner Portal">'.$d->{'location'}[0].'</a></p>';
 			}
 			$partners[$key]['url']=$d->{'location'}[0];
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>
 <div id="search-result">
 
@@ -121,6 +134,9 @@ limitations under the License.
 	
 	<div class="clearfix"></div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	<div style="float:left;">
 		<div style="float:left;margin:0px 5px;">
 			<img src="<?php echo base_url();?>img/feed_icon.png"/><img src="<?php echo base_url();?>img/twitter_icon.png"/>
@@ -129,8 +145,11 @@ limitations under the License.
 			<h4 style="margin-top:3px;">RSS,ATOM and Twitter feeds are now available. <?php echo anchor('home/feeds','Learn more here....');?></h4>
 		</div>
 	</div>
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	<div style="float:right;">
 		 <!-- AddToAny BEGIN -->   
         <p>
@@ -167,9 +186,12 @@ limitations under the License.
 </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 <div class="box shadow" itemscope itemtype="http://schema.org/Article">
 	<center><img src="<?php echo base_url();?>img/DIISRTE_stacked.jpg" style="height:200px;" alt="DIISRTE Logo"/></center>
 	<p style="text-align:center" itemprop="articleBody">
@@ -192,7 +214,11 @@ limitations under the License.
 </div>
 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php $this->load->view('tpl/footer');?>
 =======
 <?php $this->load->view('tpl/footer');?>
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+<?php $this->load->view('tpl/footer');?>
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

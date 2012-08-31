@@ -24,6 +24,9 @@ $errorMessages = '';
 // Fetch list of clients from PIDS resource URL (e.g. http://devl.ands.org.au/pids/listClients
 $requestURI = $ePIDS_RESOURCE_URI . "listClients";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 //$response = file_get_contents($requestURI);
 
 
@@ -44,9 +47,12 @@ $response = curl_exec($ch);
 
 // close curl resource to free up system resources
 curl_close($ch);
+<<<<<<< HEAD
 =======
 $response = file_get_contents($requestURI);
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 if (!$response) {
 	$errorMessages = "Error whilst attempting to fetch from URI: " . $ePIDS_RESOURCE_URI . "<br/>";

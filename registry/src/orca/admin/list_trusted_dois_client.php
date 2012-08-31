@@ -17,10 +17,14 @@ limitations under the License.
 require '../../_includes/init.php';
 require '../orca_init.php';
 <<<<<<< HEAD
+<<<<<<< HEAD
 require '../dois_orcainit.php';
 =======
 require '../../dois/dois_orcainit.php';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+require '../dois_orcainit.php';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 // Page processing
 // -----------------------------------------------------------------------------
 
@@ -74,10 +78,14 @@ require '../../_includes/header.php';
 				<td><?php echo $client['client_id']; ?></td>				
 				<td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 					<a href="add_trusted_dois_client.php?app_id=<?php echo $client['app_id']; ?>"><?php echo $client['app_id']; ?></a>
 =======
 					<?php echo $client['app_id']; ?>
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+					<a href="add_trusted_dois_client.php?app_id=<?php echo $client['app_id']; ?>"><?php echo $client['app_id']; ?></a>
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				</a></td>
 				<td><?php echo $client['ip_address']; ?></td>
 				<td><?php echo $client['client_name']; ?></td>				

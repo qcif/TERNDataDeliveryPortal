@@ -18,6 +18,9 @@ if (!IN_ORCA) die('No direct access to this file is permitted.');
 		$values = array();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		
 //OLD - use Search Draft By Name
 
@@ -28,6 +31,7 @@ if (!IN_ORCA) die('No direct access to this file is permitted.');
 		$objectClass =  rawurldecode(getQueryValue("oClass"));
 		$dataSourcekey =  rawurldecode(getQueryValue("dSourceKey"));
 		$group = rawurldecode(getQueryValue("oGroup"));
+<<<<<<< HEAD
 =======
 //OLD - use Search Draft By Name
 
@@ -35,6 +39,8 @@ if (!IN_ORCA) die('No direct access to this file is permitted.');
 		$objectClass =  rawurldecode(getQueryValue("oClass"));
 		$dataSourcekey =  rawurldecode(getQueryValue("dSourceKey"));
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$registryObjects = array();
 		$names = array();
 	
@@ -48,6 +54,7 @@ if (!IN_ORCA) die('No direct access to this file is permitted.');
 		{
 			// search for all names (untransform SOLR query syntax)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			//$names = searchDraftByName("", $objectClass , $dataSourcekey, $limit);
 		}
 		else
@@ -60,6 +67,13 @@ if (!IN_ORCA) die('No direct access to this file is permitted.');
 		{
 			$names = searchDraftByName($searchText, $objectClass , $dataSourcekey, $limit);
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			//$names = searchDraftByName("", $objectClass , $dataSourcekey, $limit);
+		}
+		else
+		{
+			//$names = searchDraftByName($searchText, $objectClass , $dataSourcekey, $limit);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		}
 		
 		if (isset($names) && $names) 
@@ -74,21 +88,30 @@ if (!IN_ORCA) die('No direct access to this file is permitted.');
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//	print json_encode($values);
 	//	exit;
 =======
 		//print json_encode($values);
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	//	print json_encode($values);
+	//	exit;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 
 //NEW - use SOLR
 		$objectClass = strtolower($objectClass);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$groupStr = '';
     	if($group)$groupStr =' +group:("'.$group.'")';
 
 		$q = '(list_title:('.($searchText).'*) OR list_title:('.($searchText).') OR list_title:('.($searchText).'~0.3)) +class:('.$objectClass.')'.$groupStr;
 		
+<<<<<<< HEAD
 		if($dataSourcekey!='') $q.=' +data_source_key:("'.$dataSourcekey.'")';
 		$fields = array(
 			'q'=>$q,'version'=>'2.2','start'=>'0','rows'=>$limit, 'wt'=>'json',
@@ -101,6 +124,12 @@ if (!IN_ORCA) die('No direct access to this file is permitted.');
 			'q'=>$q,'version'=>'2.2','start'=>'0','rows'=>$limit, 'wt'=>'json',
 			'fl'=>'key, displayTitle, description_value, description_type, status'
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		if($dataSourcekey!='') $q.=' +data_source_key:("'.$dataSourcekey.'")';
+		$fields = array(
+			'q'=>$q,'version'=>'2.2','start'=>'0','rows'=>$limit, 'wt'=>'json',
+			'fl'=>'key, display_title, description_value, description_type, status'
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		);
 	
 		/*prep*/
@@ -126,13 +155,18 @@ if (!IN_ORCA) die('No direct access to this file is permitted.');
 		//print_r($decoded);
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		//$values[] = array('value'=>$searchText, "desc"=> $fields_string);
 		if (isset($decoded->response->docs))
 		{
 			foreach($decoded->response->docs as $d){
+<<<<<<< HEAD
 <<<<<<< HEAD
 				$values[] = array (	"value" => $d->{'key'}, "desc" => $d->{'display_title'}.' ('.$d->{'status'}.')');
 			}
@@ -148,3 +182,11 @@ if (!IN_ORCA) die('No direct access to this file is permitted.');
 		echo json_encode($values);
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				$values[] = array (	"value" => $d->{'key'}, "desc" => $d->{'display_title'}.' ('.$d->{'status'}.')');
+			}
+		}
+		
+
+		echo json_encode($values);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

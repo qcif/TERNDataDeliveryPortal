@@ -34,9 +34,13 @@ if (defined('ENVIRONMENT'))
 	{
 		case 'development':
 <<<<<<< HEAD
+<<<<<<< HEAD
 			ini_set('display_errors','On');
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			ini_set('display_errors','On');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			error_reporting(E_ALL);
 		break;
 	
@@ -133,17 +137,25 @@ if (defined('ENVIRONMENT'))
 // --------------------------------------------------------------------
 //DEFINE ANDS REGISTRY ONLINE SERVICE VARIABLES
 <<<<<<< HEAD
+<<<<<<< HEAD
 define('ORCA_PROTOCOL', $default_protocol);
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+define('ORCA_PROTOCOL', $default_protocol);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 define('RDA_ROOT', $rda_root);
 define('HOST', $host);
 define('ORCA_ROOT', $orca_root);
 define('SOLR_URL', $solr_url);
 <<<<<<< HEAD
+<<<<<<< HEAD
 define('DATACITE_SOLR_URL',$datacite_solr_url);
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+define('DATACITE_SOLR_URL',$datacite_solr_url);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 /*
  * ---------------------------------------------------------------

@@ -50,9 +50,13 @@ public class Harvest
     private String until = null;
     private String set = null;
 <<<<<<< HEAD
+<<<<<<< HEAD
     private String ahm = null;
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+    private String ahm = null;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
     
     private int status = -1;
 
@@ -519,6 +523,9 @@ public class Harvest
         this.set = setSpec;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
     /**
      * set the advanced harvesting mode
@@ -539,8 +546,11 @@ public class Harvest
     {
         return this.ahm;
     }
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
     
     
     /**

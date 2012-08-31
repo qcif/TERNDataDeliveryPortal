@@ -271,7 +271,11 @@ CREATE TABLE tbl_descriptions (
     lang character varying(64)
 );
 ALTER TABLE dba.tbl_descriptions OWNER TO dba;
+<<<<<<< HEAD
 ALTER TABLE dba.tbl_descriptions ALTER COLUMN value type character varying(12000);
+=======
+ALTER TABLE dba.tbl_descriptions ALTER COLUMN value character varying(12000);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 CREATE TABLE dba.tbl_institution_pages
 (
@@ -7087,4 +7091,8 @@ INSERT INTO tbl_terms (identifier, identifier_type, name, description, vocabular
 
 
 -- Queue up the first registry maintenance to initialise the database
+<<<<<<< HEAD
 INSERT INTO dba.tbl_background_tasks ("method", "status") VALUES ('HOURLY_REGISTRY_MAINTENANCE','WAITING');
+=======
+INSERT INTO dba.tbl_background_tasks ("method", "status") VALUES ('HOURLY_REGISTRY_MAINTENANCE','WAITING');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

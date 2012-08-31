@@ -6,9 +6,13 @@ you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
@@ -24,10 +28,14 @@ define('gORCA_HTML_LIST', 1);
 define('gORCA_HTML_TABLE', 2);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function print_pre($variable, $ret = false)
 =======
 function print_pre($variable, $ret = false) 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+function print_pre($variable, $ret = false)
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 {
 	if (!$ret)
 	{
@@ -49,10 +57,14 @@ function getRegistryObjectStatusColor($status)
 		return $gORCA_STATUS_INFO[$status]['colour'];
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else
 =======
 	else 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	else
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	{
 		return $defaultColor;
 	}
@@ -63,19 +75,27 @@ function getRegistryObjectStatusInfo($status)
 	global $gORCA_STATUS_INFO;
 	$defaultStatus = array("span"=>$status, "display"=>"Unknown Status: $status");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	if (isset($gORCA_STATUS_INFO[$status]))
 	{
 		return $gORCA_STATUS_INFO[$status];
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else
 =======
 	else 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	else
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	{
 		return $defaultStatus;
 	}
@@ -84,6 +104,7 @@ function getRegistryObjectStatusInfo($status)
 
 function getRegistryObjectStatusSpan($status, $short=false)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	$status = trim($status); // get rid of stupid fixed length char field padding
@@ -97,16 +118,23 @@ function getRegistryObjectStatusSpan($status, $short=false)
 	else
 =======
 	
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$status = trim($status); // get rid of stupid fixed length char field padding
-	
+
 	$statusColour = getRegistryObjectStatusColor($status);
 	$statusText = getRegistryObjectStatusInfo($status);
-	if ($short) 
-	{ 
-		$statusText = $statusText['short_span']; 
+	if ($short)
+	{
+		$statusText = $statusText['short_span'];
 	}
+<<<<<<< HEAD
 	else 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	else
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	{
 		$statusText = $statusText['span'];
 	}
@@ -131,6 +159,7 @@ function getColspan()
 	global $rowsPrinted, $logo;
 	if (!isset($rowsPrinted) || !isset($logo) || $logo === false)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{
 		return "1";
 	}
@@ -141,6 +170,12 @@ function getColspan()
 	}
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	{
+		return "1";
+	}
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$rowsPrinted++;
 	if ($rowsPrinted > 4)
 	{
@@ -148,10 +183,14 @@ function getColspan()
 	}
 	else
 <<<<<<< HEAD
+<<<<<<< HEAD
 	{
 =======
 	{ 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		return "1";
 	}
 }
@@ -202,6 +241,7 @@ function getNameHTML($registryObjectKey, $queryText='')
 			$alsoKnownAs = array();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			foreach ( $ComplexNames as $row )
 			{
 				if (strtolower($row['type']) == "primary")
@@ -210,6 +250,11 @@ function getNameHTML($registryObjectKey, $queryText='')
 			{	
 				if (strtolower($row['type']) == "primary") 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			foreach ( $ComplexNames as $row )
+			{
+				if (strtolower($row['type']) == "primary")
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				{
 					if($rdaName == '')
 					{
@@ -223,6 +268,7 @@ function getNameHTML($registryObjectKey, $queryText='')
 						$altRdaName = " ".rdaGetNameParts2($row['complex_name_id']);
 					//}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 				} // end type check
 
@@ -232,18 +278,26 @@ function getNameHTML($registryObjectKey, $queryText='')
 
 =======
 					
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				} // end type check
-				
+
 			} // end loop
 			//$rdaName = $altRdaName;
 			//$rdaName = trim($rdaName,' '.gCHAR_MIDDOT.' ');
+<<<<<<< HEAD
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if($rdaName != '')
 		{
 			$altRdaName = $rdaName;
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -251,6 +305,10 @@ function getNameHTML($registryObjectKey, $queryText='')
 	
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	if( $queryText )
 	{
 		$html .= highlightQuery($altRdaName, $queryText);
@@ -259,10 +317,14 @@ function getNameHTML($registryObjectKey, $queryText='')
 	{
 		$html .= esc($altRdaName);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 	}			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 	return $html;
 }
@@ -286,6 +348,7 @@ function getComplexNamesHTML($registryObjectKey)
 					$html .= '<span class="majorAttribute" title="complex name type">'.esc($complexNames[$i]['type']).':</span> ';
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 				$html .= $dates."</td></tr>\n";
 			}
 
@@ -294,6 +357,11 @@ function getComplexNamesHTML($registryObjectKey)
 			}
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				$html .= $dates."</td></tr>\n";
+			}
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			$nameParts = getNameParts($complexNames[$i]['complex_name_id']);
 			if( $nameParts )
 			{
@@ -313,6 +381,7 @@ function getComplexNamesHTML($registryObjectKey)
 					$html .= "</td>";
 					$html .= '<td'.$style.'><a class="search" title="Search for this name" href="'.$searchBaseURI.esc(urlencode($nameParts[$j]['value'])).'">'.escWithBreaks($nameParts[$j]['value']).'</a></td>';
 <<<<<<< HEAD
+<<<<<<< HEAD
 					$html .= "</tr>\n";
 				}
 			}
@@ -325,6 +394,13 @@ function getComplexNamesHTML($registryObjectKey)
 		}
 		$html .= '</table>'."\n";		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+					$html .= "</tr>\n";
+				}
+			}
+		}
+		$html .= '</table>'."\n";
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	return $html;
 }
@@ -332,6 +408,7 @@ function getComplexNamesHTML($registryObjectKey)
 function getIdentifiersHTML($registryObjectKey, $HTMLtype, $queryText='')
 {
 	$searchBaseURI = 'search.php?collections=collection&amp;services=service&amp;parties=party&amp;activities=activity&amp;action=Search&amp;search=';
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	$table = false;
@@ -345,6 +422,13 @@ function getIdentifiersHTML($registryObjectKey, $HTMLtype, $queryText='')
 	{
 		$table = true;		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+	$table = false;
+	if( $HTMLtype == gORCA_HTML_TABLE )
+	{
+		$table = true;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	$html = '';
 	$identifiers = getIdentifiers($registryObjectKey);
@@ -365,10 +449,14 @@ function getIdentifiersHTML($registryObjectKey, $HTMLtype, $queryText='')
 			}
 			else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			{
 =======
 			{			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if( $i != 0 )
 				{
 					$html .= ' '.gCHAR_MIDDOT.' ';
@@ -421,10 +509,14 @@ function getRelationsHTML($registryObjectKey, $HTMLtype)
 					$relation = esc($relationDescription['description'])." ";
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if( $relatedObject=getRegistryObject($relatedRegistryObjectKey) )
 				{
 					if( trim($relatedObject[0]['status']) == PUBLISHED || userIsORCA_ADMIN() )
@@ -449,16 +541,22 @@ function getRelationsHTML($registryObjectKey, $HTMLtype)
 					$relation .= $relatedRegistryObjectKey;
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 	
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if( $table )
 				{
 					$url = '';
 					if( $relationDescription['url'] )
+<<<<<<< HEAD
 <<<<<<< HEAD
 					{
 						$url = '&nbsp;&nbsp;<span class="attribute">url:</span>&nbsp;';
@@ -468,11 +566,17 @@ function getRelationsHTML($registryObjectKey, $HTMLtype)
 						$url = '&nbsp;&nbsp;<span class="attribute">url:</span>&nbsp;';
 						
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+					{
+						$url = '&nbsp;&nbsp;<span class="attribute">url:</span>&nbsp;';
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 						// Fix relative URLs.
 						$href = $relationDescription['url'];
 						if( !preg_match('/^[a-zA-Z]{0,5}:\/\/.*/', $href) )
 						{
 							$href = 'http://'.$href;
+<<<<<<< HEAD
 <<<<<<< HEAD
 						}
 
@@ -480,6 +584,10 @@ function getRelationsHTML($registryObjectKey, $HTMLtype)
 						}					
 						
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+						}
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 						$url .= '<a href="'.esc($href).'" class="external" title="'.esc($href).'">'.esc($href).'<img class="external" src="'.gORCA_IMAGE_ROOT.'external_link.gif" alt="" /></a>';
 					}
 					$html .= '<tr>';
@@ -489,10 +597,14 @@ function getRelationsHTML($registryObjectKey, $HTMLtype)
 				}
 				else
 <<<<<<< HEAD
+<<<<<<< HEAD
 				{
 =======
 				{			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					$html .= $relation.";&nbsp;";
 				}
 			}
@@ -513,6 +625,7 @@ function getSubjectsHTML($registryObjectKey, $HTMLtype, $queryText='')
 {
 	$searchBaseURI = 'search.php?collections=collection&amp;services=service&amp;parties=party&amp;activities=activity&amp;action=Search&amp;search=';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	$table = false;
 	if( $HTMLtype == gORCA_HTML_TABLE )
@@ -525,6 +638,13 @@ function getSubjectsHTML($registryObjectKey, $HTMLtype, $queryText='')
 	{
 		$table = true;		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+	$table = false;
+	if( $HTMLtype == gORCA_HTML_TABLE )
+	{
+		$table = true;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	$html = '';
 	$subjects = getSubjects($registryObjectKey);
@@ -545,10 +665,14 @@ function getSubjectsHTML($registryObjectKey, $HTMLtype, $queryText='')
 			}
 			else
 <<<<<<< HEAD
+<<<<<<< HEAD
 			{
 =======
 			{			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if( $i != 0 )
 				{
 					$html .= ' '.gCHAR_MIDDOT.' ';
@@ -575,6 +699,7 @@ function getSubjectsHTML($registryObjectKey, $HTMLtype, $queryText='')
 function getDescriptionsHTML($registryObjectKey, $HTMLtype, $queryText='', $suppressLogos=true)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$table = false;
 	if( $HTMLtype == gORCA_HTML_TABLE )
 	{
@@ -585,6 +710,12 @@ function getDescriptionsHTML($registryObjectKey, $HTMLtype, $queryText='', $supp
 	{
 		$table = true;		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	$table = false;
+	if( $HTMLtype == gORCA_HTML_TABLE )
+	{
+		$table = true;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	$html = '';
 	$descriptions = getDescriptions($registryObjectKey);
@@ -601,10 +732,14 @@ function getDescriptionsHTML($registryObjectKey, $HTMLtype, $queryText='', $supp
 				continue;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if( $table )
 			{
 				$html .= '<tr>';
@@ -653,6 +788,7 @@ function highlightSearchTerm($safeText, $safeTerm, $location)
 	$reTerm = str_replace("\\", "\\\\", $reTerm);
 	$reTerm = str_replace("/", "\/", $reTerm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	$prefix = '<span style="background-color: #ffe84a; border: 1px solid #888888; padding-left: 2px; padding-right: 2px;">';
 	$suffix = '</span>';
@@ -663,6 +799,12 @@ function highlightSearchTerm($safeText, $safeTerm, $location)
 	$suffix = '</span>';
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+	$prefix = '<span style="background-color: #ffe84a; border: 1px solid #888888; padding-left: 2px; padding-right: 2px;">';
+	$suffix = '</span>';
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	if( $safeText && $safeTerm )
 	{
 		switch( $location )
@@ -675,6 +817,7 @@ function highlightSearchTerm($safeText, $safeTerm, $location)
 					$after = substr($html, $pos+$len, strlen($html)-($pos+$len));
 					$html = "$before$prefix$text$suffix$after";
 <<<<<<< HEAD
+<<<<<<< HEAD
 				}
 				break;
 
@@ -683,6 +826,11 @@ function highlightSearchTerm($safeText, $safeTerm, $location)
 				break;
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				}
+				break;
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			case gORCA_HIGHLIGHT_ENDS_WITH:
 				if( ($pos = strpos(strtoupper($html), strtoupper($safeTerm), 0)) === strlen($safeText)-$len )
 				{
@@ -690,6 +838,7 @@ function highlightSearchTerm($safeText, $safeTerm, $location)
 					$text = substr($html, $pos, $len);
 					$after = substr($html, $pos+$len, strlen($html)-($pos+$len));
 					$html = "$before$prefix$text$suffix$after";
+<<<<<<< HEAD
 <<<<<<< HEAD
 				}
 				break;
@@ -699,6 +848,11 @@ function highlightSearchTerm($safeText, $safeTerm, $location)
 				break;
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				}
+				break;
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			case gORCA_HIGHLIGHT_ALL:
 				while( ($pos = strpos(strtoupper($html), strtoupper($safeTerm), $offset)) !== false  )
 				{
@@ -707,10 +861,14 @@ function highlightSearchTerm($safeText, $safeTerm, $location)
 					$after = substr($html, $pos+$len, strlen($html)-($pos+$len));
 					$offset = $pos+strlen($text);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					if( !preg_match("/^$reTerm"."[^<>]*>/is", substr($html, $pos), $matches) )
 					{
 						$before = $before.$prefix;
@@ -721,10 +879,14 @@ function highlightSearchTerm($safeText, $safeTerm, $location)
 				}
 				break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 =======
 		}		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 
 	return $html;
@@ -736,6 +898,7 @@ function highlightQuery($text, $queryText)
 	$prefix = '<span style="background-color: #ffe84a; border: 1px solid #888888; padding-left: 2px; padding-right: 2px;">';
 	$suffix = '</span>';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	$markedText = getHighlightedQueryText($text, $queryText);
 
@@ -745,13 +908,20 @@ function highlightQuery($text, $queryText)
 
 =======
 	
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$markedText = getHighlightedQueryText($text, $queryText);
-	
+
 	$html = esc($markedText);
 	$html = str_replace("@@@@", $prefix, $html);
 	$html = str_replace("$$$$", $suffix, $html);
+<<<<<<< HEAD
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	return $html;
 }
 
@@ -784,10 +954,14 @@ function getVocabularyHTML($vocabId, $termId=null)
 {
 	global $gORCA_VOCABS_OPTION_HTML;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$vocabHTML = '';
 	// Check to see if we've already retrieved this vocab.
 	if( isset($gORCA_VOCABS_OPTION_HTML[$vocabId]) )
@@ -821,6 +995,7 @@ function getVocabularyHTML($vocabId, $termId=null)
 			// Register a prefix for the default namespace so that we can actually use the xpath object.
 			$XPath->registerNamespace('vc', $defaultNamespace);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			if( $XPath->evaluate("//vc:vocabulary[vc:identifier=\"$vocabId\"]")->item(0) )
 			{
@@ -831,6 +1006,12 @@ function getVocabularyHTML($vocabId, $termId=null)
 			{
 				$vocabNode = $XPath->evaluate("//vc:vocabulary[vc:identifier=\"$vocabId\"]")->item(0);			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+			if( $XPath->evaluate("//vc:vocabulary[vc:identifier=\"$vocabId\"]")->item(0) )
+			{
+				$vocabNode = $XPath->evaluate("//vc:vocabulary[vc:identifier=\"$vocabId\"]")->item(0);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if( $termId )
 				{
 					if( $XPath->evaluate(".//vc:term[vc:identifier[@type=\"local\"]=\"$termId\"]", $vocabNode)->item(0) )
@@ -843,10 +1024,14 @@ function getVocabularyHTML($vocabId, $termId=null)
 					}
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if( $vocabNode )
 				{
 					$name = $XPath->evaluate("vc:name", $vocabNode)->item(0)->nodeValue;
@@ -881,10 +1066,14 @@ function getTermsHTML($XPath, $termNode, $vocabHTML)
 			$name = $XPath->evaluate("vc:name", $term)->item(0)->nodeValue;
 			$identifier = $XPath->evaluate("vc:identifier", $term)->item(0)->nodeValue;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if( $type == 'nl' )
 			{
 				$vocabHTML .= '<b>'.esc($name)."</b><br />\n";
@@ -907,12 +1096,17 @@ function rdaGetNameParts2($namePartId)
 {
 	$name = '';
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$names = getNameParts($namePartId);
 
 =======
 	$names = getNameParts($namePartId);	
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	$names = getNameParts($namePartId);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$initial = '';
 	$given = '';
 	$family = '';
@@ -926,10 +1120,14 @@ function rdaGetNameParts2($namePartId)
 		for( $i = 0; $i < count($names); $i++ )
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			switch($names[$i]['type'])
 =======
 			switch($names[$i]['type']) 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			switch($names[$i]['type'])
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				{
 					case "initial":
 						$initial .= $names[$i]['value'].' '.gCHAR_MIDDOT.' ';
@@ -940,6 +1138,7 @@ function rdaGetNameParts2($namePartId)
 					case "given":
 						$given .= $names[$i]['value'].' '.gCHAR_MIDDOT.' ';
 <<<<<<< HEAD
+<<<<<<< HEAD
 					break;
 					case "suffix":
 						$suffix .= ' '.gCHAR_MIDDOT.' '.$names[$i]['value'];
@@ -954,34 +1153,49 @@ function rdaGetNameParts2($namePartId)
 				}
 =======
 					break;	
+=======
+					break;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					case "suffix":
 						$suffix .= ' '.gCHAR_MIDDOT.' '.$names[$i]['value'];
-					break;	
+					break;
 					case "title":
 						$title .= $names[$i]['value'];
-					break;																	
+					break;
 					default:
 						$fullname .= $names[$i]['value'];
+<<<<<<< HEAD
 					break;								
 							
 				}			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+					break;
+
+				}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 				if($fullname)
 				{
 					$name = $fullname;
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					else
 				{
 					$name = $family.$given.$initial.$title.$suffix;
 				}
+<<<<<<< HEAD
 =======
 					else 
 				{	
 					$name = $family.$given.$initial.$title.$suffix;	
 				}		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		}
 	}
 	return $name;
@@ -992,25 +1206,35 @@ function drawStatTable($typeStats=null){
 	$periodDisplayFrom = date("M Y",mktime($hour=null,$minute=null,$second=null,$month=getQueryValue('monthFrom'),$day="1",$year=getQueryValue('yearFrom')));
 	$dateFromMonth = date("Y-m-d",mktime($hour=null,$minute=null,$second=null,$month=getQueryValue('monthFrom'),$day="2",$year=getQueryValue('yearFrom')));
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$dateTo = date("Ym",mktime($hour=null,$minute=null,$second=null,$month=getQueryValue('monthTo'),$day="2",$year=getQueryValue('yearTo')));
 	$periodDisplayTo = date("M Y",mktime($hour=null,$minute=null,$second=null,$month=getQueryValue('monthTo'),$day="1",$year=getQueryValue('yearTo')));
 	$dateToMonth = date("Y-m-d",mktime($hour=null,$minute=null,$second=null,$month=getQueryValue('monthTo'),$day="1",$year=getQueryValue('yearTo')));
 
+<<<<<<< HEAD
 =======
 	$dateTo = date("Ym",mktime($hour=null,$minute=null,$second=null,$month=getQueryValue('monthTo'),$day="2",$year=getQueryValue('yearTo')));	
 	$periodDisplayTo = date("M Y",mktime($hour=null,$minute=null,$second=null,$month=getQueryValue('monthTo'),$day="1",$year=getQueryValue('yearTo'))); 
 	$dateToMonth = date("Y-m-d",mktime($hour=null,$minute=null,$second=null,$month=getQueryValue('monthTo'),$day="1",$year=getQueryValue('yearTo'))); 
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	if($periodDisplayFrom==$periodDisplayTo)
 	{
 		$periodDisplay = $periodDisplayTo;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	else
 =======
 	else 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	else
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	{
 		$periodDisplay = $periodDisplayFrom." - ".$periodDisplayTo;
 	}
@@ -1030,6 +1254,7 @@ function drawStatTable($typeStats=null){
 		<tr><td bgcolor="#99FFFF">DOI Service:</td><?php printHeader($months);?></tr>
 		<tr><td>DOIs Minted</td><?php printStatistics($months, "dois");?></tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<tr><td>Registered Publisher Agents</td><?php printStatistics($months,"doiClient");?></tr>
 		<tr><td>DOI Minting failures</td><?php printStatistics($months,"doiMintFail");?></tr>
 		<tr><td bgcolor="#99FFFF">Registry:</td><?php printHeader($months);?></tr>
@@ -1042,10 +1267,18 @@ function drawStatTable($typeStats=null){
 		<tr><td>Organisations</td><?php printStatistics($months, "Organisations");?></tr>
 		<tr><td>Users</td><?php printStatistics($months, "Users");?></tr>				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		<tr><td>Registered Publisher Agents</td><?php printStatistics($months,"doiClient");?></tr>
+		<tr><td>DOI Minting failures</td><?php printStatistics($months,"doiMintFail");?></tr>
+		<tr><td bgcolor="#99FFFF">Registry:</td><?php printHeader($months);?></tr>
+		<tr><td>Organisations</td><?php printStatistics($months, "Organisations");?></tr>
+		<tr><td>Users</td><?php printStatistics($months, "Users");?></tr>
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		<tr><td>Data Source Admins</td><?php printStatistics($months, "Data");?></tr>
 		<tr><td>Provider Org</td><?php printStatistics($months, "Provider");?></tr>
 		<tr><td>Publish my Data</td><?php printStatistics($months, "Publish");?></tr>
 		<tr><td>DIRECT</td><?php printStatistics($months, "DIRECT");?></tr>
+<<<<<<< HEAD
 <<<<<<< HEAD
 		<tr><td>Harvestor DIRECT</td><?php printStatistics($months, "GET");?></tr>
 		<tr><td>Harvestor OAI-PMH</td><?php printStatistics($months, "RIF");?></tr>
@@ -1053,6 +1286,10 @@ function drawStatTable($typeStats=null){
 		<tr><td>Harvestor DIRECT</td><?php printStatistics($months, "GET");?></tr>	
 		<tr><td>Harvestor OAI-PMH</td><?php printStatistics($months, "RIF");?></tr>						
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		<tr><td>Harvestor DIRECT</td><?php printStatistics($months, "GET");?></tr>
+		<tr><td>Harvestor OAI-PMH</td><?php printStatistics($months, "RIF");?></tr>
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		<tr><td>Total records</td><?php printStatistics($months, "Total");?></tr>
 		<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Collections</td><?php printStatistics($months, "Collections");?></tr>
 		<?php if($typeStats) printSubStats($months,'Collection')?>
@@ -1060,6 +1297,7 @@ function drawStatTable($typeStats=null){
 		<?php if($typeStats) printSubStats($months,'Party')?>
 		<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Services</td><?php printStatistics($months, "Services");?></tr>
 		<?php if($typeStats) printSubStats($months,'Service')?>
+<<<<<<< HEAD
 <<<<<<< HEAD
 		<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Activities</td><?php printStatistics($months, "Activities");?></tr>
 		<?php if($typeStats) printSubStats($months,'Activity')?>
@@ -1081,22 +1319,32 @@ function drawStatTable($typeStats=null){
 =======
 		<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Activities</td><?php printStatistics($months, "Activities");?></tr>	
 		<?php if($typeStats) printSubStats($months,'Activity')?>	
+=======
+		<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Activities</td><?php printStatistics($months, "Activities");?></tr>
+		<?php if($typeStats) printSubStats($months,'Activity')?>
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		<?php if($typeStats) { ?>
-			<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Descriptions</td><td>&nbsp;</td></tr>			
+			<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Descriptions</td><td>&nbsp;</td></tr>
 		<?php 	printDescriptionStats($months);
 		}?>
 		<?php if($typeStats) { ?>
-			<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Related_info</td><td>&nbsp;</td></tr>			
+			<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Related_info</td><td>&nbsp;</td></tr>
 		<?php 	printRelatedInfoStats($months);
-		} ?>		
+		} ?>
 		<tr><td bgcolor="#99FFFF">Research Data Australia:</td><?php printHeader($months);?></tr>
-		<tr><td>Page Views</td><?php printStatistics($months, "Page");?></tr>	
-		<tr><td>Site Visits</td><?php printStatistics($months, "Visit");?></tr>																				
+		<tr><td>Page Views</td><?php printStatistics($months, "Page");?></tr>
+		<tr><td>Site Visits</td><?php printStatistics($months, "Visit");?></tr>
 	</table>
+<<<<<<< HEAD
 	
 <?php  
 } 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+<?php
+}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 function printStatistics($months,$statType){
 
@@ -1105,6 +1353,7 @@ function printStatistics($months,$statType){
 		$theMonth = date("Y-m-d",(strtotime($theMonth.'+1 month')));
 		switch ($statType)
 		{
+<<<<<<< HEAD
 <<<<<<< HEAD
 			case "handles":
 				?>
@@ -1117,19 +1366,27 @@ function printStatistics($months,$statType){
 			<?php
 =======
 			case "handles": 
+=======
+			case "handles":
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				?>
-			<td><?php echo getPidsCount(strtotime($theMonth));?></td><?php 
+			<td><?php echo getPidsCount(strtotime($theMonth));?></td><?php
 			break
 			;
-			case "M2M": 
+			case "M2M":
 				?>
 			<td>
+<<<<<<< HEAD
 			<?php 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			<?php
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if($theMonth<date("Y-m-d"))
 			{
 					echo getStoredStatCount($theMonth,'trusted_sw_agreements_count');
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			else
 			{
@@ -1212,87 +1469,96 @@ function printStatistics($months,$statType){
 =======
 			else 
 			{		
+=======
+			else
+			{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				echo getM2MCount(strtotime($theMonth));
-			}?></td><?php 
-			break
-			;	
-			case "dois": 
-				?>
-			<td><?php echo getDoisCount($theMonth);?></td><?php 
+			}?></td><?php
 			break
 			;
-			case "doiClient": 
+			case "dois":
 				?>
-			<td><?php echo getDoiClientCount($theMonth);?></td><?php 
+			<td><?php echo getDoisCount($theMonth);?></td><?php
 			break
 			;
-			case "doiMintFail": 
+			case "doiClient":
 				?>
-			<td><?php echo getDoiMintFailCount($theMonth);?></td><?php 
-			break
-			;									
-			case "Provider": 
-				?>
-			<td><?php echo getDataSourceCount($theMonth);?></td><?php 
+			<td><?php echo getDoiClientCount($theMonth);?></td><?php
 			break
 			;
-			case "Organisations": 
+			case "doiMintFail":
 				?>
-			<td><?php echo getOrganisationCount($theMonth);?></td><?php 
+			<td><?php echo getDoiMintFailCount($theMonth);?></td><?php
 			break
 			;
-			case "Users": 
+			case "Provider":
 				?>
-			<td><?php echo getUserCount($theMonth);?></td><?php 
-			break
-			;						
-			case "Publish": 
-				?>
-			<td><?php echo getPublishMyDataCount($theMonth);?></td><?php 
-			break
-			;	
-			case "DIRECT": 
-				?>
-			<td><?php echo getHarvestMethodCount($theMonth, 'DIRECT');?></td><?php 
+			<td><?php echo getDataSourceCount($theMonth);?></td><?php
 			break
 			;
-			case "GET": 
+			case "Organisations":
 				?>
-			<td><?php echo getHarvestMethodCount($theMonth, 'GET');?></td><?php 
+			<td><?php echo getOrganisationCount($theMonth);?></td><?php
 			break
 			;
-			case "RIF": 
+			case "Users":
 				?>
-			<td><?php getHarvestMethodCount($theMonth, 'RIF');?></td><?php 
+			<td><?php echo getUserCount($theMonth);?></td><?php
 			break
-			;					
-			case "Total": 
-				
+			;
+			case "Publish":
+				?>
+			<td><?php echo getPublishMyDataCount($theMonth);?></td><?php
+			break
+			;
+			case "DIRECT":
+				?>
+			<td><?php echo getHarvestMethodCount($theMonth, 'DIRECT');?></td><?php
+			break
+			;
+			case "GET":
+				?>
+			<td><?php echo getHarvestMethodCount($theMonth, 'GET');?></td><?php
+			break
+			;
+			case "RIF":
+				?>
+			<td><?php getHarvestMethodCount($theMonth, 'RIF');?></td><?php
+			break
+			;
+			case "Total":
+
 				?>
 			<td>
-			<?php 
+			<?php
 			if($theMonth<date("Y-m-d"))
 			{
 				echo getStoredStatCount($theMonth,'registry_object_count');
-	
+
 			}
-			else 
+			else
 			{
-				echo getRegistryObjectStatCount($theMonth,$registryObjectClass=null);			
-			}	
+				echo getRegistryObjectStatCount($theMonth,$registryObjectClass=null);
+			}
 			?>
-			</td><?php 
+			</td><?php
 			break
 			;
-			case "Collections": 
+			case "Collections":
 				?>
 			<td>
+<<<<<<< HEAD
 			<?php 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			<?php
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if($theMonth<date("Y-m-d"))
 			{
 				echo getStoredStatCount($theMonth,'collection_object_count');
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			else
 			{
@@ -1309,21 +1575,30 @@ function printStatistics($months,$statType){
 =======
 			else 
 			{			
+=======
+			else
+			{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				echo getRegistryObjectStatCount($theMonth,$registryObjectClass='Collection');
 			}
 			?>
-			</td><?php 
+			</td><?php
 			break
 			;
-			case "Parties": 
+			case "Parties":
 				?>
 			<td>
+<<<<<<< HEAD
 			<?php 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			<?php
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if($theMonth<date("Y-m-d"))
 			{
 				echo getStoredStatCount($theMonth,'party_object_count');
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			else
 			{
@@ -1338,19 +1613,28 @@ function printStatistics($months,$statType){
 =======
 			else 
 			{		
+=======
+			else
+			{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				echo getRegistryObjectStatCount($theMonth,$registryObjectClass='Party');
-			}?></td><?php 
+			}?></td><?php
 			break
-			;	
-			case "Activities": 
+			;
+			case "Activities":
 				?>
 			<td>
+<<<<<<< HEAD
 			<?php 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			<?php
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if($theMonth<date("Y-m-d"))
 			{
 				echo getStoredStatCount($theMonth,'activity_object_count');
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			else
 			{
@@ -1365,19 +1649,28 @@ function printStatistics($months,$statType){
 =======
 			else 
 			{		
+=======
+			else
+			{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				echo getRegistryObjectStatCount($theMonth,$registryObjectClass='Activity');
-			}?></td><?php 
+			}?></td><?php
 			break
 			;
-			case "Services": 
+			case "Services":
 				?>
 			<td>
+<<<<<<< HEAD
 			<?php 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			<?php
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if($theMonth<date("Y-m-d"))
 			{
 				echo getStoredStatCount($theMonth,'service_object_count');
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 			else
 			{
@@ -1408,36 +1701,45 @@ function printStatistics($months,$statType){
 =======
 			else 
 			{		
+=======
+			else
+			{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				echo getRegistryObjectStatCount($theMonth,$registryObjectClass='Service');
-			}?></td><?php 
-			break
-			;	
-			case "Data": 
-				?>
-			<td><?php echo getDataSorceAdminCount($theMonth,$registryObjectClass=null);?></td><?php 
+			}?></td><?php
 			break
 			;
-			case "Page": 
+			case "Data":
 				?>
-			<td valign="top"><?php echo getPageAccessCounts($theMonth); ?></td><?php 
+			<td><?php echo getDataSorceAdminCount($theMonth,$registryObjectClass=null);?></td><?php
 			break
-			;	
-			case "Visit": 
+			;
+			case "Page":
 				?>
-			<td valign="top"><?php echo getVisitorCounts($theMonth); ?></td><?php 
+			<td valign="top"><?php echo getPageAccessCounts($theMonth); ?></td><?php
 			break
-			;										
+			;
+			case "Visit":
+				?>
+			<td valign="top"><?php echo getVisitorCounts($theMonth); ?></td><?php
+			break
+			;
 			default:
-				$thetype=explode("::",$statType); 
-				$theStats = getRegistryObjectTypeCount($theMonth,$thetype[0],$thetype[1]);			
+				$thetype=explode("::",$statType);
+				$theStats = getRegistryObjectTypeCount($theMonth,$thetype[0],$thetype[1]);
 				?>
+<<<<<<< HEAD
 			<td style="color:#666666"><?php 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			<td style="color:#666666"><?php
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if($theStats)
 				{
 					$the_count = explode(",",trim(trim($theStats[0]["count"],")"),"("));
 					$count = $the_count[1];
 				}
+<<<<<<< HEAD
 <<<<<<< HEAD
 				else
 				{
@@ -1451,16 +1753,24 @@ function printStatistics($months,$statType){
 	}
 =======
 				else 
+=======
+				else
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				{
 					$count = 0;
-				}					
-				print($count);	
+				}
+				print($count);
 			?></td>
-			<?php	
+			<?php
 		}
+<<<<<<< HEAD
 				 		 
 	}	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+	}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 }
 function printSubStats($months,$theClass)
@@ -1472,6 +1782,7 @@ function printSubStats($months,$theClass)
 		foreach($theStats as $theStat) {
 			$the_type = explode(",",trim(trim($theStat["count"],")"),"("));
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 ?>
 				<tr><td style="color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $the_type[0];?></td><?php printStatistics($months, $theClass."::".$the_type[0]);?></tr>
@@ -1479,11 +1790,18 @@ function printSubStats($months,$theClass)
 	}
 =======
 		
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>
-				<tr><td style="color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $the_type[0];?></td><?php printStatistics($months, $theClass."::".$the_type[0]);?></tr> 
+				<tr><td style="color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $the_type[0];?></td><?php printStatistics($months, $theClass."::".$the_type[0]);?></tr>
 		<?php }
+<<<<<<< HEAD
 	}		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 function printDescriptionStats($months)
 {
@@ -1494,6 +1812,7 @@ function printDescriptionStats($months)
 		foreach($theStats as $theStat) {
 			$the_type = explode(",",trim(trim($theStat["count"],")"),"("));
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 ?>
 				<tr><td style="color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $the_type[0]?></td><td style="color:#666666"><?php echo $the_type[1];?></td></tr>
@@ -1501,11 +1820,18 @@ function printDescriptionStats($months)
 	}
 =======
 		
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>
-				<tr><td style="color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $the_type[0]?></td><td style="color:#666666"><?php echo $the_type[1];?></td></tr> 
+				<tr><td style="color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $the_type[0]?></td><td style="color:#666666"><?php echo $the_type[1];?></td></tr>
 		<?php }
+<<<<<<< HEAD
 	}		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 function printRelatedInfoStats($months)
 {
@@ -1516,6 +1842,7 @@ function printRelatedInfoStats($months)
 		foreach($theStats as $theStat) {
 			$the_type = explode(",",trim(trim($theStat["count"],")"),"("));
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 ?>
 				<tr><td style="color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $the_type[0]?></td><td style="color:#666666"><?php echo $the_type[1];?></td></tr>
@@ -1523,11 +1850,18 @@ function printRelatedInfoStats($months)
 	}
 =======
 		
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>
-				<tr><td style="color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $the_type[0]?></td><td style="color:#666666"><?php echo $the_type[1];?></td></tr> 
+				<tr><td style="color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $the_type[0]?></td><td style="color:#666666"><?php echo $the_type[1];?></td></tr>
 		<?php }
+<<<<<<< HEAD
 	}		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 function printMonths($months)
 {
@@ -1536,12 +1870,17 @@ function printMonths($months)
 		?>
 		<td bgcolor="#CCCCCC"><?php echo $theMonth;?></td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<?php
 	}
 =======
 		<?php 
 	}	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		<?php
+	}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 function printHeader($months)
 {
@@ -1550,12 +1889,17 @@ function printHeader($months)
 		?>
 		<td bgcolor="#CCCCCC"></td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<?php
 	}
 =======
 		<?php 
 	}	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		<?php
+	}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 
 function convert_isosql_date_to_xsdatetime($date_string)
@@ -1565,6 +1909,9 @@ function convert_isosql_date_to_xsdatetime($date_string)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 function generateSlug($phrase, $maxLength = 255)
 {
@@ -1638,7 +1985,11 @@ function stripFormData($payload)
 	return preg_replace("/[ ]*field_id=\".*?\"[ ]*\\n+tab_id=\".*?\"/i","", $payload);
 }
 
+<<<<<<< HEAD
 ?>
 =======
 ?>
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+?>
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

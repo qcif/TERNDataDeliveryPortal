@@ -35,12 +35,18 @@ limitations under the License.
 	$totalPage = ceil($numFound / $row);
 	$currentPage = ceil($start / $row)+1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$nextPage = $currentPage + 1;
 	$prevPage = $currentPage - 1;
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	$nextPage = $currentPage + 1;
+	$prevPage = $currentPage - 1;
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$range = 3;
 ?>
 <?php
@@ -55,10 +61,14 @@ limitations under the License.
 	echo '<a href="javascript:void(0);" id="1" class="gotoPage">First</a>';
 	if($currentPage > 1){
 <<<<<<< HEAD
+<<<<<<< HEAD
 		echo '<a href="javascript:void(0);" class="pagination-page gotoPage" id="'.$prevPage.'"> &lt;</a>';
 =======
 		echo '<a href="javascript:void(0);" id="prev" class="pagination-page"> &lt;</a>';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		echo '<a href="javascript:void(0);" class="pagination-page gotoPage" id="'.$prevPage.'"> &lt;</a>';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	
 	for ($x = ($currentPage - $range); $x < (($currentPage + $range) + 1); $x++) {
@@ -74,10 +84,14 @@ limitations under the License.
 	//if not on last page, show Next
 	if($currentPage < $totalPage){
 <<<<<<< HEAD
+<<<<<<< HEAD
 		echo '<a href="javascript:void(0);" class="pagination-page gotoPage" id="'.$nextPage.'">&gt;</a>';
 =======
 		echo '<a href="javascript:void(0);" id="next" class="pagination-page">&gt;</a>';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		echo '<a href="javascript:void(0);" class="pagination-page gotoPage" id="'.$nextPage.'">&gt;</a>';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	
 	echo '<a href="javascript:void(0);" id="'.$totalPage.'" class="gotoPage">Last</a>';

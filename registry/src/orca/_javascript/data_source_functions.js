@@ -16,6 +16,9 @@ function addRelatedObjectAutocomplete(field) {
 
 	field = "#" + field;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	if(field.indexOf("object_institution_key")>0)
 		{
 			var showDraft="yes";
@@ -24,16 +27,20 @@ function addRelatedObjectAutocomplete(field) {
 		}
 	var class_field = field.replace(/object_/,"select_");
 
+<<<<<<< HEAD
 =======
 	
 	var class_field = field.replace(/object_primary_key/,"select");
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	class_field = class_field.replace(/name/,"class");
 	
 	var cSelect = field.replace(/object/,"select");
 	cSelect = cSelect.replace(/name/,"class");
 	
 	var dsSelect = cSelect.replace(/class/,"dataSource");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	var groupSelect = cSelect.replace(/class/,"group");
 //alert($( groupSelect ).val() + " thegroup");
@@ -48,6 +55,14 @@ function addRelatedObjectAutocomplete(field) {
 		source: function(request, response){
 			$.getJSON( "../manage/process_registry_object.php?task=searchRelated", {sText:$.trim(request.term), oClass:$( cSelect ).val() ,dSourceKey:$( dsSelect ).val()}, response );
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	var groupSelect = cSelect.replace(/class/,"group");
+//alert($( groupSelect ).val() + " thegroup");
+	$( field ).autocomplete({
+		minLength: 2,
+		source: function(request, response){
+			$.getJSON( "../manage/process_registry_object.php?task=searchRelated", {sText:$.trim(request.term), oClass:$( cSelect ).val() ,dSourceKey:$( dsSelect ).val(), oGroup:$( groupSelect ).val()}, response );
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		},
 		focus: function( event, ui ) {
 			$( field ).val( ui.item.value );
@@ -60,6 +75,7 @@ function addRelatedObjectAutocomplete(field) {
 		}
 	})
 	.data( "autocomplete" )._renderItem = function( ul, item ) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if(showDraft=='yes')
 		{
@@ -85,11 +101,33 @@ function addRelatedObjectAutocomplete(field) {
 =======
 		if(item.desc.indexOf("(PUBLISHED)")>0)
 		return $( "<li></li>" )
+=======
+		if(showDraft=='yes')
+		{
+			return $( "<li></li>" )
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			.data( "item.autocomplete", item )
 			.append( "<a><b>" + item.label + "</b> " + (item.value != item.label ? "(" + item.value + ")" : "") + "<br><i>" + item.desc + "</i></a>" )
 			.appendTo( ul );
+
+		}	else {
+			if(item.desc.indexOf("(PUBLISHED)")>0)
+				{
+				return $( "<li></li>" )
+				.data( "item.autocomplete", item )
+				.append( "<a><b>" + item.label + "</b> " + (item.value != item.label ? "(" + item.value + ")" : "") + "<br><i>" + item.desc + "</i></a>" )
+				.appendTo( ul );
+				}
+		}
+
 	};
+<<<<<<< HEAD
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	$(field).keypress(function(event){
+		if(event.which == 13) event.preventDefault();
+	});
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 function showSearchModal(id)
 {
@@ -115,12 +153,17 @@ function showSearchModal(id)
 		$("#searchDialog_"+id).fadeIn(200); 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//	$( "#" + id + "_name").val($("#" + id + "_value").val());
 	//	$( "#" + id + "_name").autocomplete("search", $( "#" + id + "_value").val());
 =======
 		//$( "#" + id + "_name").val($("#" + id + "_value").val());
 		//$( "#" + id + "_name").autocomplete("search", $( "#" + id + "_value").val());
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	//	$( "#" + id + "_name").val($("#" + id + "_value").val());
+	//	$( "#" + id + "_name").autocomplete("search", $( "#" + id + "_value").val());
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 }
 
@@ -175,11 +218,17 @@ function addVocabComplete(field, type) {
 			.appendTo( ul );
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$(field).keypress(function(event){
 		if(event.which == 13) event.preventDefault();event.stopPropagation();
 	});
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	$(field).keypress(function(event){
+		if(event.which == 13) event.preventDefault();event.stopPropagation();
+	});
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 
 

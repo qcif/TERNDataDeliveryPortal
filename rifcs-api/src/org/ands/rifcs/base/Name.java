@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 /**
  * Date Modified: $Date: 2010-05-18 11:08:56 +1000 (Tue, 18 May 2010) $
  * Version: $Revision: 373 $
@@ -245,6 +248,7 @@ public class Name extends RIFCSElement
         }        
     }
 
+<<<<<<< HEAD
 =======
 /**
  * Date Modified: $Date: 2010-05-18 11:08:56 +1000 (Tue, 18 May 2010) $
@@ -493,4 +497,6 @@ public class Name extends RIFCSElement
     }
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }

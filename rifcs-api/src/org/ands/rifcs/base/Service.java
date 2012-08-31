@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 /**
  * Date Modified: $Date: 2010-07-07 16:14:13 +1000 (Wed, 07 Jul 2010) $
  * Version: $Revision: 458 $
@@ -795,6 +798,7 @@ public class Service extends RIFCSElement
             aps.add(new AccessPolicy(nl.item(i)));
         }
     }
+<<<<<<< HEAD
 =======
 /**
  * Date Modified: $Date: 2010-01-18 10:22:16 +1100 (Mon, 18 Jan 2010) $
@@ -1357,4 +1361,6 @@ public class Service extends RIFCSElement
         }
     }
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }

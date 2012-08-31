@@ -1,9 +1,13 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
 =======
 /** 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+/**
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 Copyright 2011 The Australian National University
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,10 +23,14 @@ limitations under the License.
 ***************************************************************************
 *
 <<<<<<< HEAD
+<<<<<<< HEAD
 **/
 =======
 **/ 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+**/
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
@@ -34,18 +42,26 @@ class Search extends CI_Controller {
 			$q = $_GET['q'];
 			//echo $q;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			redirect(base_url().'search#!/q='.$q);
 		}else{
 =======
 			redirect(base_url().'search/#!/q='.$q);
 		}else{	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			redirect(base_url().'search#!/q='.$q);
+		}else{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();
 			$this->load->view('layout', $data);
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 	public function rss_twitter()
 	{
@@ -54,6 +70,7 @@ class Search extends CI_Controller {
 		$result['rssArray'] = $this->rss->getTwitterArray('*:*');
 		$this->load->view('search/rss_twitter', $result);
 	}
+<<<<<<< HEAD
 	
 	public function rss()
 	{
@@ -150,6 +167,101 @@ class Search extends CI_Controller {
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	
+	public function rss()
+	{
+		$this->output->set_header('Content-Type: application/rss+xml');
+		parse_str($_SERVER['QUERY_STRING'], $_GET);
+		if(isset($_GET['q'])){
+			$q = $_GET['q'];
+			$classFilter = $_GET['classFilter'];
+			$typeFilter = $_GET['typeFilter'];
+			$groupFilter = $_GET['groupFilter'];
+			$subjectFilter = $_GET['subjectFilter'];
+			$licenceFilter = $_GET['licenceFilter'];
+			$queryStr = '?q='.$q.'&classFilter='.$classFilter.'&typeFilter='.$typeFilter.'&groupFilter='.$groupFilter.'&subjectFilter='.$subjectFilter.'&licenceFilter='.$licenceFilter;
+			
+			
+			$this->load->model('Rss_channel', 'rss');
+			$result['rssArray'] = $this->rss->getRssArrayForQuery($queryStr);
+		
+
+			// Prepare a friendly name for the RSS feed if it contains subject search
+			$result['subjectSearchTitleSuffix'] = '';
+			if($subjectFilter!='All')
+			{
+				// treat http://-style subject searches as URI searches
+				if (strpos(rawurldecode($subjectFilter), "http://") !== FALSE)
+				{
+					$resolvedTitles = array();
+					foreach (explode(",", $subjectFilter) AS $uri)
+					{
+						if (strpos($uri,"~") !== FALSE)
+						{
+							$uri = str_replace("~","",$uri);
+						}
+						$resolvedTitles[] = resolveLabelFromVocabTermURI($uri);
+					}
+
+					$result['subjectSearchTitleSuffix'] .= implode(" AND ", $resolvedTitles);
+				}
+				else
+				{
+					$result['subjectSearchTitleSuffix'] .= str_replace(",", " AND ",  $subjectFilter);
+				}
+			}
+			
+			$this->load->view('search/rss', $result);
+			
+
+		}
+	}
+	public function atom()
+	{
+		$this->output->set_header('Content-Type: application/atom+xml');
+		parse_str($_SERVER['QUERY_STRING'], $_GET);
+		if(isset($_GET['q'])){
+			$q = $_GET['q'];
+			$classFilter = $_GET['classFilter'];
+			$typeFilter = $_GET['typeFilter'];
+			$groupFilter = $_GET['groupFilter'];
+			$subjectFilter = $_GET['subjectFilter'];
+			$licenceFilter = $_GET['licenceFilter'];
+			$queryStr = '?q='.$q.'&classFilter='.$classFilter.'&typeFilter='.$typeFilter.'&groupFilter='.$groupFilter.'&subjectFilter='.$subjectFilter.'&licenceFilter='.$licenceFilter;
+			$this->load->model('Rss_channel', 'atom');
+			$result['rssArray'] = $this->atom->getRssArrayForQuery($queryStr);
+			
+			// Prepare a friendly name for the RSS feed if it contains subject search
+			$result['subjectSearchTitleSuffix'] = '';
+			if($subjectFilter!='All')
+			{
+				// treat http://-style subject searches as URI searches
+				if (strpos(rawurldecode($subjectFilter), "http://") !== FALSE)
+				{
+					$resolvedTitles = array();
+					foreach (explode(",", $subjectFilter) AS $uri)
+					{
+						if (strpos($uri,"~") !== FALSE)
+						{
+							$uri = str_replace("~","",$uri);
+						}
+						$resolvedTitles[] = resolveLabelFromVocabTermURI($uri);
+					}
+
+					$result['subjectSearchTitleSuffix'] .= implode(" AND ", $resolvedTitles);
+				}
+				else
+				{
+					$result['subjectSearchTitleSuffix'] .= str_replace(",", " AND ",  $subjectFilter);
+				}
+			}
+			
+			$this->load->view('search/atom', $result);
+
+		}
+	}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	public function bwredirect(){//backward redirection with list.php
 		parse_str($_SERVER['QUERY_STRING'], $_GET);
 		$class='All';$group='All';
@@ -158,14 +270,19 @@ class Search extends CI_Controller {
 		$this->browse($group,$class);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	public function browse($group = 'All', $class='All'){//yeah, just redirect the browsing to the search page for now
 		if($class!='All') $class=strtolower($class);
 		redirect(base_url().'search#!/p=1/tab='.$class.'/group='.urldecode($group).'');
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -173,12 +290,18 @@ class Search extends CI_Controller {
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	public function updateStatistic(){//update the statistics
 		$query = $this->input->post('q');
 		$class = $this->input->post('classFilter');
 		$group = $this->input->post('groupFilter');
 		$subject = $this->input->post('subjectFilter');
 		$type = $this->input->post('typeFilter');
+<<<<<<< HEAD
 <<<<<<< HEAD
 		$licence = $this->input->post('licenceFilter');
 		$temporal = $this->input->post('temporal');
@@ -191,22 +314,30 @@ class Search extends CI_Controller {
 	}
 
 =======
+=======
+		$licence = $this->input->post('licenceFilter');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$temporal = $this->input->post('temporal');
 		$this->load->model('Registryobjects','ro');
-		$this->ro->updateStatistic($query, $class, $group, $subject, $type, $temporal);
+		$this->ro->updateStatistic($query, $class, $group, $subject, $type, $temporal,$licence);
 	}
-	
+
 	public function service_front(){//front    end for orca search service
 		$this->load->view('service_front');
 	}
+<<<<<<< HEAD
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	public function service(){//orca search service
 		$this->load->model('solr');
 		$query = $this->input->post('query');
 		$class = $this->input->post('class');
 		$group = $this->input->post('group');
 		$subject = $this->input->post('subject');
+<<<<<<< HEAD
 <<<<<<< HEAD
 		$licence = $this->input->post('licence');
 		$page = $this->input->post('page');
@@ -219,6 +350,13 @@ class Search extends CI_Controller {
 		$source_key = $this->input->post('source_key');
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$licence = $this->input->post('licence');
+		$page = $this->input->post('page');
+		$status = $this->input->post('status');
+		$source_key = $this->input->post('source_key');
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$extended_query = '';
 		if($source_key!='undefined'){
 			if($source_key!='All') $extended_query = '+data_source_key:("'.$source_key.'")';
@@ -227,10 +365,14 @@ class Search extends CI_Controller {
 			$status='All';
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$data['json']=$this->solr->search($query,$extended_query,'json',$page,$class, $group, 'All', $subject, $status);
 		$this->load->view('search/service', $data);
 	}
@@ -242,9 +384,13 @@ class Search extends CI_Controller {
         $group = $this->input->post('groupFilter');
         $subject = $this->input->post('subjectFilter');
 <<<<<<< HEAD
+<<<<<<< HEAD
         $licence = $this->input->post('licenceFilter');
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+        $licence = $this->input->post('licenceFilter');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         $page = $this->input->post('page');
         $extended = $this->input->post('extended');
         $excluded_key = $this->input->post('excluded_key');
@@ -254,6 +400,7 @@ class Search extends CI_Controller {
         //$extended_query .=constructFilterQuery('subject_value', $subject).'^100';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         $data['json']=$this->solr->search($query,$extended_query,'json',$page,$class, $group, 'All', $subject, $licence, 'PUBLISHED');
 
 		$data['numfound']=0;
@@ -262,6 +409,11 @@ class Search extends CI_Controller {
 	
 		$data['numfound']=0;		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+        $data['json']=$this->solr->search($query,$extended_query,'json',$page,$class, $group, 'All', $subject, $licence, 'PUBLISHED');
+
+		$data['numfound']=0;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if(isset($data['json']->{'response'}->{'numFound'}))$data['numfound'] = $data['json']->{'response'}->{'numFound'};
         $data['seeAlsoType'] = $seeAlsoType;
 
@@ -272,6 +424,9 @@ class Search extends CI_Controller {
         }
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	public function seeAlsoDataCite($type="count", $seeAlsoTitle='title'){//for rda see also
 
         $this->load->model('datacitesolr');
@@ -292,9 +447,12 @@ class Search extends CI_Controller {
 	}
 
 
+<<<<<<< HEAD
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	public function seeAlsoOLD(){
 		echo 'testing';
 	}
@@ -306,12 +464,16 @@ class Search extends CI_Controller {
                        $relation_types2 = array('custodian', 'isManagedBy');
                        echo '<pre>';
 <<<<<<< HEAD
+<<<<<<< HEAD
                        print_r($relation =$this->getRelatedObjects($r->{'relatedObject_key'}[$index],$relation_types2));
 =======
                        print_r($relation =
 $this->getRelatedObjects($r->{'relatedObject_key'}[$index],
 $relation_types2));
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+                       print_r($relation =$this->getRelatedObjects($r->{'relatedObject_key'}[$index],$relation_types2));
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
                        echo '</pre>';
                }
        }
@@ -319,6 +481,7 @@ $relation_types2));
 
 	function getRelationship($key,$relatedKey,$class)
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		$related[] = $relatedKey;
 		$class= strtolower($class);
@@ -328,6 +491,11 @@ $relation_types2));
 		$class= strtolower($class);
 		if($class=='party') 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$related[] = $relatedKey;
+		$class= strtolower($class);
+		if($class=='party')
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		{
 		$typeArray = array(
 		"Associated with" => "Associated with",
@@ -345,6 +513,7 @@ $relation_types2));
 		"Part of" => "Participant in",
 		"Has collector"	 => "Aggregated by",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"Aggregated by" => "Has collector",
 		"Enriched by" => "Enriches",
 		"Enriches" => "Enriched by"
@@ -353,6 +522,11 @@ $relation_types2));
 		"Enriched by" => "Enriches",
 		"Enriches" => "Enriched by"							
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		"Aggregated by" => "Has collector",
+		"Enriched by" => "Enriches",
+		"Enriches" => "Enriched by"
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		);
 		}
 		elseif($class=='collection')
@@ -367,6 +541,7 @@ $relation_types2));
 			"Location for" => "Located in",
 			"Managed by" => "Manages",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"Manages" => "Managed by",
 			"Output of" => "Outputs",
 			"isOutputOf" => "Outputs",
@@ -375,11 +550,17 @@ $relation_types2));
 			"Output of" => "Outputs",
 			"isOutputOf" => "Outputs",		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			"Manages" => "Managed by",
+			"Output of" => "Outputs",
+			"isOutputOf" => "Outputs",
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			"Owned by" => "Owns",
 			"Contains" => "Part of",
 			"Supports" => "Supported by",
 			"Enriched by" => "Enriches",
 			"Available through" => "Makes available",
+<<<<<<< HEAD
 <<<<<<< HEAD
 			"Makes available" => "Available through",
 			"Has collector"	 => "Collector of",
@@ -392,13 +573,21 @@ $relation_types2));
 =======
 			"Makes available" => "Available through",	
 			"Has collector"	 => "Collector of",	
+=======
+			"Makes available" => "Available through",
+			"Has collector"	 => "Collector of",
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			"Derived from" => "Derived collection",
-			"Produced by" => "Produces",	
-			"Operated on by" => "Operates on",	
-			"Adds value to "=> "Value added by",	
+			"Produced by" => "Produces",
+			"Operated on by" => "Operates on",
+			"Adds value to "=> "Value added by",
 			"Derived collection" => "Derived from"
+<<<<<<< HEAD
 		);		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		}
 		elseif($class=='service')
 		{
@@ -407,10 +596,14 @@ $relation_types2));
 			"Part of" => "Includes",
 			"Managed by" => "Manages",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"Manages" => "Managed by",
 =======
 			"Manages" => "Managed by",			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			"Manages" => "Managed by",
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			"Owned by" => "Owns",
 			"Part of" => "Has part",
 			"Supported by" => "Supports",
@@ -422,6 +615,7 @@ $relation_types2));
 			"Presents" => "Presented by",
 			"Operates on" => "Operated on by",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"Operated on by" => "Operates on",
 			"Adds value to" => "Value added by",
 			"Value added by" => "Adds value to",
@@ -430,6 +624,11 @@ $relation_types2));
 			"Adds value to" => "Value added by",
 			"Value added by" => "Adds value to",						
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			"Operated on by" => "Operates on",
+			"Adds value to" => "Value added by",
+			"Value added by" => "Adds value to",
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		);
 		}
 		else
@@ -443,6 +642,7 @@ $relation_types2));
 			"Managed by" => "Manages",
 			"Owned by" => "Owns",
 			"Part of" => "Includes",
+<<<<<<< HEAD
 <<<<<<< HEAD
 			"Has collector"	 => "Collector of",
 		);
@@ -459,22 +659,36 @@ $relation_types2));
 			"Has collector"	 => "Collector of",		
 		);			
 		}		
+=======
+			"Has collector"	 => "Collector of",
+		);
+		}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$this->load->model('solr');
 		$object = $this->solr->getObjects($related,null,null,null);
 		if(isset($object->{'response'}->{'docs'}[0])){
-		$keyList = $object->{'response'}->{'docs'}[0]->{'relatedObject_key'};
-		$relationshipList = $object->{'response'}->{'docs'}[0]->{'relatedObject_relation'};
+//print_r(($object->{'response'}->{'docs'}[0]));
+		$keyList = $object->{'response'}->{'docs'}[0]->{'related_object_key'};
+		$relationshipList = $object->{'response'}->{'docs'}[0]->{'related_object_relation'};
 		$relationship = '';
+<<<<<<< HEAD
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		for($i=0;$i<count($keyList);$i++)
 		{
 			if($keyList[$i]==$key) $relationship = $relationshipList[$i];
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if( array_key_exists($relationship, $typeArray) )
 		{
 			return  $typeArray[$relationship];
@@ -483,14 +697,19 @@ $relation_types2));
 		{
 			return   $relationship;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 =======
 		}		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		}
 	}
 	public function connections($type="count",$class=null,$types=null){//for rda connections
         $this->load->model('solr');
+<<<<<<< HEAD
 <<<<<<< HEAD
         $relatedKeys = array();
         $query = $this->input->post('q');
@@ -551,61 +770,71 @@ $relation_types2));
 					{
 
 =======
+=======
+        $relatedKeys = array();
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         $query = $this->input->post('q');
         $classArray = array('collection','service','activity');
         $typeArray = array('person', 'group');
-        $page = $this->input->post('page');	
+        $page = $this->input->post('page');
        	if(!$page)$page=null;
-       	$key = $this->input->post('key'); 
-        $keyArray[] = $key;   
+       	$key = $this->input->post('key');
+        $keyArray[] = $key;
         $data['json'] =$this->solr->getObjects($keyArray,$class,$types,null);
+      //print_r($data['json']);
 		$data['externalKeys']  ='';
-		
-		//print_r($data['json']);
-		
-        $reverseLinks = $data['json']->{'response'}->{'docs'}[0]->{'reverseLinks'};  
+
+        $reverseLinks = $data['json']->{'response'}->{'docs'}[0]->{'reverse_links'};
         $dataSourceKey = $data['json']->{'response'}->{'docs'}[0]->{'data_source_key'};
-		
-		//print_r($data['json']);
-		
+		$data['theGroup'] = $data['json']->{'response'}->{'docs'}[0]->{'group'};
+
         $data['thisClass'] = $data['json']->{'response'}->{'docs'}[0]->{'class'};
+
 		$data['externalKeys'] = '';
         if(!$types and !$class)
-        { 
+        {
         	foreach($classArray as $class)
-        	{          		
-        		$data[$class]['json'][0] =$this->solr->getRelated($key,$class,$types); 
+        	{
+        		$data[$class]['json'][0] =$this->solr->getRelated($key,$class,$types);
          		$relatedKeys = array();
-        		foreach($data[$class]['json'][0]->{'response'}->{'docs'} as $r)
-        		{
-        			$relatedNum = count($r->{'relatedObject_key'});
- 
-        			$relatedKeys = ''; 
-        	        $data[$class]['relatedKey'] = '';      			
-        			for($i = 0; $i<$relatedNum;$i++)
+         		$numFound = $data[$class]['json'][0]->{'response'}->{'numFound'};
+         		if($numFound>0){
+        			foreach($data[$class]['json'][0]->{'response'}->{'docs'} as $r)
         			{
-        				if($r->{'relatedObject_relatedObjectClass'}[$i]==$class)
+        				$relatedNum = count($r->{'related_object_key'});
+
+        				$relatedKeys = '';
+        	        	$data[$class]['relatedKey'] = '';
+        				for($i = 0; $i<$relatedNum;$i++)
         				{
-        					$relatedKeys[] = $r->{'relatedObject_key'}[$i];
-        					$data[$class]['relationship'][] = $r->{'relatedObject_relation'}[$i];
-        					if(isset( $r->{'relatedObject_relation_description'}[$i])){
-       							$data[$class]['relationship_description'][] = $r->{'relatedObject_relation_description'}[$i];  
-        					}else{
-        						$data[$class]['relationship_description'][] = 'null';
-        					}      					
-         					$data[$class]['relatedKey'][] = $r->{'relatedObject_key'}[$i];       					
+        					if($r->{'related_object_class'}[$i]==$class)
+        					{
+        						$relatedKeys[] = $r->{'related_object_key'}[$i];
+        						$data[$class]['relationship'][] = $r->{'related_object_relation'}[$i];
+        						if(isset( $r->{'related_object_relation_description'}[$i])){
+       								$data[$class]['relationship_description'][] = $r->{'related_object_relation_description'}[$i];
+        						}else{
+        							$data[$class]['relationship_description'][] = 'null';
+        						}
+         						$data[$class]['relatedKey'][] = $r->{'related_object_key'}[$i];
+
+        					}
         				}
         			}
-        		} 
+         		}
         		if($reverseLinks!="NONE"){
-        			
-        			$data[$class]['json'][1] =$this->solr->getConnections($key,$class,$types,$relatedKeys,$reverseLinks,$dataSourceKey);  
-        			$data[$class]["extrnal"] =$this->solr->getConnections($key,$class,$types,$relatedKeys,'EXT',$dataSourceKey); 
-        			 
-					if($data[$class]["extrnal"]->{'response'}->{'numFound'}>0) 
+        			$data[$class]['json'][1] =$this->solr->getConnections($key,$class,$types,$relatedKeys,$reverseLinks,$dataSourceKey);
+        		//	print_r($data[$class]['json'][1]);
+        			$data[$class]["external"] =$this->solr->getConnections($key,$class,$types,$relatedKeys,'EXT',$dataSourceKey);
+
+					if($data[$class]["external"]->{'response'}->{'numFound'}>0)
 					{
+<<<<<<< HEAD
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         				foreach($data[$class]["extrnal"]->{'response'}->{'docs'} as $r)
         				{
         					$extrnalNum = count($r->{'key'});
@@ -616,6 +845,7 @@ $relation_types2));
         							$data['externalKeys'][] = $r->{'key'};
         						}
         					}
+<<<<<<< HEAD
 <<<<<<< HEAD
         				}
 					}
@@ -630,17 +860,27 @@ $relation_types2));
 =======
         				}  
 					}  
+=======
+        				}
+					}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
       				foreach($data[$class]['json'][1]->{'response'}->{'docs'} as $r)
         			{
+        				//echo count($r->{'key'});
         				$connectedNum = count($r->{'key'});
         				for($i = 0; $i<$connectedNum;$i++)
         				{
+<<<<<<< HEAD
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+        					//echo $r->{'class'}."==".$class."<br />";
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         					if($r->{'class'}==$class)
         					{
         						$relatedKeys[] = $r->{'key'};
         						$data[$class]['relationship'][] = $this->getRelationship($key,$r->{'key'},$class);
+<<<<<<< HEAD
 <<<<<<< HEAD
         						//echo $this->getRelationship($key,$r->{'key'},$class)."<br />";
          						$data[$class]['relatedKey'][] = $r->{'key'};
@@ -658,17 +898,32 @@ $relation_types2));
    			//	echo "<br />Found:".$data[$class]['json']->{'response'}->{'numFound'}."<br />-------------------<br />";
 =======
          						$data[$class]['relatedKey'][] = $r->{'key'};       					
+=======
+        						//echo $this->getRelationship($key,$r->{'key'},$class)."<br />";
+         						$data[$class]['relatedKey'][] = $r->{'key'};
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         					}
         				}
-        			}  
-        		}          		   		
+        			}
+        		}
   				$data[$class]['json'] = $this->solr->getObjects($relatedKeys,$class,$types,$page=null);
+<<<<<<< HEAD
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+  			//	print_r($relatedKeys);
+  			//	echo "<br />";
+
+  			//	echo $class."<br />";
+  			//	if($class=="collection") print_r($relatedKeys);
+  				//print_r($data[$class]['json']);
+   			//	echo "<br />Found:".$data[$class]['json']->{'response'}->{'numFound'}."<br />-------------------<br />";
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
   				$data[$class]['numfound'] = $data[$class]['json']->{'response'}->{'numFound'};
         	}
             foreach($typeArray as $types)
         	{
         		$relatedKeys = '';
+<<<<<<< HEAD
 <<<<<<< HEAD
         		$data[$types]['json'][0]=$this->solr->getRelated($key,'party',$types);
         		$relatedKeys = array();
@@ -707,34 +962,48 @@ $relation_types2));
         				foreach($data[$types]["extrnal"]->{'response'}->{'docs'} as $r)
 =======
         		$data[$types]['json'][0]=$this->solr->getRelated($key,'party',$types);   
+=======
+        		$data[$types]['json'][0]=$this->solr->getRelated($key,'party',$types);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         		$relatedKeys = array();
         		foreach($data[$types]['json'][0]->{'response'}->{'docs'} as $r)
         		{
-        			$relatedNum = count($r->{'relatedObject_key'});
-        			$relatedKeys = '';      			
+        			$relatedNum = count($r->{'related_object_key'});
+        			$relatedKeys = '';
         			for($i = 0; $i<$relatedNum;$i++)
         			{
-        				if($r->{'relatedObject_relatedObjectType'}[$i]==$types)
+        				if($r->{'related_object_type'}[$i]==$types)
         				{
-        					$relatedKeys[] = $r->{'relatedObject_key'}[$i];
-        					$data[$types]['relationship'][] = $r->{'relatedObject_relation'}[$i]; 
-        					if(isset($r->{'relatedObject_relation_description'}[$i])){
-       							$data[$types]['relationship_description'][] = $r->{'relatedObject_relation_description'}[$i];       
+        					$relatedKeys[] = $r->{'related_object_key'}[$i];
+        					$data[$types]['relationship'][] = $r->{'related_object_relation'}[$i];
+        					if(isset($r->{'related_object_relation_description'}[$i])){
+       							$data[$types]['relationship_description'][] = $r->{'related_object_relation_description'}[$i];
         					}else{
-       							$data[$types]['relationship_description'][] = 'null';               					
-        					}				       					
-         					$data[$types]['relatedKey'][] = $r->{'relatedObject_key'}[$i];          				
+       							$data[$types]['relationship_description'][] = 'null';
+        					}
+         					$data[$types]['relatedKey'][] = $r->{'related_object_key'}[$i];
+
         				}
         			}
-        		}  	
-        		if($reverseLinks!="NONE"){    		
-            		$data[$types]['json'][1] =$this->solr->getConnections($key,'party',$types,$relatedKeys,$reverseLinks,$dataSourceKey); 
-        			$data[$class]["extrnal"] =$this->solr->getConnections($key,'party',$types,$relatedKeys,'EXT',$dataSourceKey);  
-					if($data[$class]["extrnal"]->{'response'}->{'numFound'}>0) 
+        		}
+        		if($reverseLinks!="NONE"){
+            		$data[$types]['json'][1] =$this->solr->getConnections($key,'party',$types,$relatedKeys,$reverseLinks,$dataSourceKey);
+           			//echo $types."------------------<br />";
+        			//print_r($data[$types]['json'][1]) ;
+           			//echo "------------------<br />";
+        			$data[$types]["extrnal"] =$this->solr->getConnections($key,'party',$types,$relatedKeys,'EXT',$dataSourceKey);
+        			//echo $types."+++++++++++++<br />";
+        			//print_r($data[$types]["extrnal"]) ;
+           			//echo "+++++++++++++<br />";
+       				if($data[$types]["extrnal"]->{'response'}->{'numFound'}>0)
 					{
 
+<<<<<<< HEAD
         				foreach($data[$class]["extrnal"]->{'response'}->{'docs'} as $r)
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+        				foreach($data[$types]["extrnal"]->{'response'}->{'docs'} as $r)
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         				{
         					$extrnalNum = count($r->{'key'});
         					for($i = 0; $i<$extrnalNum;$i++)
@@ -744,6 +1013,7 @@ $relation_types2));
         							$data['externalKeys'][] = $r->{'key'};
         						}
         					}
+<<<<<<< HEAD
 <<<<<<< HEAD
         				}
 					}
@@ -760,10 +1030,20 @@ $relation_types2));
         			{
         				$connectedNum = count($r->{'key'});
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+        				}
+					}
+
+        			foreach($data[$types]['json'][1]->{'response'}->{'docs'} as $r)
+        			{
+        				$connectedNum = count($r->{'key'});
+        				//echo $connectedNum."<br />";
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         				for($i = 0; $i<$connectedNum;$i++)
         				{
          					if($r->{'type'}==$types)
         					{
+<<<<<<< HEAD
 <<<<<<< HEAD
         						$relatedKeys[] = $r->{'key'};
         						$data[$types]['relationship'][] = $this->getRelationship($r->{'key'},$key,$class);
@@ -780,19 +1060,30 @@ $relation_types2));
         						$relatedKeys[] = $r->{'key'}; 
         						$data[$types]['relationship'][] = $this->getRelationship($r->{'key'},$key,$class);        						
          						$data[$types]['relatedKey'][] = $r->{'key'};        					
+=======
+        						$relatedKeys[] = $r->{'key'};
+        						$data[$types]['relationship'][] = $this->getRelationship($r->{'key'},$key,$class);
+         						$data[$types]['relatedKey'][] = $r->{'key'};
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         					}
-        				} 
-        			}   
-        		}   
-   		   		
+        				}
+        			}
+        		}
+
        			$data[$types]['json'] = $this->solr->getObjects($relatedKeys,'party',$types,$page=null);
+<<<<<<< HEAD
        			$data[$types]['numfound'] = $data[$types]['json']->{'response'}->{'numFound'};		
         	}        	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+       			$data[$types]['numfound'] = $data[$types]['json']->{'response'}->{'numFound'};
+        	}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         }else{
         	$relatedKeys = '';
         	$relatedDescriptions = '';
 			if($types='undefined')$types = null;
+<<<<<<< HEAD
 <<<<<<< HEAD
          	$data['json'] =$this->solr->getRelated($key,$class,$types);
         	$relatedKeys = array();
@@ -817,26 +1108,37 @@ $relation_types2));
 				if($data["extrnal"]->{'response'}->{'numFound'}>0)
 =======
          	$data['json'] =$this->solr->getRelated($key,$class,$types); 
+=======
+         	$data['json'] =$this->solr->getRelated($key,$class,$types);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         	$relatedKeys = array();
         	foreach($data['json']->{'response'}->{'docs'} as $r)
         	{
-        		$relatedNum = count($r->{'relatedObject_key'});
-        		$relatedKeys = '';      			
+        		$relatedNum = count($r->{'related_object_key'});
+        		$relatedKeys = '';
         		for($i = 0; $i<$relatedNum;$i++)
         		{
-        			if($r->{'relatedObject_relatedObjectClass'}[$i]==$class)
+        			if($r->{'related_object_class'}[$i]==$class)
         			{
-        				$relatedKeys[] = $r->{'relatedObject_key'}[$i];
-        				$relatedDescriptions[] = $r->{'relatedObject_relation_description'}[$i];
+        				$relatedKeys[] = $r->{'related_object_key'}[$i];
+        				//print_r($r);
+        				$relatedDescriptions[] = $r->{'related_object_relation'}[$i];
          			}
-        		} 
-        	} 
+        		}
+        	}
         	if($reverseLinks!="NONE")
+<<<<<<< HEAD
         	{	
            		$data['json'] =$this->solr->getConnections($key,$class,$types,$relatedKeys,$reverseLinks,$dataSourceKey); 
          		$data["extrnal"] =$this->solr->getConnections($key,$class,$types,$relatedKeys,'EXT',$dataSourceKey);  
 				if($data["extrnal"]->{'response'}->{'numFound'}>0) 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+        	{
+           		$data['json'] =$this->solr->getConnections($key,$class,$types,$relatedKeys,$reverseLinks,$dataSourceKey);
+         		$data["extrnal"] =$this->solr->getConnections($key,$class,$types,$relatedKeys,'EXT',$dataSourceKey);
+				if($data["extrnal"]->{'response'}->{'numFound'}>0)
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				{
         			foreach($data["extrnal"]->{'response'}->{'docs'} as $r)
         			{
@@ -848,6 +1150,7 @@ $relation_types2));
         						$data['externalKeys'][] = $r->{'key'};
         					}
         				}
+<<<<<<< HEAD
 <<<<<<< HEAD
         			}
 				}
@@ -861,6 +1164,13 @@ $relation_types2));
         		{
         			$connectedNum = count($r->{'key'}); 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+        			}
+				}
+      			foreach($data['json']->{'response'}->{'docs'} as $r)
+        		{
+        			$connectedNum = count($r->{'key'});
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         			for($i = 0; $i<$connectedNum;$i++)
         			{
         				if($r->{'class'}==$class)
@@ -869,11 +1179,15 @@ $relation_types2));
          				}
         			}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         		}
         	}
 
        		$data['json'] =$this->solr->getObjects($relatedKeys,$class,$types,$page);
        		$data['numfound'] = $data['json']->{'response'}->{'numFound'};
+<<<<<<< HEAD
 
 =======
         		}  
@@ -883,6 +1197,9 @@ $relation_types2));
        		$data['numfound'] = $data['json']->{'response'}->{'numFound'};       		
 			  	      	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         }
         if($type=='count'){
         	$this->load->view('search/connections', $data);
@@ -890,6 +1207,7 @@ $relation_types2));
         	$this->load->view('search/connectionsInfoBox', $data);
         }
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -902,19 +1220,31 @@ $relation_types2));
 
 =======
 	
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
-	
+
+
     public function getRelatedObjects($key, $relation_types){
+<<<<<<< HEAD
                $this->load->model('solr');
                $relatedObject_keys = $this->solr->getRelatedKeys($key,$relation_types);
                return $relatedObject_keys;
        }
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+    	$this->load->model('solr');
+    	$relatedObject_keys = $this->solr->getRelatedKeys($key,$relation_types);
+    	return $relatedObject_keys;
+   	}
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	public function filter(){//AJAX CALL, VERY IMPORTANT, this thing is called on every search
 	    $this->benchmark->mark('search_start');
 		$q = $this->input->post('q');
 		$q = trim($q); //remove spaces
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if($q=='') $q="*:*";
@@ -923,6 +1253,11 @@ $relation_types2));
 		
 		if($q=='') $q="*:*";
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+		if($q=='') $q="*:*";
+		$qrss = $q;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		//echo $q;
 		//Filtering if there is any
 		$classFilter = $this->input->post('classFilter');
@@ -930,13 +1265,18 @@ $relation_types2));
 		$groupFilter = urldecode($this->input->post('groupFilter'));
 		$subjectFilter = urldecode($this->input->post('subjectFilter'));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$licenceFilter = urldecode($this->input->post('licenceFilter'));
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$licenceFilter = urldecode($this->input->post('licenceFilter'));
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$page = $this->input->post('page');
 		$spatial_included_ids = $this->input->post('spatial_included_ids');
 		$temporal = $this->input->post('temporal');
 		$sort = $this->input->post('sort');
+<<<<<<< HEAD
 <<<<<<< HEAD
 		$query = $q;
 		$ds = '';
@@ -947,17 +1287,26 @@ $relation_types2));
 		//echo '+spatial:('.$spatial_included_ids.')';
 =======
 
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$query = $q;
+		$ds = '';
+		$ds = $this->input->post('dataSource');
 		$extended_query = '';
-		
+
+		if($ds!='')	$extended_query .= '+data_source_key:("'.$ds.'")';
 		//echo '+spatial:('.$spatial_included_ids.')';
+<<<<<<< HEAD
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if($spatial_included_ids!='') {
 			$extended_query .= $spatial_included_ids;
 		}
 		if($temporal!='All'){
 			$temporal_array = explode('-', $temporal);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			$extended_query ='+date_from:['.$temporal_array[0].' TO *]+date_to:[* TO '.$temporal_array[1].']';
 		}
@@ -977,27 +1326,33 @@ $relation_types2));
 
 =======
 			$extended_query .='+dateFrom:['.$temporal_array[0].' TO *]+dateTo:[* TO '.$temporal_array[1].']';
+=======
+			$extended_query ='+date_from:['.$temporal_array[0].' TO *]+date_to:[* TO '.$temporal_array[1].']';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		}
-		
-		
+
 		//echo $query;
-		
+
 		/*Search Part*/
 		$this->load->model('solr');
-		$data['json']=$this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter,'PUBLISHED', $sort);
-		
+		$data['json']=$this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter,$licenceFilter,'PUBLISHED', $sort);
+
 		//print_r($data['json']);
-		
+
 		/**getting the tabbing right**/
 		$query_tab = $q;
-		$data['json_tab']=$this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,'PUBLISHED', $sort);//just for the tabbing mechanism (getting the numbers right)
+		$data['json_tab']=$this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$licenceFilter,'PUBLISHED', $sort);//just for the tabbing mechanism (getting the numbers right)
 		/*just that! and json_tab is used in tab view*/
+<<<<<<< HEAD
 		
 		/**getting the facet right**/
 		//$query_tab = $q;
 		//$data['json_facet']=$this->solr->search($query, $page, $classFilter);//just for the tabbing mechanism (getting the numbers right)
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		/*Passing Variables down to the view*/
 		if($q=='*:*') $q = 'All Records';
 		$data['query']=$q;
@@ -1005,6 +1360,7 @@ $relation_types2));
 		$data['typeFilter']=$typeFilter;
 		$data['groupFilter']=$groupFilter;
 		$data['subjectFilter']=$subjectFilter;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		$data['licenceFilter']=$licenceFilter;
 		$data['page']=$page;
@@ -1064,25 +1420,78 @@ $relation_types2));
 	
 
 =======
+=======
+		$data['licenceFilter']=$licenceFilter;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$data['page']=$page;
 		$data['spatial_included_ids']=$spatial_included_ids;
 		$data['temporal']=$temporal;
-		
-		
-		
+		$dataSourceString ='';
+		if($ds!='') $dataSourceString = "&dataSource=".$ds;
+		$data['queryStr'] = '?q='.$qrss.$dataSourceString.'&classFilter='.$classFilter.'&typeFilter='.$typeFilter.'&groupFilter='.$groupFilter.'&subjectFilter='.$subjectFilter.'&licenceFilter='.$licenceFilter;
+
 		$this->benchmark->mark('search_end');
 		//echo $this->benchmark->elapsed_time('search_start', 'search_end');
-		
+
 		$this->load->view('search/search_result', $data);//load the view
 	}
 
+<<<<<<< HEAD
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	public function subjectfacet($view){
+		$data['view']=$view;
+		$params = $this->input->post('params');
+		$this->load->model('solr');
+		$params = $this->solr->constructQuery($params);
+		//echo $params;
+		if($view=='anzsrcfor'){
+			$this->load->model('vocabularies', 'vmodel');
+			$data['bigTree']=$this->vmodel->getBigTree($this->config->item('vocab_resolver_service'), array(), $params, 'searchfacet');
+			
+		}else{
+			$this->load->model('solr');
+			$data['bigTree']=$this->solr->getSubjectFacet($view, $params);
+		}
+		$this->load->view('search/subjectfacet', $data);
+	}
+
+	public function subjectfacettree($view){
+		$data['view'] = $view;
+		$params = $this->input->post('params');
+		$startsWith = $this->input->post('startsWith');
+		$this->load->model('solr');
+		$data['tree'] = $this->solr->getSubjectFacetTree($params, $view, $startsWith);
+		echo $data['tree'];
+	}
+
+	public function toplevelfacet(){
+		$params = $this->input->post('params');
+		$this->load->model('solr');
+		$params = $this->solr->constructQuery($params);
+		$this->load->model('vocabularies', 'vmodel');
+		$toplevelfacets=$this->vmodel->getTopConceptsFacet($this->config->item('vocab_resolver_service'), $params);
+
+		uasort($toplevelfacets['topConcepts'], 'cmpTopLevelFacet');//cmp function is in rda_display_helper
+		echo '<ul class="more">';
+		foreach($toplevelfacets['topConcepts'] as $f){
+			if($f['collectionNum']>0) echo '<li class="limit">'.'<a href="javascript:;" id="'.$f['uri'].'" class="subjectFilter" title="'.$f['prefLabel'].' ('.$f['collectionNum'].' results)">'.$f['prefLabel'].' ('.$f['collectionNum'].')</a>'.'</li>';
+		}
+		echo '</ul>';
+	}
+
+	
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	public function spatial() {//AJAX CALL
 		$north = $this->input->post('north');
 		$south = $this->input->post('south');
 		$east = $this->input->post('east');
 		$west = $this->input->post('west');
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 		//echo $north;
 		$query = 'select distinct rs.registry_object_key from dba.tbl_registry_objects rs, dba.tbl_spatial_extents se
@@ -1090,6 +1499,7 @@ $relation_types2));
 	and se.bound_box && box ((point('.$north.','.$west.')),(point('.$south.','.$east.')))';
 		$this->load->database();
 		$data['registryObjects'] = $this->db->query($query);
+<<<<<<< HEAD
 		$this->load->view('search/listIDs', $data);
 		//var_dump($keys);
 	}
@@ -1100,8 +1510,15 @@ $relation_types2));
 		
 		$this->load->model('registryobjects');
 		$data['registryObjects']=$this->registryobjects->spatial($north, $east, $south, $west);
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$this->load->view('search/listIDs', $data);
+		//var_dump($keys);
 	}
 
 }
+<<<<<<< HEAD
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

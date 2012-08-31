@@ -135,6 +135,7 @@ a:active
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* TABLE STYLES ------------------------------------------------------------- */
 table
@@ -216,6 +217,8 @@ tbody th
 }
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 img
 {
 	border: 0px;
@@ -352,10 +355,14 @@ img
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .formTable > .formFields > tr > td:first-child, td.label
 =======
 .formTable > .formFields > tr > td:first-child
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+.formTable > .formFields > tr > td:first-child, td.label
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 {
 	padding-top: 6px;
 	text-align: right;
@@ -366,12 +373,18 @@ img
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 .recordTable > .recordFields > tr > td:first-child
 {
 	padding-top: 6px;
@@ -415,10 +428,13 @@ input[type=password]
 {
 	background: #ffffff URL("../_images/_layout/bg_input_text.gif") repeat-x;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	padding: 1px 2px 1px 2px; /* top right bottom left */
 	margin: 0px;
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	border: 1px solid #666666;
 	font-family: verdana, sans-serif;
 	font-size: 1.0em;
@@ -558,7 +574,12 @@ div.quality-test-results
 	padding-bottom:10px;	
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 .hide{display:none;}
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+.hide{display:none;}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

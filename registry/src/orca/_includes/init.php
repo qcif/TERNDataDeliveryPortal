@@ -15,11 +15,17 @@ limitations under the License.
 *******************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 require_once(dirname(__FILE__).'/../../global_config.php');
 
 
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+require_once(dirname(__FILE__).'/../../global_config.php');
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 // If not running within COSI, include COSI's environment variables
 // (needed for "lightweight" activities such as fetch_element)
 if (!defined("eHOST")) { require '../_includes/_environment/application_env.php'; }
@@ -130,10 +136,14 @@ $gRDA_RIGHTSURL_RIGHTSLOGO = array( 'https://df.arcs.org.au/ARCS/projects/PICCLO
 
 $gORCA_STATUS_INFO = array (	
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 							"PUBLISHED"=>array("colour"=>"#32CD32", "span"=>"PUBLISHED", "short_span"=>"PUBLISHED", "display"=>"Published"),
 							"APPROVED"=>array("colour"=>"#EDD155", "span"=>"APPROVED", "short_span"=>"APPROVED", "display"=>"Approved"),
 							"ASSESSMENT_IN_PROGRESS"=>array("colour"=>"#0B2E59", "span"=>"ASSESSMENT IN PROGRESS", "short_span"=>"IN PROGRESS", "display"=>"Assessment in Progress"),
 							"SUBMITTED_FOR_ASSESSMENT"=>array("colour"=>"#688EDE", "span"=>"SUBMITTED FOR ASSESSMENT", "short_span"=>"SUBMITTED","display"=>"Submitted for Assessment"),
+<<<<<<< HEAD
 							"MORE_WORK_REQUIRED"=>array("colour"=>"#6A4A3C", "span"=>"MORE WORK REQUIRED", "short_span"=>"WORK REQUIRED", "display"=>"More Work Required"),
 							"DRAFT"=>array("colour"=>"#cc6600", "span"=>"DRAFT", "short_span"=> "DRAFT", "display"=>"Draft"),
 							"DELETED"=>array("colour"=>"#D64040", "span"=>"DELETED", "short_span"=>"DELETED", "display"=>"Deleted"),
@@ -146,6 +156,11 @@ $gORCA_STATUS_INFO = array (
 							"DRAFT"=>array("colour"=>"#cc6600", "span"=>"DRAFT", "short_span"=> "DRAFT", "display"=>"Draft Records"),
 							"DELETED"=>array("colour"=>"#D64040", "span"=>"DELETED", "short_span"=>"DELETED", "display"=>"Deleted Records"),
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+							"MORE_WORK_REQUIRED"=>array("colour"=>"#6A4A3C", "span"=>"MORE WORK REQUIRED", "short_span"=>"WORK REQUIRED", "display"=>"More Work Required"),
+							"DRAFT"=>array("colour"=>"#cc6600", "span"=>"DRAFT", "short_span"=> "DRAFT", "display"=>"Draft"),
+							"DELETED"=>array("colour"=>"#D64040", "span"=>"DELETED", "short_span"=>"DELETED", "display"=>"Deleted"),
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 );
 
 

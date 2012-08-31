@@ -15,6 +15,7 @@ limitations under the License.
 *******************************************************************************/
 // Include required files and initialisation.
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 require '/var/www/htdocs/registry/global_config.php';
 
@@ -73,11 +74,12 @@ require '/var/www/home/orca/_functions/orca_access_functions.php';
 require '/var/www/home/orca/_functions/orca_import_functions.php';
 date_default_timezone_set('Antarctica/Macquarie'); 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
-// Open a connection to the database.
-// This will be closed automatically by the framework.
-openDatabaseConnection($gCNN_DBS_ORCA, eCNN_DBS_ORCA);
+require '/var/www/htdocs/registry/global_config.php';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 // Open a connection to the database.
@@ -87,10 +89,56 @@ openDatabaseConnection($gCNN_DBS_ORCA, eCNN_DBS_ORCA);
 define('gRIF_SCHEMA_URI', 'http://services.ands.org.au/documentation/rifcs/1.2.0/schema/registryObjects.xsd');
 define('gRIF_SCHEMA_URI', 'http://services.ands.org.au/documentation/rifcs/1.2.0/schema/registryObjects.xsd');
 define('gCURRENT_SCHEMA_VERSION', '1.2.0');
+=======
+define('gRIF_SCHEMA_PATH', eAPPLICATION_ROOT.'/orca/schemata/registryObjects.xsd');
+define('gRIF_SCHEMA_URI', 'http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd');
+define('gCURRENT_SCHEMA_VERSION', '1.3');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 define('gDATA_SOURCE','NLA_PARTY');
 define('gNLA_SRU_URI','http://www.nla.gov.au/apps/srw/search/peopleaustralia');
-define('gSOLR_UPDATE_URL','http://ands2.anu.edu.au:8080/solr-prod/');
-chdir("/var/www/home/orca/_includes");
+define('gSOLR_UPDATE_URL' , $solr_url . "update");
+
+require '/var/www/htdocs/registry/_includes/_environment/database_env.php';
+require '/var/www/htdocs/registry/_includes/_functions/database_functions.php';
+require '/var/www/htdocs/registry/_includes/_functions/general_functions.php';
+require '/var/www/htdocs/registry/_includes/_functions/access_functions.php';
+require '/var/www/htdocs/registry/orca/_functions/orca_data_functions.php';
+require '/var/www/htdocs/registry/orca/_functions/orca_data_source_functions.php';
+require '/var/www/htdocs/registry/orca/_functions/orca_export_functions.php';
+require '/var/www/htdocs/registry/orca/_functions/orca_access_functions.php';
+require '/var/www/htdocs/registry/orca/_functions/orca_import_functions.php';
+require '/var/www/htdocs/registry/orca/_functions/orca_cache_functions.php';
+require '/var/www/htdocs/registry/orca/_functions/orca_presentation_functions.php';
+require '/var/www/htdocs/registry/orca/_functions/orca_constants.php';
+
+chdir("/var/www/htdocs/registry/orca/_includes");
+function htmlNumericCharRefs($unsafeString)
+{
+        $safeString = str_replace("&", "&#38;", $unsafeString);
+        $safeString = str_replace('"', "&#34;", $safeString);
+        $safeString = str_replace("'", "&#39;", $safeString);
+        $safeString = str_replace("<", "&#60;", $safeString);
+        $safeString = str_replace(">", "&#62;", $safeString);
+        return $safeString;
+}
+function esc($unsafeString, $forJavascript=false)
+{
+        $safeString = $unsafeString;
+        if( $forJavascript )
+        {
+                $safeString = str_replace('\\', '\\\\', $safeString);
+                $safeString = str_replace("'", "\\'", $safeString);
+        }
+        $safeString = htmlNumericCharRefs($safeString);
+        $safeString = str_replace("\r", "", $safeString);
+        $safeString = str_replace("\n", "&#xA;", $safeString);
+        return $safeString;
+}
+
+
+// Open a connection to the database.
+// This will be closed automatically by the framework.
+openDatabaseConnection($gCNN_DBS_ORCA, eCNN_DBS_ORCA);
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 
@@ -123,6 +171,7 @@ if($partyIdentifiers)
 
 	foreach($partyIdentifiers as $partyIdentifier){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		$partyId = trim(str_replace("http://nla.gov.au/","",$partyIdentifier["partyIdentifier"]));
 
@@ -139,16 +188,25 @@ if($partyIdentifiers)
 	
 		$partyId = trim(str_replace("http://nla.gov.au/","",$partyIdentifier["partyIdentifier"]));		
 			
+=======
+
+		$partyId = trim(str_replace("http://nla.gov.au/","",$partyIdentifier["partyIdentifier"]));
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$requestURI =  gNLA_SRU_URI."?query=rec.identifier=%22".$partyId."%22&version=1.1&operation=searchRetrieve&recordSchema=http%3A%2F%2Fands.org.au%2Fstandards%2Frif-cs%2FregistryObjects";
-	
+
 		$get = curl_init();
 		curl_setopt($get, CURLOPT_URL, $requestURI);
-		curl_setopt($get, CURLOPT_RETURNTRANSFER, true);	
+		curl_setopt($get, CURLOPT_RETURNTRANSFER, true);
 		$ch = curl_exec($get);
 		$curlinfo = curl_getinfo($get);
 		curl_close($get);
+<<<<<<< HEAD
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 
 		// Get the xml data.
@@ -159,15 +217,20 @@ if($partyIdentifiers)
 		$result = $registryObjects->loadXML(str_replace("</registryObjects></","</registryObjects>",($domObjects[1])));
 		$registryObjects->xinclude();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$errors = error_get_last();
 		if( $errors )
 		{
 			$runErrors = "Document Load Error: ".$errors['message']."\n";
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		if( !$runErrors )
@@ -196,41 +259,52 @@ if($partyIdentifiers)
 
 =======
 	
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if( !$runErrors )
 		{
-		// run an XSLT transformation 			
+		// run an XSLT transformation
 			$registryObjects = transformToRif2($registryObjects);
 			if($registryObjects == null)
 			{
-				$runErrors = "There was an error transforming the document to RIF-CS v1.2";				
+				$runErrors = "There was an error transforming the document to RIF-CS v1.2";
 			}
 		}
-		
+
 		if( !$runErrors )
 		{
-		
+
 			 // Validate it against the orca schema.
 			  // XXX: libxml2.6 workaround (Save to local filesystem before validating)
-			  
+
 			  // Create temporary file and save manually created DOMDocument.
 			  $tempFile = "/tmp/" . time() . '-' . rand() . '-document.tmp';
 			  $registryObjects->save($tempFile);
-			 
+
 			  // Create temporary DOMDocument and re-load content from file.
 			  $registryObjects = new DOMDocument();
 			  $registryObjects->load($tempFile);
+<<<<<<< HEAD
 			  
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			  // Delete temporary file.
 			  if (is_file($tempFile))
 			  {
 			    unlink($tempFile);
 			  }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 			  
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			// Validate it against the orca schema.
 			$result = $registryObjects->schemaValidate(gRIF_SCHEMA_PATH);
 
@@ -241,6 +315,7 @@ if($partyIdentifiers)
 			}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if( !$runErrors )
 		{
@@ -249,12 +324,18 @@ if($partyIdentifiers)
 		if( !$runErrors )
 		{	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+		if( !$runErrors )
+		{
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			// Import the data.
 			$runErrors = importRegistryObjects($registryObjects, gDATA_SOURCE, $runResultMessage,'SYSTEM','PUBLISHED');
 
 			if(!$runErrors)
 			{
 				$actions .= ">>SUCCESS nla party imported with key ".$partyId."\n";
+<<<<<<< HEAD
 <<<<<<< HEAD
 				
 			}
@@ -267,6 +348,13 @@ if($partyIdentifiers)
 
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				
+			}
+		}
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if( $runErrors )
 		{
 			$actions .= ">>ERRORS\n";
@@ -278,10 +366,14 @@ if($partyIdentifiers)
 	$actions  .= "Time Taken: $timeTaken seconds\n";
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//echo $actions;
 =======
 	//echo $actions; 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	//echo $actions;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 elseif($setIdentifiers)
 {
@@ -291,16 +383,22 @@ elseif($setIdentifiers)
 	$runResultMessage = "";
 	$actions = "";
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$errors = null;
 
 =======
 	$errors = null;	
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	$errors = null;
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	foreach($setIdentifiers as $identifiers)
 	{
 		//this time we are querying NLA to see if a record has been matched. ie we are looking for an NLA record that has our local key as an identifier
 		$requestURI =  gNLA_SRU_URI."?query=cql.anywhere+%3D+%22".urlencode($identifiers["registry_object_key"])."%22&version=1.1&operation=searchRetrieve&recordSchema=http%3A%2F%2Fands.org.au%2Fstandards%2Frif-cs%2FregistryObjects";
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		$get = curl_init();
@@ -323,25 +421,32 @@ elseif($setIdentifiers)
 
 =======
 		
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$get = curl_init();
 		curl_setopt($get, CURLOPT_URL, $requestURI);
-		curl_setopt($get, CURLOPT_RETURNTRANSFER, true);	
+		curl_setopt($get, CURLOPT_RETURNTRANSFER, true);
 		$ch = curl_exec($get);
 		$curlinfo = curl_getinfo($get);
-		curl_close($get);			
-		
+		curl_close($get);
+
 		$numrecords = explode("numberOfRecords",$ch);
 		$recordNum = str_replace("</","",str_replace(">","",$numrecords[1]));
-		// Lets find out if there is a match made 
+		// Lets find out if there is a match made
 		if($recordNum!="0"){
 			// "we have found an NLA record with our local identifier we now need to see of it exists as a party record in our registry with the nla identifier as the key<br />";
-		
-	
-	
+
+
+
 			$returnObject = new DOMDocument();
 			$object = $returnObject->loadXML($ch);
+<<<<<<< HEAD
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			// Get the xml data.
 			$registryObjects = new DOMDocument();
 
@@ -354,6 +459,7 @@ elseif($setIdentifiers)
 			{
 				$runErrors .= "Document Load Error: ".$errors['message']."\n";
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			if( !$runErrors )
@@ -368,22 +474,30 @@ elseif($setIdentifiers)
 
 =======
 	
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if( !$runErrors )
 			{
-			// run an XSLT transformation 			
+			// run an XSLT transformation
 				$registryObjects = transformToRif2($registryObjects);
 				if($registryObjects == null)
 				{
-					$runErrors = "There was an error transforming the document to RIF-CS v1.2";				
+					$runErrors = "There was an error transforming the document to RIF-CS v1.2";
 				}
 			}
+<<<<<<< HEAD
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if( !$runErrors )
 			{
 			  // Validate it against the orca schema.
 			  // XXX: libxml2.6 workaround (Save to local filesystem before validating)
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			  // Create temporary file and save manually created DOMDocument.
 			  $tempFile = "/tmp/" . time() . '-' . rand() . '-document.tmp';
@@ -395,24 +509,35 @@ elseif($setIdentifiers)
 
 =======
 			  
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			  // Create temporary file and save manually created DOMDocument.
 			  $tempFile = "/tmp/" . time() . '-' . rand() . '-document.tmp';
 			  $registryObjects->save($tempFile);
-			 
+
 			  // Create temporary DOMDocument and re-load content from file.
 			  $registryObjects = new DOMDocument();
 			  $registryObjects->load($tempFile);
+<<<<<<< HEAD
 			  
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			  // Delete temporary file.
 			  if (is_file($tempFile))
 			  {
 			    unlink($tempFile);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  }
 =======
 			  }			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			  }
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			// Validate it against the orca schema.
 				$result = $registryObjects->schemaValidate(gRIF_SCHEMA_PATH);
 				$errors = error_get_last();
@@ -421,6 +546,7 @@ elseif($setIdentifiers)
 					$runErrors .= "Document Validation Error: ".$errors['message']."\n";
 				}
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			if( !$runErrors )
@@ -432,10 +558,17 @@ elseif($setIdentifiers)
 			{	
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+			if( !$runErrors )
+			{
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				$key = $registryObjects->getElementsByTagName("key")->item(0)->nodeValue;
 				//check if this nla identifier is already imported as a part record
 				$isthere = getRegistryObject($key);
 				//if its not there already then lets import it
+<<<<<<< HEAD
 <<<<<<< HEAD
 				if(!$isthere){
 					$runErrors = importRegistryObjects($registryObjects, 'NLA', $runResultMessage,'SYSTEM','PUBLISHED');
@@ -449,14 +582,22 @@ elseif($setIdentifiers)
 =======
 				if(!$isthere){	
 					$runErrors = importRegistryObjects($registryObjects, 'NLA', $runResultMessage,'SYSTEM','PUBLISHED');	
+=======
+				if(!$isthere){
+					$runErrors = importRegistryObjects($registryObjects, 'NLA', $runResultMessage,'SYSTEM','PUBLISHED');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					if(!$runErrors)
 					{
 						$actions .= ">>SUCCESS nla party imported with key".$key."\n";
-					}			
+					}
 				}
 			}
+<<<<<<< HEAD
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if( $runErrors )
 			{
 				$actions .= ">>ERRORS\n";
@@ -471,6 +612,7 @@ elseif($setIdentifiers)
 else
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$actions = "No ".str_replace("NLA"," NLA",$services)." Party identifiers to insert \n";
 }
 date_default_timezone_set('Antarctica/Macquarie');
@@ -483,6 +625,13 @@ date_default_timezone_set('Antarctica/Macquarie');
 $actions .= date("d/m/Y h:m:s")."\n";
 exec("wget 'https://services.ands.org.au/home/orca/services/getRegistryObjectsSOLR.php?dataSourceKey=NLA_PARTY&solrUrl=yep' -q");
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	$actions = "No ".str_replace("NLA"," NLA",$services)." Party identifiers to insert \n";
+}
+date_default_timezone_set('Antarctica/Macquarie');
+$actions .= date("d/m/Y h:m:s")."\n";
+queueSyncDataSource('NLA_PARTY');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 mail("lizwoods.ands@gmail.com","NLA Party imports",$actions);
 //echo $actions;
 // END: XML Response

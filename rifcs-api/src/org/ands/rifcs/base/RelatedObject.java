@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 /**
  * Date Modified: $Date: 2010-01-18 10:22:16 +1100 (Mon, 18 Jan 2010) $
  * Version: $Revision: 288 $
@@ -176,6 +179,7 @@ public class RelatedObject extends RIFCSElement
             relations.add(new Relation(nl.item(i)));
         }        
     }
+<<<<<<< HEAD
 =======
 /**
  * Date Modified: $Date: 2010-01-18 10:22:16 +1100 (Mon, 18 Jan 2010) $
@@ -355,4 +359,6 @@ public class RelatedObject extends RIFCSElement
         }        
     }
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }

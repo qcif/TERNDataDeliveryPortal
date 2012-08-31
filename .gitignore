@@ -1,14 +1,20 @@
 /.buildpath
-.gitignore
+/.gitignore
 /.project
 /registry/src/ckeditor
 /registry/src/dois/
 /registry/src/orca/htmlpurifier/
-/registry/src/orca/rda/.htaccess
 .DS_Store
 ._*
+harvester/build/
+harvester/lib/
+pids/build/
+pids/lib/
+registry/src/.project
+rifcs-api/build/
 /registry/src/global_config.php
 /registry/src/orca/rda/.htaccess
+<<<<<<< HEAD
 /tern-portal/application/config/config.php
 /tern-portal/application/config/database.php
 /registry/src/_includes/init.php
@@ -16,3 +22,8 @@
 /registry/src/orca/_includes/init.php
 /registry/src/_includes/_configuration/application_config.php
 /registry/src/_inclues/_environment/database_env.php
+=======
+/registry/src/.htaccess
+/doco/
+/misc/
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

@@ -29,7 +29,12 @@ ALTER FUNCTION dba.udf_get_user_count(character varying)
   OWNER TO dba;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 INSERT INTO dba.tbl_activities (activity_id, created_who, modified_who) VALUES ('aORCA_RUN_TASKS','SYSTEM','SYSTEM');
 INSERT INTO dba.tbl_role_activities (role_id, activity_id, created_who, modified_who) VALUES ('COSI_ADMIN','aORCA_RUN_TASKS','SYSTEM','SYSTEM');
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+INSERT INTO dba.tbl_activities (activity_id, created_who, modified_who) VALUES ('aORCA_RUN_TASKS','SYSTEM','SYSTEM');
+INSERT INTO dba.tbl_role_activities (role_id, activity_id, created_who, modified_who) VALUES ('COSI_ADMIN','aORCA_RUN_TASKS','SYSTEM','SYSTEM');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

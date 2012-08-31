@@ -1,9 +1,13 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
 =======
 /** 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+/**
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 Copyright 2011 The Australian National University
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,6 +22,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ***************************************************************************
 *
+<<<<<<< HEAD
 <<<<<<< HEAD
 **/
 ?>
@@ -41,17 +46,32 @@ $config['warning_notices'] = $warning_notices;
 
 =======
 **/ 
+=======
+**/
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+global $gVOCAB_RESOLVER_SERVICE, $enable_warning_notices, $warning_notices, $enable_google_analytic, $google_analytic_code, $subjects_categories;
 
-/*
- * Change me
- */
+
+
+//==============================
+//CONFIGURATION
+//==============================
 $config['base_url']	= 'http://'.HOST.'/'.RDA_ROOT.'/';
-$config['orca_url'] = 'http://'.HOST.'/'.ORCA_ROOT.'/';
+$config['orca_url'] = ''.ORCA_PROTOCOL.'://'.HOST.'/'.ORCA_ROOT.'/';
 $config['solr_url'] = SOLR_URL;
+<<<<<<< HEAD
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+$config['asset_url'] = $config['base_url'] . 'assets/';
+$config['vocab_resolver_service'] = $gVOCAB_RESOLVER_SERVICE;
+$config['datacite_solr_url'] = DATACITE_SOLR_URL;
+$config['enable_warning_notices'] = $enable_warning_notices;
+$config['warning_notices'] = $warning_notices;
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 
 /*
@@ -60,6 +80,9 @@ $config['solr_url'] = SOLR_URL;
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 $config['orca_service_point'] 	= 'services/getRegistryObjectsSOLR.php';
 $config['orca_view_point'] 		= 'view.php';
 
@@ -72,6 +95,7 @@ date_default_timezone_set('Australia/Canberra');
 
 $config['subjects_categories'] = $subjects_categories;
 //default categories
+<<<<<<< HEAD
 
 =======
 $config['orca_service_point'] = 'services/getRegistryObjectsSOLR.php';
@@ -80,6 +104,9 @@ $config['orca_view_point'] = 'view.php';
 $config['GA_enabled'] = false;
 $config['GA_code']='';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 
 /*
@@ -194,10 +221,14 @@ $config['subclass_prefix'] = 'MY_';
 */
 //$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 <<<<<<< HEAD
+<<<<<<< HEAD
 $config['permitted_uri_chars'] = '@ a-z 0-9~%.,():_-';
 =======
 $config['permitted_uri_chars'] = '@ a-z 0-9~%.:_-';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+$config['permitted_uri_chars'] = '@ a-z 0-9~%.,():_-';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 
 /*

@@ -61,6 +61,7 @@ function drawRoleSelectList($roleId, $roleTypeId)
 	// and inherited roles (as these are redundant).
 	$relatedRoles = getRelatedRoleIDs($roleId);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	$roles = getRoleRelationAddList($roleId, $roleTypeId);
 	$roleList = array();
@@ -74,6 +75,16 @@ function drawRoleSelectList($roleId, $roleTypeId)
 	$roleList = array();
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	
+	$roles = getRoleRelationAddList($roleId, $roleTypeId);
+	$roleList = array();
+	// Sort by role name, not value
+	usort($roles, function ($a,$b) {
+          return strtolower($a['name'])>strtolower($b['name']);
+    });
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	if( $roles )
 	{
 		foreach( $roles as $role )

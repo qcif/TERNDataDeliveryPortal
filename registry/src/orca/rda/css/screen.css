@@ -79,10 +79,14 @@ a:hover{text-decoration:underline;}
 #mid{width:100%;margin:15px 0 10px 0;position:relative;text-align:center;padding:0;}
 #logo{ width:235px;float:left;}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ands-logo-white{float:right;margin-right:10px;}
 =======
 #ands-logo-white{float:right;margin-right:30px;}
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+#ands-logo-white{float:right;margin-right:10px;}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 #logo h1{
 	color:#0a450a;margin:0;padding:0;font-weight:bold;text-shadow: 2px 2px 2px #fff;font-size:23px;
 }
@@ -419,9 +423,12 @@ font-size:.9em;
 #search-left ul li a.current{color:red;}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 .accordion{}
 #clearSearch{float:right;margin:5px;cursor:pointer;}
 #loading{float:right;}
@@ -464,10 +471,14 @@ img.arrow{position:absolute;top:-54px;left:100px;z-index:999;display:inline-bloc
 
 .hp-left{width:450px;float:left;}
 <<<<<<< HEAD
+<<<<<<< HEAD
 .hp-right{float:left;width:450px;margin:0px 0px 0px 25px;}
 =======
 .hp-right{float:left;width:450px;margin:0 15px 0px 25px;}
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+.hp-right{float:left;width:450px;margin:0px 0px 0px 25px;}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 .hp-styled-box{padding:5px;margin:5px;border:1px solid black;-moz-border-radius: 7px;border-radius: 7px;}
 .limitHeight300{max-height:300px;overflow:auto;}
 .limitHeight200{max-height:200px;overflow:auto;}
@@ -649,14 +660,21 @@ display:block;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 #warningDiv{
     position:fixed;bottom:0;right:0;padding:5px 10px;background:#333;color:white;z-index:100;text-align:left;
     text-decoration:none;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 #warningDiv a{color:white;}
 
@@ -708,7 +726,11 @@ display:block;
 * html .ui-autocomplete {
     height: 200px;
 }
+<<<<<<< HEAD
 .grey{color:#333333;}
 =======
 #warningDiv a{color:white;}
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+.grey{color:#333333;}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

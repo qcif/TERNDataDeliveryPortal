@@ -29,9 +29,13 @@ $primaryRelationshipClass = '';
 $createPrimaryClass = '';
 $pushNLALabelClass ='';
 <<<<<<< HEAD
+<<<<<<< HEAD
 $dateLabelClass='';
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+$dateLabelClass='';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 if(getPostedValue('action'))
 {	
@@ -58,6 +62,7 @@ if ( strtoupper(getPostedValue('action')) == "SAVE" )
 {
 	//we need to set up the values to reset the time zone variables and display to be the selected values
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if(getPostedValue('harvest_date')&&getPostedValue('harvest_method')!='DIRECT'&&getPostedValue('harvest_method')!=''){
 		$newNum = getPostedValue('theZone');
 		$pattern = "/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(:(\d{2}))?(?:([-+])(\d{2}):?(\d{2})|(Z))?/";
@@ -73,6 +78,18 @@ if ( strtoupper(getPostedValue('action')) == "SAVE" )
 		$newNum = getPostedValue('theZone');
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	if(getPostedValue('harvest_date')&&getPostedValue('harvest_method')!='DIRECT'&&getPostedValue('harvest_method')!=''){
+		$newNum = getPostedValue('theZone');
+		$pattern = "/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(:(\d{2}))?(?:([-+])(\d{2}):?(\d{2})|(Z))?/";
+		if ( preg_match( $pattern, getPostedValue('harvest_date') ) ) 
+		{
+			$formatOK = true;
+		}else{
+			$dateLabelClass = gERROR_CLASS;
+			$errorMessages .= "Date format must be W3CDTF.<br />";
+		}		
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if($newNum>0)
 		{
 			$theString = '&nbsp;&nbsp;&nbsp;(GMT +'.str_replace(".",":",number_format($newNum,2)).')';
@@ -82,14 +99,20 @@ if ( strtoupper(getPostedValue('action')) == "SAVE" )
 			$theNum=$newNum;			
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$newDateTimeZone = str_replace("Z",$theNum,getPostedValue('harvest_date'));
 	}
 	if(getPostedValue('harvest_method')=='DIRECT')
 	{
 		$newDateTimeZone ='';
+<<<<<<< HEAD
 =======
 		$newDateTimeZone = getPostedValue('harvest_date').":00 ".str_replace(".",":",$theNum);
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	if( getPostedValue('data_source_key') == '' )
 	{ 
@@ -119,15 +142,21 @@ if ( strtoupper(getPostedValue('action')) == "SAVE" )
 		$errorMessages .= "URI is a mandatory field.<br />";
 	}	
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	
 	if(getPostedValue('uri')!='' && (!filter_var(getPostedValue('uri'), FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED) || strpos(getPostedValue('uri'), "file://")===0))
   	{
 		$uriLabelClass = gERROR_CLASS;
 		$errorMessages .= "URI <em>".filter_var(getPostedValue('uri'))."</em> is not a valid URI.<br />";
   	}
+<<<<<<< HEAD
 =======
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	if( getPostedValue('provider_type') == '' )
 	{ 
 		$providerTypeLabelClass = gERROR_CLASS;
@@ -435,10 +464,14 @@ require '../../_includes/header.php';
 		</tr>
 		<tr id="harvest_date_row">
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<td <?php print($dateLabelClass); ?>>Harvest Date:</td>
 =======
 			<td class="">Harvest Date:</td>
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			<td <?php print($dateLabelClass); ?>>Harvest Date:</td>
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			<?php 		
 				$origin_dt = new DateTime(date("y-m-d h:s",time())) ;
 			    $remote_dtz = new DateTimeZone('GMT');
@@ -451,11 +484,16 @@ require '../../_includes/header.php';
 				$currentNum = number_format($current);
 			?>			
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<!-- <td><?php drawDateTimeZoneInput('harvest_date', getPostedValue('harvest_date'), eDCT_FORMAT_ISO8601_DATE_TIME."X") ?> -->	
 				<td ><?php drawDateTimeZoneInput('harvest_date', getPostedValue('harvest_date'), eDCT_FORMAT_ISO8601_DATETIMESEC_UTC) ?></p>		
 =======
 			<td><?php drawDateTimeZoneInput('harvest_date', getPostedValue('harvest_date'), eDCT_FORMAT_ISO8601_DATE_TIME."X") ?>
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		<!-- <td><?php drawDateTimeZoneInput('harvest_date', getPostedValue('harvest_date'), eDCT_FORMAT_ISO8601_DATE_TIME."X") ?> -->	
+				<td ><?php drawDateTimeZoneInput('harvest_date', getPostedValue('harvest_date'), eDCT_FORMAT_ISO8601_DATETIMESEC_UTC) ?></p>		
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			<span id="gmtZone" class="inputFormat"><?php if(isset($theString)){ echo $theString;} else { echo $currentZone; } ?></span>
 			<input name="theZone" id="theZone" type="hidden" value="<?php if(isset($newNum)){echo $newNum;}else { echo $currentNum; }?>"/>
 			</td>

@@ -15,6 +15,9 @@ limitations under the License.
 *******************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 // Registry Object Wrappers (XML)
 $gORCA_REGISTRY_OBJECT_WRAPPER = '<?xml version="1.0"?>'."\n";
 $gORCA_REGISTRY_OBJECT_WRAPPER .='<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" '."\n";
@@ -96,8 +99,11 @@ $typeArray['activity'] = array(
 );	
 // Slug defaults
 define('NO_NAME_OR_TITLE_SLUG', 'no-nametitle');
+<<<<<<< HEAD
 =======
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 ?>

@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 /**
  * Date Modified: $Date: 2010-05-18 11:07:57 +1000 (Tue, 18 May 2010) $
  * Version: $Revision: 372 $
@@ -90,6 +93,7 @@ public class NamePart extends RIFCSElement
     {
         return super.getTextContent();
     }
+<<<<<<< HEAD
 =======
 /**
  * Date Modified: $Date: 2010-05-18 11:07:57 +1000 (Tue, 18 May 2010) $
@@ -183,4 +187,6 @@ public class NamePart extends RIFCSElement
         return super.getTextContent();
     }
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }

@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 /**
  * Date Modified: $Date: 2012-04-04 12:13:39 +1000 (Wed, 04 Apr 2012) $
  * Version: $Revision: 1695 $
@@ -316,6 +319,7 @@ public class RIFCSWrapper
 
         validator.validate(new DOMSource(doc));
     }
+<<<<<<< HEAD
 =======
 /**
  * Date Modified: $Date: 2010-02-18 12:10:44 +1100 (Thu, 18 Feb 2010) $
@@ -640,4 +644,6 @@ public class RIFCSWrapper
         validator.validate(new DOMSource(doc));
     }
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }

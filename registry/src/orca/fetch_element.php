@@ -15,6 +15,7 @@ limitations under the License.
 *******************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Make sure valid user is accessing the content (session-based authentication)
 //session_start();
 //$_SESSION["timeout"] += 30;
@@ -23,6 +24,11 @@ limitations under the License.
 //session_start();
 //$_SESSION["timeout"] += 30;
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+// Make sure valid user is accessing the content (session-based authentication)
+//session_start();
+//$_SESSION["timeout"] += 30;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 define('gDEFAULT_CONTEXT_ERROR', "Invalid Context");
 define('gDEFAULT_TAGNOTFOUND_ERROR', "Element not available");
@@ -176,11 +182,16 @@ switch ($context)
 			
 	break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	case "SOLR_get_stuff":echo "yeah";break;
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+	case "SOLR_get_stuff":echo "yeah";break;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	
 	// By default, just print the element content "as is"
 	case "":

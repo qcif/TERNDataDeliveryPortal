@@ -47,10 +47,14 @@ $ePIDS_RESOURCE_URI = $pids_url;
 // -----------------------------------------------------------------------------
 // The Shibboleth Session Initiator '/Login?xxxx' | '/WAYF/{idp or WAYF location}' | '/DS?xxxx'
 <<<<<<< HEAD
+<<<<<<< HEAD
 //$eShibbolethSessionInitiator = 'DS';
 =======
 $eShibbolethSessionInitiator = 'DS';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+//$eShibbolethSessionInitiator = 'DS';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 //$eShibbolethSessionInitiator = '';
 // The domain over which the Shibboleth identity is unique.
 $eShibbolethAuthDomain = 'aaf.edu.au';
@@ -192,12 +196,16 @@ ini_set("session.cookie_httponly", "1");  // Don't allow access to the cookie
                                            // after a Shibboleth login.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 // Session will expire/timeout after this period of inactivity 
 // (ie if there have been no requests in that time).
 $gSessionTimeoutMinutes = 120;
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 // Create or resume a session.
 // This needs to happen after the settings above, so it's better off here

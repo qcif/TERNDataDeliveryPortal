@@ -35,9 +35,13 @@ class Preview extends CI_Controller {
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();	
 <<<<<<< HEAD
+<<<<<<< HEAD
 			$data['activity_name'] = 'preview';
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			$data['activity_name'] = 'preview';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			$this->load->view('xml-view', $data);
 		}else{
 			show_404('Preview Draft');
@@ -53,10 +57,14 @@ class Preview extends CI_Controller {
 		$proc->importStyleSheet($qtestxsl);
 		$proc->setParameter('','base_url',base_url());
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$proc->setParameter('','orca_home',$this->config->item('orca_url'));
 =======
 		$proc->setParameter('','orca_home',getHTTPs($this->config->item('orca_url')));
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$proc->setParameter('','orca_home',$this->config->item('orca_url'));
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$proc->setParameter('','dataSource',$ds);
 		$transformResult = $proc->transformToXML($registryObjects);	
 		return $transformResult;

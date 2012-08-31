@@ -161,10 +161,14 @@ if( strtoupper(getPostedValue('verb')) == "SAVE" )
 	
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if( !$errorMessages ) 
 =======
 	if( !$errorMessages )
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	if( !$errorMessages ) 
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	{
 		$dataSourceKey = 'PUBLISH_MY_DATA';
 		$objectGroup = 'Publish My Data';
@@ -172,13 +176,19 @@ if( strtoupper(getPostedValue('verb')) == "SAVE" )
 		// Get the party object.
 		$partyObject = getUserPartyObject();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if(isset($partyObject[0]['registry_object_key']))
 				$partyObjectKey = $partyObject[0]['registry_object_key'];
 		else
 				$partyObjectKey = $partyObject[0]['draft_key'];
+<<<<<<< HEAD
 =======
 		$partyObjectKey = $partyObject[0]['registry_object_key'];
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		
 		$registryObjectKey = null;
 		$handle = null;	
@@ -199,10 +209,14 @@ if( strtoupper(getPostedValue('verb')) == "SAVE" )
 			else
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				$errorMessages = "Identifier error. ".$response;
 =======
 				$errorMessages = "Identifier error. ".pidsGetUserMessage($response);
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				$errorMessages = "Identifier error. ".$response;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if( stristr($errorMessages, 'URL') )
 				{
 					$urlLabelClass = gERROR_CLASS;
@@ -387,10 +401,14 @@ if( strtoupper(getPostedValue('verb')) == "SAVE" )
 					// Add a relation for this collection to the user party object.
 					//addCollectionRelationToUserParty($partyObjectKey, $registryObjectKey);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					//runQualityCheckforDataSource('PUBLISH_MY_DATA');
 
 					syncDraftKey($registryObjectKey, 'PUBLISH_MY_DATA');
 					queueSyncDataSource('PUBLISH_MY_DATA');
+<<<<<<< HEAD
 					// Log the datasource activity.
 					insertDataSourceEvent($dataSourceKey, "ADD REGISTRY OBJECT\nKey: ".$registryObjectKey."\n".$resultMessage);
 
@@ -401,17 +419,22 @@ if( strtoupper(getPostedValue('verb')) == "SAVE" )
 					insertDataSourceEvent($dataSourceKey, "ADD REGISTRY OBJECT\nKey: ".$registryObjectKey."\n".$resultMessage);
 					
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+					// Log the datasource activity.
+					insertDataSourceEvent($dataSourceKey, "ADD REGISTRY OBJECT\nKey: ".$registryObjectKey."\n".$resultMessage);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					
 					$this_user = $_SESSION['name'];
-				
-					send_email(
-						eCONTACT_EMAIL,
-						"Records from " . $dataSourceKey . " are ready for your assessment",
-						$this_user . " has submitted a record for your assessment. \n\n" .
+
+					$subject	=	"Records from " . $dataSourceKey . " are ready for your assessment";
+					$mailBody =	$this_user . " has submitted a record for your assessment. \n\n" .
 						"Your action is required to review these records be visiting the Manage My Records screen or accessing the Data Source directly by the following link:\n" .
-						eHTTP_APP_ROOT . "orca/manage/my_records.php?data_source=" . $dataSourceKey . "\n\n"
-					);
-					
+						eHTTP_APP_ROOT . "orca/manage/my_records.php?data_source=" . $dataSourceKey . "\n\n";
+					$headers  = 'MIME-Version: 1.0' . "\r\n";
+					$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+					$headers .= 'From:'.eCONTACT_EMAIL_FROM."\r\n";
+					mail(eCONTACT_EMAIL, $subject, $mailBody, $headers);					
 				}
 			}
 			
@@ -419,9 +442,13 @@ if( strtoupper(getPostedValue('verb')) == "SAVE" )
 			{
 				responseRedirect('collection_view.php?key='.urlencode($registryObjectKey));
 <<<<<<< HEAD
+<<<<<<< HEAD
 				
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			}
 		}	
 	}

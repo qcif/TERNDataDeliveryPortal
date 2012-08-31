@@ -230,10 +230,14 @@ a.search:active
   left:0;
   top:0;
 <<<<<<< HEAD
+<<<<<<< HEAD
   z-index:999;
 =======
   z-index:9000;
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+  z-index:999;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
   background-color:#000;
   display:none;
 }
@@ -244,10 +248,14 @@ a.search:active
   height:180px;
   display:none;
 <<<<<<< HEAD
+<<<<<<< HEAD
   z-index:1000;
 =======
   z-index:9999;
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+  z-index:1000;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
   padding:20px;
   border: 5px solid #555555;
   background-color: #F0F0D8;	
@@ -257,9 +265,12 @@ padding:0px 2px;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 .hide{display:none;}
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 .closeBlockUI{cursor:pointer;}
 
 /*RIFCS POPUP*/
@@ -270,6 +281,9 @@ padding:0px 2px;
 #rifcs_popup a:hover{background:white;color:#333;}
 #rifcs_plain_content{width:600px;max-height:600px;min-height:400px;}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 
 
@@ -738,5 +752,8 @@ a.borderless{
     height:auto;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

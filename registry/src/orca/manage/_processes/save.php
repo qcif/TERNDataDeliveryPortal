@@ -26,9 +26,13 @@ if($json)
 	
 	$test_array = json_decode($json, true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$objectClass = $test_array['objectClass'];
 	$test_array['mandatoryInformation']['key'] = trim(urldecode($test_array['mandatoryInformation']['key']));
 	$objectDataSource = urldecode($test_array['mandatoryInformation']['dataSource']);
@@ -37,10 +41,15 @@ if($json)
 	
 	$xml__text = $a2xml->array2xml($test_array);
 <<<<<<< HEAD
+<<<<<<< HEAD
 //	print_r($xml__text);
 //	exit();
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+//	print_r($xml__text);
+//	exit();
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$xml__text = str_replace ('__THEPLUSSIGN__', '+', $xml__text);
 	$xml__text = str_replace ('%26', '&amp;', $xml__text);
 
@@ -106,9 +115,13 @@ if($json)
 		// Keep the status and modification details, just resave (possibly to add field_id information?)
 		saveDraftRegistryObject($transformResult , $objectClass, $objectDataSource,$keyValue, $title, null, true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		//syncDraftKey($keyValue, $objectDataSource);
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		//syncDraftKey($keyValue, $objectDataSource);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 
 	$preview = createPreview($transformResult, $objectClass, $objectDataSource, $dateCreated);

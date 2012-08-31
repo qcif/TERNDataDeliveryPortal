@@ -1,9 +1,13 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
 =======
 /** 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+/**
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 Copyright 2011 The Australian National University
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,23 +23,32 @@ limitations under the License.
 ***************************************************************************
 *
 <<<<<<< HEAD
+<<<<<<< HEAD
 **/
 =======
 **/ 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+**/
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>
 <?php //print_r($json);?>
 <?php if($json):?>
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	//$numFound = $json->{'response'}->{'numFound'};
 	$numFound = $json->{'response'}->{'numFound'};
 	$timeTaken = $json->{'responseHeader'}->{'QTime'};
 	$timeTaken = $timeTaken / 1000;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	//print_r($json->{'responseHeader'}->{'params'});
@@ -51,18 +64,25 @@ limitations under the License.
 
 =======
 	
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	//print_r($json->{'responseHeader'}->{'params'});
-	
+
 	$row = $json->{'responseHeader'}->{'params'}->{'rows'};
 	$start = $json->{'responseHeader'}->{'params'}->{'start'};
 	$end = $start + $row;
-	
+
 	$h_start = $start + 1;//human start
 	$h_end = $end + 1;//human end
-	
+
 	if ($h_end > $numFound) $h_end = $numFound;
+<<<<<<< HEAD
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$totalPage = ceil($numFound / $row);
 	$currentPage = ceil($start / $row)+1;
 	$orca = $this->config->item('orca');
@@ -76,29 +96,41 @@ limitations under the License.
 	<?php $this->load->view('search/pagination');?>
 	</div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<?php
 =======
 	<?php 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	<?php
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	foreach($json->{'response'}->{'docs'} as $r)
 	{
 		//print_r($r);
 		$type = $r->{'type'};
 		$ro_key = $r->{'key'};
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$name = $r->{'list_title'};
 =======
 		$name = $r->{'listTitle'};
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$name = $r->{'list_title'};
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$class = $r->{'class'};
 		$group = $r->{'group'};
 		$status = $r->{'status'};
 		$ds = $r->{'data_source_key'};
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		echo '<a href="'.$this->config->item('orca_view_point').'?key='.urlencode($ro_key).'">'.$name.'</a> <br/>';
 		echo '<span class="resultListItemLabel">Status: </span><span style="color: #ffffff; background-color: #32CD32; border: 1px solid #888888; padding-left: 2px; padding-right: 2px;">'.$status.' </span><br/>';
 		//echo '<span class="resultListItemLabel">Class: </span>'.$class.' <br/>';
@@ -106,6 +138,7 @@ limitations under the License.
 		echo '<span class="resultListItemLabel">Data Source Key: </span>'.$ds.' <br/>';
 		echo '<span class="resultListItemLabel">Group: </span>'.$group.' <br/>';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		$descriptions = array();if(isset($r->{'description_value'})) $descriptions = $r->{'description_value'};
 		$description_type=array();if(isset($r->{'description_type'})) $description_type = $r->{'description_type'};
@@ -116,6 +149,12 @@ limitations under the License.
 		$description_type=array();if(isset($r->{'description_type'})) $description_type = $r->{'description_type'};
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+		$descriptions = array();if(isset($r->{'description_value'})) $descriptions = $r->{'description_value'};
+		$description_type=array();if(isset($r->{'description_type'})) $description_type = $r->{'description_type'};
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$relations = array();
 		if(isset($r->{'relatedObject_relation'})){
 			$relations = $r->{'relatedObject_relation'};
@@ -128,10 +167,14 @@ limitations under the License.
 			echo '<br/>';
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$subjects=array();$subjects_type=array();
 		if(isset($r->{'subject_value'})){
 			$subjects = $r->{'subject_value'};
@@ -143,10 +186,14 @@ limitations under the License.
 			echo '<br/>';
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 
 		echo '<span class="resultListItemLabel">Descriptions: </span>';
 
+<<<<<<< HEAD
 		foreach($description_type as $key=>$t){
 			echo '<span class="attribute">'.$t.'</span>:'.strip_tags(htmlspecialchars_decode(($descriptions[$key]))).'<br/>';
 		}
@@ -161,6 +208,12 @@ limitations under the License.
 		}
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		foreach($description_type as $key=>$t){
+			echo '<span class="attribute">'.$t.'</span>:'.strip_tags(htmlspecialchars_decode(($descriptions[$key]))).'<br/>';
+		}
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		echo '<hr/>';
 	}
 	?>
@@ -170,10 +223,14 @@ limitations under the License.
 	<?php else:?>
 	<div class="resultListHeader">
 <<<<<<< HEAD
+<<<<<<< HEAD
 		No results found!
 =======
 		No result found!
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		No results found!
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	</div>
 	<?php endif;?>
 </div>

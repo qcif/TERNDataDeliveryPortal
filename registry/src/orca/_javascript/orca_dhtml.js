@@ -6,10 +6,15 @@ var clearPressed = false;
 var cosiImageRoot = rootAppPath + "_images/";
 var orcaImageRoot = rootAppPath + "orca/_images/";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 function setHarvestMethodDependents()
 {
    var tableRow = 'table-row';
@@ -238,12 +243,16 @@ function setClear()
 function runQualityCheck()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
    
    $.get($('#quality_report_url').val() + '&data_source=' + $('#data_source_key').val(), function(data){
 	   $('#qualityCheckresult').html(data).fadeIn(100);
 	   $('#printableReportContainer').html('<a target="_blank" id="printable_report" href="data_source_report.php?type=quality&standalone=true&data_source=' + $('#data_source_key').val()  +'" class="right">printable report</a>');
 	   
    })
+<<<<<<< HEAD
 =======
    var dataSourceKey = document.getElementById("data_source_key").value;
    var dataurl = document.getElementById("data-url").value;
@@ -286,6 +295,8 @@ function runQualityCheck()
            }
        }
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 
 function showDeleteModal()
@@ -404,6 +415,9 @@ function doSolrSearch()
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 function getGoldRecords()
 {
@@ -465,6 +479,7 @@ function checkDataSourceScheduleTask(){
     }
   }
 
+<<<<<<< HEAD
 $().ready(function(){
 
   
@@ -473,6 +488,12 @@ $().ready(function(){
 $().ready(function(){
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+$().ready(function(){
+
+  
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	/*
 	 * CC-47
 	 * RIFCS-BUTTON on view page
@@ -596,12 +617,18 @@ $().ready(function(){
        $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI);
    });
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
    //chosen on data source;
    if($('select[name=data_source_key]').length>0)$('select[name=data_source_key]').chosen();
 
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 });
 
 function formatErrorDesciption(description, title)
@@ -869,6 +896,9 @@ descContent = '<HR><h3>Error Description:</h3><HR><img src="../_images/error_ico
 return descContent;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 function setInstitutionalPage(theValue, theGroups, theDataSource)
 {
@@ -944,5 +974,8 @@ function setInstitutionalPage(theValue, theGroups, theDataSource)
 	}
 		
 }
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

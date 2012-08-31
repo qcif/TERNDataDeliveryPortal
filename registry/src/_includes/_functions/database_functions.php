@@ -76,9 +76,12 @@ function executeQuery($cnn, $strQuery, $params=null)
     {
         $resultSet = pg_fetch_all($result);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         pg_free_result($result);
     }
     return $resultSet;

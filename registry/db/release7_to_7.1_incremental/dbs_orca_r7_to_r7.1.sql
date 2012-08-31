@@ -86,6 +86,10 @@ alter table dba.tbl_locations rename column "date_from_txt" to "date_from";
 -- alter table dba.tbl_locations drop column "date_to_old";
 -- alter table dba.tbl_locations drop column "date_from_old";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

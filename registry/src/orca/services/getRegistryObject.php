@@ -49,10 +49,14 @@ if($type=='xml'){
 	require '../../_includes/finish.php';
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 else if($type=='download')
 {
 
+<<<<<<< HEAD
 		// Set the Content-Type header.
 		
 		header("Cache-Control: public"); 
@@ -84,19 +88,26 @@ else if($type=='download')
 		$rifc2 = transformToRif2XML($rifcs);
 		print $rifc2;
 	}elseif($type=='download'){
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// Set the Content-Type header.
+		
 		header("Cache-Control: public"); 
 		header('Pragma: public');
-		header("Content-Type: text/xml; charset=UTF-8", true);
-		header('Content-Disposition: attachment; filename='.$registryObject[0]['registry_object_key'].'-rifcs-download.xml');
-		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-		header("Content-Transfer-Encoding: binary");
+	//	header("Content-Type: text/xml; charset=UTF-8", true);
 		header("Content-Type: application/force-download"); 
 		header("Content-Type: application/octet-stream"); 
 		header("Content-Type: application/download"); 
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		header("Content-Transfer-Encoding: binary");
 		header("Content-Description: File Transfer"); 
+<<<<<<< HEAD
 		header('Expires: 0');
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		header('Content-Disposition: attachment; filename='.$registryObject[0]['url_slug'].'-rifcs-download.xml');
+		//header('Expires: 0');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		
 		
 		$rifcs = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
@@ -114,6 +125,7 @@ else if($type=='download')
 		// TODO : this is needed untill we stop having rifcs 1.0 elements in the database!!!
 		// so delete it once the green and orange is imp[lemented + all data is migrated to rifcs 1.2 placeholders!!
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		$rifcs = transformToRif2XML($rifcs);
 		
@@ -124,11 +136,20 @@ else if($type=='download')
 		header('Content-Length: ' . filesize($rifc2));
 		print $rifc2;
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+		$rifcs = transformToRif2XML($rifcs);
+		
+		header('Content-Length: ' . strlen($rifcs));
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		
 		// END: XML Response
 		// =============================================================================
 		require '../../_includes/finish.php';
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 elseif($type=='plain')
 {
@@ -153,6 +174,7 @@ elseif($type=='plain')
 	else
 	{
 		header("Content-Type: text/xml; charset=UTF-8", true);
+<<<<<<< HEAD
 		$registryObject = getDraftRegistryObject(getQueryValue('key'), getQueryValue('ds'));
 		if (getQueryValue('stripped'))
 		{
@@ -167,6 +189,17 @@ elseif($type=='plain')
 		$registryObject = getDraftRegistryObject(getQueryValue('key'), getQueryValue('ds'));
 		print($registryObject[0]['rifcs']);
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$registryObject = getDraftRegistryObject(getQueryValue('key'), getQueryValue('ds'));
+		if (getQueryValue('stripped'))
+		{
+			echo transformToStripFormData($registryObject[0]['rifcs']);
+		}
+		else
+		{
+			echo $registryObject[0]['rifcs'];
+		}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 }
 ?>

@@ -18,10 +18,14 @@ limitations under the License.
 ?>
 <?php 
 <<<<<<< HEAD
+<<<<<<< HEAD
 if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($licenceFilter!='All'))
 =======
 if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All'))
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($licenceFilter!='All'))
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 {
 	echo '<div class="right-box shadow">';
 	echo '<h2>Selected</h2>';
@@ -36,6 +40,9 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 		if($typeFilter!='All') displaySelectedFacet('type',$typeFilter,$json);
 		if($groupFilter!='All') displaySelectedFacet('group',$groupFilter,$json);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if($subjectFilter!='All') {
 			//echo $subjectFilter;
 			if (substr(rawurldecode($subjectFilter), 0, 7) === 'http://'){
@@ -57,9 +64,12 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 		}
 		//if($subjectFilter!='All') displaySelectedFacet('subject_vocab_uri',$subjectFilter,$json);
 		if($licenceFilter!='All') displaySelectedFacet('licence_group',$licenceFilter,$json);
+<<<<<<< HEAD
 =======
 		if($subjectFilter!='All') displaySelectedFacet('subject_value',$subjectFilter,$json);
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		echo '</ul>';
 	echo '</div>';
 	echo '</div>';
@@ -67,6 +77,9 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 
 ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 <div class="right-box shadow">
 	<h2>Subjects</h2>
 	<div id="facet-content">
@@ -75,8 +88,11 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 		<div id="anzsrc-subject-facet-result" class="hide"></div>
 	</div>
 </div>
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 <?php
 	/*
@@ -86,6 +102,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 	 * displayFacet is in helpers
 	*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//displayFacet('subject_value_resolved', $subjectFilter, $json_subject_facet, $classFilter);
 	//displayFacet('subject_vocab_uri', $subjectFilter, $json, $classFilter);
 	displayFacet('group', $groupFilter, $json, $classFilter);
@@ -93,8 +110,16 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 	displayFacet('type', $typeFilter, $json, $classFilter);
 	displayFacet('licence_group', $licenceFilter, $json, $classFilter);
 =======
+=======
+	//displayFacet('subject_value_resolved', $subjectFilter, $json_subject_facet, $classFilter);
+	//displayFacet('subject_vocab_uri', $subjectFilter, $json, $classFilter);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	displayFacet('group', $groupFilter, $json, $classFilter);
-	displayFacet('subject_value', $subjectFilter, $json, $classFilter);
+	//displayFacet('subject_value_resolved', $subjectFilter, $json, $classFilter);
 	displayFacet('type', $typeFilter, $json, $classFilter);
+<<<<<<< HEAD
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	displayFacet('licence_group', $licenceFilter, $json, $classFilter);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ?>

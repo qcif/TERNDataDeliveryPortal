@@ -35,10 +35,14 @@ var readyToAdvance = true;
 var qaRequired = false;
 var elementCache = { 'element': {}, 'tab': {}};
 <<<<<<< HEAD
+<<<<<<< HEAD
 var qualityLevel = 0;
 =======
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+var qualityLevel = 0;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 var STATUS_COOKIE_NAME = 'ORCA_REGISTRY_MANAGE_STATUS';
 var STATUS_COOKIE_TTL_DAYS = 365*5;
 
@@ -171,6 +175,7 @@ $(document).ready(function() {
 								$.blockUI({ message: $('#mmr_datasource_alert') }); 
 							}
 <<<<<<< HEAD
+<<<<<<< HEAD
 						}
 						window.location.href = $("#baseURL").val() + "manage/my_records.php?data_source=" + encodeURIComponent($('#object_mandatoryInformation_dataSource').val());
 =======
@@ -179,6 +184,10 @@ $(document).ready(function() {
 						}
 						
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+						}
+						window.location.href = $("#baseURL").val() + "manage/my_records.php?data_source=" + encodeURIComponent($('#object_mandatoryInformation_dataSource').val());
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					},
 					'json'
 			);
@@ -1037,9 +1046,13 @@ function getRelatedObjectPreview(key, target){
 	$.get('process_registry_object.php?task=related_object_preview&key='+key, function(data) {
 	  $(target).html(data);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	  setRelatedObjectClasses();
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	  setRelatedObjectClasses();
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	});
 
 }
@@ -1170,6 +1183,7 @@ function saveAndPreview() {
 
 	var key = $('#object_mandatoryInformation_key').val();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	var contributorPage = $("#contributor_page").val();
 
 	if(contributorPage!='')
@@ -1227,25 +1241,50 @@ function saveAndPreview() {
 	//$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
         $(".rda_preview").attr("href",$("#ternURL").val() + 'preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
 	
+=======
+	var contributorPage = $("#contributor_page").val();
+
+	if(contributorPage!='')
+	{
+		$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/view/group/?ds_key='+$('#object_mandatoryInformation_dataSource').val()+'&group=' + $('#object_mandatoryInformation_key').val() +'&groupName='+contributorPage);
+	}else {
+		$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+	}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 	$("#errors_preview").hide();	
-	$("#save_notification").remove();
 
+	/* don't understand why this is duplicated here?? 
+	if(contributorPage!='')
+	{
+		$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/view/group/?ds_key='+$('#object_mandatoryInformation_dataSource').val()+'&group=' + $('#object_mandatoryInformation_key').val() +'&groupName='+contributorPage);
+	}else{
+		$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+	}
+	*/
 	
 	if (userMode != 'readOnly')
 	{
-	
-		$("#errors_preview").before(
-							"<div id='save_notification' class='success_notification'>This draft has been saved successfully.<br/>" +
-							"<span style=\"font-size:10px;\"><b>Note:</b> Draft records are not added to the ANDS Registry but are saved and can be accessed through the <a href=\""+ rootAppPath + "orca/manage/my_records.php\" title=\"Manage my Records\" style=\"color:#336600\">Manage my Records</a> tool in the Register My Data menu.</span>" +
-							"</div>"
-		);
+		$('#save_notification').show();
+		$('#errors_preview').show();
+		var ds = $('#object_mandatoryInformation_dataSource').val();
+		$("#save_notification").html("<div>This draft has been saved successfully.</div>");
 		
-		
-		
-		if($('#rda_preview_container').length > 0){
-			$('#rda_preview_container').remove();	
+		$("#rda_preview_container").html("<a style='margin-left:10px;float:right;' id='print_preview' href='#'>Print Record</a>&nbsp;&nbsp;<a style='margin-left:10px;float:right;' id='rda_preview_xml' href='#'>View RIF-CS </a>" +
+				"<a style='float:right;' id='rda_preview' class='rda_preview' href='#' target='_blank'>" +
+				"<img style='padding: 0px 3px;float: left;' src='"+rootAppPath+"orca/_images/globe.png' /> Preview in Research Data Australia</a>" +
+						"<div id='rifcs_plain' class='hide'><img src='"+rootAppPath+"orca/_images/delete_16.png' class='closeBlockUI' style='float:right;'/>" +
+								"<textarea id='rifcs_plain_content'></textarea>" +
+								"</div>");
+			
+
+		if(contributorPage!='')
+		{
+			$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/view/group/?ds_key='+$('#object_mandatoryInformation_dataSource').val()+'&group=' + $('#object_mandatoryInformation_key').val() +'&groupName='+contributorPage);
+		}else{
+			$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
 		}
+<<<<<<< HEAD
 		$("#errors_preview").before(
 							"<div id='rda_preview_container'><a style='float:right;'id='rda_preview_xml' href='#'>View XML</a><a id='rda_preview' class='rda_preview' href='#' target='_blank'><img src='"+rootAppPath+"orca/_images/globe.png' /> Preview in Research Data Australia</a></div><div id='rifcs_plain' class='hide'><img src='"+rootAppPath+"orca/_images/delete_16.png' class='closeBlockUI' style='float:right;'/><textarea id='rifcs_plain_content'></textarea></div>"
 			);
@@ -1258,6 +1297,19 @@ function saveAndPreview() {
 			var ds = $('#object_mandatoryInformation_dataSource').val();
 			$.get(rootAppPath + 'orca/services/getRegistryObject.php?key='+encodeURIComponent(key)+'&ds='+encodeURIComponent(ds)+'&type=plain',
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+	//	$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+		$("#print_preview").click(function()
+		{
+			var win = window.open('process_registry_object.php?task=preview&data_source='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());		
+		});
+
+		$('#rda_preview_xml').click(function(){
+			var key = $('#object_mandatoryInformation_key').val();
+			var ds = $('#object_mandatoryInformation_dataSource').val();
+			$.get(rootAppPath + 'orca/services/getRegistryObject.php?key='+encodeURIComponent(key)+'&ds='+encodeURIComponent(ds)+'&type=plain&stripped=true',
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		       function(data) {
 				$('#rifcs_plain_content').val(data);
 		        $.blockUI({
@@ -1278,24 +1330,35 @@ function saveAndPreview() {
 			$('#rifcs_popup').hide();
 		});
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}else{
 		if($('#rda_preview_container').length > 0){
 			$('#rda_preview_container').remove();	
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$("#errors_preview").hide();
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$("#errors_preview").hide();
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		
 		if(!$("#infos_preview").length){
 			//if it's not there, create it so that we can append the preview
 			$("#errors_preview").after('<div class="info_notification" id="infos_preview"></div>');
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$("#save_notification").after(
 				"<div style='border:none;' id='rda_preview_container'>" +
 				"<a style='margin-left:10px;float:right;' id='rda_preview_xml' href='#'>View RIF-CS </a>" +
@@ -1305,6 +1368,7 @@ function saveAndPreview() {
 								"<textarea id='rifcs_plain_content'></textarea>" +
 								"</div>");
 
+<<<<<<< HEAD
 
 		//copy and paste from above, need refactor
 		
@@ -1332,6 +1396,21 @@ function saveAndPreview() {
 			var ds = $('#object_mandatoryInformation_dataSource').val();
 			$.get(rootAppPath + 'orca/services/getRegistryObject.php?key='+encodeURIComponent(key)+'&ds='+encodeURIComponent(ds)+'&type=plain',
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+		//copy and paste from above, need refactor
+		
+		if(contributorPage!='')
+		{
+			$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/view/group/?ds_key='+$('#object_mandatoryInformation_dataSource').val()+'&group=' + $('#object_mandatoryInformation_key').val() +'&groupName='+contributorPage);
+		}else{
+			$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+		}
+		$('#rda_preview_xml').click(function(){
+			var key = $('#object_mandatoryInformation_key').val();
+			var ds = $('#object_mandatoryInformation_dataSource').val();
+			$.get(rootAppPath + 'orca/services/getRegistryObject.php?key='+encodeURIComponent(key)+'&ds='+encodeURIComponent(ds)+'&type=plain&stripped=true',
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		       function(data) {
 				$('#rifcs_plain_content').val(data);
 		        $.blockUI({
@@ -1352,9 +1431,13 @@ function saveAndPreview() {
 			$('#rifcs_popup').hide();
 		});
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	} 
 
 	/* alert(document.forms[0].length + " is the length of the form");
@@ -1406,6 +1489,7 @@ function saveAndPreview() {
 					// execute the error script from server
 					$("#rmd_scripts").html( data );
 <<<<<<< HEAD
+<<<<<<< HEAD
 					if (!$("#errors_preview").hasClass("warning_notification") && !$("#errors_preview").hasClass("error_notification"))
 					{
 ////console.log("qaRequired: " + qaRequired);						
@@ -1420,6 +1504,12 @@ function saveAndPreview() {
 								'</div>' +
 								(userMode != 'readOnly' ?
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+					if (!$("#errors_preview").hasClass("warning_notification") && !$("#errors_preview").hasClass("error_notification"))
+					{
+////console.log("qaRequired: " + qaRequired);						
+							$("#errors_preview").html((userMode != 'readOnly' ?
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 										'<br/><span style="font-size:10px;"><b>Note:</b> This record has been saved in <u>DRAFT state</u>. ' +
 										(qaRequired == false ? 
 											'<div style="display:block; padding-left:10px;">' +
@@ -1437,6 +1527,9 @@ function saveAndPreview() {
 								+ '<br/><br/>').addClass("success_notification");	
 					}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 					var qualityLevelText = new Array();
 					var roStatus = $('#elementCategory').val();
@@ -1448,9 +1541,12 @@ function saveAndPreview() {
 					$('#qa_level_notification').html(ql_result);
 						
 					
+<<<<<<< HEAD
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					// Validate DateTime strings
 					$('.dateTimeField').each(function(){
 
@@ -1510,6 +1606,9 @@ function saveAndPreview() {
 						testRelatedKey(this.id);
 					});
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					//alert($('#object_mandatoryInformation_dataSource').val());
 					$.get(rootAppPath + "orca/manage/get_view.php?view=tipQA&key=&status="+ encodeURIComponent($('#status_span').val()) +"&ds="+encodeURIComponent($('#object_mandatoryInformation_dataSource').val())+"&key="+ encodeURIComponent($('#object_mandatoryInformation_key').val()),
 							function(data) {
@@ -1524,12 +1623,17 @@ function saveAndPreview() {
 						$('#save_notification').hide();
 						$('#errors_preview').hide();
 					}
+<<<<<<< HEAD
 					
 					//displayQuagmireSummary();
 =======
 					
 					displayQuagmireSummary();
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+					
+					//displayQuagmireSummary();
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 ////console.log("qaRequired2: " + qaRequired);
 					
 				}
@@ -1541,6 +1645,9 @@ function saveAndPreview() {
 	);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	
 
 }
@@ -1612,8 +1719,11 @@ function initQADisplay(){
 	});
 	$('.aro_qa_ok').addClass('aro_success');
 	$('.aro_qa_error').addClass('aro_error');
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }
 
 function saveRegistryObject(){
@@ -1716,6 +1826,7 @@ function SetWarnings(field, text, qCheck) {
 		$("#errors_preview").removeClass('success_notification');
 		$("#errors_preview").addClass('warning_notification');
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$("#errors_preview").html(	'<div><div id="quagmire_list"></div>' +		
 =======
 		$("#errors_preview").html(	'<div>' +
@@ -1723,6 +1834,9 @@ function SetWarnings(field, text, qCheck) {
 				'<div id="quagmire_list">' +
 				'</div>' +		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$("#errors_preview").html(	'<div><div id="quagmire_list"></div>' +		
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				(userMode != 'readOnly' ?
 				'<br/><span style="font-size:10px;"><b>Note:</b> This record has been saved in <u>DRAFT state</u>. ' +
 				(qaRequired == false ? 
@@ -1858,10 +1972,14 @@ function getHelpText(helpSection)
 		sURL += "tag=" + tag + "&";
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 		var help_button = '<img style=\"float:right; cursor:pointer;\" src=\"' + orcaImageRoot + '/help_button.png\" />';
 =======
 		var help_button = '<img style=\"float:right; cursor:pointer;\" src=\"' + orcaImageRoot + 'help_button.png\" />';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		var help_button = '<img style=\"float:right; cursor:pointer;\" src=\"' + orcaImageRoot + '/help_button.png\" />';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 		
 		$.get(sURL, function(data) {
@@ -1942,6 +2060,9 @@ function addVocabComplete(field, type) {
 		select: function( event, ui ) {
 			$( field ).val( ui.item.value );
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			if(ui.item.value=="Unknown/Other"){
 				var errorDiv = field.replace("#object","errors");
 				var theDiv = document.getElementById(errorDiv);
@@ -1953,8 +2074,11 @@ function addVocabComplete(field, type) {
 				var theDiv = document.getElementById(errorDiv);
 				if(theDiv!=null) theDiv.style.display='none';				
 			}
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			return false;
 		}
 	})
@@ -2004,10 +2128,14 @@ function addRelatedObjectSearch(field){
 function doRelatedObjectSearch(field){
 	term = $('#'+field+'_search').val();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//if(term=="")term='*:*';
 =======
 	if(term=="")term='*:*';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	//if(term=="")term='*:*';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	roClass = $('#select_'+field+'_class').val(); 
 	roDS = $('#select_'+field+'_dataSource').val(); 
 	result = '#'+field+'_result';
@@ -2130,9 +2258,13 @@ function addRelatedObjectAutocomplete(field) {
 	var dsSelect = cSelect.replace(/class/,"dataSource");
 	//$( field ).autocomplete({ disabled: false});
 <<<<<<< HEAD
+<<<<<<< HEAD
 	alert("in autocomplete");
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	alert("in autocomplete");
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$( field ).autocomplete({
 		minLength: 2,
 		source: function(request, response){
@@ -2515,10 +2647,14 @@ $('body').click(function() {
 function showClearAlert()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		var userChoice = confirm("**WARNING**\nAny changes since your last save will be lost.\nAre you sure?");
 =======
 		var userChoice = confirm("**WARNING**\nAny changes since your last save will be lost\nAre you sure??");
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		var userChoice = confirm("**WARNING**\nAny changes since your last save will be lost.\nAre you sure?");
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		if(userChoice == true)
 		{
 			$(window.location).attr('href','my_records.php');
@@ -2612,10 +2748,15 @@ function quagmire_trigger (name, msg)
 function displayQuagmireSummary()
 {	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	
+	
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	var reqCount = quagmire_getNumTriggered(REQUIRED);
     var recCount = quagmire_getNumTriggered(RECOMMENDED);
 
@@ -2628,10 +2769,14 @@ function displayQuagmireSummary()
 		var okReqArray = quagmire_getNotTriggered(REQUIRED);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		req_message = "<br/><a onclick=\"toggleList('reqWarningList')\" style=\"cursor:pointer\">You have met " + (allReqCount - reqCount) + " of the " + allReqCount + " required Metadata Content Requirements. Required elements are indicated on the above tabs by the <img src=\"" + orcaImageRoot + "/required_icon.png\"/> warning icon.</a><br/><br/><input type=\"button\" id=\"reqWarningList_btn\" class=\"buttonSmall\" value=\"Show Details\" onclick=\"toggleList('reqWarningList')\">";
 =======
 		req_message = "<br/><a onclick=\"toggleList('reqWarningList')\" style=\"cursor:pointer\">You have met " + (allReqCount - reqCount) + " of the " + allReqCount + " required Metadata Content Requirements.</a>&nbsp;&nbsp;&nbsp;<input type=\"button\" id=\"reqWarningList_btn\" class=\"buttonSmall\" value=\"Show Details\" onclick=\"toggleList('reqWarningList')\">";
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		req_message = "<br/><a onclick=\"toggleList('reqWarningList')\" style=\"cursor:pointer\">You have met " + (allReqCount - reqCount) + " of the " + allReqCount + " required Metadata Content Requirements. Required elements are indicated on the above tabs by the <img src=\"" + orcaImageRoot + "/required_icon.png\"/> warning icon.</a><br/><br/><input type=\"button\" id=\"reqWarningList_btn\" class=\"buttonSmall\" value=\"Show Details\" onclick=\"toggleList('reqWarningList')\">";
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		req_message += "<div id=\"reqWarningList\" style=\"display:none;\">";
 		if(okReqArray.length>0)
 		{
@@ -2652,10 +2797,14 @@ function displayQuagmireSummary()
 		req_message += "</ul>";
 		req_message += "</div>";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 =======
 		req_message += "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Refer to the tabs above as indicated by the <img src=\"" + orcaImageRoot + "required_icon.png\"/> Warning Icon.";
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	
 	var rec_message = "";
@@ -2666,10 +2815,14 @@ function displayQuagmireSummary()
 		var okRecArray = quagmire_getNotTriggered(RECOMMENDED);		
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rec_message += "<br/><a onclick=\"toggleList('recWarningList')\" style=\"cursor:pointer\">You have met " + (allRecCount - recCount) + " of the " + allRecCount + " recommended Metadata Content Requirements. Reccomended elements are indicated on the above tabs by the <img src=\"" + orcaImageRoot + "/message_icon.png\"/> warning icon.</a><br/><br/><input type=\"button\" id=\"recWarningList_btn\" class=\"buttonSmall\" value=\"Show Details\" onclick=\"toggleList('recWarningList')\">";
 =======
 		rec_message += "<br/><a onclick=\"toggleList('recWarningList')\" style=\"cursor:pointer\">You have met " + (allRecCount - recCount) + " of the " + allRecCount + " recommended Metadata Content Requirements.</a>&nbsp;&nbsp;&nbsp;<input type=\"button\" id=\"recWarningList_btn\" class=\"buttonSmall\" value=\"Show Details\" onclick=\"toggleList('recWarningList')\">";
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		rec_message += "<br/><a onclick=\"toggleList('recWarningList')\" style=\"cursor:pointer\">You have met " + (allRecCount - recCount) + " of the " + allRecCount + " recommended Metadata Content Requirements. Reccomended elements are indicated on the above tabs by the <img src=\"" + orcaImageRoot + "/message_icon.png\"/> warning icon.</a><br/><br/><input type=\"button\" id=\"recWarningList_btn\" class=\"buttonSmall\" value=\"Show Details\" onclick=\"toggleList('recWarningList')\">";
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		rec_message += "<div id=\"recWarningList\" style=\"display:none;\">";
 		if(okRecArray.length)
 		{
@@ -2691,10 +2844,13 @@ function displayQuagmireSummary()
 	    rec_message += "</ul>";
 	    rec_message += "</div>";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	    rec_message += "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Refer to the tabs above as indicated by the <img src=\"" + orcaImageRoot + "message_icon.png\"/> Warning Icon.";
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 		
 	if(req_message != "")
@@ -2708,10 +2864,14 @@ function displayQuagmireSummary()
 		// Create the infos DIV if appropriate
 		if (!$("#infos_preview").length) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			$("#quagmire_list").after('<div class="save_info_notification" id="infos_preview"></div>');
 =======
 			$("#errors_preview").after('<div class="info_notification" id="infos_preview"></div>');
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			$("#quagmire_list").after('<div class="save_info_notification" id="infos_preview"></div>');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		}
 		
 		$("#infos_preview").html(rec_message).show();
@@ -2899,10 +3059,14 @@ function toggleList(list_id)
 				$('#' + list_id).slideUp();
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$('#' + list_id + '_img').attr("src" , orcaImageRoot + "/expand_icon.png");
 =======
 		$('#' + list_id + '_img').attr("src" , orcaImageRoot + "expand_icon.png");
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$('#' + list_id + '_img').attr("src" , orcaImageRoot + "/expand_icon.png");
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$('#' + list_id + '_btn').attr("value" , "Show Details");
 	 }
 	 else
@@ -2914,10 +3078,14 @@ function toggleList(list_id)
 				$('#' + list_id).slideDown(); 
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$('#' + list_id + '_img').attr("src" , orcaImageRoot + "/colapse_icon.png");
 =======
 		$('#' + list_id + '_img').attr("src" , orcaImageRoot + "colapse_icon.png");
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$('#' + list_id + '_img').attr("src" , orcaImageRoot + "/colapse_icon.png");
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$('#' + list_id + '_btn').attr("value" , "Hide  Details");
 	 }
 }
@@ -2948,10 +3116,14 @@ $('#enableBtn').live('click', function(){
 			activeTab = '#mandatoryInformation';
 			activateTab(activeTab);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			$('#preview_tab > a').html("<img id=\"saveButton\" src=\"" +orcaImageRoot+ "/save.png\" style=\"padding-top:4px;\" alt=\"Save and Preview this Draft\" /> Save Draft");
 =======
 			$('#preview_tab > a').html("<img id=\"saveButton\" src=\"" +orcaImageRoot+ "save.png\" style=\"padding-top:4px;\" alt=\"Save and Preview this Draft\" /> Save Draft");
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			$('#preview_tab > a').html("<img id=\"saveButton\" src=\"" +orcaImageRoot+ "/save.png\" style=\"padding-top:4px;\" alt=\"Save and Preview this Draft\" /> Save Draft");
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			$(this).parent().hide();
 		}
 	}
@@ -3043,6 +3215,9 @@ $("#button_bar > input").live("click", function(e) {
 	
 });
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 
 function checkTypeValue(theSelect){
@@ -3057,5 +3232,8 @@ function checkTypeValue(theSelect){
 		//alert("we have a prob");
 	};
 }
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

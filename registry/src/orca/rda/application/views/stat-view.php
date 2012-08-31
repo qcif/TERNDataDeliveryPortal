@@ -45,15 +45,21 @@ limitations under the License.
 	echo '<div><ul id="hp-groups">';
 	foreach($groups as $index=>$g){
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$theGroup = getInstitutionPage($index);
 		if($theGroup){
 			echo '<li><a href="view/group/?group='.rawurlencode($theGroup). '&groupName='.$index.'" class="hp-minibrowse-item">'.$index.' ('.number_format($g).')</a></li>';
 		}elseif(number_format($g)>0){
 			echo '<li><a href="search#!/group='.$index.'/tab=collection" class="hp-minibrowse-item">'.$index.' ('.number_format($g).')</a></li>';			
 		}
+<<<<<<< HEAD
 =======
 		echo '<li><a href="search#!/group='.$index.'/tab=collection" class="hp-minibrowse-item">'.$index.' ('.number_format($g).')</a></li>';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	echo '</ul></div>';
 ?>

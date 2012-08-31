@@ -72,6 +72,7 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
 						</a></li>';
 			}
 
+<<<<<<< HEAD
 		}
 	}
 
@@ -87,6 +88,23 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
 		}
 	}
 
+=======
+		}
+	}
+
+
+	if($facet_name=='licence_group'){
+		foreach($order[$facet_name] as $o){
+			if(isset($result[$o])) echo $result[$o];
+		}
+	}else{
+		foreach($result as $r){
+			echo $r;
+
+		}
+	}
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	
 	echo '</ul>';
 	echo '</div>';
@@ -300,6 +318,7 @@ function assets_url()
 {
 	$CI=&get_instance();
 	return $CI->config->item('asset_url');
+<<<<<<< HEAD
 }
 
 
@@ -310,6 +329,18 @@ function solr_url()
 }
 
 
+=======
+}
+
+
+function solr_url()
+{
+	$CI=&get_instance();
+	return $CI->config->item('solr_url');
+}
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 /*Get response from a http request*/
 function get_http_response_code($url) {
@@ -342,8 +373,11 @@ function getInstitutionPage($group)
 			//return $row->registry_object_key;
 		}
 
+<<<<<<< HEAD
 	}else{
 		return false;
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 }
 
@@ -461,6 +495,7 @@ function resolveFromVocabNotation($vocabNotation)
 }
 
 ?>
+<<<<<<< HEAD
 =======
 <?php
 /** 
@@ -722,3 +757,5 @@ function get_http_response_code($url) {
 }
 ?>
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

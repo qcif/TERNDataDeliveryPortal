@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY nbsp "&#xa0;">
 ]>

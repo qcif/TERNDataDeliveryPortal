@@ -1,10 +1,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 <<<<<<< HEAD
+<<<<<<< HEAD
     RewriteBase /workareas/minh/ands/registry/src/orca/rda/
 =======
     RewriteBase /home/orca/rda/
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+    RewriteBase /workareas/minh/ands/registry/src/orca/rda/
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 
     #Removes access to the system folder by users.

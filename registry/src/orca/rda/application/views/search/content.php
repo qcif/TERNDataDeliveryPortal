@@ -1,9 +1,13 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
 =======
 /** 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+/**
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 Copyright 2011 The Australian National University
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,6 +23,7 @@ limitations under the License.
 ***************************************************************************
 *
 <<<<<<< HEAD
+<<<<<<< HEAD
 **/
 ?>
 <?php
@@ -28,12 +33,18 @@ limitations under the License.
 <?php
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+**/
+?>
+<?php
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	//$numFound = $json->{'response'}->{'numFound'};
 	$realNumFound = $json->{'response'}->{'numFound'};
 	$numFound = $json_tab->{'response'}->{'numFound'};
 	$timeTaken = $json->{'responseHeader'}->{'QTime'};
 	$timeTaken = $timeTaken / 1000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	//print_r($json->{'responseHeader'}->{'params'});
 
@@ -48,23 +59,31 @@ limitations under the License.
 
 =======
 	
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	//print_r($json->{'responseHeader'}->{'params'});
-	
+
 	$row = $json->{'responseHeader'}->{'params'}->{'rows'};
 	$start = $json->{'responseHeader'}->{'params'}->{'start'};
 	$end = $start + $row;
-	
+
 	$h_start = $start + 1;//human start
 	$h_end = $end + 1;//human end
-	
+
 	if ($h_end > $numFound) $h_end = $numFound;
+<<<<<<< HEAD
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$totalPage = ceil($numFound / $row);
 	$currentPage = ceil($start / $row)+1;
 ?>
 		<?php
 			echo '<div class="toolbar clearfix">';
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
@@ -75,13 +94,20 @@ limitations under the License.
 
 =======
 			
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
-			
-			
-			
+
+
+
 			//echo $this->input->cookie('facets');
+<<<<<<< HEAD
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			$class='';
 			if($this->input->cookie('facets')!=''){
 				if($this->input->cookie('facets')=='yes'){
@@ -92,6 +118,7 @@ limitations under the License.
 			}else{
 				$class='ui-icon-arrowthickstop-1-w';
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			echo '<div class="ui-state-default ui-corner-all show-hide-facet"><span class="ui-icon '.$class.'" id="toggle-facets" title="Show/Hide Facet"></span></div>';
@@ -116,38 +143,48 @@ limitations under the License.
 				$name = $r->{'list_title'};
 =======
 			
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			echo '<div class="ui-state-default ui-corner-all show-hide-facet"><span class="ui-icon '.$class.'" id="toggle-facets" title="Show/Hide Facet"></span></div>';
 			//echo '<a href="JavaScript:void(0);" id="hide-facets">Expand</a><a href="JavaScript:void(0);" id="show-facets">Collapse (Show Filters)</a>';
-			
+
 			echo '<div class="result">';
 			echo ''.number_format($realNumFound).' results ('.$timeTaken.' seconds)';
 			echo '</div>';
-			
+
 			$this->load->view('search/pagination');
-			
+
 			echo '</div>';
-			
+
 			if($realNumFound==0){
 				$this->load->view('search/no_result');
 			}
-			
+
 			foreach($json->{'response'}->{'docs'} as $r)
 			{
-				//var_dump($r->{'description_value'});
 				$type = $r->{'type'};
 				$ro_key = $r->{'key'};
+<<<<<<< HEAD
 				$name = $r->{'listTitle'};
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				$name = $r->{'list_title'};
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if($name=='')$name='(no name/title)';
 				$descriptions = array();if(isset($r->{'description_value'})) $descriptions = $r->{'description_value'};
 				$description_type=array();if(isset($r->{'description_type'})) $description_type = $r->{'description_type'};
 				$class = '';if(isset($r->{'class'})) $class = $r->{'class'};
 				$type = '';if(isset($r->{'type'})) $type = strtolower($r->{'type'});
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				$brief = '';$found_brief = false;
 				$full = '';$found_full = false;
 				foreach($description_type as $key=>$t){
@@ -160,15 +197,20 @@ limitations under the License.
 					}
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				$spatial ='';$center = '';
 				if(isset($r->{'spatial_coverage'})){
 					$spatial = $r->{'spatial_coverage'};
 					$center = $r->{'spatial_coverage_center'}[0];
 				}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 				$subjects='';
@@ -179,14 +221,21 @@ limitations under the License.
 				echo '<div class="search_item" itemscope itemType="http://schema.org/Thing">';
 
 =======
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				$subjects='';
-				if(isset($r->{'subject_value'})){
-					$subjects = $r->{'subject_value'};
+				if(isset($r->{'subject_value_resolved'})){
+					$subjects = $r->{'subject_value_resolved'};
 				}
 
 				echo '<div class="search_item" itemscope itemType="http://schema.org/Thing">';
+<<<<<<< HEAD
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				//echo get_cookie('show_icons');
 				echo '<p class="hide key">'.$ro_key.'</p>';
 				if(get_cookie('show_icons')=='yes'){
@@ -195,10 +244,14 @@ limitations under the License.
 						case "activity":echo '<img itemprop="image" class="ro-icon" src="'.base_url().'img/icon/activities_32.png" title="Activity" alt="Activity"/>';break;
 						case "service":echo '<img itemprop="image" class="ro-icon" src="'.base_url().'img/icon/services_32.png" title="Service" alt="Service"/>';break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 						case "party":
 =======
 						case "party": 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+						case "party":
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 									if($type=='person'){
 										echo '<img itemprop="image" class="ro-icon" src="'.base_url().'img/icon/party_one_32.png" title="Person" alt="Person"/>';
 									}elseif($type=='group'){
@@ -208,6 +261,9 @@ limitations under the License.
 					}
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				$theGroup = getInstitutionPage($r->{'group'});
 				
 				if($theGroup==$ro_key){
@@ -220,6 +276,7 @@ limitations under the License.
 				else{
 					$key_url =  base_url().'view/?key='.urlencode($ro_key);
 				}
+<<<<<<< HEAD
 				//echo $key_url;
 				echo '<h2 itemprop="name"><a itemprop="url" href="'.$key_url.'">'.$name.'</a></h2>';
 
@@ -227,12 +284,18 @@ limitations under the License.
 
 =======
 				$key_url =  base_url().'view/?key='.urlencode($ro_key);
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				//echo $key_url;
 				echo '<h2 itemprop="name"><a itemprop="url" href="'.$key_url.'">'.$name.'</a></h2>';
-				
+
 				//echo '<pre>';
+<<<<<<< HEAD
 								
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if(isset($r->{'alt_listTitle'})){
 					echo '<div class="alternatives">';
 					foreach($r->{'alt_listTitle'} as $listTitle){
@@ -243,10 +306,14 @@ limitations under the License.
 				//echo '</pre>';
 				//echo '<h2><a href="#!/view/'.$ro_key.'">'.$name.'</a></h2>';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				//DESCRIPTIONS';
 				echo '<p itemprop="description">';
 				if($found_brief){
@@ -256,10 +323,14 @@ limitations under the License.
 				}
 				echo '</p>';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if($spatial){
 					echo '<ul class="spatial">';
 						foreach($spatial as $s){
@@ -269,10 +340,14 @@ limitations under the License.
 					echo '<a class="spatial_center">'.$center.'</a>';
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				if(get_cookie('show_subjects')=='yes'){
 					if($subjects){
 						echo '<div class="subject-container">';
@@ -287,6 +362,7 @@ limitations under the License.
 				echo '</div>';
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			echo '<div class="toolbar clearfix bottom-corner">';
 			if(displaySubscriptions() )
 			{
@@ -296,6 +372,13 @@ limitations under the License.
 			
 			echo '<div class="toolbar clearfix bottom-corner">';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			echo '<div class="toolbar clearfix bottom-corner">';
+			if(displaySubscriptions() )
+			{
+				echo "<div id='subscriptions'><div class='rss_icon'></div>Subscribe to this web feed. <a href='".base_url()."search/rss/".$queryStr."&subscriptionType=rss' title='Stay informed with RSS when any updates are made to this search query.' class='tiprss'>RSS</a>/<a href='".base_url()."search/atom/".$queryStr."&subscriptionType=atom' title='Stay informed with ATOM when any updates are made to this search query.' class='tiprss'>ATOM</a></div>";
+			}
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			$this->load->view('search/pagination');
 			echo '</div>';
 		?>

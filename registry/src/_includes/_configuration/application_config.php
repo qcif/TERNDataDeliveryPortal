@@ -85,20 +85,28 @@ addMenu($menu);
 	$activity->menu_id = 'mCOSI_ADMIN';
 	addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// =============================================================================
 	// Add Role
 	$activity = new activity('aCOSI_ROLE_ADD', 'Add Roles', 'admin/role_add.php');
 	$activity->menu_id = 'mCOSI_ADMIN';
 	addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// =============================================================================
 	// View Role
 	$activity = new activity('aCOSI_ROLE_VIEW', 'View Role', 'admin/role_view.php');
@@ -106,10 +114,14 @@ addMenu($menu);
 	$activity->only_show_if_active= true;
 	addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// =============================================================================
 	// Edit Role
 	$activity = new activity('aCOSI_ROLE_EDIT', 'Edit Role', 'admin/role_edit.php');
@@ -117,10 +129,14 @@ addMenu($menu);
 	$activity->only_show_if_active= true;
 	addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// =============================================================================
 	// Delete Role
 	$activity = new activity('aCOSI_ROLE_DELETE', 'Delete Role', 'admin/role_delete.php');
@@ -128,14 +144,20 @@ addMenu($menu);
 	$activity->only_show_if_active= true;
 	addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 	$activity = new activity('aORCA_RUN_TASKS', 'Background Task Manager', 'orca/maintenance/show_tasks.php');
 	$activity->menu_id = 'mCOSI_ADMIN';
 	addActivity($activity);
 
+<<<<<<< HEAD
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// =============================================================================
 	// Documentation
 	$menu = new menu('mCOSI_DOCUMENTATION', 'Styles Documentation', 'mCOSI_ADMIN');
@@ -147,50 +169,70 @@ addMenu($menu);
 		$activity->menu_id = 'mCOSI_DOCUMENTATION';
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// Form Style Sampler
 		$activity = new activity('aEXAMPLE_FORM_STYLE_SAMPLER', 'Form Styles', 'admin/documentation/formstylesampler.php');
 		$activity->menu_id = 'mCOSI_DOCUMENTATION';
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// Chart Sampler
 		$activity = new activity('aEXAMPLE_CHART_SAMPLER', 'Charts', 'admin/documentation/chartsampler.php');
 		//$activity->menu_id = 'mCOSI_DOCUMENTATION';
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// Example Theme One
 		//$activity = new activity('aEXAMPLE_THEME_ONE', 'Example Theme One', 'admin/documentation/themeexample_one.php');
 		//$activity->menu_id = 'mCOSI_DOCUMENTATION';
 		//addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// Example Theme Two
 		//$activity = new activity('aEXAMPLE_THEME_TWO', 'Example Theme Two', 'admin/documentation/themeexample_two.php');
 		//$activity->menu_id = 'mCOSI_DOCUMENTATION';
 		//addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 // END - COSI ##################################################################
 
 
@@ -208,6 +250,9 @@ $menu->margin_class = 'marginLeftLightYellow';
 addMenu($menu);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	/*
 	// =============================================================================
 	// Maintenance
@@ -217,8 +262,11 @@ addMenu($menu);
 	$activity->only_show_if_active= true;
 	*/
 
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// =============================================================================
 	// Index
 	$activity = new activity('aORCA_INDEX', '', 'orca/index.php');
@@ -229,6 +277,7 @@ addMenu($menu);
 	// Search
 	$activity = new activity('aORCA_SEARCH', 'Search', 'orca/search.php');
 	$activity->menu_id = 'mORCA_CONTAINER';
+<<<<<<< HEAD
 <<<<<<< HEAD
 	addActivity($activity);
 
@@ -244,6 +293,15 @@ addMenu($menu);
 	// Registry Index
 	$activity = new activity('aORCA_REGISTRY_INDEX', 'Browse', 'orca/registry_index.php');
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	addActivity($activity);
+
+
+
+	// =============================================================================
+	// Gold Level Collections
+	$activity = new activity('aORCA_GOLD_INDEX', 'Gold Standard Records', 'orca/show_gold_level_collections.php');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$activity->menu_id = 'mORCA_CONTAINER';
 	addActivity($activity);
 
@@ -254,16 +312,23 @@ addMenu($menu);
 	$activity->only_show_if_active= true;
 	addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// =============================================================================
 	// Web Services
 	$activity = new activity('aORCA_WEB_SERVICES', 'Web Services', 'orca/services/index.php');
 	$activity->menu_id = 'mORCA_CONTAINER';
 	addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 		// =============================================================================
 		// services/OpenSearchDescription
@@ -275,8 +340,11 @@ addMenu($menu);
 		$activity = new activity('aORCA_SERVICE_OPENSEARCH', 'OpenSearch', 'orca/services/OpenSearch.php');
 		addActivity($activity);
 
+<<<<<<< HEAD
 =======
 	
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// services/OpenSearchDescription
 		$activity = new activity('aORCA_SERVICE_OPENSEARCH_DESCRIPTION', 'OpenSearch Description', 'orca/ternapi/OpenSearchDescription.php');
@@ -294,15 +362,20 @@ addMenu($menu);
 		$activity->no_check_ssl= true;
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// services/getRegistryObjectKML
 		$activity = new activity('aORCA_SERVICE_GET_REGISTRY_OBJECT_KML', 'Get Registry Object KML', 'http://'.eHOST.'/'.eROOT_DIR.'/orca/services/getRegistryObjectKML.php');
 		$activity->no_check_ssl= true;
 		addActivity($activity);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		// =============================================================================
@@ -314,6 +387,12 @@ addMenu($menu);
 		// services/getRegistryObjects
 		$activity = new activity('aORCA_SERVICE_GET_REGISTRY_OBJECTS', 'Get Registry Objects', 'orca/services/getRegistryObjects.php');		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+		// =============================================================================
+		// services/getRegistryObjects
+		$activity = new activity('aORCA_SERVICE_GET_REGISTRY_OBJECTS', 'Get Registry Objects', 'orca/services/getRegistryObjects.php');
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		addActivity($activity);
 
 		// =============================================================================
@@ -321,6 +400,9 @@ addMenu($menu);
 		$activity = new activity('aORCA_SERVICE_GET_REGISTRY_OBJECTS_SOLR', 'Get Registry Objects', 'http://'.eHOST.'/'.eROOT_DIR.'/orca/services/getRegistryObjectsSOLR.php');
 		$activity->no_check_ssl= true;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 		addActivity($activity);
 
@@ -332,50 +414,71 @@ addMenu($menu);
 
 		$activity = new activity('aORCA_SERVICE_AJAX', 'AJAX', 'http://'.eHOST.'/'.eROOT_DIR.'/orca/manage/get_view.php');
 		$activity->no_check_ssl= true;
+<<<<<<< HEAD
 		addActivity($activity);
 
 =======
 		addActivity($activity);
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		addActivity($activity);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// services/getRegistryObjectsKML
 		$activity = new activity('aORCA_SERVICE_GET_REGISTRY_OBJECTS_KML', 'Get Registry Objects KML', 'http://'.eHOST.'/'.eROOT_DIR.'/orca/services/getRegistryObjectsKML.php');
 		$activity->no_check_ssl= true;
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// services/getRegistrySearchXHTML
 		$activity = new activity('aORCA_SERVICE_GET_REGISTRY_SEARCH_XHTML', 'Get Registry Search XHTML', 'http://'.eHOST.'/'.eROOT_DIR.'/orca/services/getRegistrySearchXHTML.php');
 		$activity->no_check_ssl= true;
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// services/getDataSources
 		$activity = new activity('aORCA_SERVICE_GET_DATA_SOURCES', 'Get Data Sources', 'orca/services/getDataSources.php');
 		addActivity($activity);
 <<<<<<< HEAD
-
-=======
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-		// =============================================================================
-		// services/getRegistryObjectGroups
-		$activity = new activity('aORCA_SERVICE_GET_REGISTRY_OBJECT_GROUPS', 'Get Registry Object Groups', 'orca/services/getRegistryObjectGroups.php');
-		addActivity($activity);
 <<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
+		// =============================================================================
+		// services/getRegistryObjectGroups
+		$activity = new activity('aORCA_SERVICE_GET_REGISTRY_OBJECT_GROUPS', 'Get Registry Object Groups', 'orca/services/getRegistryObjectGroups.php');
+		addActivity($activity);
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// services/oai
 		// OAI-PMH is not supported over SSL.
@@ -383,10 +486,14 @@ addMenu($menu);
 		$activity->no_check_ssl= true;
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		//http://svcs.services.ands.org.au/home/orca/services
 		// services/putHarvestData
@@ -399,6 +506,7 @@ addMenu($menu);
 		$activity = new activity('aORCA_SERVICE_PUT_NLA_DATA', 'Put NLA Party Data', 'http://'.eHOST.'/'.eROOT_DIR.'/orca/services/putNLAPartyData.php');
 		$activity->no_check_ssl= true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		addActivity($activity);
 
 =======
@@ -410,6 +518,10 @@ addMenu($menu);
 		addActivity($activity);	
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		addActivity($activity);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// BEGIN - PUBLISH MY DATA #####################################################
 	// =============================================================================
 	// My Collections
@@ -417,10 +529,14 @@ addMenu($menu);
 	$menu->margin_class = 'marginLeftLightOrange';
 	addMenu($menu);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// List My Collections
 		$activity = new activity('aORCA_USER_LIST_COLLECTIONS', 'List My Published Collections', 'orca/user/index.php');
@@ -428,12 +544,17 @@ addMenu($menu);
 		$activity->help_content_uri = eAPP_ROOT.'orca/_helpcontent/hc_user.php';
 		$activity->help_content_fragment_id = 'overview';
 <<<<<<< HEAD
+<<<<<<< HEAD
 		addActivity($activity);
 
 =======
 		addActivity($activity);	
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		addActivity($activity);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// View Collection
 		$activity = new activity('aORCA_USER_VIEW_COLLECTION', 'View Collection', 'orca/user/collection_view.php');
@@ -442,18 +563,6 @@ addMenu($menu);
 		$activity->help_content_fragment_id = 'view';
 		$activity->only_show_if_active= true;
 <<<<<<< HEAD
-		addActivity($activity);
-
-=======
-		addActivity($activity);	
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-		// =============================================================================
-		// Add Collection
-		$activity = new activity('aORCA_USER_ADD_COLLECTION', 'Publish a Collection', 'orca/user/collection_add.php');
-		$activity->menu_id = 'mPMD_CONTAINER';
-		$activity->help_content_uri = eAPP_ROOT.'orca/_helpcontent/hc_user.php';
-		$activity->help_content_fragment_id = 'add';
 <<<<<<< HEAD
 		addActivity($activity);
 
@@ -461,6 +570,28 @@ addMenu($menu);
 		addActivity($activity);	
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		addActivity($activity);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
+		// =============================================================================
+		// Add Collection
+		$activity = new activity('aORCA_USER_ADD_COLLECTION', 'Publish a Collection', 'orca/user/collection_add.php');
+		$activity->menu_id = 'mPMD_CONTAINER';
+		$activity->help_content_uri = eAPP_ROOT.'orca/_helpcontent/hc_user.php';
+		$activity->help_content_fragment_id = 'add';
+<<<<<<< HEAD
+<<<<<<< HEAD
+		addActivity($activity);
+
+=======
+		addActivity($activity);	
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		addActivity($activity);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// Edit Collection
 		$activity = new activity('aORCA_USER_EDIT_COLLECTION', 'Edit Collection', 'orca/user/collection_edit.php');
@@ -469,12 +600,17 @@ addMenu($menu);
 		$activity->help_content_fragment_id = 'edit';
 		$activity->only_show_if_active= true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		addActivity($activity);
 
 =======
 		addActivity($activity);		
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		addActivity($activity);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// Delete Collection
 		$activity = new activity('aORCA_USER_DELETE_COLLECTION', 'Delete Collection', 'orca/user/collection_delete.php');
@@ -483,18 +619,6 @@ addMenu($menu);
 		$activity->help_content_fragment_id = 'delete';
 		$activity->only_show_if_active= true;
 <<<<<<< HEAD
-		addActivity($activity);
-
-=======
-		addActivity($activity);		
-	
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-		// =============================================================================
-		// View Publisher
-		$activity = new activity('aORCA_USER_VIEW_PUBLISHER', 'View/Update My Details', 'orca/user/publisher_view.php');
-		$activity->menu_id = 'mPMD_CONTAINER';
-		$activity->help_content_uri = eAPP_ROOT.'orca/_helpcontent/hc_user.php';
-		$activity->help_content_fragment_id = 'view_publisher';
 <<<<<<< HEAD
 		addActivity($activity);
 
@@ -502,6 +626,28 @@ addMenu($menu);
 		addActivity($activity);		
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		addActivity($activity);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
+		// =============================================================================
+		// View Publisher
+		$activity = new activity('aORCA_USER_VIEW_PUBLISHER', 'View/Update My Details', 'orca/user/publisher_view.php');
+		$activity->menu_id = 'mPMD_CONTAINER';
+		$activity->help_content_uri = eAPP_ROOT.'orca/_helpcontent/hc_user.php';
+		$activity->help_content_fragment_id = 'view_publisher';
+<<<<<<< HEAD
+<<<<<<< HEAD
+		addActivity($activity);
+
+=======
+		addActivity($activity);		
+	
+>>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		addActivity($activity);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// Edit Publisher
 		$activity = new activity('aORCA_USER_EDIT_PUBLISHER', 'Edit Publisher Details', 'orca/user/publisher_edit.php');
@@ -509,6 +655,7 @@ addMenu($menu);
 		$activity->help_content_uri = eAPP_ROOT.'orca/_helpcontent/hc_user.php';
 		$activity->help_content_fragment_id = 'edit_publisher';
 		$activity->only_show_if_active= true;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		addActivity($activity);
 
@@ -560,14 +707,13 @@ addActivity($activity);
 $activity = new activity('aRDA_LIST', 'View', 'orca/rda/list.php');
 $activity->no_check_ssl= true;
 addActivity($activity);
+=======
+		addActivity($activity);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
-//=============================================================================
-// RDA Help
-$activity = new activity('aRDA_HELP', 'Help', 'orca/rda/help.php');
-$activity->no_check_ssl= true;
-addActivity($activity);
+	// END - PUBLISH MY DATA #######################################################
 
-// END - RDA ###################################################################
+// END - ORCA ##################################################################
 
 
 
@@ -653,10 +799,14 @@ addMenu($menu);
 	$activity->help_content_fragment_id = 'create';
 	addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// =============================================================================
 	// View
 	$activity = new activity('aDOIS_VIEW', 'View DOI', 'dois/view.php');
@@ -686,6 +836,7 @@ addMenu($menu);
 // END - PIDS-SELFSERVICE ######################################################
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
@@ -694,11 +845,17 @@ addMenu($menu);
 	
 	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// =============================================================================
 	// Register My Data Administration
 	$menu = new menu('mORCA_ADMINISTRATION', 'Register My Data', gROOT_MENU_ID);
 	$menu->margin_class = 'marginLeftLightYellow';
 	addMenu($menu);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		// =============================================================================
@@ -737,46 +894,54 @@ addMenu($menu);
 
 =======
 	
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
-		// Fetch Element (accessed by Javascript to asynchronously fetch HTML 
+		// Fetch Element (accessed by Javascript to asynchronously fetch HTML
 		// elements such as help text/tab content/etc.)
-		$activity = new activity('aORCA_FETCH_ELEMENT', 'Fetch elements', 'orca/fetch_element.php');	
+		$activity = new activity('aORCA_FETCH_ELEMENT', 'Fetch elements', 'orca/fetch_element.php');
 		addActivity($activity);
-		
+
 		// =============================================================================
 		// Registry Object Administration
 		$menu = new menu('mORCA_REGISTRY_OBJECTS', 'My Registry Objects', 'mORCA_ADMINISTRATION');
-		addMenu($menu);		
-		
-		
-		
+		addMenu($menu);
+
 			// =============================================================================
 			// List All Records
-			//$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_LIST', 'Show All Records', 'orca/manage/list_registry_objects.php');	
+			//$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_LIST', 'Show All Records', 'orca/manage/list_registry_objects.php');
 			//$activity->menu_id = 'mORCA_REGISTRY_OBJECTS';
-			//addActivity($activity);	
-	
-			
+			//addActivity($activity);
+
+
 			// =============================================================================
 			// View Draft Records
-			$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_VIEW_DRAFT', 'List My Records', 'orca/manage/list_registry_objects.php');	
+			$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_VIEW_DRAFT', 'List My Records', 'orca/manage/list_registry_objects.php');
 			$activity->menu_id = 'mORCA_REGISTRY_OBJECTS';
 			$activity->only_show_if_active= true;
-			addActivity($activity);	
-			
+			addActivity($activity);
+
 			// =============================================================================
 			// Manage My Records
-			$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_MY_RECORDS', 'Manage My Records', 'orca/manage/my_records.php');	
+			$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_MY_RECORDS', 'Manage My Records', 'orca/manage/my_records.php');
 			$activity->menu_id = 'mORCA_REGISTRY_OBJECTS';
-			addActivity($activity);	
+			$activity->help_content_uri = eAPP_ROOT.'orca/_helpcontent/hc_manage_my_records.php';
+			$activity->help_content_fragment_id = 'mmr';
+			addActivity($activity);
 
+
+<<<<<<< HEAD
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			// =============================================================================
 			// Add Record Submenu
 			$menu = new menu('mORCA_REGISTRY_OBJECT_ADMIN_ADD', 'Add New Record', 'mORCA_REGISTRY_OBJECTS');
 			$menu->default_state = 'MENU_CLOSED';
 			addMenu($menu);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 				// =============================================================================
@@ -806,32 +971,41 @@ addMenu($menu);
 
 =======
 			
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				// =============================================================================
 				// Add Activity Record
-				$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_ADD_ACTIVITY', 'Activity', 'orca/manage/add_activity_registry_object.php');	
+				$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_ADD_ACTIVITY', 'Activity', 'orca/manage/add_activity_registry_object.php');
 				$activity->menu_id = 'mORCA_REGISTRY_OBJECT_ADMIN_ADD';
-				addActivity($activity);	
-		
+				addActivity($activity);
+
 				// =============================================================================
 				// Add Collection Record
-				$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_ADD_COLLECTION', 'Collection', 'orca/manage/add_collection_registry_object.php');	
+				$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_ADD_COLLECTION', 'Collection', 'orca/manage/add_collection_registry_object.php');
 				$activity->menu_id = 'mORCA_REGISTRY_OBJECT_ADMIN_ADD';
-				addActivity($activity);	
-				
+				addActivity($activity);
+
 				// =============================================================================
 				// Add Party Record
-				$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_ADD_PARTY', 'Party', 'orca/manage/add_party_registry_object.php');	
+				$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_ADD_PARTY', 'Party', 'orca/manage/add_party_registry_object.php');
 				$activity->menu_id = 'mORCA_REGISTRY_OBJECT_ADMIN_ADD';
-				addActivity($activity);	
-				
+				addActivity($activity);
+
 				// =============================================================================
 				// Add Service Record
-				$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_ADD_SERVICE', 'Service', 'orca/manage/add_service_registry_object.php');	
+				$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_ADD_SERVICE', 'Service', 'orca/manage/add_service_registry_object.php');
 				$activity->menu_id = 'mORCA_REGISTRY_OBJECT_ADMIN_ADD';
+<<<<<<< HEAD
 				addActivity($activity);	
 			
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				addActivity($activity);
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// Add Registry Object [OLD] (hidden)
 		//$activity = new activity('aORCA_REGISTRY_OBJECT_ADD', 'Add Registry Object [OLD]', 'orca/admin/registry_object_add.php');
@@ -839,20 +1013,27 @@ addMenu($menu);
 		//$activity->only_show_if_active= true;
 		//addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		// Process Registry Object (hidden)
 		$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_MANAGE_RECORDS', '', 'orca/manage/process_registry_object.php');
 =======
 		
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// Process Registry Object (hidden)
-		$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_MANAGE_RECORDS', '', 'orca/manage/process_registry_object.php');	
+		$activity = new activity('aORCA_REGISTRY_OBJECT_ADMIN_MANAGE_RECORDS', '', 'orca/manage/process_registry_object.php');
 		//$activity->menu_id = 'mORCA_REGISTRY_OBJECT_ADMIN_ADD';
+<<<<<<< HEAD
 		addActivity($activity);	
 		
                 //Reinddex all data published (hidden)
 		$activity = new activity('aORCA_REINDEX DATA', '', 'http://'.eHOST.'/'.eROOT_DIR.'/orca/manage/reindex_all.php');
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
 		//$activity->menu_id = 'mORCA_REGISTRY_OBJECT_ADMIN_ADD';
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		addActivity($activity);
 
 		// =============================================================================
@@ -862,10 +1043,14 @@ addMenu($menu);
 		$activity->only_show_if_active= true;
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 				
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// Data Source History tool
 		$activity = new activity('aORCA_REGISTRY_OBJECT_HISTORY', 'View History', 'orca/manage/view_history.php');
@@ -873,10 +1058,14 @@ addMenu($menu);
 		$activity->only_show_if_active= true;
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// Delete Registry Object
 		$activity = new activity('aORCA_REGISTRY_OBJECT_DELETE', 'Delete Registry Object', 'orca/admin/registry_object_delete.php');
@@ -884,10 +1073,14 @@ addMenu($menu);
 		$activity->only_show_if_active= true;
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 
 
 
+<<<<<<< HEAD
 		// =============================================================================
 		// Data Source Administration
 		$menu = new menu('mORCA_DATA_SOURCE_ADMIN', 'My Data Sources', 'mORCA_ADMINISTRATION');
@@ -902,6 +1095,12 @@ addMenu($menu);
 		$menu = new menu('mORCA_DATA_SOURCE_ADMIN', 'My Data Sources', 'mORCA_ADMINISTRATION');
 		addMenu($menu);		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		// =============================================================================
+		// Data Source Administration
+		$menu = new menu('mORCA_DATA_SOURCE_ADMIN', 'My Data Sources', 'mORCA_ADMINISTRATION');
+		addMenu($menu);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 			// =============================================================================
 			// Add Data Source
@@ -909,12 +1108,17 @@ addMenu($menu);
 			$activity->menu_id = 'mORCA_DATA_SOURCE_ADMIN';
 			addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 		
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			// =============================================================================
 			// List Data Sources
 			$activity = new activity('aORCA_DATA_SOURCE_LIST', 'List My Data Sources', 'orca/admin/data_source_list.php');
@@ -922,12 +1126,17 @@ addMenu($menu);
 			$activity->help_content_uri = eAPP_ROOT.'orca/_helpcontent/hc_data_source_list.php';
 			addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 			
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			// =============================================================================
 			// View Data Source
 			$activity = new activity('aORCA_DATA_SOURCE_VIEW', 'View Data Source', 'orca/admin/data_source_view.php');
@@ -936,17 +1145,23 @@ addMenu($menu);
 			$activity->help_content_uri = 'http://ands.org.au/guides/cpguide/cpgdsaaccount.html';
 			addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 				
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			// =============================================================================
 			// Edit Data Source
 			$activity = new activity('aORCA_DATA_SOURCE_EDIT', 'Edit Data Source', 'orca/admin/data_source_edit.php');
 			$activity->menu_id = 'mORCA_DATA_SOURCE_ADMIN';
 			$activity->only_show_if_active= true;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			$activity->help_content_uri = 'http://ands.org.au/guides/cpguide/cpgdsaaccount.html';
 			addActivity($activity);
@@ -955,6 +1170,11 @@ addMenu($menu);
 			addActivity($activity);
 			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			$activity->help_content_uri = 'http://ands.org.au/guides/cpguide/cpgdsaaccount.html';
+			addActivity($activity);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			// =============================================================================
 			// Delete Data Source
 			$activity = new activity('aORCA_DATA_SOURCE_DELETE', 'Delete Data Source', 'orca/admin/data_source_delete.php');
@@ -964,33 +1184,47 @@ addMenu($menu);
 
 			// =============================================================================
 <<<<<<< HEAD
+<<<<<<< HEAD
 			// Data Source Quality Check
 =======
 			// Data Source Quality Check			
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			// Data Source Quality Check
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			$activity = new activity('aORCA_DATA_SOURCE_QUALITY_CHECK', 'Data Source Quality Check', 'orca/admin/data_source_quality_check.php');
 			$activity->menu_id = 'mORCA_DATA_SOURCE_ADMIN';
 			addActivity($activity);
 
 			// =============================================================================
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			// Data Source Report
 			$activity = new activity('aORCA_DATA_SOURCE_REPORTS', 'Data Source Reports', 'orca/admin/data_source_report.php');
 			addActivity($activity);
 
 
 			// =============================================================================
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			// Export from a Data Source
 			$activity = new activity('aORCA_DATA_SOURCE_EXPORT', 'Export from Data Source', 'orca/admin/data_source_export.php');
 			$activity->menu_id = 'mORCA_DATA_SOURCE_ADMIN';
 			addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	// =============================================================================
 	// PIDS IP Administration
 	$menu = new menu('mORCA_PIDS_ADMINISTRATION', 'PIDS IP Administration', gROOT_MENU_ID);
@@ -1003,10 +1237,14 @@ addMenu($menu);
 		$activity->menu_id = 'mORCA_PIDS_ADMINISTRATION';
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// List Trusted IPs
 		$activity = new activity('aORCA_PIDS_IP_LIST', 'List Trusted IPs', 'orca/admin/list_trusted_pids_client.php');
@@ -1026,10 +1264,14 @@ addMenu($menu);
 		$activity->menu_id = 'mORCA_DOIS_ADMINISTRATION';
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		// =============================================================================
 		// List Trusted IPs
 		$activity = new activity('aORCA_DOIS_LIST', 'List Trusted DOI client', 'orca/admin/list_trusted_dois_client.php');
@@ -1038,6 +1280,7 @@ addMenu($menu);
 
 		// =============================================================================
 	// Data Statistics
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	$menu = new menu('mORCA_STATISTICS', 'Data Statistics', gROOT_MENU_ID);
@@ -1050,25 +1293,36 @@ addMenu($menu);
 		$activity->menu_id = 'mORCA_STATISTICS';
 =======
 	
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	$menu = new menu('mORCA_STATISTICS', 'Data Statistics', gROOT_MENU_ID);
 	$menu->margin_class = 'marginLeftLightYellow';
-	addMenu($menu);	
+	addMenu($menu);
 
 		// =============================================================================
-		// Fetch Statistics 
+		// Fetch Statistics
 		$activity = new activity('aORCA_STATISTICS', 'Fetch statistics', 'orca/data_statistics_view.php');
+<<<<<<< HEAD
 		$activity->menu_id = 'mORCA_STATISTICS';	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$activity->menu_id = 'mORCA_STATISTICS';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		addActivity($activity);
 		// services/getRegistryObjectStat
 		$activity = new activity('aORCA_STATISTIC_VIEWS', 'Get Registry Object Statistics', 'http://'.eHOST.'/'.eROOT_DIR.'/orca/services/data_statistics_xls.php');
 		$activity->no_check_ssl= true;
 		addActivity($activity);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 		
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 // Tidy up
 // -----------------------------------------------------------------------------
 $menu = null;

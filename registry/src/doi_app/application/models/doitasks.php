@@ -33,7 +33,11 @@
 
 	function xml(){	
 		global $api_version;		
+<<<<<<< HEAD
 		$xml = ''; $error = '';
+=======
+		$xml = '';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		$debug = $this->input->get('debug');
 		
 		if($debug && $debug == 'true')	
@@ -47,12 +51,20 @@
 		if(!$response_type)	$response_type = 'string';		
 		$api_version = $this->input->get('api_version');
 		if(!$api_version)	$api_version = '1.0';	
+<<<<<<< HEAD
 		
 		if(!$doi_id)
 		{
 			$error = doisGetUserMessage("MT010", $doi_id ,$response_type,$app_id=NULL, "You must provide the doi value to obtain it's xml",$urlValue=NULL);
 		}	
 		if(!$error)
+=======
+		if(!$doi_id)
+		{
+			$xml = doisGetUserMessage("MT010", $doi_id ,$response_type,$app_id=NULL, "You must provide the doi value to obtain it's xml",$urlValue=NULL);
+		}	
+		if($xml=='')
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		{
 			$doidata = getxml($doi_id);		
 			if($doidata->num_rows() > 0){			
@@ -60,13 +72,21 @@
 				{
 					if($row->status=='ACTIVE')
 					{
+<<<<<<< HEAD
 						$xml = $row->datacite_xml;							
 					}else{				
 						$error = doisGetUserMessage("MT012", $doi_id, $response_type,$app_id=NULL, "",$urlValue=NULL);
+=======
+						$xml = $row->datacite_xml;
+						header('Content-type: text/xml');											
+					}else{				
+						$xml = doisGetUserMessage("MT012", $doi_id, $response_type,$app_id=NULL, "",$urlValue=NULL);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					}
 				}
 
 			}else{			
+<<<<<<< HEAD
 				$error = doisGetUserMessage("MT011", $doi_id, $response_type,$app_id=NULL, "",$urlValue=NULL);		
 			}	
 		}
@@ -93,6 +113,12 @@
 		}
 		
 		
+=======
+				$xml = doisGetUserMessage("MT011", $doi_id, $response_type,$app_id=NULL, "",$urlValue=NULL);		
+			}	
+		}
+		echo $xml;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	}
 	
 	function update(){
@@ -326,7 +352,11 @@
 		}
 		if($errorMessages == '')
 		{
+<<<<<<< HEAD
 			$client_id = checkDoisValidClient($ip,$app_id);
+=======
+			$client_id = checkDoisValidClient($ip,trim($app_id));
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			
 			if(!$client_id)
 			{
@@ -906,4 +936,8 @@
 		}		
 	}    
 	}
+<<<<<<< HEAD
  ?>
+=======
+ ?>
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f

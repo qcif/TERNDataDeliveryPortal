@@ -23,10 +23,15 @@ require '../orca_init.php';
 set_time_limit(0);
 $executionTimeoutSeconds = 20*60;
 <<<<<<< HEAD
+<<<<<<< HEAD
 $taskWaiting = '';
 $taskWaiting = scheduledTaskCheck(getQueryValue('data_source_key'));
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+$taskWaiting = '';
+$taskWaiting = scheduledTaskCheck(getQueryValue('data_source_key'));
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 // Get the record from the database.
 $dataSource = getDataSources(getQueryValue('data_source_key'), null);
@@ -155,15 +160,21 @@ require '../../_includes/header.php';
 
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/orca_dhtml.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 <script type="text/javascript">
 		checkDataSourceScheduleTask();
   	setInterval(checkDataSourceScheduleTask, 5000);
 </script>
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/jquery-ui-1.8.9.custom.min.js"></script>	
 <input type="hidden" id="dataSourceKey" value="<?php echo $dataSource[0]['data_source_key']; ?>" />
+<<<<<<< HEAD
 =======
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/jquery-ui-1.8.9.custom.min.js"></script>	
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 <form id="datasourceFrom" action="data_source_view.php?data_source_key=<?php printSafe(urlencode(getQueryValue('data_source_key'))); ?>" method="post">
 <table class="recordTable" summary="Data Source">
 	<thead>
@@ -172,14 +183,21 @@ require '../../_includes/header.php';
 			<td>Data Source</td>
 		</tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	</thead>
 	<tbody class="recordFields">
 		<tr>
 			<td>Records From Source:</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			<td>
 				<?php 
 					$statuses = array();
@@ -193,9 +211,12 @@ require '../../_includes/header.php';
 				 print(' <a href="../manage/my_records.php?data_source='.esc(urlencode($dataSourceKey)).'">Manage Records</a>');
 				 ?>
 			 </td>
+<<<<<<< HEAD
 =======
 			<td><?php if($numRegistryObjects > 0) printSafe('Published: ('.$numRegistryObjects.')');  if($numRegistryObjectsApproved > 0) printSafe(' Approved: ('.$numRegistryObjectsApproved.')'); print(' <a href="../search.php?source_key='.esc(urlencode($dataSourceKey)).'&amp;collections=collection&amp;services=service&amp;parties=party&amp;activities=activity&amp;search=&amp;action=Search">List Records</a> / <a href="../manage/my_records.php?data_source='.esc(urlencode($dataSourceKey)).'">Manage Records</a>'); ?></td>
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		</tr>
 		<tr style="border-bottom:2px solid black;">
 		<td colspan="2"><span style="float:left;"><h3>Account Administration Information</h3></span>
@@ -235,6 +256,9 @@ require '../../_includes/header.php';
 			<td><?php printSafeWithBreaks($dataSource[0]['notes']) ?></td>
 		</tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		<?php if (isset($dataSource[0]['address_line_1']) && $dataSource[0]['address_line_1'] != ''): ?>
 			<tr>
 				<td>Address Line 1:</td>
@@ -265,8 +289,11 @@ require '../../_includes/header.php';
 				<td><?php printSafeWithBreaks($dataSource[0]['state']) ?></td>
 			</tr>
 		<?php endif; ?>
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		<tr>
 			<td>Created When:</td>
 			<td><?php printSafe(formatDateTime($dataSource[0]['created_when'], gDATETIME)) ?></td>
@@ -288,10 +315,14 @@ require '../../_includes/header.php';
 		<span style="text-align:right;">
 					<input type="button" onclick="window.location='<?php print eAPP_ROOT ?>orca/manage/view_history.php?action=data_source_view&data_source_key=<?php print urlencode($dataSourceKey); ?>'" value="View History"></input>
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<?php if( userIsORCA_ADMIN() ) { ?>	<input type="button" value="Delete Records" title="Delete Registry Objects from this source" onclick="showDeleteModal();"/><?php } ?>
 =======
 					<input type="button" value="Delete Records" title="Delete Registry Objects from this source" onclick="showDeleteModal();"/>
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				<?php if( userIsORCA_ADMIN() ) { ?>	<input type="button" value="Delete Records" title="Delete Registry Objects from this source" onclick="showDeleteModal();"/><?php } ?>
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 				<input type="hidden" name="delete_flag" id="delete_flag" value="ALL"/>
 		</span>
 		</td>
@@ -347,6 +378,9 @@ require '../../_includes/header.php';
 			<td><?php printSafeWithBreaks($dataSource[0]['assessement_notification_email_addr']) ?></td>
 		</tr>	
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		<tr>
 			<td>Contributor Pages:</td>
 			<td>
@@ -412,8 +446,11 @@ require '../../_includes/header.php';
 			</table> <?php }?>
 			</td>
 		</tr>		
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		<tr style="border-bottom:2px solid black;">
 		<td colspan="2"><span style="float:left;"><h3>Harvester Settings</h3></span>
 		<span style="text-align:right;">
@@ -433,6 +470,9 @@ require '../../_includes/header.php';
 		<tr>
 			<td>Harvest Method:</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			<td><?php 
 			
 					printSafe($gORCA_HARVEST_METHODS[$dataSource[0]['harvest_method']]);
@@ -442,9 +482,12 @@ require '../../_includes/header.php';
 					}
 				
 				?></td>
+<<<<<<< HEAD
 =======
 			<td><?php printSafe($gORCA_HARVEST_METHODS[$dataSource[0]['harvest_method']]) ?></td>
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		</tr>
 		<tr>
 			<td>Harvest Date:</td>

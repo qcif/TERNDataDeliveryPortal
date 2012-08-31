@@ -3,7 +3,10 @@ global $solr_url;
 $solr_update_url = $solr_url.'update';
 $totalCount = 0;
 $chunkSize = 49;
+<<<<<<< HEAD
 
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 function task_index_records($task)
 {
 	global $solr_url, $solr_update_url;
@@ -181,9 +184,13 @@ function addPublishedSolrIndexForDatasource($dataSourceKey)
 			if(($i % $chunkSize == 0 && $i != 0) || $i == ($arraySize -1))
 			{
 					$rifcs = wrapRegistryObjects($rifcsContent);
+<<<<<<< HEAD
 
 					$solrrifcs = transformToSolr($rifcs);
 
+=======
+					$solrrifcs = transformToSolr($rifcs);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 					if (strlen($solrrifcs) != 0)
 					{
 						$result = curl_post($solr_update_url, $solrrifcs);

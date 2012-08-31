@@ -36,10 +36,14 @@ limitations under the License.
 	       		$url = $service_url.'?key='.urlencode($key);
 			}else $url = $service_url.'?draftKey='.$key.'&dataSourceKey='.$dataSourceKey;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			// echo '<div>'.$url.'</div>';
 =======
 			//echo '<div class="hide">'.$url.'</div>';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+			// echo '<div>'.$url.'</div>';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			$content='Nothing Returned';
 			if(get_http_response_code($url)!='400'){
 				$content = file_get_contents($url, 0, null, null);
@@ -49,6 +53,9 @@ limitations under the License.
 			return $content;
 	    }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		
 	    function getByHash($hash){
 		  	$service_url = service_url();
@@ -63,8 +70,11 @@ limitations under the License.
 			return $content;
 	    }
 		
+<<<<<<< HEAD
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
     
 		/*
 		 * getSearchHistory
@@ -73,9 +83,13 @@ limitations under the License.
 		 */ 
 	    function getSearchHistory(){
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    	$this->load->database();
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	    	$this->load->database();
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	    	return $this->db->get('dba.tbl_search_statistics');
 	    }
     
@@ -85,9 +99,13 @@ limitations under the License.
 		 */ 
 	    function updateStatistic($query, $class, $group, $subject, $type, $temporal){
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    	$this->load->database();
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	    	$this->load->database();
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	    	$terms = array($query, 'class:'.$class, 'type:'.$type, 'subject:'.$subject, 'group:'.$group, 'type:'.$type, 'temporal:'.$temporal);
 	    	foreach($terms as $t){
 	    		//check if term exists
@@ -111,10 +129,14 @@ limitations under the License.
 	    		}
 	    	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    	echo 'search stat updated';
 =======
 	    	//echo 'search stat updated';
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	    	echo 'search stat updated';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	    }
 		
 		
@@ -190,6 +212,7 @@ limitations under the License.
 	    function spatial($north, $east, $south, $west)
 	    {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    	$query = 'select distinct rs.registry_object_key from dba.tbl_registry_objects rs, dba.tbl_spatial_extents se
 	where rs.registry_object_key = se.registry_object_key 
 	and se.bound_box && box ((point('.$north.','.$west.')),(point('.$south.','.$east.')))';
@@ -200,6 +223,13 @@ limitations under the License.
 	where rs.registry_object_key = se.registry_object_key 
 	and se.bound_box && box ((point('.$north.','.$west.')),(point('.$south.','.$east.')))');
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+	    	$query = 'select distinct rs.registry_object_key from dba.tbl_registry_objects rs, dba.tbl_spatial_extents se
+	where rs.registry_object_key = se.registry_object_key 
+	and se.bound_box && box ((point('.$north.','.$west.')),(point('.$south.','.$east.')))';
+			return $query;
+	    	return $this->db->query($query);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	    }
     
     

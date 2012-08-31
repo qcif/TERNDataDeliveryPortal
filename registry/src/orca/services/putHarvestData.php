@@ -1,7 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 <?php
 /*
 Copyright 2009 The Australian National University
@@ -145,10 +149,14 @@ else
 				// Import the data.
 				$deletedRegistryObjectCount = checkforOAIdeletes($OAIPMHDocument);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				$runErrors = importRegistryObjects($registryObjects, $dataSourceKey, $runResultMessage, $harvestRequestId, NULL,  $harvestRequestId);
 =======
 				$runErrors = importRegistryObjects($registryObjects, $dataSourceKey, $runResultMessage);
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+				$runErrors = importRegistryObjects($registryObjects, $dataSourceKey, $runResultMessage, $harvestRequestId, NULL,  $harvestRequestId);
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 			}
 
 			$timeTaken = substr((string)(microtime(true) - $startTime), 0, 5);
@@ -212,6 +220,7 @@ else
 			getHarvestRequestStatus($harvestRequestId, $dataSourceKey);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if( $done == 'TRUE' && $mode == 'HARVEST')
 		{
 			//Delete all records that are in the database and have a different HarvestID to the current Harvest
@@ -224,16 +233,28 @@ else
 			runQualityCheckforDataSource($dataSourceKey);
 			runSolrIndexForDatasource($dataSourceKey);
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		if( $done == 'TRUE' && $mode == 'HARVEST')
+		{
+			//Delete all records that are in the database and have a different HarvestID to the current Harvest
+			$actions .= purgeDataSource($dataSourceKey, $harvestRequestId);//checking for REFRESH is done inside this function as well
+		    queueSyncDataSource($dataSourceKey);
+		    $actions .= 'SYNCING data source. Please wait...';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		}
 	}
 	
 	if( $runErrors )
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$actions .= $runErrors;
 =======
 		$message .= $runErrors;
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+		$actions .= $runErrors;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 		//insertDataSourceEvent($dataSourceKey, $runErrors, $log_type);
 	}
 

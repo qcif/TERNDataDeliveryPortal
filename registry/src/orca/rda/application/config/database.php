@@ -57,9 +57,13 @@ limitations under the License.
 */
 global $orca_db_host, $orca_db_name, $orca_db_port;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 $active_group = 'default';
 $active_record = TRUE;
 
@@ -80,10 +84,14 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 $db['default']['port'] = $orca_db_port;
 <<<<<<< HEAD
+<<<<<<< HEAD
 $db['default']['active_r'] = TRUE;
 =======
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+$db['default']['active_r'] = TRUE;
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

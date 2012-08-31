@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 /**
  * Date Modified: $Date: 2010-01-19 16:00:56 +1100 (Tue, 19 Jan 2010) $
  * Version: $Revision: 290 $
@@ -237,6 +240,7 @@ public class ROElement
     {
         return this.getElement().getOwnerDocument().createElementNS(Constants.NS_RIFCS, elementName);
     }
+<<<<<<< HEAD
 =======
 /**
  * Date Modified: $Date: 2010-01-19 16:00:56 +1100 (Tue, 19 Jan 2010) $
@@ -477,4 +481,6 @@ public class ROElement
         return this.getElement().getOwnerDocument().createElementNS(Constants.NS_RIFCS, elementName);
     }
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 }

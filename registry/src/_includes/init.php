@@ -96,6 +96,7 @@ setTheme($eTheme);
 // -----------------------------------------------------------------------------
 openDatabaseConnection($gCNN_DBS_COSI, eCNN_DBS_COSI);
 <<<<<<< HEAD
+<<<<<<< HEAD
 //if($pids_db_host!='') openDatabaseConnection($gCNN_DBS_PIDS, eCNN_DBS_PIDS);
 //if($dois_db_host!='') openDatabaseConnection($gCNN_DBS_DOIS, eCNN_DBS_DOIS);
 
@@ -103,6 +104,11 @@ openDatabaseConnection($gCNN_DBS_COSI, eCNN_DBS_COSI);
 openDatabaseConnection($gCNN_DBS_PIDS, eCNN_DBS_PIDS);
 openDatabaseConnection($gCNN_DBS_DOIS, eCNN_DBS_DOIS);
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+if($pids_db_host!='') openDatabaseConnection($gCNN_DBS_PIDS, eCNN_DBS_PIDS);
+if($dois_db_host!='') openDatabaseConnection($gCNN_DBS_DOIS, eCNN_DBS_DOIS);
+
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 // Authorisation and Access.
 // -----------------------------------------------------------------------------
 checkActivityAccess($gThisActivityID);

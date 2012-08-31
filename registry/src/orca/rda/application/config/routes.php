@@ -60,11 +60,16 @@ $route['default_controller'] = "home";
 //$route['view/(:any)'] = "view/viewitem/$1";
 $route['404_override'] = '';
 <<<<<<< HEAD
+<<<<<<< HEAD
 // insert any pre-defined routes before the (:any) declaration
 $route['(:any)'] = 'dispatcher/$1';
 =======
 
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+// insert any pre-defined routes before the (:any) declaration
+$route['(:any)'] = 'dispatcher/$1';
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

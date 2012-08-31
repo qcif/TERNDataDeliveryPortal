@@ -19,10 +19,14 @@ limitations under the License.
 <?php $this->load->view('tpl/header');?>
 <?php $this->load->view('tpl/mid');?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div id="item-view" class="top-corner">
 =======
 <div id="item-view" class="shadow-and-corner">
 >>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+=======
+<div id="item-view" class="top-corner">
+>>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	<?php echo $content;?>
 </div>
 <?php $this->load->view('tpl/footer');?>
