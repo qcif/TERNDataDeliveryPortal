@@ -55,7 +55,7 @@
             <?php// $this->load->view('search/loadmore');?>
 
 
-                <div id="search-result1" class="ui-layout-search-results"></div>
+                <div id="search-result" class="ui-layout-search-results"></div>
 
             
             </div>

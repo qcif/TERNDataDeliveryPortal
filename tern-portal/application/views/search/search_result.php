@@ -48,14 +48,14 @@ $Revision: 1 $
                 echo '<div class="result">';
                 echo ''.number_format($realNumFound).' results';
                 echo '</div>';
-               
+             
                 $this->load->view('search/pagination');
        
                 echo '</div>';
 
                 ?>          
         <div id="search-results-content" >
-               
+
 
                 <?php $this->load->view('search/content');?>        
 
