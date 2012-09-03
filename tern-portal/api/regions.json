@@ -4,37 +4,27 @@
             "l_id": "l1",  
             "l_name" : "IBRA", 
             "geo_name" : "nr:ibra",
-<<<<<<< HEAD
+
             "geo_url": "http://portal-dev.tern.org.au:8080/geoserver/wms"
-=======
-            "geo_url": "http://demo:8080/geoserver/wms"
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
           
             }, 
             {
             "l_id": "l2", 
             "l_name" : "NRM",
             "geo_name" : "nr:nrm",
-<<<<<<< HEAD
+
             "geo_url": "http://portal-dev.tern.org.au:8080/geoserver/wms"
-=======
-            "geo_url": "http://demo:8080/geoserver/wms"
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+
             }, 
             {
             "l_id": "l3", 
             "l_name" : "Climate Zone",
             "geo_name" : "nr:climzone",
-<<<<<<< HEAD
+
             "geo_url": "http://portal-dev.tern.org.au:8080/geoserver/wms"
             }
         ]
         
     }
-=======
-            "geo_url": "http://demo:8080/geoserver/wms"
-            }
-        ]
-        
-    }
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
+

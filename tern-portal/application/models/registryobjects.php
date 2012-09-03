@@ -33,9 +33,8 @@ limitations under the License.
 		 * use service url 
      */
 	    function get($key, $dataSourceKey=''){
-		  	$service_url = service_url();
-                        
-                    
+		  	$service_url = service_url();              
+                   
 	  	if($dataSourceKey==''){
                         $url = $service_url.'?key='.urlencode($key);
 		}else $url = $service_url.'?draftKey='.$key.'&dataSourceKey='.$dataSourceKey;

@@ -70,8 +70,8 @@ $(document).ready(function() {
         updateSelectedFeature($(this).text());
     });
 <<<<<<< HEAD
-    
-=======
+      
+
     */
 
     $("button").bind('click', function() {

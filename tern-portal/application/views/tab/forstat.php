@@ -1,6 +1,6 @@
 
 <?php  $subject = NULL?>
-=======
+
 <?php  $subject = array (
   'EARTH SCIENCES' => 
   array (

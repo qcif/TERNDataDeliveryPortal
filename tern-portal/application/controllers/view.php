@@ -37,10 +37,10 @@ class View extends CI_Controller {
                         $this->load->model('Solr', 'solr');
                         $content =  $this->ro->get($key);
                         
-                        //print_r($content);
+ 
                         $data['key']= $key;
                         $data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key));
-                        
+                
                         
                         $query = $this->ro->get_min_year();
                         if($query)$row = $query->row();
@@ -127,7 +127,8 @@ class View extends CI_Controller {
         
 	private function transform($registryObjectsXML, $xslt,$key){
 		$qtestxsl = new DomDocument();
-		$registryObjects = new DomDocument();
+		$registryObjects = new DomDocument();            
+     
 		$registryObjects->loadXML($registryObjectsXML);
 		$qtestxsl->load('_xsl/'.$xslt);
 		$proc = new XSLTProcessor();
@@ -139,5 +140,7 @@ class View extends CI_Controller {
 		$transformResult = $proc->transformToXML($registryObjects);	
 		return $transformResult;
 	}
+
+
 }
 ?>
