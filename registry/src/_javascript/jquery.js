@@ -385,21 +385,11 @@ $.blockUI.defaults = {
 	css: {
 		padding:	0,
 		margin:		0,
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		width:		'auto',
 		top:		'25%',
 		left:		'10%',
-=======
-		width:		'30%',
-		top:		'40%',
-		left:		'35%',
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-		width:		'auto',
-		top:		'25%',
-		left:		'10%',
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
+
 		textAlign:	'center',
 		color:		'#000',
 		border:		'3px solid #aaa',

@@ -12,15 +12,11 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 
 ********************************************************************************
 $Date: 2011-11-25 14:26:15 +1100 (Fri, 25 Nov 2011) $
 $Revision: 1633 $
-<<<<<<< HEAD
+
 *******************************************************************************/
 $vocabBroaderTerms = Array();
 $vocabByLabels = Array();

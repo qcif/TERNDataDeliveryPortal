@@ -556,7 +556,7 @@
     
 
    <!--<xsl:template match="ro:relatedInfo">-->
-   -<xsl:template match="ro:related_info">
+   <xsl:template match="ro:related_info">
 
         <p>
 

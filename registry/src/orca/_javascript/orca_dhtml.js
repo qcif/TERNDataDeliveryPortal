@@ -27,7 +27,7 @@ function setHarvestMethodDependents()
    var rowDisplay = tableRow;
    if( strHarvestMethod != 'RIF' )
    {
-       rowDisplay = 'none';
+       rowDisplay = 'none'; 
    }
    getObject('oai_set_row').style.display = rowDisplay;
 

@@ -455,15 +455,12 @@ function wrapRegistryObjects($payload, $include_extRif = true)
 	// strip the wrapper elements of a cached registry object
 	if (!$include_extRif)
 	{
-		return 	stripExtendedRIFCS($gORCA_REGISTRY_OBJECT_WRAPPER) . 
-					$payload . "\n" . 
-				stripExtendedRIFCS($gORCA_REGISTRY_OBJECT_WRAPPER_END);
+		return 	stripExtendedRIFCS($gORCA_REGISTRY_OBJECT_WRAPPER) . $payload . "\n" . stripExtendedRIFCS($gORCA_REGISTRY_OBJECT_WRAPPER_END);
 	}
 	else
 	{
-		return 	$gORCA_REGISTRY_OBJECT_WRAPPER . 
-					$payload . "\n" . 
-				$gORCA_REGISTRY_OBJECT_WRAPPER_END;
+		return 	$gORCA_REGISTRY_OBJECT_WRAPPER . $payload . "\n" . $gORCA_REGISTRY_OBJECT_WRAPPER_END;
 	}		
 }
 
+ 
