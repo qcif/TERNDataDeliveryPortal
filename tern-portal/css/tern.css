@@ -385,7 +385,7 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 
 .ui-layout-facet{ border:0;}
 
-#ui-layout-facetmap {padding:0 ; border:0; }
+#ui-layout-facetmap {padding:0 ; border:0; width: 700px; }
 
 /* WEST SEARCH  */
  .head{ margin-bottom: 5px; }

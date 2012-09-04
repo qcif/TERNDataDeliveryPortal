@@ -6,38 +6,7 @@ function getURL(keyword, matrixIds){
     var URLList = {
         "dummy" : base_url + 'api/output.json',
         "nr:regions" : 'http://demo:8080/geoserver/wms', 
-        "intersectPt":  base_url + 'regions/r/intersectPt/',
-        "aus_east_wmts": {
-            name: "WMTS Layer",
-            url:  'http://192.168.56.1:3333/geoserver/gwc/service/wmts/',
-            layer: "NaturalRegion:Aus_east",
-            matrixSet: "EPSG:900913",
-            matrixIds: matrixIds,
-            format: "image/png",
-            opacity: 0.7,
-            style: "_null",
-            isBaseLayer: false,
-            serverResolutions: [156543.03390625, 78271.516953125, 39135.7584765625, 19567.87923828125, 9783.939619140625, 4891.9698095703125, 2445.9849047851562, 1222.9924523925781, 611.4962261962891, 305.74811309814453, 152.87405654907226, 76.43702827453613, 38.218514137268066, 19.109257068634033, 9.554628534317017, 4.777314267158508, 2.388657133579254, 1.194328566789627, 0.5971642833948135, 0.29858214169740677, 0.14929107084870338, 0.07464553542435169, 0.037322767712175846, 0.018661383856087923, 0.009330691928043961, 0.004665345964021981]
-        },
-        "supersites_wfs" : { 
-            url: 'http://tern-supersites.net.au/knb/wfs',
-            featurePrefix: 'metacat',
-            geometryName: 'the_geom',
-            featureType: ['data_bounds','data_points'],
-            featureNS: "http://knb.ecoinformatics.org/metacat",
-            srsName: "EPSG:4326"
-        },
-        "aceas_wfs" : {
-            url:  'http://tern-supersites.net.au/geoserver/aceas/wfs',
-            featurePrefix: 'aceas',
-            geometryName: 'geocode',
-            featureType: 'aceas_view',
-            srsName: "EPSG:900913",
-            featureNS: "http://tern-supersites.net.au",
-            version: "1.1.0"
-        }
-       
-                
+        "intersectPt":  base_url + 'regions/r/intersectPt/'          
     }
     return URLList[keyword];
 
@@ -813,27 +782,7 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
     var styleM = getStyle(style);
     var strategy;
     if(clustering){
-        /*var style = new OpenLayers.Style({
-                    pointRadius: "${radius}",
-                    fillColor: "#ffcc66",
-                    fillOpacity: 0.8,
-                    strokeColor: "#cc6633",
-                    strokeWidth: 2,
-                    strokeOpacity: 0.8
-                }, {
-                    context: {
-                        radius: function(feature) {
-                            return Math.min(feature.attributes.count, 7) + 3;
-                        }
-                    }
-                });
-        var styleM = new OpenLayers.StyleMap({
-                        "default": style,
-                        "select": {
-                            fillColor: "#8aeeef",
-                            strokeColor: "#32a8a9"
-                        }});
-         */
+      
         strategy = new OpenLayers.Strategy.Cluster({
             distance: 15, 
             threshold: 2
@@ -858,7 +807,8 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
                 this.map.removePopup(e.popup);
                 self.onFeatureUnselect(e,this.map);
                            
-            }
+            }, 
+            hover:true
         });
         this.map.addControl(this.selectControl);
         this.selectControl.activate();

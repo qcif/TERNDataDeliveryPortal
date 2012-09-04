@@ -50,7 +50,7 @@ function updateSelectedFeature(name){
                                         divs.each(function() {
 
                                                 if($(this).attr('id') != 'facet-content') {        
-                                                    $('#results').html($(this).html());
+                                                    $('#search-result').html($(this).html());
                                                  
                                                        mapWidget.addVectortoDataLayer(".spatial_center",true);
 
@@ -79,7 +79,7 @@ function updateSelectedFeature(name){
          return true;
     }
     
-function initMapProto(){
+function initMap(){
             
     var mapWidget = new MapWidget('spatialmap',true);
     resetCoordinates();
@@ -203,7 +203,7 @@ $(document).ready(function() {
                                         divs.each(function() {
 
                                                 if($(this).attr('id') != 'facet-content') {        
-                                                    $('#results').html($(this).html());
+                                                    $('#search-result').html($(this).html());
                                                  
                                                        mapWidget.addVectortoDataLayer(".spatial_center",true);
                                                        mapWidget.deactivateAllControls();
@@ -245,7 +245,7 @@ $(document).ready(function() {
                     divs.each(function() {
                            
                             if($(this).attr('id') != 'facet-content') {        
-                                $('#results').html($(this).html());
+                                $('#search-result').html($(this).html());
                                   mapWidget.addVectortoDataLayer(".spatial_center",true);
                                   mapWidget.deactivateAllControls();
                             }

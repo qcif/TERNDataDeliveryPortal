@@ -335,52 +335,7 @@ $(function() {
          $("#head-toolbar").show();
 
     }
-    /*      Initialize map in overlaying
-    *       If the map already exists, just open the dialog, otherwise init map
-    *      
-    */   
-    function openMap(mapWidget){
-        $('#overlaymap').dialog( "option", "zIndex", 8899 );
-        $('#overlaymap').dialog('open');
-        if(typeof mapWidget === 'undefined'){
-            mapWidget = new MapWidget('spatialmap',true);
-            //add box drawing
-            mapWidget.addDrawLayer({
-                geometry: "box", 
-                allowMultiple: false, 
-                afterDraw: updateCoordinates, 
-                afterDrag: updateCoordinates
-            });
-            if(n!='') {
-                mapWidget.updateDrawing(mapWidget,w + "," + s+ "," + e + "," + n);
-            }
-           /* mapWidget.addExtLayer({
-                url:"aus_east",
-                protocol: "GEOJSON",
-                afterSelect: function(e,WGS1, WGS2){return true;}
-            });
-            mapWidget.addExtLayer({
-                url: "aus_east_wms",
-                protocol: "WMS"
-            });
-            */
-            //enable clicking button controllers
-            enableToolbarClick(mapWidget);
-                 
-            //changing coordinates on textbox should change the map appearance
-            enableCoordsChange(mapWidget);  
-            
-            //Done button
-            $('#doneMap').click(function(){
-               $('#coords').show(); 
-               $('#overlaymap').dialog('close');
-            }).button();
-
-        }else if($('#box').hasClass("olControlDrawFeatureBoxItemInactive")){
-           // $("#box").trigger("click");
-        }
-        return mapWidget;
-    }
+  
    
     /*      Populate Search fields
     *      
@@ -457,7 +412,60 @@ $(function() {
             }
         }
     }
-   
+   function initMap(){
+
+        var mapWidget = new MapWidget('spatialmap',true);
+        resetCoordinates();
+        mapWidget.addDataLayer(true,"default",true);      
+
+        mapWidget.addDrawLayer({
+            geometry: "box", 
+            allowMultiple: false, 
+            afterDraw: updateCoordinates
+        });
+
+        //enable clicking button controllers
+        enableToolbarClick(mapWidget);
+
+        //changing coordinates on textbox should change the map appearance
+        enableCoordsChange(mapWidget);  
+
+        $("#latlong").bind('click',function() {
+                $("#coords").toggle(); 
+        });
+
+        $("#mapViewSelector a").bind('click',function(element){
+            mapWidget.setBaseLayer($(this).attr("id")); 
+        });
+
+        return mapWidget;
+    }
+
+     function initPlaceName(elementId,mapWidget){
+         var placename = document.getElementById(elementId);
+         var options = {
+            componentRestrictions: {country: 'au'}
+        };
+        var autocomplete = new google.maps.places.Autocomplete(placename,options);
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (place.geometry.viewport) {
+                var viewportPlace = place.geometry.viewport;
+                var viewportSW = viewportPlace.getSouthWest();
+                var viewportNE = viewportPlace.getNorthEast(); 
+                var newBounds = new OpenLayers.Bounds(viewportSW.lng(), viewportSW.lat(), viewportNE.lng(), viewportNE.lat())
+                newBounds.transform(new OpenLayers.Projection("EPSG:4326"),new OpenLayers.Projection("EPSG:900913"));   
+                mapWidget.map.zoomToExtent(newBounds);
+            } else {
+                var location = place.geometry.location;
+                var lonlat = new OpenLayers.LonLat(location.lng(),location.lat());
+                lonlat.transform(new OpenLayers.Projection("EPSG:4326"),new OpenLayers.Projection("EPSG:900913"));
+                mapWidget.map.setCenter(lonlat,11,false,false);
+                
+            }     
+            });
+
+     }
   
     /*      Initialization function for '/search' urls
     *      Called by ROUTING function
@@ -487,25 +495,29 @@ $(function() {
              showNoResult(2);
         }
       
-        // SEARCH MAP
-        var mapWidget; 
-    
-        // Map dialog overlay
-        $('#overlaymap').dialog({
-            autoOpen: false,
-            height: 512,
-            width: 454,
-            resizable: false,            
-            modal: true
-        })
-
-        //Open map button
-        $('#openMap').click(function(){
-            mapWidget = openMap(mapWidget);
-        }).button();
         
-        enableCoordsClick();
+         mapResult = initMap();
+        initPlaceName('geocode',mapResult);
         
+         $("input[value='Update']").bind('click',function(){
+      //  var geometry = mapWidget.getFeatureCoordinates();
+         //update spatial coordinates from textboxes
+                var nl=document.getElementById("spatial-north");
+                var sl=document.getElementById("spatial-south");
+                var el=document.getElementById("spatial-east");
+                var wl=document.getElementById("spatial-west");
+                   
+                n=nl.value;
+                s=sl.value;
+                e=el.value;
+                w=wl.value;  
+                
+                spatial_included_ids=''; 
+                if(n!=''){
+                      doSpatialSearch();
+                }
+          });
+      
         //Reset Button 
         $('#search_reset').click(function(){
             resetAllFields(temporalWidget);
@@ -535,7 +547,7 @@ $(function() {
         }).button();     
         
         //Submit button
-        $('#search_advanced').click(function(){
+        $("#search_advanced").click(function(){
             //Reset search term
             resetAllSearchVals();
             //check which panel is active 0 is basic, 1 is advanced
@@ -714,18 +726,19 @@ $(function() {
               
             hideNoResult();
             $('#facetH2').removeClass('ui-state-disabled');  
-            if(typeof mapWidget == 'undefined'){
+           /* if(typeof mapWidget == 'undefined'){
                 mapResult = new MapWidget('result-map',true);
                 mapResult.addDataLayer(true,"default",true);
                 mapWidget= mapResult;
-            }
+            }*/
             $("#accordion").accordion("activate",2);
-        
+       
             if(typeof mapWidget !== 'undefined') {
                 mapWidget.map.updateSize();
                 mapWidget.removeAllFeatures();
                 mapWidget.addVectortoDataLayer(".spatial_center",true);
-            } 
+                mapWidget.deactivateAllControls();
+            }
             $('.clearFilter').each(function(){
                 $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
             });
@@ -764,9 +777,6 @@ $(function() {
 
                 return false;
             });
-
-           //sizeCenterPane();
-
 
             //LIMIT 5
             $("ul.more").each(function() {
