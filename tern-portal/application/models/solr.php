@@ -30,9 +30,7 @@
 
 
     function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0,$ternRegionFilter='All', $num=10)
-
-
-    {
+    {  
         $q = $query;
         $q = rawurlencode($q);
         $q = str_replace("%5C%22", "\"", $q); //silly encoding
@@ -74,11 +72,13 @@
         //$q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
         $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR display_title:(' . $q . ')^50 OR list_title:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value_resolved:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';    
         }
-        if($sort!='score desc') $filter_query.='&sort='.$sort;
+        if($sort!='score desc' && $sort!='') $filter_query.='&sort='.$sort;
         $q.=$filter_query;
 
         $q.=($extended_query);
-      
+     
+        
+
 
         //$filter_query .=$extended_query;//for spatial and temporal
         //$q .=$extended_query;//extended for spatial
@@ -104,7 +104,7 @@
         $fields_string .= $facet; //add the facet bits
         $fields_string = urldecode($fields_string);
                
-        //echo urldecode($fields_string).'<hr/>';
+        echo urldecode($fields_string).'<hr/>';
         $ch = curl_init();
         //set the url, number of POST vars, POST data
         curl_setopt($ch, CURLOPT_URL, $solr_url . 'select'); //post to SOLR
@@ -112,7 +112,7 @@
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string); //post the field strings
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //return to variable
         $content = curl_exec($ch); //execute the curl
-        //echo 'json received+<pre>'.$content.'</pre>';
+        //echo 'json received+<pre>'.$content.'</pre>'; 
         curl_close($ch); //close the curl
 
  
@@ -180,7 +180,7 @@
 
         //$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&f.subject_value.facet.mincount=1&facet.sort=index';
 
-$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value_resolved.facet.mincount=1&facet.sort=index';
+$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&facet.mincount=1&facet.sort=index';
 
 
         /* prep */

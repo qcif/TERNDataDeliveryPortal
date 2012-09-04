@@ -515,7 +515,7 @@ class Search extends CI_Controller
      
         $query = $q;
         $extended_query = '';
-
+        
         //echo '+spatial:('.$spatial_included_ids.')';
 
         if ($spatial_included_ids != '')

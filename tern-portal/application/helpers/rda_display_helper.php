@@ -131,7 +131,7 @@ function constructFilterQuery($class, $groups){
 		case 'group':$str='+group:(';break;
 
 		//case 'subject_value':$str='+subject_value:(';break;
-                case 'subject_value_resolved':$str='+subject_value:(';break;
+                case 'subject_value_resolved':$str='+subject_value_resolved:(';break;
 
                 case 'subject_code': $str='+subject_code:(';break;
 		case 'status':$str='+status:(';break;

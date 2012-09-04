@@ -128,8 +128,9 @@ class View extends CI_Controller {
 	private function transform($registryObjectsXML, $xslt,$key){
 		$qtestxsl = new DomDocument();
 		$registryObjects = new DomDocument();            
-     
-		$registryObjects->loadXML($registryObjectsXML);
+
+		$registryObjects->loadXML(trim($registryObjectsXML));
+           
 		$qtestxsl->load('_xsl/'.$xslt);
 		$proc = new XSLTProcessor();
 		$proc->importStyleSheet($qtestxsl);

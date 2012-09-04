@@ -5,9 +5,7 @@
 function getURL(keyword, matrixIds){     
     var URLList = {
         "dummy" : base_url + 'api/output.json',
-
-        "nr:regions" : 'http://portal-dev.tern.org.au:8080/geoserver/wms', 
-
+        "nr:regions" : 'http://demo:8080/geoserver/wms', 
         "intersectPt":  base_url + 'regions/r/intersectPt/',
         "aus_east_wmts": {
             name: "WMTS Layer",
@@ -49,6 +47,7 @@ function getURL(keyword, matrixIds){
  *         
  */
 
+ 
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
@@ -59,20 +58,16 @@ String.prototype.capitalize = function() {
  * 
  * 
  */
-
-function MapWidget(mapId, overviewMap){
-
+function MapWidget(mapId, overviewMap, options){
 
     this.map = '';
     this.drawControls = '';
     this.overviewMap = true;
     this.overviewMap = overviewMap;
     
-
     // get Options 
     var options = options || {};
     
-
     // World Geodetic System 1984 projection (lon/lat)
     this.WGS84 = new OpenLayers.Projection("EPSG:4326");
 
@@ -89,17 +84,16 @@ function MapWidget(mapId, overviewMap){
      *
      *  ------------------------------------------------------------
      */
-    
+    this.navControl = new OpenLayers.Control.Navigation({zoomWheelEnabled: false});
     this.options = {
         units : 'm',
         numZoomLevels : 12,
-
         minZoomLevel: 4,
-
         maxExtent : this.mapBounds,
         maxResolution:'auto', 
         projection: this.WGS84_google_mercator,
-        displayProjection: this.WGS84
+        displayProjection: this.WGS84,
+        controls: [ this.navControl, new OpenLayers.Control.PanZoomBar()]        
     };
     this.map = new OpenLayers.Map(mapId, this.options);
     
@@ -109,59 +103,55 @@ function MapWidget(mapId, overviewMap){
      *  ------------------------------------------------------------
      */
   
-
-    var gphy = new OpenLayers.Layer.Google("Google", 
-    {
-        type: google.maps.MapTypeId.HYBRID, 
-        sphericalMercator: true, 
-        minZoomLevel: 2, 
-        maxZoomLevel: 15, 
-        wrapDateLine:false, 
-        maxExtent : this.mapBounds,
-        zoomWheelEnabled: true
-    });	
-   
-    this.map.addLayer(gphy);          
-
       
-    var gphy = new OpenLayers.Layer.Google(
+    this.gphy = new OpenLayers.Layer.Google(
         "Google Physical",
         {type: google.maps.MapTypeId.TERRAIN}
     );
-    var gmap = new OpenLayers.Layer.Google(
+    this.gmap = new OpenLayers.Layer.Google(
         "Google Streets", // the default
         {numZoomLevels: 20}
     );
-    var ghyb = new OpenLayers.Layer.Google(
+    this.ghyb = new OpenLayers.Layer.Google(
         "Google Hybrid",
         {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
     );
-    var gsat = new OpenLayers.Layer.Google(
+    this.gsat = new OpenLayers.Layer.Google(
         "Google Satellite",
         {type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22}
     );
-    var layers = options.layer || [gphy, gmap, ghyb, gsat]; 
-    
+    var layers = options.layer || [this.gphy, this.gmap, this.ghyb, this.gsat]; 
+    this.zoomRefine = false;
     
     this.map.addLayers(layers);
             
-
     //this.layers.push(gphy); 
     
     //Enable switch layers (that + button on the map) 
-    this.map.addControl(new OpenLayers.Control.LayerSwitcher());
+    //this.map.addControl(new OpenLayers.Control.LayerSwitcher());
+    
     //Enable Overview Map
     if(this.overviewMap){
-
-        var options = {
-            minRatio: 0, 
-            maximized: true, 
-            maxRatio: Number.POSITIVE_INFINITY, 
+        var options = { 
+            mapOptions: {numZoomLevels: 1,  
+                maxExtent : this.mapBounds,           
+                projection: this.WGS84_google_mercator,
+                displayProjection: this.WGS84,
+                minZoomLevel: 2
+        },
+        
+          minRatio: this.map.getResolution()/this.map.getResolutionForZoom(5), 
+           // isSuitableOverview: function() {return true;},
+         
+         //  units: "m",
+           maximized: true,
+         //  numZoomLevels: 1,
+            maxRatio: this.map.getResolution()/this.map.getResolutionForZoom(5),//Number.POSITIVE_INFINITY, 
             autoPan: true
         };
-        this.map.addControl(new OpenLayers.Control.OverviewMap(options));
-
+        this.map.addControl(new OpenLayers.Control.OverviewMap( options));
     }
+    
     // look at Australia 
     if (!this.map.getCenter()) this.map.zoomToExtent(new OpenLayers.Bounds( 11548635,-5889094,18604187,-597430));
 
@@ -183,6 +173,21 @@ MapWidget.prototype.registerClick = function(layers,callback){
     });    
      
 }
+
+/*  ------------------------------------------------------------  
+ *    registerMoveEnd()  
+ *    Register Move End listener to map
+ *    When moved, call the function
+ *  ------------------------------------------------------------
+ */
+
+MapWidget.prototype.registerMoveEnd = function(callback){
+    var obj = this;
+    this.map.events.register("moveend",this.map,function(){
+        callback(obj);
+    });
+}
+    
 /*  ------------------------------------------------------------  
  *    registerClickInfo()  
  *    Register click event listener to map 
@@ -236,26 +241,38 @@ MapWidget.prototype.setSelectedId = function(selectedFeatureLayer, selectedFeatu
 MapWidget.prototype.handleWMSGetInfo = function(options,callback){
     var options = options || {};
     var url = options.url || false;
-
+    var layers = options.layers;
+    var arrLayer = [];
+     for(var j=0;j<layers.length; j++){
+        for(var i=0;i<this.extLayers.length; i++){
+                if(this.extLayers[i].name == layers[j]) { 
+                     arrLayer.push(this.extLayers[i]);}                     
+        }
+     }
     this.info = new OpenLayers.Control.WMSGetFeatureInfo({
             url: url, 
             title: 'Identify features by clicking',
             infoFormat: 'text/html', 
-
-            queryVisible: true,
+            queryVisible: true, 
+            layers: arrLayer,
             eventListeners: {
                 getfeatureinfo: function(event) {     
-                    var content = $(event.text).find('div').html();
-                    if(content && content != ''){
-                        this.map.addPopup(new OpenLayers.Popup.FramedCloud(
-                            "chicken", 
+                    var length = event.text.length;
+                     while( this.map.popups.length ) {
+                        this.map.removePopup(this.map.popups[0]);
+                    }
+
+                    if(length > 657){
+                       var popup = new OpenLayers.Popup.FramedCloud(
+                            "chicken",
                             this.map.getLonLatFromPixel(event.xy),
-                            null,
+                            null, 
                             event.text,
                             null,
                             true
-                        ));
-
+                        );
+                    popup.maxSize = new OpenLayers.Size(400,200);
+                    this.map.addPopup(popup);
                     }
                 }
             }
@@ -275,19 +292,39 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
  */
 MapWidget.prototype.addDrawLayer = function(options){
     var options = options || {};
-    var geometry = options.geometry || "box";
     var allowMultiple = options.allowMultiple || false;
     var afterDraw = options.afterDraw || null; 
-    var afterDrag = options.afterDrag || null; 
-
+    
       
     //Box Layer declaration
-    var boxLayer = new OpenLayers.Layer.Vector("Spatial search");
+    var boxLayer = new OpenLayers.Layer.Vector("Box");
 
     boxLayer.events.register('beforefeatureadded',boxLayer, (function(feature){ 
         if(!allowMultiple){   // No multiple boxes yet
             if(boxLayer.features.length > 0) {
                 boxLayer.removeAllFeatures();       
+            }
+        }
+        // set other layers to hide when drawing starts
+        if(this.extLayers){       
+            for(var layer in this.extLayers){
+                this.extLayers[layer].setVisibility(false);
+            }       
+        }
+       
+    }).bind(this));
+    
+     
+    //poly Layer declaration
+    var polyLayer = new OpenLayers.Layer.Vector("Poly");
+
+    polyLayer.events.register('beforefeatureadded',polyLayer, (function(feature){ 
+        if(!allowMultiple){   // No multiple polygons
+            if(polyLayer.features.length > 0) {
+                polyLayer.removeAllFeatures();       
+            }
+            if(boxLayer.features.length > 0) {
+                boxLayer.removeAllFeatures();
             }
         }
         // set other layers to hide when drawing starts
@@ -301,17 +338,16 @@ MapWidget.prototype.addDrawLayer = function(options){
        
     }).bind(this));
     
+    
     var WGS84 = this.WGS84; 
     var WGS84_google_mercator = this.WGS84_google_mercator;
     
-    if(geometry == 'box'){
+   
         var handlerOptions = {
             sides: 4, 
             irregular: true
         };
-    }else{
-        var handlerOptions = {};
-    }
+   
        
     this.drawControls = {
         box: new OpenLayers.Control.DrawFeature(boxLayer,
@@ -322,24 +358,27 @@ MapWidget.prototype.addDrawLayer = function(options){
                 
             }
         }),
-        drag: new OpenLayers.Control.DragFeature(boxLayer, {
+        poly: new OpenLayers.Control.DrawFeature(polyLayer,
+                        OpenLayers.Handler.Polygon)
+                        
+        /*drag: new OpenLayers.Control.DragFeature(boxLayer, {
             onComplete:function(e){
                        
                 afterDrag(e,WGS84, WGS84_google_mercator);
                 
-            }
-        })
-
-    };
+            }*/
+        };
     //Add controls to map
     for(var key in this.drawControls) {
         this.map.addControl(this.drawControls[key]);
     }
 
-    this.map.addLayer(boxLayer); 
-    //this.drawControls["box"].activate();
+  
+    
+    this.map.addLayers([boxLayer,polyLayer]); 
     //make sure this layer is on top.
     this.map.raiseLayer(boxLayer,this.map.layers.length);
+    this.map.raiseLayer(polyLayer,this.map.layers.length);
     
 }
 
@@ -385,7 +424,7 @@ MapWidget.prototype.addExtLayer = function(options){
                 getWFS(layerName,tempLayer);  
             };        
             break;
-        case "WMS": { 
+        case "WMS": {
                 switch(layerName){
                     case "supersites" : { // not being used  for  now
                             tempLayer = new OpenLayers.Layer.TMS("Metacat Doc Points", "http://tern-supersites.net.au/knb/wms?", {
@@ -451,7 +490,7 @@ MapWidget.prototype.addExtLayer = function(options){
 
             }
     }
-    if(!visibility){ tempLayer.setVisibility(visibility);}
+    if(!visibility){tempLayer.setVisibility(visibility);}
     this.map.addLayer(tempLayer);
     this.extLayers.push(tempLayer);
 
@@ -563,14 +602,12 @@ MapWidget.prototype.addExtLayer = function(options){
 MapWidget.prototype.setHighlightLayer = function(r_id){
     if (!this.highlightLayer) {    
         this.highlightLayer = new OpenLayers.Layer.WMS("Highlight Layer",getURL('nr:regions'),{
-            //height: '512',
-            //width: '242',  
             layers: 'nr:regions',
             styles: 'polygon', 
             featureid: r_id,
             srs: 'EPSG:900913',
             format: 'image/png',
-            //tiled: 'true',
+            tiled: 'true',
             transparent: true
         }, {
             buffer:0, 
@@ -591,6 +628,58 @@ MapWidget.prototype.setHighlightLayer = function(r_id){
 
 
 
+MapWidget.prototype.getZoomRefine = function(){
+    return this.zoomRefine; 
+}
+
+MapWidget.prototype.setZoomRefine = function(){
+    if(this.zoomRefine == true){
+        this.zoomRefine = false;
+        
+    }else{
+        this.zoomRefine = true;
+    } 
+}
+
+MapWidget.prototype.toggleNavControl = function(element){
+    if(this.navControl.zoomWheelEnabled == true){
+        this.navControl.disableZoomWheel();     
+    }else{
+        this.navControl.enableZoomWheel();      
+    } 
+}
+
+/*  ------------------------------------------------------------  
+ *    getFeatureCoordinates()
+ *    returns the coordinates for a feature
+ *    
+ *  ------------------------------------------------------------
+ */
+
+MapWidget.prototype.getFeatureCoordinates = function(){
+    var geom = [];
+    var verticesNative;
+         for(var i=0;i<this.map.layers.length;i++){
+            for(var key in this.drawControls) {
+                if(this.map.layers[i].name == key.capitalize()){
+                     if(this.map.layers[i].features.length == 1) {
+                     verticesNative = this.map.layers[i].features[0].geometry.getVertices();
+                     
+                      for (var x in verticesNative) {
+                            geom.push(verticesNative[x].clone().transform(this.WGS84_google_mercator, this.WGS84));
+                            
+                      }
+                      break;
+                }
+            }
+            }
+           //  if(this.map.layers[i].features.length == 1) {
+            //     geom = this.map.layers[i].features[0].geometry.getVertices();
+           //      break;
+           //  }             
+         }
+        return geom;
+}
 
 /*  ------------------------------------------------------------  
  *    getExtentCoords()
@@ -602,7 +691,6 @@ MapWidget.prototype.setHighlightLayer = function(r_id){
 MapWidget.prototype.getExtentCoords = function(){
         return coords = this.map.getExtent().transform(this.WGS84_google_mercator, this.WGS84);       
 }
-
 /*  ------------------------------------------------------------  
  *    handleMapClick(e,  layers, callback)
  *    e : Click Event
@@ -623,7 +711,6 @@ MapWidget.prototype.handleMapClick = function(e, layers, callback){
                     l_id = val.l_id;                      
                 }
             });
-            //l_id = $("#regionSelect h3 a:contains('" + layer + "')").attr("id");
             if(l_id){
                 var obj = this;  
                 lonlat.transform( this.map.projection, this.map.displayProjection);
@@ -647,6 +734,35 @@ MapWidget.prototype.handleMapClick = function(e, layers, callback){
     }  
 }
 /*  ------------------------------------------------------------  
+ *    setBaseLayer(id)  
+ *    Change base layer displayed
+ *    id = id of base layer
+ *    
+ *  ------------------------------------------------------------
+ */
+MapWidget.prototype.setBaseLayer = function(id) {
+
+    this.map.setBaseLayer(this[id]);
+    
+    
+}
+/*  ------------------------------------------------------------  
+ *    deactivateAllControls()  
+ *    Deactivate all drawing controls
+ *    
+ *    
+ *  ------------------------------------------------------------
+ */
+MapWidget.prototype.deactivateAllControls = function() {
+      for(var key in this.drawControls) {
+            var control = this.drawControls[key];
+            if(control.active){
+                this.toggleControl($("#" + key).get(0));
+                break;
+            }            
+     }
+}
+/*  ------------------------------------------------------------  
  *    toggleControl({options})  
  *    When toolbar buttons are pressed, turn on / off the control
  *    
@@ -654,44 +770,34 @@ MapWidget.prototype.handleMapClick = function(e, layers, callback){
  *  ------------------------------------------------------------
  */
 MapWidget.prototype.toggleControl = function(element) {
-
-    for(var key in this.drawControls) {
-        var control = this.drawControls[key];
-        if(element.id == key) {
-            if(key=='box'){
-
-                if(control.active){
-                    control.deactivate();
-                    control.layer.removeAllFeatures();
-                    resetCoordinates();
-                    element.setAttribute("class","olControlDrawFeatureBoxItemInactive");  
-                    element.className='olControlDrawFeatureBoxItemInactive';
-                    $("#instructions").html('');
-                }
-                else{
-                    control.activate();
-                    element.setAttribute("class","olControlDrawFeatureBoxItemActive");
-                    element.className='olControlDrawFeatureBoxItemActive';
-                    $("#instructions").html(element.getAttribute("title"));
-                }
-            }else{
-                if(control.active){
-                    control.deactivate();
-                    element.setAttribute("class","olControlDragFeatureBoxItemInactive");
-                    element.className='olControlDragFeatureBoxItemInactive';
-                    if($(".olControlDrawFeatureBoxItemActive").length==0 ) $("#instructions").html('');
-                    else {
-                        $("#instructions").html($("#box").attr("title"));
+  
+        for(var key in this.drawControls) {
+            var control = this.drawControls[key];
+             var classNameKey = key.capitalize();
+            if(element.id == key) {
+               
+                 if(control.active){
+                        control.deactivate();
+                        element.setAttribute("class","olControlDrawFeature" +  classNameKey + "ItemInactive");  
+                          $("#drag").attr("class","olControlDragFeatureItemActive");
                     }
-                }else{
-                    control.activate();
-                    element.setAttribute("class","olControlDragFeatureBoxItemActive");
-                    element.className='olControlDragFeatureBoxItemActive';
-                    $("#instructions").html(element.getAttribute("title"));
-                }                            
-            }
-        } 
-    }
+                    else{
+                        control.activate();                  
+                        element.setAttribute("class","olControlDrawFeature" + classNameKey + "ItemActive");
+                        $("#drag").attr("class","olControlDragFeatureItemInactive");
+                    }
+               
+            }else{
+                control.layer.removeAllFeatures();
+                control.deactivate();
+                var elem = $("#" + key); 
+                elem.attr("class","olControlDrawFeature" +  classNameKey + "ItemInactive");  
+               
+            } 
+            if(element.id!='box') resetCoordinates();
+        }
+      
+   // }
 }
 
 
@@ -1020,7 +1126,7 @@ function getStyle(styleName){
                     },
                     count: function(feature){
                         if(feature.attributes.count > 1) {
-                            return feature.cluster[0].attributes.number  + "+";
+                            return "+";
                         }else{
                             return feature.attributes.number;
                         }
@@ -1120,6 +1226,18 @@ function enableToolbarClick(map){
         $(this).click(function(){
             map.toggleControl(this);
         });
+    });
+    $("#drag").click(function(){        
+     if($(this).attr('class') == 'olControlDragFeatureItemInactive'){
+        //this.attr('class','olControlDragFeatureItemActive');
+        for(var key in map.drawControls) {
+            var control = map.drawControls[key];
+            if(control.active){
+                map.toggleControl($("#" + key).get(0));
+                break;
+            }            
+         }
+     }
     });
 }
 
