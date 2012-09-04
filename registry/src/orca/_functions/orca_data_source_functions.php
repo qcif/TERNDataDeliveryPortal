@@ -642,7 +642,7 @@ function transformToSolr($registryObjectsXML)
     $qtestxsl = new DomDocument();
 $registryObjects = new DomDocument();
 $registryObjects->loadXML($registryObjectsXML);
-$qtestxsl->load('../_xsl/rif2solr.xsl');
+$qtestxsl->load('../_xsl/extRif2solr.xsl');
 $proc = new XSLTProcessor();
 $proc->importStyleSheet($qtestxsl);
 $transformResult = $proc->transformToXML($registryObjects); 

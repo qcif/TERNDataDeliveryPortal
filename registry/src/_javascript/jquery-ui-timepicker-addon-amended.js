@@ -45,10 +45,6 @@ function Timepicker() {
 		millisecText: 'Millisecond',
 		timezoneText: 'Time Zone'
 	};
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	thetimeZone = (new Date().getTimezoneOffset() * -1)/60;
 	if(thetimeZone==10)
 		{
@@ -61,11 +57,6 @@ function Timepicker() {
 		 var label = "(GMT +11:00) AEDT Australian Eastern Daylight Time"
 		}
 
-<<<<<<< HEAD
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 	this._defaults = { // Global defaults for all the datetime picker instances
 		showButtonPanel: true,
 		timeOnly: false,
@@ -105,15 +96,7 @@ function Timepicker() {
 		showTimepicker: true,
 		timezoneIso8609: true,
 		timezoneList: 	[
-<<<<<<< HEAD
-<<<<<<< HEAD
 						{"value":value,"label":label},
-=======
-						{"value":"+11:00","label":"(GMT +11:00) AEDT Australian Eastern Daylight Time"},
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-						{"value":value,"label":label},
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
 						{"value":"-12:00","label":"(GMT -12:00) Eniwetok, Kwajalein"},
 						{"value":"-11:00","label":"(GMT -11:00) Midway Island, Samoa"},
 						{"value":"-10:00","label":"(GMT -10:00) Hawaii"},

@@ -88,7 +88,8 @@
  		<xsl:choose>
 
 	        <!--<xsl:when test="ro:displayTitle!=''">-->
-                <xsl:when test="ro:display_title!=''">
+                <!--<xsl:when test="ro:display_title!=''">-->
+                <xsl:when test="extRif:extendedMetadata">    
 	        	<!--<xsl:apply-templates select="ro:displayTitle"/>-->
                         <xsl:apply-templates select="ro:display_title"/>
 
@@ -476,6 +477,7 @@
 
         <div id="displaytitle">
         	<h1><xsl:value-of select="."/></h1>
+                <xsl:apply-templates select=""/>
         	<xsl:for-each select="//ro:existenceDates">
         		<xsl:if test="./ro:startDate"><xsl:value-of select="./ro:startDate"/></xsl:if> - <xsl:if test="./ro:endDate"><xsl:value-of select="./ro:endDate"/></xsl:if><br/>
 			</xsl:for-each>     

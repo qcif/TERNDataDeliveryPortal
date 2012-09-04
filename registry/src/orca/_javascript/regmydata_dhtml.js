@@ -1155,16 +1155,25 @@ function saveAndPreview() {
 	}
 
 	var key = $('#object_mandatoryInformation_key').val();
+	var contributorPage = $("#contributor_page").val();
 
-	$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
-
-	
+	if(contributorPage!='')
+	{
+		$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/view/group/?ds_key='+$('#object_mandatoryInformation_dataSource').val()+'&group=' + $('#object_mandatoryInformation_key').val() +'&groupName='+contributorPage);
+	}else {
+		$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+	}
 
 	$("#errors_preview").hide();	
-	//$("#save_notification").remove();
 
-	$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
-
+	/* don't understand why this is duplicated here?? 
+	if(contributorPage!='')
+	{
+		$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/view/group/?ds_key='+$('#object_mandatoryInformation_dataSource').val()+'&group=' + $('#object_mandatoryInformation_key').val() +'&groupName='+contributorPage);
+	}else{
+		$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+	}
+	*/
 	
 	if (userMode != 'readOnly')
 	{
@@ -1173,7 +1182,7 @@ function saveAndPreview() {
 		var ds = $('#object_mandatoryInformation_dataSource').val();
 		$("#save_notification").html("<div>This draft has been saved successfully.</div>");
 		
-		$("#rda_preview_container").html("<a style='margin-left:10px;float:right;' id='rda_preview_xml' href='#'>View RIF-CS </a>" +
+		$("#rda_preview_container").html("<a style='margin-left:10px;float:right;' id='print_preview' href='#'>Print Record</a>&nbsp;&nbsp;<a style='margin-left:10px;float:right;' id='rda_preview_xml' href='#'>View RIF-CS </a>" +
 				"<a style='float:right;' id='rda_preview' class='rda_preview' href='#' target='_blank'>" +
 				"<img style='padding: 0px 3px;float: left;' src='"+rootAppPath+"orca/_images/globe.png' /> Preview in Research Data Australia</a>" +
 						"<div id='rifcs_plain' class='hide'><img src='"+rootAppPath+"orca/_images/delete_16.png' class='closeBlockUI' style='float:right;'/>" +
@@ -1181,13 +1190,23 @@ function saveAndPreview() {
 								"</div>");
 			
 
+		if(contributorPage!='')
+		{
+			$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/view/group/?ds_key='+$('#object_mandatoryInformation_dataSource').val()+'&group=' + $('#object_mandatoryInformation_key').val() +'&groupName='+contributorPage);
+		}else{
+			$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+		}
 
-		$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());			
-		
+	//	$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+		$("#print_preview").click(function()
+		{
+			var win = window.open('process_registry_object.php?task=preview&data_source='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());		
+		});
+
 		$('#rda_preview_xml').click(function(){
 			var key = $('#object_mandatoryInformation_key').val();
 			var ds = $('#object_mandatoryInformation_dataSource').val();
-			$.get(rootAppPath + 'orca/services/getRegistryObject.php?key='+encodeURIComponent(key)+'&ds='+encodeURIComponent(ds)+'&type=plain',
+			$.get(rootAppPath + 'orca/services/getRegistryObject.php?key='+encodeURIComponent(key)+'&ds='+encodeURIComponent(ds)+'&type=plain&stripped=true',
 		       function(data) {
 				$('#rifcs_plain_content').val(data);
 		        $.blockUI({
@@ -1229,11 +1248,17 @@ function saveAndPreview() {
 
 
 		//copy and paste from above, need refactor
-		$(".rda_preview").attr("href",$("#baseURL").val() + 'rda/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+		
+		if(contributorPage!='')
+		{
+			$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/view/group/?ds_key='+$('#object_mandatoryInformation_dataSource').val()+'&group=' + $('#object_mandatoryInformation_key').val() +'&groupName='+contributorPage);
+		}else{
+			$(".rda_preview").attr("href",$("#baseRDAURL").val() + '/preview?ds='+$('#object_mandatoryInformation_dataSource').val()+'&key=' + $('#object_mandatoryInformation_key').val());
+		}
 		$('#rda_preview_xml').click(function(){
 			var key = $('#object_mandatoryInformation_key').val();
 			var ds = $('#object_mandatoryInformation_dataSource').val();
-			$.get(rootAppPath + 'orca/services/getRegistryObject.php?key='+encodeURIComponent(key)+'&ds='+encodeURIComponent(ds)+'&type=plain',
+			$.get(rootAppPath + 'orca/services/getRegistryObject.php?key='+encodeURIComponent(key)+'&ds='+encodeURIComponent(ds)+'&type=plain&stripped=true',
 		       function(data) {
 				$('#rifcs_plain_content').val(data);
 		        $.blockUI({
@@ -1327,22 +1352,11 @@ function saveAndPreview() {
 
 					var qualityLevelText = new Array();
 					var roStatus = $('#elementCategory').val();
-					qualityLevelText[1] = 'This record does not meet any of the Metadata Content Requirements. The record does not contain enough information for discovery, and will be considered a placeholder or test.';
-					qualityLevelText[2] = 'This record meets some of the Metadata Content Requirements. The record may facilitate discovery, but does not comply with the Minimum  Metadata Content Requirements.';
-					if(roStatus=='collection'){
-						qualityLevelText[3] = 'Congratulations! This record satisfies the Minimum  Metadata Content Requirements  enabling discovery and access to collections.';
-					}else{
-						qualityLevelText[3] = 'Congratulations! This record satisfies the Minimum  Metadata Content Requirements';
-					}
-					if(roStatus=='collection'){
-						qualityLevelText[4] = 'Congratulations! This record exceeds the Minimum Metadata Content Requirements  and provides enough information to enable reuse.';
-					}else{
-						qualityLevelText[4] = 'Congratulations! This record exceeds the Minimum Metadata Content Requirements';
-					}
-					
-
+					qualityLevelText[1] = 'This record meets some of the Metadata Content Requirements  satisfying  minimal requirements for discovery, but does not comply with the Minimum Metadata Content Requirements.';
+					qualityLevelText[2] = 'Congratulations! This record satisfies the minimum Metadata Content Requirements.';
+					qualityLevelText[3] = 'Congratulations! This record meets and exceeds the minimum Metadata Content Requirements.';
 				
-					var ql_result = '<div id="ql_result"><div class="ql_num ql'+qualityLevel+'">Level '+qualityLevel+' Record</div><div class="ql_explain">'+qualityLevelText[qualityLevel]+'</div><div class="clearfix"></div></div>';
+					var ql_result = '<div id="ql_result"><div class="ql_num ql'+qualityLevel+'">Level '+qualityLevel+' Record</div><div class="ql_explain"><p>'+qualityLevelText[qualityLevel]+'</p></div><div class="clearfix"></div></div>';
 					$('#qa_level_notification').html(ql_result);
 						
 					
@@ -1440,7 +1454,12 @@ function initQADisplay(){
 	$('.aro_qa_ok').removeClass('qa_ok');
 	$('.qa_error').addClass('aro_qa_error');
 	$('.aro_qa_error').removeClass('qa_error');
-
+	
+	var allReqCount = $('*[level=2]').length;
+	var okReqArray = $('.aro_qa_ok[level=2]').length;
+	var allRecCount = $('*[level=3]').length;
+	var okRecArray = $('.aro_qa_ok[level=3]').length;	
+	
 	//wrap around the current QL with a div
 	var qa = $('#qa_level_results');
 	for(var i=0;i<=4;i++){
@@ -1449,7 +1468,29 @@ function initQADisplay(){
 	//add the toggle header
 	$('.aro_qa_container', qa).prepend('<div class="toggleQAtip"></div>');
 	$('.toggleQAtip', qa).each(function(){
-		$(this).text('Quality Level ' +$(this).parent().attr('qld'));
+		if($(this).parent().attr('qld') == 1)
+		   $(this).text('Quality Level 1 - Required RIF-CS Schema Elements');
+		if($(this).parent().attr('qld') == 2)
+		{
+			if ( okReqArray == allReqCount ) {
+				$(this).html('Quality Level 2 - You have met all of the ' + allReqCount +' required Metadata Content Requirements.' );
+			} 
+			else
+			{
+				$(this).html('Quality Level 2 - You have met '+ okReqArray + ' of the ' + allReqCount +' required Metadata Content Requirements. Refer to the tabs above as indicated by the <img src=\''+rootAppPath+'orca/_images/required_small.png\' /> Warning Icon' );
+			}
+		}
+		if($(this).parent().attr('qld') == 3)
+		{
+			if ( okRecArray == allRecCount )	
+			{
+				 $(this).html('Quality Level 3 - You have met all of the ' + allRecCount +' recommended Metadata Content Requirements.' );				
+			}
+			else
+			{
+			 	$(this).html('Quality Level 3 - You have met '+ okRecArray + ' of the ' + allRecCount +' recommended Metadata Content Requirements. Refer to the tabs above as indicated by the <img src=\''+rootAppPath+'orca/_images/message_small.png\' /> Warning Icon' );	
+			}
+		}
 	});
 	//hide all qa
 	$('.aro_qa_container', qa).each(function(){
@@ -1794,12 +1835,12 @@ function addVocabComplete(field, type) {
 				var errorDiv = field.replace("#object","errors");
 				var theDiv = document.getElementById(errorDiv);
 				theDiv.style.display='inline';
-				document.getElementById(errorDiv).innerHTML = 'You have selected the licence type of "Unknown/Other", if you would like to have an additional licence type included within this service, please contact services@ands.org.au'
+				document.getElementById(errorDiv).innerHTML = 'You have selected the licence type of "Unknown/Other", if you would like to have an additional licence type included within this service, please contact <a href="mailto:services@ands.org.au">services@ands.org.au</a>';
 			}
 			if(ui.item.value!="Unknown/Other"){
 				var errorDiv = field.replace("#object","errors");
 				var theDiv = document.getElementById(errorDiv);
-				theDiv.style.display='none';				
+				if(theDiv!=null) theDiv.style.display='none';				
 			}
 			return false;
 		}
@@ -1849,7 +1890,7 @@ function addRelatedObjectSearch(field){
 
 function doRelatedObjectSearch(field){
 	term = $('#'+field+'_search').val();
-	if(term=="")term='*:*';
+	//if(term=="")term='*:*';
 	roClass = $('#select_'+field+'_class').val(); 
 	roDS = $('#select_'+field+'_dataSource').val(); 
 	result = '#'+field+'_result';
@@ -2353,7 +2394,7 @@ $('body').click(function() {
 
 function showClearAlert()
 {
-		var userChoice = confirm("**WARNING**\nAny changes since your last save will be lost\nAre you sure??");
+		var userChoice = confirm("**WARNING**\nAny changes since your last save will be lost.\nAre you sure?");
 		if(userChoice == true)
 		{
 			$(window.location).attr('href','my_records.php');
@@ -2841,6 +2882,7 @@ $("#button_bar > input").live("click", function(e) {
 	
 	
 });
+
 
 function checkTypeValue(theSelect){
 	
