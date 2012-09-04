@@ -639,20 +639,13 @@ return $transformResult;
 function transformToSolr($registryObjectsXML)
 {
     
-    $qtestxsl = new DomDocument();
+global $extRif2solrProc;
 $registryObjects = new DomDocument();
 $registryObjects->loadXML($registryObjectsXML);
-$qtestxsl->load('../_xsl/extRif2solr.xsl');
-$proc = new XSLTProcessor();
-$proc->importStyleSheet($qtestxsl);
-$transformResult = $proc->transformToXML($registryObjects); 
+$transformResult = $extRif2solrProc->transformToXML($registryObjects);	
+return $transformResult;
 
-$result=replaceCodeWithStringValue($transformResult);
-
-//return $transformResult;
-return $result;
-
-}
+} 
 
 function runSolrIndexForDatasource($dataSourceKey)
 {

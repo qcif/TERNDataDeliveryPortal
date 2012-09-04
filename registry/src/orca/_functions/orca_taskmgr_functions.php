@@ -5,7 +5,7 @@ $gmclient->addServer($gearman_server);
 function triggerAsyncTasks()
 {
 	global $gmclient;
-	$gmclient->addTaskBackground("executeNextPendingTask","");
+	$gmclient->addTaskBackground("executeNextPendingTask","run"); 
 	$gmclient->runTasks();
 	return;
 }
