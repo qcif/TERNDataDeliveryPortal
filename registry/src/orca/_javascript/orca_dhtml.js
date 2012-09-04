@@ -5,6 +5,8 @@ $Revision: 1665 $
 var clearPressed = false;
 var cosiImageRoot = rootAppPath + "_images/";
 var orcaImageRoot = rootAppPath + "orca/_images/";
+
+
 function setHarvestMethodDependents()
 {
    var tableRow = 'table-row';
@@ -27,7 +29,7 @@ function setHarvestMethodDependents()
    var rowDisplay = tableRow;
    if( strHarvestMethod != 'RIF' )
    {
-       rowDisplay = 'none'; 
+       rowDisplay = 'none';
    }
    getObject('oai_set_row').style.display = rowDisplay;
 
@@ -232,46 +234,12 @@ function setClear()
 
 function runQualityCheck()
 {
-   var dataSourceKey = document.getElementById("data_source_key").value;
-   var dataurl = document.getElementById("data-url").value;
-   var itemurl = document.getElementById("item-url").value;
-   var qTestURL = document.getElementById("qTestURL").value;
-   var xmlhttp;
-   var qURL = qTestURL + "?dataSourceKey=" + dataSourceKey + "&item-url=" + itemurl;
-   var qualityCheckresultDiv = getObject('qualityCheckresult');
-
-       if( window.XMLHttpRequest )
-       {
-           xmlhttp=new XMLHttpRequest();
-       }
-       else if( window.ActiveXObject )
-       {
-           xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-       }
-
-       if( xmlhttp )
-       {
-           qualityCheckresultDiv.innerHTML = '<div class="rs-header" style="color: #aaaaaa;">Loading...</div>';
-           xmlhttp.open("GET", qURL ,true);
-           xmlhttp.onreadystatechange = function()
-           {
-               if( xmlhttp.readyState == 4 )
-               {
-                   if( xmlhttp.status == 200 )
-                   {
-                       qualityCheckresultDiv.innerHTML = xmlhttp.responseText;
-                   }
-               }
-           };
-           if( window.XMLHttpRequest )
-           {
-               xmlhttp.send(null);
-           }
-           else
-           {
-               xmlhttp.send();
-           }
-       }
+   
+   $.get($('#quality_report_url').val() + '&data_source=' + $('#data_source_key').val(), function(data){
+	   $('#qualityCheckresult').html(data).fadeIn(100);
+	   $('#printableReportContainer').html('<a target="_blank" id="printable_report" href="data_source_report.php?type=quality&standalone=true&data_source=' + $('#data_source_key').val()  +'" class="right">printable report</a>');
+	   
+   })
 }
 
 function showDeleteModal()
@@ -419,8 +387,41 @@ function getGoldRecords()
        });
 }
 
+var dsIsBGTaskQueued = false;
+
+function checkDataSourceScheduleTask(){
+    var content = 'A background task is currently in progress for this data source. Please try reloading the screen again shortly.';
+    var dataSourcekey = $('#dataSourceKey').length;
+    var dsKey = $('#dataSourceKey').val();
+    //console.log(dataSourcekey);
+    if(dataSourcekey==1){
+     
+      //console.log(rootAppPath+"orca/manage/process_registry_object.php?task=dataSourceBackgroundStatus&data_source="+dsKey);
+      $.ajax({
+        type:"POST",   
+        url:rootAppPath+"orca/manage/process_registry_object.php?task=dataSourceBackgroundStatus&data_source="+dsKey,   
+        success:function(msg){
+          
+          if(msg=='1'){
+          	dsIsBGTaskQueued = true;
+            $('#dataSourceStatus').show();
+            $('#dataSourceStatus').html(content);
+          }else{
+          	if (dsIsBGTaskQueued == true)
+          	{
+          		location.reload();	
+          	}
+            $('#dataSourceStatus').hide();
+          }
+        }
+    });
+    }
+  }
+
 $().ready(function(){
-	
+
+  
+
 	/*
 	 * CC-47
 	 * RIFCS-BUTTON on view page
@@ -543,6 +544,10 @@ $().ready(function(){
        });
        $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI);
    });
+
+   //chosen on data source;
+   if($('select[name=data_source_key]').length>0)$('select[name=data_source_key]').chosen();
+
 });
 
 function formatErrorDesciption(description, title)
@@ -866,7 +871,7 @@ function setInstitutionalPage(theValue, theGroups, theDataSource)
 			searchStr += '<tbody class="formFields andsorange">';
 			searchStr += '<tr><td>Search by name:</td><td><input type="text" id="object_institution_key_'+(i+1)+'_name" autocomplete="on" name="object_institution_key_'+(i+1)+'_name" maxlength="512" size="30"/></td></tr>';
 			searchStr += '<tr><td>Select object class:</td><td><span style="color:#666666">Party</span><input type="hidden" id="select_institution_key_'+(i+1)+'_class" value = "Party"/></td></tr>';
-			searchStr += '<tr><td>Data source:<input type="hidden" id="select_institution_key_'+(i+1)+'_group" value="'+datasources[0]+'"/></td><td><select id="select_institution_key_'+(i+1)+'_dataSource">'+datasourceStr+'</select></td></tr>';
+			searchStr += '<tr><td>Data source:<input type="hidden" id="select_institution_key_'+(i+1)+'_group" value="'+datasources[0]+'"/><input type="hidden" id="select_institution_key_'+(i+1)+'_dataSource" value="'+theDataSource+'"/></td><td>'+theDataSource+'</td></tr>';
 			searchStr += '<tr><td><input type="button" value="Choose Selected" onClick=\'setRelatedId("object_institution_key_'+(i+1)+'");\'/></td><td></td></tr>';
 			searchStr += '</table>';				
 			searchStr += '</div>'; 

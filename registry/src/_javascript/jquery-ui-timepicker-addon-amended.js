@@ -45,7 +45,6 @@ function Timepicker() {
 		millisecText: 'Millisecond',
 		timezoneText: 'Time Zone'
 	};
-
 	thetimeZone = (new Date().getTimezoneOffset() * -1)/60;
 	if(thetimeZone==10)
 		{
@@ -57,7 +56,6 @@ function Timepicker() {
 		 var value = "+11:00";
 		 var label = "(GMT +11:00) AEDT Australian Eastern Daylight Time"
 		}
-
 
 	this._defaults = { // Global defaults for all the datetime picker instances
 		showButtonPanel: true,
@@ -98,9 +96,7 @@ function Timepicker() {
 		showTimepicker: true,
 		timezoneIso8609: true,
 		timezoneList: 	[
-
 						{"value":value,"label":label},
-
 						{"value":"-12:00","label":"(GMT -12:00) Eniwetok, Kwajalein"},
 						{"value":"-11:00","label":"(GMT -11:00) Midway Island, Samoa"},
 						{"value":"-10:00","label":"(GMT -10:00) Hawaii"},

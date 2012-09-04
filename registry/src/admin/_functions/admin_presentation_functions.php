@@ -40,7 +40,7 @@ function drawRoleRelationsForm($roleId, $parentRoleTypeId)
 {
 	print("<form id=\"update".esc($parentRoleTypeId)."\" action=\"role_view.php?role_id=".urlencode($roleId)."\" method=\"post\"><div>\n");
 	print("<input type=\"hidden\" name=\"action\" value=\"UPDATE_ROLE_RELATION\" />\n");
-
+	
 	$roleRelations = getRoleRelations($roleId, $parentRoleTypeId);
 	if( $roleRelations )
 	{
@@ -60,7 +60,7 @@ function drawRoleSelectList($roleId, $roleTypeId)
 	// excluding any descendants of $roleId (to prevent a circular reference),
 	// and inherited roles (as these are redundant).
 	$relatedRoles = getRelatedRoleIDs($roleId);
-
+	
 	$roles = getRoleRelationAddList($roleId, $roleTypeId);
 	$roleList = array();
 	// Sort by role name, not value
@@ -140,7 +140,7 @@ function encodeName($name)
 {
 	$encodedName = base64_encode($name);
 	$encodedName = str_replace("=", "_", $encodedName);
-
+	
 	return $encodedName;
 }
 
@@ -148,7 +148,7 @@ function decodeName($encodedName)
 {
 	$name = str_replace("_", "=", $encodedName);
 	$name = base64_decode($name);
-
+	
 	return $name;
 }
 

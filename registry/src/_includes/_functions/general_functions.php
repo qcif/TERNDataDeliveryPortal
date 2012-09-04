@@ -388,7 +388,6 @@ function compareLooseXMLEquivalent ($xmlFragment1, $xmlFragment2, $stripWhitespa
 }
 
 
-
 $BENCHMARK_TIME = array(0,0,0,0,0,0,0,0,0,0);
 function bench($idx = 0)
 {
@@ -405,6 +404,4 @@ function bench($idx = 0)
 		return $diff;
 	}
 }
-
 ?>
-
