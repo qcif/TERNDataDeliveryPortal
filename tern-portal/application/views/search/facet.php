@@ -38,7 +38,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 
 		//if($subjectFilter!='All') displaySelectedFacet('subject_value',$subjectFilter,$json);
                 if($subjectFilter!='All') displaySelectedFacet('subject_value_resolved',$subjectFilter,$json);
-                if($ternRegionFilter!='All') displaySelectedFacet('tern_region',$ternRegionFilter,$json);
+                if($ternRegionFilter!='All') displaySelectedRegionFacet('tern_region',$ternRegionFilter,$json,$regionsName);
 
                 //if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
                  if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);

@@ -171,7 +171,7 @@ $(function() {
     $(window).hashchange(); //do the hashchange on page load
     routing(); 
        
-    $('.typeFilter, .groupFilter, .subjectFilter,.fortwoFilter, .forfourFilter, .forsixFilter').live('click', function(event){
+    $('.typeFilter, .groupFilter, .subjectFilter,.fortwoFilter, .forfourFilter, .forsixFilter, .ternRegionFilter').live('click', function(event){
         if(event.type=='click'){
             page = 1;
             if($(this).hasClass('typeFilter')){
@@ -197,7 +197,13 @@ $(function() {
                 changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
 
-            }        
+            }else if($(this).hasClass('ternRegionFilter')){
+                ternRegionFilter = encodeURIComponent($(this).attr('id'));
+                changeHashTo(formatSearch(search_term, 1, classFilter));               
+                               
+
+            }         
+            
         }
     }); 
      
@@ -232,6 +238,8 @@ $(function() {
             forsixFilter = 'All';
         }else if($(this).hasClass('clearTemporal')){
             temporal = 'All';
+        }else if($(this).hasClass('clearTernRegion')){
+            ternRegionFilter = 'All';
         }else if($(this).hasClass('clearSpatial')){
             n = '';
             e = '';
@@ -293,7 +301,7 @@ $(function() {
         if(fortwoFilter!='All') res+='/fortwo='+(fortwoFilter);
         if(forfourFilter!='All') res+='/forfour='+(forfourFilter);
         if(forsixFilter!='All') res+='/forsix='+(forsixFilter);
-        
+        if(ternRegionFilter!='All') res+='/ternRegion='+(ternRegionFilter);
         if(n!=''){
             res+='/n='+n+'/e='+e+'/s='+s+'/w='+w;
         }
@@ -797,7 +805,7 @@ $(function() {
                     type:"POST",
                     url: base_url+"/search/updateStatistic/",
 
-                    data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1",
+                    data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1" + "&ternRegionFilter=" + ternRegionFilter,
                     success:function(msg){},
                     error:function(msg){}
                 });

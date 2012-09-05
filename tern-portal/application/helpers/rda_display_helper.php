@@ -72,7 +72,7 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
 
 function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $regionsName){
 	
-	$clear ='';$name = 'Regions';$class='';
+	$clear ='clearTernRegion';$name = 'Region';$class='ternRegionFilter';
 	
 	$object_type="";
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
@@ -100,8 +100,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
                                        for($k=0;$k<count($regionsList);$k++){
                                           if($regionsList[$k]->r_id == $r_id){
                                                echo '<li class="limit">
-                                                <a href="javascript:void(0);" 
-                                                        title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
+                                                <a href="javascript:void(0);"                                                        
                                                         class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .' ('.number_format($object_type[$i+1]).')'.'</a></li>';
                                                break;
                                            }
@@ -137,6 +136,43 @@ function displayCustomiseOptions($cookie){
 		echo '<img id="'.$cookie.'" class="customise-option" src="'.base_url().'img/no.png">';
 	}
 }
+
+/*
+ * displaySelectedRegionFacet
+ * Used in facet view
+ */ 
+function displaySelectedRegionFacet($facet_name, $facetFilter, $json,$regionsName){
+  
+	$clear ='clearTernRegion';$name = 'Region';$class='ternRegionFilter';
+	
+	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
+        // handle it if facetFilter is an array 
+        $facetFilter = explode(";",$facetFilter);
+        //print the selected 
+        for($i=0; $i<count($facetFilter); $i++){
+            $idx = false;
+            array_walk($object_type, 'trim');
+            $idx = array_search($facetFilter[$i],$object_type, true);
+         
+            if($idx !== false){
+                list($l_id,$r_id) = explode(':', $facetFilter[$i]);
+                foreach($regionsName as $key=>$regionsList){
+                     if($key == $l_id){
+                          for($k=0;$k<count($regionsList);$k++){
+                              if($regionsList[$k]->r_id == $r_id){
+                                    echo '<li class="limit">
+                            <a href="javascript:void(0);"                                                        
+                                    class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .' ('.number_format($object_type[$idx+1]).')'.'</a></li>';
+                            break;
+                            }
+                        }
+                     }
+                }
+               
+                
+            }
+        }
+}   
 
 /*
  * displaySelectedFacet
