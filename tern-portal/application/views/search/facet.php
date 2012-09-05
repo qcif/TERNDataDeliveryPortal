@@ -22,7 +22,7 @@ $Revision: 1 $
 ?>
 <?php 
 
-if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All'))
+if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All')    
 {
 	echo '<h5><a href="#">Selected</a></h5>'; 
 	echo '<div class="facet-list">';
@@ -38,6 +38,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 
 		//if($subjectFilter!='All') displaySelectedFacet('subject_value',$subjectFilter,$json);
                 if($subjectFilter!='All') displaySelectedFacet('subject_value_resolved',$subjectFilter,$json);
+                if($ternRegionFilter!='All') displaySelectedFacet('tern_region',$ternRegionFilter,$json);
 
                 //if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
                  if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
@@ -51,6 +52,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 ?>
 
 <?php
+
 	/*
 	echo '<pre>';
 	print_r($json->{'facet_counts'}->{'facet_fields'}->{'group'});
@@ -59,8 +61,8 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 	//displayFacet('type', $typeFilter, $json, $classFilter, $this);
 
 	//displayFacet('subject_value', $subjectFilter, $json, $classFilter);
-displayFacet('subject_value_resolved', $subjectFilter, $json, $classFilter);
-
+        displayFacet('subject_value_resolved', $subjectFilter, $json, $classFilter);
+        displayRegionFacet('tern_region', $ternRegionFilter, $json, $ternRegionFilter,$regionsName);
        
         displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$json, $classFilter, $this);      
 

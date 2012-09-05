@@ -802,11 +802,14 @@ $(function() {
                     error:function(msg){}
                 });
             }
-
-            $("#facet-accordion").accordion("destroy").accordion({
-                header: 'h5', 
+            $("#facet-region").accordion("destroy").accordion({
+                header: 'h6', 
                 autoHeight: false
             });
+            /*$("#facet-accordion").accordion("destroy").accordion({
+                header: 'h6', 
+                autoHeight: false
+            });*/
         }
         else{
             showNoResult(1); 

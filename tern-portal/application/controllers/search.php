@@ -572,13 +572,22 @@ class Search extends CI_Controller
         $data['fortwoFilter'] = $fortwoFilter;
         $data['forfourFilter'] = $forfourFilter;
         $data['forsixFilter'] = $forsixFilter;
-                    
+        $data['ternRegionFilter'] = $ternRegionFilter;            
         $data['page'] = $page;
         $data['alltab'] = $alltab;
         $data['spatial_included_ids'] = $spatial_included_ids;
         $data['temporal'] = $temporal;
 
-
+        // get Regions  File
+         $regions = json_decode(file_get_contents('http://' . HOST.  '/api/regions.json', TRUE));
+         $regions = $regions->layers;
+         for($i=0;$i<count($regions);$i++){                  
+              $regionsName[$regions[$i]->l_id] =  json_decode(file_get_contents('http://' . REGIONS_URL . '/r/getList/' . $regions[$i]->l_id));  
+              $regionsName[$regions[$i]->l_id]['l_name'] = $regions[$i]->l_name;
+              
+         }
+             
+         $data["regionsName"] = $regionsName;
 
         $this->benchmark->mark('search_end');
         //echo $this->benchmark->elapsed_time('search_start', 'search_end');

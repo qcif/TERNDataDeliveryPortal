@@ -66,6 +66,61 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
         }
 }
 
+/* displayRegionFacet
+ * tern_region field in SOLR
+ */
+
+function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $regionsName){
+	
+	$clear ='';$name = 'Regions';$class='';
+	
+	$object_type="";
+	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
+        if(count($object_type)>0){
+            
+            echo '<h5 ><a href="#">'.$name;
+            echo '</a></h5>';
+            echo '<div  id="facet-region" class="facet-list facet-content">';
+ 
+          
+           foreach($regionsName as $key=>$regionsList){
+               $firstRun=true;
+              
+               for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
+                        if($object_type[$i+1]>0 && (strpos($object_type[$i],$key)!==false)){   
+                            if($firstRun){
+                                 echo '<h6 ><a href="#">'.$regionsList['l_name'];
+                                 echo '</a></h6>';
+                                 echo '<div class="facet-list facet-content">';
+                                 echo '<ul class="more" >';
+                                 $firstRun=false;
+                            }
+                                if($object_type[$i]!=$facetFilter){
+                                       list($l_id, $r_id) = explode(':',$object_type[$i]);
+                                       for($k=0;$k<count($regionsList);$k++){
+                                          if($regionsList[$k]->r_id == $r_id){
+                                               echo '<li class="limit">
+                                                <a href="javascript:void(0);" 
+                                                        title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
+                                                        class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .' ('.number_format($object_type[$i+1]).')'.'</a></li>';
+                                               break;
+                                           }
+                                           
+                                       }
+                                       
+                                } 
+                        }
+                }
+               
+                echo '</ul>';
+                 echo '</div>';
+               
+            }
+          
+            echo '</div>';
+        }
+}
+
 /*
  * displayCustomiseOptions
  * Used in the display customise dialog box
