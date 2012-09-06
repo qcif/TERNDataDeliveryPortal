@@ -748,3 +748,6 @@ div.left:active{background-position:-60px 0;}
    width:130px;
    margin:auto 0;
 }
+a.disabled{
+    color: #aaa;
+}
