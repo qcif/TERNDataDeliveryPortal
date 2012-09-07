@@ -548,6 +548,13 @@
    <field name="spatial_coverage_center" type="string" indexed="true" stored="true" multiValued="true"/>
    
    <!-- END ANDS Indexed Field-->
+<!-- FOR Fields -->
+<field name="for_code_two" type="string" indexed="true" stored="true" multiValued="true"/><field name="for_code_four" type="string" indexed="true" stored="true" multiValued="true"/>
+<field name="for_code_six" type="string" indexed="true" stored="true" multiValued="true"/><field name="for_value_two" type="string" indexed="true" stored="true" multiValued="true"/>
+<field name="for_value_four" type="string" indexed="true" stored="true" multiValued="true"/><field name="for_value_six" type="string" indexed="true" stored="true" multiValued="true"/>
+<!--TERN Regions Field -->
+<field name="tern_region" type="string" indexed="true" stored="true" multiValued="true"/>
+
 
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
@@ -557,9 +564,9 @@
    <!-- Uncommenting the following will create a "timestamp" field using
         a default value of "NOW" to indicate when each document was indexed.
      -->
-   <!--
+   
    <field name="timestamp" type="date" indexed="true" stored="true" default="NOW" multiValued="false"/>
-     -->
+     
    
    <!-- Dynamic field definitions.  If a field name is not found, dynamicFields
         will be used if the name matches any of the patterns.
