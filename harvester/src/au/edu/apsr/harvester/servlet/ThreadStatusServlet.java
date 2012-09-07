@@ -136,14 +136,7 @@ public class ThreadStatusServlet extends HttpServlet
             map.put("responsetargeturl", harvest.getResponseTargetURL());
             map.put("method", harvest.getMethod());
             map.put("mode", harvest.getMode());
-<<<<<<< HEAD
-<<<<<<< HEAD
             map.put("advancedharvestingmode",harvest.getAHM());
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-            map.put("advancedharvestingmode",harvest.getAHM());
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
             
             if (harvest.getStatusAsString().equals(Constants.STATUS_SCHEDULED_STRING))
             {

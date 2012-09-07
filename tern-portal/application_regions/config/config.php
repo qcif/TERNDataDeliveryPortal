@@ -32,7 +32,7 @@ $config['solr_url'] = SOLR_URL;
 $config['solr_host'] = 'localhost';
 $config['solr_port'] = '8080';
 $config['solr_instance'] = 'orca-solr';
-
+$config['log_path']= '/var/www/tern/tern-portal/applicaiton_regions/logs/';
 /*
  * Default Values
  * Used in the helper to return the real URLs

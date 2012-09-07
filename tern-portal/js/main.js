@@ -1043,14 +1043,17 @@ $(function() {
     function handleRecordPopup(e){
     
     var rokey=e.attr('id');
-     $("#loading").show();                      
+     //$("#loading").show();        
+     window.open(base_url+"/view/dataview/?key="+rokey);
+     window.focus();
+/*     
     $.ajax({
         type:"POST",
         url:base_url+"/view/?key="+rokey,
                     
                     
         success:function(html){
-            $("#record-popup").html(html);
+            $("#record-popup").html(html);           
             handlerecordpopupSlide();
             initConnectionsBox()
             initSubjectsSEEALSO()
@@ -1066,6 +1069,7 @@ $(function() {
         
                     
     }); 
+ */
      
 } 
 

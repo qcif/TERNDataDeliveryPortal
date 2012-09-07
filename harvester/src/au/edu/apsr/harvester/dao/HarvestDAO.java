@@ -57,18 +57,8 @@ public class HarvestDAO
     protected static final String CREATE_HARVEST_SQL =
         "INSERT INTO harvest(harvest_id, provider_id, response_url, " +
         "method, mode, date_started, date_completed, resumption_token, " +
-<<<<<<< HEAD
-<<<<<<< HEAD
         "status, date_from, date_until, metadata_prefix, set, advanced_harvesting_mode)" +
         " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-=======
-        "status, date_from, date_until, metadata_prefix, set)" +
-        " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-        "status, date_from, date_until, metadata_prefix, set, advanced_harvesting_mode)" +
-        " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
     
     protected static final String SELECT_PROVIDER_SQL =
         "SELECT * FROM provider WHERE source_url = ?";
@@ -81,15 +71,7 @@ public class HarvestDAO
         "harvest.harvest_id, harvest.status, harvest.response_url, " +
         "harvest.method, harvest.mode, harvest.date_started, " +
         "harvest.date_completed, harvest.resumption_token, harvest.date_from, " + 
-<<<<<<< HEAD
-<<<<<<< HEAD
         "harvest.date_until, harvest.advanced_harvesting_mode, harvest.metadata_prefix, provider.provider_id, " +
-=======
-        "harvest.date_until, harvest.metadata_prefix, provider.provider_id, " +
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-        "harvest.date_until, harvest.advanced_harvesting_mode, harvest.metadata_prefix, provider.provider_id, " +
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         "harvest.set, schedule.last_run, schedule.next_run, schedule.frequency " + 
         "FROM provider, harvest, schedule " +
         "WHERE provider.provider_id=harvest.provider_id " +
@@ -100,15 +82,7 @@ public class HarvestDAO
         "harvest.harvest_id, harvest.status, harvest.response_url, " +
         "harvest.method, harvest.mode, harvest.date_started, " +
         "harvest.date_completed, harvest.resumption_token, harvest.date_from, " +
-<<<<<<< HEAD
-<<<<<<< HEAD
         "harvest.date_until, harvest.advanced_harvesting_mode, harvest.metadata_prefix, provider.provider_id, " +
-=======
-        "harvest.date_until, harvest.metadata_prefix, provider.provider_id, " +
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-        "harvest.date_until, harvest.advanced_harvesting_mode, harvest.metadata_prefix, provider.provider_id, " +
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
         "harvest.set, schedule.last_run, schedule.next_run, schedule.frequency " + 
         "FROM provider, harvest, schedule " +
         "WHERE provider.provider_id=harvest.provider_id " +
@@ -256,14 +230,7 @@ public class HarvestDAO
             ps.setString(11, harvest.getUntil());
             ps.setString(12, harvest.getMetadataPrefix());
             ps.setString(13, harvest.getSet());
-<<<<<<< HEAD
-<<<<<<< HEAD
             ps.setString(14, harvest.getAHM());
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-            ps.setString(14, harvest.getAHM());
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
             ps.executeUpdate();
             ps.close();
             ps = null;
@@ -501,14 +468,7 @@ public class HarvestDAO
                 h.setUntil(rs.getString("date_until"));
                 h.setMetadataPrefix(rs.getString("metadata_prefix"));
                 h.setSet(rs.getString("set"));
-<<<<<<< HEAD
-<<<<<<< HEAD
                 h.setAHM(rs.getString("advanced_harvesting_mode"));
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-                h.setAHM(rs.getString("advanced_harvesting_mode"));
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
                 h.setProviderID();
                 if (rs.getTimestamp("last_run") != null)
                 {
@@ -690,14 +650,7 @@ public class HarvestDAO
                 h.setUntil(rs.getString("date_until"));
                 h.setMetadataPrefix(rs.getString("metadata_prefix"));
                 h.setSet(rs.getString("set"));
-<<<<<<< HEAD
-<<<<<<< HEAD
                 h.setAHM(rs.getString("advanced_harvesting_mode"));
-=======
->>>>>>> c158020c71cc71c72f7d4e30b4e14c2edb498794
-=======
-                h.setAHM(rs.getString("advanced_harvesting_mode"));
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
                 h.setProviderID();
                 if (rs.getTimestamp("last_run") != null)
                 {

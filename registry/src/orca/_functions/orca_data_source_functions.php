@@ -638,12 +638,15 @@ return $transformResult;
 
 function transformToSolr($registryObjectsXML)
 {
-    
-global $extRif2solrProc;
-$registryObjects = new DomDocument();
-$registryObjects->loadXML($registryObjectsXML);
-$transformResult = $extRif2solrProc->transformToXML($registryObjects);	
-return $transformResult;
+global $extRif2solrProc;	
+$registryObjects = new DomDocument();	
+$registryObjects->loadXML($registryObjectsXML);	
+$transformResult = $extRif2solrProc->transformToXML($registryObjects);		
+
+$result=replaceCodeWithStringValue($transformResult);
+
+//return $transformResult;
+return $result;
 
 } 
 
