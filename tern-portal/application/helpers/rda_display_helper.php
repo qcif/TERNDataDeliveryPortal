@@ -114,12 +114,13 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
                         }
                 }
                
-                 echo '</ul>';
-                  echo '</div>';
-               
-            }
+                if($firstRun==false) {
+                    echo '</ul>';
+                   echo '</div>';
+                }
+             }
           
- //            echo '</div>';
+           echo '</div>';
          
         }
 }
