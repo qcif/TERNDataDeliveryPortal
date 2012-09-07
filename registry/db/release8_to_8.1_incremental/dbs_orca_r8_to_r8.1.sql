@@ -6,10 +6,6 @@ ALTER TABLE dba.tbl_data_sources ADD COLUMN address_line_2 character varying(128
 ALTER TABLE dba.tbl_data_sources ADD COLUMN city character varying(32);
 ALTER TABLE dba.tbl_data_sources ADD COLUMN state character varying(32);
 
-<<<<<<< HEAD
 
 ALTER TABLE public.harvest ADD COLUMN advanced_harvesting_mode CHARACTER VARYING(512) DEFAULT 'STANDARD';
-=======
-#HARVESTER TABLE
-ALTER TABLE public.harvest ADD COLUMN advanced_harvesting_mode CHARACTER VARYING(512) DEFAULT 'STANDARD';
->>>>>>> ef76189ad3c78fcd6a06e682eda24debb302212f
+
