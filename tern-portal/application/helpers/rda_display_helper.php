@@ -119,7 +119,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
                
             }
           
-             echo '</div>';
+ //            echo '</div>';
          
         }
 }
