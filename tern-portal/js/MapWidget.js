@@ -239,6 +239,7 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
                             event.text,
                             null,
                             true
+                      
                         );
                     popup.maxSize = new OpenLayers.Size(400,200);
                     this.map.addPopup(popup);
@@ -804,8 +805,8 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
                 self.onFeatureSelect(e,this.map,self);
             },
             onUnselect: function(e) { 
-                this.map.removePopup(e.popup);
-                self.onFeatureUnselect(e,this.map);
+               // this.map.removePopup(e.popup);
+                //self.onFeatureUnselect(e,this.map);
                            
             }, 
             hover:true
@@ -964,9 +965,11 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
     selectedFeature = feature; 
     if(!feature.cluster){
         popup = new OpenLayers.Popup.Anchored("chicken",
-        feature.geometry.getBounds().getCenterLonLat(),
-        null, feature.data.popupHTML, null, true, function(){
-            mapWidgetObj.onPopupClose(mapWidgetObj);
+            feature.geometry.getBounds().getCenterLonLat(),
+            null, feature.data.popupHTML, null, true, function(){
+                   
+                    mapWidgetObj.onPopupClose(this,mapWidgetObj);
+                    
         });
         popup.maxSize = new OpenLayers.Size(430,150);
         popup.panMapIfOutOfView = true;
@@ -974,13 +977,15 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
       
     }else{
         var html = '';
+        popup = null;
+       
         $.each(feature.cluster,function(){
             html = html + "<strong>" + this.data.number + ". " +  this.data.title  + "</strong><br/>";
         });
         popup = new OpenLayers.Popup.Anchored("chicken",
         feature.geometry.getBounds().getCenterLonLat(),
-        null, html, null, true, function(){
-            mapWidgetObj.onPopupClose(mapWidgetObj);
+        null, html, null, true, function(){             
+                    mapWidgetObj.onPopupClose(this,mapWidgetObj);
         });
         popup.maxSize = new OpenLayers.Size(440,180);
         popup.panMapIfOutOfView = true;
@@ -991,8 +996,9 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
             
 }
 
-MapWidget.prototype.onPopupClose = function(mapWidgetObj){
-    mapWidgetObj.selectControl.unselectAll();
+MapWidget.prototype.onPopupClose = function(popup,mapWidgetObj){
+   popup.destroy();
+   mapWidgetObj.selectControl.unselectAll();
 }
 
 MapWidget.prototype.onFeatureUnselect = function(feature,map){
