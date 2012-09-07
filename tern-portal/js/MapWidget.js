@@ -963,42 +963,43 @@ MapWidget.prototype.updateDrawing = function(map,coordStr){
  */
 MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
     selectedFeature = feature; 
+    if(this.popup!=null) this.onPopupClose(this.popup,mapWidgetObj);
     if(!feature.cluster){
-        popup = new OpenLayers.Popup.Anchored("chicken",
+        this.popup = new OpenLayers.Popup.FramedCloud("chicken",
             feature.geometry.getBounds().getCenterLonLat(),
             null, feature.data.popupHTML, null, true, function(){
                    
                     mapWidgetObj.onPopupClose(this,mapWidgetObj);
                     
         });
-        popup.maxSize = new OpenLayers.Size(430,150);
-        popup.panMapIfOutOfView = true;
-        popup.autoSize = true;
+        this.popup.maxSize = new OpenLayers.Size(430,150);
+        this.popup.panMapIfOutOfView = true;
+        this.popup.autoSize = true;
       
     }else{
         var html = '';
-        popup = null;
-       
+    
         $.each(feature.cluster,function(){
             html = html + "<strong>" + this.data.number + ". " +  this.data.title  + "</strong><br/>";
         });
-        popup = new OpenLayers.Popup.Anchored("chicken",
-        feature.geometry.getBounds().getCenterLonLat(),
-        null, html, null, true, function(){             
+        this.popup = new OpenLayers.Popup.FramedCloud("chicken",
+                    feature.geometry.getBounds().getCenterLonLat(),
+                    null, html, null, true, function(){             
                     mapWidgetObj.onPopupClose(this,mapWidgetObj);
         });
-        popup.maxSize = new OpenLayers.Size(440,180);
-        popup.panMapIfOutOfView = true;
-        popup.autoSize = true;
+        this.popup.maxSize = new OpenLayers.Size(440,180);
+        this.popup.panMapIfOutOfView = true;
+        this.popup.autoSize = true;
     }
-    feature.popup = popup;   
+    feature.popup = this.popup;   
     map.addPopup(feature.popup);     
             
 }
 
 MapWidget.prototype.onPopupClose = function(popup,mapWidgetObj){
    popup.destroy();
-   mapWidgetObj.selectControl.unselectAll();
+   mapWidgetObj.selectControl.unselectAll();  
+   this.popup = null;
 }
 
 MapWidget.prototype.onFeatureUnselect = function(feature,map){

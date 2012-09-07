@@ -133,7 +133,7 @@ define('HOST', $host);
 define('ORCA_ROOT', $orca_root);
 define('SOLR_URL', $solr_url);
 define('REGIONS_URL', $host .$rda_root .'/regions');
-
+define('REGIONS_CONFIG_PATH', 'api/regions.json');
 /*
  * ---------------------------------------------------------------
  *  Resolve the system path for increased reliability

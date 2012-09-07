@@ -493,9 +493,7 @@ div#panel_advSearch .ui-widget-header{
 .olPopupCloseBox {
     background: url("/img/delete.png") no-repeat scroll 0 0 transparent !important;
 }
-.olPopup{
-    border: 1px solid #AAAAAA ! important;
-}
+
 
 span.read-more { cursor: pointer; color: #376500; text-decoration:underline}
 span.read-less { cursor: pointer; color: #376500; text-decoration:underline; display:none;}

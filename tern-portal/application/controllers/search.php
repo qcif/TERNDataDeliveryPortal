@@ -577,9 +577,9 @@ class Search extends CI_Controller
         $data['alltab'] = $alltab;
         $data['spatial_included_ids'] = $spatial_included_ids;
         $data['temporal'] = $temporal;
-
+ 
         // get Regions  File
-         $regions = json_decode(file_get_contents('http://' . HOST.  '/api/regions.json', TRUE));
+         $regions = json_decode(file_get_contents( REGIONS_CONFIG_PATH, TRUE));
          $regions = $regions->layers;
          for($i=0;$i<count($regions);$i++){                  
               $regionsName[$regions[$i]->l_id] =  json_decode(file_get_contents('http://' . REGIONS_URL . '/r/getList/' . $regions[$i]->l_id));  
