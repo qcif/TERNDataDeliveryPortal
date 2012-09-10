@@ -167,7 +167,7 @@ function displaySelectedRegionFacet($facet_name, $facetFilter, $json,$regionsNam
                               if($regionsList[$k]->r_id == $r_id){
                                     echo '<li class="limit">
                             <a href="javascript:void(0);"                                                        
-                                    class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .' ('.number_format($object_type[$idx+1]).')'.'</a></li>';
+                                    class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$regionsList['l_name'] . ": ".$regionsList[$k]->r_name .' ('.number_format($object_type[$idx+1]).')'.'</a></li>';
                             break;
                             }
                         }

@@ -122,6 +122,7 @@ $(function() {
                     break;
                 case 'ternRegion':
                     ternRegionFilter = value;
+                    disableToolbarClick();
                     break;
                 case 'n':
                     n=value;
@@ -240,6 +241,7 @@ $(function() {
             temporal = 'All';
         }else if($(this).hasClass('clearTernRegion')){
             ternRegionFilter = 'All';
+            enableToolbarClick(mapResult);
         }else if($(this).hasClass('clearSpatial')){
             n = '';
             e = '';
@@ -432,9 +434,10 @@ $(function() {
             afterDraw: updateCoordinates
         });
 
-        //enable clicking button controllers
-        enableToolbarClick(mapWidget);
-
+        if(ternRegionFilter=="All"){
+            //enable clicking button controllers
+            enableToolbarClick(mapWidget);
+        }
         //changing coordinates on textbox should change the map appearance
         enableCoordsChange(mapWidget);  
 
@@ -1043,17 +1046,14 @@ $(function() {
     function handleRecordPopup(e){
     
     var rokey=e.attr('id');
-     //$("#loading").show();        
-     window.open(base_url+"/view/dataview/?key="+rokey);
-     window.focus();
-/*     
+     $("#loading").show();                      
     $.ajax({
         type:"POST",
         url:base_url+"/view/?key="+rokey,
                     
                     
         success:function(html){
-            $("#record-popup").html(html);           
+            $("#record-popup").html(html);
             handlerecordpopupSlide();
             initConnectionsBox()
             initSubjectsSEEALSO()
@@ -1069,7 +1069,6 @@ $(function() {
         
                     
     }); 
- */
      
 } 
 

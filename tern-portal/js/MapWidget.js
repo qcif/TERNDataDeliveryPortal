@@ -969,7 +969,7 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
         this.popup = new OpenLayers.Popup.FramedCloud("chicken",
             feature.geometry.getBounds().getCenterLonLat(),
             null, feature.data.popupHTML, null, true, function(){
-                   
+                  
                     mapWidgetObj.onPopupClose(this,mapWidgetObj);
                     
         });
@@ -1051,6 +1051,7 @@ function getStyle(styleName){
                     pointRadius: "${radius}", 
                     externalGraphic: '/img/markerblue_large.png', 
                     fillColor: '${bgcolor}', 
+                    fontColor: "#000000",
                     fillOpacity: '0.9', 
                     strokeColor: '#000000', 
                     strokeWidth: '1',
@@ -1064,7 +1065,9 @@ function getStyle(styleName){
                
                 styleSelected = {
                     fillColor: '#ff0000', 
-                    strokeColor: '#000000'
+                    strokeColor: '#000000',
+                    fontColor: "#FFFFFF",
+                    fontWeight: "Bold"
                 }      
                   
                 context =  {
@@ -1176,13 +1179,23 @@ function enableCoordsChange(map){
 }
 
 /*  ------------------------------------------------------------  
+ *    Unbind click to toolbar "panel" buttons div 
+ *
+ *  ------------------------------------------------------------
+ */
+function disableToolbarClick(map){
+    $("#panel div").each(function(){
+        $(this).unbind('click');
+    });
+}
+/*  ------------------------------------------------------------  
  *    Bind click to toolbar "panel" buttons div 
  *
  *  ------------------------------------------------------------
  */
 function enableToolbarClick(map){
     $("#panel div").each(function(){
-        $(this).click(function(){
+        $(this).click(function(){            
             map.toggleControl(this);
         });
     });
