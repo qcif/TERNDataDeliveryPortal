@@ -448,7 +448,8 @@ $(function() {
         $("#mapViewSelector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
         });
-
+        $("#map-toolbar .tooltip").tipsy();
+        
         return mapWidget;
     }
 

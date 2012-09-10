@@ -63,11 +63,10 @@ class Search extends CI_Controller
 		$data['user_agent']=$this->agent->browser();
                 
                 //get Map widget
-                $data['widget_spatial'] = 1;
+                $this->lang->load('tooltipMap');
                 $data['widget_map'] = 1;
                 $data['widget_map_drawtoolbar'] = 1;
-                $data['widget_map_coords'] = 1;
-                
+      
                 $this->load->model('Solr');
                 $data['json'] = $this->Solr->getTERNPartners();
 
