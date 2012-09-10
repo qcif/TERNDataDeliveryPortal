@@ -801,7 +801,8 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
     if(clickInfo){
         this.selectControl = new OpenLayers.Control.SelectFeature(this.dataLayer,
         {
-            onSelect: function(e) {                          
+            onSelect: function(e) {   
+                pausecomp(800);
                 self.onFeatureSelect(e,this.map,self);
             },
             onUnselect: function(e) { 
@@ -1002,11 +1003,6 @@ MapWidget.prototype.onPopupClose = function(popup,mapWidgetObj){
    this.popup = null;
 }
 
-MapWidget.prototype.onFeatureUnselect = function(feature,map){
-    map.removePopup(feature.popup);
-    feature.popup.destroy();
-    feature.popup=null;    
-}
 
     
 /*  ------------------------------------------------------------  
@@ -1053,11 +1049,16 @@ function getStyle(styleName){
         case "default" : {
                 style = {
                     pointRadius: "${radius}", 
+                    externalGraphic: '/img/markerblue_large.png', 
                     fillColor: '${bgcolor}', 
-                    fillOpacity: '0.7', 
+                    fillOpacity: '0.9', 
                     strokeColor: '#000000', 
                     strokeWidth: '1',
+                    graphicYOffset: -30,
                     label: "${count}",
+                    fontWeight: "Bold",
+                    labelAlign: 'cb',
+                    labelYOffset: 14,
                     labelSelect: true   
                 };
                
@@ -1075,11 +1076,12 @@ function getStyle(styleName){
                         }
                     },
                     radius: function(feature){
-                        if(feature.attributes.count > 1) {
-                            return Math.min(feature.attributes.count,9) + 9;
+                      /*  if(feature.attributes.count > 1) {
+                            return Math.min(feature.attributes.count,9) + 12;
                         }else{
-                            return 9;
-                        }
+                            return 17;
+                        }*/
+                        return 20;
                     },
                     count: function(feature){
                         if(feature.attributes.count > 1) {
@@ -1289,3 +1291,9 @@ function get_wms_url(bounds) {
 
     return url;
 }
+
+
+function pausecomp(ms) {
+ms += new Date().getTime();
+while (new Date() < ms){}
+} 
