@@ -749,3 +749,9 @@ div.left:active{background-position:-60px 0;}
 a.disabled{
     color: #aaa;
 }
+
+
+table{
+border-collapse:collapse;
+}
+
