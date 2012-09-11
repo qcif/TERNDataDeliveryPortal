@@ -843,6 +843,30 @@ $(function() {
         
             success: function(msg,textStatus){
                 handleResults(msg,mapResult);
+                
+$("tr[id=re-hide]").hide();
+
+    $("table").click(function(event) {
+        event.stopPropagation();
+        var $target = $(event.target);
+        if ( $target.closest("td").attr("id")=="desc" ) {
+            $target.closest("tr").slideUp();
+
+        } else if($target.closest("td").attr("id")!="metabutton") { 
+            $target.closest("tr").next().slideToggle();           
+        } else if ($target.attr("class")!="viewmeta")
+        {
+            $target.closest("tr").slideToggle();  
+        }
+    }); 
+ 
+        $('.viewmeta').click(function(){
+                var url=$(this).attr("id");
+                window.open(url,'_blank');
+                window.focus();
+
+        }); 
+    
                  $("#loading").hide();
                  
                  var opt=document.getElementById('viewrecord');
