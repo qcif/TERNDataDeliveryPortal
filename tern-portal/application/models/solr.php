@@ -91,7 +91,7 @@
         
 //        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&f.subject_value.facet.mincount=1&facet.sort=count';
  
-        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value_resolved.facet.mincount=1&facet.sort=count&facet.field=tern_region&f.tern_region.facet.mincount=1&f.tern_region.facet.sort=index';
+        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&f.subject_value_resolved.facet.mincount=1&facet.sort=count&facet.field=tern_region&f.tern_region.facet.mincount=1&facet.limit=-1';
 
         /* prep */
         $fields_string = '';
@@ -115,7 +115,7 @@
         //echo 'json received+<pre>'.$content.'</pre>'; 
         curl_close($ch); //close the curl
 
- 
+  
         if ($write_type == 'json')
         {
 

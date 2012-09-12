@@ -838,17 +838,21 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
         if(clickInfo){
             var html ='';
             var title = '';
-            var desc = trimwords($(this).parent().children('p').html(),50);
-            if(desc.length>0)
-            {
+            //var desc = trimwords($(this).parent().children('p:nth-child(2)').html(),50);
+            //if(desc.length>0)
+            //{ 
                                         
-                if (desc.length <  $(this).parent().children('p').html().length) desc += "...";
-                var link = $(this).parent().children('h2').children('a').clone().attr('onClick','handleRecordPopup($(this));');
-                title = $('<div>').append(link).html();
-                html  = "<strong>" + $(this).parent().children('h2').children('span.count').html() + title   + "</strong><p>" + desc + "</p>";
+             //   if (desc.length <  $(this).parent().children('p:nth-child(2)').html().length) desc += "...";
+                var link =$(this).parent().parent().children('#metabutton').children('button').clone().attr('id');
+                title = "<a href=" + link + " target=\"new\">" + $(this).parent().parent().parent().children('tr').children('td:nth-child(2)').children('h2').html()  + "</a>"  ;
+                var date = $(this).parent().parent().parent().children('tr').children('td:nth-child(3)').children('p').html();
+                var button =  $("<p>").append($(this).parent().parent().children('#metabutton').children('button').clone().attr('onClick','handleViewMeta(\''  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + '\');')).html();
+             //   button = button.attr('onClick','handleViewMeta('  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + ');');
+                number = $(this).parent().parent().parent().children('tr').children('td:nth-child(1)').children('h2').html();
+                html  = "<strong>" + number +  ". <a href=" + link + " target=\"new\">" + title + "</a>"  + "</strong> <br/> " + date  + "&nbsp; "+ button;;
                     
-                number = $(this).parent().children('h2').children('span.count').html().replace(".",""); 
-            }
+             
+           // }
              
         }else {
             number = ''

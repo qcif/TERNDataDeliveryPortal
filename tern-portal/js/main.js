@@ -444,7 +444,7 @@ $(function() {
         $("#latlong").bind('click',function() {
                 $("#coords").toggle(); 
         });
-
+         $("#mapViewSelector a").button();
         $("#mapViewSelector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
         });
@@ -860,10 +860,9 @@ $("tr[id=re-hide]").hide();
         }
     }); 
  
-        $('.viewmeta').click(function(){
+        $('.viewmeta').live("click",function(){
                 var url=$(this).attr("id");
-                window.open(url,'_blank');
-                window.focus();
+                handleViewMeta(url);
 
         }); 
     
@@ -1068,32 +1067,9 @@ $("tr[id=re-hide]").hide();
 
 }
 
-    function handleRecordPopup(e){
-    
-    var rokey=e.attr('id');
-     $("#loading").show();                      
-    $.ajax({
-        type:"POST",
-        url:base_url+"/view/?key="+rokey,
-                    
-                    
-        success:function(html){
-            $("#record-popup").html(html);
-            handlerecordpopupSlide();
-            initConnectionsBox()
-            initSubjectsSEEALSO()
-            $("#record-popup").dialog('option',{zIndex: 9988});
-            $("#record-popup").dialog('open');
-                        
-            initViewMap('spatial_coverage_map','#record-popup .spatial_coverage_center','#record-popup .coverage');
-            $("#loading").hide();
-        },
-        error:function(html){
-             $("#loading").hide();
-        }
-        
-                    
-    }); 
+    function handleViewMeta(link){           
+            window.open(link,'_blank');
+            window.focus();
      
 } 
 

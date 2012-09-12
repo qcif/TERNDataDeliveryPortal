@@ -62,6 +62,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 
 	//displayFacet('subject_value', $subjectFilter, $json, $classFilter);
         displayFacet('subject_value_resolved', $subjectFilter, $json, $classFilter);
+
         displayRegionFacet('tern_region', $ternRegionFilter, $json, $ternRegionFilter,$regionsName);
        
         displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$json, $classFilter, $this);      

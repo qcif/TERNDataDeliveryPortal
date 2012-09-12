@@ -84,12 +84,10 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
             echo '<h5 ><a href="#">'.$name;
             echo '</a></h5>';
             echo '<div  id="facet-region" class="facet-list facet-content">';
- 
-          
+            
            foreach($regionsName as $key=>$regionsList){
                $firstRun=true;
-              
-               for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
+              for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
                         if($object_type[$i+1]>0 && (strpos($object_type[$i],$key)!==false)){   
                             if($firstRun){
                                  echo '<h6 ><a href="#">'.$regionsList['l_name'];
@@ -105,7 +103,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
                                                echo '<li class="limit">
                                                 <a href="javascript:void(0);"                                                        
                                                         class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .' ('.number_format($object_type[$i+1]).')'.'</a></li>';
-                                               break;
+                                              
                                            }
                                            
                                        }
