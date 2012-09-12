@@ -445,6 +445,7 @@ $(function() {
                 $("#coords").toggle(); 
         });
          $("#mapViewSelector a").button();
+         $("#mapHelp a").button();
         $("#mapViewSelector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
         });
@@ -508,10 +509,10 @@ $(function() {
         }
       
         
-         mapResult = initMap();
+        mapResult = initMap();
         initPlaceName('geocode',mapResult);
         
-         $("input[value='Update']").bind('click',function(){
+        $("input[value='Update']").bind('click',function(){
       //  var geometry = mapWidget.getFeatureCoordinates();
          //update spatial coordinates from textboxes
                 var nl=document.getElementById("spatial-north");
@@ -523,11 +524,11 @@ $(function() {
                 s=sl.value;
                 e=el.value;
                 w=wl.value;  
-                
-                spatial_included_ids=''; 
+                changeHashTo(formatSearch(search_term, 1, classFilter));
+               /* spatial_included_ids=''; 
                 if(n!=''){
                       doSpatialSearch();
-                }
+                }*/
           });
       
         //Reset Button 

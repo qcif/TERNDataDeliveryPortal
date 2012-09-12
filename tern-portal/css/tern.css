@@ -755,3 +755,12 @@ table{
 border-collapse:collapse;
 }
 
+.mapMarker{
+    background: url('/img/markerblue_large.png');
+    height: 31px;
+    width: 21px;
+    text-align: center;
+    font-size: 11px;
+    padding-top: 3px;
+    
+}

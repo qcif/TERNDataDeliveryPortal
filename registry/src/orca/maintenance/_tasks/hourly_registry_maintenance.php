@@ -23,7 +23,7 @@ function task_hourly_registry_maintenance($task)
 	 * Check for null data sources (XXX: slugs, ro hashes)
 	 */
 	$dataSources = getDataSources(null,null);
-	foreach ($dataSources AS $ds)
+        foreach ($dataSources AS $ds)
 	{
 		if ($ds['key_hash'] == "")
 		{

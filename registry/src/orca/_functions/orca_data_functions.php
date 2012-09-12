@@ -2755,8 +2755,7 @@ function getDataSourceHash($data_source_key)
 	$strQuery = 'SELECT key_hash FROM dba.tbl_data_sources WHERE data_source_key = $1';
 	$params = array($data_source_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
-
-	if (!isset($resultSet[0]))
+        if (!isset($resultSet[0]))
 		return false;
 	else
 		return $resultSet[0]['key_hash'];

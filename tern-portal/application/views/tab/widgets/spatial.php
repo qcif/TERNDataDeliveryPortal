@@ -1,17 +1,4 @@
-<style type="text/css">
-             #regionSelect{
-                width: 400px;
-                float: left;
-               
-            }
-            #left{
-                height: 400px;
-             
-            }
-            #regionSelect ul{
-                list-style: none;
-                padding:0; 
-            }
+<style type="text/css">                      
             #spatialmap { height: 500px !important; width: 700px !important;}
             
             .olControlDrawFeatureBoxItemActive {
@@ -25,8 +12,7 @@
             }            
             .olControlDrawFeaturePolyItemActive {
              background-position: -25px -24px;
-            }
-            
+            }            
             .olControlEditingToolbar div{
                 float:left !important;      
             }
@@ -39,10 +25,10 @@
             }
             .olControlDragFeatureItemInactive {
                  background-image: url("/img/editing_tool_bar.png");
-            background-position: -103px -1px;
-             height:22px;
-            width: 24px;
-            margin: 5px 0 5px 5px;
+                background-position: -103px -1px;
+                height:22px;
+                width: 24px;
+                margin: 5px 0 5px 5px;
             }
              .olControlDeleteFeatureBoxItemActive {
             background-position: -203px -24px;
@@ -56,18 +42,19 @@
             .olControlDrawFeatureActive{
                 cursor: pointer;
             }
-            #advance-spatial { 
-                width: 430px;
-            }
+           
             #map-toolbar{
                 font-size:10px;
                 text-align:center;
             }
             .left{
                 float:left;
+            }            
+            .margin8{
+                margin-right: 8px;
             }
-            .margin10{
-                margin-right: 10px;
+            .topmargin5{
+                margin-top:5px;
             }
             #coords{
                 position:absolute;
@@ -76,16 +63,16 @@
             }
             .toolbartitle{
                 font-weight:bold;
-                font-size: 12px;
+                font-size: 11px;
             }
 </style>
 <div id="ui-layout-facetmap"> 
     <?php if($widget_map_drawtoolbar){ ?> 
                             <div id="map-toolbar" class="ui-widget-header clearfix "> 
-                                <div class="left margin10"> <span class="toolbartitle">Pan</span> <br/><div  id="drag" class="olControlDragFeatureItemActive tooltip" title="<?php echo $this->lang->line('map_pan'); ?>"></div></div>
-                                <div class="left margin10"> <span class="toolbartitle">Coordinates</span> <br/> <a href="#" class="tooltip" id="latlong" title="<?php echo $this->lang->line('map_coords'); ?>">Longitude<br/> & Latitude</a>
+                                <div class="left margin8"> <span class="toolbartitle">Pan</span> <br/><div  id="drag" class="olControlDragFeatureItemActive tooltip" title="<?php echo $this->lang->line('map_pan'); ?>"></div></div>
+                                <div class="left margin8"> <span class="toolbartitle">Coordinates</span> <br/> <a href="#" class="tooltip topmargin5" id="latlong" title="<?php echo $this->lang->line('map_coords'); ?>">Longitude<br/> & Latitude</a>
                                     </div>
-                                <div class="left margin10"> <span class="toolbartitle">Draw and Update</span><br/>      <div id="panel" class="olControlEditingToolbar">
+                                <div class="left margin8"> <span class="toolbartitle">Draw and Update</span><br/>      <div id="panel" class="olControlEditingToolbar">
                                         
                                             <div  id="box" class="olControlDrawFeatureBoxItemInactive tooltip" title="<?php echo $this->lang->line('map_box'); ?>"></div>
                                             <!--div  id="poly" class="olControlDrawFeaturePolyItemInactive" title="To move the region: Click and drag the box around the map"></div-->
@@ -94,9 +81,9 @@
                                       
                                     </div>
                                 </div>
-                                <div class="left margin10"> <span class="toolbartitle">Place Name</span> <br/> <input id="geocode"  class="tooltip" type="text" size="30" title="<?php echo $this->lang->line('map_placename'); ?>"/></div>
-                                <div class="left margin10" id="mapViewSelector"> <span class="toolbartitle">Map view</span> <br/> <a href="#" id="gmap" class="tooltip" title="<?php echo $this->lang->line('map_mapview'); ?>">Map</a><a href="#" id="ghyb" class="tooltip" title="<?php echo $this->lang->line('map_mapview'); ?>" title="<?php echo $this->lang->line('map_mapview'); ?>">Hybrid</a><a href="#" id="gsat" title="<?php echo $this->lang->line('map_mapview'); ?>" class="tooltip">Satellite</a><a href="#" id="gphy" title="<?php echo $this->lang->line('map_mapview'); ?>" class="tooltip">Terrain</a></div>
-                                <div class="left margin10" > <span class="toolbartitle">Help</span><br/><span class="tooltip" title="<?php echo $this->lang->line('map_help'); ?>">?</span></div>
+                                <div class="left margin8"> <span class="toolbartitle">Place Name</span> <br/> <input id="geocode"  class="tooltip topmargin5" type="text" size="30" title="<?php echo $this->lang->line('map_placename'); ?>"/></div>
+                                <div class="left margin8" id="mapViewSelector"> <span class="toolbartitle">Map view</span> <br/> <a href="#" id="gmap" class="tooltip topmargin5" title="<?php echo $this->lang->line('map_mapview'); ?>">Map</a><a href="#" id="ghyb" class="tooltip topmargin5" title="<?php echo $this->lang->line('map_mapview'); ?>" title="<?php echo $this->lang->line('map_mapview'); ?>">Hybrid</a><a href="#" id="gsat" title="<?php echo $this->lang->line('map_mapview'); ?>" class="tooltip topmargin5">Satellite</a><a href="#" id="gphy" title="<?php echo $this->lang->line('map_mapview'); ?>" class="tooltip topmargin5">Terrain</a></div>
+                                <div class="left margin8" id="mapHelp" > <span class="toolbartitle" >Help</span><br/><a class="tooltip topmargin5" title="<?php echo $this->lang->line('map_help'); ?>">?</a></div> 
                                     </div> 
       <?php } ?>
                             <div id="coords" class="padding5 hide ui-widget-header" >
