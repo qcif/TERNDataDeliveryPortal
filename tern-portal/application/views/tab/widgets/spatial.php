@@ -112,5 +112,6 @@
                                 </div>    
                             <div id="spatialmap" class=""></div>
                         
-              
+                            
                  </div>
+<div id="mapHelpText" title="<?php echo $this->lang->line('map_helptitle');?>" class="hide" ><?php echo $this->lang->line('map_helptext');?></div>

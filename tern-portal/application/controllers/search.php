@@ -64,6 +64,7 @@ class Search extends CI_Controller
                 
                 //get Map widget
                 $this->lang->load('tooltipMap');
+                $this->lang->load('helpMap'); 
                 $data['widget_map'] = 1;
                 $data['widget_map_drawtoolbar'] = 1;
       

@@ -445,7 +445,9 @@ $(function() {
                 $("#coords").toggle(); 
         });
          $("#mapViewSelector a").button();
-         $("#mapHelp a").button();
+         //  $("#mapHelpText").dialog('option',{zIndex: 9988});
+         $("#mapHelp a").click(function(){ $("#mapHelpText").dialog(); }).button();
+        
         $("#mapViewSelector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
         });

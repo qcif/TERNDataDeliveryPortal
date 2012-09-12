@@ -23,7 +23,7 @@ class Home extends CI_Controller {
 
                  $this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();
-            
+            /*
                 if ($this->agent->is_mobile()){
                 
                    if($this->input->get('theme') == 'web'){
@@ -42,7 +42,7 @@ class Home extends CI_Controller {
 
 
 
-                }
+                }*/
                 $this->load->model('Registryobjects');
                 $query = $this->Registryobjects->get_min_year();
                 if($query) $row = $query->row();
