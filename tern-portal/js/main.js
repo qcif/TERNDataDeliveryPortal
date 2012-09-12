@@ -444,9 +444,12 @@ $(function() {
         $("#latlong").bind('click',function() {
                 $("#coords").toggle(); 
         });
+        $("#mapHelpText").dialog({autoOpen:false});
          $("#mapViewSelector a").button();
-         //  $("#mapHelpText").dialog('option',{zIndex: 9988});
-         $("#mapHelp a").click(function(){ $("#mapHelpText").dialog(); }).button();
+          $("#mapHelp a").click(function(){
+             $("#mapHelpText").dialog('open');
+             return false;
+         }).button();
         
         $("#mapViewSelector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
@@ -863,7 +866,7 @@ $("tr[id=re-hide]").hide();
         }
     }); 
  
-        $('.viewmeta').live("click",function(){
+        $('.viewmeta').click(function(){
                 var url=$(this).attr("id");
                 handleViewMeta(url);
 
