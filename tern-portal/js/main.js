@@ -441,8 +441,13 @@ $(function() {
         $("#latlong").bind('click',function() {
                 $("#coords").toggle(); 
         });
+        $("#mapHelpText").dialog({autoOpen:false});
          $("#mapViewSelector a").button();
-         $("#mapHelp a").button();
+          $("#mapHelp a").click(function(){
+             $("#mapHelpText").dialog('open');
+             return false;
+         }).button();
+        
         $("#mapViewSelector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
         });
