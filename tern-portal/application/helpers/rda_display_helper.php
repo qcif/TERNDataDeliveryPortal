@@ -179,7 +179,7 @@ function displaySelectedRegionFacet($facet_name, $facetFilter, $json,$regionsNam
  * Used in facet view
  */ 
 function displaySelectedFacet($facet_name, $facetFilter, $json){
-  
+
 	$clear ='';$name = '';$class='';
 	switch($facet_name){
 		case "type":$clear = 'clearType';$name='Types';$class="typeFilter";break;
@@ -423,87 +423,116 @@ function stripFORString($str)
 
 function displayFORFacet($facettwo,$facetfour,$facetsix,$facetFilter, $json, $ro_class, $obj)
 {
-	$clear =$facetName;$class=$facetFilter;
+	//$clear =$facetName;$class=$facetFilter;
  
-
+//code        
+        $code2 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_two'};
+        $code4 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_four'};
+        $code6 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_six'};
+//values
 	$object_type2 = $json->{'facet_counts'}->{'facet_fields'}->{$facettwo};
         $object_type4 = $json->{'facet_counts'}->{'facet_fields'}->{$facetfour};
         $object_type6 = $json->{'facet_counts'}->{'facet_fields'}->{$facetsix};
+        
+//copy code arrays
+for($j=0;$j<count($code2);$j=$j+2)
+{
+    $out_code2[$code2[$j]]=$code2[$j+1];
+}      
+      //  print_r($out_code2);
+for($j=0;$j<count($code4);$j=$j+2)
+{
+    $out_code4[$code4[$j]]=$code4[$j+1];
+} 
 
-//print_r($object_type4);
 
-/*       
+//copy text value to array      
 for($j=0;$j<count($object_type2);$j=$j+2)
 {
-    $out[$object_type2[$j]]=$object_type2[$j+1];
+    $out2[$object_type2[$j]]=$object_type2[$j+1];
 }
- * 
- */
+
+//print_r($out2);
+
 for($j=0;$j<count($object_type4);$j=$j+2)
 {
-    $out[$object_type4[$j]]=$object_type4[$j+1];
+    $out4[$object_type4[$j]]=$object_type4[$j+1];
 }
-/*
-for($j=0;$j<count($object_type6);$j=$j+2)
-{
-    $out[$object_type6[$j]]=$object_type6[$j+1];
-}
-  */
+//print_r($out4);
 
-//print_r($out);
-                     // print_r($prevObj);
-/*        
-        if($prevObj!=null)
-        {        
-            print_r($object_type);
-            $object=array_diff($object_type,array_intersect($prevObj,$object_type));
 
-//print_r($object);
-                for($i=0;$i< sizeof($object)-1 ;$i=$i+2)
-                {               
-                    
-                    if($object[$i+1]>0){
-                    
-			if($object[$i]!=$facetFilter){
-                            
-				echo '<li class="limit">
-					<a href="javascript:void(0);" 
-						title="'.$object[$i].' ('.number_format($object[$i+1]).''.' results)" 
-						class="'.$class.'" id="'.$object[$i].'">'.$object[$i].' ('.number_format($object[$i+1]).')'.'</a></li>';
-                            } 
-                    }
-                }
-              
-                return array_merge($object,(array)$prevObj);
-        }else
-        {
- */ 
  
 	echo '<h5><a href="#">Field of Research';
 	echo '</a></h5>';
 	echo '<div class="facet-list" >';
 	
-	
+/*	
 	echo '<ul class="more">';
-               $out_keys=array_keys($out);
-              //print_r($out_keys);
-              // print_r(count($out_keys));
-                for($i=0;$i< count($out_keys);$i=$i+1)
+               $out_keys4=array_keys($out4);
+               $out_keys2=array_keys($out2);
+
+                for($i=0;$i< count($out_keys4);$i=$i+1)
                 {  
-                    if($out[$out_keys[$i]]>0)
+                    if($out4[$out_keys4[$i]]>0)
                     {
-                        if($out_keys[$i]!=$facetFilter[$i])
+                        if($out_keys4[$i]!=$facetFilter[$i])
                         {                  
 				echo '<li class="limit">
 					<a href="javascript:void(0);" 
-						title="'.$out_keys[$i].' ('.number_format($out[$out_keys[$i]]).''.' results)" 
-						class="forfourFilter'.'" id="'.$out_keys[$i].'">'.$out_keys[$i].' ('.number_format($out[$out_keys[$i]]).')'.'</a></li>';
+						title="'.$out_keys4[$i].' ('.number_format($out4[$out_keys4[$i]]).''.' results)" 
+						class="forfourFilter'.'" id="'.$out_keys4[$i].'">'.$out_keys4[$i].' ('.number_format($out4[$out_keys4[$i]]).')'.'</a></li>';
 
                         }
                     }
                 }
-               // return $object_type;
-  //      }
+ */
+	
+	echo '<ul class="more" id="fortree">'; 
+               $out_keys4=array_keys($out4);
+               $out_keys2=array_keys($out2);
+
+               $out_code_keys4=array_keys($out_code4);
+               $out_code_keys2=array_keys($out_code2);
+                for($i=0;$i< count($out_keys2);$i=$i+1)
+                {  
+                    if($out2[$out_keys2[$i]]>0)
+                    {
+                        if($out_keys2[$i]!=null)
+                        {             
+                            $index=findFORChildFour($out_code_keys2[$i],$out_code_keys4);
+
+                            if(count($index)==0)//no child node under 2 digits FOR
+                            {
+                                echo '<li class="limit">
+					<input type="checkbox" 
+						name="twoFOR"
+                                                value="'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).''.' results)" 
+						class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')'.'</li>';
+                            }else//found child
+                            {
+                                //get values from $index[]. create <ul>
+                                echo '<li class="limit">
+					<input type="checkbox"
+                                                name="twoFOR"
+						value="'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).''.' results)" 
+						class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')';
+                                echo    '<ul>';
+                                            for($k=0;$k<count($index);$k++)
+                                            {
+                                                echo '<li class="limit">
+                                                         <input type="checkbox"
+                                                            name="fourFOR"
+                                                            value="'.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).''.' results)" 
+                                                            class="forfourFilter'.'" id="'.$out_keys4[$index[$k]].'"/>'.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).')'.'</a>';
+                                                echo '</li>';
+                                            }
+                                echo    '</ul>';
+                                echo '</li>';                                
+                            }
+                        }
+                    }
+                }
+
 
        	echo '</ul>';
 	echo '</div>';
@@ -511,6 +540,23 @@ for($j=0;$j<count($object_type6);$j=$j+2)
  
 }
 
+function findFORChildFour($twocode,$code_arr4)
+{
+// print_r ($code_arr4);
+    $idx=array();
+    
+    for ($n=0;$n<count($code_arr4);$n++)
+    {
+               //print_r (substr($code_arr4[$n],0,2));
+               //print_r (substr($twocode,0,2));
+        if(substr($twocode,0,2)==substr($code_arr4[$n],0,2)&& $twocode!=$code_arr4[$n])
+        {
+            $idx[]=$n;
+        }
+    }
+    //print_r($idx);
+    return $idx;
+}
 /*
 // is this still being used? 
 function escapeSolrValueNoEncode($string){
