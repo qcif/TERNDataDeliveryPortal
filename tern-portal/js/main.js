@@ -441,13 +441,8 @@ $(function() {
         $("#latlong").bind('click',function() {
                 $("#coords").toggle(); 
         });
-        $("#mapHelpText").dialog({autoOpen:false});
          $("#mapViewSelector a").button();
-          $("#mapHelp a").click(function(){
-             $("#mapHelpText").dialog('open');
-             return false;
-         }).button();
-        
+         $("#mapHelp a").button();
         $("#mapViewSelector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
         });
@@ -534,7 +529,9 @@ $(function() {
                       doSpatialSearch();
                 }*/
           });
-      
+        
+
+        
         //Reset Button 
         $('#search_reset').click(function(){
             resetAllFields(temporalWidget);
@@ -598,11 +595,7 @@ $(function() {
                         else groupFilter +=  ";" + $(this).val();
                     });                  
                 }   
- 	$("#fortree").treeview({ 
-		persist: "location",
-		collapsed: true,
-		unique: true
-	});               
+              
 /*                
                 //Keywords 
                 if( $('[name^=fields]').length>0){
@@ -778,7 +771,16 @@ $(function() {
                 resizable: true,            
                 modal: true
             });
-
+            
+            $("#fortree").treeview({
+		animated: "fast",
+		collapsed: true,
+		unique: true,
+		persist: "cookie",
+		toggle: function() {
+			window.console && console.log("%o was toggled", this);
+		}
+            });
             $('.record-list').die('click').click( function(){     
                 handleRecordPopup($(this));
             });
@@ -832,6 +834,7 @@ $(function() {
                 header: 'h6', 
                 autoHeight: false
             });
+ 
             /*$("#facet-accordion").accordion("destroy").accordion({
                 header: 'h6', 
                 autoHeight: false
@@ -874,7 +877,7 @@ $("tr[id=re-hide]").hide();
         }
     }); 
  
-        $('.viewmeta').click(function(){
+        $('.viewmeta').live("click",function(){
                 var url=$(this).attr("id");
                 handleViewMeta(url);
 

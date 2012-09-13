@@ -487,7 +487,7 @@ for($j=0;$j<count($object_type4);$j=$j+2)
                 }
  */
 	
-	echo '<ul class="more" id="fortree">'; 
+	echo '<ul class="treeview-red" id="fortree">'; 
                $out_keys4=array_keys($out4);
                $out_keys2=array_keys($out2);
 
@@ -503,31 +503,33 @@ for($j=0;$j<count($object_type4);$j=$j+2)
 
                             if(count($index)==0)//no child node under 2 digits FOR
                             {
-                                echo '<li class="limit">
+                                echo '<li><span>
 					<input type="checkbox" 
 						name="twoFOR"
                                                 value="'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).''.' results)" 
-						class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')'.'</li>';
+						class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')'.'</span></li>';
                             }else//found child
                             {
+                                
                                 //get values from $index[]. create <ul>
-                                echo '<li class="limit">
+                                echo '<li><span>
 					<input type="checkbox"
                                                 name="twoFOR"
 						value="'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).''.' results)" 
-						class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')';
+						class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')</span>';
                                 echo    '<ul>';
                                             for($k=0;$k<count($index);$k++)
                                             {
-                                                echo '<li class="limit">
+                                                echo '<li ><span>
                                                          <input type="checkbox"
                                                             name="fourFOR"
                                                             value="'.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).''.' results)" 
-                                                            class="forfourFilter'.'" id="'.$out_keys4[$index[$k]].'"/>'.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).')'.'</a>';
+                                                            class="forfourFilter'.'" id="'.$out_keys4[$index[$k]].'"/>'.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).')'.'</span>';
                                                 echo '</li>';
                                             }
                                 echo    '</ul>';
                                 echo '</li>';                                
+
                             }
                         }
                     }
