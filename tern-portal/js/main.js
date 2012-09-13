@@ -422,6 +422,7 @@ $(function() {
             }
         }
     }
+   
    function initMap(){
 
         var mapWidget = new MapWidget('spatialmap',true);
@@ -598,7 +599,13 @@ $(function() {
                         }
                         else groupFilter +=  ";" + $(this).val();
                     });                  
-                }                 
+                }   
+ 	$("#fortree").treeview({ 
+		persist: "location",
+		collapsed: true,
+		unique: true
+	});               
+/*                
                 //Keywords 
                 if( $('[name^=fields]').length>0){
                     first = true;
@@ -644,6 +651,7 @@ $(function() {
                     search_term = $.trim(search_term);
                     adv = 1;              
                 }
+*/                
                 page = 1;
 
            /* }else{

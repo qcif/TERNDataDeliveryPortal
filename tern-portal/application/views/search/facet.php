@@ -40,7 +40,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
                 if($subjectFilter!='All') displaySelectedFacet('subject_value_resolved',$subjectFilter,$json);
                 if($ternRegionFilter!='All') displaySelectedRegionFacet('tern_region',$ternRegionFilter,$json,$regionsName);
 
-                //if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
+                if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
                  if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
                //   if($forsixFilter!='All') displaySelectedFacet('for_value_six',$forsixFilter,$json);
 
@@ -61,7 +61,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 	//displayFacet('type', $typeFilter, $json, $classFilter, $this);
 
 	//displayFacet('subject_value', $subjectFilter, $json, $classFilter);
-        displayFacet('subject_value_resolved', $subjectFilter, $json, $classFilter);
+     //   displayFacet('subject_value_resolved', $subjectFilter, $json, $classFilter);
 
         displayRegionFacet('tern_region', $ternRegionFilter, $json, $ternRegionFilter,$regionsName);
        
