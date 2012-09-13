@@ -72,11 +72,8 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
 
 function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $regionsName){
     
-	if($facetFilter!='All'){
-            $clear ='clearTernRegion';$name = 'Region';$class='disabled';
-        }else{
-            $clear ='clearTernRegion';$name = 'Region';$class='ternRegionFilter';
-        }
+	$clear ='clearTernRegion';$name = 'Region';$class='ternRegionFilter';
+        
 	$object_type="";
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         if(count($object_type)>0){

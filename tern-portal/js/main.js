@@ -35,8 +35,8 @@ $(function() {
     var typeFilter = 'All';
     var groupFilter = 'All';
     var subjectFilter = 'All';
-    var adv = 0;     
     var fortwoFilter='All';
+    var mapSearch = 0;
     var forfourFilter='All';
     var forsixFilter='All';
     var ternRegionFilter = 'All';
@@ -122,7 +122,7 @@ $(function() {
                     break;
                 case 'ternRegion':
                     ternRegionFilter = value;
-                    disableToolbarClick();
+                   
                     break;
                 case 'n':
                     n=value;
@@ -139,8 +139,8 @@ $(function() {
                 case 'alltab':
                     alltab=value;
                     break;
-                case 'adv':
-                    adv = value;
+                case 'mapSearch':
+                    mapSearch = value;
                     break;
             }
         });
@@ -148,7 +148,7 @@ $(function() {
             $('#classSelect').val(classFilter);
         }
      
-         if(param_q > -1){
+         if(param_q > -1 || mapSearch==1){
                 search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
                 search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
                 
@@ -159,7 +159,7 @@ $(function() {
                     num=getCookie("selection");
                 }
         
-                if(adv==1&&window.location.href.indexOf('/n')>=0&&window.location.href.indexOf('/s')>=0&&window.location.href.indexOf('/w')>=0&&window.location.href.indexOf('/e')>=0)
+                if(window.location.href.indexOf('/n')>=0&&window.location.href.indexOf('/s')>=0&&window.location.href.indexOf('/w')>=0&&window.location.href.indexOf('/e')>=0)
                 { 
                         doSpatialSearch();
                 }else{
@@ -241,8 +241,7 @@ $(function() {
             temporal = 'All';
         }else if($(this).hasClass('clearTernRegion')){
             ternRegionFilter = 'All';
-            enableToolbarClick(mapResult);
-        }else if($(this).hasClass('clearSpatial')){
+       }else if($(this).hasClass('clearSpatial')){
             n = '';
             e = '';
             w = '';
@@ -307,7 +306,7 @@ $(function() {
         if(n!=''){
             res+='/n='+n+'/e='+e+'/s='+s+'/w='+w;
         }
-        res+='/adv=' +(adv)+'/num='+(numToDisplay); //local variable to pass in number of records
+        res+= '/num='+(numToDisplay); //local variable to pass in number of records
         
         
         //alert(res);
@@ -319,8 +318,6 @@ $(function() {
     function showNoResult(msg){
         if(msg == 1){
             $("#no-result div h3").html("No matching records were found");
-        }else{ 
-            $("#no-result div h3").html("Please use the search tool on the left");
         }
        
         $("#ui-layout-facetmap").hide();
@@ -352,6 +349,8 @@ $(function() {
     *      
     */
     function populateSearchFields(temporalWidget, search_term){ 
+        
+        /* removed because adv is not used anymore Yi please delete when you're done
         if(adv == 1){
             if(param_q > -1 && search_term != '*:*') {
                 var word = search_term.split(' ');
@@ -414,13 +413,12 @@ $(function() {
                 temporalWidget.refreshTemporalSearch();
             }
         }else{ // it's just basic search
+        */
             if(param_q > -1 && search_term != '*:*' && search_term !="Search ecosystem data") {
                
                 $('input[id="search-box"]').val(search_term);
-            }else{
-                $("#accordion").accordion("activate",0);
             }
-        }
+      
     }
    function initMap(){
 
@@ -434,10 +432,8 @@ $(function() {
             afterDraw: updateCoordinates
         });
 
-        if(ternRegionFilter=="All"){
-            //enable clicking button controllers
-            enableToolbarClick(mapWidget);
-        }
+        enableToolbarClick(mapWidget);
+      
         //changing coordinates on textbox should change the map appearance
         enableCoordsChange(mapWidget);  
 
@@ -510,7 +506,8 @@ $(function() {
         populateSearchFields(temporalWidget,search_term);
         
         if(param_q == -1){
-             showNoResult(2);
+             // show default facet here
+             // don't show results
         }
       
         
@@ -544,16 +541,16 @@ $(function() {
         // If user presses enter in the inputs, submit the form
         $('#search-panel input').keypress(function(e) {
             if(e.which == 13) {
-                 if($( "#accordion" ).accordion( "option", "active" ) == 1 ){
-                         $('#search_advanced').trigger('click');
-                 }else{
+             
                         $('#search_basic').trigger('click');
-                 }
+              
             }
         });
         
          autocomplete('#search-box');
          autocomplete('input[name^=keyword]');
+         // please delete these  button click actions
+         // when you're done Yi
         /*
         * Big search button
         */
@@ -564,10 +561,10 @@ $(function() {
             changeHashTo(formatSearch(search_term, 1, classFilter,num));
         }).button();     
         
-        //Submit button
-        $("#search_advanced").click(function(){
-            //Reset search term
-            resetAllSearchVals();
+        //Submit button 
+       $("#search_advanced").click(function(){
+        //Reset search term
+       resetAllSearchVals();
             //check which panel is active 0 is basic, 1 is advanced
           //  if($( "#accordion" ).accordion( "option", "active" ) == 1 ){  // handle advanced search 
                 
@@ -642,7 +639,7 @@ $(function() {
                     }
                     );
                     search_term = $.trim(search_term);
-                    adv = 1;              
+                               
                 }
                 page = 1;
 
@@ -693,7 +690,6 @@ $(function() {
         typeFilter = 'All';
         groupFilter = 'All';
         subjectFilter = 'All';
-        adv = 0;     
         fortwoFilter='All';
         forfourFilter='All';
         forsixFilter='All';
@@ -733,10 +729,10 @@ $(function() {
                 if($(this).attr('id') == 'facet-content')  {
                     $('#facet-accordion').html($(this).html());               
                 }
-                else if($(this).attr('id') == 'search-results-content') {        
+                else if($(this).attr('id') == 'search-results-content' && mapSearch == 0) {        
                     $('#search-result').html($(this).html());
                 }
-                else if($(this).attr('id') == 'head-toolbar-content'){
+                else if($(this).attr('id') == 'head-toolbar-content' && mapSearch == 0){
                     $('#head-toolbar').html($(this).html());
                 }
             });         
@@ -754,7 +750,9 @@ $(function() {
             if(typeof mapWidget !== 'undefined') {
                 mapWidget.map.updateSize();
                 mapWidget.removeAllFeatures();
-                mapWidget.addVectortoDataLayer(".spatial_center",true);
+                if(mapSearch == 0){
+                  mapWidget.addVectortoDataLayer(".spatial_center",true);
+                }
                 mapWidget.deactivateAllControls();
             }
             $('.clearFilter').each(function(){
@@ -844,7 +842,7 @@ $(function() {
 
 //            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv + "&ternRegionFilter=" + ternRegionFilter,
 
-            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv+ "&ternRegionFilter=" + ternRegionFilter+"&num="+num,
+            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort + "&ternRegionFilter=" + ternRegionFilter+"&num="+num,
 
         
             success: function(msg,textStatus){

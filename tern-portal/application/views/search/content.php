@@ -68,8 +68,12 @@ foreach ($json->{'response'}->{'docs'} as $r)
     if (isset($r->{'description_value'}))
         $descriptions = $r->{'description_value'};
     $date_pub = array();
-    if (isset($r->{'timestamp'}))
+    if (isset($r->{'timestamp'})){
         $date_pub = $r->{'timestamp'};
+        $date_pubf = new DateTime($date_pub);
+        $date_pubf->setTimeZone(new DateTimeZone("Australia/Brisbane"));
+        $date_pub = $date_pubf->format('d-m-Y');
+    }
     $description_type = array();
     if (isset($r->{'description_type'}))
         $description_type = $r->{'description_type'};

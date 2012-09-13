@@ -128,7 +128,6 @@ class Search extends CI_Controller
         
 
         $sort="score desc";
-        $adv=0;
         
         $extended_query = '';
         if ($source_key != 'undefined')
@@ -142,7 +141,7 @@ class Search extends CI_Controller
         }
 
        // $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $status);
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, 'All','All','All', 'PUBLISHED',$sort,$adv, 'All');
+        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, 'All','All','All', 'PUBLISHED',$sort, 'All');
         $this->load->view('search/service', $data);
     }
 
@@ -162,12 +161,11 @@ class Search extends CI_Controller
         $forsix = "All";
         
         $sort="score desc";
-        $adv=1;
         $extended_query = $extended . '-key:("' . escapeSolrValue($excluded_key) . '")';
         //$extended_query='';
         //$extended_query .=constructFilterQuery('subject_value', $subject).'^100';
 
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $fortwo,$forfour,$forsix, 'PUBLISHED',$sort,$adv, 'All');
+        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $fortwo,$forfour,$forsix, 'PUBLISHED',$sort, 'All');
  
         $data['numfound'] = $data['json']->{'response'}->{'numFound'};
         $data['seeAlsoType'] = $seeAlsoType;
@@ -509,8 +507,7 @@ class Search extends CI_Controller
         $temporal = $this->input->post('temporal');
         $alltab = $this->input->post('alltab');
         $sort = $this->input->post('sort');
-        $adv = $this->input->post('adv');
-        
+         
         $num=$this->input->post('num');
      
         $query = $q;
@@ -540,7 +537,7 @@ class Search extends CI_Controller
 
 //        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, $fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $adv, $ternRegionFilter);
 
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, $fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $adv,$ternRegionFilter,$num);
+        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, $fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $ternRegionFilter,$num);
 
         if ($classFilter == 'collection')
         {
@@ -552,7 +549,7 @@ class Search extends CI_Controller
 
 //        $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $adv, $ternRegionFilter); //just for the tabbing mechanism (getting the numbers right)
 
-        $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $adv,$ternRegionFilter,$num); //just for the tabbing mechanism (getting the numbers right)
+        $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $ternRegionFilter,$num); //just for the tabbing mechanism (getting the numbers right)
 
         /* just that! and json_tab is used in tab view */
 

@@ -29,7 +29,7 @@
 //    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0, $ternRegionFilter = 'All')
 
 
-    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0,$ternRegionFilter='All', $num=10)
+    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc',$ternRegionFilter='All', $num=10)
     {  
         $q = $query;
         $q = rawurlencode($q);
@@ -65,21 +65,16 @@
             $filter_query .= constructFilterQuery('tern_region', $ternRegionFilter);
         $q = urldecode($q);
 
-        if($adv == 0){ 
-            if ($q != '*:*')
-            $q = escapeSolrValue($q);
+        if ($q != '*:*')
+        $q = escapeSolrValue($q);
 
-        //$q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
         $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR display_title:(' . $q . ')^50 OR list_title:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value_resolved:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';    
-        }
+        
         if($sort!='score desc' && $sort!='') $filter_query.='&sort='.$sort;
         $q.=$filter_query;
 
         $q.=($extended_query);
      
-        
-
-
         //$filter_query .=$extended_query;//for spatial and temporal
         //$q .=$extended_query;//extended for spatial
         $fields = array(

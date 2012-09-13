@@ -26,6 +26,14 @@ class R extends CI_Controller {
          
     }	
         
-
+    public function searchSpatialPoly($box, $poly){
+         $this->load->model('Regions');
+         header('Content-type: application/json');
+         $r_list = json_encode($this->Regions->intersectPoly($geom,$l_id));
+         // get spatial list from SOLR 
+         // do an intersection
+         
+    }	
+        
 }
 ?>

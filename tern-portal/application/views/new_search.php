@@ -32,7 +32,7 @@
                  </div>
             </div> 
             <div id="result-panel" class="ui-layout-center ">
-                   <div id="no-result" class="ui-corner-all"><div><h3>Please use the search tool</h3></div></div>
+                   <div id="no-result" class="ui-corner-all hide"></div>
                    <div id="head-toolbar" class="toolbar clearfix hide"></div>                                
                          
                    <div class="selectrecord">
