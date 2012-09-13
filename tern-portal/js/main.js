@@ -527,6 +527,7 @@ $(function() {
                 s=sl.value;
                 e=el.value;
                 w=wl.value;  
+                
                 changeHashTo(formatSearch(search_term, 1, classFilter));
                /* spatial_included_ids=''; 
                 if(n!=''){
@@ -707,6 +708,7 @@ $(function() {
         e = '';
         s='';
         w='';
+        mapSearch=0;
         spatial_included_ids='';        
     }
     /* Reset all fields in the search pane*/

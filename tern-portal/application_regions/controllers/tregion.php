@@ -43,11 +43,11 @@ class Tregion extends CI_Controller {
         header("Connection: close\r\n");
         header("Content-Encoding: none\r\n");
         ob_start();
-         echo ('OK');
+        echo ('OK');
         $size = ob_get_length();
         header("Content-Length: $size");
-        ob_end_flush();     // Strange behaviour, will not work
-        flush();            // Unless both are called !
+        ob_end_flush();     
+        flush();          
         ob_end_clean();
        
         if($schedules = $this->Scheduler->getOrder(0,$id)){ 
@@ -94,7 +94,7 @@ class Tregion extends CI_Controller {
         flush();            // Unless both are called !
         ob_end_clean();
         if($schedules = $this->Scheduler->getOrder(1)){ 
-            $json = $this->load->file(HOST . 'api/regions.json',TRUE);
+            $json = $this->load->file('../api/regions.json',TRUE);
             $rcf = json_decode($json,TRUE);
             
             foreach($schedules as $schedule){

@@ -50,12 +50,6 @@ $Revision: 1 $
 <ul>
 	<li>Try different keywords</li>
 	<li>Make sure all words are spelled correctly</li>
-	<?php
-		foreach($classes as $index=>$c){
-			if($classes[$index]!=0){
-				echo '<li>Search for <a href="javascript:void(0);" class="tab" name ="'.$index.'">'. $index.' ('.$classes[$index].' results) </a>';
-			}
-		} 
-	?>
+	
 </ul>
 </div>
