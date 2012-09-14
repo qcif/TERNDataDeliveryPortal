@@ -304,15 +304,17 @@ textarea {
     margin:10px;
 }
 
-#ql_result{border:1px solid #ccc;}
-.ql_num{float:left;width:15%;height:40px;line-height:40px;padding:5px;text-align:center;}
-.ql_explain{float:left;width:80%;height:40px;padding:5px;}
+#ql_result{border:1px solid #ccc;display:table;border-collapse:collapse;}
+.ql_num{float:left;width:15%;height:40px;line-height:40px;padding:5px;text-align:center;display:table-cell;}
+.ql_explain{float:left;width:80%;height:40px;padding:5px;position:relative;display:table-cell;}
+.ql_explain p{margin:0;}
 .aro_qa_container{border:1px solid black;margin:4px 1px;padding:7px;}
 .aro_qa_ok, .aro_qa_error{display:block;border:1px solid;margin: 3px auto;padding: 12px 1px 12px 25px;}
 .aro_error{color: #9F6000;background: #FEEFB3 url('../_images/delete_16.png') no-repeat 5px 14px;}
 .aro_success{color: #4F8A10;background: #DFF2BF url('../_images/check_16.png') no-repeat 5px 14px;}
 .toggleQAtip{cursor:pointer;padding: 7px 3px 7px 15px;}
-
+/*.aro_error[level="3"]{background: #FEEFB3 url('../_images/message_small.png') no-repeat 5px 14px;}
+.aro_error[level="2"]{background: #FEEFB3 url('../_images/required_small.png') no-repeat 5px 14px;}*/
 
 #qa_level_results{margin:4px 1px;padding:7px;}
 
@@ -322,7 +324,7 @@ div.ql2{background:#F2CE3B;color:white;}
 div.ql1{background:#F06533;color:white;}
 div.ql0{background:#89CEDE;color:black;}
 
-#rda_preview, #rda_preview_xml{
+#rda_preview, #rda_preview_xml, #print_preview{
  border: 2px outset;
  border-color: #dcdcdc;
  padding: 2px;
@@ -585,6 +587,7 @@ margin: 0;
 .dynamic_panel 
 {
 	display:none;
+	min-width:1137px;
 }
 
 .guideNotes li
@@ -662,6 +665,7 @@ label.mandatory:before {
 	margin-top:10px;
 	border:none; 
 	width:100%; 
+	border-collapse:collapse;
 }
 
 
