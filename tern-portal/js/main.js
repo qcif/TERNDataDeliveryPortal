@@ -187,15 +187,15 @@ $(function() {
                                
             }else if($(this).hasClass('fortwoFilter')){
                 fortwoFilter = encodeURIComponent($(this).attr('id'));
-                changeHashTo(formatSearch(search_term, 1, classFilter));               
+                //changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
             }else if($(this).hasClass('forfourFilter')){
                 forfourFilter = encodeURIComponent($(this).attr('id'));
-                changeHashTo(formatSearch(search_term, 1, classFilter));               
+               // changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
             }else if($(this).hasClass('forsixFilter')){
                 forsixFilter = encodeURIComponent($(this).attr('id'));
-                changeHashTo(formatSearch(search_term, 1, classFilter));               
+                //changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
 
             }else if($(this).hasClass('ternRegionFilter')){
@@ -588,7 +588,10 @@ $(function() {
                 spatial_included_ids='';
                            
                 //FOR filtering 
-                if( document.getElementById("forfourFilter") != null && $('#forfourFilter').val()!='')  forfourFilter = $('#forfourFilter').val();
+                if( document.getElementById("forfourFilter") != null && $('#forfourFilter').val()!='')  
+                {
+                        forfourFilter = $('#forfourFilter').val();
+                 }
                 //Group filtering
                 if( document.getElementById("groupFilter") != null ) {
                     var first = true;
@@ -601,6 +604,7 @@ $(function() {
                     });                  
                 }   
               
+                
 /*                
                 //Keywords 
                 if( $('[name^=fields]').length>0){
@@ -844,6 +848,50 @@ $(function() {
                 header: 'h6', 
                 autoHeight: false
             });*/
+        $('#forbutton').click(function(){
+            //FOR filtering 
+                if( document.getElementById("fortree") != null)  
+                {
+                    var two_first = true;
+                    var four_first = true;
+                    $('#fortree :checked').each(function(){
+                        if($(this).attr("class")=="fortwoFilter")
+                        {
+                            if(two_first) 
+                            {
+                                fortwoFilter = $(this).val();
+                                two_first=false;
+                            }
+                            else fortwoFilter +=  ";" + $(this).val();
+                        }else
+                        {
+                            if(four_first) 
+                            {
+                                forfourFilter = $(this).val();
+                                four_first=false;
+                            }
+                            else forfourFilter +=  ";" + $(this).val();   
+                        }
+
+                    }); 
+                }
+              
+                //Group filtering
+                if( document.getElementById("groupFilter") != null ) {
+                    var first = true;
+                    $('#groupFilter :checked').each(function(){
+                        if(first) {
+                            groupFilter = $(this).val();
+                            first=false;
+                        }
+                        else groupFilter +=  ";" + $(this).val();
+                    });                  
+                }   
+
+            changeHashTo(formatSearch(search_term, 1, classFilter,num));
+
+        }); 
+        
         }
         else{
             showNoResult(1); 
@@ -853,7 +901,7 @@ $(function() {
            
     } 
  
-    function doNormalSearch(){        
+    function doNormalSearch(){     
         $.ajax({
             type:"POST",
             url: base_url+"/search/filter/",
@@ -866,28 +914,28 @@ $(function() {
             success: function(msg,textStatus){
                 handleResults(msg,mapResult);
                 
-$("tr[id=re-hide]").hide();
+                $("tr[id=re-hide]").hide();
 
-    $("table").click(function(event) {
-        event.stopPropagation();
-        var $target = $(event.target);
-        if ( $target.closest("td").attr("id")=="desc" ) {
-            $target.closest("tr").slideUp();
+                    $("table").click(function(event) {
+                        event.stopPropagation();
+                        var $target = $(event.target);
+                        if ( $target.closest("td").attr("id")=="desc" ) {
+                            $target.closest("tr").slideUp();
 
-        } else if($target.closest("td").attr("id")!="metabutton") { 
-            $target.closest("tr").next().slideToggle();           
-        } else if ($target.attr("class")!="viewmeta")
-        {
-            $target.closest("tr").slideToggle();  
-        }
-    }); 
- 
-        $('.viewmeta').live("click",function(){
-                var url=$(this).attr("id");
-                handleViewMeta(url);
+                        } else if($target.closest("td").attr("id")!="metabutton") { 
+                            $target.closest("tr").next().slideToggle();           
+                        } else if ($target.attr("class")!="viewmeta")
+                        {
+                            $target.closest("tr").slideToggle();  
+                        }
+                    }); 
 
-        }); 
-    
+                        $('.viewmeta').live("click",function(){
+                                var url=$(this).attr("id");
+                                handleViewMeta(url);
+
+                        }); 
+
                  $("#loading").hide();
                  
                  var opt=document.getElementById('viewrecord');
@@ -899,6 +947,7 @@ $("tr[id=re-hide]").hide();
                          break;
                      }
                  }
+
              }
             ,
             error:function(msg){

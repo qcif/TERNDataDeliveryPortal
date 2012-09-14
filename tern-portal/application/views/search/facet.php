@@ -41,6 +41,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
                 if($ternRegionFilter!='All') displaySelectedRegionFacet('tern_region',$ternRegionFilter,$json,$regionsName);
 
                 if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
+
                  if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
                //   if($forsixFilter!='All') displaySelectedFacet('for_value_six',$forsixFilter,$json);
 

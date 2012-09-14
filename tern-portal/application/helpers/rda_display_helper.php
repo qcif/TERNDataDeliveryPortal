@@ -226,9 +226,9 @@ function constructFilterQuery($class, $groups){
 
                 case 'subject_code': $str='+subject_code:(';break;
 		case 'status':$str='+status:(';break;
-                case 'for_value_two':$str='+for_value_two:(';break;
-                case 'for_value_four':$str='+for_value_four:(';break;
-                case 'for_value_six':$str='+for_value_six:(';break;
+               // case 'for_value_two':$str='+for_value_two:(';break;
+               // case 'for_value_four':$str='+for_value_four:(';break;
+               // case 'for_value_six':$str='+for_value_six:(';break;
                 case 'tern_region': $str='+tern_region:(';break;
 	}
 	
@@ -248,6 +248,33 @@ function constructFilterQuery($class, $groups){
     return $str;
 }
 
+function constructFORQuery($class,$forvalues)
+{
+    $str='';
+    if($class=='for_value_two')
+    {
+        $str='for_value_two:(';
+    }else
+    {
+        $str='for_value_four:(';
+    }
+    $words=explode(';',$forvalues);
+    $first=true;
+    foreach($words as $w)
+    {
+        if($first)
+        {
+            $str.='"'.escapeSolrValue($w).'"';
+        }else
+        {
+            $str.=' OR "'.escapeSolrValue($w).'"';
+            $first=false;
+        }
+    }
+    $str.=')';
+    return $str;
+    
+}
 /*
  * escapeSolrValue
  * escaping sensitive items in a solr query
@@ -459,34 +486,12 @@ for($j=0;$j<count($object_type4);$j=$j+2)
     $out4[$object_type4[$j]]=$object_type4[$j+1];
 }
 //print_r($out4);
-
-
  
 	echo '<h5><a href="#">Field of Research';
 	echo '</a></h5>';
 	echo '<div class="facet-list" >';
-	
-/*	
-	echo '<ul class="more">';
-               $out_keys4=array_keys($out4);
-               $out_keys2=array_keys($out2);
 
-                for($i=0;$i< count($out_keys4);$i=$i+1)
-                {  
-                    if($out4[$out_keys4[$i]]>0)
-                    {
-                        if($out_keys4[$i]!=$facetFilter[$i])
-                        {                  
-				echo '<li class="limit">
-					<a href="javascript:void(0);" 
-						title="'.$out_keys4[$i].' ('.number_format($out4[$out_keys4[$i]]).''.' results)" 
-						class="forfourFilter'.'" id="'.$out_keys4[$i].'">'.$out_keys4[$i].' ('.number_format($out4[$out_keys4[$i]]).')'.'</a></li>';
-
-                        }
-                    }
-                }
- */
-	
+//build FOR tree	
 	echo '<ul class="treeview-red" id="fortree">'; 
                $out_keys4=array_keys($out4);
                $out_keys2=array_keys($out2);
@@ -506,7 +511,7 @@ for($j=0;$j<count($object_type4);$j=$j+2)
                                 echo '<li><span>
 					<input type="checkbox" 
 						name="twoFOR"
-                                                value="'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).''.' results)" 
+                                                value="'.$out_keys2[$i].'" 
 						class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')'.'</span></li>';
                             }else//found child
                             {
@@ -515,7 +520,7 @@ for($j=0;$j<count($object_type4);$j=$j+2)
                                 echo '<li><span>
 					<input type="checkbox"
                                                 name="twoFOR"
-						value="'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).''.' results)" 
+						value="'.$out_keys2[$i].'" 
 						class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')</span>';
                                 echo    '<ul>';
                                             for($k=0;$k<count($index);$k++)
@@ -523,7 +528,7 @@ for($j=0;$j<count($object_type4);$j=$j+2)
                                                 echo '<li ><span>
                                                          <input type="checkbox"
                                                             name="fourFOR"
-                                                            value="'.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).''.' results)" 
+                                                            value="'.$out_keys4[$index[$k]].'" 
                                                             class="forfourFilter'.'" id="'.$out_keys4[$index[$k]].'"/>'.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).')'.'</span>';
                                                 echo '</li>';
                                             }
@@ -537,6 +542,8 @@ for($j=0;$j<count($object_type4);$j=$j+2)
 
 
        	echo '</ul>';
+//end FOR tree
+        echo '<button id="forbutton" class="srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
 	echo '</div>';
 
  

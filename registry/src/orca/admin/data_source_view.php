@@ -22,6 +22,8 @@ require '../orca_init.php';
 // may have to deal with a large amount of data.
 set_time_limit(0);
 $executionTimeoutSeconds = 20*60;
+$taskWaiting = '';
+$taskWaiting = scheduledTaskCheck(getQueryValue('data_source_key'));
 
 // Get the record from the database.
 $dataSource = getDataSources(getQueryValue('data_source_key'), null);
@@ -149,7 +151,12 @@ require '../../_includes/header.php';
 ?>
 
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/orca_dhtml.js"></script>
+<script type="text/javascript">
+		checkDataSourceScheduleTask();
+  	setInterval(checkDataSourceScheduleTask, 5000);
+</script>
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/jquery-ui-1.8.9.custom.min.js"></script>	
+<input type="hidden" id="dataSourceKey" value="<?php echo $dataSource[0]['data_source_key']; ?>" />
 <form id="datasourceFrom" action="data_source_view.php?data_source_key=<?php printSafe(urlencode(getQueryValue('data_source_key'))); ?>" method="post">
 <table class="recordTable" summary="Data Source">
 	<thead>
@@ -157,11 +164,24 @@ require '../../_includes/header.php';
 			<td></td>
 			<td>Data Source</td>
 		</tr>
+	
 	</thead>
 	<tbody class="recordFields">
 		<tr>
 			<td>Records From Source:</td>
-			<td><?php if($numRegistryObjects > 0) printSafe('Published: ('.$numRegistryObjects.')');  if($numRegistryObjectsApproved > 0) printSafe(' Approved: ('.$numRegistryObjectsApproved.')'); print(' <a href="../search.php?source_key='.esc(urlencode($dataSourceKey)).'&amp;collections=collection&amp;services=service&amp;parties=party&amp;activities=activity&amp;search=&amp;action=Search">List Records</a> / <a href="../manage/my_records.php?data_source='.esc(urlencode($dataSourceKey)).'">Manage Records</a>'); ?></td>
+			<td>
+				<?php 
+					$statuses = array();
+					foreach (getRecordCountsByStatusForDataSource($dataSourceKey) AS $status => $count)
+					{
+						$status = getRegistryObjectStatusInfo($status);
+						$statuses[] = $status['display'] . ": ($count)";	
+					}
+					echo implode($statuses, ", ");
+			//if($numRegistryObjects > 0) printSafe('Published: ('.$numRegistryObjects.')');  if($numRegistryObjectsApproved > 0) printSafe(' Approved: ('.$numRegistryObjectsApproved.')');
+				 print(' <a href="../manage/my_records.php?data_source='.esc(urlencode($dataSourceKey)).'">Manage Records</a>');
+				 ?>
+			 </td>
 		</tr>
 		<tr style="border-bottom:2px solid black;">
 		<td colspan="2"><span style="float:left;"><h3>Account Administration Information</h3></span>
@@ -200,6 +220,36 @@ require '../../_includes/header.php';
 			<td>Notes:</td>
 			<td><?php printSafeWithBreaks($dataSource[0]['notes']) ?></td>
 		</tr>
+		<?php if (isset($dataSource[0]['address_line_1']) && $dataSource[0]['address_line_1'] != ''): ?>
+			<tr>
+				<td>Address Line 1:</td>
+				<td><?php printSafeWithBreaks($dataSource[0]['address_line_1']) ?></td>
+			</tr>
+		<?php endif; ?>
+		<?php if (isset($dataSource[0]['address_line_2']) && $dataSource[0]['address_line_2'] != ''): ?>
+			<tr>
+				<td>Address Line 2:</td>
+				<td><?php printSafeWithBreaks($dataSource[0]['address_line_2']) ?></td>
+			</tr>
+		<?php endif; ?>
+		<?php if (isset($dataSource[0]['city']) && $dataSource[0]['city'] != ''): ?>
+			<tr>
+				<td>City:</td>
+				<td><?php printSafeWithBreaks($dataSource[0]['city']) ?></td>
+			</tr>
+		<?php endif; ?>
+		<?php if (isset($dataSource[0]['post_code']) && $dataSource[0]['post_code'] != ''): ?>
+			<tr>
+				<td>Post Code:</td>
+				<td><?php printSafeWithBreaks($dataSource[0]['post_code']) ?></td>
+			</tr>
+		<?php endif; ?>
+		<?php if (isset($dataSource[0]['state']) && $dataSource[0]['state'] != ''): ?>
+			<tr>
+				<td>State:</td>
+				<td><?php printSafeWithBreaks($dataSource[0]['state']) ?></td>
+			</tr>
+		<?php endif; ?>
 		<tr>
 			<td>Created When:</td>
 			<td><?php printSafe(formatDateTime($dataSource[0]['created_when'], gDATETIME)) ?></td>
@@ -220,7 +270,7 @@ require '../../_includes/header.php';
 		<td colspan="2"><span style="float:left;"><h3>Records Management Settings</h3></span>
 		<span style="text-align:right;">
 					<input type="button" onclick="window.location='<?php print eAPP_ROOT ?>orca/manage/view_history.php?action=data_source_view&data_source_key=<?php print urlencode($dataSourceKey); ?>'" value="View History"></input>
-					<input type="button" value="Delete Records" title="Delete Registry Objects from this source" onclick="showDeleteModal();"/>
+				<?php if( userIsORCA_ADMIN() ) { ?>	<input type="button" value="Delete Records" title="Delete Registry Objects from this source" onclick="showDeleteModal();"/><?php } ?>
 				<input type="hidden" name="delete_flag" id="delete_flag" value="ALL"/>
 		</span>
 		</td>
@@ -321,7 +371,13 @@ require '../../_includes/header.php';
 					</td><td >
 	<?php 			if($dataSource[0]['institution_pages']=="1"||$dataSource[0]['institution_pages']=="2")	
 					{
-						?><a href="../view.php?key=<?php print(($thePage[0]['registry_object_key'])); ?>"><?php print($thePage[0]['registry_object_key']);?></a><?php 				
+						if(getRegistryObject($thePage[0]['registry_object_key'], $overridePermissions = true))
+						{
+						?>	<a href="../view.php?key=<?php print(($thePage[0]['registry_object_key'])); ?>"><?php print($thePage[0]['registry_object_key']);?></a><?php 
+						}else{
+						?>
+							<a href="../manage/add_party_registry_object.php?readOnly&data_source=<?php echo $dataSourceKey;?>&key=<?php echo $thePage[0]['registry_object_key']; ?>"><?php print($thePage[0]['registry_object_key']);?></a><?php 
+						}				
 					}else{
 						print($thePage[0]['registry_object_key']); 
 					}
@@ -352,7 +408,15 @@ require '../../_includes/header.php';
 		</tr>
 		<tr>
 			<td>Harvest Method:</td>
-			<td><?php printSafe($gORCA_HARVEST_METHODS[$dataSource[0]['harvest_method']]) ?></td>
+			<td><?php 
+			
+					printSafe($gORCA_HARVEST_METHODS[$dataSource[0]['harvest_method']]);
+				
+					if ($dataSource[0]['advanced_harvesting_mode'] != 'STANDARD') {
+						echo " (" . $dataSource[0]['advanced_harvesting_mode'] . ")";	
+					}
+				
+				?></td>
 		</tr>
 		<tr>
 			<td>Harvest Date:</td>

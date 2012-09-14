@@ -24,6 +24,8 @@ require '../manage/process_registry_object.php';
 
 
 $data_Source = getQueryValue('data_source_key');
+$taskWaiting = '';
+$taskWaiting = scheduledTaskCheck($data_Source);
 
 $dataSource = getDataSources(getQueryValue('data_source_key'), null);
 if( !$dataSource )
@@ -79,6 +81,14 @@ $party_rel_2 = $dataSource[0]['party_rel_2'];
 $assessementNotificationEmailAddr = $dataSource[0]['assessement_notification_email_addr'];
 $autoPublish = $dataSource[0]['auto_publish'];
 $qaFlag = $dataSource[0]['qa_flag'];
+$advancedHarvestingMode = $dataSource[0]['advanced_harvesting_mode'];
+
+$post_code = $dataSource[0]['post_code'];
+$address_line_1 = $dataSource[0]['address_line_1'];
+$address_line_2 = $dataSource[0]['address_line_2'];
+$city = $dataSource[0]['city'];
+$state = $dataSource[0]['state'];
+
 
 $errorMessages = '';
 $dataSourceKeyLabelClass = '';
@@ -86,9 +96,11 @@ $titleLabelClass = '';
 $uriLabelClass = '';
 $providerTypeLabelClass = '';
 $harvestMethodLabelClass = '';
+$advancedHarvestingModeLabelClass = '';
 $pushNLALabelClass = '';
 $createPrimaryClass = '';
 $institutionPagesClass = '';
+$dateLabelClass = '';
 $draft_array = getDraftRegistryObject(null, $dataSourceKey);
 $draft_record_set = array(
 						MORE_WORK_REQUIRED => 0,
@@ -110,6 +122,8 @@ $numRegistryObjects = getRegistryObjectCount($dataSourceKey);
 $numRegistryObjectsApproved = getRegistryObjectCount($dataSourceKey, null, null, APPROVED);
 
 
+
+
 if( strtoupper(getPostedValue('action')) == "CANCEL" )
 {
 	responseRedirect("data_source_view.php?data_source_key=".urlencode($dataSourceKey));
@@ -125,6 +139,7 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 	{
 		foreach($groups as $group)
 		{
+			$alreadyMapped[$group['object_group']] = getGroupPage($group['object_group']);
 			$theResult = deleteInstitutionalPage($group['object_group'],$dataSourceKey);
 		
 		}	
@@ -160,19 +175,20 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 
 							$wrappedRifcs = wrapRegistryObjects($rifcs, false);
 			 				$registryObjects = new DOMDocument();
-			  				$registryObjects->loadXML($wrappedRifcs);				
-							//$theInstitutionPage = importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMessage, $created_who=SYSTEM, $status=PUBLISHED, $record_owner=SYSTEM, $xPath=NULL, $override_qa=false	);	
+			  				$registryObjects->loadXML($wrappedRifcs);
+			  								
 							$theInstitutionPage =  insertDraftRegistryObject('SYSTEM', $key, 'Party', $group['object_group'], 'group', $group['object_group'], $dataSourceKey, date('Y-m-d H:i:s'), date('Y-m-d H:i:s') , $wrappedRifcs, '', 0, 0, 'DRAFT');
+							
 							runQualityLevelCheckForDraftRegistryObject($key,$dataSourceKey);
-							addDraftToSolrIndex($key);
 							
-							/* now send an email to services to let them know that the record has been ceated */
-							
-							send_email(
-							eCONTACT_EMAIL,
-							"Automatically generated Contributor record has been created for data source".$dataSourceKey,
-							$key . " registry object has been created and is currently in draft status\n\n"
-							);							
+							addDraftToSolrIndex($key,addDraftToSolrIndex);
+														
+							$mailBody	= 'http://'.$host.'/'.$orca_root.'/manage/add_party_registry_object.php?readOnly&data_source='.$dataSourceKey.'&key='.urlencode($key);
+							$subject = $key . " contributor page has been generated under data source ".$dataSourceKey;
+							$headers  = 'MIME-Version: 1.0' . "\r\n";
+							$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+							$headers .= 'From:'.eCONTACT_EMAIL_FROM."\r\n";
+							mail(eCONTACT_EMAIL, $subject, $mailBody, $headers);
 						}	
 					}
 					$theInstitutionalPage = insertInstitutionalPage($group['object_group'],$key,$dataSourceKey);
@@ -180,31 +196,45 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 			}			
 
 			break;
-		case 2:			
+		case 2:	
+
 			for($i=1;$i<=count($groups);$i++)
 			{
 				$group = getPostedValue('group_'.$i);
+	
 				$institutional_key = getPostedValue('institution_key_'.$i);
 				if($institutional_key!='')
 				{
 					//lets check we have a valid party group key for this datas source with the correct object group
 					$theInstitution = getRegistryObject($institutional_key,$overridePermissions = true);
-				//	print("<pre>");
-				//	print_r($theInstitution);
-				//	print("</pre>");
-				//	echo $theInstitution[0]['data_source_key']."== ".$dataSourceKey."<br />";
-				//	echo $theInstitution[0]['object_group']." == ".$group."<br />";
-				//	echo $theInstitution[0]['registry_object_class']. " == Party<br />";
-				//	echo $theInstitution[0]['type']." == group<br />";
+					$theContributorDraft =  getDraftRegistryObject($institutional_key, $dataSourceKey);
+
 					if($theInstitution[0]['data_source_key']==$dataSourceKey&&$theInstitution[0]['object_group']==$group&&$theInstitution[0]['registry_object_class']=='Party'&&$theInstitution[0]['type']=='group')
 					{
-						//echo "The record is valid so add it to the db <br />";
+						//echo "The record is valid so add it to the db";
 						$theInstitutionalPage = insertInstitutionalPage($group,$institutional_key,$dataSourceKey);
-					}else{
-						//echo "The record is not valid<br />";
-						$institutionPagesClass = gERROR_CLASS;
-						$errorMessages .= "You have provided an invalid key for your Institutional page.<br />The assigned registry object must be a PUBLISHED group party originating from this datasource and object group.<br />";
+						$mailSubject = $theInstitution[0]['list_title'].' has been mapped as a contributor page for group '.$group.' under data source '.$dataSourceKey;						
+						$mailBody = 'http://'.$host.'/'.$orca_root.'/view.php?key='.urlencode($institutional_key);			
 					}
+					elseif ($theContributorDraft[0]['registry_object_data_source']==$dataSourceKey&&$theContributorDraft[0]['registry_object_group']==$group&&$theContributorDraft[0]['class']=='Party'&&$theContributorDraft[0]['registry_object_type']=='group')
+					{
+						//echo "The record is valid so add it to the db";
+						$theInstitutionalPage = insertInstitutionalPage($group,$institutional_key,$dataSourceKey);	
+						$mailSubject = $theContributorDraft[0]['registry_object_title'].' has been mapped as a contributor page for group '.$group.' under data source '.$dataSourceKey;									
+						$mailBody	= 'http://'.$host.'/'.$orca_root.'/manage/add_party_registry_object.php?readOnly&data_source='.$dataSourceKey.'&key='.urlencode($institutional_key);				
+					}
+					else
+					{
+						//echo "The record is not valid so show error";					
+						$institutionPagesClass = gERROR_CLASS;
+						$errorMessages .= "You have provided an invalid key for your Institutional page.<br />The assigned registry object must be a group party originating from this datasource and object group.<br />";
+					}	
+
+					if($alreadyMapped[$group][0]['registry_object_key']!=$institutional_key&&$alreadyMapped[$group][0]['registry_object_key']!='')
+					{
+						send_email(eCONTACT_EMAIL,$mailSubject,$mailBody);	
+					}
+					
 				}
 				unset($_POST['group_'.$i]);
 				unset($_POST['institution_key_'.$i]);
@@ -220,13 +250,24 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 		$errorMessages .= "Title is a mandatory field.<br />";
 	}
 
+	$post_code = getPostedValue('post_code');
+	$address_line_1 = getPostedValue('address_line_1');
+	$address_line_2 = getPostedValue('address_line_2');
+	$city = getPostedValue('city');
+	$state = getPostedValue('state');
+
 	$uri = getPostedValue('uri');
 	if( $uri == '' )
 	{ 
 		$uriLabelClass = gERROR_CLASS;
 		$errorMessages .= "URI is a mandatory field.<br />";
 	}	
-
+	
+	if(getPostedValue('uri')!='' && (!filter_var(getPostedValue('uri'), FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED) || strpos(getPostedValue('uri'), "file://")===0))
+  	{
+		$uriLabelClass = gERROR_CLASS;
+		$errorMessages .= "URI <em>".filter_var(getPostedValue('uri'))."</em> is not a valid URI.<br />";
+  	}
 	$providerType = getPostedValue('provider_type');
 	if( $providerType == '' )
 	{ 
@@ -330,6 +371,18 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 	}	
 	$oaiSet = getPostedValue('oai_set');
 	$harvestDate = getPostedValue('harvest_date');
+	if($harvestMethod!='DIRECT')
+	{
+		$pattern = "/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(:(\d{2}))?(?:([-+])(\d{2}):?(\d{2})|(Z))?/";
+		if (getPostedValue('harvest_date')!='' && !preg_match( $pattern, getPostedValue('harvest_date') ) ) 
+		{
+			$dateLabelClass = gERROR_CLASS;
+			$errorMessages .= "Harvester date format must be W3CDTF.<br />";
+		}	
+	}else{
+		$_POST['harvest_date']='';
+	}
+
 	$harvestFrequency = getPostedValue('harvest_frequency');
 	$contactName = getPostedValue('contact_name');
 	$contactEmail = getPostedValue('contact_email');
@@ -357,6 +410,8 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 	$autoPublish = getPostedValue('auto_publish');
 	$qaFlag = getPostedValue('qa_flag');
 
+	$advancedHarvestingMode = getPostedValue('advanced_harvesting_mode');
+
 	if( getPostedValue('record_owner') )
 	{ 
 		$recordOwner = getPostedValue('record_owner');
@@ -369,6 +424,19 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 		$harvestMethodLabelClass = gERROR_CLASS;
 		$errorMessages .= 'This Provider Type is not supported by this Harvest Method.<br />'; 
 		$errorMessages .= 'This Harvest Method does not support this Provider Type.<br />';
+	}
+	
+	
+	// Check the advanced harvest mode compatibility
+	if( $providerType && $harvestMethod && $advancedHarvestingMode == "INCREMENTAL" && $providerType != "OAI_RIF")
+	{
+		$advancedHarvestingModeLabelClass = gERROR_CLASS;
+		$errorMessages .= 'This advanced harvesting mode is not compatible with your harvest type <br/>Note: Incremental harvesting only available in OAI-PMH providers.<br />'; 
+	}
+	if( $providerType && $harvestMethod && $advancedHarvestingMode == "REFRESH" && $harvestMethod == "DIRECT")
+	{
+		$advancedHarvestingModeLabelClass = gERROR_CLASS;
+		$errorMessages .= 'This advanced harvesting mode is not compatible with your harvest method <br/>Note: Full Refresh harvesting only available in harvested feeds (consider Harvester DIRECT instead).<br />'; 
 	}
 
 	if( $errorMessages == '' )
@@ -385,7 +453,10 @@ if( strtoupper(getPostedValue('action')) == "SAVE" )
 
 		$errors = updateDataSource();
 		$errors .= updateRecordsForDataSource($dataSourceKey, $autoPublish, $autoPublishOld , $qaFlag , $qaFlagOld,$create_primary_relationships, $create_primary_relationships_old,$class_1,$class_1_old,$class_2,$class_2_old);
-
+		$errors .= updateAdvancedHarvestingModeForDataSource($dataSourceKey, $advancedHarvestingMode);
+		$errors .= updatePostCodeForDataSource( $dataSourceKey, $post_code );
+		$errors .= updateAddressForDataSource( $dataSourceKey, $address_line_1, $address_line_2, $city, $state );
+		
 		if( $errors == "" )
 		{
 			responseRedirect('data_source_view.php?data_source_key='.urlencode($dataSourceKey));
@@ -404,7 +475,7 @@ require '../../_includes/header.php';
 ?>
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/orca_dhtml.js"></script>
 <script type="text/javascript" src="<?php print eAPP_ROOT ?>orca/_javascript/data_source_functions.js"></script>
-
+<input type="hidden" id="dataSourceKey" value="<?php echo $dataSourceKey; ?>" />
 <form id="data_source_edit" action="data_source_edit.php?data_source_key=<?php print(urlencode($dataSourceKey)); ?>" method="post" onSubmit="return checkModalId(this)">
 <div  style="width:1000px;overflow:auto">
 <table class="formTable" summary="Edit Data Source">
@@ -413,6 +484,7 @@ require '../../_includes/header.php';
 			<td>&nbsp;</td>
 			<td>Edit Data Source.</td>
 		</tr>
+	
 	</thead>	
 	<?php if( $errorMessages ) { ?>
 	<tbody>
@@ -473,6 +545,69 @@ require '../../_includes/header.php';
 			<td class="">Notes:</td>
 			<td><textarea name="notes" id="notes" cols="50" rows="5"><?php printSafe($notes) ?></textarea></td>
 		</tr>
+
+		<tr>
+			<td></td>
+			<td class="label" style="text-align:left;border-bottom:2px solid black;">Reference Address <span style="font-size:0.7em; color:#333;">Note: These optional fields are used to indicate your data source's origin in spatial reporting tools.</span></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<table>
+					<tr>
+						<td class="label">Address Line 1:</td>
+						<td><input type="text" name="address_line_1" id="address_line_1" size="60" maxlength="128" value="<?php printSafe($address_line_1) ?>" /></td>
+					</tr>
+
+					<tr>
+						<td class="label">Address Line 2:</td>
+						<td><input type="text" name="address_line_2" id="address_line_2" size="60" maxlength="128" value="<?php printSafe($address_line_2) ?>" /></td>
+					</tr>
+
+					<tr>
+						<td class="label">City:</td>
+						<td><input type="text" name="city" id="city" size="15" maxlength="15" value="<?php printSafe($city) ?>" /></td>
+					</tr>
+					
+					<tr>
+						<td class="label">Post Code:</td>
+						<td><input type="text" name="post_code" id="post_code" size="15" maxlength="6" value="<?php printSafe($post_code) ?>" /><br/></td>
+					</tr>
+
+					<tr>
+						<td class="label">State:</td>
+						<td>
+							<?php
+								$states = array(
+									'ACT'=>'Australian Capital Territory',
+									'NSW'=>'New South Wales',
+									'NT'=>'Northern Territory',
+									'QLD'=>'Queensland',
+									'SA'=>'South Australia',
+									'TAS'=>'Tasmania',
+									'VIC'=>'Victoria',
+									'WA'=>'Western Australia',
+								);
+							?>
+							<select name="state" id="state">
+								<option value=""></option>
+								<?php 
+									foreach($states as $sh=>$full){
+										if($state==$sh){
+											echo '<option value="'.$sh.'" selected=selected>'.$full.'</option>';
+										}else{
+											echo '<option value="'.$sh.'">'.$full.'</option>';
+										}
+									}
+								?>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		
 		<tr style="border-bottom:2px solid black;">
 		<td colspan="2" style="border-bottom:2px solid black;"><span style="float:left;">Records Management Settings</span>
 		</td>
@@ -718,11 +853,11 @@ require '../../_includes/header.php';
 			}
 			?>
 			<tr <?php echo $groupClass;?>>
-			<td<?php print($institutionPagesClass); ?>>Institutional Pages:</td>		
+			<td<?php print($institutionPagesClass); ?>>Contributor Pages:</td>		
 			<td>			
-			 	<input type="radio" name="institution_pages" value="0" <?php if($institutionalPages=="0") echo " checked"?> onChange="setInstitutionalPage(this,'<?php echo $groups;?>','<?php echo $data_Source?>');"> Do not have institutional pages<br />
-				<input type="radio" name="institution_pages" value="1" <?php if($institutionalPages=="1") echo " checked"?> onChange="setInstitutionalPage(this,'<?php echo $groups;?>','<?php echo $data_Source?>');"> Auto generate Institutional Pages for all my groups<br /> 
-				<input type="radio" name="institution_pages" value="2" <?php if($institutionalPages=="2") echo " checked"?> onChange="setInstitutionalPage(this,'<?php echo $groups;?>','<?php echo $data_Source?>');"> Manually manage my Institutional Pages and groups<br /> 
+			 	<input type="radio" name="institution_pages" value="0" <?php if($institutionalPages=="0") echo " checked"?> onChange="setInstitutionalPage(this,'<?php echo $groups;?>','<?php echo $data_Source?>');"> Do not have Contributor Pages<br />
+				<input type="radio" name="institution_pages" value="1" <?php if($institutionalPages=="1") echo " checked"?> onChange="setInstitutionalPage(this,'<?php echo $groups;?>','<?php echo $data_Source?>');"> Auto generate Contributor Pages for all my groups<br /> 
+				<input type="radio" name="institution_pages" value="2" <?php if($institutionalPages=="2") echo " checked"?> onChange="setInstitutionalPage(this,'<?php echo $groups;?>','<?php echo $data_Source?>');"> Manually manage my Contributor Pages and groups<br /> 
 				<span id="currentPage" style="display:none"><?php echo $institutionalPages?></span>
 				<?php if($groups!='')
 				{?>
@@ -730,9 +865,15 @@ require '../../_includes/header.php';
 				<tr><td style="width:200px"><b>Group </b> </td><td> <b> Contributor Page Key</b></td></tr>
 			<?php 
 				$i=1;
+				$noAutoPage = "no";
 				foreach($object_groups as $group)
 				{ 
 				$thePage = getGroupPage($group['object_group']);
+
+				if($institutionalPages=='1'&&!$thePage)
+				{
+					$noAutoPage = "yes";
+				}
 				?>
 				<tr><td id="group<? echo $i;?>name" width="200"><?php  echo $group['object_group'];?>
 				<?php  if ($thePage[0]['authoritive_data_source_key'] != $data_Source && isset($thePage[0]['authoritive_data_source_key'])) 
@@ -752,7 +893,7 @@ require '../../_includes/header.php';
 						$searchStr .= '<tbody class="formFields andsorange">';
 						$searchStr .= '<tr><td>Search by name:</td><td><input type="text" id="object_institution_key_'.($i).'_name" autocomplete="on" name="object_institution_key_'.($i).'_name" maxlength="512" size="30" /></td></tr>';
 						$searchStr .= '<tr><td>Select object class:</td><td><span style="color:#666666">Party</span><input type="hidden" id="select_institution_key_'.($i).'_class" value = "Party"/></td></tr>';
-						$searchStr .= '<tr><td>Data source:<input type="hidden" id="select_institution_key_'.($i).'_group" value="'.$group['object_group'].'"/></td><td><select id="select_institution_key_'.($i).'_dataSource" >'.$groupsDataSources[$group['object_group']].'</td></tr>';
+						$searchStr .= '<tr><td>Data source:<input type="hidden" id="select_institution_key_'.($i).'_group" value="'.$group['object_group'].'"/><input type="hidden" id="select_institution_key_'.($i).'_dataSource" value="'.$data_Source.'"/></td><td>'.$data_Source.'</td></tr>';
 						$searchStr .= '<tr><td><input type="button" value="Choose Selected" onClick=\'setRelatedId("object_institution_key_'.($i).'");\'/></td><td></td></tr>';
 						$searchStr .= '</table>';				
 						$searchStr .= '</div>'; 
@@ -771,6 +912,12 @@ require '../../_includes/header.php';
 				<?php
 				$i++; 
 				}	
+				if($noAutoPage=="yes")
+				{
+					?>
+					<span id="noAutoPage" style="display:none">1</span>
+					<?php 
+				}
 				?>			
 				</table>	
 			<?php 
@@ -832,9 +979,35 @@ require '../../_includes/header.php';
 			<td class="">OAI Set:</td>
 			<td><input type="text" name="oai_set" id="oai_set" size="30" maxlength="128" value="<?php printSafe($oaiSet) ?>" /></td>
 		</tr>
+		
+		<tr id="advanced_harvesting_options_row">
+			<td <?php echo $advancedHarvestingModeLabelClass; ?>>Advanced Harvest Mode:</td>
+			<td>
+				<a onclick="javascript: $(this).hide(); $('#advanced_harvesting_options').show();">show advanced options</a>
+				
+				<div id="advanced_harvesting_options" class="hide">
+					<input type="radio" name="advanced_harvesting_mode" value="STANDARD"<?=($advancedHarvestingMode=="STANDARD" ? ' checked="checked"' : '');?> /> Standard Mode<br/>
+					<input type="radio" name="advanced_harvesting_mode" value="INCREMENTAL"<?=($advancedHarvestingMode=="INCREMENTAL" ? ' checked="checked"' : '');?> /> Incremental Mode<br/>
+					<input type="radio" name="advanced_harvesting_mode" value="REFRESH"<?=($advancedHarvestingMode=="REFRESH" ? ' checked="checked"' : '');?> /> Full Refresh Mode
+				</div>
+				
+				
+			</td>
+		</tr>
 
 		<tr id="harvest_date_row">
-			<td class="">Harvest Date:</td>
+			<td <?php echo $dateLabelClass; ?>>Harvest Date:</td>
+			<?php 		
+				$origin_dt = new DateTime(date("y-m-d h:s",time())) ;
+			    $remote_dtz = new DateTimeZone('GMT');
+			    $origin_dtz = new DateTimeZone(timezone_name_get(date_timezone_get($origin_dt)));			    
+    			$remote_dt = new DateTime("now",$remote_dtz);
+    			$offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
+    			$current = $offset/60/60;	
+    			if($current>0)$current = "+".$current;
+				$currentZone = "&nbsp;&nbsp;(GMT ".$current.")";
+				$currentNum = number_format($current);
+			?>
 		<!-- 			<td><?php drawDateTimeZoneInput('harvest_date', $harvestDate, eDCT_FORMAT_ISO8601_DATE_TIME."X") ?>
 			<span id="gmtZone" class="inputFormat"><?php if(isset($theString)){ echo $theString;} else { echo $currentZone ;} ?> </span>
 			<input name="theZone" id="theZone" type="hidden" value="<?php if(isset($newNum)){echo $newNum;}else { echo $currentNum ; }?>"/>
@@ -877,8 +1050,8 @@ require '../../_includes/header.php';
 	</tbody>
 	<tbody>
 		<tr>
-			<td width="128"></td>
-			<td><input type="submit" name="action" value="Cancel" />&nbsp;&nbsp;<input type="submit" name="action" value="Save"  onClick="return nlaPushCheck();"/>&nbsp;&nbsp;</td>
+			<td width="175"></td>
+			<td><input type="submit" name="action" value="Save" onClick="return nlaPushCheck();"/>&nbsp;&nbsp;<input type="submit" name="action" value="Cancel" />&nbsp;&nbsp;</td>
 		</tr>
 		<tr>
 			<td></td>

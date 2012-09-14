@@ -35,7 +35,6 @@ class Search extends CI_Controller
         if (isset($_GET['q']))
         {
             $q = $_GET['q'];
-            //echo $q;
             redirect(base_url() . 'search/#!/q=' . $q);
         }
         else
@@ -53,7 +52,7 @@ class Search extends CI_Controller
                 $queryFacilities = $this->Solr->getFacilities();
                 $data['facilities'] = $queryFacilities->{'facet_counts'}->{'facet_fields'}->{'group'};
                 $data['widget_facilities'] = 1;
-                
+             
                 //get Subject
                 include APPPATH . '/views/tab/forstat.php';
                 $data['widget_for'] = 1;
@@ -490,7 +489,7 @@ class Search extends CI_Controller
 
         if (($q == '') || ($q == 'Search ecosystem data'))
             $q = "*:*";
-        
+      
         //echo $q;
         //Filtering if there is any
         $classFilter = $this->input->post('classFilter');
