@@ -85,9 +85,8 @@ switch(getQueryValue('action'))
 		foreach($keys AS $key)
 		{
 			$response['response']=updateDraftRegistryObjectStatus(rawurldecode($key), $data_source_key, SUBMITTED_FOR_ASSESSMENT);
-			syncDraftKey(rawurldecode($key), $data_source_key);
 		}
-
+		syncDraftKeys($keys, $data_source_key);
 		$target_data_source = getDataSources($data_source_key, null);
 		
 		$response['responsecode'] = "MT008";
@@ -121,9 +120,8 @@ switch(getQueryValue('action'))
 		foreach($keys AS $key)
 		{
 			updateDraftRegistryObjectStatus(rawurldecode($key), $data_source_key, ASSESSMENT_IN_PROGRESS);
-			syncDraftKey(rawurldecode($key), $data_source_key);
 		}
-		
+		syncDraftKeys($keys, $data_source_key);
 		$response['responsecode'] = "1";
 		echo json_encode($response);
 		die();
@@ -135,9 +133,8 @@ switch(getQueryValue('action'))
 		foreach($keys AS $key)
 		{
 			updateDraftRegistryObjectStatus(rawurldecode($key), $data_source_key, MORE_WORK_REQUIRED);
-			syncDraftKey(rawurldecode($key), $data_source_key);
 		}
-		
+		syncDraftKeys($keys, $data_source_key);
 		$response['responsecode'] = "1";
 		echo json_encode($response);
 		die();
@@ -148,10 +145,9 @@ switch(getQueryValue('action'))
 		
 		foreach($keys AS $key)
 		{
-			updateDraftRegistryObjectStatus(rawurldecode($key), $data_source_key, DRAFT);
-			syncDraftKey(rawurldecode($key), $data_source_key);
+			updateDraftRegistryObjectStatus(rawurldecode($key), $data_source_key, DRAFT);			
 		}
-		
+		syncDraftKeys($keys, $data_source_key);
 		$response['responsecode'] = "1";
 		echo json_encode($response);
 		die();
@@ -160,12 +156,13 @@ switch(getQueryValue('action'))
 	
 	case "APPROVE":
 		$returnErrors = "";
+		deleteSetofSolrDrafts($keys, $data_source_key);
 		foreach($keys AS $key)
 		{
-			$returnErrors .= approveDraft(rawurldecode($key), $data_source_key);
-			deleteSolrHashKey(sha1($key.$data_source_key));//delete the draft
-			syncKey(rawurldecode($key), $data_source_key);
+			$returnErrors .= approveDraft(rawurldecode($key), $data_source_key);			
+			$returnErrors .= syncKey(rawurldecode($key), $data_source_key);
 		}
+		//deleteSolrHashKeys(sha1($key.$data_source_key));//delete the draft
 		$response['alert'] = $returnErrors;
 		$response['responsecode'] = "1";
 		echo json_encode($response);
@@ -175,15 +172,19 @@ switch(getQueryValue('action'))
 	
 	
 	case "PUBLISH":
+		deleteSetofSolrDrafts($keys, $data_source_key);
+		//var_dump($keys);
 		foreach($keys AS $key){
 			//is it a draft
 			$isDraft = getDraftRegistryObject(rawurldecode($key), $data_source_key);
 			if($isDraft){
 				//is a draft, have to approve and do all the jazz with it first
-				approveDraft($key, $data_source_key);
-				updateRegistryObjectStatus(rawurldecode($key), PUBLISHED);
-				syncDraftKey(rawurldecode($key), $data_source_key);
+				$error = approveDraft($key, $data_source_key);
+				//deleteSolrHashKey(sha1($key.$data_source_key));//delete the draft
+				$error .= updateRegistryObjectStatus(rawurldecode($key), PUBLISHED);
+				$error .= syncKey(rawurldecode($key), $data_source_key);
 				$response['responsecode'] = "1";
+				$response['alert'] = $error;
 				echo json_encode($response);
 			}else{
 				//is not draft
@@ -191,9 +192,20 @@ switch(getQueryValue('action'))
 				syncKey(rawurldecode($key), $data_source_key);
 				$response['responsecode'] = "1";
 				echo json_encode($response);
+				if(isContributorPage(rawurldecode($key)))
+				{
+					$theObject = getRegistryObject(rawurldecode($key), $overridePermissions = true);
+					$subject = $theObject[0]['list_title'].' contributor page was published on '.date("d-m-Y h:m:s");						
+					$mailBody = eHTTP_APP_ROOT.'orca/view.php?key='.urlencode($key);
+					$headers  = 'MIME-Version: 1.0' . "\r\n";
+					$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+					$headers .= 'From:'.eCONTACT_EMAIL_FROM."\r\n";
+					mail(eCONTACT_EMAIL, $subject, $mailBody, $headers);					
+				}
 			}
-			
 		}
+		queueSyncDataSource($data_source_key);
+		//syncDraftKeys($keys, $data_source_key);
 		die();
 		
 	break;
@@ -219,10 +231,10 @@ switch(getQueryValue('action'))
 		foreach($keys AS $key)
 		{
 			deleteDraftRegistryObject($data_source_key, rawurldecode($key));//delete from db
-			deleteSolrDraft($key, $data_source_key);//delete from solr
+			//deleteSolrDraft($key, $data_source_key);//delete from solr
 			queueSyncDataSource($data_source_key);
 		}
-		
+		deleteSetofSolrDrafts($keys, $data_source_key);
 		$response['responsecode'] = "1";
 		echo json_encode($response);
 		die();
@@ -231,7 +243,16 @@ switch(getQueryValue('action'))
 	
 	case "FLAG_GOLD":
 		foreach($keys as $key){
-			setGoldFlag($key);
+			setRegistryObjectGoldStandardFlag($key,1);
+			syncKey($key, $data_source_key);
+		}
+		$response['responsecode']="1";
+		echo json_encode($response);
+		die();
+		
+	case "UNSET_GOLD":
+		foreach($keys as $key){
+			setRegistryObjectGoldStandardFlag($key,0);
 			syncKey($key, $data_source_key);
 		}
 		$response['responsecode']="1";

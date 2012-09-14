@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 *******************************************************************************/
-if (!IN_ORCA) die('No direct access to this file is permitted.');
+//if (!IN_ORCA) die('No direct access to this file is permitted.');
 
 // Execute the search.
 $rawResults = getDataSources(null, null);
@@ -26,7 +26,7 @@ if( $rawResults )
 	{
 		if( (userIsDataSourceRecordOwner($dataSource['record_owner']) || userIsORCA_ADMIN()) )
 		{
-			$dataSources[] = $dataSource["data_source_key"];
+			$dataSources[] = esc($dataSource["data_source_key"]);
 		}		
 	}
 }
