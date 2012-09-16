@@ -1,6 +1,13 @@
 {
         "layers": [ 
             {
+            "l_id": "l4", 
+            "l_name" : "States",
+            "geo_name" : "nr:states",
+             "geo_url": "http://demo:8080/geoserver/wms"
+
+            },
+            {
             "l_id": "l1",  
             "l_name" : "IBRA", 
             "geo_name" : "nr:ibra",
