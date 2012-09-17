@@ -23,6 +23,7 @@ limitations under the License.
  * function prints out HTML
  * used in facet view
  */
+/*
 function displayFacet($facet_name, $facetFilter, $json, $ro_class){
 	
 	$clear ='';$name = '';$class='';
@@ -53,11 +54,14 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
             //print the others
             for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
                     if($object_type[$i+1]>0){
-                            if($object_type[$i]!=$facetFilter){
+                            if($object_type[$i]!=$facetFilter)
+                            {                               
                                     echo '<li class="limit">
                                             <a href="javascript:void(0);" 
                                                     title="'.$object_type[$i].' ('.number_format($object_type[$i+1]).''.' results)" 
                                                     class="'.$class.'" id="'.$object_type[$i].'">'.$object_type[$i].' ('.number_format($object_type[$i+1]).')'.'</a></li>';
+ 
+                                
                             } 
                     }
             }
@@ -65,7 +69,46 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
             echo '</div>';
         }
 }
+*/
+function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
+	
+	$clear ='';$name = '';$class='';
+	
+	if($facet_name=="group")
+        {
+           $clear = 'clearGroup';
+           $name='Facilities';
+           $class="groupFilter";
+        }           
 
+	$object_type="";
+	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
+        if(count($object_type)>0){
+            
+            echo '<h5 ><a href="#">'.$name;
+            echo '</a></h5>';
+            echo '<div class="facet-list facet-content">';
+
+            echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
+
+            //print the others
+            for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
+                    if($object_type[$i+1]>0){
+                            if($object_type[$i]!=$facetFilter)
+                            {
+                                echo '<li>
+					<input type="checkbox" 
+						name="facchkbox"
+                                                value="'.$object_type[$i].'" 
+						class="groupFilter'.'" id="'.$object_type[$i].'"/>'.$object_type[$i].'</li>';         
+                            } 
+                    }
+            } 
+            echo '</ul>';
+            echo '<button id="facbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
+            echo '</div>';
+        }
+}
 /* displayRegionFacet
  * tern_region field in SOLR
  */
@@ -210,6 +253,18 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
         }
 }       
 
+function displaySelectedTerm($query, $json){
+
+	$clear ='';$name = '';$class='';
+
+        $clear = 'clearTerm';$name='Term';$class="termF";
+         
+         echo '<li class="limit">
+		       <a href="javascript:void(0);" 
+						class="clearFilter '.$clear.'" id="'.$query.'">'.$query.'</a></li>';
+
+
+} 
 /*
  * Construct a SOLR based filter query
  * Used in SOLR model
@@ -470,31 +525,31 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetFilter, $json, $ro
         $object_type4 = $json->{'facet_counts'}->{'facet_fields'}->{$facetfour};
         $object_type6 = $json->{'facet_counts'}->{'facet_fields'}->{$facetsix};
         
-//copy code arrays
-for($j=0;$j<count($code2);$j=$j+2)
-{
-    $out_code2[$code2[$j]]=$code2[$j+1];
-}      
-      //  print_r($out_code2);
-for($j=0;$j<count($code4);$j=$j+2)
-{
-    $out_code4[$code4[$j]]=$code4[$j+1];
-} 
+    //copy code arrays
+    for($j=0;$j<count($code2);$j=$j+2)
+    {
+        $out_code2[$code2[$j]]=$code2[$j+1];
+    }      
+        //  print_r($out_code2);
+    for($j=0;$j<count($code4);$j=$j+2)
+    {
+        $out_code4[$code4[$j]]=$code4[$j+1];
+    } 
 
 
-//copy text value to array      
-for($j=0;$j<count($object_type2);$j=$j+2)
-{
-    $out2[$object_type2[$j]]=$object_type2[$j+1];
-}
+    //copy text value to array      
+    for($j=0;$j<count($object_type2);$j=$j+2)
+    {
+        $out2[$object_type2[$j]]=$object_type2[$j+1];
+    }
 
-//print_r($out2);
+    //print_r($out2);
 
-for($j=0;$j<count($object_type4);$j=$j+2)
-{
-    $out4[$object_type4[$j]]=$object_type4[$j+1];
-}
-//print_r($out4);
+    for($j=0;$j<count($object_type4);$j=$j+2)
+    {
+        $out4[$object_type4[$j]]=$object_type4[$j+1];
+    }
+    //print_r($out4);
  
 	echo '<h5><a href="#">Field of Research';
 	echo '</a></h5>';
@@ -558,7 +613,7 @@ for($j=0;$j<count($object_type4);$j=$j+2)
 
        	echo '</ul>';
 //end FOR tree
-        echo '<button id="forbutton" class="srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
+        echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
 	echo '</div>';
 
  

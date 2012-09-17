@@ -179,8 +179,8 @@ $(function() {
                 typeFilter = encodeURIComponent($(this).attr('id'));
                 changeHashTo(formatSearch(search_term, 1, classFilter));
             }else if($(this).hasClass('groupFilter')){
-                groupFilter = encodeURIComponent($(this).attr('id'));
-                changeHashTo(formatSearch(search_term, 1, classFilter));
+                //groupFilter = encodeURIComponent($(this).attr('id'));
+                //changeHashTo(formatSearch(search_term, 1, classFilter));
             }else if($(this).hasClass('subjectFilter')){
                 subjectFilter = encodeURIComponent($(this).attr('id'));
                 changeHashTo(formatSearch(search_term, 1, classFilter));
@@ -267,6 +267,9 @@ $(function() {
             w = '';
             s = '';
             spatial_included_ids = '';
+        }else if($(this).hasClass('clearTerm'))
+        {
+            search_term='*:*';
         }
         changeHashTo(formatSearch(search_term,1,classFilter));
     });
@@ -578,12 +581,7 @@ $(function() {
         /*
         * Big search button
         */
-        $('#search_basic').click(function(){
-            resetAllSearchVals();
-            search_term = $('#search-box').val();
-          
-            changeHashTo(formatSearch(search_term, 1, classFilter,num));
-        }).button();     
+ 
         
         //Submit button 
        $("#search_advanced").click(function(){
@@ -868,6 +866,19 @@ $(function() {
                 header: 'h6', 
                 autoHeight: false
             });*/
+            
+        var temporalWidget = new TemporalWidget();
+        temporalWidget.temporal = temporal;
+        temporalWidget.refreshTemporalSearch();
+        enableToggleTemporal("#show-temporal-search",temporalWidget);   
+        
+        $('#search_basic').click(function(){
+            resetAllSearchVals();
+            search_term = $('#search-box').val();
+
+            changeHashTo(formatSearch(search_term, 1, classFilter,num));
+        }).button();   
+        
         $('#forbutton').click(function(){
             //FOR filtering 
                 if( document.getElementById("fortree") != null)  
@@ -896,10 +907,16 @@ $(function() {
                     }); 
                 }
               
+            changeHashTo(formatSearch(search_term, 1, classFilter,num));
+
+        }); 
+        
+        $('#facbutton').click(function(){           
+              
                 //Group filtering
                 if( document.getElementById("groupFilter") != null ) {
                     var first = true;
-                    $('#groupFilter :checked').each(function(){
+                    $('#group-facet :checked').each(function(){
                         if(first) {
                             groupFilter = $(this).val();
                             first=false;
@@ -911,6 +928,17 @@ $(function() {
             changeHashTo(formatSearch(search_term, 1, classFilter,num));
 
         }); 
+
+        
+        $('#search_temp').click(function(){     
+              temporal = temporalWidget.getTemporalValues();   
+
+            changeHashTo(formatSearch(search_term, 1, classFilter,num));
+
+        });
+       
+        
+        
         
         }
         else{
@@ -971,7 +999,7 @@ $(function() {
              }
             ,
             error:function(msg){
-                console.log('error');
+                console.log(msg);
                  $("#loading").hide();
             }
         });

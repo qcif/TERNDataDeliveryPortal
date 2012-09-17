@@ -22,7 +22,7 @@ $Revision: 1 $
 ?>
 <?php 
 
-if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All')    
+if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All'||$query!='Search ecosystem data')    
 {
 	echo '<h5><a href="#">Selected</a></h5>'; 
 	echo '<div class="facet-list">';
@@ -43,6 +43,8 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
                 if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
 
                  if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
+                 
+                 if($query!='All Records') displaySelectedTerm($query,$json);
                //   if($forsixFilter!='All') displaySelectedFacet('for_value_six',$forsixFilter,$json);
 
 	echo '</ul>';
@@ -63,12 +65,15 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 
 	//displayFacet('subject_value', $subjectFilter, $json, $classFilter);
      //   displayFacet('subject_value_resolved', $subjectFilter, $json, $classFilter);
+        $this->load->view('tab/widgets/basicsearch');
+        $this->load->view('tab/widgets/temporal');
 
         displayRegionFacet('tern_region', $ternRegionFilter, $json, $ternRegionFilter,$regionsName);
        
         displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$json, $classFilter, $this);      
 
-        displayFacet('group', $groupFilter, $json, $classFilter);
+       // displayFacet('group', $groupFilter, $json, $classFilter);
+         displayFacilitiesFacet('group', $groupFilter, $json, $classFilter);
 	  
        
 ?>

@@ -46,7 +46,7 @@ class Search extends CI_Controller
                 $data['min_year'] = $row->min_year;
                 $data['max_year'] = $row->max_year;
                 $data['widget_temporal'] = 1;
-                
+          
                 //get Group
                 $this->load->model('Solr');
                 $queryFacilities = $this->Solr->getFacilities();
@@ -73,7 +73,7 @@ class Search extends CI_Controller
                 $data['title'] = "Search TERN Data Discovery Portal";
                 //get Keyword
                 $data['widget_keyword'] = 1;
-                
+            
                             
             $this->load->view('new_search', $data);
         }
@@ -509,6 +509,8 @@ class Search extends CI_Controller
          
         $num=$this->input->post('num');
      
+       
+        
         $query = $q;
         $extended_query = '';
         
@@ -585,6 +587,14 @@ class Search extends CI_Controller
              
          $data["regionsName"] = $regionsName;
 
+                    //get Temporal 
+        $this->load->model('Registryobjects');
+        $query = $this->Registryobjects->get_min_year();
+        if($query) $row = $query->row();              
+        $data['min_year'] = $row->min_year;
+        $data['max_year'] = $row->max_year;
+        $data['widget_temporal'] = 1;
+                
         $this->benchmark->mark('search_end');
         //echo $this->benchmark->elapsed_time('search_start', 'search_end');
 
