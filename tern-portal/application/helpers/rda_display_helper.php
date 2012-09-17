@@ -451,7 +451,16 @@ function stripFORString($str)
 function displayFORFacet($facettwo,$facetfour,$facetsix,$facetFilter, $json, $ro_class, $obj)
 {
 	//$clear =$facetName;$class=$facetFilter;
- 
+     
+    $words=explode(';',$facetFilter);
+    $four=array();
+
+    foreach($words as $w)
+    {
+       $four[]=escapeSolrValue($w);
+
+    }
+    
 //code        
         $code2 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_two'};
         $code4 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_four'};
@@ -504,7 +513,7 @@ for($j=0;$j<count($object_type4);$j=$j+2)
                     {
                         if($out_keys2[$i]!=null)
                         {             
-                            $index=findFORChildFour($out_code_keys2[$i],$out_code_keys4);
+                            $index=findFORChildFour($out_code_keys2[$i],$out_code_keys4,$facetFilter);
 
                             if(count($index)==0)//no child node under 2 digits FOR
                             {
@@ -523,14 +532,20 @@ for($j=0;$j<count($object_type4);$j=$j+2)
 						value="'.$out_keys2[$i].'" 
 						class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')</span>';
                                 echo    '<ul>';
+                                
                                             for($k=0;$k<count($index);$k++)
                                             {
-                                                echo '<li ><span>
+                                                if(!checkInFilter($out_keys4[$index[$k]],$four))
+                                                {
+                                                    echo '<li ><span>
+                                                
                                                          <input type="checkbox"
                                                             name="fourFOR"
                                                             value="'.$out_keys4[$index[$k]].'" 
                                                             class="forfourFilter'.'" id="'.$out_keys4[$index[$k]].'"/>'.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).')'.'</span>';
-                                                echo '</li>';
+                                                    echo '</li>';
+                                                }
+                                                
                                             }
                                 echo    '</ul>';
                                 echo '</li>';                                
@@ -551,6 +566,7 @@ for($j=0;$j<count($object_type4);$j=$j+2)
 
 function findFORChildFour($twocode,$code_arr4)
 {
+    
 // print_r ($code_arr4);
     $idx=array();
     
@@ -565,6 +581,23 @@ function findFORChildFour($twocode,$code_arr4)
     }
     //print_r($idx);
     return $idx;
+}
+
+function checkInFilter($word,$filter)
+{
+
+   // die(); 
+    $r=false;
+     for ($n=0;$n<count($filter);$n++)
+     {
+            // print_r(urldecode($filter[$n]));
+        if($word==urldecode($filter[$n]))
+        {
+            $r=true;
+            return $r;
+        }
+     }
+     return $r;
 }
 /*
 // is this still being used? 
