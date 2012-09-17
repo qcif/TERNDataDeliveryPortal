@@ -68,11 +68,10 @@
 
         if ($q != '*:*')
         $q = escapeSolrValue($q);
-
-        if($fortwo=='All' && $forfour=='All')
-        {
-            $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR display_title:(' . $q . ')^50 OR list_title:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value_resolved:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';    
-        }else if($fortwo!='All' &&$forfour=='All' )
+        
+        $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR display_title:(' . $q . ')^50 OR list_title:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value_resolved:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';    
+        
+        if($fortwo!='All' &&$forfour=='All' )
         {
             $forstr=constructFORQuery('for_value_two',$fortwo);
             
@@ -82,7 +81,7 @@
             $forstr=constructFORQuery('for_value_four',$forfour);
             
             $q=$q.'AND ('.$forstr.')';             
-        }else //$fortwo!='All' &&$forfour!='All'
+        }else if($fortwo!='All' &&$forfour!='All')
         {
             $for2str=constructFORQuery('for_value_two',$fortwo);
             $for4str=constructFORQuery('for_value_four',$forfour);

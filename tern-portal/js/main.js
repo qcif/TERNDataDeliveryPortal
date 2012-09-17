@@ -187,10 +187,30 @@ $(function() {
                                
             }else if($(this).hasClass('fortwoFilter')){
                 fortwoFilter = encodeURIComponent($(this).attr('id'));
+                var len=$(this).parent().parent().children("ul").children("li").children("span").children("input").length;
+                
+                   if($(this).attr("checked")=="checked")
+                   {
+                        for(var j=0;j<len;j++)
+                        {
+                            $(this).parent().parent().children("ul").children("li").children("span").children("input")[j].checked=true;
+
+                        }
+                    }else
+                    {
+                        for(var j=0;j<len;j++)
+                        {
+                            $(this).parent().parent().children("ul").children("li").children("span").children("input")[j].checked=false;
+
+                        }
+                    }
+                
+
                 //changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
             }else if($(this).hasClass('forfourFilter')){
                 forfourFilter = encodeURIComponent($(this).attr('id'));
+
                // changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
             }else if($(this).hasClass('forsixFilter')){
@@ -787,7 +807,7 @@ $(function() {
 		unique: true,
 		persist: "cookie",
 		toggle: function() {
-			window.console && console.log("%o was toggled", this);
+			//window.console && console.log("%o was toggled", this);
 		}
             });
             $('.record-list').die('click').click( function(){     
