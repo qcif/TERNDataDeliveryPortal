@@ -91,7 +91,7 @@ $(function() {
             var value = urldecode(string[1]);
             switch(term){
                 case 'q':
-                    search_term=value;
+                    search_term=value;                    
                     break;
                 case 'p':
                     page=value;
@@ -269,7 +269,37 @@ $(function() {
             spatial_included_ids = '';
         }else if($(this).hasClass('clearTerm'))
         {
-            search_term='*:*';
+            //search_term='*:*';
+            if(search_term.search("AND")==-1 && search_term.search("NOT")==-1 && search_term.search("OR")==-1 )
+            {
+                search_term='*:*';    
+            }else
+            {
+                search_term=search_term.replace("(","");
+                search_term=search_term.replace(")","");
+                
+                var tmp=search_term.split(" ");
+                var str="";
+                removeElementFromArray(tmp,$.trim($(this).attr('id')));
+                
+                if(tmp[0]==("AND")||tmp[0]==("OR")||tmp[0]==("NOT"))
+                {
+                        for(var j=1;j<tmp.length;j++)
+                        {
+                           str=str+tmp[j];
+                        }
+                }else
+                {
+                   for(var j=0;j<tmp.length;j++)
+                   {
+                           str=str+tmp[j];
+                   }    
+                }
+                search_term=str;
+
+               
+            }
+            
         }
         changeHashTo(formatSearch(search_term,1,classFilter));
     });
@@ -872,9 +902,31 @@ $(function() {
         temporalWidget.refreshTemporalSearch();
         enableToggleTemporal("#show-temporal-search",temporalWidget);   
         
+        $('#adv_bool').click(function(){
+             if(document.getElementById("adv_bool_operator").style.display=='none')
+                document.getElementById("adv_bool_operator").style.display='block';
+            else
+                document.getElementById("adv_bool_operator").style.display='none';
+        });
+        
         $('#search_basic').click(function(){
-            resetAllSearchVals();
-            search_term = $('#search-box').val();
+            //resetAllSearchVals();
+
+           if(search_term==""||search_term=="Search ecosystem data" ||search_term=="*:*")
+           {
+                search_term = $('#search-box').val();       
+           }else
+           {
+               var rb=document.getElementsByName('boolean_operator');
+               
+               for(var i=rb.length-1;i>-1;i--)
+               {
+                   if(rb[i].checked && search_term!=$('#search-box').val())
+                       search_term="("+search_term+") "+rb[i].value+" "+$('#search-box').val();
+               }
+               
+           }
+            
 
             changeHashTo(formatSearch(search_term, 1, classFilter,num));
         }).button();   
@@ -1570,7 +1622,18 @@ function setCookie(c_name,value,exdays)
     
     document.cookie=c_name + "=" + c_value;
 }
-
+function removeElementFromArray(arr)
+{
+    var what, a= arguments, L= a.length, ax;
+    
+    while(L> 1 && arr.length){
+        what= a[--L];
+        while((ax= arr.indexOf(what))!= -1){
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
  
 /*    
     function handleRollover()

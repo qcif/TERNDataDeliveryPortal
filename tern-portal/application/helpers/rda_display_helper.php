@@ -256,14 +256,30 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
 function displaySelectedTerm($query, $json){
 
 	$clear ='';$name = '';$class='';
-
+     
         $clear = 'clearTerm';$name='Term';$class="termF";
-         
-         echo '<li class="limit">
-		       <a href="javascript:void(0);" 
-						class="clearFilter '.$clear.'" id="'.$query.'">'.$query.'</a></li>';
 
+        $query=str_replace("(","",$query);
+        $query=str_replace(")","",$query);
+        $rawquery=explode(" ",$query);
 
+        $op="";
+        $n=0;
+        while($n<count($rawquery))
+        {
+            if($rawquery[$n]!="AND" && $rawquery[$n]!="NOT" && $rawquery[$n]!="OR"&& $rawquery[$n]!="")
+            {
+
+                    echo '<li class="limit">
+                    <a href="javascript:void(0);" 
+                        class="clearFilter '.$clear.'" id="'.$op.' '.$rawquery[$n].'">'.$op.'('.$rawquery[$n].')</a></li>';   
+
+            }else
+            {
+                $op=$rawquery[$n];
+            }
+            $n=$n+1;
+        }
 } 
 /*
  * Construct a SOLR based filter query
