@@ -122,7 +122,9 @@ foreach ($json->{'response'}->{'docs'} as $r)
 
     $key_url = base_url() . 'view/dataview?key=' . urlencode($ro_key);
     echo '<tbody>';
-    echo '<tr><td><h2 class="h2color mapMarker">' . $c . '</h2></td><td><p><h2 class="h2color">' . $name . '</h></p></td><td><p>' . $date_pub . '</p></td>';
+    echo '<tr><td>';
+    if($center) echo '<h2 class="h2color mapMarker">' . $c . '</h2>';
+    echo '</td><td><p><h2 class="h2color">' . $name . '</h></p></td><td><p>' . $date_pub . '</p></td>';
     echo '<tr id="re-hide" style="border:0"><td id="emptycell"><p></p></td>
             <td id="desc">
                 <p>';
@@ -163,6 +165,7 @@ foreach ($json->{'response'}->{'docs'} as $r)
         echo '</ul>';
         echo '<a class="spatial_center">' . $center . '</a>';
         echo '<a class="key hide">' . $ro_key . '</a>';
+        if($center) $c++;
     }
 
     if (get_cookie('show_subjects') == 'yes')
@@ -242,7 +245,7 @@ foreach ($json->{'response'}->{'docs'} as $r)
       }
       echo '</div>';
      */
-    $c++;
+   // $c++;
 }
 echo '</table>';
 

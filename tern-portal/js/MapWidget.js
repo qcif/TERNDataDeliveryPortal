@@ -849,7 +849,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
                 var button =  $("<p>").append($(this).parent().parent().children('#metabutton').children('button').clone().attr('onClick','handleViewMeta(\''  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + '\');')).html();
              //   button = button.attr('onClick','handleViewMeta('  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + ');');
                 number = $(this).parent().parent().parent().children('tr').children('td:nth-child(1)').children('h2').html();
-                html  = "<strong>" + number +  ". <a href=" + link + " target=\"new\">" + title + "</a>"  + "</strong> <br/> " + date  + "&nbsp; "+ button;;
+                html  = "<strong> <div class=\"h2color mapMarker\" style=\"float:left\">" + number +  "</div> <a href=" + link + " target=\"new\">" + title + "</a>"  + "</strong> <br/> " + date  + "&nbsp; "+ button;;
                     
              
            // }
@@ -966,36 +966,57 @@ MapWidget.prototype.updateDrawing = function(map,coordStr){
  *
  *  ------------------------------------------------------------
  */
+
+// Force the popup to always open to the top-right
+
+
 MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
     selectedFeature = feature; 
     if(this.popup!=null) this.onPopupClose(this.popup,mapWidgetObj);
+     var offset = {'size':new OpenLayers.Size(10,12),'offset':new OpenLayers.Pixel(10,50)};
+       CustomFramedCloudPopupClass = OpenLayers.Class(OpenLayers.Popup.Anchored, {
+           'backgroundColor': '#FFFFFF', 
+           'border': '1px solid black',
+           'displayClass' : 'popupGroup',
+           'contentDisplayClass' : 'popupContent'
+       });  
     if(!feature.cluster){
-        this.popup = new OpenLayers.Popup.FramedCloud("chicken",
+       this.popup = new CustomFramedCloudPopupClass("chicken",
             feature.geometry.getBounds().getCenterLonLat(),
-            null, feature.data.popupHTML, null, true, function(){
+            null, feature.data.popupHTML, offset, true, function(){
                   
                     mapWidgetObj.onPopupClose(this,mapWidgetObj);
                     
-        });
-        this.popup.maxSize = new OpenLayers.Size(430,150);
-        this.popup.panMapIfOutOfView = true;
-        this.popup.autoSize = true;
+        });    
+        this.popup.calculateRelativePosition = function () {
+            return 'tr';
+        }
+        this.popup.maxSize = new OpenLayers.Size(300,150);
+        
       
     }else{
         var html = '';
     
         $.each(feature.cluster,function(){
-            html = html + "<strong>" + this.data.number + ". " +  this.data.title  + "</strong><br/>";
-        });
-        this.popup = new OpenLayers.Popup.FramedCloud("chicken",
+            html = html + "<strong> <div class=\"h2color mapMarker\" style=\"float:left\">" + this.data.number + "</div> " +  this.data.title  + "</strong><br/>";
+        }); 
+        this.popup = new CustomFramedCloudPopupClass("chicken",
                     feature.geometry.getBounds().getCenterLonLat(),
-                    null, html, null, true, function(){             
+                    null, html, offset, true, function(){             
                     mapWidgetObj.onPopupClose(this,mapWidgetObj);
         });
+         this.popup.calculateRelativePosition = function () {
+            return 'tr';
+        }
         this.popup.maxSize = new OpenLayers.Size(440,180);
-        this.popup.panMapIfOutOfView = true;
-        this.popup.autoSize = true;
+    
+      
     }
+    this.popup.displayClass = 'displayClass';
+    this.popup.panMapIfOutOfView = true;
+    this.popup.autoSize = true;
+  //  this.popup.setBorder('1px solid black');
+        
     feature.popup = this.popup;   
     map.addPopup(feature.popup);     
             

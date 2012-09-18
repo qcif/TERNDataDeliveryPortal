@@ -762,7 +762,16 @@ border-collapse:collapse;
     text-align: center;
     font-size: 11px;
     padding-top: 3px;
+    margin-right: 4px;
+} 
+
+
+.popupContent { 
+    padding: 14px 10px 10px;  
+}
+.popupGroup{
+    border: 1px solid #aaa;
+    border-radius: 13px;
+    box-shadow : 0 4px 10px 0 #666666;    
     
 }
-
-

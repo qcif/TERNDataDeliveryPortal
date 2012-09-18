@@ -10,21 +10,13 @@ function initMapProto(){
             
     var mapWidget = new MapWidget('spatialmap',true);          
             
+         
             mapWidget.addExtLayer({
                 url: 'http://demo:8080/geoserver/wms',
                 protocol: "WMS",
-                geoLayer: "nr:ltern",
-                layerName: "LTERN",
-                visibility: true
-                    
-            });
-            mapWidget.addExtLayer({
-                url: 'http://demo:8080/geoserver/wms',
-                protocol: "WMS",
-                geoLayer: "nr:ltern_points",
+                geoLayer: "nr:vw_ltern",
                 layerName: "LTERN Points",
-                visibility: true
-                    
+                visibility: true                    
             });    
             
             mapWidget.registerClickInfo({url: 'http://demo:8080/geoserver/wms', layers: ["LTERN Points","LTERN"]}, null);

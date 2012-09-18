@@ -10,7 +10,32 @@
         <style >
           .olPopup { border : 0 !important;}
 
-
+table.featureInfo, table.featureInfo td, table.featureInfo th {
+		border:1px solid #ddd;
+		border-collapse:collapse;
+		margin:0;
+		padding:0;
+		font-size: 90%;
+		padding:.2em .1em;
+	}
+	table.featureInfo th {
+	    padding:.2em .2em;
+		font-weight:bold;
+		background:#eee;
+	}
+	table.featureInfo td{
+		background:#fff;
+	}
+	table.featureInfo tr.odd td{
+		background:#eee;
+	}
+	table.featureInfo caption{
+		text-align:left;
+		font-size:100%;
+		font-weight:bold;
+		text-transform:uppercase;
+		padding:.2em .2em;
+	}
             </style> 
   </head>
     <body>
