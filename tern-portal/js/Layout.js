@@ -61,7 +61,7 @@ function setupNestedLayout(mapResize){
   
     // now RESIZE the container to be a perfect fit
 
-    $(".collapsiblePanel .head").click(function()
+    $(".collapsiblePanel .head").live("click",function()
     {
         $(this).next("div").slideToggle(300);
     });

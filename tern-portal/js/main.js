@@ -978,8 +978,7 @@ $(function() {
             changeHashTo(formatSearch(search_term, 1, classFilter,num));
 
         }); 
-
-        
+       
         $('#search_temp').click(function(){     
               temporal = temporalWidget.getTemporalValues();   
 

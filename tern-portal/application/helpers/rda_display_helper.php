@@ -85,10 +85,11 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         if(count($object_type)>0){
             
-            echo '<h5 ><a href="#">'.$name;
-            echo '</a></h5>';
-            echo '<div class="facet-list facet-content">';
 
+            echo '<div class="facet-list facet-content collapsiblePanel">';
+            echo '<h5 class="head">'.$name;
+            echo '</h5>';
+            echo '<div>';
             echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
 
             //print the others
@@ -106,6 +107,7 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
             } 
             echo '</ul>';
             echo '<button id="facbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
+            echo '</div>'; 
             echo '</div>';
         }
 }
@@ -566,9 +568,9 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetFilter, $json, $ro
         $out4[$object_type4[$j]]=$object_type4[$j+1];
     }
     //print_r($out4);
- 
-	echo '<h5><a href="#">Field of Research';
-	echo '</a></h5>';
+        echo '<div class="collapsiblePanel">';
+	echo '<h5 class="head">Field of Research';
+	echo '</h5>';
 	echo '<div class="facet-list" >';
 
 //build FOR tree	
@@ -631,6 +633,7 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetFilter, $json, $ro
 //end FOR tree
         echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
 	echo '</div>';
+        echo '</div>';
 
  
 }

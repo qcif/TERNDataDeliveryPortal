@@ -1,6 +1,7 @@
 
-<div>
-    <label for="search-box" ><h2>Search term:</h2> </label>
+<div class="collapsiblePanel">
+    <h5 class="head">Search term:</h5>   
+    <div>
     <div>
          <a href="javascript:void(0);" id="adv_bool">Advanced Boolean Search</a>
 
@@ -16,6 +17,7 @@
         <input class="searchbox" id ="search-box"  type="text" name="query" />
         <button id="search_basic" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only srchButton">Search</button>
     </div>
+        </div>
 </div>
 
 
