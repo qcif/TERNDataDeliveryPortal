@@ -995,11 +995,13 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
         
       
     }else{
-        var html = '';
-    
+        var html = '<h2 class="h2color">Multiple matches: </h2>';
+        html = html  + "<ul>";
         $.each(feature.cluster,function(){
-            html = html + "<strong> <div class=\"h2color mapMarker\" style=\"float:left\">" + this.data.number + "</div> " +  this.data.title  + "</strong><br/>";
+            html = html + "<li class=\"clearfix\"><strong> <div class=\"h2color mapMarker\" style=\"float:left\">" + this.data.number + "</div> " +  this.data.title  + "</strong></li>";
         }); 
+        html = html+ "</ul>";
+        html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";
         this.popup = new CustomFramedCloudPopupClass("chicken",
                     feature.geometry.getBounds().getCenterLonLat(),
                     null, html, offset, true, function(){             
