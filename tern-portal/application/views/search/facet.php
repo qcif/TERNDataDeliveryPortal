@@ -22,8 +22,9 @@ $Revision: 1 $
 ?>
 <?php 
 
-if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All'||$query!='Search ecosystem data')    
+if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All'||$query!='All Records')    
 {
+
 	echo '<h5><a href="#">Current Search</a></h5>'; 
 	echo '<div class="facet-list">';
 		echo '<ul>';
