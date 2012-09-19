@@ -275,29 +275,27 @@ $(function() {
                 search_term='*:*';    
             }else
             {
-                search_term=search_term.replace("(","");
-                search_term=search_term.replace(")","");
-                
-                var tmp=search_term.split(" ");
                 var str="";
-                removeElementFromArray(tmp,$.trim($(this).attr('id')));
-                
-                if(tmp[0]==("AND")||tmp[0]==("OR")||tmp[0]==("NOT"))
+                if($.trim($(this).attr('id')).search("AND")==-1 && $.trim($(this).attr('id')).search("NOT")==-1 &&$.trim($(this).attr('id')).search("OR")==-1)
                 {
-                        for(var j=1;j<tmp.length;j++)
-                        {
-                           str=str+tmp[j];
-                        }
+                             
+                    str=search_term.replace($.trim($(this).attr('id')), "");     
+                    str=str.replace(/\(/g,"");
+                    str=str.replace(/\)/g,"");
+                    if($.trim(str).substring(0, 2)=="AN" ||$.trim(str).substring(0, 2)=="NO")
+                    {
+                        str=str.substring(5);
+                    }
+                    if($.trim(str).substring(0, 2)=="OR")
+                    {
+                        str=str.substring(4);
+                    }
                 }else
                 {
-                   for(var j=0;j<tmp.length;j++)
-                   {
-                           str=str+tmp[j];
-                   }    
-                }
-                search_term=str;
+                    str=search_term.replace($.trim($(this).attr('id')), ""); 
+                }         
 
-               
+                  search_term=$.trim(str)
             }
             
         }
@@ -966,7 +964,7 @@ $(function() {
         $('#facbutton').click(function(){           
               
                 //Group filtering
-                if( document.getElementById("groupFilter") != null ) {
+                //if( document.getElementById("groupFilter") != null ) {
                     var first = true;
                     $('#group-facet :checked').each(function(){
                         if(first) {
@@ -975,7 +973,7 @@ $(function() {
                         }
                         else groupFilter +=  ";" + $(this).val();
                     });                  
-                }   
+                //}   
 
             changeHashTo(formatSearch(search_term, 1, classFilter,num));
 

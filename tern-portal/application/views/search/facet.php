@@ -24,7 +24,7 @@ $Revision: 1 $
 
 if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All'||$query!='Search ecosystem data')    
 {
-	echo '<h5><a href="#">Selected</a></h5>'; 
+	echo '<h5><a href="#">Current Search</a></h5>'; 
 	echo '<div class="facet-list">';
 		echo '<ul>';
 		if($temporal!='All'){

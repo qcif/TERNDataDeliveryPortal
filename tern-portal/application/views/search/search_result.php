@@ -22,7 +22,7 @@ $Revision: 1 $
 ?>
 
 
-<?php if($json):?>	
+<?php //if($json):?>	
         <div id="facet-content">
             <?php $this->load->view('search/facet');?> 
         </div>
@@ -62,4 +62,4 @@ $Revision: 1 $
         <?php $this->load->view('tab/widgets/recordpopup');?>
             </div>
         </div>
-<?php endif;?>
+<?php //endif;?>
