@@ -1027,7 +1027,7 @@ $(function() {
                         }
                     }); 
 
-                        $('.viewmeta').live("click",function(){
+                        $('.viewmeta').click(function(){
                                 var url=$(this).attr("id");
                                 handleViewMeta(url);
 
