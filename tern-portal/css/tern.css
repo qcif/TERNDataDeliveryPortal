@@ -777,13 +777,17 @@ border-collapse:collapse;
     max-height: 120px;
 }
 .popupGroup{
-    border: 1px solid #aaa;
+    border: 1px solid #FFF;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 13px;
     box-shadow : 0 4px 10px 0 #666666;        
     overflow: visible !important;
-    behavior: url(/js/PIE.htc);
+    behavior: url(/js/PIE.htc);  
+    filter: none !important;
+} 
+.popupContent h2{
+    margin-top:0px !important;
 }
 .popupGroup #chicken_GroupDiv{
     overflow: visible !important;

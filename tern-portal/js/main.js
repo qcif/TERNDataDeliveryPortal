@@ -359,8 +359,6 @@ $(function() {
         }
         res+= '/num='+(numToDisplay); //local variable to pass in number of records
         
-        
-        //alert(res);
         return res;
 
     }
@@ -483,7 +481,20 @@ $(function() {
             allowMultiple: false, 
             afterDraw: updateCoordinates
         });
-
+        
+        $.getJSON('/api/regions.json',function(data){
+            $.each(data.layers,function(key,val){
+                   var visibility = false;
+                    mapWidget.addExtLayer({
+                        url: val.geo_url,
+                        protocol: "WMS",
+                        geoLayer: val.geo_name,
+                        layerName: val.l_id,
+                        visibility: visibility
+                    });
+            });
+        });
+             
         enableToolbarClick(mapWidget);
       
         //changing coordinates on textbox should change the map appearance
@@ -965,11 +976,13 @@ $(function() {
 
         });
        
+     
         $("#region-select").change( function() {
             var regionid = $(this).val();
-            $('#visible-region').html($('#' +  regionid ).html());
+            $('#visible-region').html($('#' + regionid ).html());
+            mapWidget.switchLayer(regionid);
         });
-       
+
            
     } 
  

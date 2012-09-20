@@ -284,7 +284,7 @@ MapWidget.prototype.addDrawLayer = function(options){
        
     }).bind(this));
     
-     
+     /*
     //poly Layer declaration
     var polyLayer = new OpenLayers.Layer.Vector("Poly");
 
@@ -308,7 +308,7 @@ MapWidget.prototype.addDrawLayer = function(options){
        
     }).bind(this));
     
-    
+    */
     var WGS84 = this.WGS84; 
     var WGS84_google_mercator = this.WGS84_google_mercator;
     
@@ -328,8 +328,8 @@ MapWidget.prototype.addDrawLayer = function(options){
                 
             }
         }),
-        poly: new OpenLayers.Control.DrawFeature(polyLayer,
-                        OpenLayers.Handler.Polygon)
+        /*poly: new OpenLayers.Control.DrawFeature(polyLayer,
+                        OpenLayers.Handler.Polygon)*/
                         
         /*drag: new OpenLayers.Control.DragFeature(boxLayer, {
             onComplete:function(e){
@@ -345,10 +345,10 @@ MapWidget.prototype.addDrawLayer = function(options){
 
   
     
-    this.map.addLayers([boxLayer,polyLayer]); 
+    this.map.addLayers([boxLayer]); 
     //make sure this layer is on top.
     this.map.raiseLayer(boxLayer,this.map.layers.length);
-    this.map.raiseLayer(polyLayer,this.map.layers.length);
+  //  this.map.raiseLayer(polyLayer,this.map.layers.length);
     
 }
 
@@ -849,7 +849,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
                 var button =  $("<p>").append($(this).parent().parent().children('#metabutton').children('button').clone().attr('onClick','handleViewMeta(\''  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + '\');')).html();
             
                 number = $(this).parent().parent().parent().children('tr').children('td:nth-child(1)').children('h2').html();
-                html  = "<strong> <div class=\"h2color mapMarker\" style=\"float:left\">" + number +  "</div> <a href=" + link + " target=\"new\">" + title + "</a>"  + "</strong> <br/> " + date  + "&nbsp; "+ button;;
+                html  = " <div class=\"h2color mapMarker\" style=\"float:left\">" + number +  "</div><strong>" + title + "</strong> <br/> " + date  + "&nbsp; "+ button ;
                 html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";    
              
          
@@ -865,10 +865,11 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
 
     }); 
     dataLayer.addFeatures(vectors);
+    /*
     var bounds = dataLayer.getDataExtent();
     if(bounds)  this.map.zoomToExtent(bounds); 
     if(this.map.zoom > 5) this.map.zoomTo(5);
-    
+    */
     function addMarker(lonlat,dataLayer,WGS84,WGS84_google_mercator,html, number, title){
         var word = lonlat.split(',');
         var point = new OpenLayers.Geometry.Point(word[0],word[1]);
@@ -991,7 +992,8 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
         this.popup.calculateRelativePosition = function () {
             return 'br';
         }
-        this.popup.maxSize = new OpenLayers.Size(300,150);
+        this.popup.minSize = new OpenLayers.Size(400,50);
+        this.popup.maxSize = new OpenLayers.Size(400,150);
         
       
     }else{
@@ -1010,7 +1012,8 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
          this.popup.calculateRelativePosition = function () {
             return 'br';
         }
-        this.popup.maxSize = new OpenLayers.Size(440,180);
+       this.popup.minSize = new OpenLayers.Size(400,100);
+       this.popup.maxSize = new OpenLayers.Size(400,180);
     
       
     }

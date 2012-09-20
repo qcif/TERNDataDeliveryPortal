@@ -70,7 +70,7 @@
     <?php if($widget_map_drawtoolbar){ ?> 
                             <div id="map-toolbar" class="ui-widget-header clearfix "> 
                                 <div class="left margin8"> <span class="toolbartitle">Pan</span> <br/><div  id="drag" class="olControlDragFeatureItemActive tooltip" title="<?php echo $this->lang->line('map_pan'); ?>"></div></div>
-                                <div class="left margin8"> <span class="toolbartitle">Coordinates</span> <br/> <a href="#" class="tooltip topmargin5" id="latlong" title="<?php echo $this->lang->line('map_coords'); ?>">Longitude<br/> & Latitude</a>
+                                <div class="left margin8"> <span class="toolbartitle">Coordinates</span> <br/> <a href="#" class="tooltip topmargin5" id="latlong" title="<?php echo $this->lang->line('map_coords'); ?>">Longitude<br/> &amp; Latitude</a>
                                     </div>
                                 <div class="left margin8"> <span class="toolbartitle">Draw and Update</span><br/>      <div id="panel" class="olControlEditingToolbar">
                                         
@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                                 <div class="left margin8"> <span class="toolbartitle">Place Name</span> <br/> <input id="geocode"  class="tooltip topmargin5" type="text" size="30" title="<?php echo $this->lang->line('map_placename'); ?>"/></div>
-                                <div class="left margin8" id="mapViewSelector"> <span class="toolbartitle">Map view</span> <br/> <a href="#" id="gmap" class="tooltip topmargin5" title="<?php echo $this->lang->line('map_mapview'); ?>">Map</a><a href="#" id="ghyb" class="tooltip topmargin5" title="<?php echo $this->lang->line('map_mapview'); ?>" title="<?php echo $this->lang->line('map_mapview'); ?>">Hybrid</a><a href="#" id="gsat" title="<?php echo $this->lang->line('map_mapview'); ?>" class="tooltip topmargin5">Satellite</a><a href="#" id="gphy" title="<?php echo $this->lang->line('map_mapview'); ?>" class="tooltip topmargin5">Terrain</a></div>
+                                <div class="left margin8" id="mapViewSelector"> <span class="toolbartitle">Map view</span> <br/> <a href="#" id="gmap" class="tooltip topmargin5" title="<?php echo $this->lang->line('map_mapview'); ?>">Map</a><a href="#" id="ghyb" class="tooltip topmargin5" title="<?php echo $this->lang->line('map_mapview'); ?>" ">Hybrid</a><a href="#" id="gsat" title="<?php echo $this->lang->line('map_mapview'); ?>" class="tooltip topmargin5">Satellite</a><a href="#" id="gphy" title="<?php echo $this->lang->line('map_mapview'); ?>" class="tooltip topmargin5">Terrain</a></div>
                                 <div class="left margin8" id="mapHelp" > <span class="toolbartitle" >Help</span><br/><a class="tooltip topmargin5" title="<?php echo $this->lang->line('map_help'); ?>">?</a></div> 
                                     </div> 
       <?php } ?>
