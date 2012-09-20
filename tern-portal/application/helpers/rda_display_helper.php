@@ -81,8 +81,18 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
            $class="groupFilter";
         }           
 
+        $words=explode(';',$facetFilter);
+        $g=array();
+
+        foreach($words as $w)
+        {
+            $g[]=urldecode($w);
+
+        }
+
 	$object_type="";
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
+        
         if(count($object_type)>0){
             
             echo '<h5 ><a href="#">'.$name;
@@ -91,17 +101,32 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
 
             echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
 
+
             //print the others
             for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
                     if($object_type[$i+1]>0){
-                            if($object_type[$i]!=$facetFilter)
+                        if(count($g)==1 &&$g[0]=="All")
+                        {
+                            //if($object_type[$i]!=$facetFilter)
+                            //{
+                                echo '<li>
+					<input type="checkbox" 
+						name="facchkbox"
+                                                value="'.$object_type[$i].'" 
+						class="groupFilter'.'" id="'.$object_type[$i].'"/>'.$object_type[$i].'</li>';         
+                            //} 
+                        }else
+                        {                         
+
+                            if(!checkInFilter($object_type[$i],$g))
                             {
                                 echo '<li>
 					<input type="checkbox" 
 						name="facchkbox"
                                                 value="'.$object_type[$i].'" 
 						class="groupFilter'.'" id="'.$object_type[$i].'"/>'.$object_type[$i].'</li>';         
-                            } 
+                            }                      
+                        } 
                     }
             } 
             echo '</ul>';
@@ -326,12 +351,15 @@ function constructFilterQuery($class, $groups){
 function constructFORQuery($class,$forvalues)
 {
     $str='';
+    $forField='';
     if($class=='for_value_two')
     {
-        $str='for_value_two:(';
+        $forField="for_value_two";
+
     }else
     {
-        $str='for_value_four:(';
+       $forField="for_value_four";
+
     }
     $words=explode(';',$forvalues);
     $first=true;
@@ -339,14 +367,16 @@ function constructFORQuery($class,$forvalues)
     {
         if($first)
         {
-            $str.='"'.escapeSolrValue($w).'"';
+            $str.=$forField.':('.'"'.escapeSolrValue($w).'"'.')';
         }else
         {
-            $str.=' OR "'.escapeSolrValue($w).'"';
-            $first=false;
+            $str.=' OR '.$forField.':("'.escapeSolrValue($w).'"'.')';
+            
         }
+        $first=false;
     }
-    $str.=')';
+    //$str.=')';
+
     return $str;
     
 }
@@ -523,19 +553,28 @@ function stripFORString($str)
     return $result;
 }
 
-function displayFORFacet($facettwo,$facetfour,$facetsix,$facetFilter, $json, $ro_class, $obj)
+function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facettwoFilter, $json, $ro_class, $obj)
 {
 	//$clear =$facetName;$class=$facetFilter;
      
-    $words=explode(';',$facetFilter);
+    $words=explode(';',$facetfourFilter);
     $four=array();
 
     foreach($words as $w)
     {
-       $four[]=escapeSolrValue($w);
+       $four[]=$w;
 
     }
     
+    $wordstwo=explode(';',$facettwoFilter);
+    $two=array();
+
+    foreach($wordstwo as $wt)
+    {
+       $two[]=$wt;
+
+    }
+//print_r($two);
 //code        
         $code2 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_two'};
         $code4 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_four'};
@@ -588,43 +627,47 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetFilter, $json, $ro
                     {
                         if($out_keys2[$i]!=null)
                         {             
-                            $index=findFORChildFour($out_code_keys2[$i],$out_code_keys4,$facetFilter);
-
-                            if(count($index)==0)//no child node under 2 digits FOR
+                            $index=findFORChildFour($out_code_keys2[$i],$out_code_keys4,$facetfourFilter);
+                            if(!checkInFilter($out_keys2[$i],$two))
                             {
-                                echo '<li><span>
-					<input type="checkbox" 
-						name="twoFOR"
-                                                value="'.$out_keys2[$i].'" 
-						class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')'.'</span></li>';
-                            }else//found child
-                            {
-                                
-                                //get values from $index[]. create <ul>
-                                echo '<li><span>
-					<input type="checkbox"
-                                                name="twoFOR"
-						value="'.$out_keys2[$i].'" 
-						class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')</span>';
-                                echo    '<ul>';
-                                
-                                            for($k=0;$k<count($index);$k++)
-                                            {
-                                                if(!checkInFilter($out_keys4[$index[$k]],$four))
-                                                {
-                                                    echo '<li ><span>
-                                                
-                                                         <input type="checkbox"
-                                                            name="fourFOR"
-                                                            value="'.$out_keys4[$index[$k]].'" 
-                                                            class="forfourFilter'.'" id="'.$out_keys4[$index[$k]].'"/>'.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).')'.'</span>';
-                                                    echo '</li>';
-                                                }
-                                                
-                                            }
-                                echo    '</ul>';
-                                echo '</li>';                                
+                                if(count($index)==0)//no child node under 2 digits FOR
+                                {
+                                    echo '<li><span>
+                                            <input type="checkbox" 
+                                                    name="twoFOR"
+                                                    value="'.$out_keys2[$i].'" 
+                                                    class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')'.'</span></li>';
+                                }else//found child
+                                {
+                                    //if(!checkInFilter($out_keys2[$i],$two))
+                                    //{    
+                                        //get values from $index[]. create <ul>
+                                        echo '<li><span>
+                                                <input type="checkbox"
+                                                        name="twoFOR"
+                                                        value="'.$out_keys2[$i].'" 
+                                                        class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')</span>';
+                                        echo    '<ul>';
 
+                                                    for($k=0;$k<count($index);$k++)
+                                                    {
+                                                        if(!checkInFilter($out_keys4[$index[$k]],$four))
+                                                        {
+                                                            echo '<li ><span>
+
+                                                                <input type="checkbox"
+                                                                    name="fourFOR"
+                                                                    value="'.$out_keys4[$index[$k]].'" 
+                                                                    class="forfourFilter'.'" id="'.$out_keys4[$index[$k]].'"/>'.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).')'.'</span>';
+                                                            echo '</li>';
+                                                        }
+
+                                                    }
+                                        echo    '</ul>';
+                                        echo '</li>'; 
+                                    //}
+
+                                }
                             }
                         }
                     }
@@ -660,16 +703,16 @@ function findFORChildFour($twocode,$code_arr4)
 
 function checkInFilter($word,$filter)
 {
-
+//print_r(count($filter));
    // die(); 
     $r=false;
      for ($n=0;$n<count($filter);$n++)
      {
-            // print_r(urldecode($filter[$n]));
-        if($word==urldecode($filter[$n]))
+            //print_r($word."    and   ".urldecode($filter[$n]));
+        if($word==$filter[$n])
         {
             $r=true;
-            return $r;
+            return true;
         }
      }
      return $r;

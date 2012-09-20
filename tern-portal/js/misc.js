@@ -219,7 +219,7 @@ function setupSeealsoBtns(){
     }
 
 
-        function initMapProto(){
+function initMapProto(){
             
             var mapWidget = new MapWidget('spatialmap',true);
             //add box drawing
@@ -249,5 +249,14 @@ function setupSeealsoBtns(){
         }
         
 
+Array.prototype.clean = function(deleteValue) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == deleteValue) {         
+      this.splice(i, 1);
+      i--;
+    }
+  }
+  return this;
+};
         
 

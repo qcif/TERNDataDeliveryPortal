@@ -76,17 +76,24 @@
             $forstr=constructFORQuery('for_value_two',$fortwo);
             
             $q=$q.'AND ('.$forstr.')';
+
         }else if($fortwo=='All' &&$forfour!='All')
         {
             $forstr=constructFORQuery('for_value_four',$forfour);
             
             $q=$q.'AND ('.$forstr.')';             
+
         }else if($fortwo!='All' &&$forfour!='All')
         {
             $for2str=constructFORQuery('for_value_two',$fortwo);
             $for4str=constructFORQuery('for_value_four',$forfour);
             
             $q=$q.'AND ('.$for2str.' OR '.$for4str.')';   
+            
+                $fh = fopen("/var/www/test/a.txt", "a");
+    fwrite($fh, $q);
+    fclose($fh);
+
         }
 
 
