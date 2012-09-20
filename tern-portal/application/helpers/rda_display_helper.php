@@ -95,10 +95,11 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
         
         if(count($object_type)>0){
             
-            echo '<h5 ><a href="#">'.$name;
-            echo '</a></h5>';
-            echo '<div class="facet-list facet-content">';
 
+            echo '<div class="facet-list facet-content collapsiblePanel">';
+            echo '<h5 class="head">'.$name;
+            echo '</h5>';
+            echo '<div>';
             echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
 
 
@@ -131,6 +132,7 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
             } 
             echo '</ul>';
             echo '<button id="facbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
+            echo '</div>'; 
             echo '</div>';
         }
 }
@@ -149,19 +151,15 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
             echo '<h5 ><a href="#">'.$name;
             echo '</a></h5>';
             echo '<div  id="facet-region" class="facet-list facet-content">';
-            echo '<select id="region-select">';
-            echo '<option value=""> -- Please select a region type -- </option>';
-             foreach($regionsName as $key=>$regionsList){
-                 echo '<option value="'. $key . '">'. $regionsList['l_name'] . "</option>";                                 
-             }
-            echo '</select><br/><div id="visible-region"> </div>';
             
            foreach($regionsName as $key=>$regionsList){
                $firstRun=true;
               for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
                         if($object_type[$i+1]>0 && (strpos($object_type[$i],$key)!==false)){   
                             if($firstRun){
-                                 echo '<div id="' . $key . '" class="hide facet-list facet-content">';
+                                 echo '<h6 ><a href="#">'.$regionsList['l_name'];
+                                 echo '</a></h6>';
+                                 echo '<div class="facet-list facet-content">';
                                  echo '<ul class="more" >';
                                  $firstRun=false;
                             }
@@ -171,7 +169,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
                                           if($regionsList[$k]->r_id == $r_id){
                                                echo '<li class="limit">
                                                 <a href="javascript:void(0);"                                                        
-                                                        class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .'</a></li>';
+                                                        class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .' ('.number_format($object_type[$i+1]).')'.'</a></li>';
                                               
                                            }
                                            
@@ -291,24 +289,35 @@ function displaySelectedTerm($query, $json){
         $query=str_replace("(","",$query);
         $query=str_replace(")","",$query);
         $rawquery=explode(" ",$query);
+        $bool_op=array('AND','OR','NOT');
+        $rawquery_no_op=explode( $bool_op[0], str_replace($bool_op, $bool_op[0], $query) );
 
-        $op="";
+       // $op=array_diff($bool_op,$rawquery);
+        //print_r($op);
+        $op=array();
+        $op[]="";
         $n=0;
+        
         while($n<count($rawquery))
         {
-            if($rawquery[$n]!="AND" && $rawquery[$n]!="NOT" && $rawquery[$n]!="OR"&& $rawquery[$n]!="")
+            if($rawquery[$n]=="AND" || $rawquery[$n]=="NOT" || $rawquery[$n]=="OR")
             {
+                $op[]=$rawquery[$n];
 
-                    echo '<li class="limit">
-                    <a href="javascript:void(0);" 
-                        class="clearFilter '.$clear.'" id="'.$op.' '.$rawquery[$n].'">'.$op.'('.$rawquery[$n].')</a></li>';   
-
-            }else
-            {
-                $op=$rawquery[$n];
             }
             $n=$n+1;
         }
+
+        for($m=0;$m<count($rawquery_no_op);$m++)
+        {           
+                 echo '<li class="limit">
+                    <a href="javascript:void(0);" 
+                        class="clearFilter '.$clear.'" id="'.rtrim(ltrim($op[$m])).' '.rtrim(ltrim($rawquery_no_op[$m])).'">'.$op[$m].'('.$rawquery_no_op[$m].')</a></li>';
+
+        }
+
+        
+            
 } 
 /*
  * Construct a SOLR based filter query
@@ -609,9 +618,9 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
         $out4[$object_type4[$j]]=$object_type4[$j+1];
     }
     //print_r($out4);
- 
-	echo '<h5><a href="#">Field of Research';
-	echo '</a></h5>';
+        echo '<div class="collapsiblePanel">';
+	echo '<h5 class="head">Field of Research';
+	echo '</h5>';
 	echo '<div class="facet-list" >';
 
 //build FOR tree	
@@ -678,6 +687,7 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
 //end FOR tree
         echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
 	echo '</div>';
+        echo '</div>';
 
  
 }

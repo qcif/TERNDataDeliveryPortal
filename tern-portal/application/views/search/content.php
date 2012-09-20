@@ -124,7 +124,7 @@ foreach ($json->{'response'}->{'docs'} as $r)
     echo '<tbody>';
     echo '<tr><td>';
     if($center) echo '<h2 class="h2color mapMarker">' . $c . '</h2>';
-    echo '</td><td><p><h2 class="h2color">' . $name . '</h></p></td><td><p>' . $date_pub . '</p></td>';
+    echo '</td><td><h2 class="h2color">' . $name . '</h></td><td><p>' . $date_pub . '</p></td>';
     echo '<tr id="re-hide" style="border:0"><td id="emptycell"><p></p></td>
             <td id="desc">
                 <p>';

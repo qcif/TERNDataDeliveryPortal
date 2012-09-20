@@ -603,8 +603,8 @@ $(function() {
         var temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
         temporalWidget.refreshTemporalSearch();
-        enableToggleTemporal("#show-temporal-search",temporalWidget);   
-        
+        //enableToggleTemporal("#show-temporal-search",temporalWidget);   
+        temporalWidget.doTemporalSearch=true;
         resetCoordinates();
          
         populateSearchFields(temporalWidget,search_term);
@@ -871,7 +871,7 @@ $(function() {
             $("#fortree").treeview({
 		animated: "fast",
 		collapsed: true,
-		unique: true,
+		unique: false,
 		persist: "cookie",
 		toggle: function() {
 			//window.console && console.log("%o was toggled", this);
@@ -928,8 +928,10 @@ $(function() {
             
         var temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
+
+        //enableToggleTemporal("#show-temporal-search",temporalWidget);   
+        temporalWidget.doTemporalSearch=true;
         temporalWidget.refreshTemporalSearch();
-        enableToggleTemporal("#show-temporal-search",temporalWidget);   
         
         $('#adv_bool').click(function(){
              if(document.getElementById("adv_bool_operator").style.display=='none')

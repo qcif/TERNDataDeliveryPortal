@@ -43,14 +43,14 @@ TemporalWidget.prototype.refreshTemporalSearch = function(){
         }else{
             var word = [min_year,max_year];
         }
-        $('#show-temporal-search').attr('checked','checked');
+        //$('#show-temporal-search').attr('checked','checked');
         $('#dateFrom').val(word[0]).removeAttr('disabled');
         $('#dateTo').val(word[1]).removeAttr('disabled');	
-
+ 
     }else{
-        $('#dateFrom').attr('disabled','true');
-        $('#dateTo').attr('disabled','true');		 
-        $('#show-temporal-search').removeAttr('checked');	
+        //$('#dateFrom').attr('disabled','true');
+        //$('#dateTo').attr('disabled','true');		 
+        //$('#show-temporal-search').removeAttr('checked');	
     }
 }
 

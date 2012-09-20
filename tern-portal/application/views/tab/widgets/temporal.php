@@ -1,6 +1,7 @@
 <div class="borderMe collapsiblePanel">  
     <h5 class="head">Date</h5>
-    <div id="temporalFilter" class="padding5"><input type="checkbox" id="show-temporal-search" title="toggle to enable/disable temporal search"/> 
+    <div id="temporalFilter" class="padding5">
+        <!--<input type="checkbox" id="show-temporal-search" title="toggle to enable/disable temporal search"/> -->
     <label for="show-temporal-search">Show data between</label><br/>
 
             <select id="dateFrom">               
