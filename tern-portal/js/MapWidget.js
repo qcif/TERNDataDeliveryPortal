@@ -47,7 +47,9 @@ function MapWidget(mapId, overviewMap, options){
     this.extLayers = new Array();
     this.selectLayers = new Array();
     this.selectFeature = '';
-    this.mapBounds = new OpenLayers.Bounds(11548635,-5889094,18604187,-597430);
+   // this.mapBounds = new OpenLayers.Bounds(11548635,-5889094,18604187,-597430);
+   this.mapBounds = new OpenLayers.Bounds(-20037508, -20037508,20037508, 20037508.34);
+   this.mapExtent = new OpenLayers.Bounds(11548635,-5889094,18604187,-597430);
     /*  ------------------------------------------------------------  
      *    CREATE MAP OBJECT 
      *
