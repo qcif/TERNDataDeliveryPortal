@@ -203,14 +203,34 @@ $(function() {
                             $(this).parent().parent().children("ul").children("li").children("span").children("input")[j].checked=false;
 
                         }
-                    }
-                
+                    }                
 
                 //changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
-            }else if($(this).hasClass('forfourFilter')){
+            }else if($(this).hasClass('forfourFilter'))
+            {
                 forfourFilter = encodeURIComponent($(this).attr('id'));
-
+                if($(this).attr("checked")!="checked")
+                {
+                    $(this).parent().parent().parent().parent().children("span").children("input")[0].checked=false;
+                }else
+                {
+                    var flag=true;
+                    var arrli=$(this).parent().parent().parent().parent().children("ul").children("li");
+                    
+                    for(var s=0;s<arrli.length;s++)
+                    {
+                         if(arrli[s].children[0].children[0].checked!=true)
+                         {
+                              flag=false;
+                         }                         
+                    }
+                    if(flag==true)
+                        $(this).parent().parent().parent().parent().children("span").children("input")[0].checked=true;
+                }
+                
+               // if(flag=="1")$(this).parent().parent().parent().parent().children("span").children("input").checked=true;
+                
                // changeHashTo(formatSearch(search_term, 1, classFilter));               
                                
             }else if($(this).hasClass('forsixFilter')){
@@ -252,9 +272,30 @@ $(function() {
         }else if($(this).hasClass('clearSubjects')){
             subjectFilter = 'All';
         }else if($(this).hasClass('clearFortwo')){
-            fortwoFilter = 'All';
+            //fortwoFilter = 'All';
+            var arrtwo=fortwoFilter.split(";");
+            arrtwo=arrtwo.clean("");
+            if(arrtwo.length>1)
+            {
+                fortwoFilter=fortwoFilter+";";
+                fortwoFilter=fortwoFilter.replace($(this).attr("id")+";","");
+            }else
+            {
+                fortwoFilter = 'All';
+            }
+            
         }else if($(this).hasClass('clearForfour')){
-            forfourFilter = 'All';
+            var arrfour=forfourFilter.split(";");
+            arrfour=arrfour.clean("");
+            if(arrfour.length>1)
+            {
+                forfourFilter=forfourFilter+";";
+                forfourFilter=forfourFilter.replace($(this).attr("id")+";","");
+            }else
+            {
+                forfourFilter = 'All';
+            }
+            //forfourFilter = 'All';
         }else if($(this).hasClass('clearForsix')){
             forsixFilter = 'All';
         }else if($(this).hasClass('clearTemporal')){
@@ -1186,7 +1227,10 @@ $(function() {
  
 });
    
-
+function checkSelection()
+{
+    
+}
 
     function autocomplete(id){
        
@@ -1594,18 +1638,7 @@ function setCookie(c_name,value,exdays)
     
     document.cookie=c_name + "=" + c_value;
 }
-function removeElementFromArray(arr)
-{
-    var what, a= arguments, L= a.length, ax;
-    
-    while(L> 1 && arr.length){
-        what= a[--L];
-        while((ax= arr.indexOf(what))!= -1){
-            arr.splice(ax, 1);
-        }
-    }
-    return arr;
-}
+
  
 /*    
     function handleRollover()
