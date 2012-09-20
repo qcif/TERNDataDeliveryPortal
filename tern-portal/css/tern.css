@@ -768,7 +768,7 @@ border-collapse:collapse;
 
 .popupContent { 
     padding: 14px 0px 10px 10px;  
-
+    overflow: visible;
 }
 .popupContent ul{
     list-style-type: none;
@@ -778,8 +778,21 @@ border-collapse:collapse;
 }
 .popupGroup{
     border: 1px solid #aaa;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
     border-radius: 13px;
     box-shadow : 0 4px 10px 0 #666666;        
+    overflow: visible !important;
+    behavior: url(/js/PIE.htc);
+}
+.popupGroup #chicken_GroupDiv{
+    overflow: visible !important;
+       
+}
+.mapArrow{
+    left: -10px;
+    position:absolute;
+    top: 30px;
 }
 .olPopupCloseBox{
     right:10px !important;

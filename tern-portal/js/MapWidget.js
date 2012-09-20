@@ -847,12 +847,12 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
                 title = "<a href=" + link + " target=\"new\">" + $(this).parent().parent().parent().children('tr').children('td:nth-child(2)').children('h2').html()  + "</a>"  ;
                 var date = $(this).parent().parent().parent().children('tr').children('td:nth-child(3)').children('p').html();
                 var button =  $("<p>").append($(this).parent().parent().children('#metabutton').children('button').clone().attr('onClick','handleViewMeta(\''  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + '\');')).html();
-             //   button = button.attr('onClick','handleViewMeta('  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + ');');
+            
                 number = $(this).parent().parent().parent().children('tr').children('td:nth-child(1)').children('h2').html();
                 html  = "<strong> <div class=\"h2color mapMarker\" style=\"float:left\">" + number +  "</div> <a href=" + link + " target=\"new\">" + title + "</a>"  + "</strong> <br/> " + date  + "&nbsp; "+ button;;
-                    
+                html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";    
              
-           // }
+         
              
         }else {
             number = ''
@@ -973,7 +973,7 @@ MapWidget.prototype.updateDrawing = function(map,coordStr){
 MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
     selectedFeature = feature; 
     if(this.popup!=null) this.onPopupClose(this.popup,mapWidgetObj);
-     var offset = {'size':new OpenLayers.Size(10,12),'offset':new OpenLayers.Pixel(10,50)};
+     var offset = {'size':new OpenLayers.Size(0,0),'offset':new OpenLayers.Pixel(10,-30)};
        CustomFramedCloudPopupClass = OpenLayers.Class(OpenLayers.Popup.Anchored, {
            'backgroundColor': '#FFFFFF', 
            'border': '1px solid black',
@@ -989,7 +989,7 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
                     
         });    
         this.popup.calculateRelativePosition = function () {
-            return 'tr';
+            return 'br';
         }
         this.popup.maxSize = new OpenLayers.Size(300,150);
         
@@ -1008,7 +1008,7 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
                     mapWidgetObj.onPopupClose(this,mapWidgetObj);
         });
          this.popup.calculateRelativePosition = function () {
-            return 'tr';
+            return 'br';
         }
         this.popup.maxSize = new OpenLayers.Size(440,180);
     
@@ -1079,7 +1079,7 @@ function getStyle(styleName){
                     externalGraphic: '/img/markerblue_large.png', 
                     fillColor: '${bgcolor}', 
                     fontColor: "#000000",
-                    fillOpacity: '0.9', 
+                    fillOpacity: '1', 
                     strokeColor: '#000000', 
                     strokeWidth: '1',
                     graphicYOffset: -30,

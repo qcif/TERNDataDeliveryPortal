@@ -85,11 +85,10 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         if(count($object_type)>0){
             
+            echo '<h5 ><a href="#">'.$name;
+            echo '</a></h5>';
+            echo '<div class="facet-list facet-content">';
 
-            echo '<div class="facet-list facet-content collapsiblePanel">';
-            echo '<h5 class="head">'.$name;
-            echo '</h5>';
-            echo '<div>';
             echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
 
             //print the others
@@ -107,7 +106,6 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
             } 
             echo '</ul>';
             echo '<button id="facbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
-            echo '</div>'; 
             echo '</div>';
         }
 }
@@ -126,15 +124,19 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
             echo '<h5 ><a href="#">'.$name;
             echo '</a></h5>';
             echo '<div  id="facet-region" class="facet-list facet-content">';
+            echo '<select id="region-select">';
+            echo '<option value=""> -- Please select a region type -- </option>';
+             foreach($regionsName as $key=>$regionsList){
+                 echo '<option value="'. $key . '">'. $regionsList['l_name'] . "</option>";                                 
+             }
+            echo '</select><br/><div id="visible-region"> </div>';
             
            foreach($regionsName as $key=>$regionsList){
                $firstRun=true;
               for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
                         if($object_type[$i+1]>0 && (strpos($object_type[$i],$key)!==false)){   
                             if($firstRun){
-                                 echo '<h6 ><a href="#">'.$regionsList['l_name'];
-                                 echo '</a></h6>';
-                                 echo '<div class="facet-list facet-content">';
+                                 echo '<div id="' . $key . '" class="hide facet-list facet-content">';
                                  echo '<ul class="more" >';
                                  $firstRun=false;
                             }
@@ -144,7 +146,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
                                           if($regionsList[$k]->r_id == $r_id){
                                                echo '<li class="limit">
                                                 <a href="javascript:void(0);"                                                        
-                                                        class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .' ('.number_format($object_type[$i+1]).')'.'</a></li>';
+                                                        class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .'</a></li>';
                                               
                                            }
                                            
@@ -568,9 +570,9 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetFilter, $json, $ro
         $out4[$object_type4[$j]]=$object_type4[$j+1];
     }
     //print_r($out4);
-        echo '<div class="collapsiblePanel">';
-	echo '<h5 class="head">Field of Research';
-	echo '</h5>';
+ 
+	echo '<h5><a href="#">Field of Research';
+	echo '</a></h5>';
 	echo '<div class="facet-list" >';
 
 //build FOR tree	
@@ -633,7 +635,6 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetFilter, $json, $ro
 //end FOR tree
         echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
 	echo '</div>';
-        echo '</div>';
 
  
 }
