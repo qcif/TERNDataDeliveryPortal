@@ -5,7 +5,7 @@
 function getURL(keyword, matrixIds){     
     var URLList = {
         "dummy" : base_url + 'api/output.json',
-        "nr:regions" : 'http://demo:8080/geoserver/wms', 
+        "nr:regions" : 'http://demo:8080/geoserver/gwc/service/wms', 
         "intersectPt":  base_url + 'regions/r/intersectPt/'          
     }
     return URLList[keyword];
