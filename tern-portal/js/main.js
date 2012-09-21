@@ -1046,7 +1046,12 @@ $(function() {
         
             success: function(msg,textStatus){
                 handleResults(msg,mapResult);
-                
+                 $('#clearall').click(function()
+                {
+                    resetFilter();
+                    changeHashTo(formatSearch(search_term, 1, classFilter,num));
+
+                });                
                 $("tr[id=re-hide]").hide();
 
                     $("table").click(function(event) {
@@ -1205,6 +1210,16 @@ $(function() {
     subjectFilter = 'All';
     classFilter= 'collection';
     groupFilter= 'All';
+    fortwoFilter='All';
+    forfourFilter='All';
+    search_term='*:*';
+    temporal='All';
+    ternRegionFilter = 'All';
+    
+    n = '';
+    e = '';
+    s='';
+    w='';
 }
         
     function initPreviewPage(){
