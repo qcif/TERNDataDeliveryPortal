@@ -59,23 +59,25 @@ class Home extends CI_Controller {
 		$data['tabs'] = 1;
 		//echo $data['user_agent'];
 
-                $data['recordsArr'] = $this->handleRandomTab(10,'tddp');
+                $data['recordsArr'] = $this->handleRandomTab(10);
 		$this->load->view('home_pagev4', $data);
 	}
 	
         public function getrdmrecord()
         {
+/*            
            if(isset($_GET['fac']))
                 $fac=$_GET['fac'];
             else
                 $fac="tddp";
-
+*/
             $this->load->model('Solr');
             $data['json'] = $this->Solr->getTERNPartners();
 
-            $data['recordsArr'] = $this->handleRandomTab(10,$fac);
+            //$data['recordsArr'] = $this->handleRandomTab(10,$fac);
+            $data['recordsArr'] = $this->handleRandomTab(10);
 
-            $data['fackey']=$fac;
+            //$data['fackey']=$fac;
             $this->load->view('facilityrandom',$data);
         }
         public function advancesrch(){
@@ -199,11 +201,12 @@ class Home extends CI_Controller {
 
     
         /*get 10 random records*/
-        private function handleRandomTab($num,$fac){
+        private function handleRandomTab($num){
 
             $this->load->model('Solr','Solr');
 
-            $randomRJson = $this->Solr->getRandomRecords($num,$fac);
+           // $randomRJson = $this->Solr->getRandomRecords($num,$fac);
+             $randomRJson = $this->Solr->getRandomRecords($num);
             $recordsArr = $randomRJson->{'response'}->{'docs'};
             return $recordsArr;
             

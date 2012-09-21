@@ -41,12 +41,18 @@ $half = round($count / 2);
         
 function printRecord($r){
      $ro_key = $r->{'key'};
-
+     $date = $r->{'timestamp'};
+     
+     $date_t = new DateTime($date);
+     $date_t->setTimeZone(new DateTimeZone("Australia/Brisbane"));
+     $date = $date_t->format('d-m-Y');
+        
            // $name =  $r->{'displayTitle'}; //commented 8.1
             $name =  $r->{'display_title'}; //added 8.1
 
 
             echo '<li class="random-record-list">'; 
+            echo '<b>'.$date.'</b>';
             echo '<a href="view/dataview?key='.$ro_key.'" class="record-list">'.$name.'</a>';            
             echo '</li>';
             
@@ -74,7 +80,7 @@ function displayDesc($facid,$partners)
                 if ($fackey!==tddp)
                 {
                     echo '<div id="fac-random-rec" class="shadow-and-corner">';
-                    echo '<h2 class="sample-rec-title">Sample data collection records</h2>';
+                    echo '<h2 class="sample-rec-title">Top 10 Latest harvested records</h2>';
                     echo '<ul>';
                     for($i=0;$i<$half; $i++)
                     {
@@ -86,15 +92,15 @@ function displayDesc($facid,$partners)
                         printRecord($recordsArr[$i]);
                     }
 
-                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all records</b>');
+                   // echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all records</b>');
                     echo '</ul>';
                     echo '</div>';
                     
-                    echo '<div class="facility-desc">';
+                    //echo '<div class="facility-desc">';
 
                 }else
                 {
-                    echo '<div class="facility-desc-tddp">';
+                   // echo '<div class="facility-desc-tddp">';
 
                     /*
                     echo '<div id="carousel">';
@@ -124,10 +130,10 @@ function displayDesc($facid,$partners)
                 
 
                   //  echo '<h2 class="fac-title">'.$partners[$fackey]['displayTitle'].'</h2>'; //commented 8.1
-                echo '<h2 class="fac-title">'.$partners[$fackey]['display_title'].'</h2>';   //added 8.1
+               // echo '<h2 class="fac-title">'.$partners[$fackey]['display_title'].'</h2>';   //added 8.1
 
-                    displayDesc($fackey,$partners);
-                    echo '</div>';
+                   // displayDesc($fackey,$partners);
+                   // echo '</div>';
         ?>
 
 </div>

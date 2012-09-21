@@ -1193,7 +1193,8 @@ $(function() {
 
          }); 
     
-        handleRandom('tddp');
+       handleRandom();
+       handleRollover();
         sizeHomeContent();
     }
 
@@ -1621,11 +1622,12 @@ var t=removeBracket(tmp)
      mapView.addVectortoDataLayer(coverageSelector,false);
 	}
    
-    function handleRandom(facname)
+    function handleRandom()
     {
           $.ajax({
         type:"POST",
-        url:base_url+"home/getrdmrecord?fac="+facname,
+        //url:base_url+"home/getrdmrecord?fac="+facname,
+         url:base_url+"home/getrdmrecord",
                     
                     
         success:function(msg){
@@ -1677,10 +1679,11 @@ function setCookie(c_name,value,exdays)
 }
 
  
-/*    
+    
     function handleRollover()
     {
-      $("#scrollable").scrollable({circular: true}).autoscroll(2000);
+      //$("#scrollable").scrollable({circular: true}).autoscroll(2000);
+      $("#scrollable").scrollable({circular: true});
 			var api = $("#scrollable").data("scrollable");
 			api.seekTo(0);
 			api.onSeek(function() {
@@ -1708,4 +1711,4 @@ function setCookie(c_name,value,exdays)
 		});
     }
 
-*/
+
