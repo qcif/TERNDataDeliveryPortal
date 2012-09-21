@@ -595,7 +595,7 @@ MapWidget.prototype.setHighlightLayer = function(r_id){
         });
         this.highlightLayer.setVisibility(true);
     } 
-
+    this.map.raiseLayer(this.highlightLayer,this.map.layers.length-1);
 }
 
 
