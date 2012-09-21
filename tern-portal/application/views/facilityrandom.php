@@ -74,7 +74,7 @@ function displayDesc($facid,$partners)
                 if ($fackey!==tddp)
                 {
                     echo '<div id="fac-random-rec" class="shadow-and-corner">';
-                    echo '<h2 class="sample-rec-title">Sample data collection records</h2>';
+                    echo '<h2 class="sample-rec-title">Top 10 Latest harvested records</h2>';
                     echo '<ul>';
                     for($i=0;$i<$half; $i++)
                     {
@@ -86,7 +86,7 @@ function displayDesc($facid,$partners)
                         printRecord($recordsArr[$i]);
                     }
 
-                    echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all records</b>');
+                   // echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all records</b>');
                     echo '</ul>';
                     echo '</div>';
                     

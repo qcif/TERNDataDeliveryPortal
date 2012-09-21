@@ -40,10 +40,12 @@ $Revision: 1 $
 					<button class="searchbox_submit" id="search-button" title="Search Research Data Australia">Search</button>
 				</div>
 				
-			</div>                  
+			</div> 
+<!--                        
 			<div id="placeholder">				
-				<p><?php echo anchor('search#!/adv=1','Advanced Search');?></p>
+				<p><?php //echo anchor('search#!/adv=1','Advanced Search');?></p>
 			</div>
+-->
                      </div>
 		</div>
                 <?php } ?> 
