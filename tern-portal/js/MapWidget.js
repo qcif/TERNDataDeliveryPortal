@@ -5,7 +5,7 @@
 function getURL(keyword, matrixIds){     
     var URLList = {
         "dummy" : base_url + 'api/output.json',
-        "nr:regions" : 'http://demo:8080/geoserver/wms', 
+        "nr:regions" : 'http://demo:8080/geoserver/gwc/service/wms', 
         "intersectPt":  base_url + 'regions/r/intersectPt/'          
     }
     return URLList[keyword];
@@ -595,7 +595,7 @@ MapWidget.prototype.setHighlightLayer = function(r_id){
         });
         this.highlightLayer.setVisibility(true);
     } 
-
+    this.map.raiseLayer(this.highlightLayer,this.map.layers.length-1);
 }
 
 

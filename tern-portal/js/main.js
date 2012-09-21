@@ -862,6 +862,9 @@ $(function() {
                 mapWidget.removeAllFeatures();
                 if(mapSearch == 0){
                   mapWidget.addVectortoDataLayer(".spatial_center",true);
+                  if(ternRegionFilter != 'All'){
+                      mapWidget.setHighlightLayer(ternRegionFilter.split(":").pop());
+                  }
                 }
                 mapWidget.deactivateAllControls();
             }
