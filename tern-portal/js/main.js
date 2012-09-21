@@ -1132,15 +1132,32 @@ $(function() {
             page = 1;
             search_term = $('#search-box').val();
 
-            if(search_term=='')search_term='*:*';
+           // if(search_term=='')search_term='*:*';
             
-                  
-           if(getCookie("selection")!=null)
-           {
-              num=getCookie("selection");
-
-           }
-            changeHashTo(formatSearch(search_term, 1, classFilter,num));
+             if(search_term==''||search_term=='Search ecosystem data')     
+             {
+                 var answer=confirm("No search term is entered.Do you want to see all records? ");
+                 if (answer==true)
+                 {
+                     search_term='*:*';
+                   if(getCookie("selection")!=null)
+                   {
+                        num=getCookie("selection");
+                   }
+                    changeHashTo(formatSearch(search_term, 1, classFilter,num));  
+                 }                
+             } else
+             {
+                   if(getCookie("selection")!=null)
+                   {
+                        num=getCookie("selection");
+                   }
+                    changeHashTo(formatSearch(search_term, 1, classFilter,num));   
+             }
+             
+                     
+             
+           
 
         });     
          
