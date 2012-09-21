@@ -37,7 +37,7 @@ $Revision: 1 $
 				
 				<div id="search-wrapper" class="clearfix">
 					<div class="ui-widget left-align"><input class="searchbox" id ="search-box" title="Search ecosystem data" type="text" name="query" ></div>
-					<button class="searchbox_submit" id="search-button" title="Search Research Data Australia">Search</button>
+					<button class="searchbox_submit" id="search-button" title="Search Research Data Australia">Search</button>                                        
 				</div>
 				
 			</div> 
@@ -46,6 +46,9 @@ $Revision: 1 $
 				<p><?php //echo anchor('search#!/adv=1','Advanced Search');?></p>
 			</div>
 -->
+            <div id="placeholder">	
+                <button id="map-search-button" title="Map Search">temporary Map Search button</button>
+            </div>
                      </div>
 		</div>
                 <?php } ?> 

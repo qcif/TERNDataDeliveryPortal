@@ -1193,6 +1193,9 @@ $(function() {
 
          }); 
     
+   $('#map-search-button').live('click',function(){
+       changeHashTo("search#!/mapSearch=1");
+   });
        handleRandom();
        handleRollover();
         sizeHomeContent();
