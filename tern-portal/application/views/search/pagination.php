@@ -42,7 +42,7 @@ $Revision: 1 $
 	$range = 3;
 ?>
 <?php
-	echo '<div class="pagination">';
+	echo '<div id="right_pagination">';
 			//echo '<a href="javascript:void(0);" id="prev">Previous Page</a> <a href="javascript:void(0);" id="next">Next Page</a>';
 			//echo '<p>Searching for \'<b>'.$query.'</b>\' - Results '.$h_start.' to '.$h_end.' of '.$numFound.' (Took '.$timeTaken.' seconds) Current Page: '.$currentPage.' out of '.$totalPage.' pages</p>';
 			//echo '<p> Query = '.$query.' classFilter= '.$classFilter.' typeFilter= '.$typeFilter.' groupFilter= '.$groupFilter.'</p>';

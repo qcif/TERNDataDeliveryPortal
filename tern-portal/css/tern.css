@@ -171,19 +171,19 @@ ul{
 	 */
 .toolbar{
     font: 13px Arial, Helvetica, sans-serif;
-    height:30px;
-    line-height:30px;
-    overflow:hidden;margin:0;
-    position:relative;
+
 	}
 .toolbar2{background:white;}        
-.pagination{float:right;}		
+/*.pagination{float:right;}		*/
 .pagination-page{padding:0px 3px;text-decoration:none;margin:3px;color:#0a450a;/*border:1px solid #ccc;*/}	
 .pagination-currentPage{font-weight:bold;color:black;}
 .pagination-currentPageInfo{float:left; margin-right: 5px;}
-.result{float:left;font-weight:bold;}
+/*.result{float:left;font-weight:bold;}*/
 #head-toolbar{
-	    padding: 10px;
+	    
+    clear: both;
+    height: 50px;
+    padding: 1px;
 }
 /*
  * Subjects List
@@ -801,3 +801,18 @@ border-collapse:collapse;
 .olPopupCloseBox{
     right:10px !important;
 } 
+
+div#left_num_records {
+    float: left;
+
+
+}
+div#right_pagination {
+    float: right;
+
+}
+div#middle_select_num {
+    padding: 0px 160px 5px 160px;
+    margin: 0px;
+
+}

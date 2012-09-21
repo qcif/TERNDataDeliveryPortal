@@ -37,15 +37,8 @@
             <div id="result-panel" class="ui-layout-center ">
                    <div id="no-result" class="ui-corner-all hide"><div><h3></h3></div></div>
                    <div id="head-toolbar" class="toolbar clearfix hide"></div>                                
-                         
-                   <div class="selectrecord">
-                       <b>View</b><select id="viewrecord">				
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>				
-                            <option value="100">100</option>			
-                        </select><b>records</b> 
-                   </div> 
+                          
+
                    
                  <?php $this->load->view('tab/widgets/spatial');?>
           

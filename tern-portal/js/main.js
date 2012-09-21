@@ -50,6 +50,7 @@ $(function() {
     var param_q;
     var spatial_included_ids = '';
     var num=10;
+    var temporalWidget = null;
     
     // ROUTING 
     function routing(){
@@ -77,6 +78,8 @@ $(function() {
         }
     }
     
+
+         
     $(window).hashchange(function(){
 
         var hash = window.location.hash;
@@ -600,7 +603,7 @@ $(function() {
         setupNestedLayout(resizeMap);  
                 
          $("#facetH2").addClass("ui-state-disabled");
-        var temporalWidget = new TemporalWidget();
+        temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
         temporalWidget.refreshTemporalSearch();
         //enableToggleTemporal("#show-temporal-search",temporalWidget);   
@@ -817,10 +820,14 @@ $(function() {
         $('[name^=keyword]').val('');
         $('[name^=keyword]').val('');
         $('[name^=operator]').val('');
-        $('#groupFilter :checked').each(function(){
+        $('#group-facet :checked').each(function(){
             $(this).removeAttr('checked');
         }); 
+        $('#fortree :checked').each(function(){
+            $(this).removeAttr('checked');
+        });         
         $('#forfourFilter').val('');
+        $('#fortwoFilter').val('');
         temporalWidget.doTemporalSearch = false;
         temporalWidget.refreshTemporalSearch();
          
@@ -926,7 +933,7 @@ $(function() {
             }
            
             
-        var temporalWidget = new TemporalWidget();
+        //var temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
 
         //enableToggleTemporal("#show-temporal-search",temporalWidget);   
@@ -1025,8 +1032,7 @@ $(function() {
             $('#visible-region').html($('#' + regionid ).html());
             mapWidget.switchLayer(regionid);
         });
-
-           
+ 
     } 
  
     function doNormalSearch(){     
@@ -1041,6 +1047,14 @@ $(function() {
         
             success: function(msg,textStatus){
                 handleResults(msg,mapResult);
+                
+                
+                $('#clearall').click(function()
+                {     
+                    resetFilter();
+                    changeHashTo(formatSearch(search_term, 1, classFilter,num));
+
+                });  
                 
                 $("tr[id=re-hide]").hide();
 
@@ -1196,6 +1210,16 @@ $(function() {
     subjectFilter = 'All';
     classFilter= 'collection';
     groupFilter= 'All';
+    fortwoFilter='All';
+    forfourFilter='All';
+    search_term='*:*';
+    temporal='All';
+    ternRegionFilter = 'All';
+    
+    n = '';
+    e = '';
+    s='';
+    w='';
 }
         
     function initPreviewPage(){

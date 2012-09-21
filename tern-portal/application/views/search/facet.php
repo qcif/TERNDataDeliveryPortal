@@ -27,29 +27,30 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 	echo '<h5><a href="#">Current Search</a></h5>'; 
 	echo '<div class="facet-list">';
 		echo '<ul>';
-		if($temporal!='All'){
-			echo '<li><a href="javascript:void(0);" id="" class="clearTemporal clearFilter" title="Search results are restricted to this timeline, Click to remove this filter">'.$temporal.'</a></li>';
-		}
-		if($spatial_included_ids!=''){
-			echo '<li><a href="javascript:void(0);" id="" class="clearSpatial clearFilter" title="Search results are restricted to spatial, Click to remove this filter">Clear Spatial</a></li>';
-		}
-		//if($typeFilter!='All') displaySelectedFacet('type',$typeFilter,$json);
-		if($groupFilter!='All') displaySelectedFacet('group',$groupFilter,$json);
+                    if($temporal!='All'){
+                            echo '<li><a href="javascript:void(0);" id="" class="clearTemporal clearFilter" title="Search results are restricted to this timeline, Click to remove this filter">'.$temporal.'</a></li>';
+                    }
+                    if($spatial_included_ids!=''){
+                            echo '<li><a href="javascript:void(0);" id="" class="clearSpatial clearFilter" title="Search results are restricted to spatial, Click to remove this filter">Clear Spatial</a></li>';
+                    }
+                    //if($typeFilter!='All') displaySelectedFacet('type',$typeFilter,$json);
+                    if($groupFilter!='All') displaySelectedFacet('group',$groupFilter,$json);
 
-		//if($subjectFilter!='All') displaySelectedFacet('subject_value',$subjectFilter,$json);
-                if($subjectFilter!='All') displaySelectedFacet('subject_value_resolved',$subjectFilter,$json);
-                if($ternRegionFilter!='All') displaySelectedRegionFacet('tern_region',$ternRegionFilter,$json,$regionsName);
+                    //if($subjectFilter!='All') displaySelectedFacet('subject_value',$subjectFilter,$json);
+                    if($subjectFilter!='All') displaySelectedFacet('subject_value_resolved',$subjectFilter,$json);
+                    if($ternRegionFilter!='All') displaySelectedRegionFacet('tern_region',$ternRegionFilter,$json,$regionsName);
 
-                if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
+                    if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
 
-                 if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
-                 
-                 if($query!='All Records') displaySelectedTerm($query,$json);
-                 
+                    if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
 
-               //   if($forsixFilter!='All') displaySelectedFacet('for_value_six',$forsixFilter,$json);
+                    if($query!='All Records') displaySelectedTerm($query,$json);
 
-	echo '</ul>';
+
+                //   if($forsixFilter!='All') displaySelectedFacet('for_value_six',$forsixFilter,$json);
+
+                echo '</ul>';
+                echo '<button id="clearall" class="ui-button ui-widget ui-state-default ui-corner-all srchButton ui-button-text-only" role="button" aria-disabled="false">Clear all</button>';
         echo '</div>';
   
 }

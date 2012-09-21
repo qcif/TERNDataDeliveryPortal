@@ -45,10 +45,21 @@ $Revision: 1 $
                         $class='ui-icon-arrowthickstop-1-w';
                 }
 
-                echo '<div class="result">';
+                
+                echo '<div id="left_num_records" class="result">';
                 echo ''.number_format($realNumFound).' results';
                 echo '</div>';
              
+                                
+                echo    '<div id="middle_select_num">';
+                echo        '<b>View</b><select id="viewrecord">';				
+                echo                '<option value="10">10</option>';
+                echo                '<option value="25">25</option>';
+                echo                '<option value="50">50</option>';				
+                echo               '<option value="100">100</option>';			
+                echo           '</select><b>records</b> ';
+                echo       '</div>' ;
+                
                 $this->load->view('search/pagination');
        
                 echo '</div>';
