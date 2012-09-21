@@ -1207,20 +1207,24 @@ $(function() {
     }
 
     function resetFilter(){
-    subjectFilter = 'All';
-    classFilter= 'collection';
-    groupFilter= 'All';
-    fortwoFilter='All';
-    forfourFilter='All';
-    search_term='*:*';
-    temporal='All';
-    ternRegionFilter = 'All';
-    
-    n = '';
-    e = '';
-    s='';
-    w='';
-}
+        subjectFilter = 'All';
+        classFilter= 'collection';
+        groupFilter= 'All';
+        fortwoFilter='All';
+        forfourFilter='All';
+        search_term='*:*';
+        temporal='All';
+        ternRegionFilter = 'All';
+
+        n = '';
+        e = '';
+        s='';
+        w='';
+        spatial_included_ids = '';
+        mapResult.switchLayer('none');
+        resetCoordinates(); 
+        $("#coords input").trigger('change');
+    }
         
     function initPreviewPage(){
     $("ul.sf-menu").superfish();
