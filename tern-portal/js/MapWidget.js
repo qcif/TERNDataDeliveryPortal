@@ -5,7 +5,7 @@
 function getURL(keyword, matrixIds){     
     var URLList = {
         "dummy" : base_url + 'api/output.json',
-        "nr:regions" : 'http://demo:8080/geoserver/wms', 
+        "nr:regions" : 'http://' +  window.location.hostname + ':8080/geoserver/wms', 
         "intersectPt":  base_url + 'regions/r/intersectPt/'          
     }
     return URLList[keyword];
@@ -714,7 +714,7 @@ MapWidget.prototype.handleMapClick = function(e, layers, callback){
  *  ------------------------------------------------------------
  */
 MapWidget.prototype.setBaseLayer = function(id) {
-
+    this.map.baseLayerId = id;
     this.map.setBaseLayer(this[id]);
     
     
