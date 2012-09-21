@@ -83,7 +83,7 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
 
         $words=explode(';',$facetFilter);
         $g=array();
-
+ 
         foreach($words as $w)
         {
             $g[]=urldecode($w);
@@ -151,15 +151,19 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
             echo '<h5 ><a href="#">'.$name;
             echo '</a></h5>';
             echo '<div  id="facet-region" class="facet-list facet-content">';
+            echo '<select id="region-select">';
+            echo '<option value=""> -- Please select a region type -- </option>';
+             foreach($regionsName as $key=>$regionsList){
+                 echo '<option value="'. $key . '">'. $regionsList['l_name'] . "</option>";                                 
+             }
+            echo '</select><br/><div id="visible-region"> </div>';
             
            foreach($regionsName as $key=>$regionsList){
                $firstRun=true;
               for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
                         if($object_type[$i+1]>0 && (strpos($object_type[$i],$key)!==false)){   
                             if($firstRun){
-                                 echo '<h6 ><a href="#">'.$regionsList['l_name'];
-                                 echo '</a></h6>';
-                                 echo '<div class="facet-list facet-content">';
+                                 echo '<div id="' . $key . '" class="hide facet-list facet-content">';
                                  echo '<ul class="more" >';
                                  $firstRun=false;
                             }
@@ -169,7 +173,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
                                           if($regionsList[$k]->r_id == $r_id){
                                                echo '<li class="limit">
                                                 <a href="javascript:void(0);"                                                        
-                                                        class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .' ('.number_format($object_type[$i+1]).')'.'</a></li>';
+                                                        class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .'</a></li>';
                                               
                                            }
                                            
