@@ -69,8 +69,7 @@ $Revision: 1 $
             <div class="table_container">
 
                 <?php $this->load->view('search/content');?>        
-
-        <?php $this->load->view('tab/widgets/recordpopup');?>
+   
             </div>
         </div>
 <?php //endif;?>

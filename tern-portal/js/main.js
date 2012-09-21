@@ -50,7 +50,6 @@ $(function() {
     var param_q;
     var spatial_included_ids = '';
     var num=10;
-    var temporalWidget = null;
     
     // ROUTING 
     function routing(){
@@ -67,19 +66,14 @@ $(function() {
         }else if(window.location.href==secure_base_url){
             window.location.href=base_url;
         }else if(window.location.href.indexOf('search')>=0){
-            initSearchPage();
-   
+            initSearchPage();   
         }else if(window.location.href.indexOf('preview')>=0){
             initPreviewPage();
-        }else if(window.location.href.indexOf('mapproto')>=0){
-            initMapProto();        
         }else {
             initHomePage();
         }
     }
     
-
-         
     $(window).hashchange(function(){
 
         var hash = window.location.hash;
@@ -161,11 +155,14 @@ $(function() {
                 {                   
                     num=getCookie("selection");
                 }
-        
+                
+
                 if(window.location.href.indexOf('/n')>=0&&window.location.href.indexOf('/s')>=0&&window.location.href.indexOf('/w')>=0&&window.location.href.indexOf('/e')>=0)
                 { 
+                        
                         doSpatialSearch();
                 }else{
+                        if(mapSearch != 1)$('#facetH2 a').html('Refine Search');
                         doNormalSearch();
                 }
          }
@@ -178,6 +175,7 @@ $(function() {
     $('.typeFilter, .groupFilter, .subjectFilter,.fortwoFilter, .forfourFilter, .forsixFilter, .ternRegionFilter').live('click', function(event){
         if(event.type=='click'){
             page = 1;
+            mapSearch = 0;
             if($(this).hasClass('typeFilter')){
                 typeFilter = encodeURIComponent($(this).attr('id'));
                 changeHashTo(formatSearch(search_term, 1, classFilter));
@@ -305,12 +303,15 @@ $(function() {
             temporal = 'All';
         }else if($(this).hasClass('clearTernRegion')){
             ternRegionFilter = 'All';
+            mapResult.switchLayer('none');
        }else if($(this).hasClass('clearSpatial')){
             n = '';
             e = '';
             w = '';
             s = '';
             spatial_included_ids = '';
+            resetCoordinates(); 
+            $("#coords input").trigger('change');
         }else if($(this).hasClass('clearTerm'))
         {
             //search_term='*:*';
@@ -507,6 +508,9 @@ $(function() {
             }
         }else{ // it's just basic search
         */
+        
+            populateCoordinates(n,w,s,e);
+            $("#coords input").trigger('change');
             if(param_q > -1 && search_term != '*:*' && search_term !="Search ecosystem data") {
                
                 $('input[id="search-box"]').val(search_term);
@@ -540,13 +544,12 @@ $(function() {
         });
              
         enableToolbarClick(mapWidget);
-      
+        enableCoordsClick();
         //changing coordinates on textbox should change the map appearance
         enableCoordsChange(mapWidget);  
-
-        $("#latlong").bind('click',function() {
-                $("#coords").toggle(); 
-        });
+     
+       
+        
         $("#mapHelpText").dialog({autoOpen:false});
          $("#mapViewSelector a").button();
           $("#mapHelp a").click(function(){
@@ -603,22 +606,22 @@ $(function() {
         setupNestedLayout(resizeMap);  
                 
          $("#facetH2").addClass("ui-state-disabled");
-        temporalWidget = new TemporalWidget();
+        var temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
         temporalWidget.refreshTemporalSearch();
         //enableToggleTemporal("#show-temporal-search",temporalWidget);   
         temporalWidget.doTemporalSearch=true;
         resetCoordinates();
          
-        populateSearchFields(temporalWidget,search_term);
         
         if(param_q == -1){
              // show default facet here
              // don't show results
         }
-      
-        
+              
         mapResult = initMap();
+        populateSearchFields(temporalWidget,search_term);
+      
         initPlaceName('geocode',mapResult);
         
         $("input[value='Update']").bind('click',function(){
@@ -634,11 +637,7 @@ $(function() {
                 e=el.value;
                 w=wl.value;  
                 
-                changeHashTo(formatSearch(search_term, 1, classFilter));
-               /* spatial_included_ids=''; 
-                if(n!=''){
-                      doSpatialSearch();
-                }*/
+                changeHashTo(formatSearch(search_term, 1, classFilter));             
           });
         
 
@@ -820,14 +819,10 @@ $(function() {
         $('[name^=keyword]').val('');
         $('[name^=keyword]').val('');
         $('[name^=operator]').val('');
-        $('#group-facet :checked').each(function(){
+        $('#groupFilter :checked').each(function(){
             $(this).removeAttr('checked');
         }); 
-        $('#fortree :checked').each(function(){
-            $(this).removeAttr('checked');
-        });         
         $('#forfourFilter').val('');
-        $('#fortwoFilter').val('');
         temporalWidget.doTemporalSearch = false;
         temporalWidget.refreshTemporalSearch();
          
@@ -936,7 +931,7 @@ $(function() {
             }
            
             
-        //var temporalWidget = new TemporalWidget();
+        var temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
 
         //enableToggleTemporal("#show-temporal-search",temporalWidget);   
@@ -1035,7 +1030,8 @@ $(function() {
             $('#visible-region').html($('#' + regionid ).html());
             mapWidget.switchLayer(regionid);
         });
- 
+
+           
     } 
  
     function doNormalSearch(){     
@@ -1050,14 +1046,6 @@ $(function() {
         
             success: function(msg,textStatus){
                 handleResults(msg,mapResult);
-                
-                
-                $('#clearall').click(function()
-                {     
-                    resetFilter();
-                    changeHashTo(formatSearch(search_term, 1, classFilter,num));
-
-                });  
                 
                 $("tr[id=re-hide]").hide();
 
@@ -1213,16 +1201,6 @@ $(function() {
     subjectFilter = 'All';
     classFilter= 'collection';
     groupFilter= 'All';
-    fortwoFilter='All';
-    forfourFilter='All';
-    search_term='*:*';
-    temporal='All';
-    ternRegionFilter = 'All';
-    
-    n = '';
-    e = '';
-    s='';
-    w='';
 }
         
     function initPreviewPage(){

@@ -70,7 +70,7 @@
     <?php if($widget_map_drawtoolbar){ ?> 
                             <div id="map-toolbar" class="ui-widget-header clearfix "> 
                                 <div class="left margin8"> <span class="toolbartitle">Pan</span> <br/><div  id="drag" class="olControlDragFeatureItemActive tooltip" title="<?php echo $this->lang->line('map_pan'); ?>"></div></div>
-                                <div class="left margin8"> <span class="toolbartitle">Coordinates</span> <br/> <a href="#" class="tooltip topmargin5" id="latlong" title="<?php echo $this->lang->line('map_coords'); ?>">Longitude<br/> &amp; Latitude</a>
+                                <div class="left margin8"> <span class="toolbartitle">Coordinates</span> <br/> <a  class="tooltip topmargin5" id="latlong" title="<?php echo $this->lang->line('map_coords'); ?>">Longitude<br/> &amp; Latitude</a>
                                     </div>
                                 <div class="left margin8"> <span class="toolbartitle">Draw and Update</span><br/>      <div id="panel" class="olControlEditingToolbar">
                                         

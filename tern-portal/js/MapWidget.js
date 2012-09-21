@@ -5,7 +5,7 @@
 function getURL(keyword, matrixIds){     
     var URLList = {
         "dummy" : base_url + 'api/output.json',
-        "nr:regions" : 'http://demo:8080/geoserver/gwc/service/wms', 
+        "nr:regions" : 'http://demo:8080/geoserver/wms', 
         "intersectPt":  base_url + 'regions/r/intersectPt/'          
     }
     return URLList[keyword];
@@ -280,9 +280,10 @@ MapWidget.prototype.addDrawLayer = function(options){
         // set other layers to hide when drawing starts
         if(this.extLayers){       
             for(var layer in this.extLayers){
-                this.extLayers[layer].setVisibility(false);
+                if(typeof this.extLayers[layer] == "[object]" )  this.extLayers[layer].setVisibility(false);
             }       
         }
+     
        
     }).bind(this));
     
@@ -594,7 +595,7 @@ MapWidget.prototype.setHighlightLayer = function(r_id){
             featureid: r_id
         });
         this.highlightLayer.setVisibility(true);
-    } 
+    }    
     this.map.raiseLayer(this.highlightLayer,this.map.layers.length-1);
 }
 
@@ -1252,7 +1253,7 @@ function enableToolbarClick(map){
  */
 function enableCoordsClick(){
     
-    $('#showCoords').click(function(e){
+    $('#latlong').click(function(e){
         $('#coords').toggle('fast');
     });
 
@@ -1303,7 +1304,7 @@ function populateCoordinates(n,w,s,e){
     $('#spatial-south').val(s);
     $('#spatial-east').val(e); 
    
-   
+    
 }
  
 

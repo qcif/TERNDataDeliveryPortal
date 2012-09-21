@@ -30,7 +30,7 @@
                           <?php //$this->load->view('tab/widgets/buttonsearch');?>
                       </div>
 -->                    
-                    <h2 id="facetH2"><a href="#">Refine</a></h2>
+                    <h2 id="facetH2"><a href="#">Search</a></h2>
                     <div id="facet-frame" ><div id="facet-accordion" class="accordion"></div></div>         
                  </div>
             </div> 
