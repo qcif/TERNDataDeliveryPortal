@@ -59,7 +59,7 @@ class Home extends CI_Controller {
 		$data['tabs'] = 1;
 		//echo $data['user_agent'];
 
-                $data['recordsArr'] = $this->handleRandomTab(10,'tddp');
+                $data['recordsArr'] = $this->handleRandomTab(10);
 		$this->load->view('home_pagev4', $data);
 	}
 	

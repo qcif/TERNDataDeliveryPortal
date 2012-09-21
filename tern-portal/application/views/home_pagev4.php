@@ -39,7 +39,10 @@ $home = 1;
             </div>
         </div>
 -->
-                    
+    
+                   <div id="random"></div>
+                   
+
                     <div id="carousel">
                         <div class="clearfix">
                      <div class="prev browse left"></div>
@@ -60,11 +63,10 @@ $home = 1;
                           </div>
                           <div class="next browse right"></div>
                       </div>
-                      </div>
-
-                   <div id="random"></div>
+                      </div>  
                     
     </div>
+  
     <!--    
     <div id="capabilities_list" class="ui-layout-west">  
 

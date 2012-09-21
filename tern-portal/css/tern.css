@@ -637,7 +637,7 @@ div.olLayerGooglePoweredBy
 }
 
 #carousel{}
-#scrollable {position:relative;overflow:hidden;width: 1100px;height:120px;}
+#scrollable {position:relative;overflow:hidden;width: 1000px;height:120px;}
 #scrollable .items {width:2000em;
        position:absolute;
        clear:both;}
@@ -688,7 +688,7 @@ div.left:active{background-position:-60px 0;}
 #fac-random-rec{
     float:left;
     text-align: left;
-    width:48%;
+    width:98%;
     padding-right:5px;
 }
 

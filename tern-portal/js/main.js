@@ -1704,7 +1704,8 @@ function setCookie(c_name,value,exdays)
     
     function handleRollover()
     {
-      $("#scrollable").scrollable({circular: true}).autoscroll(2000);
+      //$("#scrollable").scrollable({circular: true}).autoscroll(2000);
+      $("#scrollable").scrollable({circular: true});
 			var api = $("#scrollable").data("scrollable");
 			api.seekTo(0);
 			api.onSeek(function() {
