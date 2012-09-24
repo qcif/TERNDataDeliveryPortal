@@ -1,5 +1,31 @@
 var accordion;
-     
+    
+function sizeHomeContent()
+{
+    var $Container = $('#container')
+    $Container.height(430);
+    outerLayout.resizeAll();
+} 
+function setupOuterLayout(){ 
+    /*                              LAYOUT
+    *              Set outer container to div#container
+    */
+    // first set a 'fixed height' on the container so it does not collapse...
+    var $Container = $('#container')
+    $Container.height( $(window).height() - $Container.offset().top );
+
+    // OUTER LAYOUT
+    outerLayout = $('#container').layout({
+        west__size: 300,
+        resizable : false,
+        closable: false,
+        
+        spacing_open: 0
+       // togglerClass:	"toggler"	// default = 'ui-layout-toggler'
+    });
+    $("ul.sf-menu").superfish(); 
+
+}
 function setupNestedLayout(mapResize){
     /*                              LAYOUT
     *              Set outer container to div#container
