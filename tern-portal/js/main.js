@@ -639,7 +639,7 @@ $(function() {
                 s=sl.value;
                 e=el.value;
                 w=wl.value;  
-                
+                mapSearch = 0;
                 changeHashTo(formatSearch(search_term, 1, classFilter));             
           });
         
