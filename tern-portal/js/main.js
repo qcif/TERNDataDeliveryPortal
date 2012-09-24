@@ -520,7 +520,7 @@ $(function() {
    
    function initMap(){
 
-        var mapWidget = new MapWidget('spatialmap',true);
+        var mapWidget = new MapWidget('spatial-map',true);
         resetCoordinates();
         mapWidget.addDataLayer(true,"default",true);      
 
@@ -550,18 +550,22 @@ $(function() {
      
        
         
-        $("#mapHelpText").dialog({autoOpen:false});
-         $("#mapViewSelector a").button();
-          $("#mapHelp a").click(function(){
-             $("#mapHelpText").dialog('open');
+        $("#map-help-text").dialog({autoOpen:false});
+         $("#map-view-selector a").button();
+          $("#map-help a").click(function(){
+             $("#map-help-text").dialog('open');
              return false;
          }).button();
         
-        $("#mapViewSelector a").bind('click',function(element){
+        $("#map-view-selector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
         });
         $("#map-toolbar .tooltip").tipsy();
         
+        $("#map-hide").bind('click', function(){
+            $("#spatial-map").toggle(300);
+        });
+            
         return mapWidget;
     }
 

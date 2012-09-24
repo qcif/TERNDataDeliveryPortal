@@ -182,7 +182,7 @@ ul{
 #head-toolbar{
 	    
     clear: both;
-    height: 50px;
+    height: 30px;
     padding: 1px;
 }
 /*
@@ -380,12 +380,22 @@ ul.subjects-sml li a{text-decoration:underline; font-size: 10px; margin:2px 4px;
 .margin10{
     margin:10px;
 }
+ .left{
+                float:left;
+}            
+.margin8{
+    margin-right: 8px;
+}
+.topmargin5{
+    margin-top:5px;
+}
 
-.ui-layout-map {height: 450px;  padding:0; border:0; text-align: center}
 
-.ui-layout-facet{ border:0;}
 
-#ui-layout-facetmap {padding:0 ; border:0; width: 700px; }
+#ui-layout-map {padding:0 ; border:0; width: 750px; }
+
+#spatial-map { height: 500px !important; width: 750px !important;}
+         
 
 /* WEST SEARCH  */
  .head{ margin-bottom: 5px; }
@@ -814,5 +824,5 @@ div#right_pagination {
 div#middle_select_num {
     padding: 0px 160px 5px 160px;
     margin: 0px;
-
+    float: left;
 }
