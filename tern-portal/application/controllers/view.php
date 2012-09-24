@@ -36,7 +36,7 @@ class View extends CI_Controller {
 			$this->load->model('RegistryObjects', 'ro');
                         $this->load->model('Solr', 'solr');
                         $content =  $this->ro->get($key);
-                        
+                       
  
                         $data['key']= $key;
                         $data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key));
@@ -127,9 +127,8 @@ class View extends CI_Controller {
         
 	private function transform($registryObjectsXML, $xslt,$key){
 		$qtestxsl = new DomDocument();
-		$registryObjects = new DomDocument();            
-
-		$registryObjects->loadXML(trim($registryObjectsXML));        
+		$registryObjects = new DomDocument();               
+		$registryObjects->loadXML(trim($registryObjectsXML));  
 		$qtestxsl->load('_xsl/'.$xslt);
 		$proc = new XSLTProcessor();
 		$proc->importStyleSheet($qtestxsl);

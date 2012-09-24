@@ -89,10 +89,7 @@
             $for4str=constructFORQuery('for_value_four',$forfour);
             
             $q=$q.'AND ('.$for2str.' OR '.$for4str.')';   
-            
-                $fh = fopen("/var/www/test/a.txt", "a");
-    fwrite($fh, $q);
-    fclose($fh);
+          
 
         }
 

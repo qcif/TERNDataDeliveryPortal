@@ -48,11 +48,12 @@ function getRegistryObjectXML($registryObjectKey, $forSOLR = false, $includeRela
 
 	// Still no luck? Fall back to getRegistryObjectXMLforSOLR and build from DB XXX: Temporary
 	if ($result !== FALSE)
-	{
+	{            
 		return $result;
 	}
 	else
 	{
+
 		// go ahead and rebuild by hand (fallback)
 		return getRegistryObjectXMLFromDB($registryObjectKey, $forSOLR, $includeRelated);
 	}
@@ -65,7 +66,6 @@ function getRegistryObjectXMLFromDB($registryObjectKey, $forSOLR = false, $inclu
 	$xml = '';
 
 	$registryObject = getRegistryObject($registryObjectKey);
-
 
 
 	if ($forSOLR)
@@ -88,8 +88,7 @@ function getRegistryObjectXMLFromDB($registryObjectKey, $forSOLR = false, $inclu
 		// Registry Object Key
 		// =====================================================================
 		$xml .= "    <key>".esc($registryObjectKey)."</key>\n";
-
-
+     
 		if ($forSOLR)
 		{
 
@@ -145,7 +144,10 @@ function getRegistryObjectXMLFromDB($registryObjectKey, $forSOLR = false, $inclu
 			// SOLR requires the date in ISO8601, restricted to zulu time (why, I don't know...)
 			$xml .= "      <extRif:registryDateModified>".gmdate('Y-m-d\TH:i:s\Z',$registryDateModified)."</extRif:registryDateModified>\n";
 
-
+//date Harvested
+                        $dateHarvested='';
+                        $dateHarvested= getHarvestedTime($registryObjectKey);
+                        $xml.="      <extRif:registryDateHarvested>".$dateHarvested."</extRif:registryDateHarvested>\n";
 
 			// displayTitle
 			// -------------------------------------------------------------
@@ -206,9 +208,9 @@ function getRegistryObjectXMLFromDB($registryObjectKey, $forSOLR = false, $inclu
 		if( $registryObject[0]['status_modified_when'] )
 		{
 			$dateModified = ' dateModified="'.esc(getXMLDateTime($registryObject[0]['status_modified_when'])).'"';
-		}
-
-
+		}     
+                
+             
 		// Registry Object Originating Source
 		// =====================================================================
 		$originatingSource = esc($registryObject[0]['originating_source']);

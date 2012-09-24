@@ -100,9 +100,21 @@
         <xsl:apply-templates select="ro:name[@type='alternative']/ro:displayTitle"/>
 
 <!-- Author -->
-<xsl:if test="ro:relatedObject/ro:relation[@type='author']">
-       Author: <xsl:apply-templates select="ro:relatedObject/ro:relation[@type='author']"/>   
-</xsl:if>     
+<xsl:choose>
+    <xsl:when test="ro:relatedObject/ro:relation[@type='author']">
+       <h2>Author</h2><xsl:apply-templates select="ro:relatedObject/ro:relation[@type='author']"/>   
+    </xsl:when>
+    <xsl:otherwise>
+       <h2>Author</h2>Not provided 
+    </xsl:otherwise>
+</xsl:choose>
+
+<!--Organisation -->
+
+    <xsl:if test="ro:relatedObject/extRif:relatedObjectType='group'">
+       <h2>Organisation</h2><xsl:apply-templates select="ro:relatedObject/extRif:relatedObjectType"/>   
+    </xsl:if>
+
 <!--Description -->
         <xsl:if test="ro:description">
             <div class="descriptions" style="position:relative;clear:both;" itemprop="descriptions">
@@ -131,7 +143,7 @@
                       <tr>
                           <td><h3>Temporal Coverage</h3></td>
                           <td><h3>Date published</h3></td>
-                          <xsl:if test="extRif:registryDateModified">
+                          <xsl:if test="../extRif:extendedMetadata/extRif:registryDateModified">
                             <td><h3>Date modified</h3></td>
                           </xsl:if>
                       </tr>
@@ -148,23 +160,23 @@
                                         <xsl:apply-templates select="ro:coverage/ro:temporal/ro:text"/>
                                     </xsl:when>  
                                     <xsl:otherwise>
-                                        not available
+                                        Not provided
                                     </xsl:otherwise>
                                 </xsl:choose>
                           </td>
                           <td>
                                   <xsl:choose>
-                                    <xsl:when test="ro:dateAccessioned">
-                                        <xsl:value-of select="."/>
+                                    <xsl:when test="../extRif:extendedMetadata/extRif:registryDateHarvested">
+                                        <xsl:apply-templates select="../extRif:extendedMetadata/extRif:registryDateHarvested"/>                                         
                                     </xsl:when> 
                                     <xsl:otherwise>
-                                        not available
+                                        Not provided
                                     </xsl:otherwise>
                                 </xsl:choose>                           
                           </td>
-                        <xsl:if test="extRif:registryDateModified">
+                        <xsl:if test="../extRif:extendedMetadata/extRif:registryDateModified">
                           <td>
-                              <xsl:value-of select="."/>
+                              <xsl:apply-templates select="../extRif:extendedMetadata/extRif:registryDateModified"/> 
                           </td>
                          </xsl:if>
                       </tr> 
@@ -172,7 +184,7 @@
               </div>
 
         <xsl:choose>
-
+<!--Rights and licencing-->
             <xsl:when test="extRif:rights or ro:rights or extRif:rights[@type='licence']">  
  
                 <h2>Rights and Licenceing</h2>            
@@ -182,7 +194,7 @@
             </xsl:when>
             <xsl:otherwise>
                 <h2>Rights and Licences</h2>            
-                   not available
+                   not provided
             </xsl:otherwise>
   
         </xsl:choose>
@@ -198,7 +210,7 @@
             </xsl:when>
             <xsl:otherwise>
                 <h2>Data quality information</h2>            
-                   not available
+                   not provided
             </xsl:otherwise>
   
         </xsl:choose>
@@ -224,7 +236,7 @@
             </xsl:when>            
             <xsl:otherwise>
                 <h2>Data Type</h2>            
-                   not available
+                   Not provided
             </xsl:otherwise>
   
         </xsl:choose>        
@@ -232,11 +244,12 @@
   <!-- Access Data-->            
         <h2>Access Data</h2>
         This data can be accessed from the following websites
+        <xsl:if test="ro:location/ro:address/ro:electronic">
         <p><xsl:apply-templates select="ro:location/ro:address/ro:electronic"/></p>              
-
+        </xsl:if>
 <!--Spatial Coverage -->
 <xsl:choose>
-    <xsl:when test="ro:coverage/extRif:spatial or ro:location/extRif:spatial or ro:coverage/ro:temporal">
+    <xsl:when test="ro:coverage/extRif:spatial or ro:location/extRif:spatial">
         <div class="right-box">  
 <!--        
             <xsl:variable name="coverageLabel">
@@ -258,7 +271,7 @@
  <h2>Spatial Coverage</h2>
             <xsl:variable name="needMap">
                 <xsl:for-each select="ro:coverage/extRif:spatial">
-              <xsl:if test="not(./@type) or (./@type!='text' and ./@type!='dcmiPoint')">
+                <xsl:if test="not(./@type) or (./@type!='text' and ./@type!='dcmiPoint')">
                       <xsl:text>yes</xsl:text>
                </xsl:if>
                </xsl:for-each>
@@ -288,39 +301,12 @@
   </div> 
 </xsl:when>
 <xsl:otherwise>
-  <xsl:text>Spatial Coverage</xsl:text>
-  not available
+  <div class="right-box"><h2>Spatial Coverage</h2></div>
+  Not provided
 </xsl:otherwise>
 </xsl:choose>
 
 
-<!--Contact details --> 
-  
-          <xsl:choose>
-            <xsl:when test="ro:location/ro:address/ro:electronic/@type='email' or ro:location/ro:address/ro:physical">
-                <div class="right-box">
-                        <h2>Contacts</h2>
-
-                        <xsl:if test="ro:location/ro:address/ro:electronic/@type='email'">
-                                <p style="margin-top:1px;margin-bottom:1px;margin-left:3px"><xsl:apply-templates select="ro:location/ro:address/ro:electronic/@type"/></p>	
-                        </xsl:if>
-                        <xsl:if test="ro:location/ro:address/ro:physical/@type='telephoneNumber'">
-                                <p style="margin-top:1px;margin-bottom:1px;margin-left:3px"><xsl:apply-templates select="ro:location/ro:address/ro:physical"/></p>	
-                        </xsl:if>				
-                        <xsl:if test="ro:location/ro:address/ro:physical">
-                                <p style="margin-top:1px;margin-bottom:1px;margin-left:3px"><xsl:apply-templates select="ro:location/ro:address/ro:physical"/></p>	
-                        </xsl:if>
-
-               </div>
-             </xsl:when>
-
-             <xsl:otherwise>
-                 <div class="right-box">
-                        <h2>Contacts</h2>
-                        not available
-               </div>
-             </xsl:otherwise>
-        </xsl:choose>
 
 <!--Citation and Identifier -->        
   <xsl:choose>
@@ -422,7 +408,7 @@
     <div class="right-box">            
               <div style="position:relative;clear:both" class="subjects" >
                     <h2>Subjects</h2>
-                    not available
+                    Not provided
               </div>  
     
     </div>      
@@ -476,10 +462,11 @@
      
         <!--  we will now transform the rights handside stuff -->
   	<div id="right">
-                         	
-	       <xsl:if test="ro:location/ro:address/ro:electronic/@type='url' 
+            <xsl:choose>
+	       <xsl:when test="ro:location/ro:address/ro:electronic/@type='url' 
 		or ro:rights or ro:location/ro:address/ro:electronic/@type='email'  or ro:location/ro:address/ro:physical">	
-  		 	<xsl:if test="ro:location/ro:address/ro:electronic/@type='url'">
+                    <xsl:choose>
+  		 	<xsl:when test="ro:location/ro:address/ro:electronic/@type='url'">
                                     <div class="right-box">
                                         <h2>Access Data</h2>    
                                         <ul style="padding-left:3px">
@@ -487,8 +474,15 @@
                                         </ul>
 
                                     </div>
-                         </xsl:if>
-
+                         </xsl:when>
+                         <xsl:otherwise>
+                                    <div class="right-box">
+                                        <h2>Access Data</h2>    
+                                            Not provided
+                                    </div>
+                         </xsl:otherwise>
+                    </xsl:choose>
+<!--
                         <div id="top" class="top-corner">
                             <meta property="og:description" content="description" />
                                     <div id="breadcrumb-corner">
@@ -512,8 +506,46 @@
                                         </div>
                                     </div>
                                 </div>			
-                    </div>	
-	    </xsl:if>				   
+                    </div>
+-->                    
+	    </xsl:when>	
+            <xsl:otherwise>
+                   <div class="right-box">
+                    <h2>Access Data</h2>    
+                    Not provided
+                </div>        
+            </xsl:otherwise>
+            
+            </xsl:choose>             	
+            
+                         
+<!--Contact details --> 
+  
+          <xsl:choose>
+            <xsl:when test="ro:location/ro:address/ro:electronic/@type='email' or ro:location/ro:address/ro:physical">
+                <div class="right-box">
+                        <h2>Contacts</h2>
+
+                        <xsl:if test="ro:location/ro:address/ro:electronic/@type='email'">
+                                <p style="margin-top:1px;margin-bottom:1px;margin-left:3px"><xsl:apply-templates select="ro:location/ro:address/ro:electronic/@type"/></p>	
+                        </xsl:if>
+                        <xsl:if test="ro:location/ro:address/ro:physical/@type='telephoneNumber'">
+                                <p style="margin-top:1px;margin-bottom:1px;margin-left:3px"><xsl:apply-templates select="ro:location/ro:address/ro:physical"/></p>	
+                        </xsl:if>				
+                        <xsl:if test="ro:location/ro:address/ro:physical">
+                                <p style="margin-top:1px;margin-bottom:1px;margin-left:3px"><xsl:apply-templates select="ro:location/ro:address/ro:physical"/></p>	
+                        </xsl:if>
+
+               </div>
+             </xsl:when>
+
+             <xsl:otherwise>
+                 <div class="right-box">
+                        <h2>Contacts</h2>
+                        Not provided
+               </div>
+             </xsl:otherwise>
+        </xsl:choose>
 	</div>
   </div>              				
         
@@ -524,6 +556,13 @@
  <xsl:template match="ro:relatedObject/ro:relation[@type='author']">
     <xsl:value-of select="../extRif:relatedObjectListTitle"/> 
 </xsl:template>
+
+ <xsl:template match="ro:relatedObject/extRif:relatedObjectType">
+    <xsl:value-of select="../extRif:relatedObjectListTitle"/> 
+</xsl:template>
+
+
+
 
     <!--<xsl:template match="ro:displayTitle">   -->
     <xsl:template match="extRif:extendedMetadata/extRif:displayTitle">   
@@ -556,7 +595,13 @@
         <xsl:value-of select="."/><br />    
     </xsl:template>
 
-
+    <xsl:template match="extRif:extendedMetadata/extRif:registryDateHarvested">   
+        <xsl:value-of select="."/><br /> 			
+    </xsl:template>
+    
+    <xsl:template match="extRif:extendedMetadata/extRif:registryDateModified">   
+        <xsl:value-of select="."/><br /> 			
+    </xsl:template>
     <!--<xsl:template match="ro:relatedInfo/ro:notes">-->
     <xsl:template match="ro:relatedInfo/ro:notes">
         <xsl:value-of select="."/><br />    
