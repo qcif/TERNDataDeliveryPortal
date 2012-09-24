@@ -1206,7 +1206,9 @@ function enableCoordsChange(map){
         var coordStr = '';
         coordStr += $('#spatial-west').val() +  "," + $('#spatial-south').val() + "," +
             $('#spatial-east').val() + "," + $('#spatial-north').val();
-          
+        if($('#spatial-west').val() != '' && $('#spatial-south').val() !='' &&  $('#spatial-east').val() != '' && $('#spatial-north').val() !=''){
+            $('#coords input[type=button]').removeAttr("disabled");
+        }
         map.updateDrawing(map,coordStr);
     });
 }
@@ -1274,7 +1276,7 @@ function updateCoordinates(feature,WGS84,WGS84_google_mercator){
     $('#spatial-south').val(Math.round(bounds.bottom*100)/100);
     $('#spatial-east').val(Math.round(bounds.right*100)/100); 
     bounds.transform(WGS84,WGS84_google_mercator);
-
+    $('#coords input[type=button]').removeAttr("disabled");
 }
 
 /*  ------------------------------------------------------------  

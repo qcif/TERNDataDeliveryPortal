@@ -36,9 +36,10 @@ $Revision: 1 $
 	
 	if ($h_end > $numFound) $h_end = $numFound;
 	
-	$totalPage = ceil($numFound / $row);
-	$currentPage = ceil($start / $row)+1;
-	
+        if($row > 0 ){
+            $totalPage = ceil($numFound / $row);
+            $currentPage = ceil($start / $row)+1;
+        }
 	$range = 3;
 ?>
 <?php

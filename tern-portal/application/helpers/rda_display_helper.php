@@ -147,9 +147,10 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
 	$object_type="";
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         if(count($object_type)>0){
-            
-            echo '<h5 ><a href="#">'.$name;
-            echo '</a></h5>';
+          echo '<div class="collapsiblePanel">';
+          
+            echo '<h5 class="head">'.$name;
+            echo '</h5>';
             echo '<div  id="facet-region" class="facet-list facet-content">';
             echo '<select id="region-select">';
             echo '<option value=""> -- Please select a region type -- </option>';
@@ -190,7 +191,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
              }
           
            echo '</div>';
-         
+           echo '</div>';
         }
 }
 

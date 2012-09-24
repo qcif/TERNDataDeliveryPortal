@@ -60,6 +60,7 @@ function getRegistryObjectXML($registryObjectKey, $forSOLR = false, $includeRela
 
 function getRegistryObjectXMLFromDB($registryObjectKey, $forSOLR = false, $includeRelated = false)
 {
+       
 	// go ahead and rebuild by hand (fallback)
 	$xml = '';
 
@@ -1605,8 +1606,17 @@ function getSubjectTypesXML($registryObjectKey, $elementName, $forSOLR=false)
 							$gVOCAB_RESOLVER_RESULTS[$vocabType][$rawvalue] = array('vocabUri' => 'null');
 						}
 						unset($resolved_by_label_array);
+                                              
+                                                
 					}
-				}
+				}else{ // added by Dewi
+                                     
+                                  //  if(is_numeric($rawvalue) && $vocabType=='anzsrc-for'){
+                                  //      $resolvedName = getSubjectValue($rawvalue);
+                                      //  print $resolvedName;
+                                  //  }
+                                }
+                                
 				$term = " extRif:resolvedValue=\"" . $resolvedName . "\" extRif:vocabUri=\"" . $vocabUri . "\"";
 
 			}

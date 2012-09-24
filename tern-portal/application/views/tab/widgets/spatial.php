@@ -97,7 +97,7 @@
                                     </tr> 
                                     <tr>
                                         <td colspan="3">
-                                            <input type="button" value="Update"/>
+                                            <input type="button" value="Update" disabled="disabled"/>
                                         </td>
                                     </tr>
                                 </table>

@@ -548,8 +548,7 @@ $(function() {
         //changing coordinates on textbox should change the map appearance
         enableCoordsChange(mapWidget);  
      
-       
-        
+         
         $("#map-help-text").dialog({autoOpen:false});
          $("#map-view-selector a").button();
           $("#map-help a").click(function(){
@@ -1058,7 +1057,7 @@ $(function() {
                 });                
                 $("tr[id=re-hide]").hide();
 
-                    $("table").click(function(event) {
+                    $("#search-result table").click(function(event) {
                         event.stopPropagation();
                         var $target = $(event.target);
                         if ( $target.closest("td").attr("id")=="desc" ) {
