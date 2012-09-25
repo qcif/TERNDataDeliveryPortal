@@ -46,14 +46,20 @@ function printRecord($r){
      $date_t = new DateTime($date);
      $date_t->setTimeZone(new DateTimeZone("Australia/Brisbane"));
      $date = $date_t->format('d-m-Y');
-        
+     if ($r->url_slug)
+	{
+            $key_url = base_url().$r->{'url_slug'};
+	}
+        else{
+            $key_url = base_url() . 'view/dataview?key=' . urlencode($ro_key);
+        }   
            // $name =  $r->{'displayTitle'}; //commented 8.1
             $name =  $r->{'display_title'}; //added 8.1
 
 
             echo '<li class="random-record-list">'; 
             echo '<b>'.$date.'</b>';
-            echo '<a href="view/dataview?key='.$ro_key.'" class="record-list">'.$name.'</a>';            
+            echo '<a href="'. $key_url .'">'.$name.'</a>';            
             echo '</li>';
             
             

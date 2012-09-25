@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="left margin8"> <span class="toolbartitle">Place Name</span> <br/> <input id="geocode"  class="tooltip topmargin5" type="text" size="30" title="<?php echo $this->lang->line('map_placename'); ?>"/></div>
                                 <div class="left margin8" id="map-view-selector"> <span class="toolbartitle">Map view</span> <br/> <a href="#" id="gmap" class="tooltip topmargin5" title="<?php echo $this->lang->line('map_mapview'); ?>">Map</a><a href="#" id="ghyb" class="tooltip topmargin5" title="<?php echo $this->lang->line('map_mapview'); ?>" ">Hybrid</a><a href="#" id="gsat" title="<?php echo $this->lang->line('map_mapview'); ?>" class="tooltip topmargin5">Satellite</a><a href="#" id="gphy" title="<?php echo $this->lang->line('map_mapview'); ?>" class="tooltip topmargin5">Terrain</a></div>
-                                <div class="left margin8" id="map-help" > <span class="toolbartitle" >Help</span><br/><a class="tooltip topmargin5" title="<?php echo $this->lang->line('map_help'); ?>">?</a></div> 
+                                <div class="left margin8" id="map-help" > <span class="toolbartitle" >Help</span><br/><a class="tooltip topmargin5" >?</a></div> 
                                  <div id="map-hide"><span class="toolbartitle">Hide</span> </div>
 </div> 
       <?php } ?>

@@ -47,7 +47,22 @@ limitations under the License.
 		return $content;
     }
     
-		/*
+      function getByHash($hash){
+	$service_url = service_url();
+        $url = $service_url . '?registry_object_hash=' . urlencode($hash);
+        //echo '<div>'.$url.'</div>';
+        $content = 'Nothing Returned';
+        if (get_http_response_code($url) != '400')
+        {
+            $content = file_get_contents($url, 0, null, null);
+        }else
+            echo '400 error';
+        //echo $content;
+        //$json = json_decode($content);
+        return $content;
+    }
+
+    /*
 		 * getSearchHistory
 		 * returns everything from the search statistics
 		 * Normally use for search suggestion
@@ -166,6 +181,7 @@ and se.bound_box && box ((point('.$north.','.$west.')),(point('.$south.','.$east
 
     function get_min_year()
     { 
+      
         return  $this->db->query('SELECT * from dba.vw_minmax_date LIMIT 1');
         
     }

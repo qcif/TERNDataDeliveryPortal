@@ -121,8 +121,13 @@ foreach ($json->{'response'}->{'docs'} as $r)
     {
         $subjects = $r->{'subject_value_resolved'};
     }
-
-    $key_url = base_url() . 'view/dataview?key=' . urlencode($ro_key);
+    if ($r->url_slug)
+	{
+            $key_url = base_url().$r->{'url_slug'};
+	}
+    else{
+        $key_url = base_url() . 'view/dataview?key=' . urlencode($ro_key);
+    }
     echo '<tbody>';
     echo '<tr><td>';
     if($center) echo '<h2 class="h2color mapMarker">' . $c . '</h2>';

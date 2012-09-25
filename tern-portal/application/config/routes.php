@@ -61,7 +61,7 @@ $Revision: 1 $
 */
 
 $route['default_controller'] = "home";
-//$route['view/(:any)'] = "view/viewitem/$1";
+$route['(:any)'] = 'dispatcher/$1';
 $route['404_override'] = '';
 
 
