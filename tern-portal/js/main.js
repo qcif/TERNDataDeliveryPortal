@@ -828,6 +828,7 @@ $(function() {
                  {
                      if($(this).attr('id') == 'search-results-content' && mapSearch == 0) {        
                         $('#search-result').html($(this).html());
+                         $("#search-result").show();
                     }
                     else if($(this).attr('id') == 'head-toolbar-content' && mapSearch == 0){
                         $('#head-toolbar').html($(this).html());
