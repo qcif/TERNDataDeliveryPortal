@@ -459,9 +459,12 @@
         </xsl:if>                   
    
    </div>
-     
+    
         <!--  we will now transform the rights handside stuff -->
   	<div id="right">
+             <div class="right-box">
+                <a href="javascript:window.print()">Print This Page</a>
+            </div>
             <xsl:choose>
 	       <xsl:when test="ro:location/ro:address/ro:electronic/@type='url' 
 		or ro:rights or ro:location/ro:address/ro:electronic/@type='email'  or ro:location/ro:address/ro:physical">	

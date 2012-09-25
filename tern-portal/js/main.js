@@ -144,7 +144,7 @@ $(function() {
         if(classFilter!=$('#classSelect').val()) {
             $('#classSelect').val(classFilter);
         }
-     
+    
          if(param_q > -1 || mapSearch==1){
                 search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
                 search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
@@ -162,7 +162,7 @@ $(function() {
                         
                         doSpatialSearch();
                 }else{
-                        if(mapSearch != 1)$('#facetH2 a').html('Refine Search');
+                        if(mapSearch != 1)$('#facetH2 a').html('Refine Search'); else $('#facetH2 a').html('Search');
                         doNormalSearch();
                 }
          }
@@ -344,6 +344,7 @@ $(function() {
             }
             
         }
+        if($("#current-search ul li").length == 1) mapSearch = 1;
         changeHashTo(formatSearch(search_term,1,classFilter));
     });
         
@@ -625,132 +626,6 @@ $(function() {
           });
         
 
-        
-        //Reset Button 
-        $('#search_reset').click(function(){
-            resetAllFields(temporalWidget);
-        }).button();
-        
-        // If user presses enter in the inputs, submit the form
-        $('#search-panel input').keypress(function(e) {
-            if(e.which == 13) {
-             
-                        $('#search_basic').trigger('click');
-              
-            }
-        });
-        
-         autocomplete('#search-box');
-         autocomplete('input[name^=keyword]');
-         // please delete these  button click actions
-         // when you're done Yi
-        /*
-        * Big search button
-        */
- 
-        
-        //Submit button 
-       $("#search_advanced").click(function(){
-        //Reset search term
-       resetAllSearchVals();
-            //check which panel is active 0 is basic, 1 is advanced
-          //  if($( "#accordion" ).accordion( "option", "active" ) == 1 ){  // handle advanced search 
-                
-                //Advanced search widgets                 
-                temporal = temporalWidget.getTemporalValues();
-                               
-                //update spatial coordinates from textboxes
-                var nl=document.getElementById("spatial-north");
-                var sl=document.getElementById("spatial-south");
-                var el=document.getElementById("spatial-east");
-                var wl=document.getElementById("spatial-west");
-                   
-                n=nl.value;
-                s=sl.value;
-                e=el.value;
-                w=wl.value;  
-                spatial_included_ids='';
-                           
-                //FOR filtering 
-                if( document.getElementById("forfourFilter") != null && $('#forfourFilter').val()!='')  
-                {
-                        forfourFilter = $('#forfourFilter').val();
-                 }
-                //Group filtering
-                if( document.getElementById("groupFilter") != null ) {
-                    var first = true;
-                    $('#groupFilter :checked').each(function(){
-                        if(first) {
-                            groupFilter = $(this).val();
-                            first=false;
-                        }
-                        else groupFilter +=  ";" + $(this).val();
-                    });                  
-                }   
-              
-                
-/*                
-                //Keywords 
-                if( $('[name^=fields]').length>0){
-                    first = true;
-                    var field = '';
-                    $("input[name^=keyword]").each(function(index){
-                        if($.trim($(this).val())!='') {
-                            switch($("[name^=fields]").get(index).value){
-                                case 'displayTitle':
-
-                                   // field = 'displayTitle';
-                                    field = 'display_title';//added 8.1
-
-                                    break;
-                                case 'description':
-                                    field = 'description_value';
-                                    break;
-                                case 'subject':
-
-                                    //field = 'subject_value' ;
-                                    field = 'subject_value_resolved' ;
-
-                                    break;
-                                default:
-                                    field='fulltext';
-                                    break;
-                            }
-                            if(first){
-                                search_term = field;
-                            }else{
-                                if($("[name^=operator]").get(index-1) ){
-                                    var operator = $("[name^=operator]").get(index-1).value;
-                                    search_term += operator
-                                    search_term += ' ';
-                                }                            
-                                search_term += field;
-                            }
-                            search_term += ':';
-                            search_term += $.trim($(this).val()) + ' ';
-                            first = false;                             
-                        }
-                    }
-                    );
-                    search_term = $.trim(search_term);
-                               
-                }
-*/                
-                page = 1;
-
-           /* }else{
-                resetAllSearchVals();
-                search_term = $('#search-box').val();
-             
-            }   		
-	    */
-
-            changeHashTo(formatSearch(search_term, 1, classFilter));
-
-            //  }
-            
-        }).button();    
-        
          
            
     }
@@ -835,7 +710,11 @@ $(function() {
                         $('#head-toolbar').show();
                     }
                  }
-            });       
+            });     
+            if(mapSearch == 1){
+                $("#search-result").hide();
+                $('#head-toolbar').hide();
+            }
  
             if(typeof mapWidget !== 'undefined') {
                 mapWidget.map.updateSize();
@@ -926,7 +805,16 @@ $(function() {
             else
                 document.getElementById("adv_bool_operator").style.display='none';
         });
+           // If user presses enter in the inputs, submit the form
+        $('#search-box').keypress(function(e) {
+            if(e.which == 13) {             
+                        $('#search_basic').trigger('click');
+              
+            }
+        });
         
+         autocomplete('#search-box');
+         
         $('#search_basic').click(function(){
             //resetAllSearchVals();
 
@@ -1036,6 +924,7 @@ $(function() {
                  $('#clearall').click(function()
                 {
                     resetFilter();
+                    mapSearch=1;
                     changeHashTo(formatSearch(search_term, 1, classFilter,num));
 
                 });                
@@ -1064,7 +953,7 @@ $(function() {
                  $("#loading").hide();
                  
                  var opt=document.getElementById('viewrecord');
-                 if(typeof opt != 'undefined'){
+                 if(opt != null){
                     for(var i=0;i<opt.options.length;i++)
                     {
                         if(opt.options[i].text===num.toString())
