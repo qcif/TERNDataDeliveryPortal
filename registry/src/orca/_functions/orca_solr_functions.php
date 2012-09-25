@@ -328,7 +328,7 @@ function getHarvestedTime($registryObjectKey)
         $q = urldecode($q);
 
         $fields = array(
-            'q' => $q, 'version' => '2.2', 'start' => $start, 'rows' => $row, 'wt' => 'json',
+            'q' => $q, 'version' => '2.2', 'start' => '0', 'rows' => '1', 'wt' => 'json',
             'fl' => 'key,timestamp'
         );
         
