@@ -831,6 +831,7 @@ $(function() {
                     }
                     else if($(this).attr('id') == 'head-toolbar-content' && mapSearch == 0){
                         $('#head-toolbar').html($(this).html());
+                        $('#head-toolbar').show();
                     }
                  }
             });       
@@ -1062,13 +1063,15 @@ $(function() {
                  $("#loading").hide();
                  
                  var opt=document.getElementById('viewrecord');
-                 for(var i=0;i<opt.options.length;i++)
-                 {
-                     if(opt.options[i].text===num.toString())
-                     {                         
-                         opt.selectedIndex=i;
-                         break;
-                     }
+                 if(typeof opt != 'undefined'){
+                    for(var i=0;i<opt.options.length;i++)
+                    {
+                        if(opt.options[i].text===num.toString())
+                        {                         
+                            opt.selectedIndex=i;
+                            break;
+                        }
+                    }
                  }
 
              }
