@@ -686,64 +686,12 @@ $(function() {
                         }
                         else groupFilter +=  ";" + $(this).val();
                     });                  
-                }   
+                }  
               
                 
-/*                
-                //Keywords 
-                if( $('[name^=fields]').length>0){
-                    first = true;
-                    var field = '';
-                    $("input[name^=keyword]").each(function(index){
-                        if($.trim($(this).val())!='') {
-                            switch($("[name^=fields]").get(index).value){
-                                case 'displayTitle':
-
-                                   // field = 'displayTitle';
-                                    field = 'display_title';//added 8.1
-
-                                    break;
-                                case 'description':
-                                    field = 'description_value';
-                                    break;
-                                case 'subject':
-
-                                    //field = 'subject_value' ;
-                                    field = 'subject_value_resolved' ;
-
-                                    break;
-                                default:
-                                    field='fulltext';
-                                    break;
-                            }
-                            if(first){
-                                search_term = field;
-                            }else{
-                                if($("[name^=operator]").get(index-1) ){
-                                    var operator = $("[name^=operator]").get(index-1).value;
-                                    search_term += operator
-                                    search_term += ' ';
-                                }                            
-                                search_term += field;
-                            }
-                            search_term += ':';
-                            search_term += $.trim($(this).val()) + ' ';
-                            first = false;                             
-                        }
-                    }
-                    );
-                    search_term = $.trim(search_term);
-                               
-                }
-*/                
+         
                 page = 1;
 
-           /* }else{
-                resetAllSearchVals();
-                search_term = $('#search-box').val();
-             
-            }   		
-	    */
 
             changeHashTo(formatSearch(search_term, 1, classFilter));
 
@@ -919,7 +867,39 @@ $(function() {
         //enableToggleTemporal("#show-temporal-search",temporalWidget);   
         temporalWidget.doTemporalSearch=true;
         temporalWidget.refreshTemporalSearch();
-        
+ 
+ //help contents
+        //term
+        $("#term-help-text").dialog({autoOpen:false});
+
+          $("#term-help a").click(function(){
+             $("#term-help-text").dialog('open');
+             return false;
+         }).button();
+         
+         //facility
+        $("#facility-help-text").dialog({autoOpen:false});
+
+          $("#facility-help a").click(function(){
+             $("#facility-help-text").dialog('open');
+             return false;
+         }).button();         
+         
+         //for
+        $("#for-help-text").dialog({autoOpen:false});
+
+          $("#for-help a").click(function(){
+             $("#for-help-text").dialog('open');
+             return false;
+         }).button();   
+         //region
+        $("#region-help-text").dialog({autoOpen:false});
+
+          $("#region-help a").click(function(){
+             $("#region-help-text").dialog('open');
+             return false;
+         }).button();          
+//=========================         
         $('#adv_bool').click(function(){
              if(document.getElementById("adv_bool_operator").style.display=='none')
                 document.getElementById("adv_bool_operator").style.display='block';

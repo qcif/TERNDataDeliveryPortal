@@ -71,12 +71,12 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
         $this->load->view('tab/widgets/basicsearch');
         $this->load->view('tab/widgets/temporal');
 
-        displayRegionFacet('tern_region', $ternRegionFilter, $json, $ternRegionFilter,$regionsName);
+        displayRegionFacet('tern_region', $ternRegionFilter, $json, $ternRegionFilter,$regionsName,$help->language['region_helptitle'],$help->language['region_helptext']);
        
-        displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$fortwoFilter,$json, $classFilter, $this);      
+        displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$fortwoFilter,$json, $classFilter, $this,$help->language['for_helptitle'],$help->language['for_helptext']);      
 
        // displayFacet('group', $groupFilter, $json, $classFilter);
-         displayFacilitiesFacet('group', $groupFilter, $json, $classFilter);
+         displayFacilitiesFacet('group', $groupFilter, $json, $classFilter,$help->language['facility_helptitle'],$help->language['facility_helptext']);
 	  
        
 ?>

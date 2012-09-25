@@ -70,7 +70,7 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
         }
 }
 */
-function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
+function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$help_title,$help_content){
 	
 	$clear ='';$name = '';$class='';
 	
@@ -96,6 +96,7 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
             if(count($object_type)>0){
                 echo '<div id="fac-facet" class="facet-list facet-content collapsiblePanel">';
                 echo '<h5 class="head">'.$name;
+                echo '<div id="facility-help"><a class="tooltip">?</a></div>';
                 echo '</h5>';
                 echo '<div>';
                 echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
@@ -132,6 +133,8 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
                 echo '<button id="facbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
                 echo '</div>'; 
                 echo '</div>';
+                
+                echo '<div id="facility-help-text" title="'.$help_title.'" class="hide" >'.$help_content.'</div>';
             }
         
 }
@@ -139,7 +142,7 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
  * tern_region field in SOLR
  */
 
-function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $regionsName){
+function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $regionsName,$help_title,$help_text){
     
 	$clear ='clearTernRegion';$name = 'Region';$class='ternRegionFilter';
         
@@ -149,6 +152,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
           echo '<div class="collapsiblePanel">';
           
             echo '<h5 class="head">'.$name;
+            echo '<div id="region-help"><a class="tooltip">?</a></div>';
             echo '</h5>';
             echo '<div  id="facet-region" class="facet-list facet-content">';
             echo '<select id="region-select">';
@@ -191,6 +195,8 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
           
            echo '</div>';
            echo '</div>';
+           
+           echo '<div id="region-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';           
         }
 }
 
@@ -566,7 +572,7 @@ function stripFORString($str)
     return $result;
 }
 
-function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facettwoFilter, $json, $ro_class, $obj)
+function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facettwoFilter, $json, $ro_class, $obj,$help_title,$help_text)
 {
 	//$clear =$facetName;$class=$facetFilter;
      
@@ -624,6 +630,7 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
     //print_r($out4);
         echo '<div id="for-facet" class="collapsiblePanel">';
 	echo '<h5 class="head">Field of Research';
+        echo '<div id="for-help"><a class="tooltip">?</a></div>';
 	echo '</h5>';
 	echo '<div class="facet-list" >';
 
@@ -692,6 +699,8 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
         echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
 	echo '</div>';
         echo '</div>';
+        
+        echo '<div id="for-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
 
  
 }

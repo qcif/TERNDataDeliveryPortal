@@ -72,9 +72,9 @@ class Search extends CI_Controller
 
                 $data['title'] = "Search TERN Data Discovery Portal";
                 //get Keyword
-                $data['widget_keyword'] = 1;
-            
-                            
+                $data['widget_keyword'] = 1;   
+                    
+
             $this->load->view('new_search', $data);
         }
     }
@@ -597,7 +597,8 @@ class Search extends CI_Controller
                 
         $this->benchmark->mark('search_end');
         //echo $this->benchmark->elapsed_time('search_start', 'search_end');
-
+        $this->lang->load('tooltips');
+        $data["help"]=$this->lang;
         $this->load->view('search/search_result', $data); //load the view
     }
 
