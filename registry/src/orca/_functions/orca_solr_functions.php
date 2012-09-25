@@ -324,7 +324,7 @@ function getHarvestedTime($registryObjectKey)
 {
         global $solr_url;
         //$q='';
-        $q = 'key:('.$registryObjectKey.')';
+        $q = 'key:("'.$registryObjectKey.'")';
         $q = urldecode($q);
 
         $fields = array(
