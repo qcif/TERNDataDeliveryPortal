@@ -35,11 +35,8 @@
                  </div>
             </div> 
             <div id="result-panel" class="ui-layout-center ">
-                   <div id="no-result" class="ui-corner-all hide"><div><h3></h3></div></div>
-                   <div id="head-toolbar" class="toolbar clearfix hide"></div>                                
-                          
-
-                   
+                  <div id="head-toolbar" class="toolbar clearfix hide"></div>                                
+        
                  <?php $this->load->view('tab/widgets/spatial');?>
           
                 <div id="search-result" class="ui-layout-search-results"></div>

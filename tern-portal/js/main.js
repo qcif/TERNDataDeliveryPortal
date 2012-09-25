@@ -410,32 +410,13 @@ $(function() {
     
     /*      Show No Results on the result set div */
     function showNoResult(msg){
-        if(msg == 1){
-            $("#no-result div h3").html("No matching records were found");
-        }
-       
-        $("#ui-layout-facetmap").hide();
         $("#head-toolbar").hide();
-        $("#no-result").show();
         $("#search-result").html('');
-        //sizeCenterPane();
-        $('#no-result div').css({
-              position: 'absolute',
-              'left' : '50%',
-              'margin-left': -($('#no-result div').outerWidth())/2,
-              'top': '50%',
-              'margin-top': -($('#no-result div').outerHeight())/2
-        });
+        alert("No records found."); 
         $("#search-result").hide();
     }
     
-    function hideNoResult(){
-        $("#no-result").hide();
-         $("#search-result").show();
-         $("#ui-layout-facetmap").show();
-         $("#head-toolbar").show();
-
-    }
+  
   
    
     /*      Populate Search fields
@@ -838,27 +819,26 @@ $(function() {
     
     function handleResults(msg,mapWidget){         
         var divs = $(msg).filter(function(){return $(this).is('div')});
-        if($(msg).find('div#realNumFound').html() !== "0")
-        {
+        
             divs.each(function() {
                 if($(this).attr('id') == 'facet-content')  {
                     $('#facet-accordion').html($(this).html());               
                 }
-                else if($(this).attr('id') == 'search-results-content' && mapSearch == 0) {        
-                    $('#search-result').html($(this).html());
-                }
-                else if($(this).attr('id') == 'head-toolbar-content' && mapSearch == 0){
-                    $('#head-toolbar').html($(this).html());
-                }
-            });         
-
-              
-            hideNoResult();
-        
+                if($(msg).find('div#realNumFound').html() !== "0")
+                 {
+                     if($(this).attr('id') == 'search-results-content' && mapSearch == 0) {        
+                        $('#search-result').html($(this).html());
+                    }
+                    else if($(this).attr('id') == 'head-toolbar-content' && mapSearch == 0){
+                        $('#head-toolbar').html($(this).html());
+                    }
+                 }
+            });       
+ 
             if(typeof mapWidget !== 'undefined') {
                 mapWidget.map.updateSize();
                 mapWidget.removeAllFeatures();
-                if(mapSearch == 0){
+                if(mapSearch == 0 && $(msg).find('div#realNumFound').html() !== "0"){
                   mapWidget.addVectortoDataLayer(".spatial_center",true);
                   if(ternRegionFilter != 'All'){
                       mapWidget.setHighlightLayer(ternRegionFilter.split(":").pop());
@@ -866,11 +846,8 @@ $(function() {
                 }
                 mapWidget.deactivateAllControls();
             }
-        }
-        else{
-            showNoResult(1); 
-   
-        }       
+       
+           
             $('.clearFilter').each(function(){
                 $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
             });
@@ -1034,7 +1011,12 @@ $(function() {
             mapWidget.switchLayer(regionid);
         });
 
-           
+        
+           if($(msg).find('div#realNumFound').html() == "0")
+             {
+                    showNoResult(1); 
+   
+            }       
     } 
  
     function doNormalSearch(){     

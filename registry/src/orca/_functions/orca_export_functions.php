@@ -1611,13 +1611,7 @@ function getSubjectTypesXML($registryObjectKey, $elementName, $forSOLR=false)
                                               
                                                 
 					}
-				}else{ // added by Dewi
-                                     
-                                  //  if(is_numeric($rawvalue) && $vocabType=='anzsrc-for'){
-                                  //      $resolvedName = getSubjectValue($rawvalue);
-                                      //  print $resolvedName;
-                                  //  }
-                                }
+				}
                                 
 				$term = " extRif:resolvedValue=\"" . $resolvedName . "\" extRif:vocabUri=\"" . $vocabUri . "\"";
 
