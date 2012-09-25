@@ -626,7 +626,81 @@ $(function() {
           });
         
 
+
+        //Reset Button 
+        $('#search_reset').click(function(){
+            resetAllFields(temporalWidget);
+        }).button();
+        
+        // If user presses enter in the inputs, submit the form
+        $('#search-panel input').keypress(function(e) {
+            if(e.which == 13) {
+             
+                        $('#search_basic').trigger('click');
+              
+            }
+        });
+        
+         autocomplete('#search-box');
+         autocomplete('input[name^=keyword]');
+         // please delete these  button click actions
+         // when you're done Yi
+        /*
+        * Big search button
+        */
+ 
+        
+        //Submit button 
+       $("#search_advanced").click(function(){
+        //Reset search term
+       resetAllSearchVals();
+            //check which panel is active 0 is basic, 1 is advanced
+          //  if($( "#accordion" ).accordion( "option", "active" ) == 1 ){  // handle advanced search 
+                
+                //Advanced search widgets                 
+                temporal = temporalWidget.getTemporalValues();
+                               
+                //update spatial coordinates from textboxes
+                var nl=document.getElementById("spatial-north");
+                var sl=document.getElementById("spatial-south");
+                var el=document.getElementById("spatial-east");
+                var wl=document.getElementById("spatial-west");
+                   
+                n=nl.value;
+                s=sl.value;
+                e=el.value;
+                w=wl.value;  
+                spatial_included_ids='';
+                           
+                //FOR filtering 
+                if( document.getElementById("forfourFilter") != null && $('#forfourFilter').val()!='')  
+                {
+                        forfourFilter = $('#forfourFilter').val();
+                 }
+                //Group filtering
+                if( document.getElementById("groupFilter") != null ) {
+                    var first = true;
+                    $('#groupFilter :checked').each(function(){
+                        if(first) {
+                            groupFilter = $(this).val();
+                            first=false;
+                        }
+                        else groupFilter +=  ";" + $(this).val();
+                    });                  
+                }  
+              
+                
          
+                page = 1;
+
+
+            changeHashTo(formatSearch(search_term, 1, classFilter));
+
+            //  }
+            
+        }).button();    
+        
+
            
     }
     
@@ -798,7 +872,39 @@ $(function() {
         //enableToggleTemporal("#show-temporal-search",temporalWidget);   
         temporalWidget.doTemporalSearch=true;
         temporalWidget.refreshTemporalSearch();
-        
+ 
+ //help contents
+        //term
+        $("#term-help-text").dialog({autoOpen:false});
+
+          $("#term-help a").click(function(){
+             $("#term-help-text").dialog('open');
+             return false;
+         }).button();
+         
+         //facility
+        $("#facility-help-text").dialog({autoOpen:false});
+
+          $("#facility-help a").click(function(){
+             $("#facility-help-text").dialog('open');
+             return false;
+         }).button();         
+         
+         //for
+        $("#for-help-text").dialog({autoOpen:false});
+
+          $("#for-help a").click(function(){
+             $("#for-help-text").dialog('open');
+             return false;
+         }).button();   
+         //region
+        $("#region-help-text").dialog({autoOpen:false});
+
+          $("#region-help a").click(function(){
+             $("#region-help-text").dialog('open');
+             return false;
+         }).button();          
+//=========================         
         $('#adv_bool').click(function(){
              if(document.getElementById("adv_bool_operator").style.display=='none')
                 document.getElementById("adv_bool_operator").style.display='block';
@@ -963,6 +1069,12 @@ $(function() {
                         }
                     }
                  }
+                 
+                 if (document.getElementById('group-facet').childNodes.length<1)
+                     $("#fac-facet").hide();
+                 
+                 if (document.getElementById('fortree').childNodes.length<1)
+                     $("#for-facet").hide();
 
              }
             ,
