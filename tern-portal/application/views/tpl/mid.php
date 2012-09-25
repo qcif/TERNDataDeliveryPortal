@@ -37,7 +37,7 @@ $Revision: 1 $
 				
 				<div id="search-wrapper" class="clearfix">
 					<div class="ui-widget left-align"><input class="searchbox" id ="search-box" title="Search ecosystem data" type="text" name="query" ></div>
-					<button class="searchbox_submit" id="search-button" title="Search Research Data Australia">Search</button>                                        
+					<button class="searchbox_submit" id="search-button" title="Search ecosystem data">Search</button>                                        
 				</div>
 				
 			</div> 

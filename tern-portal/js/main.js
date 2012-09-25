@@ -1074,6 +1074,12 @@ $(function() {
                         }
                     }
                  }
+                 
+                 if (document.getElementById('group-facet').childNodes.length<1)
+                     $("#fac-facet").hide();
+                 
+                 if (document.getElementById('fortree').childNodes.length<1)
+                     $("#for-facet").hide();
 
              }
             ,
