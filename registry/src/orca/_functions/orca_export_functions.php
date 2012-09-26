@@ -3535,4 +3535,46 @@ function getSearchBaseScore($registry_object_key)
 
 }
 
+
+function getHarvestedTime($registryObjectKey)
+{
+        global $solr_url;
+        //$q='';
+        $q = 'key:("'.$registryObjectKey.'")';
+        $q = urldecode($q);
+
+        $fields = array(
+            'q' => $q, 'version' => '2.2', 'start' => '0', 'rows' => '1', 'wt' => 'json',
+            'fl' => 'key,timestamp'
+        );
+        
+     	//prep
+	$fields_string='';
+	foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }//build the string
+	rtrim($fields_string,'&');
+	//if($extras!="") $fields_string .= $extras;
+
+	$ch = curl_init();
+
+	//set the url, number of POST vars, POST data
+	curl_setopt($ch,CURLOPT_URL,$solr_url.'select');//post to SOLR
+	curl_setopt($ch,CURLOPT_POST,count($fields));//number of POST var
+	curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);//post the field strings
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);//return to variable
+	$content = curl_exec($ch);//execute the curl
+
+
+        $json = json_decode($content);
+
+        $numFound=$json->{'response'}->{'numFound'};
+        $harvestedTime='';
+        if($numFound>0)
+        {
+            $harvestedTime = $json->{'response'}->{'docs'}[0]->{'timestamp'};
+        }
+        return $harvestedTime;
+       
+}
+
+
 ?>

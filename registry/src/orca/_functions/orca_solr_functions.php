@@ -320,27 +320,5 @@ function queueSyncDataSource($data_source_key){
 	triggerAsyncTasks();
 }
 
-function getHarvestedTime($registryObjectKey)
-{
-        global $solr_url;
-        //$q='';
-        $q = 'key:("'.$registryObjectKey.'")';
-        $q = urldecode($q);
-
-        $fields = array(
-            'q' => $q, 'version' => '2.2', 'start' => '0', 'rows' => '1', 'wt' => 'json',
-            'fl' => 'key,timestamp'
-        );
-        
-     
-        $content = solr($solr_url, $fields);
-
-        $json = json_decode($content);
-
-        $harvestedTime = $json->{'response'}->{'docs'}[0]->{'timestamp'};
- 
-        return $harvestedTime;
-       
-}
 
 ?>
