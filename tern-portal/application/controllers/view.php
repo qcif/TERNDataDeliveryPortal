@@ -150,8 +150,8 @@ class View extends CI_Controller {
 			
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();
-
-			$data['activity_name'] = 'view';
+                        $data['widget_map'] = true;
+                      
 			if($numFound>0){
 				$this->load->view('dataview', $data);
 			}else show_404('page');

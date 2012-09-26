@@ -828,6 +828,17 @@ div#middle_select_num {
 }
 
 div#sorting_selection {
-margin: 0px;
-float: left;
+    margin: 0px;
+    float: left;
+}
+#contact_form{
+    width: 400px;
+    padding: 20px;
+    margin: 0 auto;
+}
+#contact_form label{
+    font-weight: bold;
+}
+#contact_form .error{
+    color: red;
 }
