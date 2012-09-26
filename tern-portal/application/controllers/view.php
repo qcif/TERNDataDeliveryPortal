@@ -219,7 +219,7 @@ class View extends CI_Controller {
             
                  print_r($date_pub2); 
 		$qtestxsl = new DomDocument();
-                $registryObjects = new DomDocument();               
+                $registryObjects = new DomDocument();   
 		$registryObjects->loadXML(trim($registryObjectsXML));  
 		$qtestxsl->load('_xsl/'.$xslt);
 		$proc = new XSLTProcessor();
