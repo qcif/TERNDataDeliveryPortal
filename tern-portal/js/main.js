@@ -153,6 +153,10 @@ $(function() {
                     num=getCookie("selection");
                 }
                 
+                if(getCookie("sorting")!=null)
+                {
+                    resultSort=getCookie("sorting");
+                }
 
                 if(window.location.href.indexOf('/n')>=0&&window.location.href.indexOf('/s')>=0&&window.location.href.indexOf('/w')>=0&&window.location.href.indexOf('/e')>=0)
                 { 
@@ -763,9 +767,10 @@ $(function() {
         
     }
     
-    function handleResults(msg,mapWidget){         
+    function handleResults(msg,mapWidget){    
+        //console.log(msg);
         var divs = $(msg).filter(function(){return $(this).is('div')});
-        
+
             divs.each(function() {
                 if($(this).attr('id') == 'facet-content')  {
                     $('#facet-accordion').html($(this).html());               
@@ -777,14 +782,22 @@ $(function() {
                          $("#search-result").show();
                     }
                     else if($(this).attr('id') == 'head-toolbar-content' && mapSearch == 0){
+                     
+                        $('#middle-toolbar').html($(this).html());
+                        $('#bottom-toolbar').html($(this).html());
+                        $(this).find('div#sorting_selection').empty();
+                        
                         $('#head-toolbar').html($(this).html());
-                        $('#head-toolbar').show();
+                        $('#head-toolbar').show(); 
+
                     }
                  }
             });     
             if(mapSearch == 1){
                 $("#search-result").hide();
                 $('#head-toolbar').hide();
+                $('#middle-toolbar').hide();
+                $('#bottom-toolbar').hide();
             }
  
             if(typeof mapWidget !== 'undefined') {
@@ -1055,17 +1068,40 @@ $(function() {
 
                  $("#loading").hide();
                  
-                 var opt=document.getElementById('viewrecord');
-                 if(opt != null){
-                    for(var i=0;i<opt.options.length;i++)
-                    {
-                        if(opt.options[i].text===num.toString())
-                        {                         
-                            opt.selectedIndex=i;
-                            break;
-                        }
-                    }
+                 var opt=document.getElementsByName('select-view-record');
+                 if(opt.length>0){
+                     for(var s=0;s<opt.length;s++)
+                     {
+                        for(var i=0;i<opt[s].options.length;i++)
+                        {
+                            if(opt[s].options[i].text===num.toString())
+                            {                         
+                                opt[s].selectedIndex=i;
+                                break;
+                            }
+                        }     
+                     }
+
                  }
+                 
+                 //sorting
+                 var sel_sort=document.getElementsByName('select-sorting');
+                 if(sel_sort.length>0){
+                     for(var s=0;s<sel_sort.length;s++)
+                     {
+                        for(var i=0;i<opt[s].options.length;i++)
+                        {
+                            if(sel_sort[s].options[i].value===resultSort.split(" ")[0].toString())
+                            {                         
+                                sel_sort[s].selectedIndex=i;
+                                break;
+                            }
+                        }     
+                     }
+
+                 }
+                 
+                 //$('div#middle-select-num')
                  
                  if (document.getElementById('group-facet').childNodes.length<1)
                      $("#fac-facet").hide();
@@ -1076,7 +1112,7 @@ $(function() {
              }
             ,
             error:function(msg){
-                console.log(msg);
+               // console.log(msg);
                  $("#loading").hide();
             }
         });
@@ -1141,6 +1177,10 @@ $(function() {
                    {
                         num=getCookie("selection");
                    }
+                   if(getCookie("sorting")!=null)
+                   {
+                        resultSort=getCookie("sorting");
+                   }
                     changeHashTo(formatSearch(search_term, 1, classFilter,num));  
                  }                
              } else
@@ -1148,6 +1188,10 @@ $(function() {
                    if(getCookie("selection")!=null)
                    {
                         num=getCookie("selection");
+                   }
+                   if(getCookie("sorting")!=null)
+                   {
+                        resultSort=getCookie("sorting");
                    }
                     changeHashTo(formatSearch(search_term, 1, classFilter,num));   
              }
@@ -1268,6 +1312,32 @@ $(function() {
      }         
            
      doNormalSearch();   
+     changeHashTo(formatSearch(search_term, 1, classFilter,num));    
+     
+ });
+ 
+     $('#sort_record').live('change',function(){
+     
+      $("#loading").show();
+     var selected=$(this).find(":selected").val();
+     switch(selected)
+     {
+         case "score":
+                 resultSort="score desc";
+                 setCookie('sorting',resultSort,365);
+                 break;
+         case "timestamp":
+                 resultSort="timestamp desc";
+                 setCookie('sorting',resultSort,365);             
+             break;
+         default:
+                 resultSort="score desc";
+                 setCookie('sorting',resultSort,365);
+          
+     }         
+           
+     doNormalSearch();  
+      $("#loading").hide();
      changeHashTo(formatSearch(search_term, 1, classFilter,num));    
      
  });
@@ -1653,7 +1723,7 @@ var t=removeBracket(tmp)
 
         },
         error:function(msg){
-            console.log("error");
+            //console.log("error");
         }
         })
         

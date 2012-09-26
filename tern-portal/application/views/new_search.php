@@ -40,9 +40,9 @@
                   <div id="head-toolbar" class="toolbar clearfix hide"></div>                                
         
                  <?php $this->load->view('tab/widgets/spatial');?>
-          
+                  <div id ="middle-toolbar"></div>
                 <div id="search-result" class="ui-layout-search-results"></div>
-
+                <div id ="bottom-toolbar"></div>
             
             </div>
         </div> 
