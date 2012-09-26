@@ -647,65 +647,7 @@ $(function() {
         
          autocomplete('#search-box');
          autocomplete('input[name^=keyword]');
-         // please delete these  button click actions
-         // when you're done Yi
-        /*
-        * Big search button
-        */
- 
-        
-        //Submit button 
-       $("#search_advanced").click(function(){
-        //Reset search term
-       resetAllSearchVals();
-            //check which panel is active 0 is basic, 1 is advanced
-          //  if($( "#accordion" ).accordion( "option", "active" ) == 1 ){  // handle advanced search 
-                
-                //Advanced search widgets                 
-                temporal = temporalWidget.getTemporalValues();
-                               
-                //update spatial coordinates from textboxes
-                var nl=document.getElementById("spatial-north");
-                var sl=document.getElementById("spatial-south");
-                var el=document.getElementById("spatial-east");
-                var wl=document.getElementById("spatial-west");
-                   
-                n=nl.value;
-                s=sl.value;
-                e=el.value;
-                w=wl.value;  
-                spatial_included_ids='';
-                           
-                //FOR filtering 
-                if( document.getElementById("forfourFilter") != null && $('#forfourFilter').val()!='')  
-                {
-                        forfourFilter = $('#forfourFilter').val();
-                 }
-                //Group filtering
-                if( document.getElementById("groupFilter") != null ) {
-                    var first = true;
-                    $('#groupFilter :checked').each(function(){
-                        if(first) {
-                            groupFilter = $(this).val();
-                            first=false;
-                        }
-                        else groupFilter +=  ";" + $(this).val();
-                    });                  
-                }  
-              
-                
-         
-                page = 1;
-
-
-            changeHashTo(formatSearch(search_term, 1, classFilter));
-
-            //  }
-            
-        }).button();    
-        
-
-           
+      
     }
     
     function doSpatialSearch()
@@ -953,7 +895,7 @@ $(function() {
                }
                
            }
-            
+            mapSearch = 0;
 
             changeHashTo(formatSearch(search_term, 1, classFilter,num));
         }).button();   

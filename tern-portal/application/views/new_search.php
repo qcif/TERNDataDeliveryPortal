@@ -1,8 +1,6 @@
 <?php $this->load->view('tpl/header'); ?>      
  
 <div id="container" class="ui-corner-all clearfix">
-     <div id="page_name" class="hide">Search</div>
-       
                     <div id="loading"  ><p><img src="/img/ajax-loader.gif" alt="Please wait.." /> Please wait.. </p></div>
             
             <div id="search-panel" class="">    
@@ -40,7 +38,7 @@
                   <div id="head-toolbar" class="toolbar clearfix hide"></div>                                
         
                  <?php $this->load->view('tab/widgets/spatial');?>
-                  <div id ="middle-toolbar"></div>
+                  <div id ="middle-toolbar" class="clearfix"></div>
                 <div id="search-result" class="ui-layout-search-results"></div>
                 <div id ="bottom-toolbar"></div>
             
