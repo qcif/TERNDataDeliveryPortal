@@ -6,9 +6,9 @@
  <xsl:strip-space elements="*"/>
     <xsl:param name="dataSource" select="//ro:originatingSource"/>
     <xsl:param name="dateCreated"/>
-    <xsl:param name="date_mod"/>
     <xsl:param name="date_pub"/> 
-    <xsl:param name="base_url"/>  
+    <xsl:param name="date_mod"/>
+   <xsl:param name="base_url"/>  
     
     <xsl:param name="orca_view"/>   
     <xsl:param name="key"/>  

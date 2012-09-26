@@ -58,18 +58,15 @@ $(function() {
             thisurl = thisurl.replace('https://','http://');
             window.location.href=thisurl;
         }
-
-        if(window.location.href.indexOf('/view')>=0){
+        if($("#page_name").text() == 'View') {
             initViewPage();
-            if(window.location.href.indexOf('printview')>=0) initPrintViewPage();
-            if(window.location.href.indexOf('dataview')>=0) initDataViewPage();
-        }else if(window.location.href==secure_base_url){
-            window.location.href=base_url;
-        }else if(window.location.href.indexOf('search')>=0){
+            initDataViewPage();
+
+        }else if($("#page_name").text() == 'Search'){
             initSearchPage();   
-        }else if(window.location.href.indexOf('preview')>=0){
+        }else if($("#page_name").text() == 'Preview'){
             initPreviewPage();
-        }else {
+        }else if($("#page_name").text() == 'Home'){
             initHomePage();
         }
     }
@@ -81,7 +78,7 @@ $(function() {
         var words = query.split('/');
         
         param_q = searchStringInArray("q",words);
-        
+         
         $.each(words, function(){
             var string = this.split('=');
             var term = string[0];
