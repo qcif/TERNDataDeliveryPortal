@@ -52,7 +52,7 @@ $Revision: 1 $
              
                                 
                 echo    '<div id="middle_select_num">';
-                echo        '<b>View</b><select id="viewrecord">';				
+                echo        '<b>View</b><select id="viewrecord" name="select-view-record">';				
                 echo                '<option value="10">10</option>';
                 echo                '<option value="25">25</option>';
                 echo                '<option value="50">50</option>';				
@@ -60,6 +60,14 @@ $Revision: 1 $
                 echo           '</select><b>records</b> ';
                 echo       '</div>' ;
                 
+//sorting
+                echo    '<div id="sorting_selection">';
+                echo        '<b>Sort By</b><select id="sort_record" name="select-sorting">';				
+                echo                '<option value="score">Relevance</option>';
+                echo                '<option value="timestamp">Date published</option>';             
+                echo           '</select>';
+                echo       '</div>' ;
+//===                
                 $this->load->view('search/pagination');
        
                 echo '</div>';

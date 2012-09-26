@@ -822,7 +822,12 @@ div#right_pagination {
 
 }
 div#middle_select_num {
-    padding: 0px 160px 5px 160px;
+    padding: 0px 60px 5px 160px;
     margin: 0px;
     float: left;
+}
+
+div#sorting_selection {
+margin: 0px;
+float: left;
 }

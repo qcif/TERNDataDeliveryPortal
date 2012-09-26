@@ -53,7 +53,10 @@ if ($realNumFound == 0)
 }
 
 $c = 1; //record counter 1- 10
-echo '<table style="border:1px solid black;">';
+echo '<table style="border:1px solid black;table-layout:fixed" width="880px">';
+echo '<col width=50>';
+echo '<col width=730>';
+echo '<col width=100>';
 echo '<thead>';
 echo '<tr><th>Map ref</th><th>Title</th><th>Date published</th></tr>';
 echo '</thead>';
@@ -256,9 +259,9 @@ foreach ($json->{'response'}->{'docs'} as $r)
 }
 echo '</table>';
 
-echo '<div class="toolbar clearfix bottom-corner">';
-$this->load->view('search/pagination');
+//echo '<div id="bottom-toolbar" class="toolbar clearfix bottom-corner">';
+//$this->load->view('search/pagination');
 
-echo '</div>';
+//echo '</div>';
 echo '<div id="infoBox"></div>';
 ?>
