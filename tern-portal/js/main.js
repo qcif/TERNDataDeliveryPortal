@@ -58,15 +58,18 @@ $(function() {
             thisurl = thisurl.replace('https://','http://');
             window.location.href=thisurl;
         }
-        if($("#page_name").text() == 'View') {
+
+        if(window.location.href.indexOf('/view')>=0){
             initViewPage();
-            initDataViewPage();
-        
-        }else if($("#page_name").text() == 'Search'){
-           initSearchPage();   
-        }else if($("#page_name").text() == 'Preview'){
+            if(window.location.href.indexOf('printview')>=0) initPrintViewPage();
+            if(window.location.href.indexOf('dataview')>=0) initDataViewPage();
+        }else if(window.location.href==secure_base_url){
+            window.location.href=base_url;
+        }else if(window.location.href.indexOf('search')>=0){
+            initSearchPage();   
+        }else if(window.location.href.indexOf('preview')>=0){
             initPreviewPage();
-        }else if($("#page_name").text() == 'Home'){
+        }else {
             initHomePage();
         }
     }
@@ -936,7 +939,7 @@ $(function() {
 
            if(search_term==""||search_term=="Search ecosystem data" ||search_term=="*:*")
            {
-                search_term = $('#search-box').val();       
+                search_term = "("+$('#search-box').val()+")";       
            }else
            {
                var rb=document.getElementsByName('boolean_operator');
