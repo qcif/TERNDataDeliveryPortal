@@ -23,7 +23,7 @@ $Revision: 1 $
 <?php if($header_footer) $this->load->view('tpl/header');?>
 
 <div id="item-view" class="shadow-and-corner">
-
+ <div id="page_name" class="hide">Preview</div>
         <?php echo $content;?>
 
 	

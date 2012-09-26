@@ -2,11 +2,14 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:extRif="http://ands.org.au/standards/rif-cs/extendedRegistryObjects" exclude-result-prefixes="ro" xmlns:custom="http://youdomain.ext/custom">
     <xsl:output method="html" encoding="UTF-8" indent="no" omit-xml-declaration="yes"/>
-    <xsl:include   href ="rifcsParty2View.xsl" />
+
  <xsl:strip-space elements="*"/>
     <xsl:param name="dataSource" select="//ro:originatingSource"/>
     <xsl:param name="dateCreated"/>
-    <xsl:param name="base_url" select="'http://demo'"/>  
+    <xsl:param name="date_mod"/>
+    <xsl:param name="date_pub"/> 
+    <xsl:param name="base_url"/>  
+    
     <xsl:param name="orca_view"/>   
     <xsl:param name="key"/>  
     <xsl:variable name="objectClass" >
@@ -29,6 +32,7 @@
 
 
     <xsl:template match="ro:registryObject">
+        
         <!--  We will first set up the breadcrumb menu for the page -->   
         <span id="originating_source" class="hide"><xsl:value-of select="$dataSource"/></span>
         
@@ -56,6 +60,7 @@
         <div id="group_value" class="hide"><xsl:value-of select="@group"/></div>
         <div id="datasource_key" class="hide"><xsl:value-of select="@originatingSource"/></div>
         <div id="key_value" class="hide"></div>
+        <div id="page_name" class="hide">View</div>
          <div id="class" class="hide"><xsl:value-of select="$objectClass"/></div>       
         <span id="key" class="hide"><xsl:value-of select="ro:key"/></span>
     
@@ -72,6 +77,7 @@
 <!--Title -->
         <xsl:when test="../extRif:extendedMetadata/extRif:displayTitle!=''">
             <xsl:apply-templates select="../extRif:extendedMetadata/extRif:displayTitle"/>
+            
         </xsl:when>
         <xsl:otherwise>
             <div id="displaytitle"><h1 itemprop="name"><xsl:value-of select="../ro:key"/></h1>
@@ -80,16 +86,7 @@
                         <xsl:if test="./ro:endDate"><xsl:value-of select="./ro:endDate"/></xsl:if><br/>
                 </xsl:for-each>
             </div>
-            <div class="right_icon">
-                <img class="icon-heading">
-                     <xsl:attribute name="src"><xsl:value-of select="$base_url"/>
-                        <xsl:text>/img/icon/</xsl:text>
-                        <xsl:value-of select="$objectClassType"/>
-                        <xsl:text>_32.png</xsl:text>
-                    </xsl:attribute>
-                    <xsl:attribute name="alt"><xsl:value-of select="$objectClassType"/></xsl:attribute>
-                </img>
-            </div>
+          
         </xsl:otherwise>
    </xsl:choose> 
 
@@ -167,7 +164,7 @@
                           <td>
                                   <xsl:choose>
                                     <xsl:when test="../extRif:extendedMetadata/extRif:registryDateHarvested">
-                                        <xsl:apply-templates select="../extRif:extendedMetadata/extRif:registryDateHarvested"/>                                         
+                                          <xsl:value-of select="$date_pub"/>                                
                                     </xsl:when> 
                                     <xsl:otherwise>
                                         Not provided
@@ -176,7 +173,7 @@
                           </td>
                         <xsl:if test="../extRif:extendedMetadata/extRif:registryDateModified">
                           <td>
-                              <xsl:apply-templates select="../extRif:extendedMetadata/extRif:registryDateModified"/> 
+                               <xsl:value-of select="$date_mod"/> 
                           </td>
                          </xsl:if>
                       </tr> 

@@ -132,9 +132,15 @@ class View extends CI_Controller {
 			$key = $doc->{'key'};
 			$data['key'] = $key;
 			$group = $doc->{'group'};
-		
-			
-			$data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key),$theGroup);	
+                        $date_pubf = new DateTime($doc->{'timestamp'});
+                        $date_pubf->setTimeZone(new DateTimeZone("Australia/Brisbane"));
+                        $date_pub = $date_pubf->format('d-m-Y');
+                      
+                        $date_modf = new DateTime($doc->{'date_modified'});
+                        $date_modf->setTimeZone(new DateTimeZone("Australia/Brisbane"));
+                        $date_mod = $date_modf->format('d-m-Y');
+                        print($date_pub);
+			$data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key),$theGroup, $date_mod, $date_mod);	
 			$data['title'] = $doc->{'display_title'};
 			
 			if(isset($doc->{'description_value'}[0]))$data['description']=htmlentities($doc->{'description_value'}[0]);
@@ -208,17 +214,20 @@ class View extends CI_Controller {
 		} 		
 	}
         
-	private function transform($registryObjectsXML, $xslt,$key){
+	private function transform($registryObjectsXML, $xslt,$key, $date_pub, $date_mod){
 		$qtestxsl = new DomDocument();
-		$registryObjects = new DomDocument();               
+                $registryObjects = new DomDocument();               
 		$registryObjects->loadXML(trim($registryObjectsXML));  
 		$qtestxsl->load('_xsl/'.$xslt);
 		$proc = new XSLTProcessor();
 		$proc->importStyleSheet($qtestxsl);
 		$proc->setParameter('','base_url',base_url());
+                print_r(base_url());
 		$orca_view = view_url();
 		$proc->setParameter('','orca_view',$orca_view);
 		$proc->setParameter('','key',$key);
+                $proc->setParameter('','date_pub',$date_pub);
+                $proc->setParameter('','date_mod',$date_mod);
 		$transformResult = $proc->transformToXML($registryObjects);	
 		return $transformResult;
 	}
