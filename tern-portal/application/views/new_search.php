@@ -1,8 +1,8 @@
 <?php $this->load->view('tpl/header'); ?>      
  
 <div id="container" class="ui-corner-all clearfix">
-                    <div id="loading"  ><p><img src="/img/ajax-loader.gif" alt="Please wait.." /> Please wait.. </p></div>
-            
+     <div id="page_name" class="hide">Search</div>
+     <div id="loading"  ><p><img src="/img/ajax-loader.gif" alt="Please wait.." /> Please wait.. </p></div>
             <div id="search-panel" class="">    
                 <div id="accordion" class="accordion">
                     
