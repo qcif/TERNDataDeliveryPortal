@@ -914,7 +914,26 @@ $(function() {
                           }
                     }
                 });
-            }   
+            }else
+            {
+                   if(search_term==""||search_term=="Search ecosystem data" ||search_term=="*:*")
+                {
+                    search_term = "("+$('#search-box').val()+")";       
+                }else
+                {
+                    var rb=document.getElementsByName('boolean_operator');
+
+                    for(var i=rb.length-1;i>-1;i--)
+                    {
+                        if(rb[i].checked && search_term!=$('#search-box').val())
+                            search_term="("+search_term+") "+rb[i].value+" "+$('#search-box').val();
+                    }
+
+                }
+                    mapSearch = 0;
+
+               changeHashTo(formatSearch(encodeURIComponent(search_term), 1, classFilter,num));  
+            }
 
 
         }).button();   
