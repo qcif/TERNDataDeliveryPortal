@@ -2,8 +2,9 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:extRif="http://ands.org.au/standards/rif-cs/extendedRegistryObjects" exclude-result-prefixes="ro" xmlns:custom="http://youdomain.ext/custom">
     <xsl:output method="html" encoding="UTF-8" indent="no" omit-xml-declaration="yes"/>
-
- <xsl:strip-space elements="*"/>
+   <xsl:include href ="ISODateFormat.xsl" /> 
+ 
+<xsl:strip-space elements="*"/>
     <xsl:param name="dataSource" select="//ro:originatingSource"/>
     <xsl:param name="dateCreated"/>
     <xsl:param name="date_pub"/> 
@@ -623,17 +624,62 @@
     
     <xsl:template match="ro:date">
         <xsl:if test="./@type = 'dateFrom'">
-            From
+            From 
         </xsl:if>
         <xsl:if test="./@type = 'dateTo'">
             To
         </xsl:if>
-        <xsl:value-of select="."/>
+             <xsl:choose>
+                 <xsl:when test='string-length(.)=4'>
+                     <xsl:variable name="dateResult">
+                         <xsl:value-of select="."/>
+                          </xsl:variable> 
+                          <xsl:value-of select="."/>
+                 </xsl:when>
+                 <xsl:when test='string-length(.)=7'>
+                      <xsl:variable name="dateResult">
+                           <xsl:call-template name="format-date">
+                               <xsl:with-param name="date"><xsl:value-of select="."/></xsl:with-param>
+                                <xsl:with-param name="format" select="'n-Y'"/> 
+                            </xsl:call-template>
+                      </xsl:variable> 
+                      <xsl:value-of select="."/>
+                 </xsl:when>
+                 <xsl:when test='string-length(.)=10'>
+                       <xsl:variable name="dateResult">
+                           <xsl:call-template name="format-date">
+                               <xsl:with-param name="date"><xsl:value-of select="."/></xsl:with-param>
+                                <xsl:with-param name="format" select="'d-n-Y'"/> 
+                            </xsl:call-template>
+                      </xsl:variable> 
+                      <xsl:value-of select="$dateResult"/>
+                 </xsl:when>
+                 <xsl:when test='string-length(.)>10'>
+                     <xsl:variable name="dateResult">
+                        <xsl:call-template name="format-date">
+                               <xsl:with-param name="date"><xsl:value-of select="substring(.,1,10)"/></xsl:with-param>
+                                <xsl:with-param name="format" select="'d-n-Y'"/> 
+                        </xsl:call-template>                      
+                      </xsl:variable> 
+                      <xsl:value-of select="$dateResult"/>&#160;
+                      <xsl:value-of select="substring(.,12)"/>
+                 </xsl:when>
+                 
+                 <xsl:otherwise>
+                       <xsl:variable name="dateResult">
+                         <xsl:value-of select="."/>
+                        </xsl:variable> 
+                      <xsl:value-of select="$dateResult"/>
+
+                 </xsl:otherwise>
+             </xsl:choose>
+        
+       
     </xsl:template> 
    <xsl:template match="ro:location[@dateFrom!=''] | ro:location[@dateTo!='']">
         <xsl:if test="./@dateFrom != ''">
-            From <xsl:value-of select="./"/>
-        </xsl:if>
+            From b<xsl:value-of select="./@dateFrom"/>
+        </xsl:if> 
         <xsl:if test="./@dateTo != ''">
             To <xsl:value-of select="./@dateTo"/>
         </xsl:if>

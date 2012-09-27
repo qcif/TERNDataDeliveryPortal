@@ -77,12 +77,12 @@ class View extends CI_Controller {
 				}
 				$content = $this->ro->get($key);		
 			}
-print_r($content);
+
 
 			$obj = $this->solr->getByHash($hash);
                         $numFound = $obj->{'response'}->{'numFound'};
 			$doc = ($obj->{'response'}->{'docs'}[0]);
-print_r($obj);			
+			
 			$key = $doc->{'key'};
 			$data['key'] = $key;
 			$group = $doc->{'group'};
