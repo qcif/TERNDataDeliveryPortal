@@ -635,8 +635,9 @@ $(function() {
             resetAllFields(temporalWidget);
         }).button();
         
-        // If user presses enter in the inputs, submit the form
-        $('#search-panel input').keypress(function(e) {
+
+        
+         $('#search-panel input').keypress(function(e) {
             if(e.which == 13) {
              
                         $('#search_basic').trigger('click');
@@ -1161,7 +1162,7 @@ $(function() {
         $('#search-box').keypress(function(e){
             if(e.which==13){//press enter
                 page = 1;
-                resetFilter();
+                //resetFilter();
                 search_term = $('#search-box').val();
                 if(search_term=='')search_term='*:*';
                 $('.ui-autocomplete').hide();
