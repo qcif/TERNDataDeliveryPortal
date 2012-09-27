@@ -19,10 +19,10 @@ class Contact extends CI_Controller {
 			$this->load->view('contact/form');
 		}
 	    else
-		{		            
+		{		           
                     $this->load->library('email');
-                    $this->email->from($this->input->post('email'),$this->input->post('name'));
-                    $this->email->to(eCONTACT_EMAIL);           
+                    $this->email->from(eCONTACT_EMAIL, eINSTANCE_TITLE. ' website');
+                    $this->email->to(eCONTACT_EMAIL);             
                     $this->email->subject('TERN Portal Contact form');
                     $this->email->reply_to( $this->input->post('email'),$this->input->post('name'));
                     $data['name'] = $this->input->post('name');

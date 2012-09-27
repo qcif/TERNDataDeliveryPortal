@@ -28,8 +28,7 @@ class View extends CI_Controller {
 	public function index()
 	{
 		parse_str($_SERVER['QUERY_STRING'], $_GET);
-                print "here";
-		$key = null;
+           	$key = null;
 		if(isset($_GET['key'])){
 			$key = ($_GET['key']);		
 		} 
@@ -47,52 +46,7 @@ class View extends CI_Controller {
 		}else{
 			show_404('page');
 		} 	
-                /*parse_str($_SERVER['QUERY_STRING'], $_GET);
-
-               
-		if(isset($_GET['key'])){
-			$key = ($_GET['key']);
-			//echo urlencode($key);
-			$this->load->model('RegistryObjects', 'ro');
-                        $this->load->model('Solr', 'solr');
-                        $content =  $this->ro->get($key);
-                       
- 
-                        $data['key']= $key;
-                        $data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key));
-                
-                        
-                        $query = $this->ro->get_min_year();
-                        if($query)$row = $query->row();
-
-			$obj = $this->solr->getByKey($key);
-			$numFound = $obj->{'response'}->{'numFound'};
-			$doc = ($obj->{'response'}->{'docs'}[0]);
-			//echo $numFound;
-
-
-			//$data['title'] = $doc->{'displayTitle'};
-                        $data['title'] = $doc->{'display_title'};
-
-			
-			if(isset($doc->{'description_value'}[0]))$data['description']=htmlentities($doc->{'description_value'}[0]);
-			$data['doc'] = $doc;
-			
-			$this->load->model('Solr');
-                        $data['json'] = $this->Solr->getTERNPartners();
-
-			$this->load->library('user_agent');
-			$data['user_agent']=$this->agent->browser();
-			
-			
-			if($numFound>0){
-			$this->load->view('xml-view', $data);
-			}else show_404('page');
-			
-		}else{
-			show_404('page');
-		}*/
-            
+           
 	}
 
 	public function view_by_hash($params)
@@ -177,6 +131,7 @@ class View extends CI_Controller {
                         $content = $this->ro->get($key);
                         $data['key']= $key;  	
                         $data['widget_map'] = true;
+                        
                 	$data['content'] = $this->transform($content, 'rifcs2PrintView.xsl',$key);	
 			
 			$this->load->library('user_agent');
@@ -199,9 +154,16 @@ class View extends CI_Controller {
                         $data['key']= $key;  	
                         $data['widget_map'] = true;
                         $data['header_footer'] = true; 
-
+                        
+                        $date_pubf = new DateTime($doc->{'timestamp'});
+                        $date_pubf->setTimeZone(new DateTimeZone("Australia/Brisbane"));
+                        $date_pub = $date_pubf->format('d-m-Y');
+                         
+                        $date_modf = new DateTime($doc->{'date_modified'});
+                        $date_modf->setTimeZone(new DateTimeZone("Australia/Brisbane"));
+                        $date_mod = $date_modf->format('d-m-Y');
 			
-			$data['content'] = $this->transform($content, 'rifcs2View.xsl',$key);	
+			$data['content'] = $this->transform($content, 'rifcs2View.xsl',$key,$date_pub,$date_mod);	
 		
 			$this->load->library('user_agent');
 			$data['user_agent']=$this->agent->browser();

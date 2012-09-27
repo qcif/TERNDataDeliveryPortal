@@ -30,8 +30,10 @@ $home = 1;
 
 <div id="container" class="ui-corner-all">
  <div id="page_name" class="hide">Home</div>
-       
+   
     <div id="ui-layout-center" class="ui-layout-center ">
+        <div id="dialog-confirm" title="Confirm search" class="hide">No search term entered. Do you want to see ALL records?</div>
+        
 <!--
         <div id="tab">
           

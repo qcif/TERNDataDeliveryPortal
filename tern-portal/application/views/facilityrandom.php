@@ -59,7 +59,7 @@ function printRecord($r){
 
             echo '<li class="random-record-list">'; 
             echo '<b>'.$date.'</b>';
-            echo '<a href="'. $key_url .'">'.$name.'</a>';            
+            echo '<a href="'. $key_url .'" target="_new">'.$name.'</a>';            
             echo '</li>';
             
             

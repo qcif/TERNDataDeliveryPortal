@@ -413,8 +413,10 @@ $(function() {
     /*      Show No Results on the result set div */
     function showNoResult(msg){
         $("#head-toolbar").hide();
+        $("#middle-toolbar").hide();
+        $("#bottom-toolbar").hide();
         $("#search-result").html('');
-        alert("No records found."); 
+        $("#dialog-noresult").dialog();
         $("#search-result").hide();
     }
     
@@ -1113,35 +1115,40 @@ $(function() {
             
              if(search_term==''||search_term=='Search ecosystem data')     
              {
-                 var answer=confirm("No search term is entered.Do you want to see all records? ");
-                 if (answer==true)
-                 {
-                     search_term='*:*';
-                   if(getCookie("selection")!=null)
-                   {
-                        num=getCookie("selection");
-                   }
-                   if(getCookie("sorting")!=null)
-                   {
-                        resultSort=getCookie("sorting");
-                   }
-                    changeHashTo(formatSearch(search_term, 1, classFilter,num));  
-                 }                
-             } else
-             {
-                   if(getCookie("selection")!=null)
-                   {
-                        num=getCookie("selection");
-                   }
-                   if(getCookie("sorting")!=null)
-                   {
-                        resultSort=getCookie("sorting");
-                   }
-                    changeHashTo(formatSearch(search_term, 1, classFilter,num));   
+                $("#dialog-confirm"). dialog({
+                    resizable: false,
+                    height: 140,
+                    modal: true,
+                    buttons: {
+                         "OK": function() { 
+                               search_term='*:*';
+                                if(getCookie("selection")!=null)
+                                {
+                                   num=getCookie("selection");
+                                }
+                                if(getCookie("sorting")!=null)
+                                {
+                                   resultSort=getCookie("sorting");
+                                }
+                                changeHashTo(formatSearch(search_term, 1, classFilter,num));  
+                          },
+                          "Cancel": function(){
+                                $( this ).dialog( "close" );
+                          }
+                    }
+                });
+                        
+             }else{
+                  if(getCookie("selection")!=null)
+                                {
+                                        num=getCookie("selection");
+                                }
+                                if(getCookie("sorting")!=null)
+                                {
+                                        resultSort=getCookie("sorting");
+                                }
+                                    changeHashTo(formatSearch(search_term, 1, classFilter,num));   
              }
-             
-                     
-             
            
 
         });     
@@ -1474,6 +1481,7 @@ var t=removeBracket(tmp)
                     draggable:false,
                     resizable:false,
                     title:"Suggested Links",
+                    zIndex: 9999,
                     buttons: {
                         '<': function() {
                             if(seeAlsoPage > 1){
