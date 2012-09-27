@@ -96,11 +96,11 @@
 
         $q = urldecode($q);
         
+     
+        $q.=($extended_query);
         if($sort!='score desc' && $sort!='') $filter_query.='&sort='.$sort;
         $q.=$filter_query;
 
-        $q.=($extended_query);
-     
         //$filter_query .=$extended_query;//for spatial and temporal
         //$q .=$extended_query;//extended for spatial
         $fields = array(

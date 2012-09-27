@@ -926,7 +926,7 @@ $(function() {
 
                     }); 
                 }
-              
+            mapSearch = 0;  
             changeHashTo(formatSearch(search_term, 1, classFilter,num));
 
         }); 
@@ -944,14 +944,14 @@ $(function() {
                         else groupFilter +=  ";" + $(this).val();
                     });                  
                 //}   
-
+            mapSearch = 0;    
             changeHashTo(formatSearch(search_term, 1, classFilter,num));
 
         }); 
        
         $('#search_temp').click(function(){     
               temporal = temporalWidget.getTemporalValues();   
-
+              mapSearch = 0;
             changeHashTo(formatSearch(search_term, 1, classFilter,num));
 
         });
