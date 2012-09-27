@@ -2,8 +2,6 @@
  
 <div id="container" class="ui-corner-all clearfix">
      <div id="page_name" class="hide">Search</div>
-     <div id="dialog-noresult" title="0 Records found" class="hide">No records found. Consider searching with another parameter</div>
-        
      <div id="loading"  ><p><img src="/img/ajax-loader.gif" alt="Please wait.." /> Please wait.. </p></div>
             <div id="search-panel" class="">    
                 <div id="accordion" class="accordion">
@@ -46,5 +44,5 @@
             
             </div>
         </div> 
-
+<div id="dialog-searchterm" title="Confirm search" class="hide">There are special characters entered. Do you want to continue?</div>
 <?php $this->load->view('tpl/footer');?>
