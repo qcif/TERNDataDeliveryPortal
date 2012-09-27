@@ -627,6 +627,9 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
     {
         $out4[$object_type4[$j]]=$object_type4[$j+1];
     }
+    
+if(count($out2)>0)    
+{
     //print_r($out4);
         echo '<div id="for-facet" class="collapsiblePanel">';
 	echo '<h5 class="head">Field of Research';
@@ -701,7 +704,7 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
         echo '</div>';
         
         echo '<div id="for-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
-
+}
  
 }
 
