@@ -129,7 +129,7 @@ foreach ($json->{'response'}->{'docs'} as $r)
             $key_url = base_url().$r->{'url_slug'};
 	}
     else{
-        $key_url = base_url() . 'view/dataview?key=' . urlencode($ro_key);
+        $key_url = base_url() . 'view?key=' . urlencode($ro_key);
     }
     echo '<tbody>';
     echo '<tr><td>';

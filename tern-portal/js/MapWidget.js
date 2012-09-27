@@ -852,7 +852,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
                 var button =  $("<p>").append($(this).parent().parent().children('#metabutton').children('button').clone().attr('onClick','handleViewMeta(\''  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + '\');')).html();
             
                 number = $(this).parent().parent().parent().children('tr').children('td:nth-child(1)').children('h2').html();
-                html  = " <div class=\"h2color mapMarker\" style=\"float:left\">" + number +  "</div><strong>" + title + "</strong> <br/> " + date  + "&nbsp; "+ button ;
+                html  = " <div class=\"h2color mapMarker\" style=\"float:left\">" + number +  "</div><strong>" + title + "</strong> <br/> Pub date: " + date  + "&nbsp; "+ button ; 
                 html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";    
              
          

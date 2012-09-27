@@ -70,7 +70,7 @@ function displayFacet($facet_name, $facetFilter, $json, $ro_class){
         }
 }
 */
-function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$help_title,$help_content){
+function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class){
 	
 	$clear ='';$name = '';$class='';
 	
@@ -92,57 +92,55 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
 
 	$object_type="";
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
-
-            if(count($object_type)>0){
-                echo '<div id="fac-facet" class="facet-list facet-content collapsiblePanel">';
-                echo '<h5 class="head">'.$name;
-                echo '<div id="facility-help"><a class="tooltip">?</a></div>';
-                echo '</h5>';
-                echo '<div>';
-                echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
-
-
-                //print the others
-                for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
-                        if($object_type[$i+1]>0){
-                            if(count($g)==1 &&$g[0]=="All")
-                            {
-                                //if($object_type[$i]!=$facetFilter)
-                                //{
-                                    echo '<li>
-                                            <input type="checkbox" 
-                                                    name="facchkbox"
-                                                    value="'.$object_type[$i].'" 
-                                                    class="groupFilter'.'" id="'.$object_type[$i].'"/>'.$object_type[$i].'</li>';         
-                                //} 
-                            }else
-                            {            
-                                if(!checkInFilter($object_type[$i],$g))
-                                {
-                                  
-                                    echo '<li>
-                                            <input type="checkbox" 
-                                                    name="facchkbox"
-                                                    value="'.$object_type[$i].'" 
-                                                    class="groupFilter'.'" id="'.$object_type[$i].'"/>'.$object_type[$i].'</li>';         
-                                }                      
-                            } 
-                        }
-                } 
-                echo '</ul>';
-                echo '<button id="facbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
-                echo '</div>'; 
-                echo '</div>';
-                
-                echo '<div id="facility-help-text" title="'.$help_title.'" class="hide" >'.$help_content.'</div>';
-            }
         
+        if(count($object_type)>0){
+            
+
+            echo '<div class="facet-list facet-content collapsiblePanel">';
+            echo '<h5 class="head">'.$name;
+            echo '</h5>';
+            echo '<div>';
+            echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
+
+
+            //print the others
+            for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
+                    if($object_type[$i+1]>0){
+                        if(count($g)==1 &&$g[0]=="All")
+                        {
+                            //if($object_type[$i]!=$facetFilter)
+                            //{
+                                echo '<li>
+					<input type="checkbox" 
+						name="facchkbox"
+                                                value="'.$object_type[$i].'" 
+						class="groupFilter'.'" id="'.$object_type[$i].'"/>'.$object_type[$i].'</li>';         
+                            //} 
+                        }else
+                        {                         
+
+                            if(!checkInFilter($object_type[$i],$g))
+                            {
+                                echo '<li>
+					<input type="checkbox" 
+						name="facchkbox"
+                                                value="'.$object_type[$i].'" 
+						class="groupFilter'.'" id="'.$object_type[$i].'"/>'.$object_type[$i].'</li>';         
+                            }                      
+                        } 
+                    }
+            } 
+            echo '</ul>';
+            echo '<button id="facbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
+            echo '</div>'; 
+            echo '</div>';
+        }
 }
 /* displayRegionFacet
  * tern_region field in SOLR
  */
 
-function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $regionsName,$help_title,$help_text){
+function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $regionsName){
     
 	$clear ='clearTernRegion';$name = 'Region';$class='ternRegionFilter';
         
@@ -152,7 +150,6 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
           echo '<div class="collapsiblePanel">';
           
             echo '<h5 class="head">'.$name;
-            echo '<div id="region-help"><a class="tooltip">?</a></div>';
             echo '</h5>';
             echo '<div  id="facet-region" class="facet-list facet-content">';
             echo '<select id="region-select">';
@@ -195,8 +192,6 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
           
            echo '</div>';
            echo '</div>';
-           
-           echo '<div id="region-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';           
         }
 }
 
@@ -405,9 +400,9 @@ function constructFORQuery($class,$forvalues)
  * encode afterwards (need check)
  */ 
 function escapeSolrValue($string){
-	//$string = urldecode($string);
+	//$string = urldecode($string); 
     $match = array('\\','&', '|', '!', '(', ')', '{', '}', '[', ']', '^', '~', '*', '?', ':', '"', ';');
-    $replace = array('\\\\','&', '\\|', '\\!', '\\(', '\\)', '\\{', '\\}', '\\[', '\\]', '\\^', '\\~', '\\*', '\\?', '\\:', '\\"', '\\;');
+    $replace = array('\\\\','\\&', '\\|', '\\!', '\\(', '\\)', '\\{', '\\}', '\\[', '\\]', '\\^', '\\~', '\\*', '\\?', '\\:', '\\"', '\\;');
         $string = str_replace($match, $replace, $string);
         return urlencode($string);
     }
@@ -572,7 +567,7 @@ function stripFORString($str)
     return $result;
 }
 
-function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facettwoFilter, $json, $ro_class, $obj,$help_title,$help_text)
+function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facettwoFilter, $json, $ro_class, $obj)
 {
 	//$clear =$facetName;$class=$facetFilter;
      
@@ -628,9 +623,8 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
         $out4[$object_type4[$j]]=$object_type4[$j+1];
     }
     //print_r($out4);
-        echo '<div id="for-facet" class="collapsiblePanel">';
+        echo '<div class="collapsiblePanel">';
 	echo '<h5 class="head">Field of Research';
-        echo '<div id="for-help"><a class="tooltip">?</a></div>';
 	echo '</h5>';
 	echo '<div class="facet-list" >';
 
@@ -699,8 +693,6 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
         echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
 	echo '</div>';
         echo '</div>';
-        
-        echo '<div id="for-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
 
  
 }

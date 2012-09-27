@@ -126,11 +126,13 @@ if( $registryObject )
 		$rdaLinkPrefix = 'Preview';
 	}
 	if(isContributorPage($registryObjectKey)) {
-		$rdaLink = '<br /><a style="font-size:0.8em; font-weight: normal;" href="http://'.$host.'/'.$rda_root . '/view/group/?group='.urlencode($registryObjectKey). '&groupName='.esc($objectGroup).'">'.$rdaLinkPrefix.' this record in Research Data Australia</a>'."\n";
+		//$rdaLink = '<br /><a style="font-size:0.8em; font-weight: normal;" href="'.eHTTP_APP_ROOT.'orca/rda/view/group/?group='.urlencode($registryObjectKey). '&groupName='.esc($objectGroup).'">'.$rdaLinkPrefix.' this record in Research Data Australia</a>'."\n";
+                $rdaLink = '<br /><a style="font-size:0.8em; font-weight: normal;" href="'.eTERN_ROOT.'view?key='.urlencode($registryObjectKey).'&groupName='.esc($objectGroup).'">'.$rdaLinkPrefix.' this record in Research Data Australia</a>'."\n";
 	} else {
 		$rdaLink = '<br /><a style="font-size:0.8em; font-weight: normal;" href="http://'.$host.'/'.$rda_root . '/' . $url_slug.'">'.$rdaLinkPrefix.' this record in Research Data Australia</a>'."\n";
-	}
-
+            //$rdaLink = '<br /><a style="font-size:0.8em; font-weight: normal;" href="'.eTERN_ROOT.'view?key='.urlencode($registryObjectKey).'&groupName='.esc($objectGroup).'">'.$rdaLinkPrefix.' this record in Research Data Australia</a>'."\n";
+	} 
+ 
 	$recordHistory = "";
 	if( userIsDataSourceRecordOwner($registryObjectDataSourceRecordOwner) || userIsORCA_ADMIN() )
 	{
@@ -171,15 +173,11 @@ if( $registryObject )
 
 	drawRecordField("Type:",  esc($registryObjectType));
 	drawRecordField("Key:",  esc($registryObjectKey));
-	if( userIsORCA_ADMIN() )
+	if( userIsDataSourceRecordOwner($registryObjectDataSourceRecordOwner) || userIsORCA_ADMIN() )
 	{
-		echo "<span color='#ccc'>";
-		drawRecordField("Originating Source:",  esc($registryObjectSource));
+		drawRecordField("Title:",  esc($registryObjectSource));
+		// temporary
 		drawRecordField("URL \"SLUG\":", esc($url_slug));
-		drawRecordField("DS Key:", $dataSourceKey);
-		drawRecordField("DS Key Hash:", getDataSourceHashForKey($dataSourceKey));
-		drawRecordField("Record Key Hash:", getRegistryObjectHashForKey($registryObjectKey));
-		echo "</span>";
 	}
 	drawRecordField("Originating Source:", $originatingSourceHTML);
 	drawRecordField("Group:", esc($objectGroup));
