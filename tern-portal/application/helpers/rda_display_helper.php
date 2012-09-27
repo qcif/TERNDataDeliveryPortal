@@ -622,6 +622,9 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
     {
         $out4[$object_type4[$j]]=$object_type4[$j+1];
     }
+    
+if(count($out2)>0)    
+{
     //print_r($out4);
         echo '<div class="collapsiblePanel">';
 	echo '<h5 class="head">Field of Research';
@@ -693,8 +696,10 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
         echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
 	echo '</div>';
         echo '</div>';
+      
+        echo '<div id="for-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
+}
 
- 
 }
 
 function findFORChildFour($twocode,$code_arr4)

@@ -632,7 +632,7 @@
     </xsl:template> 
    <xsl:template match="ro:location[@dateFrom!=''] | ro:location[@dateTo!='']">
         <xsl:if test="./@dateFrom != ''">
-            From <xsl:value-of select="./@dateFrom"/>
+            From <xsl:value-of select="./"/>
         </xsl:if>
         <xsl:if test="./@dateTo != ''">
             To <xsl:value-of select="./@dateTo"/>

@@ -1184,7 +1184,7 @@ function saveAndPreview() {
 		
 		$("#rda_preview_container").html("<a style='margin-left:10px;float:right;' id='print_preview' href='#'>Print Record</a>&nbsp;&nbsp;<a style='margin-left:10px;float:right;' id='rda_preview_xml' href='#'>View RIF-CS </a>" +
 				"<a style='float:right;' id='rda_preview' class='rda_preview' href='#' target='_blank'>" +
-				"<img style='padding: 0px 3px;float: left;' src='"+rootAppPath+"orca/_images/globe.png' /> Preview in Research Data Australia</a>" +
+				"<img style='padding: 0px 3px;float: left;' src='"+rootAppPath+"orca/_images/globe.png' /> Preview in TERN Data Discovery Portal</a>" +
 						"<div id='rifcs_plain' class='hide'><img src='"+rootAppPath+"orca/_images/delete_16.png' class='closeBlockUI' style='float:right;'/>" +
 								"<textarea id='rifcs_plain_content'></textarea>" +
 								"</div>");
@@ -1241,7 +1241,7 @@ function saveAndPreview() {
 				"<div style='border:none;' id='rda_preview_container'>" +
 				"<a style='margin-left:10px;float:right;' id='rda_preview_xml' href='#'>View RIF-CS </a>" +
 				"<a style='float:right;' id='rda_preview' class='rda_preview' href='#' target='_blank'>" +
-				"<img style='padding: 0px 3px;float: left;' src='"+rootAppPath+"orca/_images/globe.png' /> Preview in Research Data Australia</a></div>" +
+				"<img style='padding: 0px 3px;float: left;' src='"+rootAppPath+"orca/_images/globe.png' /> Preview in TERN Data Discovery Portal</a></div>" +
 						"<div id='rifcs_plain' class='hide'><img src='"+rootAppPath+"orca/_images/delete_16.png' class='closeBlockUI' style='float:right;'/>" +
 								"<textarea id='rifcs_plain_content'></textarea>" +
 								"</div>");
