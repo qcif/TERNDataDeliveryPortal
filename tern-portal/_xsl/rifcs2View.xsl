@@ -165,7 +165,16 @@
                           <td>
                                   <xsl:choose>
                                     <xsl:when test="../extRif:extendedMetadata/extRif:registryDateHarvested">
-                                          <xsl:value-of select="$date_pub"/>                                
+                                          
+                                                <xsl:variable name="dateResult">
+                                                    <xsl:call-template name="format-date">
+                                                        <xsl:with-param name="date"><xsl:value-of select="substring(../extRif:extendedMetadata/extRif:registryDateHarvested,1,10)"/></xsl:with-param>
+                                                            <xsl:with-param name="format" select="'d-n-Y'"/> 
+                                                    </xsl:call-template>                      
+                                                </xsl:variable> 
+                                                <xsl:value-of select="$dateResult"/>
+                                              
+                                                                   
                                     </xsl:when> 
                                     <xsl:otherwise>
                                         Not provided
@@ -174,7 +183,15 @@
                           </td>
                         <xsl:if test="../extRif:extendedMetadata/extRif:registryDateModified">
                           <td>
-                               <xsl:value-of select="$date_mod"/> 
+                               
+                                                <xsl:variable name="dateResult">
+                                                    <xsl:call-template name="format-date">
+                                                        <xsl:with-param name="date"><xsl:value-of select="substring(../extRif:extendedMetadata/extRif:registryDateModified,1,10)"/></xsl:with-param>
+                                                            <xsl:with-param name="format" select="'d-n-Y'"/> 
+                                                    </xsl:call-template>                      
+                                                </xsl:variable> 
+                                                <xsl:value-of select="$dateResult"/>
+                                              
                           </td>
                          </xsl:if>
                       </tr> 
@@ -630,22 +647,7 @@
             To
         </xsl:if>
              <xsl:choose>
-                 <xsl:when test='string-length(.)=4'>
-                     <xsl:variable name="dateResult">
-                         <xsl:value-of select="."/>
-                          </xsl:variable> 
-                          <xsl:value-of select="."/>
-                 </xsl:when>
-                 <xsl:when test='string-length(.)=7'>
-                      <xsl:variable name="dateResult">
-                           <xsl:call-template name="format-date">
-                               <xsl:with-param name="date"><xsl:value-of select="."/></xsl:with-param>
-                                <xsl:with-param name="format" select="'n-Y'"/> 
-                            </xsl:call-template>
-                      </xsl:variable> 
-                      <xsl:value-of select="."/>
-                 </xsl:when>
-                 <xsl:when test='string-length(.)=10'>
+                <xsl:when test='string-length(.)=10'>
                        <xsl:variable name="dateResult">
                            <xsl:call-template name="format-date">
                                <xsl:with-param name="date"><xsl:value-of select="."/></xsl:with-param>
@@ -667,7 +669,7 @@
                  
                  <xsl:otherwise>
                        <xsl:variable name="dateResult">
-                         <xsl:value-of select="."/>
+                         [not provided]
                         </xsl:variable> 
                       <xsl:value-of select="$dateResult"/>
 

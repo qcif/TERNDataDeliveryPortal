@@ -86,15 +86,7 @@ class View extends CI_Controller {
 			$key = $doc->{'key'};
 			$data['key'] = $key;
 			$group = $doc->{'group'};
-                        $date_pubf = new DateTime($doc->{'timestamp'});
-                        $date_pubf->setTimeZone(new DateTimeZone("Australia/Brisbane"));
-                        $date_pub = $date_pubf->format('d-m-Y');
-                         
-                        $date_modf = new DateTime($doc->{'date_modified'});
-                        $date_modf->setTimeZone(new DateTimeZone("Australia/Brisbane"));
-                        $date_mod = $date_modf->format('d-m-Y');
-                             
-                        $data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key),$date_pub, $date_mod);	
+                        $data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key));	
 		
                         $data['title'] = $doc->{'display_title'};
 			
@@ -124,10 +116,9 @@ class View extends CI_Controller {
 	
 	
         
-	private function transform($registryObjectsXML, $xslt,$key,$date_pub, $date_mod){
-            
-                 print_r($date_pub2); 
-		$qtestxsl = new DomDocument();
+	private function transform($registryObjectsXML, $xslt,$key){
+             
+                $qtestxsl = new DomDocument();
                 $registryObjects = new DomDocument();   
 		$registryObjects->loadXML(trim($registryObjectsXML));  
 		$qtestxsl->load('_xsl/'.$xslt);
@@ -137,9 +128,7 @@ class View extends CI_Controller {
                 $orca_view = view_url();
 		$proc->setParameter('','orca_view',$orca_view);
 		$proc->setParameter('','key',$key);     
-                $proc->setParameter('','date_pub',$date_pub);
-                $proc->setParameter('','date_mod',$date_mod);
-		$transformResult = $proc->transformToXML($registryObjects);	
+                $transformResult = $proc->transformToXML($registryObjects);	
 		return $transformResult;
 	}
 

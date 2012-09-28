@@ -41,10 +41,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'devl.ands.org.au';
+$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'webuser';
 $db['default']['password'] = '';
-$db['default']['database'] = 'dbs_work_ben_vocab';
+$db['default']['database'] = 'dbs_orca';
 $db['default']['dbdriver'] = 'postgre';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;

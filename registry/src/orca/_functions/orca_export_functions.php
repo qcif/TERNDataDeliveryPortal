@@ -1606,11 +1606,20 @@ function getSubjectTypesXML($registryObjectKey, $elementName, $forSOLR=false)
 						{
 							// No match found, lets instantiate this cached result to null
 							$gVOCAB_RESOLVER_RESULTS[$vocabType][$rawvalue] = array('vocabUri' => 'null');
+                                                        $resolvedName = resolveVocabLocal($rawvalue,$vocabType);
+                                      
 						}
 						unset($resolved_by_label_array);
                                               
                                                 
 					}
+				}else{ // added by Dewi to handle when the Vocab URI doesn't exist
+                                      
+                                   if(is_numeric($rawvalue) && $vocabType!='local'){
+                                                                               
+                                        $resolvedName = resolveVocabLocal($rawvalue,$vocabType);
+                                      
+                                    } 
 				}
                                 
 				$term = " extRif:resolvedValue=\"" . $resolvedName . "\" extRif:vocabUri=\"" . $vocabUri . "\"";
@@ -3576,5 +3585,14 @@ function getHarvestedTime($registryObjectKey)
        
 }
 
-
+function resolveVocabLocal($rawvalue,$vocabType){
+    if($vocabType == 'anzsrc-for' || $vocabType == 'anzsrc-seo'){
+       if(strlen($rawvalue)== 2 ){
+          $rawvalue=$rawvalue."0000";
+       }elseif(strlen($rawvalue)== 4){
+          $rawvalue=$rawvalue."00";
+       }
+    }      
+   return getSubjectValue($rawvalue);
+}
 ?>
