@@ -544,7 +544,7 @@ $(function() {
         $("#map-view-selector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
         });
-        $("#map-toolbar .tooltip").tipsy();
+        $("#map-toolbar .tooltip").tipsy({gravity: 'e'});
         
         $("#map-hide").bind('click', function(){
             $("#spatial-map").toggle(300);

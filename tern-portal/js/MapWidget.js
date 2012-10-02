@@ -801,18 +801,18 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
         });
     }
     this.map.addLayer(this.dataLayer);  
+    this.coverageLayer = new OpenLayers.Layer.Vector("Data Boundaries", { 
+            styleMap: getStyle('coverage')
+        });
+    this.map.addLayer(this.coverageLayer);
     if(clickInfo){
         this.selectControl = new OpenLayers.Control.SelectFeature(this.dataLayer,
         {
             onSelect: function(e) {   
                 pausecomp(800);
-                self.onFeatureSelect(e,this.map,self);
+                self.onFeatureSelect(e);
             },
-            onUnselect: function(e) { 
-               // this.map.removePopup(e.popup);
-                //self.onFeatureUnselect(e,this.map);
-                           
-            }, 
+            
             hover:true
         });
         this.map.addControl(this.selectControl);
@@ -828,109 +828,54 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
  *  ------------------------------------------------------------
  */
 MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo){
+    var dataLayer =  this.dataLayer;
     var centers = $(coordinateSelector);
-    var dataLayer  = this.dataLayer;
+    
     var WGS84 = this.WGS84; 
     var WGS84_google_mercator = this.WGS84_google_mercator;
     var number;
-
+    var html ='';
+    var title = '';
     var vectors = Array();
+    var coverage = Array();
     if(typeof clickInfo == "undefined") clickInfo = false;
     $.each(centers, function(){
             
         if(clickInfo){
-            var html ='';
-            var title = '';
-            //var desc = trimwords($(this).parent().children('p:nth-child(2)').html(),50);
-            //if(desc.length>0)
-            //{ 
-                                        
-             //   if (desc.length <  $(this).parent().children('p:nth-child(2)').html().length) desc += "...";
-                var link =$(this).parent().parent().children('#metabutton').children('button').clone().attr('id');
-                title = "<a href=" + link + " target=\"new\">" + $(this).parent().parent().parent().children('tr').children('td:nth-child(2)').children('h2').html()  + "</a>"  ;
-                var date = $(this).parent().parent().parent().children('tr').children('td:nth-child(3)').children('p').html();
-                var button =  $("<p>").append($(this).parent().parent().children('#metabutton').children('button').clone().attr('onClick','handleViewMeta(\''  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + '\');')).html();
+             html ='';
+             title = ''; 
+             coverage = Array();
+             var link =$(this).parent().parent().children('#metabutton').children('button').clone().attr('id');
+             title = "<a href=" + link + " target=\"new\">" + $(this).parent().parent().parent().children('tr').children('td:nth-child(2)').children('h2').html()  + "</a>"  ;
+             var date = $(this).parent().parent().parent().children('tr').children('td:nth-child(3)').children('p').html();
+             var button =  $("<p>").append($(this).parent().parent().children('#metabutton').children('button').clone().attr('onClick','handleViewMeta(\''  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + '\');')).html();
             
-                number = $(this).parent().parent().parent().children('tr').children('td:nth-child(1)').children('h2').html();
-                html  = " <div class=\"h2color mapMarker\" style=\"float:left\">" + number +  "</div><strong>" + title + "</strong> <br/> Pub date: " + date  + "&nbsp; "+ button ; 
-                html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";    
-             
+             number = $(this).parent().parent().parent().children('tr').children('td:nth-child(1)').children('h2').html();
+             html  = " <div class=\"h2color mapMarker\" style=\"float:left\">" + number +  "</div><strong>" + title + "</strong> <br/> Pub date: " + date  + "&nbsp; "+ button ; 
+             html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";    
+             $.each($(this).parent().children('.spatial').children('li'), function(){
+                  coverage.push( $(this).text());
+             });
+            
          
              
         }else {
             number = ''
         }
         if($(this).html().indexOf(' ') != -1){ 
-            vectors.push(addVector($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html,number, title));    
+            vectors.push(addVector($(this).html(), WGS84,WGS84_google_mercator, html,number, title));    
         }else{
-            vectors.push(addMarker($(this).html(), dataLayer, WGS84,WGS84_google_mercator, html,number,title));
+            vectors.push(addMarker($(this).html(), WGS84,WGS84_google_mercator, html,number,title,coverage));
         }
 
     }); 
     dataLayer.addFeatures(vectors);
-    /*
+    /* Script to zoom into markers. Commented out because currently unneeded feature.
     var bounds = dataLayer.getDataExtent();
     if(bounds)  this.map.zoomToExtent(bounds); 
     if(this.map.zoom > 5) this.map.zoomTo(5);
     */
-    function addMarker(lonlat,dataLayer,WGS84,WGS84_google_mercator,html, number, title){
-        var word = lonlat.split(',');
-        var point = new OpenLayers.Geometry.Point(word[0],word[1]);
-        point.transform(WGS84, WGS84_google_mercator);
-        var attributes = {
-            popupHTML: html, 
-            title: title, 
-            type: "point", 
-            number: number
-        }
-        var feature = new OpenLayers.Feature.Vector(point, attributes);
-        /*if(html != ''){
-            AutoSizeAnchored = OpenLayers.Class(OpenLayers.Popup.Anchored, {
-                'autoSize': true,
-                'maxSize': new OpenLayers.Size(500,150)
-            });
-
-            feature.closeBox = true;
-            feature.data.popupContentHTML = html;
-            feature.popupClass = AutoSizeAnchored;
-            feature.data.overflow = "auto";
-                var markerClick = function(evt){
-                    this.createPopup(this.closeBox);
-                    markers.map.addPopup(this.popup);
-                    this.popup.show();
-                };
-            }
-            var marker = feature.createMarker();
-           
-            if(html!= ''){
-                marker.events.register("click",feature,markerClick);
-            }*/ 
-        return feature;
-        //dataLayer.addFeatures([feature]);
-    } 
-    
-    function addVector(coordinates,dataLayer,WGS84,WGS84_google_mercator,html,title){
-        var points = coordinates.split(' ');
-        var vector_points = Array();
-        $.each(points, function(i, s){
-            var word = s.split(',');
-            var point = new OpenLayers.Geometry.Point(word[0],word[1]);
-            point.transform(WGS84, WGS84_google_mercator);
-            vector_points.push(point);
-        });
-           
-        var linear_ring = new OpenLayers.Geometry.LinearRing(vector_points);
-        var attributes = {
-            popupHTML: html,
-            title: title,  
-            type: "polygon", 
-            number: number
-        }
-        var feature = new OpenLayers.Feature.Vector(
-        new OpenLayers.Geometry.Polygon([linear_ring]),attributes);          
-
-        return feature;
-    }
+   
 }
  
 MapWidget.prototype.removeAllFeatures = function(){
@@ -974,9 +919,11 @@ MapWidget.prototype.updateDrawing = function(map,coordStr){
 // Force the popup to always open to the top-right
 
 
-MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
+MapWidget.prototype.onFeatureSelect = function(feature){
     selectedFeature = feature; 
-    if(this.popup!=null) this.onPopupClose(this.popup,mapWidgetObj);
+    var mapWidgetObj = this;
+    if(this.popup!=null) this.onPopupClose(this.popup);
+    this.coverageLayer.removeAllFeatures();
      var offset = {'size':new OpenLayers.Size(0,0),'offset':new OpenLayers.Pixel(10,-30)};
        CustomFramedCloudPopupClass = OpenLayers.Class(OpenLayers.Popup.Anchored, {
            'backgroundColor': '#FFFFFF', 
@@ -989,7 +936,7 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
             feature.geometry.getBounds().getCenterLonLat(),
             null, feature.data.popupHTML, offset, true, function(){
                   
-                    mapWidgetObj.onPopupClose(this,mapWidgetObj);
+                    mapWidgetObj.onPopupClose(this);
                     
         });    
         this.popup.calculateRelativePosition = function () {
@@ -997,24 +944,37 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
         }
         this.popup.minSize = new OpenLayers.Size(400,50);
         this.popup.maxSize = new OpenLayers.Size(400,150);
-        
-      
+         var vectors = Array();
+         
+        $.each(feature.data.coverage,function(){
+             var coverage = addVector(this,mapWidgetObj.WGS84,mapWidgetObj.WGS84_google_mercator,feature.data.title,feature.data.number,feature.data.html);
+             vectors.push(coverage);
+        });
+        this.coverageLayer.addFeatures(vectors);
+        //mapWidgetObj.map.raiseLayer(this.coverageLayer,this.map.layers.length-1);
     }else{
         var html = '<h2 class="h2color">Multiple matches: </h2>';
         html = html  + "<ul>";
         $.each(feature.cluster,function(){
-            html = html + "<li class=\"clearfix\"><strong> <div class=\"h2color mapMarker\" style=\"float:left\">" + this.data.number + "</div> " +  this.data.title  + "</strong></li>";
+            html = html + "<li class=\"clearfix\"><strong> <div class=\"h2color mapMarker\" style=\"float:left\">" + this.data.number + "</div> " +  this.data.title  + "</strong><div class=\"hide popup_coverage\"><ul>";
+           $.each(this.data.coverage,function(){
+                html = html  + "<li>" + this +  "</li>";
+            });
+      
+            html =  html+ "</ul></div></li>";
         }); 
         html = html+ "</ul>";
         html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";
         this.popup = new CustomFramedCloudPopupClass("chicken",
                     feature.geometry.getBounds().getCenterLonLat(),
                     null, html, offset, true, function(){             
-                    mapWidgetObj.onPopupClose(this,mapWidgetObj);
+                    mapWidgetObj.onPopupClose(this);
         });
          this.popup.calculateRelativePosition = function () {
             return 'br';
         }
+         
+  
        this.popup.minSize = new OpenLayers.Size(400,100);
        this.popup.maxSize = new OpenLayers.Size(400,180);
     
@@ -1026,13 +986,26 @@ MapWidget.prototype.onFeatureSelect = function(feature,map,mapWidgetObj){
   //  this.popup.setBorder('1px solid black');
         
     feature.popup = this.popup;   
-    map.addPopup(feature.popup);     
-            
-}
+    mapWidgetObj.map.addPopup(feature.popup);     
+    $(".popupContent ul li").hover(function(){
+        mapWidgetObj.coverageLayer.removeAllFeatures();
+        var vectors = Array();
+        $.each($(this).children('.popup_coverage').children('ul').children('li'),function(){
+            var coverage = addVector($(this).text(),mapWidgetObj.WGS84,mapWidgetObj.WGS84_google_mercator,'','','');
+            vectors.push(coverage); 
+        },function(){
 
-MapWidget.prototype.onPopupClose = function(popup,mapWidgetObj){
+        });
+
+      mapWidgetObj.coverageLayer.addFeatures(vectors);
+
+    });        
+} 
+
+MapWidget.prototype.onPopupClose = function(popup){
    popup.destroy();
-   mapWidgetObj.selectControl.unselectAll();  
+   this.coverageLayer.removeAllFeatures();
+   this.selectControl.unselectAll();  
    this.popup = null;
 }
 
@@ -1093,7 +1066,8 @@ function getStyle(styleName){
                     fontWeight: "Bold",
                     labelAlign: 'cb',
                     labelYOffset: 14,
-                    labelSelect: true   
+                    labelSelect: true
+               
                 };
                
                 styleSelected = {
@@ -1101,6 +1075,7 @@ function getStyle(styleName){
                     strokeColor: '#000000',
                     fontColor: "#FFFFFF",
                     fontWeight: "Bold"
+              
                 }      
                   
                 context =  {
@@ -1130,25 +1105,18 @@ function getStyle(styleName){
             };
         
             break;
-        case "red" : {
-                style = {
-                    pointRadius: 9,
+        case "coverage" : {
+                style = {                   
                     fillColor: '#FFFF00', 
-                    fillOpacity: '1', 
+                    fillOpacity: '0.5', 
                     strokeColor: '#000000', 
-                    strokeWidth: '1',
-                    label: "${number}",
-                    labelSelect: true
-
+                    strokeWidth: '1'
                 };
                 styleSelected = {
-                    pointRadius: 9,
-                    fillColor: '#ff0000', 
-                    fillOpacity: '1',  
+                     fillColor: '#FFFF00', 
+                    fillOpacity: '0.5', 
                     strokeColor: '#000000', 
-                    strokeWidth: '1',
-                    label: "${number}",
-                    labelSelect: true
+                    strokeWidth: '1'
                 };
             };
         
@@ -1345,3 +1313,42 @@ function pausecomp(ms) {
 ms += new Date().getTime();
 while (new Date() < ms){}
 } 
+
+ function addMarker(lonlat,WGS84,WGS84_google_mercator,html, number, title, coverage){
+        var word = lonlat.split(',');
+        var point = new OpenLayers.Geometry.Point(word[0],word[1]);
+        point.transform(WGS84, WGS84_google_mercator);
+        var attributes = {
+            popupHTML: html, 
+            title: title, 
+            type: "point", 
+            number: number,
+            coverage: coverage
+        }
+        var feature = new OpenLayers.Feature.Vector(point, attributes);
+
+        return feature;
+   } 
+    
+    function addVector(coordinates,WGS84,WGS84_google_mercator,html, number, title){
+        var points = coordinates.split(' ');
+        var vector_points = Array();
+        $.each(points, function(i, s){
+            var word = s.split(',');
+            var point = new OpenLayers.Geometry.Point(word[0],word[1]);
+            point.transform(WGS84, WGS84_google_mercator);
+            vector_points.push(point);
+        });
+           
+        var linear_ring = new OpenLayers.Geometry.LinearRing(vector_points);
+        var attributes = {
+            popupHTML: html,
+            title: title,  
+            type: "polygon", 
+            number: number
+        }
+        var feature = new OpenLayers.Feature.Vector(
+        new OpenLayers.Geometry.Polygon([linear_ring]),attributes);          
+
+        return feature;
+    }
