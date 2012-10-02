@@ -880,6 +880,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
  
 MapWidget.prototype.removeAllFeatures = function(){
     this.dataLayer.removeAllFeatures();
+    this.coverageLayer.removeAllFeatures();
     for (var i=0; i<this.map.popups.length; ++i) 
     { 
         this.map.removePopup(this.map.popups[i]); 
