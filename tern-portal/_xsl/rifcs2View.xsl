@@ -576,7 +576,10 @@
 </xsl:template>
 
  <xsl:template match="ro:relatedObject/extRif:relatedObjectType">
-    <xsl:value-of select="../extRif:relatedObjectListTitle"/> 
+     <xsl:if test=".='group'">
+        <xsl:value-of select="../extRif:relatedObjectListTitle"/>      
+     </xsl:if>
+    
 </xsl:template>
 
 

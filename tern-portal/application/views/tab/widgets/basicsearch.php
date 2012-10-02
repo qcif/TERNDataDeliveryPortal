@@ -3,7 +3,7 @@
     <h5 class="head">Search term:<div id="term-help"><a  class="tooltip" >?</a></div></h5>
     <div>
     <div>
-         <a href="javascript:void(0);" id="adv_bool">Advanced Boolean Search</a>
+         <a href="javascript:void(0);" id="adv_bool">Advanced Search</a>
 
          <div id="adv_bool_operator" style="display:none">
 
