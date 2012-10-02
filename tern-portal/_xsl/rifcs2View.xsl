@@ -140,7 +140,7 @@
                       <col width="200"/>
                       <tr>
                           <td><h3>Temporal Coverage</h3></td>
-                          <td><h3>Date published</h3></td>
+                          <td><h3>Date released</h3></td>
                           <xsl:if test="../extRif:extendedMetadata/extRif:registryDateModified">
                             <td><h3>Date modified</h3></td>
                           </xsl:if>

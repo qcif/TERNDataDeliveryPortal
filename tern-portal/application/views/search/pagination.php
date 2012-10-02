@@ -40,7 +40,7 @@ $Revision: 1 $
             $totalPage = ceil($numFound / $row);
             $currentPage = ceil($start / $row)+1;
         }
-	$range = 3;
+	$range = 2;
 ?>
 <?php
 	echo '<div id="right_pagination">';
@@ -51,19 +51,22 @@ $Revision: 1 $
 	echo '<div class="pagination-currentPageInfo pagination-currentPage">Page: '.$currentPage.' of '.$totalPage.'</div> |  ';
 	
 	//if not on page 1, show Previous
-	echo '<a href="javascript:void(0);" id="1" class="gotoPage">First</a>';
+	echo '<a href="javascript:void(0);" id="1" class="gotoPage">First </a>';
 	if($currentPage > 1){
 		echo '<a href="javascript:void(0);" id="prev" class="pagination-page"> &lt;</a>';
 	}
 	
 	for ($x = ($currentPage - $range); $x < (($currentPage + $range) + 1); $x++) {
-		if (($x > 0) && ($x <= $totalPage)) { //if it's valid
+		if (($x > 0) && ($x <= $totalPage)) 
+                { //if it's valid
 			if($x==$currentPage){//if we're on currentPage
-				echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
+				//echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
+                            echo '<b>'.$x.'</b>';//don't make a link
 			}else{//not CurrentPage
 				echo '<a href="javascript:void(0);" class="pagination-page gotoPage" id="'.$x.'">'.$x.'</a>';
 			}
-		}
+		}                   
+                
 	}
 	
 	//if not on last page, show Next

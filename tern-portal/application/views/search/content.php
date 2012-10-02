@@ -58,7 +58,7 @@ if ($realNumFound >0)
         echo '<col width=730>';
         echo '<col width=100>';
         echo '<thead>';
-        echo '<tr><th>Map ref</th><th>Title</th><th>Date published</th></tr>';
+        echo '<tr><th>Map ref</th><th>Title</th><th>Date released</th></tr>';
         echo '</thead>';
         foreach ($json->{'response'}->{'docs'} as $r) 
         {

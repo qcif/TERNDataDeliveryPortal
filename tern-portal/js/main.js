@@ -1013,12 +1013,13 @@ $(function() {
             mapWidget.switchLayer(regionid);
         });
 
+       // var e=document.getElementById("viewrecord");
+       // $("#showing").text(e.options[e.selectedIndex].value);
         
-           if($(msg).find('div#realNumFound').html() == "0")
-             {
+       if($(msg).find('div#realNumFound').html() == "0")
+       {
                     showNoResult(1); 
-   
-            }       
+       }       
     } 
  
     function doNormalSearch(){     
@@ -1288,22 +1289,27 @@ $(function() {
      
      
      var selected=$(this).find(":selected").val();
+     var lbl=document.getElementById("showing");
      switch(selected)
      {
          case "10":
                  num=10;
+                 lbl.innerHTML='10';
                  setCookie('selection',10,365);
                  break;
          case "25":
                  num=25;
+                 lbl.innerHTML='25';
                  setCookie('selection',25,365);             
              break;
          case "50":
                  num=50;
+                 lbl.innerHTML='50';
                  setCookie('selection',50,365);             
              break;
          case "100":
                  num=100;
+                 lbl.innerHTML='100';
                  setCookie('selection',100,365);             
              break;
          default:
