@@ -743,10 +743,10 @@ $(function() {
                         $('#bottom-toolbar').html($(this).html());
                         $('#middle-toolbar').show();
                         $('#bottom-toolbar').show();
-                        $(this).find('div#sorting_selection').empty();
+                        //$(this).find('div#sorting_selection').empty();
                         
-                        $('#head-toolbar').html($(this).html());
-                        $('#head-toolbar').show(); 
+                       // $('#head-toolbar').html($(this).html());
+                       // $('#head-toolbar').show(); 
 
                     }
                  }

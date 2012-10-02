@@ -7,8 +7,8 @@
 
          <div id="adv_bool_operator" style="display:none">
 
-             <input type="radio" name="boolean_operator" value="AND" />Include (AND)<br />
-             <input type="radio" name="boolean_operator" value="OR" checked="true"/>Expand (OR)<br />
+             <input type="radio" name="boolean_operator" value="AND" checked="true"/>Include (AND)<br />
+             <input type="radio" name="boolean_operator" value="OR" />Expand (OR)<br />
              <input type="radio" name="boolean_operator" value="NOT" />Exclude (NOT)<br />
          </div>
 
