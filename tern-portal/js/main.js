@@ -731,23 +731,23 @@ $(function() {
                 if($(this).attr('id') == 'facet-content')  {
                     $('#facet-accordion').html($(this).html());               
                 }
+                else if($(this).attr('id') == 'head-toolbar-content' && mapSearch == 0){
+                     
+                        $('#middle-toolbar').html($(this).html());
+                        $('#bottom-toolbar').html($(this).html());
+                }
                 if($(msg).find('div#realNumFound').html() !== "0")
                  {
                      if($(this).attr('id') == 'search-results-content' && mapSearch == 0) {        
                         $('#search-result').html($(this).html());
-                         $("#search-result").show();
+                        $("#search-result").show();
                     }
                     else if($(this).attr('id') == 'head-toolbar-content' && mapSearch == 0){
                      
-                        $('#middle-toolbar').html($(this).html());
-                        $('#bottom-toolbar').html($(this).html());
                         $('#middle-toolbar').show();
                         $('#bottom-toolbar').show();
-                        //$(this).find('div#sorting_selection').empty();
+                        $(this).find('div#sorting_selection').empty();
                         
-                       // $('#head-toolbar').html($(this).html());
-                       // $('#head-toolbar').show(); 
-
                     }
                  }
             });     
