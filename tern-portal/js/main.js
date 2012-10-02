@@ -315,7 +315,7 @@ $(function() {
             $("#coords input").trigger('change');
         }else if($(this).hasClass('clearTerm'))
         {
-            //search_term='*:*';
+            //search_term=encodeURIComponent(search_term);;
             if(search_term.search("AND")==-1 && search_term.search("NOT")==-1 && search_term.search("OR")==-1 )
             {
                 search_term='*:*';    
@@ -324,10 +324,16 @@ $(function() {
                 var str="";
                 if($.trim($(this).attr('id')).search("AND")==-1 && $.trim($(this).attr('id')).search("NOT")==-1 &&$.trim($(this).attr('id')).search("OR")==-1)
                 {
-                             
-                    str=search_term.replace($.trim($(this).attr('id')), "");     
+                    var r=decodeURIComponent($.trim($(this).attr('id'))); 
+                    r=r.replace(/\(/g,"");
+                    r=r.replace(/\)/g,"");
+                    r=r.replace(/\+/g," ");
+                    r=r.replace(/\\/g,"");
+                    str=search_term.replace(r, "");     
+
                     str=str.replace(/\(/g,"");
                     str=str.replace(/\)/g,"");
+                    
                     if($.trim(str).substring(0, 2)=="AN" ||$.trim(str).substring(0, 2)=="NO")
                     {
                         str=str.substring(5);
@@ -338,7 +344,12 @@ $(function() {
                     }
                 }else
                 {
-                    str=search_term.replace($.trim($(this).attr('id')), ""); 
+                    var s=decodeURIComponent($.trim($(this).attr('id')));
+                    s=s.replace(/\+/g," ");
+                    s=s.replace(/\\/g,"");
+                    s=s.replace(/\(/g,"");
+                    s=s.replace(/\)/g,"");
+                    str=search_term.replace(s, ""); 
                 }         
 
                   search_term=$.trim(str)
