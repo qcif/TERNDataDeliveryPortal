@@ -888,6 +888,11 @@ MapWidget.prototype.removeAllFeatures = function(){
     
 }
 
+MapWidget.prototype.toggleExtLayer = function(layer_id, visibility){
+    for(var i=0;i<this.extLayers.length; i++){
+         if(this.extLayers[i].name == layer_id) this.extLayers[i].setVisibility(visibility);
+    }
+}
 MapWidget.prototype.switchLayer = function(layer_id){
     for(var i=0;i<this.extLayers.length; i++){
         if(this.extLayers[i].name != layer_id) this.extLayers[i].setVisibility(false);

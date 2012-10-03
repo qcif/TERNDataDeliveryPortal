@@ -9,8 +9,8 @@
         <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
         <style >
           .olPopup { border : 0 !important;}
-
-table.featureInfo, table.featureInfo td, table.featureInfo th {
+          #facilities { float: left}
+        table.featureInfo, table.featureInfo td, table.featureInfo th {
 		border:1px solid #ddd;
 		border-collapse:collapse;
 		margin:0;
@@ -40,7 +40,9 @@ table.featureInfo, table.featureInfo td, table.featureInfo th {
   </head>
     <body>
      
-
+        <div id="facilities">
+             
+        </div>
 <div id="overlaymap" style="width:430px;margin:auto;">
 
     <div id="spatialmap" class=""></div>

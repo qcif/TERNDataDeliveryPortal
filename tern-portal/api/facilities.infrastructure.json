@@ -1,0 +1,24 @@
+{ 
+        "facilities": [ 
+            {
+            "name" : "Long Term Ecological Plot Network",
+            "geo_name" : "nr:vw_ltern",
+             "geo_url": "http://demo:8080/geoserver/wms"
+
+            },
+            {
+           "name" : "Supersites", 
+            "geo_name" : "nr:supersites",
+              "geo_url": "http://demo:8080/geoserver/wms"
+        
+            }, 
+            {
+            "name" : "OzFlux",
+            "geo_name" : "nr:ozflux",
+            "geo_url": "http://demo:8080/geoserver/wms"
+
+            }
+        ]
+        
+    }
+
