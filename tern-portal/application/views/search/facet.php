@@ -21,8 +21,20 @@ $Revision: 1 $
 **/ 
 ?>
 <?php 
-
-if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All' || $mapsearch!=1)    
+if($mapsearch==0 && ($spatial_included_ids=='') && ($temporal=='All') && ($typeFilter=='All') && ($groupFilter=='All')&&($subjectFilter=='All')&&($fortwoFilter=='All')&&($forfourFilter=='All')&&($forsixFilter=='All') && $ternRegionFilter=='All' && $query=='All Records')
+{
+    	echo '<h5><a href="#">Current Search</a></h5>'; 
+	echo '<div id="current-search"  class="facet-list">';
+        echo '<ul>';
+                 echo '<li class="limit">
+                    <label " 
+                        class="clearFilter classTerm" id="All Records">'.'All Records'.'</label></li>';
+       echo '</ul>';
+                echo '<button id="clearall" class="ui-button ui-widget ui-state-default ui-corner-all srchButton ui-button-text-only" role="button" aria-disabled="false">Clear all</button>';
+        echo '</div>';                 
+             
+}
+else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All' ||$query!='All Records')    
 {
 	echo '<h5><a href="#">Current Search</a></h5>'; 
 	echo '<div id="current-search"  class="facet-list">';
@@ -44,8 +56,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 
                     if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
 
-                    //
-                    displaySelectedTerm($query,$json); 
+                   if($query!='All Records')displaySelectedTerm($query,$json);  
 
                 //   if($forsixFilter!='All') displaySelectedFacet('for_value_six',$forsixFilter,$json);
 

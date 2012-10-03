@@ -322,18 +322,15 @@ function displaySelectedTerm($query, $json){
 
         for($m=0;$m<count($rawquery_no_op);$m++)
         {           
-            if($query=="All Records")
-            {
-                 echo '<li class="limit">
-                    <label " 
-                        class="clearFilter '.$clear.'" id="'.rtrim(ltrim($op[$m])).' ('.escapeSolrValue(rtrim(ltrim($rawquery_no_op[$m]))).')">'.$op[$m].$rawquery_no_op[$m].'</label></li>';
-            }else
-            {
+            //if($query=="All Records")
+            //{
+                  //}else
+            //{
                  echo '<li class="limit">
                     <label " 
                         class="clearFilter '.$clear.'" id="'.rtrim(ltrim($op[$m])).' ('.escapeSolrValue(rtrim(ltrim($rawquery_no_op[$m]))).')">'.$op[$m].'('.$rawquery_no_op[$m].')</label></li>';
  
-            }                
+            //}                
                
   
         }

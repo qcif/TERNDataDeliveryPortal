@@ -1038,8 +1038,8 @@ $(function() {
                 
                  $('#clearall').click(function()
                 {
-                     //resetFilter();
-                    //mapSearch=1;
+                     resetFilter();
+                    mapSearch=1;
                     //changeHashTo(formatSearch(search_term, 1, classFilter,num));
                     //$("#current-search").empty();
                     changeHashTo("search#!/mapSearch=1");
