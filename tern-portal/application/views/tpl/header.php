@@ -53,10 +53,14 @@ if (isset($description))
 
                     <ul class="sf-menu">
                         <li><?php echo anchor('', 'Home'); ?></li>                     
-                        <li><a>Capabilities</a>
+                        <li><a>TERN data</a>
                             <ul>
+                                <li><?php echo anchor('home/accessdata', 'Access data', 'target="_blank"'); ?></li>
+                                <li><?php echo anchor('home/submitdata', 'Submit data', 'target="_blank"'); ?></li>
+                                <li><?php echo anchor('home/licencing', 'Data licensing', 'target="_blank"'); ?></li>
                                     <?php		
-	                                if($json && $json->{'response'}->{'docs'}){		
+/*
+                                    if($json && $json->{'response'}->{'docs'}){		
 	                                    foreach($json->{'response'}->{'docs'} as $d){		
 	                                        if(count($d->{'location'})>0){		
 	                                            echo '<li>';		
@@ -68,6 +72,8 @@ if (isset($description))
 	                                         }		
 	                                    }		
 	                                }		
+  
+ */
 	                                ?>                               
                                 
                             </ul>

@@ -892,8 +892,8 @@ $(function() {
          
         $('#search_basic').click(function(){
             var special_char=/^[A-Za-z0-9 ]{3,20}$/;
-            
-            if(!special_char.test($('#search-box').val()))
+           
+            if(!special_char.test($('#search-box').val())&& $('#search-box').val()!="" && $('#search-box').val()!=null)
             {
                 $("#dialog-searchterm"). dialog({
                     resizable: false,
@@ -928,7 +928,7 @@ $(function() {
                 });
             }else
             {
-                   if(search_term==""||search_term=="Search ecosystem data" ||search_term=="*:*")
+                if(search_term==""||search_term=="Search ecosystem data" ||search_term=="*:*")
                 {
                     search_term = "("+$('#search-box').val()+")";       
                 }else
