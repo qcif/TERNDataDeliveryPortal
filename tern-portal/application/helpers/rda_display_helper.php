@@ -671,7 +671,7 @@ if(count($out2)>0)
                                                     class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')'.'</span></li>';
                                 }else//found child
                                 {
-                                    //if(!checkInFilter($out_keys2[$i],$two))
+                                   // if($out2[$out_keys2[$i]]>0)
                                     //{    
                                         //get values from $index[]. create <ul>
                                         echo '<li><span>
@@ -683,7 +683,7 @@ if(count($out2)>0)
 
                                                     for($k=0;$k<count($index);$k++)
                                                     {
-                                                        if(!checkInFilter($out_keys4[$index[$k]],$four))
+                                                        if(!checkInFilter($out_keys4[$index[$k]],$four)&&$out4[$out_keys4[$index[$k]]]>0)
                                                         {
                                                             echo '<li ><span>
 
