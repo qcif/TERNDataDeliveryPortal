@@ -772,7 +772,8 @@ $(function() {
        
            
             $('.clearFilter').each(function(){
-                $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
+                if($(this).context.innerHTML!="All Records")
+                   $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
             });
             
            
@@ -1029,18 +1030,21 @@ $(function() {
 
 //            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv + "&ternRegionFilter=" + ternRegionFilter,
 
-            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort + "&ternRegionFilter=" + ternRegionFilter+"&num="+num,
+            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort + "&ternRegionFilter=" + ternRegionFilter+"&num="+num+"&mapsearch="+mapSearch,
 
         
             success: function(msg,textStatus){
                 handleResults(msg,mapResult);
+                
                  $('#clearall').click(function()
                 {
-                    resetFilter();
-                    mapSearch=1;
-                    changeHashTo(formatSearch(search_term, 1, classFilter,num));
-
+                     //resetFilter();
+                    //mapSearch=1;
+                    //changeHashTo(formatSearch(search_term, 1, classFilter,num));
+                    //$("#current-search").empty();
+                    changeHashTo("search#!/mapSearch=1");
                 });                
+                
                 $("tr[id=re-hide]").hide();
 
                     $("#search-result table").click(function(event) {
@@ -1344,7 +1348,7 @@ $(function() {
      }         
            
      doNormalSearch();  
-      $("#loading").hide();
+     $("#loading").hide();
      changeHashTo(formatSearch(search_term, 1, classFilter,num));    
      
  });

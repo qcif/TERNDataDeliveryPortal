@@ -65,7 +65,7 @@ $Revision: 1 $
                 echo    '<div id="sorting_selection">';
                 echo        '<b>Sort By</b><select id="sort_record" name="select-sorting">';				
                 echo                '<option value="score">Relevance</option>';
-                echo                '<option value="timestamp">Date published</option>';             
+                echo                '<option value="timestamp">Date released</option>';             
                 echo           '</select>';
                 echo       '</div>' ;
 //===                

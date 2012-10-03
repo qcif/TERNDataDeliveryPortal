@@ -22,7 +22,7 @@ $Revision: 1 $
 ?>
 <?php 
 
-if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All'||$query!='All Records')    
+if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All' || $mapsearch!=1)    
 {
 	echo '<h5><a href="#">Current Search</a></h5>'; 
 	echo '<div id="current-search"  class="facet-list">';
@@ -44,8 +44,8 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
 
                     if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
 
-                    if($query!='All Records') displaySelectedTerm($query,$json);
-
+                    //
+                    displaySelectedTerm($query,$json); 
 
                 //   if($forsixFilter!='All') displaySelectedFacet('for_value_six',$forsixFilter,$json);
 
@@ -54,6 +54,7 @@ if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || 
         echo '</div>';
   
 }
+
 
 ?>
 

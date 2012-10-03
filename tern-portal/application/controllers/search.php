@@ -509,7 +509,7 @@ class Search extends CI_Controller
          
         $num=$this->input->post('num');
      
-       
+        $mapsearch=$this->input->post('mapsearch');
         
         $query = $q;
         $extended_query = '';
@@ -576,6 +576,7 @@ class Search extends CI_Controller
         $data['spatial_included_ids'] = $spatial_included_ids;
         $data['temporal'] = $temporal;
  
+        $data['mapsearch']=$mapsearch;
         // get Regions  File
          $regions = json_decode(file_get_contents( REGIONS_CONFIG_PATH, TRUE));
          $regions = $regions->layers;
