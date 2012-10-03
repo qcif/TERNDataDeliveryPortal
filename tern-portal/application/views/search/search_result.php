@@ -47,6 +47,7 @@ $Revision: 1 $
 
                 
                 echo '<div id="left_num_records" class="result">';
+                echo 'Showing <label id="showing">'.$this->input->cookie('selection').' </label> of ';
                 echo ''.number_format($realNumFound).' results';
                 echo '</div>';
              
