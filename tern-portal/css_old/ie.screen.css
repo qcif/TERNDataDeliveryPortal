@@ -1,0 +1,82 @@
+
+/** 
+Copyright 2011 The Australian National University
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+********************************************************************************
+$Date: 2011-09-06 11:35:57 +1000 (Tue, 06 Sep 2011) $
+$Revision: 1 $
+***************************************************************************
+*
+**/ 
+
+/* float clearing for IE6 */
+* html .clearfix{height: 1%;overflow: visible;}
+/* float clearing for IE7 */
+*+html .clearfix{min-height: 1%;}
+
+/* float clearing for everyone else */
+.clearfix:after{clear: both;content: ".";display: block;height: 0;visibility: hidden;font-size: 0;}
+
+/*
+    Global Body Styles
+*/
+body {
+    /* font-weight:normal;font:13px/1.231 Calibri, Tahoma, Serif; *font-size:small;/* Hack retained to preserve specificity */
+}
+* :focus { outline: 0; }
+img.arrow{display:none;}
+.limitHeight300{
+  height: expression(this.height > 300 ? 300: true); 
+	}
+.limitHeight200{
+  height: expression(this.height > 200 ? 200: true); 
+}
+
+.hp-class-item{padding:10px;}
+#search-wrapper{ background:transparent;z-index:9;}
+
+.searchbox{z-index:9;}
+
+#search-bar .searchbox{width:280px;}
+#ands-logo{z-index:9999;zoom:1;}
+#mid{margin:10px 0;}
+
+#party_logo{
+  width: expression(this.width > 200 ? 200: true);
+  height: expression(this.height > 200 ? 200: true);
+  }
+#displaylogo{
+  width: expression(this.width > 130 ? 130: true);
+  height: expression(this.height > 63 ? 63: true); 
+  }
+
+.li_cont1{width:190px;float:left;}
+.li_cont2{width:190px;float:left;}
+.li_cont3{width:190px;float:left;}
+.li_cont4{width:190px;float:left;}
+
+#contact-us-form input{height:40px;}
+
+#advanced{height:480px;}
+#advanced-spatial{height:440px;}
+#spatialmap{height:430px;}
+/*#address{height:40px;}*/
+.ui-menu-item li{width:500px;}
+
+ul.subjects li{display:inline;}
+
+#share{width:250px;}
+
+
+.home_title img{margin-left:-3px !important;}
