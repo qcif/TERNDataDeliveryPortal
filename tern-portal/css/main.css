@@ -1,0 +1,580 @@
+/* Native Classes 
+*******************************************************************/
+html{ background: #9eaf8b url(../img/gradients/bg-gradient.png) repeat-x; height: 100%; min-width: 1280px; }
+html, body, p, h1, h2, h3, h4{ font-family: helvetica, arial, sans-serif !important; }
+body{ height: 100%; background: url(../img/template/bg-lines.png) no-repeat bottom center; min-width: 1280px; }
+a{ color: #467000; text-decoration: none; }
+a:hover{ color: #467000; text-decoration: underline; }
+p{ color: #333333; margin-bottom: 7px; }
+h2{ font-size: 16px; color: #4B7606; margin: 22px 0px 5px 0px; }
+h3{ font-size: 14px; margin: 5px 0px 5px 0px; }
+ul{ list-style: disc; padding-left: 15px; }
+	ul li{ margin-left: 15px; }
+input[type=text]{
+	border: 1px solid #ccc;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	font-size: 12px;
+	padding: 0px 3px;
+	outline: 0;
+	height: 21px;
+	-webkit-appearance: none;
+}
+/* Custom Reusable Classes 
+*******************************************************************/
+.left{ float: left; }
+.right{ float: right; }
+.wrapper{ width: 1240px; height: 100%; margin: 0px auto; }
+
+/* Template 
+*******************************************************************/
+#printHeader{ display: none; }
+#backgroundImage{ position: absolute; background: url(../img/backgrounds/background-1.png) no-repeat center top; height: 100%; width: 100%; min-width: inherit; z-index: -1000; }
+/* Header 
+*******************************************************************/
+header{
+	height: 184px; 
+	background: url(../img/gradients/header-bg-gradient.png) repeat-x;
+	margin-bottom: 11px;
+	padding-top:3px;
+}
+	header h1{ background: url(../img/logos/logo-bg.png) no-repeat; width: 229px; float: left; margin-left: -7px; height: 184px; }
+		header h1 img{ margin-left: 14px;}
+	nav#globalNav{ float: left; line-height: 43px; margin: 0px 10px 0px 0px; width: 1000px; }
+	nav#globalNav ul.left{ margin-left: 10px; }
+		nav#globalNav ul.left li{ margin-right: 10px; padding-right: 16px; border-right: 1px solid #636E57; }
+		nav#globalNav ul.left li a.more{ background: url(../img/template/nav-arrow.png) no-repeat right center; padding-right: 20px; }
+		nav#globalNav ul.left li:last-child{ border: 0px; }
+			nav#globalNav ul.left li a{ color: #fff; text-decoration: none; font-size: 17px; font-weight: bold; }
+			nav#globalNav #subMenu{ position: absolute; display: inline-block; /*top: 33px;*/ margin-left: -150px; width: 195px; background: url(../img/template/sub-menu-arrow.png) no-repeat 50% 7px; padding-top: 13px; }
+			nav#globalNav #subMenu ul{ background-color: #fff;  padding: 0px; display: block; box-shadow: rgba(0,0,0,0.6) 0px 2px 3px; behavior: url(PIE.htc); }
+			nav#globalNav #subMenu ul li{ margin: 0px; padding: 0px; border: 0; line-height:32px; display: block; background: url(../img/dividers/sub-menu-divider.png) no-repeat center bottom; }
+			nav#globalNav #subMenu ul li:last-child{ background: none; }
+			nav#globalNav #subMenu ul li a{ font-size: 14px; color: #467000; font-weight: normal; margin: 0px; padding: 0px 9px; width: 177px; display: block; line-height: 32px; }
+			nav#globalNav #subMenu ul li a:hover{
+				color: #fff;
+				text-decoration: none !important; 
+				background: #477000; /*fallback for non-CSS3 browsers*/
+				background: -webkit-gradient(linear, 0 0, 0 100%, from(#74ab45) to(#477000)); /*old webkit*/
+				background: -webkit-linear-gradient(#74ab45, #477000); /*new webkit*/
+				background: -moz-linear-gradient(#74ab45, #477000); /*gecko*/
+				background: -ms-linear-gradient(#74ab45, #477000); /*IE10*/
+				background: -o-linear-gradient(#74ab45, #477000); /*opera 11.10+*/
+				background: linear-gradient(#74ab45, #477000); /*future CSS3 browsers*/
+				-pie-background: linear-gradient(#74ab45, #477000); /*PIE*/
+				behavior: url(PIE.htc);
+			}
+	header nav#globalNav ul.right{ width: 264px; text-align: right; background: url(../img/template/dataset-bg.png) no-repeat; margin-right: -40px; padding-left: 26px; }
+		header nav#globalNav ul.right li.divider{ background: url(../img/dividers/my-favourites-and-searches-divider.png) no-repeat center; float: left; width: 2px; padding: 0px 10px 0px 11px; }
+			header nav#globalNav ul.right li a{ color: #C06103; text-decoration: none; text-align: left; font-size: 14px; width: 110px; float: left; display: block; line-height: 38px; height: 38px;}
+				header nav#globalNav ul.right li a img{ float: left; margin: 10px 3px 0px 0px; }
+	header ul{ list-style: none; padding: 0px; }
+	header ul li{ display: inline; margin: 0px;}
+	header ul li a:hover{ text-decoration: underline !important; }
+	header #dataDiscoveryPortalLogo{ float: right; margin: 30px 10px 0px 0px; }
+	
+/* Home Page
+*******************************************************************/
+#searchFeatures{ background: url(../img/gradients/search-bg-gradient.png) repeat-x; padding: 20px 40px; height: 132px; margin-bottom: 13px; }
+	#searchFeatures #slogan{ height: 45px; display: block; font-weight: bold; font-size: 28px; color: #fff; background: url(../img/dividers/search-features-divider.png) no-repeat center bottom; }
+	#searchFeatures input{ 
+		margin: 25px 10px 0px 0px;
+		width: 330px; 
+		float: left; 
+		border: 1px solid #ccc;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		border-radius: 10px;
+		font-size: 20px;
+		padding: 4px 7px;
+		outline: 0;
+		height: 39px;
+		-webkit-appearance: none;
+	}
+	#searchFeatures input.rounded:focus{  border-color: #339933; }
+	#searchBtn{ width: 155px; }
+	#searchFeatures #orImg{ float: left; margin: 15px 33px 0px 33px; }
+	#searchFeatures #mapBasedSearchTxt{ float: left; margin: 25px 15px 0px 0px; }
+		#searchFeatures #mapBasedSearchTxt span{ display: block; }
+			#searchFeatures #mapBasedSearchTxt span#mapBasedSearchTitle{ font-size: 28px; color: #fff; }
+			#searchFeatures #mapBasedSearchTxt span#mapBasedSearchDescription{ font-size: 16px; color: #B2B2B2; }
+	#mapSearchBtn{ width: 205px; }
+	#searchBtn, #mapSearchBtn{
+		margin-top: 25px;
+		float: left;
+		line-height: 50px;
+		font-size: 24px; 
+		font-weight: bold;
+		text-align: center;	
+		display: block;
+		color: #fff;
+		text-decoration: none; 
+	}
+	#searchBtn img, #mapSearchBtn img{ margin: 7px -10px 0px 12px; float: left; }
+
+#homeContent{overflow: hidden; background: #ecefe8 url(../img/home/carousel/facilities-datasets-top-bg.png) no-repeat center bottom; padding-bottom: 30px; }
+#homeContent h1{ font-size: 28px; font-weight: normal; padding: 0px; margin: 0px 0px 20px 30px; }
+#datasetsIncluded{ float: left; width: 50%; margin: 50px 0px 0px 0px; background: url(../img/dividers/home-content-divider.png) no-repeat right center; }
+	#datasetsIncluded h1{ color: #BF5F00; }
+	#datasetsIncluded ul{ list-style: none; padding: 0px; }
+		#datasetsIncluded ul li{ float: left; width: 168px; height: 115px; margin: 0px 0px 15px 30px; }
+			#datasetsIncluded ul li a img{ position: absolute; z-index: 0; }
+			#datasetsIncluded ul li a span{ position: absolute; margin-top: 80px; padding-left: 12px; color: #FFF; background-color: #BF6000; display: block; width: 156px; line-height: 35px; font-weight: bold; font-size: 16px; opacity:0.8; filter:alpha(opacity=80);}
+			#datasetsIncluded ul li a:hover span{ background-color: #000; opacity:0.6; filter:alpha(opacity=60);}
+
+#recentlyReleased{ float: left; position: relative; width: 50%; margin: 50px 0px 0px 0px;}
+	#recentlyReleased h1{ color: #609227; }
+	#recentlyReleased ul{ float: left; width: 50%; list-style: none; padding: 0px; }
+		#recentlyReleased ul li{ margin: 0px 20px 20px 30px; padding-bottom: 20px; font-size: 14px; background: url(../img/dividers/recently-released-divider.png) no-repeat center bottom; }
+			#recentlyReleased ul li:last-child{ background: none; }
+		#recentlyReleased a span.date{ color: #333333; }
+		
+#facilitiesAndDatasets{ background-color: #fff; height: 90px; clear: both; padding: 30px 35px 30px 35px; }
+	#facilitiesAndDatasets h1{ float: left; color: #484848; font-size: 20px; font-weight: normal; padding: 0px; margin: 0px 10px 0px 0px; width: 140px; }
+	#facilitiesAndDatasets a.prev, #facilitiesAndDatasets a.next{ float: left; width: 15px; height: 29px; margin-top: 30px; }
+	#facilitiesAndDatasets a.prev{ background: url(../img/home/carousel/carousel-prev-normal-btn.png) no-repeat; }
+	#facilitiesAndDatasets a.prev:hover{ background: url(../img/home/carousel/carousel-prev-hover-btn.png) no-repeat; }
+	#facilitiesAndDatasets a.next{ background: url(../img/home/carousel/carousel-next-normal-btn.png) no-repeat; }
+	#facilitiesAndDatasets a.next:hover{ background: url(../img/home/carousel/carousel-next-hover-btn.png) no-repeat; }
+	#facilitiesAndDatasets #carouselContainer{ float: left; width: 970px; height: 90px; overflow: hidden; margin: 0px 10px; }
+		#facilitiesAndDatasets #carouselContainer ul{ list-style: none; }
+			#facilitiesAndDatasets #carouselContainer ul li{ float: left; line-height: 90px; margin: 0px 10px 0px 0px; }
+				#facilitiesAndDatasets #carouselContainer ul li img{ vertical-align: middle; }
+				
+/* Metadata Page
+*******************************************************************/
+section.left{ width: 975px; margin-right: 15px; }
+#metadataTitle{ background: url(../img/gradients/search-bg-gradient.png) repeat-x; height: 80px; padding: 20px 35px 30px 35px; width: 905px; }
+	#metadataTitle span{ color: #7A886C; font-size: 14px; display: block; }
+	#metadataTitle h1{ color: #fff; font-size: 30px; font-weight: normal; margin: 0px; padding: 0px; width: 745px; float: left; }
+	#metadataTitle ul{ background: url(../img/dividers/metadata-title-divider.png) no-repeat left; float: right; padding: 10px 0px 0px 20px; list-style: none; }
+	#metadataTitle ul li{ margin-bottom: 5px; }
+	#metadataTitle a{ 
+		line-height: 23px;
+		height: 23px;
+		width: 120px;
+		font-size: 12px;
+		text-align: center;	
+		display: block;
+		color: #fff;
+		text-decoration: none; 
+ }
+#metadataContent{ background: #ffffff; padding: 13px 35px 35px 35px; width: 905px; }
+	#metadataContent .left{ width: 430px; }
+	#metadataContent .right{ width: 430px; }
+#metadataContent .authorName{ margin-top: 22px; font-weight: bold; }
+#metadataContent ul.datesList{ list-style: none; padding: 0px; }
+	#metadataContent ul.datesList li{ float: left; width: 125px; margin: 0px; }
+	#metadataContent ul.datesList li.divider{ padding: 0px 10px; width: 1px; }
+	
+#metadataContent ul.moreInformation{ clear: both; padding: 20px 0px 0px 0px; list-style: none; }
+	#metadataContent ul.moreInformation > li{ margin: 0px 0px 8px 0px; padding: 0px; 
+		box-shadow: rgba(0,0,0,0.4) 0px 0px 3px; 
+		background: #efefef; /*fallback for non-CSS3 browsers*/
+		background: -webkit-gradient(linear, 0 0, 0 100%, from(#fefefe) to(#e8e8e8)); /*old webkit*/
+		background: -webkit-linear-gradient(#fefefe, #e8e8e8); /*new webkit*/
+		background: -moz-linear-gradient(#fefefe, #e8e8e8); /*gecko*/
+		background: -ms-linear-gradient(#fefefe, #e8e8e8); /*IE10*/
+		background: -o-linear-gradient(#fefefe, #e8e8e8); /*opera 11.10+*/
+		background: linear-gradient(#fefefe, #e8e8e8); /*future CSS3 browsers*/
+		-pie-background: linear-gradient(#fefefe, #e8e8e8); /*PIE*/
+		behavior: url(PIE.htc);
+	}
+		#metadataContent ul.moreInformation h2{ padding: 8px; margin: 0px; }
+			#metadataContent ul.moreInformation h2 a{ height: 30px; line-height: 30px; display: block;}
+				#metadataContent ul.moreInformation h2 a span.left{ width: 80%; display: block; }
+				#metadataContent ul.moreInformation h2 a span.right{ width: 10%; text-align: right; display: block; font-size: 12px; padding-right: 30px; }
+				#metadataContent ul.moreInformation h2 a:hover span.right{ text-decoration: underline; }
+		#metadataContent ul.moreInformation .content{ padding: 8px; overflow: hidden; }
+		#metadataContent ul.moreInformation .content .left{ width: 30%; }
+		
+.greenText{ color: #467000; }
+
+/* Shared between Search Results/Metadata Pages
+*******************************************************************/
+aside{ float: left; width: 250px; }
+		aside div.box, nav#facetNav div.box{ background-color: #fff; margin-bottom: 15px; box-shadow: rgba(0,0,0,0.4) 0px 0px 3px; behavior: url(PIE.htc); }
+			aside div.box h1, nav#facetNav div.box h1{ color: #fff; font-size: 16px; margin: 0px; padding: 15px; }
+			aside div.box div.content, #currentSearchBox div.content{ padding: 15px; }
+			
+/* Search Results - Facet Nav
+*******************************************************************/
+nav#facetNav{ margin-right: 15px; float: left; width: 215px; }
+	nav#facetNav h2{ font-size: 14px; font-weight: normal; margin: 0px 0px 0px 0px; padding: 0px 0px;  }
+	nav#facetNav ul{ list-style: none; padding: 0px; }
+		nav#facetNav ul li{ margin: 0px; overflow: hidden; }
+	
+	/* Current Search Box */
+	#currentSearchBox h2{ background: url(../img/dividers/facet-nav-divider.png) no-repeat bottom center  !important; color: #777; font-size: 12px !important; }
+	#currentSearchBox ul li{ background: url(../img/dividers/facet-nav-divider.png) no-repeat bottom center !important; padding: 5px 0px; }
+	#currentSearchBox span.searchTerm{ float: left; width: 170px; }
+	#currentSearchBox a.remove{ background: url(../img/buttons/remove-normal-btn.png) no-repeat; width: 12px; height: 12px; margin-top: 2px; float: right; display: block; }
+	#currentSearchBox a.remove:hover{ background: url(../img/buttons/remove-hover-btn.png) no-repeat; }
+	#currentSearchBox ul{ margin-bottom: 15px; }
+	#currentSearchBox ul li a{ display: block; }
+	#currentSearchBox div.buttons{  text-align: center; }
+	#currentSearchBox div.buttons a{ width: 80px; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px;  }
+	#currentSearchBox a#clearSearchBtn{ color: #000; }
+	
+	/* Refine Search Box */
+	#refineSearchBox > div.content > ul > li{
+		padding: 15px; 
+		border-bottom: 1px solid #dcdcdc;
+		background: #fff; /*fallback for non-CSS3 browsers*/
+		background: -webkit-gradient(linear, 0 0, 0 100%, from(#dcdcdc) to(#ffffff)); /*old webkit*/
+		background: -webkit-linear-gradient(#dcdcdc, #ffffff); /*new webkit*/
+		background: -moz-linear-gradient(#dcdcdc, #ffffff); /*gecko*/
+		background: -ms-linear-gradient(#dcdcdc, #ffffff); /*IE10*/
+		background: -o-linear-gradient(#dcdcdc, #ffffff); /*opera 11.10+*/
+		background: linear-gradient(#dcdcdc, #ffffff); /*future CSS3 browsers*/
+		-pie-background: linear-gradient(#dcdcdc, #ffffff); /*PIE*/
+		behavior: url(PIE.htc);
+	}
+		/* Advanced Boolean Search */
+		li#advancedSearch{ background: url(../img/dividers/facet-nav-divider.png) no-repeat bottom center    !important; border: 0px !important; }
+			#advancedSearch h2{ font-size: 12px !important; padding-bottom: 10px; margin-bottom: 10px; }
+		/* Search Box */
+		li#search{ background: none !important; overflow: hidden; }
+	
+		#refineSearchBox a.smallRoundedCorners{ padding: 3px; color: #fff; float: right; }
+		#refineSearchTextField{ float: left; display: block; width: 153px; height: 23px; margin-right: -2px; }
+		#refineSearchBtn{ background: url(../img/buttons/refine-search-normal-btn.png) no-repeat; float: left; display: block; width: 26px; height: 25px; }
+		#refineSearchBtn:hover{ background: url(../img/buttons/refine-search-hover-btn.png) no-repeat; }
+		.facetContainer{ height: 150px; overflow: auto; border: 1px solid #999; padding: 5px !important; margin-bottom: 10px; clear: both; }
+		.facetTree{ clear: both; }
+		.facetTree li, .facetContainer li{ margin-bottom: 5px !important; }
+		.facetTree input[type=checkbox], .facetContainer input[type=checkbox]{ float: left; display: block; }
+		.facetTree label, .facetContainer label{ display: block; margin-left: 18px; }
+		.facetTree label:hover, .facetContainer label:hover{ text-decoration: underline; }
+		.facetTree > li > ul > li{ margin: 5px 0px 0px 15px !important; }
+		.clearAll{ margin: 5px 0px 10px 0px; display: block; float: left; }
+		.helpBtn{ float: right; background: url(../img/buttons/help-normal-btn.png) no-repeat; height: 29px; width: 29px; display: block; }
+		.helpBtn:hover{ background: url(../img/buttons/help-hover-btn.png) no-repeat; }
+		
+section.right{ width: 1010px; }
+
+/* Search Results - Results Navigation/Pagination
+*******************************************************************/
+nav.resultsNav{
+	color: #434343; 
+	padding: 5px 15px;
+	margin-bottom: 10px; 
+	height: 35px;
+	line-height: 35px;
+	background: #fdfdfd; /*fallback for non-CSS3 browsers*/
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#fdfdfd) to(#e8e8e8)); /*old webkit*/
+   background: -webkit-linear-gradient(#fdfdfd, #e8e8e8); /*new webkit*/
+   background: -moz-linear-gradient(#fdfdfd, #e8e8e8); /*gecko*/
+   background: -ms-linear-gradient(#fdfdfd, #e8e8e8); /*IE10*/
+   background: -o-linear-gradient(#fdfdfd, #e8e8e8); /*opera 11.10+*/
+   background: linear-gradient(#fdfdfd, #e8e8e8); /*future CSS3 browsers*/
+   -pie-background: linear-gradient(#fdfdfd, #e8e8e8); /*PIE*/
+	behavior: url(PIE.htc);
+}
+	nav.resultsNav .result, nav.resultsNav .pagination div{ background: url(../img/dividers/results-divider.png) no-repeat right center; padding-right: 20px; margin-right: 20px; }
+	nav.resultsNav .sortBy{ background: url(../img/dividers/results-divider.png) no-repeat left center; padding-left: 20px; margin-left: 20px; }
+	nav.resultsNav .resultsPerPage{}
+	nav.resultsNav .pagination{ }
+		nav.resultsNav .pagination div, nav.resultsNav .pagination a{ float: left; }
+		nav.resultsNav .pagination a{ font-size: 15px; margin: 0px 5px; }
+		nav.resultsNav .pagination .currentPageNum{ color: #000; font-weight: bold; float: left; margin: 0px 5px; }
+		
+		nav.resultsNav .pagination a.firstBtn,
+		nav.resultsNav .pagination a.prevBtn,
+		nav.resultsNav .pagination a.nextBtn,
+		nav.resultsNav .pagination a.lastBtn{
+			white-space: nowrap; text-indent: -9999px; width: 21px; height: 21px; margin: 7px 5px 0px 5px;
+		}
+		nav.resultsNav .pagination a.firstBtn{ background: url(../img/buttons/pagination/results-first-normal-btn.png) no-repeat; margin-left: 0px; }
+		nav.resultsNav .pagination a:hover.firstBtn{ background: url(../img/buttons/pagination/results-first-hover-btn.png) no-repeat; }
+		nav.resultsNav .pagination .firstBtnDisabled{ background: url(../img/buttons/pagination/results-first-disabled-btn.png) no-repeat; }
+		nav.resultsNav .pagination a.prevBtn{ background: url(../img/buttons/pagination/results-prev-normal-btn.png) no-repeat;  }
+		nav.resultsNav .pagination a:hover.prevBtn{ background: url(../img/buttons/pagination/results-prev-hover-btn.png) no-repeat; }
+		nav.resultsNav .pagination .prevBtnDisabled{ background: url(../img/buttons/pagination/results-prev-disabled-btn.png) no-repeat; }
+		nav.resultsNav .pagination a.nextBtn{ background: url(../img/buttons/pagination/results-next-normal-btn.png) no-repeat;  }
+		nav.resultsNav .pagination a:hover.nextBtn{ background: url(../img/buttons/pagination/results-next-hover-btn.png) no-repeat; }
+		nav.resultsNav .pagination .nextBtnDisabled{ background: url(../img/buttons/pagination/results-next-disabled-btn.png) no-repeat; }
+		nav.resultsNav .pagination a.lastBtn{ background: url(../img/buttons/pagination/results-last-normal-btn.png) no-repeat; margin-right: 0px; }
+		nav.resultsNav .pagination a:hover.lastBtn{ background: url(../img/buttons/pagination/results-last-hover-btn.png) no-repeat; }
+		nav.resultsNav .pagination .lastBtnDisabled{ background: url(../img/buttons/pagination/results-last-disabled-btn.png) no-repeat; }
+
+/* Search Results - Map and Tools
+*******************************************************************/
+#ui-layout-facetmap{ margin: 0px 0px 10px 0px; }
+
+	/* Map tools */
+	#map-toolbar{ height: 67px; }
+	#map-toolbar ul{ list-style: none; padding: 0px; }
+	#map-toolbar li{ float: left; background: url(../img/dividers/map-tools-divider.png) no-repeat right center; padding: 8px 10px 0px 10px; text-align: center; margin: 0px; }
+	#map-toolbar li.heading{ font-size: 16px !important; color: #fff !important; margin: 17px 20px 0px 5px; }
+	#map-toolbar li:first-child, #map-toolbar li:last-child{ background: none; }
+	#map-toolbar input{ margin: 0px; padding: 0px; }
+	
+	#panBtn,
+	#selectRegionBtn,
+	#deleteRegionBtn,
+	.mapGoBtn,
+	#helpBtn{ width: 38px; height: 37px; display: block; }
+	
+	#map-toolbar #panBtn{ background: url(../img/buttons/map-tools/map-tools-pan-normal-btn.png) no-repeat; }
+	#map-toolbar #panBtn:hover{ background: url(../img/buttons/map-tools/map-tools-pan-hover-btn.png) no-repeat; }
+	
+	#map-toolbar #latLongBtn{ color: #fff; margin-top: 10px; display: block; }
+	#map-toolbar #regionPanel{ height: 37px; }
+	#map-toolbar #regionPanel a{ display: inline-block;}
+		#map-toolbar #selectRegionBtn{ background: url(../img/buttons/map-tools/map-tools-box-normal-btn.png) no-repeat; }
+		#map-toolbar #selectRegionBtn:hover{ background: url(../img/buttons/map-tools/map-tools-box-hover-btn.png) no-repeat; }
+		#map-toolbar #deleteRegionBtn{ background: url(../img/buttons/map-tools/map-tools-delete-normal-btn.png) no-repeat; }
+		#map-toolbar #deleteRegionBtn:hover{ background: url(../img/buttons/map-tools/map-tools-delete-hover-btn.png) no-repeat; }
+		.mapGoBtn{ background: url(../img/buttons/map-tools/map-tools-go-normal-btn.png) no-repeat; }
+		.mapGoBtn:hover{ background: url(../img/buttons/map-tools/map-tools-go-hover-btn.png) no-repeat; }
+		
+	#map-toolbar input#geocode{
+		margin: 7px 0px 0px 0px;
+		width: 120px; 
+		float: left; 
+	}
+
+	#map-toolbar #searchGeocodeBtn{ background: url(../img/buttons/map-tools/map-tools-search-normal-btn.png) no-repeat; width: 32px; height: 31px; float: left; margin: 3px 0px 0px 0px; }
+	#map-toolbar #searchGeocodeBtn:hover{ background: url(../img/buttons/map-tools/map-tools-search-hover-btn.png) no-repeat; }
+
+	#map-toolbar #mapViewSelector{
+		margin: 3px 0px 0px 0px;
+		height: 30px;
+		line-height: 30px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		behavior: url(PIE.htc);
+		background: #2B2B2B; /*fallback for non-CSS3 browsers*/
+		background: -webkit-gradient(linear, 0 0, 0 100%, from(#646464) to(#2B2B2B)); /*old webkit*/
+		background: -webkit-linear-gradient(#646464, #2B2B2B); /*new webkit*/
+		background: -moz-linear-gradient(#646464, #2B2B2B); /*gecko*/
+		background: -ms-linear-gradient(#646464, #2B2B2B); /*IE10*/
+		background: -o-linear-gradient(#646464, #2B2B2B); /*opera 11.10+*/
+		background: linear-gradient(#646464, #2B2B2B); /*future CSS3 browsers*/
+		-pie-background: linear-gradient(#646464, #2B2B2B); /*PIE*/
+		behavior: url(PIE.htc);
+	}
+		#map-toolbar #mapViewSelector a{ color: #fff; padding: 5px; height: 20px; display: block; float: left; line-height: 20px; }
+		#map-toolbar #mapViewSelector a.current,
+		#map-toolbar #mapViewSelector a:hover{ 
+			text-decoration: none;
+			color: #000; 
+			background: #8A8A8A; /*fallback for non-CSS3 browsers*/
+			background: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff) to(#8A8A8A)); /*old webkit*/
+			background: -webkit-linear-gradient(#ffffff, #8A8A8A); /*new webkit*/
+			background: -moz-linear-gradient(#ffffff, #8A8A8A); /*gecko*/
+			background: -ms-linear-gradient(#ffffff, #8A8A8A); /*IE10*/
+			background: -o-linear-gradient(#ffffff, #8A8A8A); /*opera 11.10+*/
+			background: linear-gradient(#ffffff, #8A8A8A); /*future CSS3 browsers*/
+			-pie-background: linear-gradient(#ffffff, #8A8A8A); /*PIE*/
+			behavior: url(PIE.htc);
+		}
+		#map-toolbar #mapViewSelector #gmap{
+			-webkit-border-radius: 5px 0px 0px 5px;
+			-moz-border-radius: 5px 0px 0px 5px;
+			border-radius: 5px 0px 0px 5px;
+			behavior: url(PIE.htc);
+		}
+		#map-toolbar #mapViewSelector #gphy{
+			-webkit-border-radius: 0px 5px 5px 0px;
+			-moz-border-radius: 0px 5px 5px 0px;
+			border-radius: 0px 5px 5px 0px;
+			behavior: url(PIE.htc);
+		}
+	#map-toolbar #helpBtn{ background: url(../img/buttons/map-tools/map-tools-help-normal-btn.png) no-repeat; }
+	#map-toolbar #helpBtn:hover{ background: url(../img/buttons/map-tools/map-tools-help-hover-btn.png) no-repeat; }
+	#map-toolbar a.hide{ margin: 2px 12px 0px 0px; padding: 0px 30px 0px 0px; color: #fff;  float: right; }
+	
+	/* Coords overlay */
+	#coordsOverlay{ position: absolute; background: url(../img/gradients/search-bg-gradient.png) repeat-x; border: 1px solid #000; border-top: 0px; padding: 10px; margin-left: 130px; display: inline; width: 210px; text-align: center;}
+		#coordsOverlay div input{ width: 50px; margin: 0px; }
+		#coordsOverlay div#spatialNorth{ margin: 0px 0px 0px 5px; }
+		#coordsOverlay div#spatialWest{ float: left; }
+		#coordsOverlay div#spatialEast{ float: right; }
+		#coordsOverlay div#spatialSouth{ margin: 0px 0px 0px 5px; clear: both; }
+		#coordsOverlay label{ color: #fff; font-weight: bold; }
+		#coordsOverlay a.mapGoBtn{ float: right; }
+	
+	/* Results overlay */
+	#resultsOverlay{ position: absolute; margin: 100px 0px 0px 450px; background-color: #fff; width: 360px; height: 210px; padding: 18px; z-index: 1000; }
+		#resultsOverlay h1{ font-size: 16px; font-weight: normal; background: url(../img/dividers/results-overlay-divider.png) no-repeat bottom center; padding-bottom: 5px; }
+		#resultsOverlay ul{ overflow: auto; height: 180px; list-style: none; padding: 0px; }
+		#resultsOverlay ul li{ clear: both; margin: 0px; background: url(../img/dividers/results-overlay-divider.png) no-repeat bottom center; padding-bottom: 5px; overflow: hidden; }
+		#resultsOverlay .pinTxt{ padding: 10px 0px; display: block; width: 260px; float: left; }
+		#closeResultsOverlayBtn{ position: absolute; top: 15px; right: 15px; display: block; width: 21px; height: 21px; background: url(../img/buttons/results-overlay-close-normal-btn.png) no-repeat; }
+		#closeResultsOverlayBtn:hover{ background: url(../img/buttons/results-overlay-close-hover-btn.png) no-repeat; }
+	
+	#spatialMap{ position: relative; }
+		#spatialMap img{ display: block; }
+	#featureName{}
+
+/* Search Results - Results
+*******************************************************************/
+table#searchResults{ 
+	margin: 10px 0px; 
+	*border-collapse: collapse;
+	border-spacing: 0px;
+}
+
+table#searchResults thead th{ font-weight: normal; background: url(../img/dividers/table-th-divider.png) no-repeat right center; padding: 10px 10px; }	
+table#searchResults thead th:first-child {
+	-moz-border-radius: 6px 0 0 0;
+	-webkit-border-radius: 6px 0 0 0;
+	border-radius: 6px 0 0 0;
+}
+
+table#searchResults thead th:last-child {
+	-moz-border-radius: 0 6px 0 0;
+	-webkit-border-radius: 0 6px 0 0;
+	border-radius: 0 6px 0 0;
+}
+
+table#searchResults thead th:only-child{
+	-moz-border-radius: 6px 6px 0 0;
+	-webkit-border-radius: 6px 6px 0 0;
+	border-radius: 6px 6px 0 0;
+}
+
+table#searchResults tbody td{ 
+	padding: 10px;
+	background-color: #fff;
+	border-bottom: 1px solid #ddd;
+}
+
+table#searchResults tbody td:last-child {
+	background: #fff url(../img/dividers/search-results-divider.png) no-repeat left center; 
+}
+
+table#searchResults th.mapRefTH{ width: 50px; }
+table#searchResults th.titleTH{ text-align: left; }
+table#searchResults th.datePublishedTH{ width: 140px; text-align: left; }
+
+table#searchResults tbody td h2{ font-size: 14px; font-weight: normal; margin: 0px; margin: 15px 0px; }
+table#searchResults p.datePublished{ margin: 15px 0px; float: left; width: 100px; }
+table#searchResults a.smallRoundedCorners{ clear: both; display: block; width: 105px; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px; margin-bottom: 5px; }
+table#searchResults a.show, table#searchResults a.hide{ margin-top: 7px; }
+
+
+/* Search Results - Pins
+*******************************************************************/
+a.pin{ background: url(../img/icons/pin-single-normal-bg.png) no-repeat; width: 29px; height: 35px; display: block; color: #fff; margin: 10px 0px 0px 15px; padding: 7px 0px 0px 11px; float: left; font-weight: bold; font-size: 15px; }
+a.pin:hover{ background: url(../img/icons/pin-single-hover-bg.png) no-repeat; text-decoration: none; }
+a.mapPinSingle{ background: url(../img/icons/map-pin-single-normal-bg.png) no-repeat; width: 29px; height: 35px; display: block; color: #fff; margin: 10px 0px 0px 15px; padding: 7px 0px 0px 11px; float: left; font-weight: bold; font-size: 15px; }
+a.mapPinSingle:hover{ background: url(../img/icons/map-pin-single-hover-bg.png) no-repeat; text-decoration: none; }
+a.mapPinMultiple{ background: url(../img/icons/map-pin-multiple-normal-bg.png) no-repeat; width: 40px; height: 42px; display: block;  margin: 10px 0px 0px 15px; position: absolute; }
+a.mapPinMultiple:hover{ background: url(../img/icons/map-pin-multiple-hover-bg.png) no-repeat; }
+
+/* Footer
+*******************************************************************/
+footer{ margin: 0px 40px; display: block; height: 30px; padding: 40px 0px; clear: both; }
+	footer .left{ margin-top: -15px; width: 236px; height: 50px; display: block; }
+	footer .center{ text-align: center; float: left; width: 500px; margin-left: 80px; }
+	footer .right{ text-align: right; }
+	
+/* Gradients and Rounded Corners
+*******************************************************************/
+.orangeGradient{ 
+	background: #cb8643; /*fallback for non-CSS3 browsers*/
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#cb8643) to(#bf6000)); /*old webkit*/
+	background: -webkit-linear-gradient(#cb8643, #bf6000); /*new webkit*/
+	background: -moz-linear-gradient(#cb8643, #bf6000); /*gecko*/
+	background: -ms-linear-gradient(#cb8643, #bf6000); /*IE10*/
+	background: -o-linear-gradient(#cb8643, #bf6000); /*opera 11.10+*/
+	background: linear-gradient(#cb8643, #bf6000); /*future CSS3 browsers*/
+	-pie-background: linear-gradient(#cb8643, #bf6000); /*PIE*/
+	behavior: url(PIE.htc);
+}
+a.orangeGradient:hover{
+	text-decoration: none;
+	background: #bf6000 !important;
+}
+.greenGradient{ 
+	background: #70a53e; /*fallback for non-CSS3 browsers*/
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#70a53e) to(#477000)); /*old webkit*/
+	background: -webkit-linear-gradient(#70a53e, #477000); /*new webkit*/
+	background: -moz-linear-gradient(#70a53e, #477000); /*gecko*/
+	background: -ms-linear-gradient(#70a53e, #477000); /*IE10*/
+	background: -o-linear-gradient(#70a53e, #477000); /*opera 11.10+*/
+	background: linear-gradient(#70a53e, #477000); /*future CSS3 browsers*/
+	-pie-background: linear-gradient(#70a53e, #477000); /*PIE*/
+	behavior: url(PIE.htc);
+}
+a.greenGradient:hover{ 
+	text-decoration: none;
+	background: #477000 !important;
+}
+.greyGradient{ 
+	background: #949398; /*fallback for non-CSS3 browsers*/
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#cccacb) to(#949398)); /*old webkit*/
+	background: -webkit-linear-gradient(#cccacb, #949398); /*new webkit*/
+	background: -moz-linear-gradient(#cccacb, #949398); /*gecko*/
+	background: -ms-linear-gradient(#cccacb, #949398); /*IE10*/
+	background: -o-linear-gradient(#cccacb, #949398); /*opera 11.10+*/
+	background: linear-gradient(#cccacb, #949398); /*future CSS3 browsers*/
+	-pie-background: linear-gradient(#cccacb, #949398); /*PIE*/
+	behavior: url(PIE.htc);
+}
+a.greyGradient:hover{ 
+	text-decoration: none;
+	background: #6f716e; /*fallback for non-CSS3 browsers*/
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#bababa) to(#6f716e)); /*old webkit*/
+   background: -webkit-linear-gradient(#bababa, #6f716e); /*new webkit*/
+   background: -moz-linear-gradient(#bababa, #6f716e); /*gecko*/
+   background: -ms-linear-gradient(#bababa, #6f716e); /*IE10*/
+   background: -o-linear-gradient(#bababa, #6f716e); /*opera 11.10+*/
+   background: linear-gradient(#bababa, #6f716e); /*future CSS3 browsers*/
+   -pie-background: linear-gradient(#bababa, #6f716e); /*PIE*/
+	behavior: url(PIE.htc);
+}
+.blackGradient{
+	background-color: #171916 !important; /*fallback for non-CSS3 browsers*/
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#535353) to(#171916)) !important; /*old webkit*/
+	background: -webkit-linear-gradient(#535353, #171916) !important; /*new webkit*/
+	background: -moz-linear-gradient(#535353, #171916) !important; /*gecko*/
+	background: -ms-linear-gradient(#535353, #171916) !important; /*IE10*/
+	background: -o-linear-gradient(#535353, #171916) !important; /*opera 11.10+*/
+	background: linear-gradient(#535353, #171916) !important; /*future CSS3 browsers*/
+	-pie-background: linear-gradient(#535353, #171916) !important; /*PIE*/
+	behavior: url(PIE.htc);
+	color: #B7B7B7;
+}
+.roundedCorners{
+	-webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+	behavior: url(PIE.htc);
+}
+.smallRoundedCorners{
+	-webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+	behavior: url(PIE.htc);
+}
+/* Disabled Buttons */
+a.disabled:hover{ 
+	cursor: default; 
+	background: #949398; /*fallback for non-CSS3 browsers*/
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#cccacb) to(#949398)); /*old webkit*/
+	background: -webkit-linear-gradient(#cccacb, #949398); /*new webkit*/
+	background: -moz-linear-gradient(#cccacb, #949398); /*gecko*/
+	background: -ms-linear-gradient(#cccacb, #949398); /*IE10*/
+	background: -o-linear-gradient(#cccacb, #949398); /*opera 11.10+*/
+	background: linear-gradient(#cccacb, #949398); /*future CSS3 browsers*/
+	-pie-background: linear-gradient(#cccacb, #949398); /*PIE*/
+	behavior: url(PIE.htc);
+}
+
+/* Show / Hide Elements
+*******************************************************************/
+a.show, a.hide{ height: 30px; line-height: 30px; display: block; cursor: pointer; }
+a.show{ background: url(../img/buttons/show-normal-btn.png) no-repeat right center; }
+a.show:hover{ background: url(../img/buttons/show-hover-btn.png) no-repeat right center; }
+
+a.hide{ background: url(../img/buttons/hide-normal-btn.png) no-repeat right center; }
+a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right center; }
+
+.expand{ display: block; }
+.collapse{ display: none; }
