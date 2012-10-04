@@ -1248,20 +1248,20 @@ $(function() {
         });
         
         autocomplete('#search-box');
-        
+     /*   
         $('.fl').live('click', function(event){
             var facname=$(this).attr("id");
-            $('.flSelect').attr('class','fl');
+            //$('.flSelect').attr('class','fl');
 
-            $(this).attr('class','flSelect');
-            handleRandom(facname);    
+            //$(this).attr('class','flSelect');
+            //handleRandom(facname);    
 
          }); 
-    
+   */ 
    $('#map-search-button').live('click',function(){
        changeHashTo("search#!/mapSearch=1");
    });
-       handleRandom();
+       handleRandom('tddp');
        handleRollover();
         sizeHomeContent();
     }
@@ -1736,25 +1736,24 @@ var t=removeBracket(tmp)
      mapView.addVectortoDataLayer(coverageSelector,false);
 	}
    
-    function handleRandom()
+    function handleRandom(facname)
     {
           $.ajax({
         type:"POST",
-        //url:base_url+"home/getrdmrecord?fac="+facname,
-         url:base_url+"home/getrdmrecord",
-                    
+        url:base_url+"home/getrdmrecord?fac="+facname,
+        // url:base_url+"home/getrdmrecord",
                     
         success:function(msg){
           $("#random").html(msg);
           
          // if(facname=="tddp")
-         // {
-          // document.getElementById('tddp').attr('class','flSelect');
+          //{
+            //document.getElementById('tddp').attr('class','flSelect');
 
-         //   $(this).attr('class','flSelect');
+            //$(this).attr('class','flSelect');
             
-           //       handleRollover();
-         // }
+                  //handleRollover();
+          //}
 
         },
         error:function(msg){
@@ -1812,10 +1811,11 @@ function setCookie(c_name,value,exdays)
 				//$('#display-here a').tipsy({live:true, gravity:'w'});
 			});
 			$("#items img").click(function(){
-
-                                // alert($(this).attr("id"));                                
-                                window.open($(this).attr("id"));
-                                window.focus();
+                                var facname=$(this).attr("id");
+                                 //alert($(this).attr("id"));                                
+                                handleRandom(facname);
+                                //window.open($(this).attr("id"));
+                                //window.focus();
 			});
 
 			$("#display-here").mouseenter(function() {
