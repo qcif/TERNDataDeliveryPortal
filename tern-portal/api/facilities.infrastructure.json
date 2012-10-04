@@ -3,22 +3,24 @@
             {
             "name" : "Long Term Ecological Plot Network",
             "geo_name" : "nr:vw_ltern",
-             "geo_url": "http://demo:8080/geoserver/wms"
-
+            "geo_url": "http://demo:8080/geoserver/wms",
+            "marker_url": "/img/map_marker_green_sml.png"
             },
             {
            "name" : "Supersites", 
             "geo_name" : "nr:supersites",
-              "geo_url": "http://demo:8080/geoserver/wms"
-        
+            "geo_url": "http://demo:8080/geoserver/wms",
+            "marker_url": "/img/map_marker_red_sml.png"
             }, 
             {
             "name" : "OzFlux",
             "geo_name" : "nr:ozflux",
-            "geo_url": "http://demo:8080/geoserver/wms"
-
+            "geo_url": "http://demo:8080/geoserver/wms",
+            "marker_url": "/img/map_marker_red_sml.png"
             }
-        ]
+        ],
+        "geo_url": "http://demo:8080/geoserver/wms",
+        "help_url" : ""
         
-    }
+ }
 

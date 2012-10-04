@@ -330,7 +330,7 @@ MapWidget.prototype.addDrawLayer = function(options){
                 afterDraw(e,WGS84, WGS84_google_mercator);
                 
             }
-        }),
+        })
         /*poly: new OpenLayers.Control.DrawFeature(polyLayer,
                         OpenLayers.Handler.Polygon)*/
                         
@@ -755,7 +755,8 @@ MapWidget.prototype.toggleControl = function(element) {
                           $("#drag").attr("class","olControlDragFeatureItemActive");
                     }
                     else{
-                        control.activate();                  
+                        control.activate();  
+                        control.map.raiseLayer(control.layer,control.map.layers.length-1);
                         element.setAttribute("class","olControlDrawFeature" + classNameKey + "ItemActive");
                         $("#drag").attr("class","olControlDragFeatureItemInactive");
                     }
@@ -957,7 +958,7 @@ MapWidget.prototype.onFeatureSelect = function(feature){
              vectors.push(coverage);
         });
         this.coverageLayer.addFeatures(vectors);
-        //mapWidgetObj.map.raiseLayer(this.coverageLayer,this.map.layers.length-1);
+        mapWidgetObj.map.raiseLayer(this.coverageLayer,this.map.layers.length-1);
     }else{
         var html = '<h2 class="h2color">Multiple matches: </h2>';
         html = html  + "<ul>";
