@@ -388,6 +388,18 @@ nav.resultsNav{
 	#map-toolbar #helpBtn:hover{ background: url(../img/buttons/map-tools/map-tools-help-hover-btn.png) no-repeat; }
 	#map-toolbar a.hide{ margin: 2px 12px 0px 0px; padding: 0px 30px 0px 0px; color: #fff;  float: right; }
 	
+        
+        #spatialmap {
+            display: block;
+            height: 410px;
+            width: 1010px;
+        }
+        div.olLayerGoogleCopyright,
+        div.olLayerGooglePoweredBy
+        {
+        display: none !important;
+        }
+
 	/* Coords overlay */
 	#coordsOverlay{ position: absolute; background: url(../img/gradients/search-bg-gradient.png) repeat-x; border: 1px solid #000; border-top: 0px; padding: 10px; margin-left: 130px; display: inline; width: 210px; text-align: center;}
 		#coordsOverlay div input{ width: 50px; margin: 0px; }
@@ -404,8 +416,8 @@ nav.resultsNav{
 		#resultsOverlay ul{ overflow: auto; height: 180px; list-style: none; padding: 0px; }
 		#resultsOverlay ul li{ clear: both; margin: 0px; background: url(../img/dividers/results-overlay-divider.png) no-repeat bottom center; padding-bottom: 5px; overflow: hidden; }
 		#resultsOverlay .pinTxt{ padding: 10px 0px; display: block; width: 260px; float: left; }
-		#closeResultsOverlayBtn{ position: absolute; top: 15px; right: 15px; display: block; width: 21px; height: 21px; background: url(../img/buttons/results-overlay-close-normal-btn.png) no-repeat; }
-		#closeResultsOverlayBtn:hover{ background: url(../img/buttons/results-overlay-close-hover-btn.png) no-repeat; }
+		#closeResultsOverlayBtn, .olPopupCloseBox{ position: absolute; top: 15px; right: 15px !important; display: block; width: 21px !important; height: 21px !important; background: url(../img/buttons/results-overlay-close-normal-btn.png) no-repeat !important; }
+		#closeResultsOverlayBtn:hover, .olPopupCloseBox:hover{ background: url(../img/buttons/results-overlay-close-hover-btn.png) no-repeat; }
 	
 	#spatialMap{ position: relative; }
 		#spatialMap img{ display: block; }
