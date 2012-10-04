@@ -509,18 +509,18 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         return $json;
     }
     /* Get Random Records $num = number of records to get*/
-    function getRandomRecords($num){
-/*
+    function getRandomRecords($num,$fac){
+
         if ($fac=="tddp")
         {
             $fac="*";
             
          }
-*/
+
          $fields = array(
 
-            //'q' => 'class:collection AND data_source_key:'.$fac, 'version' => '2.2', 'start' => '0', 'rows' => $num, 'indent' => 'on', 'wt' => 'json',
-             'q' => 'class:collection AND status:PUBLISHED', 'version' => '2.2', 'start' => '0', 'rows' => $num, 'indent' => 'on', 'wt' => 'json',
+            'q' => 'class:collection AND data_source_key:'.$fac, 'version' => '2.2', 'start' => '0', 'rows' => $num, 'indent' => 'on', 'wt' => 'json',
+            // 'q' => 'class:collection AND status:PUBLISHED', 'version' => '2.2', 'start' => '0', 'rows' => $num, 'indent' => 'on', 'wt' => 'json',
             //'fl' => 'key,display_title,list_title,description_value,description_type', 'sort' => 'timestamp desc,random_' . mt_rand(1,10000) . ' desc'
              'fl' => 'key,display_title,list_title,description_value,description_type,timestamp,url_slug', 'sort' => 'timestamp desc'
         );

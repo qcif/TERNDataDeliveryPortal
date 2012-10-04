@@ -600,38 +600,8 @@ div.olLayerGooglePoweredBy
 #capabilities_list{ padding-left: 10px; padding-top: 10px; overflow:hidden}
 
 .flrow { margin-bottom: 10px;   padding: 5px;  border:5px solid #ccc;}
-.fl { 
-    width: 250px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    color:#376500;
-    vertical-align:middle;
-    height: 50px;
-    border:5px solid #ccc;  
-    margin-bottom: 10px;
-    padding: 5px;
-}
 
-.fl li {
-    border-bottom:5px solid #ccc;
-    padding:50px;
-    margin:0 10px 15px 0;
-}
 
-.flSelect {
-    width: 250px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    color:#376500;
-    vertical-align:middle;
-    height: 50px;
-    border:5px solid #376500;  
-    margin-bottom: 10px;
-    padding: 5px;
-  
-}
 .random-record-list {padding:5px;
      margin:2px;
 

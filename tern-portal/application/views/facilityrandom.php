@@ -16,8 +16,7 @@ $half = round($count / 2);
         {
                 $key = $d->{'key'};
                 $keys[] = $key;
-
-                
+             
                 if($d->{'description_value'}!=null && $d->{'description_type'}!=null)
                 {
                     foreach($d->{'description_type'} as $index=>$type)
@@ -82,30 +81,16 @@ function displayDesc($facid,$partners)
 
 <div id="fac-content">
         
-        <?php
+        <?php 
                 if ($fackey!==tddp)
-                {
-                    echo '<div id="fac-random-rec" class="shadow-and-corner">';
-                    echo '<h2 class="sample-rec-title">Top 10 Latest harvested records</h2>';
-                    echo '<ul>';
-                    for($i=0;$i<$half; $i++)
-                    {
-                        printRecord($recordsArr[$i]);
-                    }
+                {                    
+                    echo '<div class="facility-desc" style="float:left" >';
+                        displayDesc($fackey,$partners);
+                    echo '</div>';       
 
-                    for($i=$half;$i<$count; $i++)
-                    {
-                        printRecord($recordsArr[$i]);
-                    }
-
-                   // echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all records</b>');
-                    echo '</ul>';
-                    echo '</div>';
-                    
-                    //echo '<div class="facility-desc">';
 
                 }else
-                {
+               {
                    // echo '<div class="facility-desc-tddp">';
 
                     /*
@@ -132,14 +117,31 @@ function displayDesc($facid,$partners)
                     echo  '</div>';
                     */
 
+
                 }
                 
+                    echo '<div id="fac-random-rec" class="shadow-and-corner" style="float:right">';
+                    echo '<h2 class="sample-rec-title">Recently Released</h2>';
+                    echo '<ul>';
+                   
+                    for($i=0;$i<$half; $i++)
+                    {
+                        printRecord($recordsArr[$i]);
+                    }
 
+                    for($i=$half;$i<$count; $i++)
+                    {
+                        printRecord($recordsArr[$i]);
+                    }
+
+                   // echo anchor('search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/adv=1','<b>View all records</b>');
+                    echo '</ul>';
+                    echo '</div>';  
                   //  echo '<h2 class="fac-title">'.$partners[$fackey]['displayTitle'].'</h2>'; //commented 8.1
-               // echo '<h2 class="fac-title">'.$partners[$fackey]['display_title'].'</h2>';   //added 8.1
+                  //  echo '<h2 class="fac-title">'.$partners[$fackey]['display_title'].'</h2>';   //added 8.1
 
-                   // displayDesc($fackey,$partners);
-                   // echo '</div>';
+
+                    //echo '</div>';
         ?>
 
 </div>
