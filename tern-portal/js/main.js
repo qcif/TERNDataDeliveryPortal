@@ -1148,8 +1148,9 @@ $(function() {
     * Execute the functions only available in home page
     */
     function initHomePage(){
-        setupOuterLayout();
+        //setupOuterLayout();
 
+/*
         $('.hp-icons img').hover(function(){
             id = $(this).attr('id');
 
@@ -1159,6 +1160,7 @@ $(function() {
             $('.hp-icons img').removeClass('active');
             $(this).addClass('active');
         });
+*/        
         $('#clearSearch').hide();
 
         //background text
@@ -1185,7 +1187,7 @@ $(function() {
          /*
         * Big search button
         */
-        $('#search-button').click(function(){
+        $('#searchBtn').click(function(){
             page = 1;
             search_term = $('#search-box').val();
 
@@ -1258,9 +1260,10 @@ $(function() {
 
          }); 
    */ 
-   $('#map-search-button').live('click',function(){
+   $('#mapSearchBtn').live('click',function(){
        changeHashTo("search#!/mapSearch=1");
    });
+
        handleRandom('tddp');
        handleRollover();
         sizeHomeContent();
@@ -1738,13 +1741,14 @@ var t=removeBracket(tmp)
    
     function handleRandom(facname)
     {
+        //alert("dsfd");
           $.ajax({
         type:"POST",
         url:base_url+"home/getrdmrecord?fac="+facname,
         // url:base_url+"home/getrdmrecord",
                     
         success:function(msg){
-          $("#random").html(msg);
+          $("#homeContent").html(msg);
           
          // if(facname=="tddp")
           //{
@@ -1795,6 +1799,16 @@ function setCookie(c_name,value,exdays)
     
     function handleRollover()
     {
+
+         $("#carousel").simplecarousel({
+        next: $('.next'),
+        prev: $('.prev'),
+        slidespeed: 700,
+        auto: 4000 
+
+    });
+
+      /*
       //$("#scrollable").scrollable({circular: true}).autoscroll(2000);
       $("#scrollable").scrollable({circular: true});
 			var api = $("#scrollable").data("scrollable");
@@ -1823,6 +1837,7 @@ function setCookie(c_name,value,exdays)
 		}).mouseleave(function() {
 		  api.play();
 		});
+      */
     }
 
 

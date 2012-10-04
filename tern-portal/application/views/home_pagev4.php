@@ -20,7 +20,9 @@
  *
  * */
 ?>
+
 <?php
+
 $this->load->view('tpl/header');
 $home = 1;
 ?>
@@ -28,9 +30,11 @@ $home = 1;
 
 <?php $this->load->view('tpl/mid'); ?>
 
-<div id="container" class="ui-corner-all">
+<div id="homeContent">
  <div id="page_name" class="hide">Home</div>
-   
+
+
+<!--   
     <div id="ui-layout-center" class="ui-layout-center ">
         <div id="dialog-confirm" title="Confirm search" class="hide">No search term entered. Do you want to see ALL records?</div>
         
@@ -63,41 +67,34 @@ $home = 1;
                       </div>  
                     
     </div>
-  
-    <!--    
-    <div id="capabilities_list" class="ui-layout-west">  
+ --> 
+    </div>
+<div id="facilitiesAndDatasets">
+    <h1>Browse<br>TERN facilities & datasets</h1>
+    <a class="prev"></a>
+    <div id="carouselContainer">
+ 
+ 
+          <ul id="carousel">
+            <?php 
+                if($json && $json->{'response'}->{'docs'}){	
+                    foreach($json->{'response'}->{'docs'} as $d)
+                    {
+                        if($d->{'key'}!="tddp")
+                        {
+                           echo '<li>';
+                            echo          '<img alt="'.$d->{'key'}.'" src="'.$d->{'description_value'}[0].'" id="'.$d->{'key'}.'"/>';
+                            echo '</li>';
+                        }
+                    }	
+            } 
+            ?>
+          </ul>
 
-          <?php
-          /*
-          	echo '<h2 id="fac-list-title">Search specific ecosystem capabilities</h2>';
-                $facilities_list = array("tddp","auscover","ozflux","ecoinformatics","supersites");
-                if($json && $json->{'response'}->{'docs'}){		
-                    foreach($json->{'response'}->{'docs'} as $d){		
-                        if(in_array($d->{'key'}, $facilities_list)){	
-                            if($d->{'key'}=='tddp')
-                            {
-                                echo '<div id ="'. $d->{'key'}.'" class="flSelect">';
-                            }
-                            else
-                            {
-                                echo '<div id ="'. $d->{'key'}.'" class="fl">';
-                            }
-                            echo '<div class="img-list-text">'.$d->{'alt_name'}.'</div>';
-                            echo '<div class="img-list-logo"><input type="image"  alt="'. $d->{'key'} .'" src="'. $d->{'description_value'}[0].'" height="50" name="'. $d->{'key'}.'"></div>';
-
-                            echo '</div>';
-
-                            }		
-                    }		
-                }		
-                
-               */ 
-           ?>  
 
     </div>
--->    
-    </div>
-
+    <a class="next"></a>
+</div>
 
 <?php $this->load->view('tpl/footer'); ?>
 

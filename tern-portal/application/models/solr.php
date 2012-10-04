@@ -424,6 +424,14 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         return $json;
     }
     
+     public function getTopics()
+    {
+        // get Partner File
+        $topics = json_decode($this->load->file(APPPATH . 'config/topics.php', TRUE));
+
+        return $topics;
+    }
+    
     function seeAlso($key, $type)
     {
         $result = null;

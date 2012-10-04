@@ -1,23 +1,21 @@
-        <div id="sponsor" class="no_print">
-            <div class="new-footer">
-             <div id="australian_government"></div>
-
-            <div id="info">TERN is supported by the Australian Government through the National<br/>Collaborative Research Infrastructure Strategy and the Super Science Initiative.</div>
-           <div id="terms">
-                <?php echo anchor('http://tern.org.au/tern_data_portal_terms_of_use-pg21208.html', 'Terms of use','target="_blank"'); ?>
-            </div>
-            </div>
-            
-        </div>
-
-
-        <div id="footer" class="no_print">
-            <div id="footer_padding">
-                <div id="copyright">&copy; 2012 Terrestrial Ecosystem Research Network</div>
-
-            </div>
-        </div>
-        
+<footer>   
+     <a class="left" href="#">
+        <img width="236" height="50" alt="Australian Government - Department of Industry, Innovation, Science, Research and Tertiary Education" src="img/logos/logo-diisrte.png">
+    </a>
+    <p class="center">
+        <small>TERN is supported by the Australian Government through the National Collaborative Research Infrastructure Strategy and the Super Science Initiative.</small>
+    </p>
+    <p class="right">
+        <small>
+            Copyright © TERN 2012. All Rights Reserved.
+                <br>
+             <?php echo anchor('http://tern.org.au/tern_data_portal_terms_of_use-pg21208.html', 'Terms of use','target="_blank"'); ?>
+                |
+            <?php echo anchor('contact', 'Contact', 'target="_blank"'); ?>
+        </small>
+        </p>
+</footer>  
+  
         	<script type="text/javascript">
   		var base_url = "<?php echo base_url(); ?>";
   		var secure_base_url = "<?php echo getHTTPs(base_url());?>";
@@ -40,12 +38,15 @@
         <script type="text/javascript" src="<?php echo base_url();?>js/Layout.js"></script> <!-- WIDGET MAP -->
         <?php if($widget_temporal) { ?>
         <script type="text/javascript" src="<?php echo base_url();?>js/TemporalWidget.js"></script> <!-- WIDGET TEMPORAL-->
+        <script type="text/javascript" src="<?php echo base_url();?>js/modernizr.custom.86191.js"></script> <!-- WIDGET TEMPORAL-->
+                
         <?php } ?>
         <?php if($widget_map) { ?>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false"></script>
         <script  type="text/javascript" src="http://openlayers.org/api/2.11/OpenLayers.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/MapWidget.js"></script> <!-- WIDGET MAP -->
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.treeview.js"></script> <!-- jQuery treeview -->        
+        <script type="text/javascript" src="<?php echo base_url();?>js/simple.carousel.js"></script> <!-- jQuery treeview -->    
         <?php } ?>
          <?php if ($this->config->item('GA_enabled')): ?>
 
@@ -66,5 +67,6 @@
         <?php endif; ?>
 
         <script type="text/javascript" src="<?php echo base_url();?>js/main.js"></script> <!-- Main Script call -->
+        </div>
     </body>
 </html>

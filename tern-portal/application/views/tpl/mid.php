@@ -31,8 +31,29 @@ $Revision: 1 $
               
 		?>
                 <?php if($home==1){ ?>
-		<div id="mid" class="clearfix">
+
+                    <div id="searchFeatures">
+                        <span id="slogan">Delivering open access to Australia's Terrestrial Ecosystem data</span>
+                        <input class="rounded" id ="search-box" title="Title,name or keywords" type="text" name="query" placeholder="Title,name or keywords" >
+                        <a id="searchBtn" class="orangeGradient roundedCorners">
+                            <img alt="Search" src="img/icons/icon-search.png">
+                            Search
+                        </a>
+                        <img id="orImg" alt="Or" src="img/home/or.png">        
+                        <div id="mapBasedSearchTxt">
+                            <span id="mapBasedSearchTitle">Map Based Search</span>
+                            <span id="mapBasedSearchDescription">Use our map interface to search for data</span>
+                        </div>
+                        <a id="mapSearchBtn" class="greenGradient roundedCorners">
+                            <img alt="Map Search" src="img/icons/icon-australia.png">
+                            Map Search
+                        </a>
+                        
+                        
+                        
+<!--                    
                     <div id="wrapper-adv">
+                       
 			<div id="search-bar">
 				
 				<div id="search-wrapper" class="clearfix">
@@ -41,14 +62,12 @@ $Revision: 1 $
 				</div>
 				
 			</div> 
-<!--                        
-			<div id="placeholder">				
-				<p><?php //echo anchor('search#!/adv=1','Advanced Search');?></p>
-			</div>
--->
+
             <div id="placeholder">	
                 <button id="map-search-button" title="Map Search">temporary Map Search button</button>
             </div>
                      </div>
+-->
 		</div>
+
                 <?php } ?> 

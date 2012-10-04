@@ -54,7 +54,9 @@ class Home extends CI_Controller {
 		
                 $this->load->model('Solr');
                 $data['json'] = $this->Solr->getTERNPartners();
-
+                
+                $data['topics']=$this->Solr->getTopics();
+//print_r($data['topics']);
 		$data['home'] = 1;
 		$data['tabs'] = 1;
 		//echo $data['user_agent'];
@@ -73,11 +75,12 @@ class Home extends CI_Controller {
 
             $this->load->model('Solr');
             $data['json'] = $this->Solr->getTERNPartners();
-
+            $data['topics']=$this->Solr->getTopics();
             $data['recordsArr'] = $this->handleRandomTab(10,$fac);
             //$data['recordsArr'] = $this->handleRandomTab(10);
 
             $data['fackey']=$fac;
+
             $this->load->view('facilityrandom',$data);
         }
         public function advancesrch(){

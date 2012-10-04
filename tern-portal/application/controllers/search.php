@@ -69,7 +69,7 @@ class Search extends CI_Controller
       
                 $this->load->model('Solr');
                 $data['json'] = $this->Solr->getTERNPartners();
-
+                $data['topics'] = $this->Solr->getTopics();
                 $data['title'] = "Search TERN Data Discovery Portal";
                 //get Keyword
                 $data['widget_keyword'] = 1;   

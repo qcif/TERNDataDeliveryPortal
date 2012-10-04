@@ -18,13 +18,20 @@ if (isset($description))
         <meta http-equiv="x-ua-compatible" content="IE=8"/>
         <meta name="title" content="<?php echo $title; ?>"/>
         <meta name="description" content="<?php echo $md_description; ?>"/>
+<!--        
         <link href="<?php echo base_url(); ?>css/tern-superfish.css" type="text/css" rel="stylesheet"/>
-        <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
-        <link type="text/css" href="<?php echo base_url(); ?>css/tipsy.css" rel="stylesheet" />
+        <link type="text/css" href="<?php //echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
+        <link type="text/css" href="<?php //echo base_url(); ?>css/tipsy.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/layout-default-latest.css" />
-        <link type="text/css" href="<?php echo base_url(); ?>css/tern.css" rel="stylesheet" />
+        <link type="text/css" href="<?php //echo base_url(); ?>css/tern.css" rel="stylesheet" />
+        <link type="text/css" href="<?php //echo base_url(); ?>css/print.css" rel="stylesheet" media="print" />
+        <link type="text/css" href="<?php //echo base_url(); ?>css/treeview.css" rel="stylesheet"/>
+-->
+        <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
+        <link type="text/css" href="<?php echo base_url(); ?>css/css-reset.css" rel="stylesheet"/>
+        <link type="text/css" href="<?php echo base_url(); ?>css/main.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/print.css" rel="stylesheet" media="print" />
-        <link type="text/css" href="<?php echo base_url(); ?>css/treeview.css" rel="stylesheet"/>
+       
          <?php if($this->config->item('GA_enabled')):?>
          <script type="text/javascript">
             
@@ -42,48 +49,57 @@ if (isset($description))
 	<?php endif;?>
     </head>
     <body>
-        <div id="wrapper">
-            <div id="header" >
+        <div id="backgroundImage"></div> 
+        <header>
+        <div id="wrapper" class="wrapper">
+          <!--  <div id="header" >-->
            
-                <div id="logo">
-                    <a href="/"><img src="<?php echo site_url('img/PortalLogoandName.png'); ?>" alt="TERN Logo" id="tern-logo"/></a>
-                </div>
-              
-               <div class="no_print top-menu-cover">
-
-                    <ul class="sf-menu">
+             <!--   <div id="logo">-->
+             <h1>
+                    <a href="#">
+                        <img src="<?php echo site_url('img/logos/logo-tern.png'); ?>" alt="TERN Logo" id="tern-logo"/>
+                    </a>
+             </h1>
+             <!--   </div>-->
+              <nav id="globalNav">                  
+                    <ul class="left">
                         <li><?php echo anchor('', 'Home'); ?></li>                     
-                        <li><a>TERN data</a>
-                            <ul>
-                                <li><?php echo anchor('home/accessdata', 'Access data', 'target="_blank"'); ?></li>
-                                <li><?php echo anchor('home/submitdata', 'Submit data', 'target="_blank"'); ?></li>
-                                <li><?php echo anchor('home/licencing', 'Data licensing', 'target="_blank"'); ?></li>
-                                    <?php		
-/*
-                                    if($json && $json->{'response'}->{'docs'}){		
-	                                    foreach($json->{'response'}->{'docs'} as $d){		
-	                                        if(count($d->{'location'})>0){		
-	                                            echo '<li>';		
+                        <li><a class="more" href="">TERN data</a>
+                            <div id="submenu">
+                                <ul>
+                                    <li><?php echo anchor('home/accessdata', 'Access data', 'target="_blank"'); ?></li>
+                                    <li><?php echo anchor('home/submitdata', 'Submit data', 'target="_blank"'); ?></li>
+                                    <li><?php echo anchor('home/licencing', 'Data licensing', 'target="_blank"'); ?></li>                      
 
-	                                           // echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. htmlentities($d->{'displayTitle'}) . '</a>';	 //commented 8.1
-                                                    echo '<a target="_blank" href="'. $d->{'location'}[0]. '">'. htmlentities($d->{'display_title'}) . '</a>';   //added 8.1
-
-	                                            echo '</li>';		
-	                                         }		
-	                                    }		
-	                                }		
-  
- */
-	                                ?>                               
-                                
-                            </ul>
+                                </ul>
+                            </div>
                         </li>  
-                        <li><?php echo anchor('contact', 'Contact', 'target="_blank"'); ?></li>
-                        <li><?php echo anchor('https://www.surveymonkey.com/s/TDDP', 'Feedback', 'target="_blank"'); ?></li>
-                    </ul>  
-                </div>
-            </div>
+                        <li><?php echo anchor('contact', 'Contact', 'target="_blank"'); ?></li>                       
+                    </ul> 
+                    <ul class="right">
+                        <li>
+                            <a href="#">
+                                <img alt="My Favourites" src="img/icons/icon-my-favourites.png"/>
+                                My Favourites
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <img alt="My Searches" src="img/icons/icon-my-favourites.png"/>
+                                My Searches
+                            </a>
+                        </li>
+                    </ul>
+              </nav>
+             <img id="dataDiscoveryPortalLogo" alt="Data Discovery Portal" src="img/logos/logo-datadiscoveryportal.png"/>
+         <!--      <div class="no_print top-menu-cover">-->
+
+          <!--      </div>-->
+           <!-- </div>-->
         </div>
-                                     <div class="tmptitle"> <?php echo $md_sub ?></div>
-        <div class="clearfix"></div>    
-        <div class="margin10"></div>
+        </header>    
+  <!--      <div class="tmptitle"> <?php echo $md_sub ?></div>-->
+        <div class="wrapper">
+        <!--<div class="clearfix"></div>    -->
+        <!--<div class="margin10"></div>-->
