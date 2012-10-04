@@ -49,19 +49,19 @@ function initMapProto(){
                            $("#help-" + id).dialog();
                         });
                     });
-
+                    mapWidget.registerClickInfo({url: data.geo_url, layers: layers}, null);
+                    $("#facilities input").click(function(){
+                        if($(this).prop("checked")){ 
+                                mapWidget.toggleExtLayer($(this).val(),true);   
+                        } else{
+                            mapWidget.toggleExtLayer($(this).val(),false);   
+                        }
+                        });
                  }
             });
           
                 
-             mapWidget.registerClickInfo({url: data.geo_url, layers: layers}, null);
-               $("#facilities input").click(function(){
-                   if($(this).prop("checked")){ 
-                        mapWidget.toggleExtLayer($(this).val(),true);   
-                   } else{
-                       mapWidget.toggleExtLayer($(this).val(),false);   
-                   }
-                });
+           
         });                       
         
         

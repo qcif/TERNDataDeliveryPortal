@@ -17,6 +17,12 @@
             "geo_name" : "nr:ozflux",
             "geo_url": "http://demo:8080/geoserver/wms",
             "marker_url": "/img/map_marker_red_sml.png"
+            },   
+            {
+            "name" : "Auscover",
+            "geo_name" : "nr:auscover",
+            "geo_url": "http://demo:8080/geoserver/wms",
+            "marker_url": "/img/map_marker_yellow_sml.png"
             }
         ],
         "geo_url": "http://demo:8080/geoserver/wms",
