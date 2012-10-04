@@ -1265,8 +1265,10 @@ $(function() {
    });
 
        handleRandom('tddp');
-       handleRollover();
-        sizeHomeContent();
+       //handleRollover();
+       
+        $("#carouselContainer").carousel('#carouselprev','#carouselnext'); 
+       // sizeHomeContent();
     }
 
     function resetFilter(){
@@ -1800,13 +1802,6 @@ function setCookie(c_name,value,exdays)
     function handleRollover()
     {
 
-         $("#carousel").simplecarousel({
-        next: $('.next'),
-        prev: $('.prev'),
-        slidespeed: 700,
-        auto: 4000 
-
-    });
 
       /*
       //$("#scrollable").scrollable({circular: true}).autoscroll(2000);

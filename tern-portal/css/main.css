@@ -138,8 +138,8 @@ header{
 	#facilitiesAndDatasets a.next{ background: url(../img/home/carousel/carousel-next-normal-btn.png) no-repeat; }
 	#facilitiesAndDatasets a.next:hover{ background: url(../img/home/carousel/carousel-next-hover-btn.png) no-repeat; }
 	#facilitiesAndDatasets #carouselContainer{ float: left; width: 970px; height: 90px; overflow: hidden; margin: 0px 10px; }
-		#facilitiesAndDatasets #carouselContainer ul{ list-style: none; }
-			#facilitiesAndDatasets #carouselContainer ul li{ float: left; line-height: 90px; margin: 0px 10px 0px 0px; }
+		#facilitiesAndDatasets #carouselContainer ul{ list-style: none; position:relative; }
+			#facilitiesAndDatasets #carouselContainer ul li{ float: left; line-height: 90px; margin: 0px 10px 0px 0px;width:200px;}
 				#facilitiesAndDatasets #carouselContainer ul li img{ vertical-align: middle; }
 				
 /* Metadata Page

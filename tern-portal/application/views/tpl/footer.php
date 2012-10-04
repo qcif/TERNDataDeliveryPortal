@@ -30,12 +30,12 @@
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.tipsy.js"></script> <!-- jQuery Tipsy-->	
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.ba-hashchange.min.js"></script> <!-- Monitoring on Hash Change-->
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.cookie.js"></script> <!-- jQuery Cookie-->  
-
+        <script type="text/javascript" src="<?php echo base_url();?>js/jquery.infinite-carousel.js"></script> 
         <script type="text/javascript" src="<?php echo base_url();?>js/superfish.js"></script>  
         <script type="text/javascript" src="<?php echo base_url();?>js/hoverIntent.js"></script>  
                         
         <script type="text/javascript" src="<?php echo base_url();?>js/misc.js"></script>  
-        <script type="text/javascript" src="<?php echo base_url();?>js/Layout.js"></script> <!-- WIDGET MAP -->
+      
         <?php if($widget_temporal) { ?>
         <script type="text/javascript" src="<?php echo base_url();?>js/TemporalWidget.js"></script> <!-- WIDGET TEMPORAL-->
         <script type="text/javascript" src="<?php echo base_url();?>js/modernizr.custom.86191.js"></script> <!-- WIDGET TEMPORAL-->
@@ -46,7 +46,7 @@
         <script  type="text/javascript" src="http://openlayers.org/api/2.11/OpenLayers.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/MapWidget.js"></script> <!-- WIDGET MAP -->
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.treeview.js"></script> <!-- jQuery treeview -->        
-        <script type="text/javascript" src="<?php echo base_url();?>js/simple.carousel.js"></script> <!-- jQuery treeview -->    
+        
         <?php } ?>
          <?php if ($this->config->item('GA_enabled')): ?>
 

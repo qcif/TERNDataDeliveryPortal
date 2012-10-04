@@ -71,11 +71,11 @@ $home = 1;
     </div>
 <div id="facilitiesAndDatasets">
     <h1>Browse<br>TERN facilities & datasets</h1>
-    <a class="prev"></a>
+    <a id="carouselprev" class="prev" href="javascript:void(0);"></a>
     <div id="carouselContainer">
  
  
-          <ul id="carousel">
+          <ul>
             <?php 
                 if($json && $json->{'response'}->{'docs'}){	
                     foreach($json->{'response'}->{'docs'} as $d)
@@ -91,9 +91,9 @@ $home = 1;
             ?>
           </ul>
 
-
+ 
     </div>
-    <a class="next"></a>
+    <a id="carouselnext" class="next" href="javascript:void(0);"></a>
 </div>
 
 <?php $this->load->view('tpl/footer'); ?>
