@@ -71,7 +71,7 @@ function MapWidget(mapId, overviewMap, options){
 
 
     /* Override pan bar */
-    function customzoom(options){
+    function customZoom(options){
     var panZoomBar = new OpenLayers.Control.PanZoomBar(options);
     OpenLayers.Util.extend(panZoomBar,{
         _addButton:function(id, img, xy, sz) {
@@ -225,7 +225,7 @@ function MapWidget(mapId, overviewMap, options){
         return panZoomBar;
     }
     //this.zoomBar = new OpenLayers.Control.ZoomBar();
-     this.map.addControl(new customzoom());
+     this.map.addControl(new customZoom());
    //   this.map.addControl(new OpenLayers.Control.PanPanel());
     // this.map.addControl(this.zoomBar);
     /*  ------------------------------------------------------------  
@@ -889,8 +889,10 @@ MapWidget.prototype.handleMapClick = function(e, layers, callback){
 MapWidget.prototype.setBaseLayer = function(id) {
     this.map.baseLayerId = id;
     this.map.setBaseLayer(this[id]);
+    $("#map-view-selector a").attr("class","");
+    $("#map-view-selector #" + id).attr("class","current");
     
-    
+     
 }
 /*  ------------------------------------------------------------  
  *    deactivateAllControls()  
@@ -919,29 +921,31 @@ MapWidget.prototype.toggleControl = function(element) {
   
         for(var key in this.drawControls) {
             var control = this.drawControls[key];
-             var classNameKey = key.capitalize();
+             var classNameKey = key.capitalize(); 
             if(element.id == key) {
                
                  if(control.active){
                         control.deactivate();
-                        element.setAttribute("class","olControlDrawFeature" +  classNameKey + "ItemInactive");  
-                          $("#drag").attr("class","olControlDragFeatureItemActive");
+                        element.setAttribute("class", key + "Btn");  
+                          $("#drag").attr("class","panBtnActive");
                     }
                     else{
                         control.activate();  
                         control.map.raiseLayer(control.layer,control.map.layers.length-1);
-                        element.setAttribute("class","olControlDrawFeature" + classNameKey + "ItemActive");
-                        $("#drag").attr("class","olControlDragFeatureItemInactive");
+                        element.setAttribute("class", key + "BtnActive");
+                        $("#drag").attr("class","panBtn");
                     }
                
             }else{
-                control.layer.removeAllFeatures();
-                control.deactivate();
-                var elem = $("#" + key); 
-                elem.attr("class","olControlDrawFeature" +  classNameKey + "ItemInactive");  
-               
+                if(element.id=='del'){
+                    control.layer.removeAllFeatures();
+                    control.deactivate();
+                    var elem = $("#" + key); 
+                    elem.attr("class", key + "Btn");  
+                     resetCoordinates();
+                }
             } 
-            if(element.id!='box') resetCoordinates();
+           
         }
       
    // }
@@ -1350,12 +1354,14 @@ function getStyle(styleName){
  */
 function enableCoordsChange(map){
    
-    $("#coords input").change(function(){
+    $("#coordsOverlay input").change(function(){
         var coordStr = '';
         coordStr += $('#spatial-west').val() +  "," + $('#spatial-south').val() + "," +
             $('#spatial-east').val() + "," + $('#spatial-north').val();
         if($('#spatial-west').val() != '' && $('#spatial-south').val() !='' &&  $('#spatial-east').val() != '' && $('#spatial-north').val() !=''){
-            $('#coords input[type=button]').removeAttr("disabled");
+            $('#coordsOverlay .mapGoBtn').show();
+        }else{
+             $('#coordsOverlay .mapGoBtn').hide();
         }
         map.updateDrawing(map,coordStr);
     });
@@ -1367,7 +1373,7 @@ function enableCoordsChange(map){
  *  ------------------------------------------------------------
  */
 function disableToolbarClick(map){
-    $("#panel div").each(function(){
+    $("#regionPanel a").each(function(){
         $(this).unbind('click');
     });
 }
@@ -1377,13 +1383,13 @@ function disableToolbarClick(map){
  *  ------------------------------------------------------------
  */
 function enableToolbarClick(map){
-    $("#panel div").each(function(){
+    $("#regionPanel a").each(function(){
         $(this).click(function(){            
             map.toggleControl(this);
         });
     });
     $("#drag").click(function(){        
-     if($(this).attr('class') == 'olControlDragFeatureItemInactive'){
+     if($(this).attr('class') == 'panBtn'){
         //this.attr('class','olControlDragFeatureItemActive');
         for(var key in map.drawControls) {
             var control = map.drawControls[key];
@@ -1404,7 +1410,10 @@ function enableToolbarClick(map){
 function enableCoordsClick(){
     
     $('#latlong').click(function(e){
-        $('#coords').toggle('fast');
+        $('#coordsOverlay').toggle('fast');
+          if($('#spatial-west').val() != '' && $('#spatial-south').val() !='' &&  $('#spatial-east').val() != '' && $('#spatial-north').val() !=''){
+            $('#coordsOverlay .mapGoBtn').show();
+        }
     });
 
 }
@@ -1424,7 +1433,7 @@ function updateCoordinates(feature,WGS84,WGS84_google_mercator){
     $('#spatial-south').val(Math.round(bounds.bottom*100)/100);
     $('#spatial-east').val(Math.round(bounds.right*100)/100); 
     bounds.transform(WGS84,WGS84_google_mercator);
-    $('#coords input[type=button]').removeAttr("disabled");
+     $('#coordsOverlay .mapGoBtn').show();
 }
 
 /*  ------------------------------------------------------------  

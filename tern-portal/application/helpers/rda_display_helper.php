@@ -156,13 +156,15 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
           echo '<li>'  ;
           echo '<div class="content expand collapsiblePanel">';
           
-            echo '<h5 class="hide">'.$name;
-            echo '<div id="region-help"><a class="helpBtn">?</a></div>';
-            echo '</h5>';
-           // echo '<div  id="facet-region" class="facet-list facet-content">';
-            echo '<div  id="facet-region">';
-            echo '<select id="region-select">';
-            echo '<option value=""> -- Please select a region type -- </option>';
+            echo '<h2 >'.$name;
+            echo '<a class="helpBtn"></a>';
+            echo '</h2>';
+            if($facetFilter != 'All'){
+                echo 'Selecting a region will replace your current region search';
+            }
+                 // echo '<div  id="facet-region" class="facet-list facet-content">';
+            echo '<select id="region-select" class="facetDropDown">';
+            echo '<option value="">Please select a region type</option>';
              foreach($regionsName as $key=>$regionsList){
                  echo '<option value="'. $key . '">'. $regionsList['l_name'] . "</option>";                                 
              }
@@ -173,8 +175,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
               for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
                         if($object_type[$i+1]>0 && (strpos($object_type[$i],$key)!==false)){   
                             if($firstRun){
-                                 //echo '<div id="' . $key . '" class="hide facet-list facet-content">';
-                                echo '<div id="' . $key . '">';
+                                 echo '<div id="' . $key . '" class="hide">';
                                  echo '<ul class="facetContainer" >';
                                  $firstRun=false;
                             }
@@ -201,8 +202,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
              }
           
            echo '</div>';
-           echo '</div>';
-           
+          
            echo '</li>';
            echo '<div id="region-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
                    

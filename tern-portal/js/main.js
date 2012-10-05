@@ -514,7 +514,7 @@ $(function() {
         */
         
             populateCoordinates(n,w,s,e);
-            $("#coords input").trigger('change');
+            $("#coordsOverlay input").trigger('change');
             if(param_q > -1 && search_term != '*:*' && search_term !="Search ecosystem data") {
                
                 //$('input[id="search-box"]').val(search_term);
@@ -525,7 +525,7 @@ $(function() {
    
    function initMap(){
 
-        var mapWidget = new MapWidget('spatial-map',true);
+        var mapWidget = new MapWidget('spatialmap',true);
         resetCoordinates();
         mapWidget.addDataLayer(true,"default",true);      
 
@@ -555,19 +555,18 @@ $(function() {
      
          
         $("#map-help-text").dialog({autoOpen:false});
-         $("#map-view-selector a").button();
-          $("#map-help a").click(function(){
+        $("#map-help").click(function(){
              $("#map-help-text").dialog('open');
              return false;
-         }).button();
+         });
         
         $("#map-view-selector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
         });
         $("#map-toolbar .helpBtn").tipsy({gravity: 'e'});
         
-        $("#map-hide").bind('click', function(){
-            $("#spatial-map").toggle(300);
+        $("#map-toolbar a.hide").bind('click', function(){
+            $("#spatialmap").toggle(300);
         });
             
         return mapWidget;
@@ -610,9 +609,7 @@ $(function() {
         var resizeMap = function(){
              if(typeof mapResult !== 'undefined') mapResult.map.updateSize();
           }
-        //setupOuterLayout();
-        setupNestedLayout(resizeMap);  
-                
+                 
          $("#facetH2").addClass("ui-state-disabled");
         var temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
@@ -632,7 +629,7 @@ $(function() {
       
         initPlaceName('geocode',mapResult);
         
-        $("input[value='Update']").bind('click',function(){
+        $(".mapGoBtn").bind('click',function(){
       //  var geometry = mapWidget.getFeatureCoordinates();
          //update spatial coordinates from textboxes
                 var nl=document.getElementById("spatial-north");

@@ -258,6 +258,7 @@ nav#facetNav{ margin-right: 15px; float: left; width: 215px; }
 		#refineSearchBtn{ background: url(../img/buttons/refine-search-normal-btn.png) no-repeat; float: left; display: block; width: 26px; height: 25px; }
 		#refineSearchBtn:hover{ background: url(../img/buttons/refine-search-hover-btn.png) no-repeat; }
 		.facetContainer{ height: 150px; overflow: auto; border: 1px solid #999; padding: 5px !important; margin-bottom: 10px; clear: both; }
+		.facetDropDown{ overflow: auto; border: 1px solid #999; padding: 5px !important; margin-bottom: 10px; clear: both; }
 		.facetTree{ clear: both; }
 		.facetTree li, .facetContainer li{ margin-bottom: 5px !important; }
 		.facetTree input[type=checkbox], .facetContainer input[type=checkbox]{ float: left; display: block; }
@@ -327,22 +328,25 @@ nav.resultsNav{
 	#map-toolbar li:first-child, #map-toolbar li:last-child{ background: none; }
 	#map-toolbar input{ margin: 0px; padding: 0px; }
 	
-	#panBtn,
-	#selectRegionBtn,
-	#deleteRegionBtn,
+	.panBtn,.panBtnActive,
+	.boxBtn,.boxBtnActive,
+	.delBtn,.delBtnActive,
 	.mapGoBtn,
-	#helpBtn{ width: 38px; height: 37px; display: block; }
+	.helpBtn{ width: 38px; height: 37px; display: block; cursor:pointer; }
 	
-	#map-toolbar #panBtn{ background: url(../img/buttons/map-tools/map-tools-pan-normal-btn.png) no-repeat; }
-	#map-toolbar #panBtn:hover{ background: url(../img/buttons/map-tools/map-tools-pan-hover-btn.png) no-repeat; }
+	#map-toolbar .panBtn{ background: url(../img/buttons/map-tools/map-tools-pan-normal-btn.png) no-repeat; }
+	#map-toolbar .panBtn:hover{ background: url(../img/buttons/map-tools/map-tools-pan-hover-btn.png) no-repeat; }
+	#map-toolbar .panBtnActive{ background: url(../img/buttons/map-tools/map-tools-pan-hover-btn.png) no-repeat; }
 	
-	#map-toolbar #latLongBtn{ color: #fff; margin-top: 10px; display: block; }
+	#map-toolbar .latLongBtn{ color: #fff; margin-top: 10px; display: block; cursor: pointer; }
 	#map-toolbar #regionPanel{ height: 37px; }
-	#map-toolbar #regionPanel a{ display: inline-block;}
-		#map-toolbar #selectRegionBtn{ background: url(../img/buttons/map-tools/map-tools-box-normal-btn.png) no-repeat; }
-		#map-toolbar #selectRegionBtn:hover{ background: url(../img/buttons/map-tools/map-tools-box-hover-btn.png) no-repeat; }
-		#map-toolbar #deleteRegionBtn{ background: url(../img/buttons/map-tools/map-tools-delete-normal-btn.png) no-repeat; }
-		#map-toolbar #deleteRegionBtn:hover{ background: url(../img/buttons/map-tools/map-tools-delete-hover-btn.png) no-repeat; }
+	#map-toolbar #regionPanel a{ display: inline-block;} 
+		#map-toolbar .boxBtn{ background: url(../img/buttons/map-tools/map-tools-box-normal-btn.png) no-repeat; }
+		#map-toolbar .boxBtnActive{ background: url(../img/buttons/map-tools/map-tools-box-hover-btn.png) no-repeat; }
+		#map-toolbar .boxBtn:hover{ background: url(../img/buttons/map-tools/map-tools-box-hover-btn.png) no-repeat; }
+		#map-toolbar .delBtn{ background: url(../img/buttons/map-tools/map-tools-delete-normal-btn.png) no-repeat; }
+		#map-toolbar .delBtnActive{ background: url(../img/buttons/map-tools/map-tools-delete-hover-btn.png) no-repeat; }
+		#map-toolbar .delBtn:hover{ background: url(../img/buttons/map-tools/map-tools-delete-hover-btn.png) no-repeat; }
 		.mapGoBtn{ background: url(../img/buttons/map-tools/map-tools-go-normal-btn.png) no-repeat; }
 		.mapGoBtn:hover{ background: url(../img/buttons/map-tools/map-tools-go-hover-btn.png) no-repeat; }
 		
@@ -355,7 +359,7 @@ nav.resultsNav{
 	#map-toolbar #searchGeocodeBtn{ background: url(../img/buttons/map-tools/map-tools-search-normal-btn.png) no-repeat; width: 32px; height: 31px; float: left; margin: 3px 0px 0px 0px; }
 	#map-toolbar #searchGeocodeBtn:hover{ background: url(../img/buttons/map-tools/map-tools-search-hover-btn.png) no-repeat; }
 
-	#map-toolbar #mapViewSelector{
+	#map-toolbar .mapViewSelector{
 		margin: 3px 0px 0px 0px;
 		height: 30px;
 		line-height: 30px;
@@ -372,10 +376,11 @@ nav.resultsNav{
 		background: linear-gradient(#646464, #2B2B2B); /*future CSS3 browsers*/
 		-pie-background: linear-gradient(#646464, #2B2B2B); /*PIE*/
 		behavior: url(PIE.htc);
+                cursor: pointer;
 	}
-		#map-toolbar #mapViewSelector a{ color: #fff; padding: 5px; height: 20px; display: block; float: left; line-height: 20px; }
-		#map-toolbar #mapViewSelector a.current,
-		#map-toolbar #mapViewSelector a:hover{ 
+		#map-toolbar .mapViewSelector a{ color: #fff; padding: 5px; height: 20px; display: block; float: left; line-height: 20px; }
+		#map-toolbar .mapViewSelector a.current,
+		#map-toolbar .mapViewSelector a:hover{ 
 			text-decoration: none;
 			color: #000; 
 			background: #8A8A8A; /*fallback for non-CSS3 browsers*/
@@ -388,20 +393,20 @@ nav.resultsNav{
 			-pie-background: linear-gradient(#ffffff, #8A8A8A); /*PIE*/
 			behavior: url(PIE.htc);
 		}
-		#map-toolbar #mapViewSelector #gmap{
+		#map-toolbar .mapViewSelector #gmap{
 			-webkit-border-radius: 5px 0px 0px 5px;
 			-moz-border-radius: 5px 0px 0px 5px;
 			border-radius: 5px 0px 0px 5px;
 			behavior: url(PIE.htc);
 		}
-		#map-toolbar #mapViewSelector #gphy{
+		#map-toolbar .mapViewSelector #gphy{
 			-webkit-border-radius: 0px 5px 5px 0px;
 			-moz-border-radius: 0px 5px 5px 0px;
 			border-radius: 0px 5px 5px 0px;
 			behavior: url(PIE.htc);
 		}
-	#map-toolbar #helpBtn{ background: url(../img/buttons/map-tools/map-tools-help-normal-btn.png) no-repeat; }
-	#map-toolbar #helpBtn:hover{ background: url(../img/buttons/map-tools/map-tools-help-hover-btn.png) no-repeat; }
+	#map-toolbar .helpBtn{ background: url(../img/buttons/map-tools/map-tools-help-normal-btn.png) no-repeat; }
+	#map-toolbar .helpBtn:hover{ background: url(../img/buttons/map-tools/map-tools-help-hover-btn.png) no-repeat; }
 	#map-toolbar a.hide{ margin: 2px 12px 0px 0px; padding: 0px 30px 0px 0px; color: #fff;  float: right; }
 	 
         #facilities .helpBtn{float: none; margin-bottom:-5px; display:inline-block; background: url(../img/buttons/help-normal-btn.png) no-repeat; height: 29px; width: 29px;  }
@@ -468,7 +473,7 @@ nav.resultsNav{
         }
 
 	/* Coords overlay */
-	#coordsOverlay{ position: absolute; background: url(../img/gradients/search-bg-gradient.png) repeat-x; border: 1px solid #000; border-top: 0px; padding: 10px; margin-left: 130px; display: inline; width: 210px; text-align: center;}
+	#coordsOverlay{ position: absolute; background: url(../img/gradients/search-bg-gradient.png) repeat-x; border: 1px solid #000; border-top: 0px; padding: 10px; margin-left: 130px; display: none; width: 210px; text-align: center; z-index:1000;}
 		#coordsOverlay div input{ width: 50px; margin: 0px; }
 		#coordsOverlay div#spatialNorth{ margin: 0px 0px 0px 5px; }
 		#coordsOverlay div#spatialWest{ float: left; }
@@ -779,3 +784,5 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 *********************************************************/
 #staticContent{overflow: hidden; background: #FFF; padding: 20px; }
 #staticContent h1{ font-size: 28px; font-weight: normal; padding: 0px; margin: 0px 0px 20px 0; }
+
+.pac-container{width:300px !important;}
