@@ -429,10 +429,10 @@ nav.resultsNav{
         }
         .popupGroup{
             border: 1px solid #FFF;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 13px;
-            box-shadow : 0 4px 10px 0 #666666;        
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            box-shadow : 0 4px 10px 0 #666666;         
             overflow: visible !important;
             behavior: url(/js/PIE.htc);  
             filter: none !important;
@@ -444,6 +444,11 @@ nav.resultsNav{
         .popupGroup #chicken_GroupDiv{
             overflow: visible !important;
 
+        }
+        .mapArrow{
+            left: -10px;
+            position:absolute;
+            top: 30px;
         }
 
 	/* Coords overlay */

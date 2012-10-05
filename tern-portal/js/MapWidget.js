@@ -406,12 +406,17 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
                     });  
 
                     if(length > 657){
+                        var html = event.text; // +  "<img class=\"mapArrow\" src=\"/img/buttons/map-tools/map_arrow_white.png\"/>"
                         var popup = new CustomFramedCloudPopupClass("chicken",
                                 this.map.getLonLatFromPixel(event.xy),
-                                null, event.text, offset, true);    
+                                null, html, offset, true);    
        
-                    popup.minSize = new OpenLayers.Size(180,50);        
-                    popup.maxSize = new OpenLayers.Size(400,200);
+                            popup.minSize = new OpenLayers.Size(180,50);        
+                            popup.maxSize = new OpenLayers.Size(400,200);
+                            popup.calculateRelativePosition = function () {
+                                return 'br';
+                            }          
+                            popup.panMapIfOutOfView = true;
                     this.map.addPopup(popup);
                     }
                 }
