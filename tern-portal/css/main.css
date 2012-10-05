@@ -21,10 +21,23 @@ input[type=text]{
 	height: 21px;
 	-webkit-appearance: none;
 }
+textarea{
+        border: 1px solid #ccc;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	font-size: 12px;
+	padding: 0px 3px;
+	outline: 0;
+	
+	-webkit-appearance: none;
+    
+}
 /* Custom Reusable Classes 
 *******************************************************************/
 .left{ float: left; }
 .right{ float: right; }
+.margin10 {   margin:10px; }
 .wrapper{ width: 1240px; height: 100%; margin: 0px auto; }
 
 /* Template 
@@ -749,3 +762,20 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 .expand{ display: block; }
 .collapse{ display: none; }
 .hide { display: none; }
+
+/* Contact Form
+***********************************************************/
+#contact_form{
+    width: 400px;   
+}
+#contact_form label{
+    font-weight: bold;
+}
+#contact_form .error{
+    color: red;
+}
+
+/* Static Content
+*********************************************************/
+#staticContent{overflow: hidden; background: #FFF; padding: 20px; }
+#staticContent h1{ font-size: 28px; font-weight: normal; padding: 0px; margin: 0px 0px 20px 0; }

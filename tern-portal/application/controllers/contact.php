@@ -10,9 +10,11 @@ class Contact extends CI_Controller {
         
         public function send(){
             $this->load->library('form_validation');            
-            $this->form_validation->set_rules('name', 'Full name', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('name', 'Full name', 'trim|xss_clean');
+            $this->form_validation->set_rules('phone', 'Phone', 'trim|xss_clean');
+            $this->form_validation->set_rules('subject', 'Subject', 'trim|required|xss_clean');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean');
-            $this->form_validation->set_rules('msg', 'Comment', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('msg', 'Message', 'trim|required|xss_clean');
             $this->form_validation->set_error_delimiters('<div class="error"> &nbsp;&nbsp;', '</div>');
             if($this->form_validation->run() == FALSE)
 		{
@@ -28,7 +30,8 @@ class Contact extends CI_Controller {
                     $data['name'] = $this->input->post('name');
                     $data['email'] = $this->input->post('email');
                     $data['msg'] = $this->input->post('msg');
-                    $data['ip'] = $this->input->post('ip');
+                    $data['phone'] = $this->input->post('phone');
+                    $data['subject'] = $this->input->post('subject');
                     $content = $this->load->view('contact/template', $data, TRUE);
                     $this->email->message($content);            
                     $this->email->send();
