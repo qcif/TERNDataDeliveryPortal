@@ -18,15 +18,11 @@ if (isset($description))
         <meta http-equiv="x-ua-compatible" content="IE=8"/>
         <meta name="title" content="<?php echo $title; ?>"/>
         <meta name="description" content="<?php echo $md_description; ?>"/>
-<!--        
+         
         <link href="<?php echo base_url(); ?>css/tern-superfish.css" type="text/css" rel="stylesheet"/>
-        <link type="text/css" href="<?php //echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
         <link type="text/css" href="<?php //echo base_url(); ?>css/tipsy.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/layout-default-latest.css" />
-        <link type="text/css" href="<?php //echo base_url(); ?>css/tern.css" rel="stylesheet" />
-        <link type="text/css" href="<?php //echo base_url(); ?>css/print.css" rel="stylesheet" media="print" />
-        <link type="text/css" href="<?php //echo base_url(); ?>css/treeview.css" rel="stylesheet"/>
--->
+    <!--    <link type="text/css" href="<?php //echo base_url(); ?>css/tern.css" rel="stylesheet" />-->
+    
         <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/css-reset.css" rel="stylesheet"/>
         <link type="text/css" href="<?php echo base_url(); ?>css/main.css" rel="stylesheet" />
@@ -62,19 +58,21 @@ if (isset($description))
              </h1>
              <!--   </div>-->
               <nav id="globalNav">                  
-                    <ul class="left">
+                    <ul class="left sf-menu">
                         <li><?php echo anchor('', 'Home'); ?></li>                     
-                        <li><a class="more" href="">TERN data</a>
-                            <div id="submenu">
-                                <ul>
+                        <li><a class="more" href="#">TERN data</a>
+                            <div class="subMenu">
+                                <ul >
                                     <li><?php echo anchor('home/accessdata', 'Access data', 'target="_blank"'); ?></li>
                                     <li><?php echo anchor('home/submitdata', 'Submit data', 'target="_blank"'); ?></li>
                                     <li><?php echo anchor('home/licencing', 'Data licensing', 'target="_blank"'); ?></li>                      
 
-                                </ul>
+                                </ul> 
                             </div>
                         </li>  
-                        <li><?php echo anchor('contact', 'Contact', 'target="_blank"'); ?></li>                       
+                        <li><?php echo anchor('contact', 'Contact', ' target="_blank"'); ?>
+                            
+                        </li>                       
                     </ul> 
                     <ul class="right">
                         <li>
