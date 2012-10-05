@@ -34,9 +34,9 @@ $Revision: 1 $
 
                     <div id="searchFeatures">
                         <span id="slogan">Delivering open access to Australia's Terrestrial Ecosystem data</span>
-                        <input class="rounded" id ="search-box" title="Title,name or keywords" type="text" name="query" placeholder="Title,name or keywords" >
+                        <input class="rounded" id ="search-box" title="Search ecosystem data" type="text" name="query" placeholder="Search ecosystem data" >
                         <a id="searchBtn" class="orangeGradient roundedCorners">
-                            <img alt="Search" src="img/icons/icon-search.png">
+                            <img alt="Search" src="img/icons/icon-search.png"> 
                             Search
                         </a>
                         <img id="orImg" alt="Or" src="img/home/or.png">        

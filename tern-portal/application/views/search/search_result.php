@@ -26,13 +26,52 @@ $Revision: 1 $
         <div id="facet-content">
             <?php $this->load->view('search/facet');?> 
         </div>
-         <?php  $realNumFound = $json->{'response'}->{'numFound'}; 
+         <?php  
+                $realNumFound = $json->{'response'}->{'numFound'}; 
+                echo '<nav id="head-toolbar-content" class="resultsNav">';
+                echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
+                echo        '<div id="left_num_records" class="result left">';
+                echo            'Showing';
+                                if($this->input->cookie('selection')<$realNumFound)
+                                {    
+                                    echo '<span class="numResultsPerPage"><label id="showing">'.$this->input->cookie('selection').' </label></span>';
+                                }else
+                                {
+                                    echo '<span class="numResultsPerPage"><label id="showing">'.$realNumFound.' </label></span>';
+                                }
+                echo            'of';                
+                echo           '<span class="totalResults">'. number_format($realNumFound).'</span> results';                
+                echo        '</div>';
+
+                
+                echo        '<div id="middle-select-num" class="resultsPerPage left">';
+                echo        'Display';
+                echo        '<select id="viewrecord" name="select-view-record">';				
+                echo                '<option value="10">10</option>';
+                echo                '<option value="25">25</option>';
+                echo                '<option value="50">50</option>';				
+                echo               '<option value="100">100</option>';			
+                echo           '</select>';
+                echo        'results';
+                echo        '</div>';
+                
+                echo        '<div id="sorting_selection" class="sortBy right">';
+                echo        'Sort By:';
+                echo        '<select id="sort_record" name="select-sorting">';				
+                echo                '<option value="score">Relevance</option>';
+                echo                '<option value="timestamp">Date released</option>';             
+                echo           '</select>'; 
+                echo        '</div>';
+                                
+                $this->load->view('search/pagination');
+                echo '</nav>';
+                
+/*                
+                $realNumFound = $json->{'response'}->{'numFound'}; 
                 echo '<div id="head-toolbar-content" class="toolbar clearfix">';
 
                 echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
 
-
-                //echo $this->input->cookie('facets');
 
                 $class='';
                 if($this->input->cookie('facets')!=''){
@@ -78,13 +117,10 @@ $Revision: 1 $
                 $this->load->view('search/pagination');
        
                 echo '</div>';
+*/
+                ?>    
 
-                ?>          
         <div id="search-results-content" >
-            <div class="table_container">
-
                 <?php $this->load->view('search/content');?>        
-   
-            </div>
         </div>
 <?php //endif;?>

@@ -1,4 +1,32 @@
+<li id="advancedSearch">
+    <h2>
+        <a id ="adv_bool" class="hide" href="javascript:void(0);">Advanced Boolean Search</a>
+        <a  class="helpBtn" ></a>
+    </h2>
+    <div class="content expand" id="adv_bool_operator" style="display:none">
+        <label>
+            <input id="advancedBooleanSearch_1" type="radio" checked="checked" value="AND" name="advancedBooleanSearch">
+            Include (AND)
+        </label>
+        <br>
+        <label>
+            <input id="advancedBooleanSearch_2" type="radio" value="OR" name="advancedBooleanSearch">
+            Expand (OR)
+        </label>
+        <br>
+        <label>
+            <input id="advancedBooleanSearch_3" type="radio" value="NOT" name="advancedBooleanSearch">
+        Exclude (NOT)
+        </label>
+    </div>    
+</li>
 
+<li>
+    <input id="refineSearchTextField" name="query" type="text" placeholder="Search ecosystem data">
+    <a id="refineSearchBtn"></a>
+</li>
+
+<!--
 <div class="collapsiblePanel">
     <h5 class="head">Search term:<div id="term-help"><a  class="tooltip" >?</a></div></h5>
     <div>
@@ -19,7 +47,7 @@
     </div>
     </div>
 </div>
-
+-->
 <div id="term-help-text" title="<?php echo $this->lang->line('term_helptitle');?>" class="hide" ><?php echo $this->lang->line('term_helptext');?></div>
 
 

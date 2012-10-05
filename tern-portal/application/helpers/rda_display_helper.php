@@ -96,12 +96,14 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
         if(count($object_type)>0){
             
 
-            echo '<div class="facet-list facet-content collapsiblePanel">';
-            echo '<h5 class="head">'.$name;
-            echo '<div id="facility-help"><a  class="tooltip" >?</a></div>';
-            echo '</h5>';
+           // echo '<div class="facet-list facet-content collapsiblePanel">';
+            echo '<div class="content expand collapsiblePanel">';
+            echo '<h2 class="head">'.$name;
+            echo '<div id="facility-help"><a  class="helpBtn" ></a></div>';
+            echo '</h2>';
             echo '<div>';
-            echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
+            //echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
+            echo '<ul class="facetContainer" id="'.$facet_name.'-facet">';
 
 
             //print the others
@@ -132,7 +134,8 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
                     }
             } 
             echo '</ul>';
-            echo '<button id="facbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
+           // echo '<button id="facbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
+             echo '<a id="facbutton" class="greenGradient smallRoundedCorners">GO</a> ';
             echo '</div>'; 
             echo '</div>';
             
@@ -150,12 +153,14 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
 	$object_type="";
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         if(count($object_type)>0){
-          echo '<div class="collapsiblePanel">';
+          echo '<li>'  ;
+          echo '<div class="content expand collapsiblePanel">';
           
-            echo '<h5 class="head">'.$name;
-            echo '<div id="region-help"><a class="tooltip">?</a></div>';
+            echo '<h5 class="hide">'.$name;
+            echo '<div id="region-help"><a class="helpBtn">?</a></div>';
             echo '</h5>';
-            echo '<div  id="facet-region" class="facet-list facet-content">';
+           // echo '<div  id="facet-region" class="facet-list facet-content">';
+            echo '<div  id="facet-region">';
             echo '<select id="region-select">';
             echo '<option value=""> -- Please select a region type -- </option>';
              foreach($regionsName as $key=>$regionsList){
@@ -168,15 +173,16 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
               for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
                         if($object_type[$i+1]>0 && (strpos($object_type[$i],$key)!==false)){   
                             if($firstRun){
-                                 echo '<div id="' . $key . '" class="hide facet-list facet-content">';
-                                 echo '<ul class="more" >';
+                                 //echo '<div id="' . $key . '" class="hide facet-list facet-content">';
+                                echo '<div id="' . $key . '">';
+                                 echo '<ul class="facetContainer" >';
                                  $firstRun=false;
                             }
                                 if($object_type[$i]!=$facetFilter){
                                        list($l_id, $r_id) = explode(':',$object_type[$i]);
                                        for($k=0;$k<count($regionsList);$k++){
                                           if($regionsList[$k]->r_id == $r_id){
-                                               echo '<li class="limit">
+                                               echo '<li>
                                                 <a href="javascript:void(0);"                                                        
                                                         class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .'</a></li>';
                                               
@@ -197,6 +203,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
            echo '</div>';
            echo '</div>';
            
+           echo '</li>';
            echo '<div id="region-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
                    
         }
@@ -231,6 +238,9 @@ function displaySelectedRegionFacet($facet_name, $facetFilter, $json,$regionsNam
         // handle it if facetFilter is an array 
         $facetFilter = explode(";",$facetFilter);
         //print the selected 
+        
+        echo '<h2>'.$name.'</h2>';
+        echo '<ul>';
         for($i=0; $i<count($facetFilter); $i++){
             $idx = false;
             array_walk($object_type, 'trim');
@@ -241,12 +251,14 @@ function displaySelectedRegionFacet($facet_name, $facetFilter, $json,$regionsNam
                 foreach($regionsName as $key=>$regionsList){
                      if($key == $l_id){
                           for($k=0;$k<count($regionsList);$k++){
-                              if($regionsList[$k]->r_id == $r_id){
-                                    echo '<li class="limit">
-                            <a href="javascript:void(0);"                                                        
-                                    class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$regionsList['l_name'] . ": ".$regionsList[$k]->r_name .' ('.number_format($object_type[$idx+1]).')'.'</a></li>';
-                            break;
-                            }
+                              if($regionsList[$k]->r_id == $r_id)
+                              {
+                                    //echo '<li class="limit"><a href="javascript:void(0);" class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$regionsList['l_name'] . ": ".$regionsList[$k]->r_name .' ('.number_format($object_type[$idx+1]).')'.'</a></li>';
+                                echo '<li>
+                                        <span class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$regionsList['l_name'] . ": ".$regionsList[$k]->r_name .' ('.number_format($object_type[$idx+1]).')'.'</span>';
+                                echo '</li>';  
+                                break;
+                                }
                         }
                      }
                 }
@@ -254,6 +266,7 @@ function displaySelectedRegionFacet($facet_name, $facetFilter, $json,$regionsNam
                 
             }
         }
+        echo '</ul>';
 }   
 
 /*
@@ -268,28 +281,32 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
 		case "group":$clear = 'clearGroup';$name='Facilities';$class="groupFilter";break;
 
 		//case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
-                case "subject_value_resolved":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
+                case "subject_value_resolved":$clear = 'clearSubjects';$name="Subjects";$class="subjectFilter";break;
 
-                case "for_value_two":$clear = 'clearFortwo';$name="FOR";$class="fortwoFilter";break;
-                case "for_value_four":$clear = 'clearForfour';$name="FOR";$class="forfourFilter";break;
-                case "for_value_six":$clear = 'clearForsix';$name="FOR";$class="forsixFilter";break;
+                case "for_value_two":$clear = 'clearFortwo';$name="Field of Research";$class="fortwoFilter";break;
+                case "for_value_four":$clear = 'clearForfour';$name="Field of Research";$class="forfourFilter";break;
+                case "for_value_six":$clear = 'clearForsix';$name="Field of Research";$class="forsixFilter";break;
 	}
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         // handle it if facetFilter is an array 
         $facetFilter = explode(";",$facetFilter);
         //print the selected 
+        
+        echo '<h2>'.$name.'</h2>';
+        echo '<ul>';
         for($i=0; $i<count($facetFilter); $i++){
             $idx = false;
             array_walk($object_type, 'trim');
             $idx = array_search($facetFilter[$i],$object_type, true);
          
             if($idx !== false){
-                 echo '<li class="limit">
-		       <a href="javascript:void(0);" 
-						class="clearFilter '.$clear.'" id="'.$object_type[$idx].'">'.$object_type[$idx].' ('. $object_type[$idx+1].')'.'</a></li>';
+                 echo '<li>
+		       <span "class="clearFilter '.$clear.'" id="'.$object_type[$idx].'">'.$object_type[$idx].' ('. $object_type[$idx+1].')'.'</span>';
+                 echo '</li>';
                 
             }
         }
+        echo '</ul>'; 
 }       
 
 function displaySelectedTerm($query, $json){
@@ -319,19 +336,17 @@ function displaySelectedTerm($query, $json){
             }
             $n=$n+1;
         }
-
+        
+        echo  '<h2>Search Term:</h2>';
+        echo  '<ul>';
         for($m=0;$m<count($rawquery_no_op);$m++)
-        {           
-            //if($query=="All Records")
-            //{
-                  //}else
-            //{
-                 echo '<li class="limit">
-                    <label " 
-                        class="clearFilter '.$clear.'" id="'.rtrim(ltrim($op[$m])).' ('.escapeSolrValue(rtrim(ltrim($rawquery_no_op[$m]))).')">'.$op[$m].'('.$rawquery_no_op[$m].')</label></li>';
- 
-            //}                
-               
+        {            
+                 echo '<li>';
+                 echo '<span class="searchTerm">';
+                 echo '   <label class="clearFilter '.$clear.'" id="'.rtrim(ltrim($op[$m])).' ('.escapeSolrValue(rtrim(ltrim($rawquery_no_op[$m]))).')">'.$op[$m].'('.$rawquery_no_op[$m].')</label>';
+                 echo '</span>';    
+                 echo '</li>';
+              
   
         }
 
@@ -640,14 +655,16 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
 if(count($out2)>0)    
 {
     //print_r($out4);
-        echo '<div class="collapsiblePanel">';
-	echo '<h5 class="head">Field of Research';
-        echo '<div id="for-help"><a class="tooltip">?</a></div>';
-	echo '</h5>';
-	echo '<div class="facet-list" >';
+        echo '<li>';
+        echo '<div class="content expand collapsiblePanel">';
+	echo '<h2 class="hide">Field of Research';
+        echo '<div id="for-help"><a class="helpBtn">?</a></div>';
+	echo '</h2>';
+	//echo '<div class="facet-list" >';
+        echo '<div>';
 
 //build FOR tree	
-	echo '<ul class="treeview-red" id="fortree">'; 
+	echo '<ul class="facetTree treeview-red" id="fortree">'; 
                $out_keys4=array_keys($out4);
                $out_keys2=array_keys($out2);
 
@@ -708,10 +725,12 @@ if(count($out2)>0)
 
        	echo '</ul>';
 //end FOR tree
-        echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
+        //echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
+        echo '<a id="forbutton" class="greenGradient smallRoundedCorners" >GO</a>';
 	echo '</div>';
         echo '</div>';
       
+        echo '</li>';
         echo '<div id="for-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
 }
 
