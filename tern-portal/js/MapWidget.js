@@ -64,10 +64,170 @@ function MapWidget(mapId, overviewMap, options){
         maxResolution:'auto', 
         projection: this.WGS84_google_mercator,
         displayProjection: this.WGS84,
-        controls: [ this.navControl, new OpenLayers.Control.PanZoomBar()]        
+        controls: [ this.navControl]        
     };
     this.map = new OpenLayers.Map(mapId, this.options);
+     
+
+
+    /* Override pan bar */
+    function customzoom(options){
+    var panZoomBar = new OpenLayers.Control.PanZoomBar(options);
+    OpenLayers.Util.extend(panZoomBar,{
+        _addButton:function(id, img, xy, sz) {
+        var imgLocation = img;
+        var btn = OpenLayers.Util.createAlphaImageDiv(
+                                    this.id + "_" + id,
+                                    xy, sz, imgLocation, "absolute");
+        btn.style.cursor = "pointer";
+        //we want to add the outer div
+        this.div.appendChild(btn);
+
+        OpenLayers.Event.observe(btn, "mousedown",
+            OpenLayers.Function.bindAsEventListener(this.buttonDown, btn));
+        OpenLayers.Event.observe(btn, "dblclick",
+            OpenLayers.Function.bindAsEventListener(this.doubleClick, btn));
+        OpenLayers.Event.observe(btn, "click",
+            OpenLayers.Function.bindAsEventListener(this.doubleClick, btn));
+        btn.action = id;
+        btn.map = this.map;
     
+        if(!this.slideRatio){
+            var slideFactorPixels = this.slideFactor;
+            var getSlideFactor = function() {
+                return slideFactorPixels;
+            };
+        } else {
+            var slideRatio = this.slideRatio;
+            var getSlideFactor = function(dim) {
+                return this.map.getSize()[dim] * slideRatio;
+            };
+        }
+
+        btn.getSlideFactor = getSlideFactor;
+
+        //we want to remember/reference the outer div
+        this.buttons.push(btn);
+        return btn;
+         },
+          _addZoomBar:function(centered) {
+        var imgLocation = base_url;//OpenLayers.Util.getImagesLocation();        
+        var id = this.id + "_" + this.map.id;
+        var zoomsToEnd = this.map.getNumZoomLevels() - 1 - this.map.getZoom();
+        var slider = OpenLayers.Util.createAlphaImageDiv(id,
+                       centered.add(-1, zoomsToEnd * this.zoomStopHeight),
+                       new OpenLayers.Size(20,16),
+                       imgLocation+"img/buttons/map-tools/map-tools-zoom-handle-normal-btn.png",
+                       "absolute");
+        slider.style.cursor = "move";
+        this.slider = slider;
+        
+        this.sliderEvents = new OpenLayers.Events(this, slider, null, true,
+                                            {includeXY: true});
+        this.sliderEvents.on({
+            "touchstart": this.zoomBarDown,
+            "touchmove": this.zoomBarDrag,
+            "touchend": this.zoomBarUp,
+            "mousedown": this.zoomBarDown,
+            "mousemove": this.zoomBarDrag,
+            "mouseup": this.zoomBarUp,
+            "dblclick": this.doubleClick,
+            "click": this.doubleClick
+        });
+        
+        var sz = new OpenLayers.Size();
+        sz.h = this.zoomStopHeight * this.map.getNumZoomLevels();
+        sz.w = this.zoomStopWidth;
+        var div = null;
+        
+        if (OpenLayers.Util.alphaHack()) {
+            var id = this.id + "_" + this.map.id;
+            div = OpenLayers.Util.createAlphaImageDiv(id, centered,
+                                      new OpenLayers.Size(sz.w,
+                                              this.zoomStopHeight),
+                                      imgLocation + "/img/buttons/map-tools/map-tools-zoom-bar.png",
+                                      "absolute", null, "crop");
+            div.style.height = sz.h + "px";
+        } else {
+            div = OpenLayers.Util.createDiv(
+                        'OpenLayers_Control_PanZoomBar_Zoombar' + this.map.id,
+                        centered,
+                        sz,
+                        imgLocation+ "/img/buttons/map-tools/map-tools-zoom-bar.png");
+        }
+        div.style.cursor = "pointer";
+        this.zoombarDiv = div;
+        
+        this.divEvents = new OpenLayers.Events(this, div, null, true,
+                                                {includeXY: true});
+        this.divEvents.on({
+            "touchmove": this.passEventToSlider,
+            "mousedown": this.divClick,
+            "mousemove": this.passEventToSlider,
+            "dblclick": this.doubleClick,
+            "click": this.doubleClick
+        });
+        
+        this.div.appendChild(div);
+
+        this.startTop = parseInt(div.style.top);
+        this.div.appendChild(slider);
+
+        this.map.events.register("zoomend", this, this.moveZoomBar);
+
+        centered = centered.add(0,
+            this.zoomStopHeight * this.map.getNumZoomLevels());
+        return centered;
+    },
+          draw: function(px) {
+        // initialize our internal div
+        OpenLayers.Control.prototype.draw.apply(this, arguments);
+        px = this.position.clone();
+
+        // place the controls
+        this.buttons = [];
+
+        var sz = new OpenLayers.Size(34,34);
+        if (this.panIcons) {
+            var centered = new OpenLayers.Pixel(px.x+sz.w/2, px.y);
+            var wposition = sz.w;
+
+            if (this.zoomWorldIcon) {
+                centered = new OpenLayers.Pixel(px.x+sz.w, px.y);
+            }
+
+            this._addButton("panup", '/img/buttons/map-tools/map-tools-pan-north-normal-btn.png', centered, sz);
+            px.y = centered.y+sz.h;
+            this._addButton("panleft", '/img/buttons/map-tools/map-tools-pan-west-normal-btn.png', px, sz);
+            if (this.zoomWorldIcon) {
+                this._addButton("zoomworld", "zoom-world-mini.png", px.add(sz.w, 0), sz);
+
+                wposition *= 2;
+            }
+            this._addButton("panright", '/img/buttons/map-tools/map-tools-pan-east-normal-btn.png', px.add(wposition, 0), sz);
+            this._addButton("pandown", '/img/buttons/map-tools/map-tools-pan-south-normal-btn.png', centered.add(0, sz.h*2), sz);
+            this._addButton("zoomin", '/img/buttons/map-tools/map-tools-zoom-in-normal-btn.png', centered.add(0, sz.h*3+5), sz);
+            centered = this._addZoomBar(centered.add(8, sz.h*4 + 5));
+            this._addButton("zoomout", '/img/buttons/map-tools/map-tools-zoom-out-normal-btn.png', centered.add(-8,0), sz);
+        }
+        else {
+            this._addButton("zoomin", "/img/buttons/map-tools/map-tools-zoom-in-normal-btn.png", px, sz);
+            centered = this._addZoomBar(px.add(0, sz.h));
+            this._addButton("zoomout", "/img/buttons/map-tools/map-tools-zoom-out-normal-btn.png", centered, sz);
+            if (this.zoomWorldIcon) {
+                centered = centered.add(0, sz.h+3);
+                this._addButton("zoomworld", "zoom-world-mini.png", centered, sz);
+            }
+        }
+        return this.div;
+    }   
+    });
+        return panZoomBar;
+    }
+    //this.zoomBar = new OpenLayers.Control.ZoomBar();
+     this.map.addControl(new customzoom());
+   //   this.map.addControl(new OpenLayers.Control.PanPanel());
+    // this.map.addControl(this.zoomBar);
     /*  ------------------------------------------------------------  
      *    ADD GOOGLE BASE MAP LAYER
      *
@@ -125,7 +285,9 @@ function MapWidget(mapId, overviewMap, options){
     
     // look at Australia 
     if (!this.map.getCenter()) this.map.zoomToExtent(new OpenLayers.Bounds( 11548635,-5889094,18604187,-597430));
-
+   
+   //this.panZoomBar.buttons[0].innerHTML = "<div class=olControlPanup ></div>";
+    
      
 }
 
@@ -232,17 +394,23 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
                      while( this.map.popups.length ) {
                         this.map.removePopup(this.map.popups[0]);
                     }
+                    var offset = {'size':new OpenLayers.Size(0,0),'offset':new OpenLayers.Pixel(10,-30)};
+     
+                    CustomFramedCloudPopupClass = OpenLayers.Class(OpenLayers.Popup.Anchored, {
+                        'backgroundColor': '#FFFFFF', 
+                        'border': '1px solid black',
+                        'displayClass' : 'popupGroup',
+                        'contentDisplayClass' : 'popupContentScroll',
+                        'padding' : new OpenLayers.Bounds(0,0,10,0),
+                        'autoSize' : true
+                    });  
 
                     if(length > 657){
-                       var popup = new OpenLayers.Popup.FramedCloud(
-                            "chicken",
-                            this.map.getLonLatFromPixel(event.xy),
-                            null, 
-                            event.text,
-                            null,
-                            true
-                      
-                        );
+                        var popup = new CustomFramedCloudPopupClass("chicken",
+                                this.map.getLonLatFromPixel(event.xy),
+                                null, event.text, offset, true);    
+       
+                    popup.minSize = new OpenLayers.Size(180,50);        
                     popup.maxSize = new OpenLayers.Size(400,200);
                     this.map.addPopup(popup);
                     }

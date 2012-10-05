@@ -399,6 +399,51 @@ nav.resultsNav{
         {
         display: none !important;
         }
+        
+        .popupContent { 
+            padding: 0px 0px 10px 10px;  
+            overflow: visible;
+        }
+        .popupContentScroll { 
+            padding: 5px 0px 10px 10px;    
+            overflow: auto; 
+            margin: 5px 0px 5px 0px;
+            max-height: 155px; 
+        }
+        
+        .popupContent ul{
+            list-style-type: none;
+            margin: 5px 0;
+            overflow: auto;
+            max-height: 140px;
+            padding: 0;
+        }
+        .popupContent ul li{
+            padding: 0;
+            margin: 0;
+        }
+        .popupContentScroll h4{
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        .popupGroup{
+            border: 1px solid #FFF;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 13px;
+            box-shadow : 0 4px 10px 0 #666666;        
+            overflow: visible !important;
+            behavior: url(/js/PIE.htc);  
+            filter: none !important;
+            padding: 0px 10px 0 0 ;
+        } 
+        .popupContent h2{
+            margin-top:0px !important;
+        }
+        .popupGroup #chicken_GroupDiv{
+            overflow: visible !important;
+
+        }
 
 	/* Coords overlay */
 	#coordsOverlay{ position: absolute; background: url(../img/gradients/search-bg-gradient.png) repeat-x; border: 1px solid #000; border-top: 0px; padding: 10px; margin-left: 130px; display: inline; width: 210px; text-align: center;}
@@ -416,7 +461,7 @@ nav.resultsNav{
 		#resultsOverlay ul{ overflow: auto; height: 180px; list-style: none; padding: 0px; }
 		#resultsOverlay ul li{ clear: both; margin: 0px; background: url(../img/dividers/results-overlay-divider.png) no-repeat bottom center; padding-bottom: 5px; overflow: hidden; }
 		#resultsOverlay .pinTxt{ padding: 10px 0px; display: block; width: 260px; float: left; }
-		#closeResultsOverlayBtn, .olPopupCloseBox{ position: absolute; top: 15px; right: 15px !important; display: block; width: 21px !important; height: 21px !important; background: url(../img/buttons/results-overlay-close-normal-btn.png) no-repeat !important; }
+		#closeResultsOverlayBtn, .olPopupCloseBox{ position: absolute; top: 15px;  display: block; width: 21px !important; height: 21px !important; background: url(../img/buttons/results-overlay-close-normal-btn.png) no-repeat !important; }
 		#closeResultsOverlayBtn:hover, .olPopupCloseBox:hover{ background: url(../img/buttons/results-overlay-close-hover-btn.png) no-repeat; }
 	
 	#spatialMap{ position: relative; }
@@ -478,6 +523,110 @@ a.mapPinSingle{ background: url(../img/icons/map-pin-single-normal-bg.png) no-re
 a.mapPinSingle:hover{ background: url(../img/icons/map-pin-single-hover-bg.png) no-repeat; text-decoration: none; }
 a.mapPinMultiple{ background: url(../img/icons/map-pin-multiple-normal-bg.png) no-repeat; width: 40px; height: 42px; display: block;  margin: 10px 0px 0px 15px; position: absolute; }
 a.mapPinMultiple:hover{ background: url(../img/icons/map-pin-multiple-hover-bg.png) no-repeat; }
+
+.olControlPanup {
+  background-image:url("/img/buttons/map-tools/map-tools-pan-north-normal-btn.png");
+  width: 34px;
+  height: 34px;
+}
+.olControlPanup:hover {
+  background-image:url("/img/buttons/map-tools/map-tools-pan-north-hover-btn.png");
+  width: 34px;
+  height: 34px;
+}
+div.olControlZoom, div.olControlZoomInCnt, div.olControlZoomOutCnt, div.olControlZoomBarCnt {
+
+   background: rgba(255, 255, 255, 0.4);
+}
+div.olControlZoom {
+    position: absolute;
+    top: 50px;
+    left: 8px;
+    border-radius: 4px;
+    padding: 2px;
+}
+div.olControlZoomBar {
+    position: absolute;
+    top: 50px;
+    left: 8px;
+}
+div.olControlZoomInCnt {
+    border-radius: 4px 4px 2px 2px;
+    padding: 3px 3px 1px 3px;
+}
+div.olControlZoomOutCnt {
+    border-radius: 2px 2px 4px 4px;
+    padding: 1px 3px 3px 3px;
+}
+div.olControlZoomBarCnt {
+    padding: 0 3px;
+    margin: -7px 8px 0;
+    width: 2px;
+}
+div.olControlZoom a, div.olControlZoomInCnt a, div.olControlZoomOutCnt a, div.olControlZoomBar div.olControlZoomBarBarInternal {
+    display: block;
+    padding: 0;
+    color: white;
+    font-size: 18px;
+    font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    line-height: 19px;
+    background: #130085; /* fallback for IE - IE6 requires background shorthand*/
+    background: rgba(0, 60, 136, 0.5);
+    filter: alpha(opacity=80);
+}
+div.olControlZoom a, div.olControlZoomInCnt a, div.olControlZoomOutCnt a {
+    margin: 1px;
+    height: 22px;
+    width: 22px;
+}
+div.olControlZoomBar div.olControlZoomBarBar {
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    display: block;
+    height: 100%;
+}
+div.olControlZoomBar div.olControlZoomBarBar {
+    margin: 0 2px;
+}
+div.olControlZoomBar div.olControlZoomBarBarInternal {
+    width: 2px;
+}
+div.olControlZoom a:hover, div.olControlZoomBar a:hover, div.olControlZoomBar a.olControlZoomSlider:hover {
+    background: #130085; /* fallback for IE */
+    background: rgba(0, 60, 136, 0.7);
+    filter: alpha(opacity=100);
+}
+@media only screen and (max-width: 600px) {
+    div.olControlZoom a:hover, div.olControlZoomBar a:hover, div.olControlZoomBar a.olControlZoomSlider:hover {
+        background: rgba(0, 60, 136, 0.5);
+    }
+}
+div.olControlZoomInCnt a, div.olControlZoomOutCnt a {
+    margin: 0;
+}
+a.olControlZoomIn {
+    border-radius: 4px 4px 0 0;
+}
+a.olControlZoomOut {
+    border-radius: 0 0 4px 4px;
+}
+div.olControlZoomBar a.olControlZoomSlider {
+    height: 4px;
+    width: 22px;
+    border-radius: 2px;
+    border: 1px solid #ffffff;
+    margin-top: 1px;
+    background: #7b98bc;
+    position: relative;
+    display: block;
+}
+
+
+
 
 /* Footer
 *******************************************************************/

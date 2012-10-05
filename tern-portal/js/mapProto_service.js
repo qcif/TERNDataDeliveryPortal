@@ -10,7 +10,7 @@ function addCheckbox(name,image_url,help_url,text_abstract) {
    container.append($(html));
 }
 
-
+ 
 function initMapProto(){
             
     var mapWidget = new MapWidget('spatialmap',true);          

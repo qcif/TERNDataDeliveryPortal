@@ -2,9 +2,9 @@
 
 <#setting number_format="0.###">
 <#attempt> 
-
-<h4>${features[0].name.value}</h4>
-
+ 
+<h4>Long Term Ecological Plot Network: <br/>${features[0].name.value}</h4>
+  
 	<div class="feature">  		
 		<div style="clear:both">
 			<#if features[0].plot_leade.value != "">
@@ -25,6 +25,7 @@
 		</div> 
 		
 	</div>
+
 <#recover>
 		
 		 

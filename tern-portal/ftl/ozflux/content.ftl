@@ -3,9 +3,8 @@
 <#setting number_format="0.###">
 <#attempt> 
 
-<h4>${features[0].name.value}</h4>
- 
-	
+<h4>OzFlux: <br/>${features[0].name.value}</h4>
+
 <#recover>
 		
 		 
