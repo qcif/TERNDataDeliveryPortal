@@ -3,7 +3,7 @@ function addCheckbox(name,image_url,help_url,text_abstract) {
    var inputs = container.find('input');
    var id = inputs.length+1;
    var img = '<img src=\"' + image_url + '"/>';
-   var helpimg = '<a id="' + id + '" class="help-button">help</a>';
+   var helpimg = '<a id="' + id + '" class="helpBtn"></a>'; 
     var helptext = '<div id="help-' + id + '" class="hide" title="About ' + name + '">' + text_abstract + '</div>';
   
    var html = '<input type="checkbox" id="cb'+id+'" value="'+name+'" /> <label for="cb'+id+'">'+name+ img + '</label>' + helpimg  + '<br/>' + helptext;
@@ -44,7 +44,7 @@ function initMapProto(){
                                 addCheckbox(val.name,val.marker_url,data.help_url, layerObj.abstract);
                             }
                         }
-                        $(".help-button").click(function(e){
+                        $("#facilities .helpBtn").click(function(e){
                            var id = $(this).attr('id');
                            $("#help-" + id).dialog();
                         });

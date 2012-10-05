@@ -387,8 +387,9 @@ nav.resultsNav{
 	#map-toolbar #helpBtn{ background: url(../img/buttons/map-tools/map-tools-help-normal-btn.png) no-repeat; }
 	#map-toolbar #helpBtn:hover{ background: url(../img/buttons/map-tools/map-tools-help-hover-btn.png) no-repeat; }
 	#map-toolbar a.hide{ margin: 2px 12px 0px 0px; padding: 0px 30px 0px 0px; color: #fff;  float: right; }
-	
-        
+	 
+        #facilities .helpBtn{float: none; margin-bottom:-5px; display:inline-block; background: url(../img/buttons/help-normal-btn.png) no-repeat; height: 29px; width: 29px;  }
+	#facilities .helpBtn:hover{ float: none; background: url(../img/buttons/help-hover-btn.png) no-repeat; }
         #spatialmap {
             display: block;
             height: 410px;
