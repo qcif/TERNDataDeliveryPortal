@@ -19,9 +19,9 @@ if (isset($description))
         <meta name="title" content="<?php echo $title; ?>"/>
         <meta name="description" content="<?php echo $md_description; ?>"/>
          
-        <link href="<?php echo base_url(); ?>css/tern-superfish.css" type="text/css" rel="stylesheet"/>
-        <link type="text/css" href="<?php //echo base_url(); ?>css/tipsy.css" rel="stylesheet" />
-    <!--    <link type="text/css" href="<?php //echo base_url(); ?>css/tern.css" rel="stylesheet" />-->
+         <link type="text/css" href="<?php //echo base_url(); ?>css/tipsy.css" rel="stylesheet" />
+    <!--   <link href="<?php echo base_url(); ?>css/tern-superfish.css" type="text/css" rel="stylesheet"/>
+          <link type="text/css" href="<?php //echo base_url(); ?>css/tern.css" rel="stylesheet" />-->
     
         <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/css-reset.css" rel="stylesheet"/>
@@ -74,7 +74,7 @@ if (isset($description))
                             
                         </li>                       
                     </ul> 
-                    <ul class="right">
+                    <!--ul class="right">
                         <li>
                             <a href="#">
                                 <img alt="My Favourites" src="img/icons/icon-my-favourites.png"/>
@@ -88,7 +88,7 @@ if (isset($description))
                                 My Searches
                             </a>
                         </li>
-                    </ul>
+                    </ul-->
               </nav>
              <img id="dataDiscoveryPortalLogo" alt="Data Discovery Portal" src="img/logos/logo-datadiscoveryportal.png"/>
          <!--      <div class="no_print top-menu-cover">-->

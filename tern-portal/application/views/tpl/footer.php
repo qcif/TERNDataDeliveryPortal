@@ -31,7 +31,6 @@
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.ba-hashchange.min.js"></script> <!-- Monitoring on Hash Change-->
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.cookie.js"></script> <!-- jQuery Cookie-->  
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.infinite-carousel.js"></script> 
-        <script type="text/javascript" src="<?php echo base_url();?>js/superfish.js"></script>  
         <script type="text/javascript" src="<?php echo base_url();?>js/hoverIntent.js"></script>  
                         
         <script type="text/javascript" src="<?php echo base_url();?>js/misc.js"></script>  
