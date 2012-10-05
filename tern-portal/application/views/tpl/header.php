@@ -52,8 +52,8 @@ if (isset($description))
            
              <!--   <div id="logo">-->
              <h1>
-                    <a href="#">
-                        <img src="<?php echo site_url('img/logos/logo-tern.png'); ?>" alt="TERN Logo" id="tern-logo"/>
+                    <a href="#"> 
+                        <img src="<?php echo site_url('/img/logos/logo-tern.png'); ?>" alt="TERN Logo" id="tern-logo"/>
                     </a>
              </h1>
              <!--   </div>-->
@@ -90,7 +90,7 @@ if (isset($description))
                         </li>
                     </ul-->
               </nav>
-             <img id="dataDiscoveryPortalLogo" alt="Data Discovery Portal" src="img/logos/logo-datadiscoveryportal.png"/>
+             <img id="dataDiscoveryPortalLogo" alt="Data Discovery Portal" src="/img/logos/logo-datadiscoveryportal.png"/>
          <!--      <div class="no_print top-menu-cover">-->
 
           <!--      </div>-->

@@ -155,11 +155,10 @@ class Home extends CI_Controller {
                  $data["regions"] = $regions;
                 $this->load->view('content/mapproto',$data);
         }
-	public function mapproto_service(){
+	public function infrastructure(){
                 $data['widget_map'] = 1;
-              
-        
-                $this->load->view('content/mapproto_service',$data);
+                $data['infrastructure_map'] = 1;
+                $this->load->view('content/infrastructure',$data);
         }
 
         
