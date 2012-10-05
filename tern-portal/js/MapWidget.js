@@ -990,7 +990,7 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
                 pausecomp(800);
                 self.onFeatureSelect(e);
             },
-            
+           
             hover:true
         });
         this.map.addControl(this.selectControl);
@@ -1028,9 +1028,9 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
              var date = $(this).parent().parent().parent().children('tr').children('td:nth-child(3)').children('p').html();
              var button =  $("<p>").append($(this).parent().parent().children('#metabutton').children('button').clone().attr('onClick','handleViewMeta(\''  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + '\');')).html();
             
-             number = $(this).parent().parent().parent().children('tr').children('td:nth-child(1)').children('h2').html();
-             html  = " <div class=\"h2color mapMarker\" style=\"float:left\">" + number +  "</div><strong>" + title + "</strong> <br/> Pub date: " + date  + "&nbsp; "+ button ; 
-             html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";    
+             number = $(this).parent().parent().parent().children('tr').children('td:nth-child(1)').children('a').html();
+             html  = " <a class=\"pin\" style=\"float:left\">" + number +  "</a><strong>" + title + "</strong> <br/> Pub date: " + date  + "&nbsp; "+ button ; 
+           //  html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";    
              $.each($(this).parent().children('.spatial').children('li'), function(){
                   coverage.push( $(this).text());
              });
@@ -1239,9 +1239,9 @@ function getStyle(styleName){
         case "default" : {
                 style = {
                     pointRadius: "${radius}", 
-                    externalGraphic: '/img/markerblue_large.png', 
+                    externalGraphic: "${imageicon}", 
                     fillColor: '${bgcolor}', 
-                    fontColor: "#000000",
+                    fontColor: "#FFF",
                     fillOpacity: '1', 
                     strokeColor: '#000000', 
                     strokeWidth: '1',
@@ -1249,13 +1249,15 @@ function getStyle(styleName){
                     label: "${count}",
                     fontWeight: "Bold",
                     labelAlign: 'cb',
-                    labelYOffset: 14,
+                    labelYOffset: 12,
+                    labelXOffset: -4,
                     labelSelect: true
                
                 };
                
                 styleSelected = {
                     fillColor: '#ff0000', 
+                    externalGraphic: '${imageiconselect}', 
                     strokeColor: '#000000',
                     fontColor: "#FFFFFF",
                     fontWeight: "Bold"
@@ -1263,6 +1265,20 @@ function getStyle(styleName){
                 }      
                   
                 context =  {
+                    imageicon: function(feature){
+                        if(feature.attributes.count > 1) {
+                            return '/img/icons/map-pin-multiple-normal-bg.png';
+                        }else{
+                           return '/img/icons/map-pin-single-normal-bg.png';
+                        }
+                    }, 
+                    imageiconselect: function(feature){
+                        if(feature.attributes.count > 1) {
+                            return '/img/icons/map-pin-multiple-hover-bg.png';
+                        }else{
+                           return '/img/icons/map-pin-single-hover-bg.png';
+                        }
+                    }, 
                     bgcolor: function(feature){
                         if(feature.attributes.count > 1) {
                             return "#FFFF00";
@@ -1280,7 +1296,7 @@ function getStyle(styleName){
                     },
                     count: function(feature){
                         if(feature.attributes.count > 1) {
-                            return "+";
+                           return '';
                         }else{
                             return feature.attributes.number;
                         }

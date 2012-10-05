@@ -202,8 +202,19 @@ if ($realNumFound >0)
             }
   
  */
-            echo '</p>
-                  </td>';
+            echo '</p>';
+            if($spatial){
+
+                echo '<ul class="spatial">';
+                foreach($spatial as $s){
+                echo '<li>'.$s.'</li>';
+                }
+                echo '</ul>';
+                echo '<a class="spatial_center">'.$center.'</a>';
+                echo '<a class="key hide">'.$ro_key.'</a>';
+                if($center) $c++;
+            }
+             echo '</td>';
             echo  '<td id="metabutton">';
                     //<button type="button" class="viewmeta" id="' . $key_url . '">View Metadata</button>
             echo    '<a class="greenGradient smallRoundedCorners viewmeta" id="' . $key_url . '">View Metadata</a>';
