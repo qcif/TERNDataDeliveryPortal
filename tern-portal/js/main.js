@@ -517,7 +517,8 @@ $(function() {
             $("#coords input").trigger('change');
             if(param_q > -1 && search_term != '*:*' && search_term !="Search ecosystem data") {
                
-                $('input[id="search-box"]').val(search_term);
+                //$('input[id="search-box"]').val(search_term);
+               $('input[id="refineSearchTextField"]').val(search_term); 
             }
       
     }
@@ -563,7 +564,7 @@ $(function() {
         $("#map-view-selector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
         });
-        $("#map-toolbar .tooltip").tipsy({gravity: 'e'});
+        $("#map-toolbar .helpBtn").tipsy({gravity: 'e'});
         
         $("#map-hide").bind('click', function(){
             $("#spatial-map").toggle(300);
@@ -660,12 +661,12 @@ $(function() {
          $('#search-panel input').keypress(function(e) {
             if(e.which == 13) {
              
-                        $('#search_basic').trigger('click');
+                        $('#refineSearchBtn').trigger('click');
               
             }
         });
         
-         autocomplete('#search-box');
+         autocomplete('#refineSearchTextField');
          autocomplete('input[name^=keyword]');
       
     }
@@ -739,18 +740,19 @@ $(function() {
             divs.each(function() {
                 if($(this).attr('id') == 'facet-content')  {
                     if(mapSearch == 1 || clearAll == 1){
-                         $('#facet-accordion').html('');
+                         //$('#facet-accordion').html('');
+                         $('#facetNav').html('');
                      var thisdiv = $(this);
                      if(clearAll ==1 ){
                           var textbox = thisdiv.find("#basic-search").clone();
-                          textbox.appendTo("#facet-accordion");
+                          textbox.appendTo("#facetNav");
                      }
                      var facetdivs = thisdiv.find("#facet-region").parent().clone();
                      
-                    facetdivs.appendTo('#facet-accordion'); 
+                    facetdivs.appendTo('#facetNav'); 
                      
                     }else{
-                        $('#facet-accordion').html($(this).html());               
+                        $('#facetNav').html($(this).html());               
                     }
                     
                 }
@@ -796,7 +798,8 @@ $(function() {
            
             $('.clearFilter').each(function(){
                 if($(this).context.innerHTML!="All Records")
-                   $(this).append('<img class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
+                   //$(this).append('<a class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
+                       $(this).append('<a class="remove" />');
             });
             
            
@@ -904,19 +907,19 @@ $(function() {
                 document.getElementById("adv_bool_operator").style.display='none';
         });
            // If user presses enter in the inputs, submit the form
-        $('#search-box').keypress(function(e) {
+        $('#refineSearchTextField').keypress(function(e) {
             if(e.which == 13) {             
-                        $('#search_basic').trigger('click');
+                        $('#refineSearchBtn').trigger('click');
               
             }
         });
         
-         autocomplete('#search-box');
+         autocomplete('#refineSearchTextField');
          
-        $('#search_basic').click(function(){
+        $('#refineSearchBtn').click(function(){
             var special_char=/^[A-Za-z0-9 ]{3,20}$/;
            
-            if(!special_char.test($('#search-box').val())&& $('#search-box').val()!="" && $('#search-box').val()!=null)
+            if(!special_char.test($('#refineSearchTextField').val())&& $('#refineSearchTextField').val()!="" && $('#refineSearchTextField').val()!=null)
             {
                 $("#dialog-searchterm"). dialog({
                     resizable: false,
@@ -926,15 +929,15 @@ $(function() {
                          "OK": function() { 
                                         if(search_term==""||search_term=="Search ecosystem data" ||search_term=="*:*")
                                         {
-                                            search_term = "("+$('#search-box').val()+")";       
+                                            search_term = "("+$('#refineSearchTextField').val()+")";       
                                         }else
                                         {
-                                            var rb=document.getElementsByName('boolean_operator');
+                                            var rb=document.getElementsByName('advancedBooleanSearch');
                
                                             for(var i=rb.length-1;i>-1;i--)
                                             {
-                                                if(rb[i].checked && search_term!=$('#search-box').val())
-                                                    search_term="("+search_term+") "+rb[i].value+" "+$('#search-box').val();
+                                                if(rb[i].checked && search_term!=$('#refineSearchTextField').val())
+                                                    search_term="("+search_term+") "+rb[i].value+" "+$('#refineSearchTextField').val();
                                             }
                
                                         }
@@ -953,15 +956,15 @@ $(function() {
             {
                 if(search_term==""||search_term=="Search ecosystem data" ||search_term=="*:*")
                 {
-                    search_term = "("+$('#search-box').val()+")";       
+                    search_term = "("+$('#refineSearchTextField').val()+")";       
                 }else
                 {
-                    var rb=document.getElementsByName('boolean_operator');
+                    var rb=document.getElementsByName('advancedBooleanSearch');
 
                     for(var i=rb.length-1;i>-1;i--)
                     {
-                        if(rb[i].checked && search_term!=$('#search-box').val())
-                            search_term="("+search_term+") "+rb[i].value+" "+$('#search-box').val();
+                        if(rb[i].checked && search_term!=$('#refineSearchTextField').val())
+                            search_term="("+search_term+") "+rb[i].value+" "+$('#refineSearchTextField').val();
                     }
 
                 }
@@ -1043,7 +1046,11 @@ $(function() {
        if($(msg).find('div#realNumFound').html() == "0")
        {
                     showNoResult(1); 
-       }       
+       }
+       $(".collapsiblePanel .hide").live("click",function()
+    {
+        $(this).next("div").slideToggle(300);
+    });
     } 
  
     function doNormalSearch(){     
@@ -1059,7 +1066,7 @@ $(function() {
             success: function(msg,textStatus){
                 handleResults(msg,mapResult);
                 
-                 $('#clearall').click(function()
+                 $('#clearSearchBtn').click(function()
                 {
                      resetFilter();
                      clearAll = 1;
@@ -1268,6 +1275,14 @@ $(function() {
        //handleRollover();
        
         $("#carouselContainer").carousel('#carouselprev','#carouselnext'); 
+        
+        $("#carouselContainer img").click(function(){
+                                var facname=$(this).attr("id");
+                                 //alert($(this).attr("id"));                                
+                                handleRandom(facname);
+                                //window.open($(this).attr("id"));
+                                //window.focus();
+	});
        // sizeHomeContent();
     }
 

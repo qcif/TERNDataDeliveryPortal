@@ -23,19 +23,63 @@ $Revision: 1 $
 <?php 
 if($mapsearch==0 && ($spatial_included_ids=='') && ($temporal=='All') && ($typeFilter=='All') && ($groupFilter=='All')&&($subjectFilter=='All')&&($fortwoFilter=='All')&&($forfourFilter=='All')&&($forsixFilter=='All') && $ternRegionFilter=='All' && $query=='All Records')
 {
-    	echo '<h5><a href="#">Current Search</a></h5>'; 
+        echo '<div id="currentSearchBox" class="box">';
+        echo    '<h1 class="orangeGradient">Current Search</h1>';
+        echo    '<div class="content">';
+        echo        '<ul>';
+        echo            '<li class="limit">            
+                        <span class="searchTerm"><label class="clearFilter classTerm" id="All Records">'.'All Records'.'</label></span>
+                        </li>';
+        echo        '</ul>';
+        echo        '<div class="buttons">';
+        echo            '<a id="clearSearchBtn" class="greyGradient smallRoundedCorners" href="#">Clear Search</a>';
+        echo        '</div>';        
+        echo    '</div>';
+        echo '</div>';
+/*    	
+        echo '<h5><a href="#">Current Search</a></h5>'; 
 	echo '<div id="current-search"  class="facet-list">';
         echo '<ul>';
                  echo '<li class="limit">
                     <label " 
                         class="clearFilter classTerm" id="All Records">'.'All Records'.'</label></li>';
-       echo '</ul>';
+        echo '</ul>';
                 echo '<button id="clearall" class="ui-button ui-widget ui-state-default ui-corner-all srchButton ui-button-text-only" role="button" aria-disabled="false">Clear all</button>';
-        echo '</div>';                 
+        echo '</div>';  
+*/        
              
 }
 else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All' ||$query!='All Records')    
 {
+        echo '<div id="currentSearchBox" class="box">';
+        echo    '<h1 class="orangeGradient">Current Search</h1>';
+        echo    '<div class="content">';
+        
+        if ($query!='All Records') displaySelectedTerm ($query, $json);
+        if($temporal!='All')
+        {
+            echo '<h2>Dates:</h2>';
+            echo '<ul>';
+            echo '<li>'.$temporal.'</li>';
+            echo '</ul>';
+        }
+        if($spatial_included_ids!='')
+        {
+            echo '<h2>Dates:</h2>';
+            echo '<ul>';
+            echo '<li>Clear Spatial</li>';
+            echo '</ul>';
+        }
+        if($groupFilter!='All') displaySelectedFacet('group',$groupFilter,$json);
+        if($ternRegionFilter!='All') displaySelectedRegionFacet('tern_region',$ternRegionFilter,$json,$regionsName);
+        if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
+        if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
+        echo        '<div class="buttons">';
+        echo            '<a id="clearSearchBtn" class="greyGradient smallRoundedCorners" href="#">Clear Search</a>';
+        echo        '</div>';
+        echo    '</div>';
+        echo '</div>';
+/*    
 	echo '<h5><a href="#">Current Search</a></h5>'; 
 	echo '<div id="current-search"  class="facet-list">';
 		echo '<ul>';
@@ -63,7 +107,7 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
                 echo '</ul>';
                 echo '<button id="clearall" class="ui-button ui-widget ui-state-default ui-corner-all srchButton ui-button-text-only" role="button" aria-disabled="false">Clear all</button>';
         echo '</div>';
-  
+*/  
 }
 
 
@@ -71,24 +115,22 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
 
 <?php
 
-	/*
-	echo '<pre>';
-	print_r($json->{'facet_counts'}->{'facet_fields'}->{'group'});
-	echo '</pre>';
-	*/
-	//displayFacet('type', $typeFilter, $json, $classFilter, $this);
+    echo '<div id="refineSearchBox" class="box">';
+    echo '<h1 class="greenGradient">Search</h1>';
+    echo        '<div class="content">';
+    echo            '<ul>';
+                         $this->load->view('tab/widgets/basicsearch');
+         
+                         $this->load->view('tab/widgets/temporal');
 
-	//displayFacet('subject_value', $subjectFilter, $json, $classFilter);
-     //   displayFacet('subject_value_resolved', $subjectFilter, $json, $classFilter);
-        $this->load->view('tab/widgets/basicsearch');
-        $this->load->view('tab/widgets/temporal');
-
-        displayRegionFacet('tern_region', $ternRegionFilter, $json, $ternRegionFilter,$regionsName,$help->language['region_helptitle'],$help->language['region_helptext']);
+                         displayRegionFacet('tern_region', $ternRegionFilter, $json, $ternRegionFilter,$regionsName,$help->language['region_helptitle'],$help->language['region_helptext']);
        
-        displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$fortwoFilter,$json, $classFilter, $this,$help->language['for_helptitle'],$help->language['for_helptext']);      
+                         displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$fortwoFilter,$json, $classFilter, $this,$help->language['for_helptitle'],$help->language['for_helptext']);      
 
-       // displayFacet('group', $groupFilter, $json, $classFilter);
-         displayFacilitiesFacet('group', $groupFilter, $json, $classFilter,$help->language['facility_helptitle'],$help->language['facility_helptext']);
+                         displayFacilitiesFacet('group', $groupFilter, $json, $classFilter,$help->language['facility_helptitle'],$help->language['facility_helptext']);
+    echo            '</ul>'     ;
+    echo         '</div>';     
+    echo '</div>';
 	  
        
 ?>

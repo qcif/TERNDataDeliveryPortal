@@ -53,12 +53,17 @@ if ($realNumFound >0)
             //$this->load->view('search/no_result');
  
         $c = 1; //record counter 1- 10
-        echo '<table style="border:1px solid black;table-layout:fixed" width="880px">';
-        echo '<col width=50>';
-        echo '<col width=730>';
-        echo '<col width=100>';
+       // echo '<table style="border:1px solid black;table-layout:fixed" width="880px">';
+        //echo '<col width=50>';
+        //echo '<col width=730>';
+        //echo '<col width=100>';
+        echo '<table id="searchResults">';
         echo '<thead>';
-        echo '<tr><th>Map ref</th><th>Title</th><th>Date released</th></tr>';
+        echo '<tr>';
+        echo    '<th class="mapRefTH blackGradient">Map ref#</th>';
+        echo    '<th class="titleTH blackGradient">Title</th>';
+        echo    '<th class="datePublishedTH blackGradient">Date released</th>';
+        echo '</tr>';
         echo '</thead>';
         foreach ($json->{'response'}->{'docs'} as $r) 
         {
@@ -132,51 +137,54 @@ if ($realNumFound >0)
                 $key_url = base_url() . 'view/dataview?key=' . urlencode($ro_key);
             }
             echo '<tbody>';
-            echo '<tr><td>';
-            if($center) echo '<h2 class="h2color mapMarker">' . $c . '</h2>';
-            echo '</td><td><h2 class="h2color">' . $name . '</h></td><td><p>' . $date_pub . '</p></td>';
-            echo '<tr id="re-hide" style="border:0"><td id="emptycell"><p></p></td>
-                    <td id="desc">
+            echo '<tr>';
+            echo    '<td>';
+                        if($center) echo '<a class="pin" href="javascript:void(0);">' . $c . '</a>';
+            echo    '</td>';
+            echo    '<td><h2 >' . $name . '</h></td>';
+            echo    '<td><p class="datePublished">' . $date_pub . '</p></td>';
+            echo '<tr id="re-hide" >';
+            echo    '<td id="emptycell"><p></p></td>';
+            echo    '<td id="desc">
                         <p>';
-            if (isset($r->{'alt_list_title'}))
-            {
-                echo '<div class="alternatives">';
-                //foreach($r->{'alt_listTitle'} as $listTitle){
-                foreach ($r->{'alt_list_title'} as $listTitle)
-                {
+                            if (isset($r->{'alt_list_title'}))
+                            {
+                                echo '<div>';
+                                //foreach($r->{'alt_listTitle'} as $listTitle){
+                                foreach ($r->{'alt_list_title'} as $listTitle)
+                                {
 
-                    echo '<p class="alt_listTitle">' . $listTitle . '</p>';
-                }
-                echo '</div>';
-            }
-            //DESCRIPTIONS';
-            if ($found_brief || $found_full)
-            {
-                echo '<p>';
-                if ($found_brief)
-                {
-                    echo ($brief);
-                }
-                elseif ($found_full)
-                {
-                    echo ($full);
-                }
-                echo '</p> ';
-            }
-
-            if ($spatial)
-            {
-
-                echo '<ul class="spatial">';
-                foreach ($spatial as $s)
-                {
-                    echo '<li>' . $s . '</li>';
-                }
-                echo '</ul>';
-                echo '<a class="spatial_center">' . $center . '</a>';
-                echo '<a class="key hide">' . $ro_key . '</a>';
-                if($center) $c++;
-            }
+                                    echo '<p class="alt_listTitle">' . $listTitle . '</p>';
+                                }
+                                echo '</div>';
+                            }
+                            //DESCRIPTIONS';
+                            if ($found_brief || $found_full)
+                            {
+                                echo '<p>';
+                                if ($found_brief)
+                                {
+                                    echo ($brief);
+                                }
+                                elseif ($found_full)
+                                {
+                                    echo ($full);
+                                }
+                                echo '</p> ';
+                            }
+/*
+                            if ($spatial)
+                            {
+                                echo '<ul>';
+                                foreach ($spatial as $s)
+                                {
+                                    echo '<li>' . $s . '</li>';
+                                }
+                                echo '</ul>';
+                                echo '<a>' . $center . '</a>';
+                                echo '<a>' . $ro_key . '</a>';
+                                if($center) $c++;
+                            }
 
             if (get_cookie('show_subjects') == 'yes')
             {
@@ -192,10 +200,15 @@ if ($realNumFound >0)
                     echo '</div>';
                 }
             }
+  
+ */
             echo '</p>
-                    </td>
-                    <td id="metabutton"><button type="button" class="viewmeta" id="' . $key_url . '">View Metadata</button></td>
-                </tr>';
+                  </td>';
+            echo  '<td id="metabutton">';
+                    //<button type="button" class="viewmeta" id="' . $key_url . '">View Metadata</button>
+            echo    '<a class="greenGradient smallRoundedCorners viewmeta" id="' . $key_url . '">View Metadata</a>';
+            echo  '</td>';
+            echo  '</tr>';
 
             echo '</tbody>';
 
