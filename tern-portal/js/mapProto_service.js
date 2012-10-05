@@ -6,7 +6,7 @@ function addCheckbox(name,image_url,help_url,text_abstract) {
    var helpimg = '<a id="' + id + '" class="help-button">help</a>';
     var helptext = '<div id="help-' + id + '" class="hide" title="About ' + name + '">' + text_abstract + '</div>';
   
-   var html = '<input type="checkbox" id="cb'+id+'" value="'+name+'" /> <label for="cb'+id+'">'+name+ img + helpimg + '</label><br/>' + helptext;
+   var html = '<input type="checkbox" id="cb'+id+'" value="'+name+'" /> <label for="cb'+id+'">'+name+ img + '</label>' + helpimg  + '<br/>' + helptext;
    container.append($(html));
 }
 
