@@ -8,6 +8,9 @@ Array
     [ENVIRONMENTAL SCIENCES] => Array
         (
             [ENVIRONMENTAL SCIENCES] => 645
+            [ECOLOGICAL APPLICATIONS] => 3
+            [ENVIRONMENTAL SCIENCE AND MANAGEMENT] => 3
+            [SOIL SCIENCES] => 3
         )
 
     [BIOLOGICAL SCIENCES] => Array

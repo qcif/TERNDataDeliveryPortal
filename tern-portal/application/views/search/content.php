@@ -141,12 +141,8 @@ if ($realNumFound >0)
             echo    '<td>';
                         if($center) echo '<a class="pin" href="javascript:void(0);">' . $c . '</a>';
             echo    '</td>';
-            echo    '<td><h2 >' . $name . '</h></td>';
-            echo    '<td><p class="datePublished">' . $date_pub . '</p></td>';
-            echo '<tr id="re-hide" >';
-            echo    '<td id="emptycell"><p></p></td>';
-            echo    '<td id="desc">
-                        <p>';
+            echo    '<td><h2 >' . $name . '</h>';
+            echo        '<div class="expand" id="metadesc"><p>';
                             if (isset($r->{'alt_list_title'}))
                             {
                                 echo '<div>';
@@ -172,36 +168,7 @@ if ($realNumFound >0)
                                 }
                                 echo '</p> ';
                             }
-/*
-                            if ($spatial)
-                            {
-                                echo '<ul>';
-                                foreach ($spatial as $s)
-                                {
-                                    echo '<li>' . $s . '</li>';
-                                }
-                                echo '</ul>';
-                                echo '<a>' . $center . '</a>';
-                                echo '<a>' . $ro_key . '</a>';
-                                if($center) $c++;
-                            }
 
-            if (get_cookie('show_subjects') == 'yes')
-            {
-                if ($subjects)
-                {
-                    echo '<div class="subject-container">';
-                    echo '<ul class="subjects">';
-                    foreach ($subjects as $s)
-                    {
-                        echo '<li><a href="javascript:void(0);" class="contentSubject" id="' . $s . '">' . $s . '</a></li>';
-                    }
-                    echo '</ul>';
-                    echo '</div>';
-                }
-            }
-  
- */
             echo '</p>';
             if($spatial){
 
@@ -210,15 +177,19 @@ if ($realNumFound >0)
                 echo '<li>'.$s.'</li>';
                 }
                 echo '</ul>';
-                echo '<a class="spatial_center">'.$center.'</a>';
-                echo '<a class="key hide">'.$ro_key.'</a>';
+                echo '<a class="spatial_center">'.$center.'</a><br/>';
+                echo '<a class="key">'.$ro_key.'</a>';
                 if($center) $c++;
             }
+            echo '</div>';
+            echo '</td>';
+            echo    '<td><p class="datePublished">' . $date_pub . '</p>';
+            echo    '<a class="hide" href="javascript:void(0);"></a>';
+            echo        '<div class="expand" id="metabutton">';
+            echo            '<a class="greenGradient smallRoundedCorners viewmeta" id="' . $key_url . '">View Metadata</a>';
+            echo        '</div>';
              echo '</td>';
-            echo  '<td id="metabutton">';
-                    //<button type="button" class="viewmeta" id="' . $key_url . '">View Metadata</button>
-            echo    '<a class="greenGradient smallRoundedCorners viewmeta" id="' . $key_url . '">View Metadata</a>';
-            echo  '</td>';
+
             echo  '</tr>';
 
             echo '</tbody>';
@@ -283,10 +254,6 @@ if ($realNumFound >0)
         }
         echo '</table>';
 
-        //echo '<div id="bottom-toolbar" class="toolbar clearfix bottom-corner">';
-        //$this->load->view('search/pagination');
-
-        //echo '</div>';
         echo '<div id="infoBox"></div>';
 }
 ?>

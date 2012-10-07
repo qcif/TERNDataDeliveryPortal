@@ -28,7 +28,7 @@ $Revision: 1 $
         </div>
          <?php  
                 $realNumFound = $json->{'response'}->{'numFound'}; 
-                echo '<nav id="head-toolbar-content" class="resultsNav">';
+                echo '<div id="head-toolbar-content" class="resultsNav">';
                 echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
                 echo        '<div id="left_num_records" class="result left">';
                 echo            'Showing';
@@ -64,7 +64,7 @@ $Revision: 1 $
                 echo        '</div>';
                                 
                 $this->load->view('search/pagination');
-                echo '</nav>';
+                echo '</div>';
                 
 /*                
                 $realNumFound = $json->{'response'}->{'numFound'}; 
