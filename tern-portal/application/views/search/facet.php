@@ -32,7 +32,7 @@ if($mapsearch==0 && ($spatial_included_ids=='') && ($temporal=='All') && ($typeF
                         </li>';
         echo        '</ul>';
         echo        '<div class="buttons">';
-        echo            '<a id="clearSearchBtn" class="greyGradient smallRoundedCorners" href="#">Clear Search</a>';
+        echo            '<a id="clearSearchBtn" class="greyGradient smallRoundedCorners">Clear Search</a>';
         echo        '</div>';        
         echo    '</div>';
         echo '</div>';
@@ -75,7 +75,7 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
         if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
         if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
         echo        '<div class="buttons">';
-        echo            '<a id="clearSearchBtn" class="greyGradient smallRoundedCorners" href="#">Clear Search</a>';
+        echo            '<a id="clearSearchBtn" class="greyGradient smallRoundedCorners">Clear Search</a>';
         echo        '</div>';
         echo    '</div>';
         echo '</div>';
