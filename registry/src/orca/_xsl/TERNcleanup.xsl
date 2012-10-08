@@ -15,23 +15,10 @@
     <!-- TODO customize transformation rules
          syntax recommendation http://www.w3.org/TR/xslt
     -->
-    <xsl:template match="rif:registryObject[@group='Monash University']">
-        <xsl:choose>
-            <xsl:when test="rif:collection">
-                <xsl:choose>
-                    <xsl:when test="rif:originatingSource = 'http://ozflux.its.monash.edu.au'">
-                        <xsl:copy>
-                            <xsl:apply-templates select="@*|node()"/>
-                        </xsl:copy>
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:copy>
+    <xsl:template match="rif:registryObject[@group='Commonwealth Scientific and Industrial Research Organisation']">
+         <xsl:copy>
                     <xsl:apply-templates select="@*|node()"/>
-                </xsl:copy>
-            </xsl:otherwise>
-        </xsl:choose>
+         </xsl:copy>
     </xsl:template>
 
 
@@ -46,11 +33,13 @@
 
 <xsl:template match="rif:registryObject/@group">
         <xsl:choose>
-            <xsl:when test=". = 'Monash University'">
+           
+             <xsl:when test=". = 'Commonwealth Scientific and Industrial Research Organisation'">
                 <xsl:attribute name="group">
-                <xsl:value-of select="'OzFlux: Australian and New Zealand Flux Research and Monitoring'"/>
+                <xsl:value-of select="'Soils'"/>
                 </xsl:attribute>
             </xsl:when>
+            
              <!--xsl:when test=". = 'Terrestrial Ecosystem Research Network'">
                    <xsl:choose>
                  <xsl:when test="contains('aekos',rif:key)">
