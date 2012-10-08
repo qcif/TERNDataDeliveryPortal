@@ -166,7 +166,7 @@ $(function() {
                         
                         doSpatialSearch();
                 }else{
-                        if(mapSearch != 1 && clearAll != 1)$('#facetH2 a').html('Refine Search'); else $('#facetH2 a').html('Search');
+                        if(mapSearch != 1 && clearAll != 1)$('#refineSearchBox h1.greenGradient').html('Refine Search'); else $('#refineSearchBox h1.greenGradient').html('Search');
                         
                         doNormalSearch();
                 }
@@ -361,7 +361,7 @@ $(function() {
             }
             
         }
-        if($("#current-search ul li").length == 1) clearAll = 1;
+        if($("#currentSearchBox .content ul li").length == 1) clearAll = 1;
         changeHashTo(formatSearch(search_term,1,classFilter));
     });
         
@@ -782,7 +782,7 @@ $(function() {
                     
                  }
             });     
-            if(mapSearch == 1){
+            if(mapSearch == 1 || clearAll == 1){
                 $("#search-result").hide();
                 $('#head-toolbar').hide();
                 $('#middle-toolbar').hide();
@@ -1056,6 +1056,12 @@ $(function() {
        $(".collapsiblePanel .hide").live("click",function()
         {
             $(this).parent().next("div").slideToggle(300);
+            $(this).attr('class','show')
+        });
+        $(".collapsiblePanel .show").live("click",function()
+        {
+            $(this).parent().next("div").slideToggle(300);
+            $(this).attr('class','hide')
         });
     } 
  
@@ -1765,11 +1771,11 @@ var t=removeBracket(tmp)
     }
     
     function initViewMap(mapId, centerSelector,coverageSelector){
-    var mapView = new MapWidget(mapId,true);
-     mapView.addDataLayer(false,"transparent");
-     mapView.addVectortoDataLayer(centerSelector,false);
-     mapView.addVectortoDataLayer(coverageSelector,false);
-	}
+            var mapView = new MapWidget(mapId,true);
+            mapView.addDataLayer(false,"transparent");
+            mapView.addVectortoDataLayer(centerSelector,false);
+            mapView.addVectortoDataLayer(coverageSelector,false);
+   }
    
     function handleRandom(facname)
     {

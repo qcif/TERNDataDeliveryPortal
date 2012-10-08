@@ -63,11 +63,11 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
             echo '<li><span class="clearTemporal clearFilter">'.$temporal.'</span></li>';
             echo '</ul>';
         }
-        if($spatial_included_ids!='')
+        if($spatial_included_ids!='' || $ternRegionFilter != 'All')
         {
             echo '<h2>Spatial:</h2>';
             echo '<ul>';
-            echo '<li><span class="clearSpatial clearFilter">Bounding box</span></li>';
+            if($spatial_included_ids!='') echo '<li><span class="clearSpatial clearFilter">Bounding box</span></li>';
             if($ternRegionFilter!='All') displaySelectedRegionFacet('tern_region',$ternRegionFilter,$json,$regionsName);
             echo '</ul>';
         }

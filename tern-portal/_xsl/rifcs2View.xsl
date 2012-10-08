@@ -293,12 +293,12 @@
                 <xsl:when test="ro:coverage/extRif:spatial or ro:location/extRif:spatial">
                     <li>  
                         <h2 class="meta_title">
-                            <a class="show">
+                            <a class="hide" id="spatial">
                                 <span class="left">Spatial Coverage</span>
-                                <span class="right">Show</span>
+                                <span class="right">Hide</span>
                             </a>
                         </h2>
-                        <div class="content collapse">
+                        <div class="content expand">
                             <xsl:variable name="needMap">
                                 <xsl:for-each select="ro:coverage/extRif:spatial">
                                     <xsl:if test="not(./@type) or (./@type!='text' and ./@type!='dcmiPoint')">
