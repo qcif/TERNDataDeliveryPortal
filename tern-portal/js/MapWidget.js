@@ -1079,13 +1079,18 @@ MapWidget.prototype.removeAllFeatures = function(){
 
 MapWidget.prototype.toggleExtLayer = function(layer_id, visibility){
     for(var i=0;i<this.extLayers.length; i++){
-         if(this.extLayers[i].name == layer_id) this.extLayers[i].setVisibility(visibility);
+         if(this.extLayers[i].name == layer_id){ this.extLayers[i].setVisibility(visibility);
+                if(visibility) this.map.raiseLayer(this.extLayers[i],this.map.layers.length-1);
+         } 
+         
     }
 }
 MapWidget.prototype.switchLayer = function(layer_id){
     for(var i=0;i<this.extLayers.length; i++){
         if(this.extLayers[i].name != layer_id) this.extLayers[i].setVisibility(false);
-        else this.extLayers[i].setVisibility(true);
+        else {
+            this.extLayers[i].setVisibility(true);       
+        }
     }
     if(this.highlightLayer){
         this.highlightLayer.setVisibility(false);
