@@ -146,7 +146,7 @@ header{
 			#recentlyReleased ul li:last-child{ background: none; }
 		#recentlyReleased a span.date{ color: #333333; }
 		
-#facilitiesAndDatasets{ background-color: #fff; height: 90px; clear: both; padding: 30px 35px 30px 35px; }
+#facilitiesAndDatasets{ background-color: #fff; height: 95px; clear: both; padding: 30px 35px 30px 35px; }
 	#facilitiesAndDatasets h1{ float: left; color: #484848; font-size: 20px; font-weight: normal; padding: 0px; margin: 0px 10px 0px 0px; width: 140px; }
 	#facilitiesAndDatasets a.prev, #facilitiesAndDatasets a.next{ float: left; width: 15px; height: 29px; margin-top: 30px; }
 	#facilitiesAndDatasets a.prev{ background: url(../img/home/carousel/carousel-prev-normal-btn.png) no-repeat; }
@@ -161,7 +161,7 @@ header{
 /* Metadata Page
 *******************************************************************/
 section.left{ width: 975px; margin-right: 15px; }
-#metadataTitle{ background: url(../img/gradients/search-bg-gradient.png) repeat-x; height: 80px; padding: 20px 35px 30px 35px; width: 905px; }
+#metadataTitle{ background: url(../img/gradients/search-bg-gradient.png) repeat-x; height: 90px; padding: 20px 35px 30px 35px; width: 905px; }
 	#metadataTitle span{ color: #7A886C; font-size: 14px; display: block; }
 	#metadataTitle h1{ color: #fff; font-size: 30px; font-weight: normal; margin: 0px; padding: 0px; width: 745px; float: left; }
 	#metadataTitle ul{ background: url(../img/dividers/metadata-title-divider.png) no-repeat left; float: right; padding: 10px 0px 0px 20px; list-style: none; }
@@ -788,6 +788,7 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 #staticContentWhite{overflow: hidden; background: #FFF; padding: 20px;}
 .pac-container{width:300px !important;}
 
+
 #submitBtn{
 		margin-top: 25px;
 		float: left;
@@ -805,3 +806,11 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 }
 #submitBtn img{ margin: 7px -10px 0px 12px; float: left; }
         
+
+.pac-container{width:300px !important;}
+
+#metadatamap {
+ width:598px;height:400px;
+
+}
+
