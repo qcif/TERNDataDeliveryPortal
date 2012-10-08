@@ -23,9 +23,9 @@ $Revision: 1 $
 
 
 <?php //if($json):?>	
-        <div id="facet-content">
+        
             <?php $this->load->view('search/facet');?> 
-        </div>
+       
          <?php  
                 $realNumFound = $json->{'response'}->{'numFound'}; 
                 echo '<div id="head-toolbar-content" class="resultsNav">';

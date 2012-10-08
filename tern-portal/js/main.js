@@ -149,7 +149,7 @@ $(function() {
                 search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
                 search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
                 
-                $("#loading").show();                             
+               // $("#loading").show();                             
     
                 if(getCookie("selection")!=null)
                 {                   
@@ -684,11 +684,11 @@ $(function() {
                         spatial_included_ids = msg;
 
                         doNormalSearch();
-                        $("#loading").hide();
+                       // $("#loading").hide();
                     },
                     error:function(msg)
                     {
-                        $("#loading").hide();
+                       // $("#loading").hide();
                     }
   		});
     }
@@ -736,27 +736,29 @@ $(function() {
     function handleResults(msg,mapWidget){    
         //console.log(msg);
         var divs = $(msg).filter(function(){return $(this).is('div')});
-
+           $('#facetNav #currentSearchBox').remove();
             divs.each(function() {
                 if($(this).attr('id') == 'facet-content')  {
                     if(mapSearch == 1 || clearAll == 1){
                          //$('#facet-accordion').html('');
-                         $('#facetNav').html('');
-                     var thisdiv = $(this);
-                     if(clearAll ==1 ){
-                          var textbox = thisdiv.find("#basic-search").clone();
-                          textbox.appendTo("#facetNav");
-                     }
-                     var facetdivs = thisdiv.find("#facet-region").parent().clone();
-                     
-                    facetdivs.appendTo('#facetNav'); 
+                         $('#refineSearchBox .content ul').html('');
+                        var thisdiv = $(this);
+                        if(clearAll ==1 ){
+                            var textbox = thisdiv.find("#refineSearchTextField").parent().clone();
+                            textbox.appendTo("#refineSearchBox .content ul");
+                        }
+                        var facetdivs = thisdiv.find("#facet-region").parent().clone();
+
+                        facetdivs.appendTo('#refineSearchBox .content ul'); 
                      
                     }else{
-                        $('#facetNav').html($(this).html());               
+                        $('#refineSearchBox .content ul').html($(this).html());               
                     }
-                    
+                   
                 }
-               
+                else if($(this).attr('id') == 'currentSearchBox' &&  clearAll !=1 && mapSearch != 1 ){
+                    $('#facetNav').prepend($("<p>").append($(this).clone()).html());
+                }               
                 else if($(this).attr('id') == 'head-toolbar-content' && mapSearch == 0 &&clearAll == 0){
                      
                         $('#middle-toolbar').html($(this).html());
@@ -1052,9 +1054,9 @@ $(function() {
                     showNoResult(1); 
        }
        $(".collapsiblePanel .hide").live("click",function()
-    {
-        $(this).next("div").slideToggle(300);
-    });
+        {
+            $(this).parent().next("div").slideToggle(300);
+        });
     } 
  
     function doNormalSearch(){     
@@ -1111,7 +1113,7 @@ $(function() {
 
                         }); 
 
-                 $("#loading").hide();
+               //  $("#loading").hide();
                  
                  var opt=document.getElementsByName('select-view-record');
                  if(opt.length>0){
@@ -1158,7 +1160,7 @@ $(function() {
             ,
             error:function(msg){
                // console.log(msg);
-                 $("#loading").hide();
+               //  $("#loading").hide();
             }
         });
     }
@@ -1386,7 +1388,7 @@ $(function() {
  
      $('#sort_record').live('change',function(){
      
-      $("#loading").show();
+     // $("#loading").show();
      var selected=$(this).find(":selected").val();
      switch(selected)
      {
@@ -1405,7 +1407,7 @@ $(function() {
      }         
            
      doNormalSearch();  
-     $("#loading").hide();
+    // $("#loading").hide();
      changeHashTo(formatSearch(search_term, 1, classFilter,num));    
      
  });

@@ -98,10 +98,10 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
             echo '<li>';
            // echo '<div class="facet-list facet-content collapsiblePanel">';
             echo '<div class="content expand collapsiblePanel">';
-            echo '<h2 class="head">'.$name;
-            echo '<a id="facility-help" class="helpBtn" ></a>';
+            echo '<h2 class="head"><a class="hide">'.$name . '</a>';
             echo '</h2>';
             echo '<div>';
+            echo '<a id="facility-help" class="helpBtn" ></a>';
             //echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
             echo '<ul class="facetContainer" id="'.$facet_name.'-facet">';
 
@@ -154,15 +154,16 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         if(count($object_type)>0){
           echo '<li>'  ;
-          echo '<div id=class="content expand collapsiblePanel">';
+          echo '<div id="facet-region" class="content expand collapsiblePanel">';
           
-            echo '<h2 >'.$name;
-            echo '<a id="region-help" class="helpBtn"></a>';
+            echo '<h2 > <a class="hide">'.$name . '</a>';
             echo '</h2>';
+            echo '<div>';
             if($facetFilter != 'All'){
                 echo 'Selecting a region will replace your current region search';
             }
                  // echo '<div  id="facet-region" class="facet-list facet-content">';
+            echo '<a id="region-help" class="helpBtn"></a>';
             echo '<select id="region-select" class="facetDropDown">';
             echo '<option value="">Please select a region type</option>';
              foreach($regionsName as $key=>$regionsList){
@@ -200,7 +201,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
                    echo '</div>';
                 }
              }
-          
+          echo '</div>';
            echo '</div>';
           
            echo '</li>';
@@ -239,8 +240,6 @@ function displaySelectedRegionFacet($facet_name, $facetFilter, $json,$regionsNam
         $facetFilter = explode(";",$facetFilter);
         //print the selected 
         
-        echo '<h2>'.$name.'</h2>';
-        echo '<ul>';
         for($i=0; $i<count($facetFilter); $i++){
             $idx = false;
             array_walk($object_type, 'trim');
@@ -266,7 +265,7 @@ function displaySelectedRegionFacet($facet_name, $facetFilter, $json,$regionsNam
                 
             }
         }
-        echo '</ul>';
+      
 }   
 
 /*
@@ -349,6 +348,7 @@ function displaySelectedTerm($query, $json){
               
   
         }
+        echo '</ul>';
 
         
             
@@ -657,12 +657,12 @@ if(count($out2)>0)
     //print_r($out4);
         echo '<li>';
         echo '<div class="content expand collapsiblePanel">';
-	echo '<h2>Field of Research';
-        echo '<a id="for-help" class="helpBtn"></a>';
-	echo '</h2>';
+	echo '<h2><a class="hide">Field of Research</a>';
+        echo '</h2>';
 	//echo '<div class="facet-list" >';
         echo '<div>';
-
+        echo '<a id="for-help" class="helpBtn"></a>';
+	
 //build FOR tree	
 	echo '<ul class="facetTree treeview-red" id="fortree">'; 
                $out_keys4=array_keys($out4);

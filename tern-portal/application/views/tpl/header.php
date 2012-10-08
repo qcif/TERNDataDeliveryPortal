@@ -1,4 +1,4 @@
-<?php
+<!DOCTYPE html><?php
 $md_title = 'TERN Data Discovery Portal (Beta Version)';
 $md_sub = 'Beta Version - For TERN community use only';
 $md_description = 'TERN Data Discovery Portal (Dev Version)is a mesh of searchable web pages describing (and where possible linking to) terrestrial ecosystem research data collections. ';
@@ -7,22 +7,16 @@ if (!isset($title))  $title = $md_title;
 if (isset($description))
     $md_description = htmlentities($description);
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html lang="en">
     <head>
+        <meta charset="utf-8">
         <title><?php echo $title; ?></title>
-        <meta property="og:title" content="<?php echo $title; ?>" />
-        <meta property="og:description" content="<?php echo $md_description; ?>" />
-        <meta property="og:image" content="<?php echo $md_image; ?>"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
-        <meta http-equiv="x-ua-compatible" content="IE=8"/>
-        <meta name="title" content="<?php echo $title; ?>"/>
-        <meta name="description" content="<?php echo $md_description; ?>"/>
-         
-         <link type="text/css" href="<?php //echo base_url(); ?>css/tipsy.css" rel="stylesheet" />
-    <!--   <link href="<?php echo base_url(); ?>css/tern-superfish.css" type="text/css" rel="stylesheet"/>
-          <link type="text/css" href="<?php //echo base_url(); ?>css/tern.css" rel="stylesheet" />-->
-    
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="<?php echo $md_description; ?>">    
+         <script type="text/javascript" src="<?php echo base_url();?>js/modernizr.custom.86191.js"></script> <!-- WIDGET TEMPORAL-->
+      
+         <link type="text/css" href="<?php echo base_url(); ?>css/tipsy.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/css-reset.css" rel="stylesheet"/>
         <link type="text/css" href="<?php echo base_url(); ?>css/main.css" rel="stylesheet" />
@@ -90,7 +84,7 @@ if (isset($description))
                             </a>
                         </li>
                     </ul-->
-              </nav>
+              </nav> 
              <img id="dataDiscoveryPortalLogo" alt="Data Discovery Portal" src="/img/logos/logo-datadiscoveryportal.png"/>
          <!--      <div class="no_print top-menu-cover">-->
 

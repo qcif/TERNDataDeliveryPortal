@@ -22,11 +22,10 @@
 		var service_url = "<?php echo service_url();?>";
 	</script>
 	
-	
+	 
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.2.min.js"></script> <!-- jQuery -->
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui-1.8.20.custom.min.js"></script> <!-- jQuery UI-->
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.tools.min.js"></script> <!-- jQuery UI-->
-	<!--<script type="text/javascript" src="<?php echo base_url();?>js/jquery.layout-latest.js"></script> <!-- jQuery Multi Column-->
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.tipsy.js"></script> <!-- jQuery Tipsy-->	
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.ba-hashchange.min.js"></script> <!-- Monitoring on Hash Change-->
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.cookie.js"></script> <!-- jQuery Cookie-->  
@@ -38,7 +37,6 @@
       
         <?php if($widget_temporal) { ?>
         <script type="text/javascript" src="<?php echo base_url();?>js/TemporalWidget.js"></script> <!-- WIDGET TEMPORAL-->
-        <script type="text/javascript" src="<?php echo base_url();?>js/modernizr.custom.86191.js"></script> <!-- WIDGET TEMPORAL-->
                 
         <?php } ?>
         <?php if($widget_map) { ?>

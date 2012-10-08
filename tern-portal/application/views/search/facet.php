@@ -60,18 +60,19 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
         {
             echo '<h2>Dates:</h2>';
             echo '<ul>';
-            echo '<li>'.$temporal.'</li>';
+            echo '<li><span class="clearTemporal clearFilter">'.$temporal.'</span></li>';
             echo '</ul>';
         }
         if($spatial_included_ids!='')
         {
-            echo '<h2>Dates:</h2>';
+            echo '<h2>Spatial:</h2>';
             echo '<ul>';
-            echo '<li>Clear Spatial</li>';
+            echo '<li><span class="clearSpatial clearFilter">Bounding box</span></li>';
+            if($ternRegionFilter!='All') displaySelectedRegionFacet('tern_region',$ternRegionFilter,$json,$regionsName);
             echo '</ul>';
         }
         if($groupFilter!='All') displaySelectedFacet('group',$groupFilter,$json);
-        if($ternRegionFilter!='All') displaySelectedRegionFacet('tern_region',$ternRegionFilter,$json,$regionsName);
+       
         if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
         if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
         echo        '<div class="buttons">';
@@ -112,13 +113,10 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
 
 
 ?>
-
+<div id="facet-content"> 
 <?php
 
-    echo '<div id="refineSearchBox" class="box">';
-    echo '<h1 class="greenGradient">Search</h1>';
-    echo        '<div class="content">';
-    echo            '<ul>';
+
                          $this->load->view('tab/widgets/basicsearch');
          
                          $this->load->view('tab/widgets/temporal');
@@ -128,9 +126,6 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
                          displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$fortwoFilter,$json, $classFilter, $this,$help->language['for_helptitle'],$help->language['for_helptext']);      
 
                          displayFacilitiesFacet('group', $groupFilter, $json, $classFilter,$help->language['facility_helptitle'],$help->language['facility_helptext']);
-    echo            '</ul>'     ;
-    echo         '</div>';     
-    echo '</div>';
-	  
-       
+  
 ?>
+</div>

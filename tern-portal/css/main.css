@@ -64,7 +64,7 @@ header{
 			nav#globalNav ul.left li a{ color: #fff; text-decoration: none; font-size: 17px; font-weight: bold; }
 			nav#globalNav ul.left .subMenu{  position: absolute; display: inline-block; margin-left: -50px; width: 195px; background: url(../img/template/sub-menu-arrow.png) no-repeat 50% 38px; padding-top: 43px; left: -9999px;}
                         
-			nav#globalNav ul.left .subMenu ul{ position: absolute; background-color: #fff; padding: 0px; display: block; box-shadow: rgba(0,0,0,0.6) 0px 2px 3px; behavior: url(PIE.htc); }
+			nav#globalNav ul.left .subMenu ul{ position: absolute; background-color: #fff; padding: 0px; display: block; box-shadow: rgba(0,0,0,0.6) 0px 2px 3px;  behavior: url(/js/PIE.htc);   }
 			nav#globalNav ul.left .subMenu li{ margin: 0px; padding: 0px; border: 0; line-height:32px; display: block; background: url(../img/dividers/sub-menu-divider.png) no-repeat center bottom; }
 			nav#globalNav ul.left .subMenu  li:last-child{ background: none; }
 			nav#globalNav ul.left .subMenu li a{ font-size: 14px; color: #467000; font-weight: normal; margin: 0px; padding: 0px 9px; width: 177px; display: block; line-height: 32px; text-decoration: none; }
@@ -79,7 +79,7 @@ header{
 				background: -o-linear-gradient(#74ab45, #477000); /*opera 11.10+*/
 				background: linear-gradient(#74ab45, #477000); /*future CSS3 browsers*/
 				-pie-background: linear-gradient(#74ab45, #477000); /*PIE*/
-				behavior: url(PIE.htc);
+				 behavior: url(/js/PIE.htc);  
 			}
 	header nav#globalNav ul.right{ width: 264px; text-align: right; background: url(../img/template/dataset-bg.png) no-repeat; margin-right: -40px; padding-left: 26px; }
 		header nav#globalNav ul.right li.divider{ background: url(../img/dividers/my-favourites-and-searches-divider.png) no-repeat center; float: left; width: 2px; padding: 0px 10px 0px 11px; }
@@ -195,7 +195,7 @@ section.left{ width: 975px; margin-right: 15px; }
 		background: -o-linear-gradient(#fefefe, #e8e8e8); /*opera 11.10+*/
 		background: linear-gradient(#fefefe, #e8e8e8); /*future CSS3 browsers*/
 		-pie-background: linear-gradient(#fefefe, #e8e8e8); /*PIE*/
-		behavior: url(PIE.htc);
+		 behavior: url(/js/PIE.htc);  
 	}
 		#metadataContent ul.moreInformation h2{ padding: 8px; margin: 0px; }
 			#metadataContent ul.moreInformation h2 a{ height: 30px; line-height: 30px; display: block;}
@@ -210,7 +210,7 @@ section.left{ width: 975px; margin-right: 15px; }
 /* Shared between Search Results/Metadata Pages
 *******************************************************************/
 aside{ float: left; width: 250px; }
-		aside div.box, nav#facetNav div.box{ background-color: #fff; margin-bottom: 15px; box-shadow: rgba(0,0,0,0.4) 0px 0px 3px; behavior: url(PIE.htc); }
+		aside div.box, nav#facetNav div.box{ background-color: #fff; margin-bottom: 15px; box-shadow: rgba(0,0,0,0.4) 0px 0px 3px;  behavior: url(/js/PIE.htc);   }
 			aside div.box h1, nav#facetNav div.box h1{ color: #fff; font-size: 16px; margin: 0px; padding: 15px; }
 			aside div.box div.content, #currentSearchBox div.content{ padding: 15px; }
 			
@@ -245,7 +245,7 @@ nav#facetNav{ margin-right: 15px; float: left; width: 215px; }
 		background: -o-linear-gradient(#dcdcdc, #ffffff); /*opera 11.10+*/
 		background: linear-gradient(#dcdcdc, #ffffff); /*future CSS3 browsers*/
 		-pie-background: linear-gradient(#dcdcdc, #ffffff); /*PIE*/
-		behavior: url(PIE.htc);
+		 behavior: url(/js/PIE.htc);  
 	}
 		/* Advanced Boolean Search */
 		li#advancedSearch{ background: url(../img/dividers/facet-nav-divider.png) no-repeat bottom center    !important; border: 0px !important; }
@@ -287,7 +287,7 @@ nav.resultsNav{
    background: -o-linear-gradient(#fdfdfd, #e8e8e8); /*opera 11.10+*/
    background: linear-gradient(#fdfdfd, #e8e8e8); /*future CSS3 browsers*/
    -pie-background: linear-gradient(#fdfdfd, #e8e8e8); /*PIE*/
-	behavior: url(PIE.htc);
+	 behavior: url(/js/PIE.htc);  
 }
 	nav.resultsNav .result, nav.resultsNav .pagination div{ background: url(../img/dividers/results-divider.png) no-repeat right center; padding-right: 20px; margin-right: 20px; }
 	nav.resultsNav .sortBy{ background: url(../img/dividers/results-divider.png) no-repeat left center; padding-left: 20px; margin-left: 20px; }
@@ -365,8 +365,7 @@ nav.resultsNav{
 		line-height: 30px;
 		-webkit-border-radius: 3px;
 		-moz-border-radius: 3px;
-		border-radius: 3px;
-		behavior: url(PIE.htc);
+		border-radius: 3px;		
 		background: #2B2B2B; /*fallback for non-CSS3 browsers*/
 		background: -webkit-gradient(linear, 0 0, 0 100%, from(#646464) to(#2B2B2B)); /*old webkit*/
 		background: -webkit-linear-gradient(#646464, #2B2B2B); /*new webkit*/
@@ -375,7 +374,7 @@ nav.resultsNav{
 		background: -o-linear-gradient(#646464, #2B2B2B); /*opera 11.10+*/
 		background: linear-gradient(#646464, #2B2B2B); /*future CSS3 browsers*/
 		-pie-background: linear-gradient(#646464, #2B2B2B); /*PIE*/
-		behavior: url(PIE.htc);
+		 behavior: url(/js/PIE.htc);  
                 cursor: pointer;
 	}
 		#map-toolbar .mapViewSelector a{ color: #fff; padding: 5px; height: 20px; display: block; float: left; line-height: 20px; }
@@ -391,19 +390,19 @@ nav.resultsNav{
 			background: -o-linear-gradient(#ffffff, #8A8A8A); /*opera 11.10+*/
 			background: linear-gradient(#ffffff, #8A8A8A); /*future CSS3 browsers*/
 			-pie-background: linear-gradient(#ffffff, #8A8A8A); /*PIE*/
-			behavior: url(PIE.htc);
+			 behavior: url(/js/PIE.htc);  
 		}
 		#map-toolbar .mapViewSelector #gmap{
 			-webkit-border-radius: 5px 0px 0px 5px;
 			-moz-border-radius: 5px 0px 0px 5px;
 			border-radius: 5px 0px 0px 5px;
-			behavior: url(PIE.htc);
+			 behavior: url(/js/PIE.htc);  
 		}
 		#map-toolbar .mapViewSelector #gphy{
 			-webkit-border-radius: 0px 5px 5px 0px;
 			-moz-border-radius: 0px 5px 5px 0px;
 			border-radius: 0px 5px 5px 0px;
-			behavior: url(PIE.htc);
+			 behavior: url(/js/PIE.htc);  
 		}
 	#map-toolbar .helpBtn{ background: url(../img/buttons/map-tools/map-tools-help-normal-btn.png) no-repeat; }
 	#map-toolbar .helpBtn:hover{ background: url(../img/buttons/map-tools/map-tools-help-hover-btn.png) no-repeat; }
@@ -421,17 +420,17 @@ nav.resultsNav{
         {
         display: none !important;
         }
-        
         .popupContent { 
-            padding: 0px 0px 10px 10px;  
+            padding: 14px 0px 10px 5px;  
             overflow: visible;
         }
-        .popupContentScroll { 
+
+         .popupContentScroll { 
             padding: 5px 0px 10px 10px;    
             overflow: auto; 
             margin: 5px 0px 5px 0px;
             max-height: 155px; 
-        }
+        } 
         
         .popupContent ul{
             list-style-type: none;
@@ -462,7 +461,7 @@ nav.resultsNav{
         .popupContent h2{
             margin-top:0px !important;
         }
-        .popupContent a.smallRoundedCorners{ clear: both; width: 105px; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px; margin-bottom: 5px; }
+        .popupContent a.smallRoundedCorners{ clear: both; width: 105px; height: 15px; line-height: 35px; text-align: center; color: #fff; padding: 5px; margin-bottom: 5px; }
         .popupGroup #chicken_GroupDiv{
             overflow: visible !important;
 
@@ -545,9 +544,9 @@ table#searchResults a.show, table#searchResults a.hide{ margin-top: 7px; }
 
 /* Search Results - Pins
 *******************************************************************/
-a.pin{ background: url(../img/icons/pin-single-normal-bg.png) no-repeat; width: 29px; height: 35px; display: block; color: #fff; margin: 10px 0px 0px 15px; padding: 7px 0px 0px 11px; float: left; font-weight: bold; font-size: 15px; }
+a.pin{ background: url(../img/icons/pin-single-normal-bg.png) no-repeat; width: 40px; height: 42px; display: block; color: #fff; margin: 10px 0px 0px 15px; padding: 7px 0px 0px 11px; float: left; font-weight: bold; font-size: 15px; }
 a.pin:hover{ background: url(../img/icons/pin-single-hover-bg.png) no-repeat; text-decoration: none; }
-a.mapPinSingle{ background: url(../img/icons/map-pin-single-normal-bg.png) no-repeat; width: 29px; height: 35px; display: block; color: #fff; margin: 10px 0px 0px 15px; padding: 7px 0px 0px 11px; float: left; font-weight: bold; font-size: 15px; }
+a.mapPinSingle{ background: url(../img/icons/map-pin-single-normal-bg.png) no-repeat; width: 40px; height: 42px; display: block; color: #fff; margin: 10px 0px 0px 15px; padding: 7px 0px 0px 11px; float: left; font-weight: bold; font-size: 15px; }
 a.mapPinSingle:hover{ background: url(../img/icons/map-pin-single-hover-bg.png) no-repeat; text-decoration: none; }
 a.mapPinMultiple{ background: url(../img/icons/map-pin-multiple-normal-bg.png) no-repeat; width: 40px; height: 42px; display: block;  margin: 10px 0px 0px 15px; position: absolute; }
 a.mapPinMultiple:hover{ background: url(../img/icons/map-pin-multiple-hover-bg.png) no-repeat; }
@@ -674,7 +673,7 @@ footer{ margin: 0px 40px; display: block; height: 30px; padding: 40px 0px; clear
 	background: -o-linear-gradient(#cb8643, #bf6000); /*opera 11.10+*/
 	background: linear-gradient(#cb8643, #bf6000); /*future CSS3 browsers*/
 	-pie-background: linear-gradient(#cb8643, #bf6000); /*PIE*/
-	behavior: url(PIE.htc);
+	 behavior: url(/js/PIE.htc);  
 }
 a.orangeGradient:hover{
 	text-decoration: none;
@@ -689,7 +688,7 @@ a.orangeGradient:hover{
 	background: -o-linear-gradient(#70a53e, #477000); /*opera 11.10+*/
 	background: linear-gradient(#70a53e, #477000); /*future CSS3 browsers*/
 	-pie-background: linear-gradient(#70a53e, #477000); /*PIE*/
-	behavior: url(PIE.htc);
+	 behavior: url(/js/PIE.htc);  
 }
 a.greenGradient:hover{ 
 	text-decoration: none;
@@ -704,7 +703,7 @@ a.greenGradient:hover{
 	background: -o-linear-gradient(#cccacb, #949398); /*opera 11.10+*/
 	background: linear-gradient(#cccacb, #949398); /*future CSS3 browsers*/
 	-pie-background: linear-gradient(#cccacb, #949398); /*PIE*/
-	behavior: url(PIE.htc);
+	 behavior: url(/js/PIE.htc);  
 }
 a.greyGradient:hover{ 
 	text-decoration: none;
@@ -716,7 +715,7 @@ a.greyGradient:hover{
    background: -o-linear-gradient(#bababa, #6f716e); /*opera 11.10+*/
    background: linear-gradient(#bababa, #6f716e); /*future CSS3 browsers*/
    -pie-background: linear-gradient(#bababa, #6f716e); /*PIE*/
-	behavior: url(PIE.htc);
+	 behavior: url(/js/PIE.htc);  
 }
 .blackGradient{
 	background-color: #171916 !important; /*fallback for non-CSS3 browsers*/
@@ -727,20 +726,20 @@ a.greyGradient:hover{
 	background: -o-linear-gradient(#535353, #171916) !important; /*opera 11.10+*/
 	background: linear-gradient(#535353, #171916) !important; /*future CSS3 browsers*/
 	-pie-background: linear-gradient(#535353, #171916) !important; /*PIE*/
-	behavior: url(PIE.htc);
+	 behavior: url(/js/PIE.htc);  
 	color: #B7B7B7;
 }
 .roundedCorners{
 	-webkit-border-radius: 10px;
    -moz-border-radius: 10px;
    border-radius: 10px;
-	behavior: url(PIE.htc);
+	 behavior: url(/js/PIE.htc);  
 }
 .smallRoundedCorners{
 	-webkit-border-radius: 3px;
    -moz-border-radius: 3px;
    border-radius: 3px;
-	behavior: url(PIE.htc);
+	 behavior: url(/js/PIE.htc);  
 }
 /* Disabled Buttons */
 a.disabled:hover{ 
@@ -753,7 +752,7 @@ a.disabled:hover{
 	background: -o-linear-gradient(#cccacb, #949398); /*opera 11.10+*/
 	background: linear-gradient(#cccacb, #949398); /*future CSS3 browsers*/
 	-pie-background: linear-gradient(#cccacb, #949398); /*PIE*/
-	behavior: url(PIE.htc);
+	 behavior: url(/js/PIE.htc);  
 }
 
 /* Show / Hide Elements

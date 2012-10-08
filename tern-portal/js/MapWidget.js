@@ -401,7 +401,7 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
                         'border': '1px solid black',
                         'displayClass' : 'popupGroup',
                         'contentDisplayClass' : 'popupContentScroll',
-                        'padding' : new OpenLayers.Bounds(0,0,10,0),
+                        'padding' : new OpenLayers.Bounds(0,0,10,0),                       
                         'autoSize' : true
                     });  
 
@@ -1034,8 +1034,8 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
              html ='';
              title = ''; 
              coverage = Array();  
-             var link =$(this).closest('tr').children('#metabutton').clone().attr('href');
-             title = "<a href=" + link + " target=\"new\" style=\"line-height: 34px; vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').html()  + "</a>"  ;
+             var link = $(this).closest('tr').find('#metabutton a').attr('id');
+             title = "<a href=\"" + link + "\" target=\"new\" style=\" vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').html()  + "</a>"  ;
              var date = $(this).closest('tr').children('td:nth-child(3)').children('p').html();
              var button =  $(this).closest('tr').find('#metabutton').clone().html();
             
@@ -1124,8 +1124,9 @@ MapWidget.prototype.onFeatureSelect = function(feature){
            'backgroundColor': '#FFFFFF', 
            'border': '1px solid black',
            'displayClass' : 'popupGroup',
-           'contentDisplayClass' : 'popupContent'
-       });  
+           'contentDisplayClass' : 'popupContent',
+           'autosize' : true 
+       });   
     if(!feature.cluster){
        this.popup = new CustomFramedCloudPopupClass("chicken",
             feature.geometry.getBounds().getCenterLonLat(),
@@ -1137,8 +1138,8 @@ MapWidget.prototype.onFeatureSelect = function(feature){
         this.popup.calculateRelativePosition = function () {
             return 'br';
         }
-        this.popup.minSize = new OpenLayers.Size(400,50);
-        this.popup.maxSize = new OpenLayers.Size(400,150);
+        this.popup.minSize = new OpenLayers.Size(400,80);
+        this.popup.maxSize = new OpenLayers.Size(400,180);
          var vectors = Array();
          
         $.each(feature.data.coverage,function(){
