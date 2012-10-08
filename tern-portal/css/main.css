@@ -442,7 +442,7 @@ nav.resultsNav{
         }
         .popupContent ul li{
             padding: 0;
-            margin: 0;
+            margin: 0 0 10px 0;
         }
         .popupContentScroll h4{
             margin-top: 10px;
@@ -462,6 +462,7 @@ nav.resultsNav{
         .popupContent h2{
             margin-top:0px !important;
         }
+        .popupContent a.smallRoundedCorners{ clear: both; width: 105px; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px; margin-bottom: 5px; }
         .popupGroup #chicken_GroupDiv{
             overflow: visible !important;
 
@@ -782,7 +783,25 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 
 /* Static Content
 *********************************************************/
-#staticContent{overflow: hidden; background: #FFF; padding: 20px; }
-#staticContent h1{ font-size: 28px; font-weight: normal; padding: 0px; margin: 0px 0px 20px 0; }
-
+#staticContent{overflow: hidden; background: url("/img/home/carousel/facilities-datasets-top-bg.png") no-repeat scroll center bottom #ECEFE8; padding: 20px; }
+#staticContent h1, #staticContentWhite h1{ font-size: 28px; font-weight: normal; padding: 0px; margin: 0px 0px 20px 0;  color:#BF5F00;}
+#staticContentWhite{overflow: hidden; background: #FFF; padding: 20px;}
 .pac-container{width:300px !important;}
+
+#submitBtn{
+		margin-top: 25px;
+		float: left;
+		line-height: 50px;
+		font-size: 18px; 
+		font-weight: bold;
+		text-align: center;	
+		display: block;
+		color: #fff;
+		text-decoration: none; 
+                width: 100px;
+                cursor: pointer;
+                
+                border:0px;
+}
+#submitBtn img{ margin: 7px -10px 0px 12px; float: left; }
+        

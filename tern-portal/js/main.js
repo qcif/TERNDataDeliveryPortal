@@ -876,33 +876,33 @@ $(function() {
         //term
         $("#term-help-text").dialog({autoOpen:false});
 
-          $("#term-help a").click(function(){
+          $("#term-help").click(function(){
              $("#term-help-text").dialog('open');
              return false;
-         }).button();
+         });
          
          //facility
         $("#facility-help-text").dialog({autoOpen:false});
 
-          $("#facility-help a").click(function(){
+          $("#facility-help").click(function(){
              $("#facility-help-text").dialog('open');
              return false;
-         }).button();         
+         });         
          
          //for
         $("#for-help-text").dialog({autoOpen:false});
 
-          $("#for-help a").click(function(){
+          $("#for-help").click(function(){
              $("#for-help-text").dialog('open');
              return false;
-         }).button();   
+         });   
          //region
         $("#region-help-text").dialog({autoOpen:false});
 
-          $("#region-help a").click(function(){
+          $("#region-help").click(function(){
              $("#region-help-text").dialog('open');
              return false;
-         }).button();          
+         });          
 //=========================         
         $('#adv_bool').click(function(){
              if(document.getElementById("adv_bool_operator").style.display=='none')
@@ -978,7 +978,7 @@ $(function() {
             }
 
 
-        }).button();   
+        });   
         
         $('#forbutton').click(function(){
             //FOR filtering 
@@ -1083,8 +1083,8 @@ $(function() {
                 $("div[id=metabutton]").hide();
                    $("#searchResults tr").click(function(event) {
                         event.stopPropagation();
-                         $(this).context.cells[1].childNodes[0].children[0].style.display=="block" ?    $(this).context.cells[1].childNodes[0].children[0].style.display="none":
-                         $(this).context.cells[1].childNodes[0].children[0].style.display="block";
+                         $(this).context.cells[1].children[1].style.display=="block" ?    $(this).context.cells[1].children[1].style.display="none":
+                         $(this).context.cells[1].children[1].style.display="block"; 
 
                          $(this).context.cells[2].childNodes[2].style.display=="block" ?    $(this).context.cells[2].childNodes[2].style.display="none":
                          $(this).context.cells[2].childNodes[2].style.display="block";

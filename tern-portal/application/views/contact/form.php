@@ -47,7 +47,7 @@
     }
     echo form_textarea($cdata);
     echo "<br/>";
-    echo form_submit('submit','Send');
+    echo "<input id=\"submitBtn\" class=\"orangeGradient roundedCorners\" value=\"Send\"/>";
     echo form_close();
 
     ?>

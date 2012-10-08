@@ -67,7 +67,7 @@ if (isset($description))
                                     <li><?php echo anchor('home/accessdata', 'Access data', 'target="_blank"'); ?></li>
                                     <li><?php echo anchor('home/submitdata', 'Submit data', 'target="_blank"'); ?></li>
                                     <li><?php echo anchor('home/licencing', 'Data licensing', 'target="_blank"'); ?></li>                      
-
+                                    <li><?php echo anchor('home/infrastructure', 'Infrastructure Locations', ''); ?></li> 
                                 </ul> 
                             </div>
                         </li>  

@@ -141,7 +141,7 @@ if ($realNumFound >0)
             echo    '<td>';
                         if($center) echo '<a class="pin" href="javascript:void(0);">' . $c . '</a>';
             echo    '</td>';
-            echo    '<td><h2 >' . $name . '</h2>';
+            echo    '<td><h2>' . $name . '</h2>';
             echo        '<div class="expand" id="metadesc"><p>';
                             if (isset($r->{'alt_list_title'}))
                             {
@@ -172,13 +172,13 @@ if ($realNumFound >0)
             echo '</p>';
             if($spatial){
 
-                echo '<ul class="spatial">';
+                echo '<ul class="spatial" hidden="true">';
                 foreach($spatial as $s){
                 echo '<li>'.$s.'</li>';
                 }
                 echo '</ul>';
-                echo '<a class="spatial_center">'.$center.'</a><br/>';
-                echo '<a class="key">'.$ro_key.'</a>';
+                echo '<a class="spatial_center" hidden="true">'.$center.'</a><br/>';
+                echo '<a class="key" hidden="true">'.$ro_key.'</a>';
                 if($center) $c++;
             }
             echo '</div>';
