@@ -95,11 +95,11 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
       
         if(count($object_type)>0){
             
-
+            echo '<li>';
            // echo '<div class="facet-list facet-content collapsiblePanel">';
             echo '<div class="content expand collapsiblePanel">';
             echo '<h2 class="head">'.$name;
-            echo '<div id="facility-help"><a  class="helpBtn" ></a></div>';
+            echo '<a id="facility-help" class="helpBtn" ></a>';
             echo '</h2>';
             echo '<div>';
             //echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
@@ -138,7 +138,7 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
              echo '<a id="facbutton" class="greenGradient smallRoundedCorners">GO</a> ';
             echo '</div>'; 
             echo '</div>';
-            
+            echo '</li>';
              echo '<div id="facility-help-text" title="'.$help_title.'" class="hide" >'.$help_content.'</div>';
         }
 }
@@ -154,10 +154,10 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
         if(count($object_type)>0){
           echo '<li>'  ;
-          echo '<div class="content expand collapsiblePanel">';
+          echo '<div id=class="content expand collapsiblePanel">';
           
             echo '<h2 >'.$name;
-            echo '<a class="helpBtn"></a>';
+            echo '<a id="region-help" class="helpBtn"></a>';
             echo '</h2>';
             if($facetFilter != 'All'){
                 echo 'Selecting a region will replace your current region search';
@@ -657,8 +657,8 @@ if(count($out2)>0)
     //print_r($out4);
         echo '<li>';
         echo '<div class="content expand collapsiblePanel">';
-	echo '<h2 class="hide">Field of Research';
-        echo '<div id="for-help"><a class="helpBtn">?</a></div>';
+	echo '<h2>Field of Research';
+        echo '<a id="for-help" class="helpBtn"></a>';
 	echo '</h2>';
 	//echo '<div class="facet-list" >';
         echo '<div>';

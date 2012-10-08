@@ -31,7 +31,7 @@ $Revision: 1 $
                 echo '<div id="head-toolbar-content" class="resultsNav">';
                 echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
                 echo        '<div id="left_num_records" class="result left">';
-                echo            'Showing';
+                echo            'Showing ';
                                 if($this->input->cookie('selection')<$realNumFound)
                                 {    
                                     echo '<span class="numResultsPerPage"><label id="showing">'.$this->input->cookie('selection').' </label></span>';
@@ -39,7 +39,7 @@ $Revision: 1 $
                                 {
                                     echo '<span class="numResultsPerPage"><label id="showing">'.$realNumFound.' </label></span>';
                                 }
-                echo            'of';                
+                echo            'of ';                
                 echo           '<span class="totalResults">'. number_format($realNumFound).'</span> results';                
                 echo        '</div>';
 
@@ -55,6 +55,8 @@ $Revision: 1 $
                 echo        'results';
                 echo        '</div>';
                 
+                $this->load->view('search/pagination');           
+                
                 echo        '<div id="sorting_selection" class="sortBy right">';
                 echo        'Sort By:';
                 echo        '<select id="sort_record" name="select-sorting">';				
@@ -63,7 +65,7 @@ $Revision: 1 $
                 echo           '</select>'; 
                 echo        '</div>';
                                 
-                $this->load->view('search/pagination');
+               // $this->load->view('search/pagination');
                 echo '</div>';
                 
 /*                

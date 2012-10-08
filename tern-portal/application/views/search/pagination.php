@@ -45,9 +45,9 @@ $Revision: 1 $
 <?php
         echo '<div id="right_pagination" class="pagination right">';
         echo        '<div class="currentPageText">';
-        echo            'Page:';
+        echo            ' Page:';
         echo            '<span class="currentPage">'.$currentPage.'</span>';
-        echo            'of';
+        echo            ' of ';
         echo            '<span class="totalPages">'.$totalPage.'</span>';
         echo        '</div>';
         

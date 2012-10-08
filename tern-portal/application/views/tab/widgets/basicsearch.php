@@ -1,7 +1,7 @@
 <li id="advancedSearch">
     <h2>
         <a id ="adv_bool" class="hide" href="javascript:void(0);">Advanced Boolean Search</a>
-        <a  class="helpBtn" ></a>
+        <a id="term-help" class="helpBtn" ></a>
     </h2>
     <div class="content expand" id="adv_bool_operator" style="display:none">
         <label>
