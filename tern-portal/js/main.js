@@ -1343,9 +1343,8 @@ $(function() {
 	                                error:function(msg){}		
 	                });		
 	        });		
-	        initViewMap('spatial_coverage_map','.spatial_coverage_center','.coverage');		
-			
-	   }		
+	        initViewMap('metadatamap','.spatial_coverage_center','.coverage');		
+    }		
 	
       
     $('#viewrecord').live('change',function(){
