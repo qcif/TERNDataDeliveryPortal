@@ -141,7 +141,7 @@ if ($realNumFound >0)
             echo    '<td>';
                         if($center) echo '<a class="pin" href="javascript:void(0);">' . $c . '</a>';
             echo    '</td>';
-            echo    '<td><h2 >' . $name . '</h>';
+            echo    '<td><h2 >' . $name . '</h2>';
             echo        '<div class="expand" id="metadesc"><p>';
                             if (isset($r->{'alt_list_title'}))
                             {

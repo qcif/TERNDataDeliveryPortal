@@ -987,7 +987,6 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
         this.selectControl = new OpenLayers.Control.SelectFeature(this.dataLayer,
         {
             onSelect: function(e) {   
-                pausecomp(800);
                 self.onFeatureSelect(e);
             },
            
@@ -995,6 +994,18 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
         });
         this.map.addControl(this.selectControl);
         this.selectControl.activate();
+        
+       this.clickControl = new OpenLayers.Control.SelectFeature(this.dataLayer,
+        {
+            onSelect: function(e) {   
+                self.onFeatureSelect(e);
+            }
+           
+            
+        });
+        this.map.addControl(this.clickControl);
+        this.clickControl.activate();
+        
     }
 }
 
@@ -1022,13 +1033,13 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
         if(clickInfo){
              html ='';
              title = ''; 
-             coverage = Array();
-             var link =$(this).parent().parent().children('#metabutton').children('button').clone().attr('id');
-             title = "<a href=" + link + " target=\"new\">" + $(this).parent().parent().parent().children('tr').children('td:nth-child(2)').children('h2').html()  + "</a>"  ;
-             var date = $(this).parent().parent().parent().children('tr').children('td:nth-child(3)').children('p').html();
-             var button =  $("<p>").append($(this).parent().parent().children('#metabutton').children('button').clone().attr('onClick','handleViewMeta(\''  + $(this).parent().parent().children('#metabutton').children('button').attr('id') + '\');')).html();
+             coverage = Array();  
+             var link =$(this).closest('tr').children('#metabutton').clone().attr('href');
+             title = "<a href=" + link + " target=\"new\" style=\"line-height: 34px; vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').html()  + "</a>"  ;
+             var date = $(this).closest('tr').children('td:nth-child(3)').children('p').html();
+             var button =  $(this).closest('tr').find('#metabutton').clone().html();
             
-             number = $(this).parent().parent().parent().children('tr').children('td:nth-child(1)').children('a').html();
+             number = $(this).closest('tr').children('td:nth-child(1)').children('a').html();
              html  = " <a class=\"pin\" style=\"float:left\">" + number +  "</a><strong>" + title + "</strong> <br/> Pub date: " + date  + "&nbsp; "+ button ; 
            //  html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";    
              $.each($(this).parent().children('.spatial').children('li'), function(){
@@ -1140,7 +1151,7 @@ MapWidget.prototype.onFeatureSelect = function(feature){
         var html = '<h2 class="h2color">Multiple matches: </h2>';
         html = html  + "<ul>";
         $.each(feature.cluster,function(){
-            html = html + "<li class=\"clearfix\"><strong> <div class=\"h2color mapMarker\" style=\"float:left\">" + this.data.number + "</div> " +  this.data.title  + "</strong><div class=\"hide popup_coverage\"><ul>";
+            html = html + "<li class=\"clearfix\"><strong> <a class=\"pin\">" + this.data.number + "</a> " +  this.data.title  + "</strong><div class=\"hide popup_coverage\"><ul>";
            $.each(this.data.coverage,function(){
                 html = html  + "<li>" + this +  "</li>";
             });
