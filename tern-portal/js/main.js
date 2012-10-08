@@ -1083,8 +1083,8 @@ $(function() {
                 $("div[id=metabutton]").hide();
                    $("#searchResults tr").click(function(event) {
                         event.stopPropagation();
-                         $(this).context.cells[1].childNodes[0].children[0].style.display=="block" ?    $(this).context.cells[1].childNodes[0].children[0].style.display="none":
-                         $(this).context.cells[1].childNodes[0].children[0].style.display="block";
+                         $(this).context.cells[1].children[1].style.display=="block" ?    $(this).context.cells[1].children[1].style.display="none":
+                         $(this).context.cells[1].children[1].style.display="block"; 
 
                          $(this).context.cells[2].childNodes[2].style.display=="block" ?    $(this).context.cells[2].childNodes[2].style.display="none":
                          $(this).context.cells[2].childNodes[2].style.display="block";
