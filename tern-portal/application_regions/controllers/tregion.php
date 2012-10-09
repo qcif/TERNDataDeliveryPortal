@@ -23,7 +23,7 @@ class Tregion extends CI_Controller {
     
     function __construct()
     {
-        if (isset($_SERVER['REMOTE_ADDR']) && (($_SERVER['REMOTE_ADDR'] != '127.0.0.1') && ($_SERVER['REMOTE_ADDR' != 'localhost']) && $_SERVER['RREMOTE_ADDR'] != $_SERVER['SERVER_ADDR'])) die( 'Permission denied');
+        if (isset($_SERVER['REMOTE_ADDR']) && (($_SERVER['REMOTE_ADDR'] != '127.0.0.1') && ($_SERVER['REMOTE_ADDR' != 'localhost']) && $_SERVER['REMOTE_ADDR'] != $_SERVER['SERVER_ADDR'])) die( 'Permission denied');
     
         parent::__construct();
         $this->load->model('Scheduler');   
@@ -83,7 +83,7 @@ class Tregion extends CI_Controller {
     
     public function newRecords()
     {
-        ob_end_clean();
+        
         header("Connection: close\r\n");
         header("Content-Encoding: none\r\n");
         ob_start();
@@ -161,7 +161,7 @@ class Tregion extends CI_Controller {
                     foreach($response->docs as $doc){
                         $doc_c++;
                         //get spatial coverage                    
-                        $spatial_coverages = $doc->spatial_coverage;
+                        $spatial_coverages = $doc->spatial_coverage;                        
                         if($layer_id)  $doc = $this->Solr->removeRegionSolrDoc($doc,$layer_id);  // remove region information before processing 
                         else $doc = $this->Solr->removeRegionSolrDoc($doc);
 

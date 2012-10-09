@@ -15,14 +15,16 @@ class Scheduler extends CI_Model {
         if($batch_id){
             $sql = 'SELECT * FROM index_scheduler WHERE run_schedule <= NOW() and under_process=0 and end_run = 0 and cat = ? and batch_id = ? ORDER BY run_schedule ASC LIMIT 1';
             $q  = $this->db->query($sql, array($cat_id,$batch_id));  
-            log_message('error', $this->db->last_query());
-        }else{
+            log_message('DEBUG', $this->db->last_query());
+            }else{
             $sql = 'SELECT * FROM index_scheduler WHERE run_schedule <= NOW() and under_process=0 and end_run = 0 and cat = ? ORDER BY run_schedule ASC LIMIT 1';
             $q  = $this->db->query($sql, $cat_id);
+            log_message('DEBUG', $this->db->last_query());
         } 
-        if(pg_last_error()){
-            log_message('error', pg_last_error());
+        if(pg_last_error()){ 
+            log_message('DEBUG', pg_last_error());
         }
+         log_message('DEBUG', 'Found schedule: '. $q->num_rows());
         if($q->num_rows() > 0) return $q->result();
         else return false;
         

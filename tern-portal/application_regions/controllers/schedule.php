@@ -5,7 +5,7 @@ class Schedule extends CI_Controller {
     
     function __construct()
     {         
-         if (isset($_SERVER['REMOTE_ADDR']) && (($_SERVER['REMOTE_ADDR'] != '127.0.0.1') && ($_SERVER['REMOTE_ADDR' != 'localhost']) && $_SERVER['RREMOTE_ADDR'] != $_SERVER['SERVER_ADDR'])) die( 'Permission denied');
+         if (isset($_SERVER['REMOTE_ADDR']) && (($_SERVER['REMOTE_ADDR'] != '127.0.0.1') && ($_SERVER['REMOTE_ADDR' != 'localhost']) && $_SERVER['REMOTE_ADDR'] != $_SERVER['SERVER_ADDR'])) die( 'Permission denied');
     
         parent::__construct();
         $this->load->model('Scheduler');   
