@@ -1,6 +1,6 @@
 html{ min-width: 95%; width: 95%; padding: 0px 20px; }
 body, .wrapper, section.left, #metadataContent{ min-width: 100%; width: 100%;}
-header, footer, aside{ display: none; }
+footer,header,aside{ display: none; }
 a:link, a:visited {color: #00F; }
 h1, h2, h3, h4, h1 a, h2 a, h3 a, h4 a{ color: #000 !important; }
 
@@ -22,3 +22,4 @@ section.left{ margin: 0px; }
 #metadataContent ul.moreInformation > li{ box-shadow: none; }
 #metadataContent ul.moreInformation > li h2{ padding: 0px; margin: 0px; }
 #metadataContent ul.moreInformation > li .content{ padding: 0px; margin: 0px; clear: both; }
+

@@ -75,6 +75,7 @@ function initViewPage(){
             var div=$(this).closest('li').find('div');
                if(div.hasClass('content') && div.hasClass('collapse'))
                {
+
                    div.removeClass('collapse').addClass('expand');
                   $(this).find('span.right').html("Hide");
                   $(this).find('a').attr('class','hide');
@@ -83,9 +84,11 @@ function initViewPage(){
                            $('.showall_subjects').show();
                        }
                   }
+
                }
                else if(div.hasClass('content') && div.hasClass('expand')) 
                {
+
                    div.removeClass('expand').addClass('collapse');
                     $(this).find('span.right').html("Show");
                      $(this).find('a').attr('class','show');
@@ -118,8 +121,10 @@ function initViewPage(){
                         subjects.height('auto');                     
                         
                  });
+
                  if($('#metadataTitle h1').html().length > 100) $('#metadataTitle h1').css('font-size', '16px');
              }
+
 
 function removeBracket(arr)
 {

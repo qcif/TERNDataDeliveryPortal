@@ -1067,6 +1067,24 @@ $(function() {
             $(this).parent().next("div").slideToggle(300);
             $(this).attr('class','hide')
         });
+        
+        
+        if($("#fortree li").size()<1)
+        {
+            $("#forfacet").hide();
+        }else
+        {
+              $("#forfacet").show();   
+        }
+        
+        if($("#group-facet li").size()<1)
+        {
+            $("#facfacet").hide();
+        }else
+        {
+              $("#facfacet").show();   
+        }        
+
     } 
  
     function doNormalSearch(){     
@@ -1100,6 +1118,9 @@ $(function() {
 
                          $(this).context.cells[2].childNodes[2].style.display=="block" ?    $(this).context.cells[2].childNodes[2].style.display="none":
                          $(this).context.cells[2].childNodes[2].style.display="block";
+                     
+                         $(this).context.cells[2].childNodes[1].className=="show" ? $(this).context.cells[2].childNodes[1].className="hide":
+                         $(this).context.cells[2].childNodes[1].className="show";
                          
                     }); 
 /*

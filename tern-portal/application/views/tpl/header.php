@@ -58,14 +58,14 @@ if (isset($description))
                         <li><a class="more" href="#">TERN data</a>
                             <div class="subMenu">
                                 <ul >
-                                    <li><?php echo anchor('home/accessdata', 'Access data', ''); ?></li>
-                                    <li><?php echo anchor('home/submitdata', 'Submit data', ''); ?></li>
-                                    <li><?php echo anchor('home/licencing', 'Data licensing', ''); ?></li>                      
+                                    <li><?php echo anchor('home/accessdata', 'Access data', 'target="_blank"'); ?></li>
+                                    <li><?php echo anchor('home/submitdata', 'Submit data', 'target="_blank"'); ?></li>
+                                    <li><?php echo anchor('home/licencing', 'Data licensing', 'target="_blank"'); ?></li>                      
                                     <li><?php echo anchor('home/infrastructure', 'Infrastructure Locations', ''); ?></li> 
                                 </ul> 
                             </div>
                         </li>  
-                        <li><?php echo anchor('contact', 'Contact', ''); ?>
+                        <li><?php echo anchor('contact', 'Contact', ' target="_blank"'); ?>
                             
                         </li>                       
                     </ul> 
@@ -86,13 +86,23 @@ if (isset($description))
                     </ul-->
               </nav> 
              <img id="dataDiscoveryPortalLogo" alt="Data Discovery Portal" src="/img/logos/logo-datadiscoveryportal.png"/>
+
          <!--      <div class="no_print top-menu-cover">-->
 
           <!--      </div>-->
            <!-- </div>-->
         </div>
+
         </header>    
-  <!--      <div class="tmptitle"> <?php echo $md_sub ?></div>-->
+        <div id="printHeader">
+            <h1>
+            <a href="#">
+            <img src="/img/logos/logo-tern-print.png">
+            </a>
+            </h1>
+            <p>Printed from the TERN Data Discovery portal</p>
+       </div>
+  <!--      <div class="tmptitle"> <?php //echo $md_sub ?></div>-->
         <div class="wrapper">
         <!--<div class="clearfix"></div>    -->
         <!--<div class="margin10"></div>-->

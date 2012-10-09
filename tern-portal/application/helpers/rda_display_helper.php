@@ -95,7 +95,7 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
       
         if(count($object_type)>0){
             
-            echo '<li>';
+            echo '<li id="facfacet">';
            // echo '<div class="facet-list facet-content collapsiblePanel">';
             echo '<div class="content expand collapsiblePanel">';
             echo '<h2 class="head"><a class="hide">'.$name . '</a>';
@@ -654,7 +654,7 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
 if(count($out2)>0)    
 {
     //print_r($out4);
-        echo '<li>';
+        echo '<li id="forfacet">';
         echo '<div class="content expand collapsiblePanel">';
 	echo '<h2><a class="hide">Field of Research</a>';
         echo '</h2>';
@@ -667,16 +667,20 @@ if(count($out2)>0)
                $out_keys2=array_keys($out2);
 
                $out_code_keys4=array_keys($out_code4);
+
                $out_code_keys2=array_keys($out_code2);
+               
                 for($i=0;$i< count($out_keys2);$i=$i+1)
                 {  
                     if($out2[$out_keys2[$i]]>0)
                     {
                         if($out_keys2[$i]!=null)
                         {             
-                            $index=findFORChildFour($out_code_keys2[$i],$out_code_keys4,$facetfourFilter);
+                            $index=findFORChildFour($out_code_keys2[$i],$out_code_keys4);
+
                             if(!checkInFilter($out_keys2[$i],$two))
                             {
+                                //print_r(count($index));
                                 if(count($index)==0)//no child node under 2 digits FOR
                                 { 
                                     echo '<li>
@@ -694,13 +698,15 @@ if(count($out2)>0)
                                                         name="twoFOR"
                                                         value="'.$out_keys2[$i].'" 
                                                         class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/><span> '.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')</span>';
+
                                         echo    '<ul>';
 
                                                     for($k=0;$k<count($index);$k++)
                                                     {
-                                                        if(!checkInFilter($out_keys4[$index[$k]],$four)&&$out4[$out_keys4[$index[$k]]]>0)
+                                                        
+                                                        if(!checkInFilter($out_keys4[$index[$k]],$four)&& $out4[$out_keys4[$index[$k]]]>0)
                                                         {
-                                                            echo '<li >
+                                                            echo '<li>
 
                                                                 <input type="checkbox"
                                                                     name="fourFOR"
@@ -710,7 +716,8 @@ if(count($out2)>0)
                                                         }
 
                                                     }
-                                        echo    '</ul>';
+                                        echo    '</ul>'; 
+
                                         echo '</li>'; 
                                     //}
 
@@ -741,11 +748,12 @@ function findFORChildFour($twocode,$code_arr4)
     $idx=array();
     
     for ($n=0;$n<count($code_arr4);$n++)
-    {
+    {        
                //print_r (substr($code_arr4[$n],0,2));
                //print_r (substr($twocode,0,2));
-        if(substr($twocode,0,2)==substr($code_arr4[$n],0,2)&& $twocode!=$code_arr4[$n])
+        if((substr($twocode,0,2)==substr($code_arr4[$n],0,2))&& ($twocode!=$code_arr4[$n]))
         {
+
             $idx[]=$n;
         }
     }
