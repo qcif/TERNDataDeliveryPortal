@@ -129,14 +129,14 @@ header{
 	}
 	#searchBtn img, #mapSearchBtn img{ margin: 7px -10px 0px 12px; float: left; }
 
-#homeContent{overflow: hidden; background: #ecefe8 url(../img/home/carousel/facilities-datasets-top-bg.png) no-repeat center bottom; padding-bottom: 30px; }
+#homeContent{overflow: hidden; background: #ecefe8 url(../img/home/carousel/facilities-datasets-top-bg.png) no-repeat center bottom; padding-bottom: 30px; min-height: 450px; }
 #homeContent h1{ font-size: 28px; font-weight: normal; padding: 0px; margin: 0px 0px 20px 30px; }
 #datasetsIncluded{ float: left; width: 50%; margin: 50px 0px 0px 0px; background: url(../img/dividers/home-content-divider.png) no-repeat right center; }
 	#datasetsIncluded h1{ color: #BF5F00; }
 	#datasetsIncluded ul{ list-style: none; padding: 0px; }
 		#datasetsIncluded ul li{ float: left; width: 168px; height: 115px; margin: 0px 0px 15px 30px; }
 			#datasetsIncluded ul li a img{ position: absolute; z-index: 0; }
-			#datasetsIncluded ul li a span{ position: absolute; margin-top: 80px; padding-left: 12px; color: #FFF; background-color: #BF6000; display: block; width: 156px; line-height: 35px; font-weight: bold; font-size: 16px; opacity:0.8; filter:alpha(opacity=80);}
+			#datasetsIncluded ul li a span{ position: absolute; margin-top: 80px; padding-left: 12px; color: #FFF; background-color: #BF6000; display: block; width: 156px; line-height: 35px; font-weight: bold; font-size: 12px; opacity:0.8; filter:alpha(opacity=80);}
 			#datasetsIncluded ul li a:hover span{ background-color: #000; opacity:0.6; filter:alpha(opacity=60);}
 
 #recentlyReleased{ float: left; position: relative; width: 50%; margin: 50px 0px 0px 0px;}
@@ -534,7 +534,7 @@ table#searchResults tbody td:last-child {
 }
 
 table#searchResults th.mapRefTH{ width: 50px; }
-table#searchResults th.titleTH{ text-align: left; }
+table#searchResults th.titleTH{ text-align: left; width:1050px;  }
 table#searchResults th.datePublishedTH{ width: 140px; text-align: left; }
 
 table#searchResults tbody td h2{ font-size: 14px; font-weight: normal; margin: 0px; margin: 15px 0px; }
@@ -813,6 +813,7 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
  width:598px;height:400px;
 
 }
+
 #facet-help-text h2{
     margin: 10px 0 15px;
 }
@@ -824,4 +825,16 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 }
 nav#facetNav #group-facet li{
     margin-bottom: 5px;
+
+
+.facility-text{
+    font-size: 16px;
+    line-height: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    text-align: justify;
+}
+.viewAll{
+    text-align: center;
+
 }
