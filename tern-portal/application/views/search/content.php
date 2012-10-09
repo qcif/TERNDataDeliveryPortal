@@ -186,7 +186,7 @@ if ($realNumFound >0)
             echo    '<td><p class="datePublished">' . $date_pub . '</p>';
             echo    '<a class="hide" href="javascript:void(0);"></a>';
             echo        '<div class="expand" id="metabutton">';
-            echo            '<a class="greenGradient smallRoundedCorners viewmeta" id="' . $key_url . '">View Metadata</a>';
+            echo            '<a class="greenGradient smallRoundedCorners viewmeta" href="' . $key_url . '" target="_blank">View Metadata</a>';
             echo        '</div>';
              echo '</td>';
 

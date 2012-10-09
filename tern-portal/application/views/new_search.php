@@ -28,8 +28,8 @@
 -->
 
 <div class="wrapper">
-    <nav id="facetNav"><div id="refineSearchBox" class="box"><h1 class="greenGradient">Search</h1><div class="content">
-                <ul>     </ul></div></div>
+    <nav id="facetNav"><div id="refineSearchBox" class="box"><a class="helpBtn" id="facet-help"></a><h1 class="greenGradient">Search</h1><div class="content">
+                <ul>     </ul></div><div id="facet-help-text" title="Refine Search Help"></div></div>
     </nav>
     <section class="right" id="result-panel">
         <?php $this->load->view('tab/widgets/spatial');?>

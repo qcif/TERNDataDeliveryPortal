@@ -9,9 +9,9 @@
         <small>
             Copyright © TERN 2012. All Rights Reserved.
                 <br>
-             <?php echo anchor('home/terms', 'Terms of use','target="_blank"'); ?>
+             <?php echo anchor('home/terms', 'Terms of use',''); ?>
                 |
-            <?php echo anchor('contact', 'Contact', 'target="_blank"'); ?>
+            <?php echo anchor('home/contact', 'Contact', ''); ?>
         </small>
         </p>
 </footer>  

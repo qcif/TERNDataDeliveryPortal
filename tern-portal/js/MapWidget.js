@@ -1034,7 +1034,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
              html ='';
              title = ''; 
              coverage = Array();  
-             var link = $(this).closest('tr').find('#metabutton a').attr('id');
+             var link = $(this).closest('tr').find('#metabutton a').attr('href');
              title = "<a href=\"" + link + "\" target=\"new\" style=\" vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').html()  + "</a>"  ;
              var date = $(this).closest('tr').children('td:nth-child(3)').children('p').html();
              var button =  $(this).closest('tr').find('#metabutton').clone().html();

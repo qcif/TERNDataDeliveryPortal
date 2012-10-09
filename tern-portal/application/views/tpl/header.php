@@ -21,7 +21,7 @@ if (isset($description))
         <link type="text/css" href="<?php echo base_url(); ?>css/css-reset.css" rel="stylesheet"/>
         <link type="text/css" href="<?php echo base_url(); ?>css/main.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/print.css" rel="stylesheet" media="print" />
-         <link type="text/css" href="<?php //echo base_url(); ?>css/treeview.css" rel="stylesheet"/>
+         <link type="text/css" href="<?php echo base_url(); ?>css/treeview.css" rel="stylesheet"/>
          
          <?php if($this->config->item('GA_enabled')):?>
          <script type="text/javascript">
@@ -58,14 +58,14 @@ if (isset($description))
                         <li><a class="more" href="#">TERN data</a>
                             <div class="subMenu">
                                 <ul >
-                                    <li><?php echo anchor('home/accessdata', 'Access data', 'target="_blank"'); ?></li>
-                                    <li><?php echo anchor('home/submitdata', 'Submit data', 'target="_blank"'); ?></li>
-                                    <li><?php echo anchor('home/licencing', 'Data licensing', 'target="_blank"'); ?></li>                      
+                                    <li><?php echo anchor('home/accessdata', 'Access data', ''); ?></li>
+                                    <li><?php echo anchor('home/submitdata', 'Submit data', ''); ?></li>
+                                    <li><?php echo anchor('home/licencing', 'Data licensing', ''); ?></li>                      
                                     <li><?php echo anchor('home/infrastructure', 'Infrastructure Locations', ''); ?></li> 
                                 </ul> 
                             </div>
                         </li>  
-                        <li><?php echo anchor('contact', 'Contact', ' target="_blank"'); ?>
+                        <li><?php echo anchor('contact', 'Contact', ''); ?>
                             
                         </li>                       
                     </ul> 

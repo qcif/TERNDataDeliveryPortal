@@ -554,7 +554,7 @@ $(function() {
         enableCoordsChange(mapWidget);  
      
          
-        $("#map-help-text").dialog({autoOpen:false});
+        $("#map-help-text").dialog({autoOpen:false, height: 500});
         $("#map-help").click(function(){
              $("#map-help-text").dialog('open');
              return false;
@@ -563,7 +563,6 @@ $(function() {
         $("#map-view-selector a").bind('click',function(element){
             mapWidget.setBaseLayer($(this).attr("id")); 
         });
-        $("#map-toolbar .helpBtn").tipsy({gravity: 'e'});
         
         $("#map-toolbar a.hide").bind('click', function(){
             $("#spatialmap").toggle(300);
@@ -875,44 +874,38 @@ $(function() {
         temporalWidget.refreshTemporalSearch();
  
  //help contents
-        //term
-        $("#term-help-text").dialog({autoOpen:false});
-
-          $("#term-help").click(function(){
-             $("#term-help-text").dialog('open');
+    
+      $("#facet-help-text").dialog({autoOpen:false, height: 400, width: 500});
+          $("#facet-help").click(function(){
+              $("#facet-help-text").html('');
+              
+              if($("#term-help-text").html()){
+                 $("#facet-help-text").append($("#term-help-text").html());
+              }
+              if($("#facility-help-text").html()){
+                 $("#facet-help-text").append($("#facility-help-text").html());
+              }
+               if($("#for-help-text").html()){
+                  $("#facet-help-text").append($("#for-help-text").html());
+              }
+               if($("#region-help-text").html()){
+                 $("#facet-help-text").append($("#region-help-text").html());
+              }
+             $("#facet-help-text").dialog('open');
              return false;
          });
          
-         //facility
-        $("#facility-help-text").dialog({autoOpen:false});
+        //capitalize first letter
+        String.prototype.toProperCase = function () {
+            return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        };
 
-          $("#facility-help").click(function(){
-             $("#facility-help-text").dialog('open');
-             return false;
-         });         
-         
-         //for
-        $("#for-help-text").dialog({autoOpen:false});
-
-          $("#for-help").click(function(){
-             $("#for-help-text").dialog('open');
-             return false;
-         });   
-         //region
-        $("#region-help-text").dialog({autoOpen:false});
-
-          $("#region-help").click(function(){
-             $("#region-help-text").dialog('open');
-             return false;
-         });          
-//=========================         
-        $('#adv_bool').click(function(){
-             if(document.getElementById("adv_bool_operator").style.display=='none')
-                document.getElementById("adv_bool_operator").style.display='block';
-            else
-                document.getElementById("adv_bool_operator").style.display='none';
+        $.each($('#fortree span'), function(){
+             var txt= $(this).html().toProperCase();
+             $(this).html( txt);
         });
-           // If user presses enter in the inputs, submit the form
+              
+         // If user presses enter in the inputs, submit the form
         $('#refineSearchTextField').keypress(function(e) {
             if(e.which == 13) {             
                         $('#refineSearchBtn').trigger('click');
@@ -1113,12 +1106,7 @@ $(function() {
                         }
                     }); 
 */
-                        $('.viewmeta').click(function(){
-                                var url=$(this).attr("id");
-                                handleViewMeta(url);
-
-                        }); 
-
+                    
                //  $("#loading").hide();
                  
                  var opt=document.getElementsByName('select-view-record');
@@ -1446,11 +1434,6 @@ function checkSelection()
 
 }
 
-    function handleViewMeta(link){           
-            window.open(link,'_blank');
-            window.focus();
-     
-} 
 
     function initConnectionsBox(){
 

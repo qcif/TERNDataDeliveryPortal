@@ -14,7 +14,7 @@ $lang['for'] = "add field of research ";
 $lang['facility'] = "select facilities to refine search results";
 
 $lang['term_helptitle']="Advance boolean search help";
-$lang['term_helptext']="<p>
+$lang['term_helptext']="<h2>Advance boolean search </h2><p>
                             Use AND, OR and NOT to refine your search results.
                         </p>
                         <p>
@@ -41,7 +41,7 @@ $lang['term_helptext']="<p>
 
 
 $lang['facility_helptitle']="Facility facet help";
-$lang['facility_helptext'] ="<p>
+$lang['facility_helptext'] ="<h2>Facility </h2><p>
                                 Each TERN Facility works in one or more ecosystem science domains.   Use the checkboxes next to each Facility to restrict your search to records produced by that facility.  More than one facility may be selected.  The number next to each facility name represents the number of records available which match your search parameters. 
                              </p>
                              <p>
@@ -50,7 +50,7 @@ $lang['facility_helptext'] ="<p>
                     ";
 
 $lang['for_helptitle']="Field of Research help";
-$lang['for_helptext'] ="<p>
+$lang['for_helptext'] ="<h2>Field of Research </h2><p>
                             Fields of Research (FoR) have been selected using the <a href=\"http://www.abs.gov.au/ausstats/abs@.nsf/mf/1297.0\">Australian and New Zealand Standard Research Classification (ANZSRC)</a>
                         </p>
                         <p>
@@ -69,7 +69,7 @@ $lang['for_helptext'] ="<p>
                     ";
 
 $lang['region_helptitle']="Regions facet help";
-$lang['region_helptext'] ="<p>
+$lang['region_helptext'] ="<h2>Regions</h2><p>
                                 Select a <b>Region Type</b> from the drop-down list to display region names.  Boundaries for the chosen type will appear on the map – the map is not interactive.  
                            </p>
                            <p>

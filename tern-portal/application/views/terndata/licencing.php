@@ -128,7 +128,7 @@
 <body class="claro" style="visibility: hidden;">
     <div id="staticContentWhite">
         <h1 class="margin10">Data Licensing</h1>
-        <p>TERN encourages the sharing of data and knowledge for the long-term benefit of the research community. Data sharing should only occur within a framework where data contributors receive appropriate recognition for their work, and where data users understand, in advance, the responsibilities placed upon them when they access and/or use another’s data.</p>
+        <p>TERN encourages the sharing of data and knowledge for the long-term benefit of the research community. Data sharing should only occur within a framework where data contributors receive appropriate recognition for their work, and where data users understand, in advance, the responsibilities placed upon them when they access and/or use another's data.</p>
         
         <p>For further information, please visit the <a href="http://www.tern.org.au/datalicence" target="_blank">TERN Data Licensing</a> page.</p>
         

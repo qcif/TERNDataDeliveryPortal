@@ -101,9 +101,8 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
             echo '<h2 class="head"><a class="hide">'.$name . '</a>';
             echo '</h2>';
             echo '<div>';
-            echo '<a id="facility-help" class="helpBtn" ></a>';
             //echo '<ul style="display:inline" id="'.$facet_name.'-facet">';
-            echo '<ul class="facetContainer" id="'.$facet_name.'-facet">';
+            echo '<ul id="'.$facet_name.'-facet">';
 
 
             //print the others
@@ -117,7 +116,7 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
 					<input type="checkbox" 
 						name="facchkbox"
                                                 value="'.$object_type[$i].'" 
-						class="groupFilter'.'" id="'.$object_type[$i].'"/>'.$object_type[$i].' ('.number_format($object_type[$i+1]).')</li>';         
+						class="groupFilter'.'" id="'.$object_type[$i].'"/> '.$object_type[$i].' ('.number_format($object_type[$i+1]).')</li>';         
                             //} 
                         }else
                         {                         
@@ -128,7 +127,7 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
 					<input type="checkbox" 
 						name="facchkbox"
                                                 value="'.$object_type[$i].'" 
-						class="groupFilter'.'" id="'.$object_type[$i].'"/>'.$object_type[$i].'</li>';         
+						class="groupFilter'.'" id="'.$object_type[$i].'"/> '.$object_type[$i].'</li>';         
                             }                      
                         } 
                     }
@@ -138,8 +137,9 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
              echo '<a id="facbutton" class="greenGradient smallRoundedCorners">GO</a> ';
             echo '</div>'; 
             echo '</div>';
+            echo '<div id="facility-help-text" title="'.$help_title.'" class="hide" >'.$help_content.'</div>';
             echo '</li>';
-             echo '<div id="facility-help-text" title="'.$help_title.'" class="hide" >'.$help_content.'</div>';
+           
         }
 }
 /* displayRegionFacet
@@ -163,7 +163,6 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
                 echo 'Selecting a region will replace your current region search';
             }
                  // echo '<div  id="facet-region" class="facet-list facet-content">';
-            echo '<a id="region-help" class="helpBtn"></a>';
             echo '<select id="region-select" class="facetDropDown">';
             echo '<option value="">Please select a region type</option>';
              foreach($regionsName as $key=>$regionsList){
@@ -203,9 +202,9 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
              }
           echo '</div>';
            echo '</div>';
-          
+            echo '<div id="region-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
+         
            echo '</li>';
-           echo '<div id="region-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
                    
         }
 }
@@ -661,8 +660,7 @@ if(count($out2)>0)
         echo '</h2>';
 	//echo '<div class="facet-list" >';
         echo '<div>';
-        echo '<a id="for-help" class="helpBtn"></a>';
-	
+     
 //build FOR tree	
 	echo '<ul class="facetTree treeview-red" id="fortree">'; 
                $out_keys4=array_keys($out4);
@@ -680,34 +678,34 @@ if(count($out2)>0)
                             if(!checkInFilter($out_keys2[$i],$two))
                             {
                                 if(count($index)==0)//no child node under 2 digits FOR
-                                {
-                                    echo '<li><span>
+                                { 
+                                    echo '<li>
                                             <input type="checkbox" 
                                                     name="twoFOR"
                                                     value="'.$out_keys2[$i].'" 
-                                                    class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')'.'</span></li>';
+                                                    class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/><span> '.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')'.'</span></li>';
                                 }else//found child
                                 {
                                    // if($out2[$out_keys2[$i]]>0)
                                     //{    
                                         //get values from $index[]. create <ul>
-                                        echo '<li><span>
+                                        echo '<li>
                                                 <input type="checkbox"
                                                         name="twoFOR"
                                                         value="'.$out_keys2[$i].'" 
-                                                        class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/>'.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')</span>';
+                                                        class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/><span> '.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')</span>';
                                         echo    '<ul>';
 
                                                     for($k=0;$k<count($index);$k++)
                                                     {
                                                         if(!checkInFilter($out_keys4[$index[$k]],$four)&&$out4[$out_keys4[$index[$k]]]>0)
                                                         {
-                                                            echo '<li ><span>
+                                                            echo '<li >
 
                                                                 <input type="checkbox"
                                                                     name="fourFOR"
                                                                     value="'.$out_keys4[$index[$k]].'" 
-                                                                    class="forfourFilter'.'" id="'.$out_keys4[$index[$k]].'"/>'.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).')'.'</span>';
+                                                                    class="forfourFilter'.'" id="'.$out_keys4[$index[$k]].'"/><span> '.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).')'.'</span>';
                                                             echo '</li>';
                                                         }
 
@@ -729,9 +727,9 @@ if(count($out2)>0)
         echo '<a id="forbutton" class="greenGradient smallRoundedCorners" >GO</a>';
 	echo '</div>';
         echo '</div>';
-      
-        echo '</li>';
         echo '<div id="for-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
+        echo '</li>';
+      
 }
 
 }
