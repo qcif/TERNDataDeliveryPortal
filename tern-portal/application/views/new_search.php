@@ -2,6 +2,7 @@
 <div id="page_name" class="hide">Search</div>
 <!--div id="loading" class="hide" ><p><img src="/img/ajax-loader.gif" alt="Please wait.." /> Please wait.. </p></div-->
 <div id="dialog-searchterm" title="Confirm search" class="hide">There are special characters entered. Do you want to continue?</div>
+<div id="dialog-noresult" title="No results" class="hide">No results were found matching your search terms.</div> 
 <!--
 <div id="container" class="ui-corner-all clearfix">
      <div id="page_name" class="hide">Search</div>
