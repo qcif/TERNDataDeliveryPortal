@@ -1057,12 +1057,12 @@ $(function() {
        {
                     showNoResult(1); 
        }
-       $(".collapsiblePanel .hide").click(function()
+       $(".collapsiblePanel").on("click",".hide", function()
         {
             $(this).parent().next("div").slideToggle(300);
             $(this).attr('class','show')
         });
-        $(".collapsiblePanel .show").click(function()
+        $(".collapsiblePanel").on('click','.show',function()
         {
             $(this).parent().next("div").slideToggle(300);
             $(this).attr('class','hide')

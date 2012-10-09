@@ -99,7 +99,7 @@ function initViewPage(){
 
         }); 
 		//$(brief).show();
-                 $.each($('.forcode li a'), function(){
+                 $.each($('.forcode li'), function(){
                     var txt= $(this).html().toProperCase();
                     $(this).html(txt);
                 });
