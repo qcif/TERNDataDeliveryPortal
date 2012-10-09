@@ -118,7 +118,8 @@ function initViewPage(){
                         subjects.height('auto');                     
                         
                  });
-}
+                 if($('#metadataTitle h1').html().length > 100) $('#metadataTitle h1').css('font-size', '16px');
+             }
 
 function removeBracket(arr)
 {
