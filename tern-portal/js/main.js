@@ -564,10 +564,23 @@ $(function() {
             mapWidget.setBaseLayer($(this).attr("id")); 
         });
         
-        $("#map-toolbar a.hide").bind('click', function(){
-            $("#spatialmap").toggle(300);
+        $("#map-toolbar").on('click', "a.hide", function(){
+            $("#spatialmap").hide();
+            $(this).attr('class','show');
+            $(this).html('Show');
+            $("#map-toolbar li:not(.heading)").hide();
+            $("#map-toolbar").css("height", "37px");
         });
-            
+         
+        $("#map-toolbar").on("click", "a.show", function()
+        {
+            $("#spatialmap").show();            
+            $(this).attr('class','hide');
+            $(this).html('Hide');
+            $("#map-toolbar li:not(.heading)").show();
+            $("#map-toolbar").css("height", "67px");
+        });
+        
         return mapWidget;
     }
 

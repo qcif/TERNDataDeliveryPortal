@@ -1,98 +1,10 @@
-<style type="text/css">                      
-            
-            .olControlDrawFeatureBoxItemActive {
-            background-position: -153px -24px;
-            }
-            .olControlDrawFeatureBoxItemInactive {
-            background-position: -153px -1px;
-            }
-            .olControlDrawFeaturePolyItemInactive {
-             background-position: -25px -1px;
-            }            
-            .olControlDrawFeaturePolyItemActive {
-             background-position: -25px -24px;
-            }            
-            .olControlEditingToolbar div{
-                float:left !important;      
-            }
-            .olControlDragFeatureItemActive {
-                background-image: url("/img/editing_tool_bar.png");
-                background-position: -103px -24px;
-                height:22px;
-                width: 24px;
-                margin: 5px 0 5px 5px;
-            }
-            .olControlDragFeatureItemInactive {
-                 background-image: url("/img/editing_tool_bar.png");
-                background-position: -103px -1px;
-                height:22px;
-                width: 24px;
-                margin: 5px 0 5px 5px;
-            }
-             .olControlDeleteFeatureBoxItemActive {
-            background-position: -203px -24px;
-            }
-            .olControlDeleteFeatureBoxItemInactive {
-            background-position: -203px -1px;
-            }
-            .olControlNavToolbar div, .olControlEditingToolbar div {
-                background-image: url('/img/editing_tool_bar.png') ! important;
-            }
-            .olControlDrawFeatureActive{
-                cursor: pointer;
-            }
-           
-            #map-toolbar{
-                font-size:10px;
-                text-align:center;
-            }
-           
-            #coords{
-                position:absolute;
-                width:200px;
-                z-index: 10000; 
-            }
-            .toolbartitle{
-                font-weight:bold;
-                font-size: 11px;
-            }
-</style>
-<!--
-<div id="ui-layout-map">
-    <?php if($widget_map_drawtoolbar){ ?> 
-        <div id="map-tollbar" class="blackGradient">
-            <ul>
-                <li class="heading">Map Tools</li>
-                <li>
-                    Pan
-                    <br>
-                    <div  id="drag" title="<?php echo $this->lang->line('map_pan'); ?>"><a id="panBtn"></a></div>
-                </li>
-                <li>
-                    Coordinates
-                    <br>
-                    <a  class="tooltip topmargin5" id="latlong" title="<?php echo $this->lang->line('map_coords'); ?>">Longitude &amp; Latitude</a>
-                </li>
-                <li>
-                    Select region then GO
-                    <br>
-                    <div id="regionPanel">
-                        
-                    </div>
-                </li>
-            </ul>
-        </div>
-    
-    <?php } ?>
-</div>
--->
 <div id="ui-layout-map" > 
     <?php if($widget_map_drawtoolbar){ ?> 
     
     <div class="blackGradient" id="map-toolbar"> 
-         	<ul>
+            <ul>
             	<li class="heading">Map Tools</li>
-               <li>Pan<br><a title="To Pan" id="drag" class="panBtn" title="<?php echo $this->lang->line('map_pan'); ?>"></a></li>
+                <li>Pan<br><a title="To Pan" id="drag" class="panBtn" title="<?php echo $this->lang->line('map_pan'); ?>"></a></li>
             	<li>Coordinates<br><a id="latlong" class="latLongBtn" >Longitude &amp; Latitude</a></li>
             	<li>Select region then 'GO'<br>
                   <div id="regionPanel">
