@@ -802,13 +802,11 @@ $(function() {
        
            
             $('.clearFilter').each(function(){
-                if($(this).context.innerHTML!="All Records")
+                //if($(this).context.innerHTML!="All Records")
                    //$(this).append('<a class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
                        $(this).append('<a class="remove" />');
             });
-            
-           
-            $("#fortree").treeview({
+           $("#fortree").treeview({
 		animated: "fast",
 		collapsed: true,
 		unique: false,

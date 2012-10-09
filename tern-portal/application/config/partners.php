@@ -48,7 +48,7 @@
                 "location": ["http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html"]
             }, 
         
-        {
+            {
                 "key": "auscover",
 
                 "display_title": "Auscover",
@@ -60,8 +60,8 @@
                     "full"
                 ],
                 "description_value": [
-                    "img/logos/logo-auscover.jpg",
-                    "<p style=\"margin-top:0\">The AusCover Facility is a national expert network providing Australian biophysical map products and remote sensing data time-series, and associated field calibration and validation data at continental scales.</p> <p style=\"margin-top:0\">The Facility comprises a portal for data archive and access, and field instrumentation that makes calibrated satellite data and ground-validation information directly available online to the terrestrial ecosystem research community. AusCover is also developing a consolidated repository and meta-database, including standard processing and validation methods for specific biophysical land cover products and basic processed time-series biophysical image maps. This will involve processing of medium resolution satellite data from national archives, as well as data from current and future satellite acquisition, supported by a national system of instrumented field validation sites.</p>"
+                    "/img/logos/logo-auscover.jpg",
+                    "AusCover is a national expert network that provides remote sensing data time-series and satellite based biophysical map products for Australia. AusCover also provides associated field calibration and validation data at continental scales. The data sets served by AusCover at continental and site scales represent key environmental variables required by the ecosystem science and management communities in Australia."
                 ],
                 "location": ["http://www.tern.org.au/AusCover-pg17728.html","http://www.auscover.org.au"]
             },
@@ -78,7 +78,7 @@
                 ],
                 "description_value": [
                     "img/logos/logo-ozflux.jpg",
-                    "OzFlux is a national ecosystem research network set up to provide the Australian and global ecosystem modelling communities with nationally consistent observations of energy, carbon and water exchange between the atmosphere and key Australian ecosystems. OzFlux is part of an international network (FluxNet external link) of over 500 flux stations that is designed to provide continuous, long-term micrometeorological measurements to monitor the state of ecosystems globally."
+                    "OzFlux measures key energy, water and carbon dioxide fluxes using a network of data collection towers throughout Australia and New Zealand.  By providing a common set of core measurements at multiple sites and time scales, OzFlux data can be used to improve understanding of ecosystem function and biogeochemical cycles for use in ecosystem and land surface models."
                 ],
                 "location": ["http://www.tern.org.au/OzFlux-pg17729.html"]
             },
@@ -94,8 +94,8 @@
                     "full"
                 ],
                 "description_value": [
-                    "img/logos/logo-mspn.jpg",
-                    "OzFlux is a national ecosystem research network consisting of 10 flux stations at present with a further 6 planned for installation in 2011, all funded under the TERN 1 initiative. Funding for 6 more sites has been requested under the TERN-EIF initiative. The final network of 21 sites will provide the Australian and global ecosystem modelling communities with nationally consistent observations of energy, carbon and water exchange between the atmosphere and key Australian ecosystems. OzFlux is part of an international network (FluxNet) of over 500 flux stations that is designed to provide continuous, long-term micrometeorological measurements to monitor the state of ecosystems globally. "
+                    "/img/logos/logo-mspn.jpg",
+                    "The Multi-Scale Plot Network (MSPN) is collecting data on selected flora, fauna and biophysical processes from plots, sites and transects across all Australian ecosystems to describe the rate, magnitude and direction of change in these ecosystems.  The MSPN includes five sub-facilities that each addresses a different aspect of ecosystem research at different spatial, temporal and information scales. The synthesis and integration of data across the whole of MSPN addresses novel ecosystem questions and policy and management needs."
                 ],
       
                 "location": ["http://www.tern.org.au/Multi-Scale-Plot-Network-pg17730.html"]
@@ -106,14 +106,14 @@
                 "display_title": "Australian Supersite Network",
 
                 "alt_name": "Biogeochemical and Ecological Data", 
-                "query_name": "TERN Supersites",                 
+                "query_name": "Australian Supersite Network",                 
                 "description_type": [
                     "logo",
                     "full"
                 ],
                 "description_value": [
-                    "img/crossout.gif",
-                    "The Australian Supersite Network (ASN) is part of the Terrestrial Ecosystem Research Network, an Australian Government initiative to collect, store, manage and share scientific data about Australian ecosystems. ASN is part of TERN's Multi-scale Plot Networks (MSPN), which is being developed to deal with issues of scaling in ecosystem measurements - Supersites are the most intensive sites in this plot network.The ASN seeks to understand how key ecosystems will respond to future environmental change by setting up a nationally consistent network of multidisciplinary and intensive ecosystem observatories.Each Supersite is located in a significant Australian biome and the network spans a wide range of environmental conditions. The ASN collects detailed data sets on flora, fauna and biophysical processes from each Supersite."
+                    "/img/logos/logo-asn.png",
+                    "The Australian Supersite Network (ASN) is a national network of multidisciplinary ecosystem observatories, located in significant Australian biomes spanning a wide range of environmental conditions. The ASN collects detailed data sets on flora, fauna and biophysical processes from each Supersite to improve understanding of how key ecosystems may respond to future environmental change."
                 ],
                 "location": ["http://www.tern.org.au/Australian-Supersite-Network-pg17873.html"]
             },
@@ -129,8 +129,8 @@
                     "full"
                 ],
                 "description_value": [
-                    "img/crossout.gif",
-                    "OzFlux is a national ecosystem research network consisting of 10 flux stations at present with a further 6 planned for installation in 2011, all funded under the TERN 1 initiative. Funding for 6 more sites has been requested under the TERN-EIF initiative. The final network of 21 sites will provide the Australian and global ecosystem modelling communities with nationally consistent observations of energy, carbon and water exchange between the atmosphere and key Australian ecosystems. OzFlux is part of an international network (FluxNet) of over 500 flux stations that is designed to provide continuous, long-term micrometeorological measurements to monitor the state of ecosystems globally. "
+                    "/img/logos/logo-soils.png",
+                    "The Soil and Landscape Grid of Australia is building a comprehensive fine-scale grid detailing functional soil attributes and key landscape features across Australia. The Soil and Landscape Grid is an essential piece of national information infrastructure that will directly impact on Australia’s capacity to deal with complex land-management challenges."
                 ],
                  "location": ["http://www.tern.org.au/Soil-and-Landscape-Grid-of-Australia-pg17731.html"]
             },            
@@ -146,8 +146,8 @@
                     "full"
                 ],
                 "description_value": [
-                    "img/crossout.gif",
-                    "OzFlux is a national ecosystem research network consisting of 10 flux stations at present with a further 6 planned for installation in 2011, all funded under the TERN 1 initiative. Funding for 6 more sites has been requested under the TERN-EIF initiative. The final network of 21 sites will provide the Australian and global ecosystem modelling communities with nationally consistent observations of energy, carbon and water exchange between the atmosphere and key Australian ecosystems. OzFlux is part of an international network (FluxNet) of over 500 flux stations that is designed to provide continuous, long-term micrometeorological measurements to monitor the state of ecosystems globally. "
+                    "/img/logos/logo-acef.png",
+                    "The Australian Coastal Ecosystem Facility (ACEF) collects and distributes key coastal datasets for use in policy and management decisions about the protection and use of Australia’s coastal assets, both marine and freshwater. It addresses data collection needs from fine scale to satellite collections of flora, fauna and biophysical properties of coastal ecosystems."
                 ],
                  "location": ["http://www.tern.org.au/Australian-Coastal-Ecosystems-pg17732.html"]
             },
@@ -163,8 +163,8 @@
                     "full"
                 ],
                 "description_value": [
-                    "img/logos/logo-aekos.jpg",
-                    "Eco-informatics is providing technical infrastructure for storing and sharing plot-based ecological data and information. It is developing ways to integrate and deliver databases of environmental information, and developing a common structured description model to enable different datasets to be combined and used to answer research questions. The focus is on developing a system (ÆKOS – the Australian Ecological Knowledge and Observation System) to manipulate, store, distribute and display ecological information, thereby improving communication, understanding and management of the information so it supports scientific or policy-making processes. "
+                    "/img/logos/logo-aekos.jpg",
+                    "Eco-Informatics enables the storage, sharing, integration and visualisation of ecological plot data through the Australian Ecological Knowledge and Observation System (ÆKOS) and other products. By making data discoverable and accessible at fine levels of detail, along with extra information about the context of data collection, Eco-Informatics is opening up new opportunities for re-purpose and informed re-use of data."
                 ],
               "location": ["http://www.tern.org.au/Eco-informatics-pg17733.html"]
             },
@@ -180,8 +180,8 @@
                     "full"
                 ],
                 "description_value": [
-                    "img/logos/logo-emast.jpg",
-                    "OzFlux is a national ecosystem research network consisting of 10 flux stations at present with a further 6 planned for installation in 2011, all funded under the TERN 1 initiative. Funding for 6 more sites has been requested under the TERN-EIF initiative. The final network of 21 sites will provide the Australian and global ecosystem modelling communities with nationally consistent observations of energy, carbon and water exchange between the atmosphere and key Australian ecosystems. OzFlux is part of an international network (FluxNet) of over 500 flux stations that is designed to provide continuous, long-term micrometeorological measurements to monitor the state of ecosystems globally. "
+                    "/img/logos/logo-emast.jpg",
+                    "Ecosystem Modelling and Scaling Infrastructure (eMAST) is enhancing the capacity for assimilation and integration of data into modelling applications. By assembling data sets and developing software e-MAST enables testing, updating, and improvement of models used for such applications as future climate scenarios and assessment of primary production, at a wide range of temporal and spatial scales."
                 ],
                  "location": ["http://www.tern.org.au/Ecosystem-Modelling-and-Scaling-Infrastructure-pg17734.html"]
             } ,
@@ -191,14 +191,14 @@
                 "display_title": "Australian Centre for Ecological Analysis and Synthesis",
 
                 "alt_name": "Science and Management Synthesis", 
-                "query_name": "TERN Data Discovery Portal", 
+                "query_name": "localhost", 
                 "description_type": [
                     "logo",
                     "full"
                 ],
                 "description_value": [
-                    "img/logos/logo-aceas.jpg",
-                    "aceas blahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblah"
+                    "/img/logos/logo-aceas.jpg",
+                    "The Australian Centre for Ecological Analysis and Synthesis (ACEAS) is a virtual and physical facility that enables multi-disciplinary integration, synthesis and modelling of ecosystem data by ecosystem scientists and natural resource managers. ACEAS activities aid in the development of evidenced-based environmental management strategies and policy at regional, state and continental scales."
                 ],
                 "location": ["http://www.tern.org.au/Australian-Centre-for-Ecological-Analysis-and-Synthesis-pg17735.html"]
             } 

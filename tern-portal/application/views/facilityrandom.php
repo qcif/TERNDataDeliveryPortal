@@ -31,6 +31,7 @@ $half = round($count / 2);
 
                        $partners[$key]['alt_name']=$d->{'alt_name'};  
                        $partners[$key]['query_name']=$d->{'query_name'};  
+                       $partners[$key]['url']=$d->{'description_value'}[0]; 
                     }
 
                 }
@@ -80,8 +81,17 @@ function printRecord($r){
         <?php 
                 if ($fackey!==tddp)
                 {                    
-                    echo '<div id="datasetsIncluded">';
-                    echo $partners[$fackey]['description_value'];
+                    echo '<div id="datasetsIncluded">';   
+                    echo    '<h1>'.$partners[$fackey]['display_title'].'</h1>';
+                    echo        '<p class="facility-text">';                    
+                    echo            $partners[$fackey]['description_value'];
+                    echo        '</p>';
+                    if($half>0)
+                    {    
+                        echo        '<div class="viewAll">';
+                        echo            '<a href="'.base_url().'search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/num=10">View '.$partners[$fackey]['display_title'].' records</a>';
+                        echo        '</div>';
+                    }
                     echo '</div>';       
 
 
@@ -109,21 +119,32 @@ function printRecord($r){
                 
                     echo '<div id="recentlyReleased">';
                     echo '<h1>Recently Released</h1>';
-                    echo '<ul>';
-          
-                    for($i=0;$i<$half; $i++)
-                    {
-                        printRecord($recordsArr[$i]);
-                    }
-                    echo '</ul>';
-                    echo '<ul>';
-                    for($i=$half;$i<$count; $i++)
-                    {
-                        printRecord($recordsArr[$i]);
-                    }
+                    
+                    if($half>0)
+                    {                        
+                        echo '<ul>';
 
+                            for($i=0;$i<$half; $i++)
+                            {
+                                printRecord($recordsArr[$i]);
+                            }
+                        echo '</ul>';
 
-                    echo '</ul>';
+                        echo '<ul>';
+                            for($i=$half;$i<$count; $i++)
+                            {
+                                printRecord($recordsArr[$i]);
+                            }
+                        echo '</ul>';
+                    }else
+                    {
+                        echo '<ul>';
+                        echo '<li>';
+                        echo 'No records available';
+                        echo '</li>';
+                        echo '</ul>';
+                    }
+                    
                     echo '</div>';  
         ?>
 

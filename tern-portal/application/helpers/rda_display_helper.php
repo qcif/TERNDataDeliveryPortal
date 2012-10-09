@@ -299,7 +299,7 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
          
             if($idx !== false){
                  echo '<li>
-		       <span "class="clearFilter '.$clear.'" id="'.$object_type[$idx].'">'.$object_type[$idx].' ('. $object_type[$idx+1].')'.'</span>';
+		       <span class="clearFilter '.$clear.'" id="'.$object_type[$idx].'">'.$object_type[$idx].' ('. $object_type[$idx+1].')'.'</span>';
                  echo '</li>';
                 
             }

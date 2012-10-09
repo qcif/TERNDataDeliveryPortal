@@ -28,7 +28,7 @@ if($mapsearch==0 && ($spatial_included_ids=='') && ($temporal=='All') && ($typeF
         echo    '<div class="content">';
         echo        '<ul>';
         echo            '<li class="limit">            
-                        <span class="searchTerm"><label class="clearFilter classTerm" id="All Records">'.'All Records'.'</label></span>
+                        <span class="searchTerm"><label class="classTerm" id="All Records">'.'All Records'.'</label></span> 
                         </li>';
         echo        '</ul>';
         echo        '<div class="buttons">';
