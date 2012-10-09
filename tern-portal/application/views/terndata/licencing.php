@@ -11,15 +11,16 @@
 	width: 100px;
 }
 </style>
+<div id="staticContentWhite">
 <h1>
 TERN Data Licensing
-<h1>
+</h1>
 <p>TERN encourages the sharing of data and knowledge for the long-term benefit of the research community. Data sharing should only occur within a framework where data contributors receive appropriate recognition for their work, and where data users understand, in advance, the responsibilities placed upon them when they access and/or use another’s data.</p>
 <p>For further details, please visit the <a href="http://www.tern.org.au/datalicence" target="_blank">TERN Data Licensing page</a> in the main TERN website.
 <h2> TERN Licence Selector</h2>
 <p><em>Note: This tool only provides for licences under Australian law.</em></p>
 <hr>
-<div style="width: 800px; height:auto; overflow:auto;vertical-align:top;">
+<div style="width: 800px; height:auto; margin: 0 auto; vertical-align:top;">
   <div style="width: 50%; float:left;" >
     <h2>Licence features</h2>
     <form id="selectionForm" name="selectionForm">
@@ -89,7 +90,7 @@ TERN Data Licensing
   <div style=
     "width: 50%; float:right;">
     <h2>Selected licence</h2>
-    <p><a id="licence-logo-link" href="http://tern.org.au/datalicence/TERN-BY/1.0/" target="_blank"><img id="licence-logo" height="60px" src="img/licence/BY.png"/></a></p>
+    <p><a id="licence-logo-link" href="http://tern.org.au/datalicence/TERN-BY/1.0/" target="_blank"><img id="licence-logo" height="60px" src="/img/licence/BY.png"/></a></p>
     <div id="licence-statement"></div>
     <br>
     <p style="text-align: left;">You can use this code in your webpage:</p>
@@ -103,96 +104,5 @@ TERN Data Licensing
   </div>
 </div>
 <hr>
-<script type="text/javascript">
-    var licence_nc = false;
-    var licence_sa = false;
-    var licence_nd = false;
-    var licence_copyright = false;
-
-    
-    function toggleND(value) {
-        if (value === true) {
-            licence_nd = false;
-            licence_sa = false;
-        } else if (value === 'true_sa') {
-            licence_nd = false;
-            licence_sa = true;
-        } else {
-            licence_nd = true;
-            licence_sa = false;
-        }
-        prepareLicenceStatementAndIcon();
-    }
-    
-    function toggleCopyright(value) {
-        if (value === true) {
-			$("#licence-cca").show();
-            licence_copyright = true;
-        } else {
-			$("#licence-cca").hide();
-            licence_copyright = false;
-        }
-    }
-    
-    function prepareLicenceStatementAndIcon() {
-        var title = "This work";
-        var creators = "";
-		var link_work = "";
-        var tern_licence = "TERN Attribution";
-        var statement = "";
-        var icon_file = "img/licence/BY";
-        var link = "";
-        var licence_link = "http://tern.org.au/datalicence/TERN-BY";
-        
-        if ($('#title').val() !== '') {
-            title = $("#title").val();
-        }
-        
-        if ($('#creators').val() !== '') {
-            creators = "by " + $("#creators").val();
-        }
-		
-		if ($('#link').val() !== '') {
-            title = "<a target='_blank' href='" + $("#link").val() + "'>" + title + "</a>";
-        }
-        
-        if (licence_nd) {
-            tern_licence = tern_licence + "-No Derivatives";
-            link = link + "-ND";
-        }
-        
-        if (licence_sa) {
-            tern_licence = tern_licence + "-Share Alike";
-            link = link + "-SA";
-        }
-        
-        licence_link = licence_link + link + "/1.0/";
-        statement = title + " " + creators + " is licensed under a <br/><a target='_blank' href='" + licence_link + "'>" + tern_licence + " licence</a>." ;
-        $("#licence-statement").html(statement);
-        
-        icon_file = icon_file + link + ".png";
-        $("#licence-logo").attr("src",icon_file);
-        $("#licence-logo-link").attr("href", licence_link);
-		
-		$("#licence-copy").val("<a href='" + licence_link + "'>"
-			+ "<img height='60px' src='" + icon_file + "'/></a><br>" 
-			+ statement);
-    }
-    
-    function resetForm() {
-        $('#licence-cca').hide();
-        prepareLicenceStatementAndIcon();
-    }
-  </script> 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#attribution_button").click(function(){prepareLicenceStatementAndIcon()});
-		$("#mods_true").click(function(){toggleND(true)});
-		$("#mods_true_sa").click(function(){toggleND('true_sa')});
-		$("#mods_false").click(function(){toggleND(false)});
-		$("#copy_true").click(function(){toggleCopyright(true)});
-		$("#copy_false").click(function(){toggleCopyright(false)});
-		$("#copy_unsure").click(function(){toggleCopyright(false)});
-	});
-</script>
+</div>
 <?php $this->load->view('tpl/footer');?>

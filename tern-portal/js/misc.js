@@ -47,17 +47,6 @@ function resizeLogo(image , id)
 
 
 
-function handlerecordpopupSlide()
-{
-
-        $('.toggle-record-popup').die('click').live('click', function(){
-
-            $(this).parent().next('div.record-slide').slideToggle();
-            $(this).toggleClass('ui-icon-arrowthickstop-1-n');
-            $(this).toggleClass('ui-icon-arrowthickstop-1-s');
-
-        });
-}
 
 function initPrintViewPage(){
 		//alert('init');
@@ -75,7 +64,6 @@ function initPrintViewPage(){
         
 function initDataViewPage(){
 
-                handlerecordpopupSlide();
                 initConnectionsBox();
                 initSubjectsSEEALSO();
                 initViewMap('metadatamap','.spatial_coverage_center','.coverage');
@@ -84,19 +72,52 @@ function initDataViewPage(){
         
 function initViewPage(){
         $('.meta_title').click(function(){
-            var div=$(this).parent().children()[1];
-               if (div.className=="content collapse") 
+            var div=$(this).closest('li').find('div');
+               if(div.hasClass('content') && div.hasClass('collapse'))
                {
-                   div.className=div.className.replace("content collapse","content expand");
-                   $(this).children()[0].children[1].innerHTML="Hide";
+                   div.removeClass('collapse').addClass('expand');
+                  $(this).find('span.right').html("Hide");
+                  $(this).find('a').attr('class','hide');
+                  if(div.hasClass('subjects')){
+                       if($('div.subjects ul li').length > 7 && $('div.subjects').height() == 157){
+                           $('.showall_subjects').show();
+                       }
+                  }
                }
-               else if(div.className=="content expand") 
+               else if(div.hasClass('content') && div.hasClass('expand')) 
                {
-                    div.className=div.className.replace("content expand","content collapse");
-                    $(this).children()[0].children[1].innerHTML="Show"; 
+                   div.removeClass('expand').addClass('collapse');
+                    $(this).find('span.right').html("Show");
+                     $(this).find('a').attr('class','show');
+                      if(div.hasClass('subjects')){
+                     $('.showall_subjects').hide();
+                  }
                }
 
         }); 
+		//$(brief).show();
+                 $.each($('.forcode li a'), function(){
+                    var txt= $(this).html().toProperCase();
+                    $(this).html(txt);
+                });
+
+                var  subjects = null;
+                //if there is no subjetcs
+		if(subjects==null){
+			subjects = $('div.subjects');
+		}
+               if($('div.subjects ul li').length > 7){
+                    $('div.subjects').css('height','157px');
+                            
+               }
+		//the more button
+		$('.showall_subjects').on('click', function(){
+			//show all descriptions and headings
+			$(this).hide();
+			subjects.slideDown();
+                        subjects.height('auto');                     
+                        
+                 });
 }
 
 function removeBracket(arr)

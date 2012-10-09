@@ -215,7 +215,9 @@ class Home extends CI_Controller {
         public function licencing(){
 		$this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();
-		$this->load->view('terndata/licencing', $data);
+		$data['load_license_js'] = 1;
+                $this->load->view('terndata/licencing', $data);
+                
 	}
          public function terms(){
 		$this->load->library('user_agent');

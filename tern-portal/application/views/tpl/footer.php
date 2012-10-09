@@ -47,6 +47,9 @@
         <?php if($infrastructure_map) { ?> 
               <script type="text/javascript" src="<?php echo base_url();?>js/mapProto_service.js"></script> <!-- Infrastructure MAP -->
         <?php } ?>
+        <?php if($load_license_js) { ?> 
+              <script type="text/javascript" src="<?php echo base_url();?>js/licensing.js"></script> <!-- Licensing Scripts -->
+         <?php }?>
          <?php if ($this->config->item('GA_enabled')): ?>
 
             <script type="text/javascript">

@@ -142,7 +142,7 @@ if ($realNumFound >0)
                         if($center) echo '<a class="pin" href="javascript:void(0);">' . $c . '</a>';
             echo    '</td>';
             echo    '<td><h2><a href="javascript:void(0);">' . $name . '</a></h2>';
-            echo        '<div class="expand" id="metadesc"><p>';
+            echo        '<div class="expand" id="metadesc">';
                             if (isset($r->{'alt_list_title'}))
                             {
                                 echo '<div>';
@@ -169,7 +169,7 @@ if ($realNumFound >0)
                                 echo '</p> ';
                             }
 
-            echo '</p>';
+         
             if($spatial){
 
                 echo '<ul class="spatial" hidden="true">';

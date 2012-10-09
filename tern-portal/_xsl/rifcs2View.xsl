@@ -337,7 +337,7 @@
                             <span class="right">Show</span>
                         </a>
                     </h2>
-                    <div class="content collapse">
+                    <div class="content expand">
                         Not provided
                     </div>
                 </li>
@@ -346,7 +346,7 @@
             <!--Additional Information-->
           <li>
               <h2 class="meta_title">
-                    <a class="hide">
+                    <a class="show">
                         <span class="left">Additional Information</span>
                         <span class="right">Show</span>
                     </a>
@@ -367,15 +367,15 @@
                 <xsl:when test="ro:subject"> 
                     <li>
                         <h2 class="meta_title">
-                            <a class="hide">
+                            <a class="show">
                                     <span class="left">Subjects</span>
                                     <span class="right">Show</span>
                             </a>
                         </h2>
-                        <div class="content collapse" >
+                        <div class="content collapse subjects" >
                             <xsl:if test="ro:subject/@type='anzsrc-for' or ro:subject/@type='anzsrc-seo' or ro:subject/@type='anzsrc-toa'">
                                     <h3>ANZSRC</h3>
-                                        <ul >
+                                        <ul  class="forcode">
                                         <xsl:for-each select="ro:subject">      
                                             <xsl:sort select="./@type"/>
                                             <xsl:if test="@type='anzsrc-for' or @type='anzsrc-seo' or @type='anzsrc-toa'">
@@ -396,14 +396,15 @@
                                             </xsl:for-each>
                                         </ul>
                             </xsl:if>
-                            <a href="javascript:void(0);" class="showall_subjects hide">More...</a>               
+                                     
                         </div>
+                        <a href="javascript:void(0);" class="showall_subjects collapse">More...</a>      
                     </li> 
                 </xsl:when> 
                 <xsl:otherwise>
                     <li>
                         <h2 class="meta_title">
-                            <a class="hide">
+                            <a class="show">
                                     <span class="left">Subjects</span>
                                     <span class="right">Show</span>
                             </a>
@@ -418,7 +419,7 @@
            <xsl:if test="$objectClass='Collection'">
                <li>
                    <h2 class="meta_title">
-                       <a class="hide">
+                       <a class="show">
                             <span class="left">Related Datasets</span>
                             <span class="right">Show</span>
                         </a>

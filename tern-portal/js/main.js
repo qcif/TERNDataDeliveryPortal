@@ -1,3 +1,7 @@
+ //capitalize first letter
+  String.prototype.toProperCase = function () {
+       return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  };
 
 function urldecode(str) {
     return decodeURIComponent((str+'').replace(/\+/g, '%20'));
@@ -830,21 +834,21 @@ $(function() {
             });
         
 
-            $(".search_item p").each(function(index){
-                if($(this).height() > 43){
-                    $(this).css('height','43px').css('overflow','hidden');
+            $("#metadesc p").each(function(index){
+                if($(this).height() > 48){
+                    $(this).css('height','48px').css('overflow','hidden');
                     var readMore = $("<span class='read-more'>Read more</span>");
                     $(this).parent().append(readMore);
                 }else{
-                    $(this).css('height','43px');
+                    $(this).css('height','48px');
                 }
             });
-            $('.read-more').die('click').live("click",function() {
+            $('.read-more').on("click",function() {
                 if($(this).text() == 'Read more'){
                     $(this).siblings('p').css('height','auto');
                     $(this).text('Read less');
                 }else{
-                    $(this).siblings('p').css('height','43px'); 
+                    $(this).siblings('p').css('height','48px'); 
                     $(this).text('Read more');
                 }
 
@@ -856,7 +860,7 @@ $(function() {
                 $("li:gt(4)", this).hide();
                 $("li:nth-child(6)", this).after("<a href='#' class=\"more\">More...</a>");
             });
-            $("a.more").live("click", function() {
+            $("a.more").click(function() {
                 //console.log($(this).parent());
                 $(this).parent().children().slideDown();
                 $(this).remove();
@@ -906,11 +910,7 @@ $(function() {
              return false;
          });
          
-        //capitalize first letter
-        String.prototype.toProperCase = function () {
-            return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-        };
-
+       
         $.each($('#fortree span'), function(){
              var txt= $(this).html().toProperCase();
              $(this).html( txt);
@@ -1057,12 +1057,12 @@ $(function() {
        {
                     showNoResult(1); 
        }
-       $(".collapsiblePanel .hide").live("click",function()
+       $(".collapsiblePanel .hide").click(function()
         {
             $(this).parent().next("div").slideToggle(300);
             $(this).attr('class','show')
         });
-        $(".collapsiblePanel .show").live("click",function()
+        $(".collapsiblePanel .show").click(function()
         {
             $(this).parent().next("div").slideToggle(300);
             $(this).attr('class','hide')
@@ -1288,7 +1288,7 @@ $(function() {
 
          }); 
    */ 
-   $('#mapSearchBtn').live('click',function(){
+   $('#mapSearchBtn').on('click',function(){
        changeHashTo("search#!/mapSearch=1");
    });
 
@@ -1352,7 +1352,7 @@ $(function() {
     }		
 	
       
-    $('#viewrecord').live('change',function(){
+    $('#viewrecord').on('change',function(){
      
      
      var selected=$(this).find(":selected").val();
@@ -1390,7 +1390,7 @@ $(function() {
      
  });
  
-     $('#sort_record').live('change',function(){
+     $('#sort_record').on('change',function(){
      
      // $("#loading").show();
      var selected=$(this).find(":selected").val();
@@ -1477,7 +1477,7 @@ function checkSelection()
     });
     var connectionsPage = 1;
 
-    $('.connections_NumFound').live('click', function(){
+    $('.connections_NumFound').on('click', function(){
         var types = $(this).attr("type_id");
         var classes = $(this).attr("class_id");
         if(!classes) var classes = 'party';
