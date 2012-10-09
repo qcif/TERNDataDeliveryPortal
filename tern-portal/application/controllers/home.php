@@ -217,6 +217,13 @@ class Home extends CI_Controller {
 		$data['user_agent']=$this->agent->browser();
 		$this->load->view('terndata/licencing', $data);
 	}
+         public function terms(){
+		$this->load->library('user_agent');
+		$data['user_agent']=$this->agent->browser();
+		$this->load->view('terndata/terms', $data);
+	}
+    
+        
     
         /*get 10 random records*/
         private function handleRandomTab($num,$fac){

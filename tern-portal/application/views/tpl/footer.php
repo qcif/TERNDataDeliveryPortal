@@ -9,7 +9,7 @@
         <small>
             Copyright © TERN 2012. All Rights Reserved.
                 <br>
-             <?php echo anchor('http://tern.org.au/tern_data_portal_terms_of_use-pg21208.html', 'Terms of use','target="_blank"'); ?>
+             <?php echo anchor('home/terms', 'Terms of use','target="_blank"'); ?>
                 |
             <?php echo anchor('contact', 'Contact', 'target="_blank"'); ?>
         </small>
