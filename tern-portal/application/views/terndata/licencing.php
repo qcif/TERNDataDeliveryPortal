@@ -1,6 +1,6 @@
-    <?php
+<?php
     ?>
-    <?php $this->load->view('tpl/header');?>
+<?php $this->load->view('tpl/header');?>
 <style type="text/css">
 .option_list {
 	list-style: none;
@@ -11,7 +11,12 @@
 	width: 100px;
 }
 </style>
-<h1> TERN Licence Selector</h1>
+<h1>
+TERN Data Licensing
+<h1>
+<p>TERN encourages the sharing of data and knowledge for the long-term benefit of the research community. Data sharing should only occur within a framework where data contributors receive appropriate recognition for their work, and where data users understand, in advance, the responsibilities placed upon them when they access and/or use another’s data.</p>
+<p>For further details, please visit the <a href="http://www.tern.org.au/datalicence" target="_blank">TERN Data Licensing page</a> in the main TERN website.
+<h2> TERN Licence Selector</h2>
 <p><em>Note: This tool only provides for licences under Australian law.</em></p>
 <hr>
 <div style="width: 800px; height:auto; overflow:auto;vertical-align:top;">
@@ -22,21 +27,18 @@
       <ul class="option_list">
         <li>
           <input type="radio" name="mods" id=
-              "mods_true" value="true" checked="checked" data-dojo-props=
-              "onClick:function(){toggleND(true)}" />
+              "mods_true" value="true" checked="checked" />
           <label for="mods_true">Yes</label>
         </li>
         <li>
           <input type="radio" name="mods" id=
-              "mods_true_sa" value="true_sa" data-dojo-props=
-              "onClick:function(){toggleND('true_sa')}" />
+              "mods_true_sa" value="true_sa" />
           <label for="mods_false">Yes, with share
             alike</label>
         </li>
         <li>
           <input type="radio" name="mods" id=
-              "mods_false" value="false" data-dojo-props=
-              "onClick:function(){toggleND(false)}" />
+              "mods_false" value="false"  />
           <label for="mods_false">No</label>
         </li>
       </ul>
@@ -44,21 +46,18 @@
       <ul class="option_list">
         <li>
           <input type="radio" name="copy" id=
-              "copy_true" value="true" data-dojo-props=
-              "onClick:function(){toggleCopyright(true)}" />
+              "copy_true" value="true" />
           <label for="copy_true">Yes</label>
         </li>
         <li>
           <input type="radio" name="copy" id=
-              "copy_false" value="false" data-dojo-props=
-              "onClick:function(){toggleCopyright(false)}" />
+              "copy_false" value="false" />
           <label for=
               "copy_false">No</label>
         </li>
         <li>
           <input type="radio" name="copy" id=
-              "copy_unsure" value="unsure" checked="checked" data-dojo-props=
-              "onClick:function(){toggleCopyright(false)}" />
+              "copy_unsure" value="unsure" checked="checked"  />
           <label for=
               "copy_unsure">Unsure</label>
         </li>
@@ -84,14 +83,13 @@
       </tr>
     </table>
     <p style="text-align: center;">
-      <button id="attribution_button">
-        	 Update </button>
+      <button id="attribution_button"> Update </button>
     </p>
   </div>
   <div style=
     "width: 50%; float:right;">
     <h2>Selected licence</h2>
-    <p><a id="licence-logo-link" href="http://tern.org.au/datalicence/TERN-BY/1.0/" target="_blank"><img id="licence-logo" height="60px" src="img/BY.png"/></a></p>
+    <p><a id="licence-logo-link" href="http://tern.org.au/datalicence/TERN-BY/1.0/" target="_blank"><img id="licence-logo" height="60px" src="img/licence/BY.png"/></a></p>
     <div id="licence-statement"></div>
     <br>
     <p style="text-align: left;">You can use this code in your webpage:</p>
@@ -128,11 +126,9 @@
     
     function toggleCopyright(value) {
         if (value === true) {
-            //dojo.style($('#licence-cca'),"display", "block");
 			$("#licence-cca").show();
             licence_copyright = true;
         } else {
-            //$('#licence-cca').css("display","none");
 			$("#licence-cca").hide();
             licence_copyright = false;
         }
@@ -144,7 +140,7 @@
 		var link_work = "";
         var tern_licence = "TERN Attribution";
         var statement = "";
-        var icon_file = "img/BY";
+        var icon_file = "img/licence/BY";
         var link = "";
         var licence_link = "http://tern.org.au/datalicence/TERN-BY";
         
@@ -187,8 +183,8 @@
         $('#licence-cca').hide();
         prepareLicenceStatementAndIcon();
     }
-  </script>
-  <script type="text/javascript">
+  </script> 
+<script type="text/javascript">
 	$(document).ready(function(){
 		$("#attribution_button").click(function(){prepareLicenceStatementAndIcon()});
 		$("#mods_true").click(function(){toggleND(true)});
