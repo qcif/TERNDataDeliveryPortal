@@ -21,7 +21,7 @@ TERN Data Licensing
 <p><em>Note: This tool only provides for licences under Australian law.</em></p>
 <hr>
 <div style="width: 800px; height:auto; margin: 0 auto; vertical-align:top;">
-  <div style="width: 50%; float:left;" >
+  <div style="width: 390px; margin-right:10px; float:left;" >
     <h2>Licence features</h2>
     <form id="selectionForm" name="selectionForm">
       <p><b>Allow modifications to your work?</b></p>
@@ -88,7 +88,7 @@ TERN Data Licensing
     </p>
   </div>
   <div style=
-    "width: 50%; float:right;">
+    "width: 400px; float:right;">
     <h2>Selected licence</h2>
     <p><a id="licence-logo-link" href="http://tern.org.au/datalicence/TERN-BY/1.0/" target="_blank"><img id="licence-logo" height="60px" src="/img/licence/BY.png"/></a></p>
     <div id="licence-statement"></div>
