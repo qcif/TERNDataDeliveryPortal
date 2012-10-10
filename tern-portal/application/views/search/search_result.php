@@ -54,11 +54,10 @@ $Revision: 1 $
                 echo               '<option value="100">100</option>';			
                 echo           '</select>';
                 echo        'results';
-                echo        '</div>';
+                echo        '</div>';              
+       
                 
-                $this->load->view('search/pagination');           
-                
-                echo        '<div id="sorting_selection" class="sortBy right">';
+                echo        '<div id="sorting_selection" class="sortBy left">';
                 echo        'Sort By:';
                 echo        '<select class="sort_record" name="select-sorting">';				
                 echo                '<option value="score">Relevance</option>';
@@ -66,7 +65,7 @@ $Revision: 1 $
                 echo           '</select>'; 
                 echo        '</div>';
                                 
-               // $this->load->view('search/pagination');
+                $this->load->view('search/pagination');
                 echo '</div>';
                 
 /*                

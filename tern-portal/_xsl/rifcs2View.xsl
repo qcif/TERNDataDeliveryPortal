@@ -97,11 +97,13 @@
            <!-- Author -->
             <xsl:choose>
                 <xsl:when test="ro:relatedObject/ro:relation[@type='author']">
-                <p class="authorName">Author<xsl:apply-templates select="ro:relatedObject/ro:relation[@type='author']"/></p>  
+                <p class="authorName">Author name: <xsl:apply-templates select="ro:relatedObject/ro:relation[@type='author']"/></p>  
                 </xsl:when>
+<!--                
                 <xsl:otherwise>
                 <p class="authorName">Author name: Not provided </p>
                 </xsl:otherwise>
+-->                
             </xsl:choose>
             
             <!--Organisation -->
@@ -118,9 +120,38 @@
 				<xsl:apply-templates select="extRif:description[@type= 'notes']" mode="content"/>	
 				<xsl:apply-templates select="extRif:description[not(@type =  'notes' or @type =  'significanceStatement' or @type =  'full' or @type =  'brief' or @type =  'logo' or @type =  'rights' or @type =  'accessRights')]" mode="content"/>															
             </xsl:if>
+            
+            <!--Temporal coverage-->
+            <xsl:choose>
+                        <xsl:when test="ro:coverage/ro:temporal/ro:date">
+                            <h2>Temporal coverage</h2>
+                            <p>
+                                <xsl:apply-templates select="ro:coverage/ro:temporal/ro:date"/>
+                            </p>
+                        </xsl:when>
+                        <xsl:when test="ro:location[@dateFrom!=''] | ro:location[@dateTo!='']">
+                            <h2>Temporal coverage</h2>
+                            <p>    
+                                <xsl:apply-templates select="ro:location[@dateFrom!=''] | ro:location[@dateTo!='']"/>
+                            </p>    
+                        </xsl:when>
+                        <xsl:when test="ro:coverage/ro:temporal/ro:text">
+                            <h2>Temporal coverage</h2>
+                            <p>
+                                <xsl:apply-templates select="ro:coverage/ro:temporal/ro:text"/>
+                            </p>
+                        </xsl:when>  
+                        <xsl:otherwise>
+                           <h2>Temporal coverage</h2>
+                           <p>
+                            Not provided
+                            </p>
+                        </xsl:otherwise>
+            </xsl:choose>            
             <!--Dates-->
             <h2>Dates</h2>
             <ul class="datesList">
+<!--
                 <li>
                     <h3>Temporal coverage:</h3>
                     <p>
@@ -143,6 +174,7 @@
                 <li class="divider">
                     <img width="2" height="82" alt="" src="/img/dividers/dates-list-divider.png"/>
                 </li>
+-->                
                 <li>
                     <h3>Date released</h3>
                     <p>
@@ -186,7 +218,7 @@
             <!--Citation and Identifier -->        
                 <xsl:choose>
                     <xsl:when test="ro:citationInfo or ro:identifier[not(@type = 'local')]"> 
-                        <h2>Citation and identifier</h2>   
+                        <h2>Citation and Identifier</h2>   
                         <p>
                             <xsl:choose>
                                 <xsl:when test="ro:citationInfo/ro:citationMetadata">
@@ -229,12 +261,12 @@
                 <!--Rights and Licencing-->
                 <xsl:choose>
                     <xsl:when test="extRif:rights or ro:rights or extRif:rights[@type='licence']">  
-                        <h2>Rights and Licenceing</h2>            
+                        <h2>Rights and Licensing</h2>            
                             <xsl:apply-templates select="extRif:rights[@type='licence']"/>
                             <xsl:apply-templates select="extRif:rights[@type!='licence']"/>     
                 </xsl:when>
                     <xsl:otherwise>
-                    <h2>Rights and Licences</h2>            
+                    <h2>Rights and Licensing</h2>            
                     Not provided
                     </xsl:otherwise>
             </xsl:choose>
@@ -242,32 +274,50 @@
             <!--Data quality infomation -->          
             <xsl:choose>
                 <xsl:when test="ro:relatedInfo[@type='dataQualityInformation']">
-                    <h2>Data quality information</h2>            
+                    <h2>Data Quality Information</h2>            
                     <xsl:apply-templates select="ro:relatedInfo[@type='dataQualityInformation']"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <h2>Data quality information</h2>            
+                    <h2>Data Quality Information</h2>            
                     <p>Not provided</p>
                 </xsl:otherwise>
             </xsl:choose>
 
             <!--Data Type -->
+            <xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
+            <xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
             <xsl:choose>
                 <xsl:when test="//ro:collection">   
-                    <h2>Data Type</h2>            
-                        <xsl:value-of select="./@type"/>  
+                    <h2>Data Type</h2>                     
+                        <xsl:value-of select="concat(translate(substring(./@type,1,1),$vLower,$vUpper),
+                                                     substring(./@type,2),
+                                                     substring(' ',1 div not(position()=last()))
+                                                     )"
+                        />  
                 </xsl:when>
                 <xsl:when test="//ro:party">   
                     <h2>Data Type</h2>            
-                        <xsl:value-of select="./@type"/>  
+                        <xsl:value-of select="concat(translate(substring(./@type,1,1),$vLower,$vUpper),
+                                                     substring(./@type,2),
+                                                     substring(' ',1 div not(position()=last()))
+                                                     )"
+                        />                         
                 </xsl:when>
                 <xsl:when test="//ro:activity">   
                     <h2>Data Type</h2>            
-                        <xsl:value-of select="./@type"/>  
+                        <xsl:value-of select="concat(translate(substring(./@type,1,1),$vLower,$vUpper),
+                                                     substring(./@type,2),
+                                                     substring(' ',1 div not(position()=last()))
+                                                     )"
+                        />                         
                 </xsl:when>
                 <xsl:when test="//ro:service">   
                     <h2>Data Type</h2>            
-                        <xsl:value-of select="./@type"/>  
+                        <xsl:value-of select="concat(translate(substring(./@type,1,1),$vLower,$vUpper),
+                                                     substring(./@type,2),
+                                                     substring(' ',1 div not(position()=last()))
+                                                     )"
+                        />                         
                 </xsl:when>            
                 <xsl:otherwise>
                     <h2>Data Type</h2>            
@@ -276,17 +326,31 @@
             </xsl:choose>        
 
             <!-- Access Data-->            
-            <h2>Access Data</h2>
             <xsl:choose>
-                    <xsl:when test="ro:location/ro:address/ro:electronic">
-                            <p>This data can be accessed from the following websites</p>
-                            <p><xsl:apply-templates select="ro:location/ro:address/ro:electronic"/></p>              
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <p>Not provided</p>
-                    </xsl:otherwise>
-            </xsl:choose>          
+	       <xsl:when test="ro:location/ro:address/ro:electronic/@type='url' 
+		or ro:rights or ro:location/ro:address/ro:electronic/@type='email'  or ro:location/ro:address/ro:physical">	
+                    <xsl:choose>
+  		 	<xsl:when test="ro:location/ro:address/ro:electronic/@type='url'">
+                                <h2>Access Data</h2>  
+                                    <p>This data can be accessed from the following websites</p>
+                                    <ul style="padding-left:3px">
+                                        <p><xsl:apply-templates select="ro:location/ro:address/ro:electronic"/></p>	
+                                    </ul>
+
+                         </xsl:when>
+                         <xsl:otherwise>
+                                <h2>Access Data</h2>  
+                                    <p>Not provided</p>
+                         </xsl:otherwise>
+                    </xsl:choose>                
+              </xsl:when>	
+            <xsl:otherwise>
+                <h2>Access Data</h2>  
+                    <p>Not provided</p>     
+            </xsl:otherwise>            
+          </xsl:choose>          
         </div>
+        
         <ul class="moreInformation">
             <!--Spatial Coverage-->
             <xsl:choose>
@@ -329,7 +393,8 @@
                         </div>
                     </li> 
                 </xsl:when>
-                <xsl:otherwise>
+<!--                
+                <xsl:otherwise>                    
                 <li>
                     <h2 class="meta_title">
                         <a class="hide">
@@ -342,6 +407,7 @@
                     </div>
                 </li>
                 </xsl:otherwise>
+-->                
             </xsl:choose>
             <!--Additional Information-->
           <li>
@@ -489,7 +555,7 @@
            </xsl:when>
            <xsl:otherwise>
                       <h1 class="greenGradient">Contacts</h1>
-                      <div>Not provided</div>      
+                      <div class="content">Not provided</div>       
            </xsl:otherwise>
         </xsl:choose>
        </div>
@@ -501,7 +567,7 @@
 <!--  the following templates will format the view page content -->
 
  <xsl:template match="ro:relatedObject/ro:relation[@type='author']">
-    <xsl:value-of select="../extRif:relatedObjectListTitle"/> 
+    <xsl:value-of select="../extRif:relatedObjectListTitle"/>&#160; 
 </xsl:template>
 
  <xsl:template match="ro:relatedObject/extRif:relatedObjectType">

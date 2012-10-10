@@ -47,7 +47,23 @@
                     ],
                 "location": ["http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html"]
             }, 
-        
+            {
+                "key": "ecoinformatics",
+
+                "display_title": "Ecoinformatics",
+
+                "alt_name": "Ecological Data",    
+                "query_name": "Ecoinformatics", 
+                 "description_type": [
+                    "logo",
+                    "full"
+                ],
+                "description_value": [
+                    "/img/logos/logo-aekos.jpg",
+                    "Eco-Informatics enables the storage, sharing, integration and visualisation of ecological plot data through the Australian Ecological Knowledge and Observation System (ÆKOS) and other products. By making data discoverable and accessible at fine levels of detail, along with extra information about the context of data collection, Eco-Informatics is opening up new opportunities for re-purpose and informed re-use of data."
+                ],
+              "location": ["http://www.tern.org.au/Eco-informatics-pg17733.html"]
+            },        
             {
                 "key": "auscover",
 
@@ -101,7 +117,7 @@
                 "location": ["http://www.tern.org.au/Multi-Scale-Plot-Network-pg17730.html"]
             },
             {
-                "key": "supersites",             
+                "key": "supersite",             
 
                 "display_title": "Australian Supersite Network",
 
@@ -118,7 +134,7 @@
                 "location": ["http://www.tern.org.au/Australian-Supersite-Network-pg17873.html"]
             },
             {
-                "key": "soil",
+                "key": "soils",
 
                 "display_title": "Soil and Landscape Grid",
 
@@ -150,23 +166,6 @@
                     "The Australian Coastal Ecosystem Facility (ACEF) collects and distributes key coastal datasets for use in policy and management decisions about the protection and use of Australia’s coastal assets, both marine and freshwater. It addresses data collection needs from fine scale to satellite collections of flora, fauna and biophysical properties of coastal ecosystems."
                 ],
                  "location": ["http://www.tern.org.au/Australian-Coastal-Ecosystems-pg17732.html"]
-            },
-            {
-                "key": "ecoinformatics",
-
-                "display_title": "Ecoinformatics",
-
-                "alt_name": "Ecological Data",    
-                "query_name": "Ecoinformatics", 
-                 "description_type": [
-                    "logo",
-                    "full"
-                ],
-                "description_value": [
-                    "/img/logos/logo-aekos.jpg",
-                    "Eco-Informatics enables the storage, sharing, integration and visualisation of ecological plot data through the Australian Ecological Knowledge and Observation System (ÆKOS) and other products. By making data discoverable and accessible at fine levels of detail, along with extra information about the context of data collection, Eco-Informatics is opening up new opportunities for re-purpose and informed re-use of data."
-                ],
-              "location": ["http://www.tern.org.au/Eco-informatics-pg17733.html"]
             },
             {
                 "key": "emast",
