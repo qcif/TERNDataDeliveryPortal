@@ -100,14 +100,14 @@ if(isset($groups)&&$groups['numfound']>0){
 	echo $groups['heading'];
 	if($groups['numfound']>1)$title = $groups['titles']; else $title = $groups['title'];
 
-	$max = 5;
-	$seeMore = '';
-	if($groups['numfound']<6)
-	{ 
+	//$max = 5;
+	//$seeMore = '';
+	//if($groups['numfound']<6)
+	//{ 
 		$max =$groups['numfound'];
-	}else{
-		$seeMore = "See More...";
-	}
+	//}else{
+	//	$seeMore = "See More...";
+	//}
 	echo '<ul class="connection_list">';
 	for($i=0;$i<$max;$i++)
 	{	
@@ -160,7 +160,7 @@ if(isset($groups)&&$groups['numfound']>0){
 	{			
 		echo '<a href="javascript:void(0);" class="connections_NumFound" '.$groups["action_id"].'>View All <span id="collectionconnections-realnumfound"> '. ($groups['numfound']).'</span> connected '.$title.'</a>';
 	}
- */
+*/ 
 
 }	
 
