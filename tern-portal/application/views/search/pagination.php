@@ -40,7 +40,7 @@ $Revision: 1 $
             $totalPage = ceil($numFound / $row);
             $currentPage = ceil($start / $row)+1;
         }
-	$range = 2;
+	//$range = 2;
 ?>
 <?php
         echo '<div id="right_pagination" class="pagination right">';
@@ -56,7 +56,10 @@ $Revision: 1 $
         {
             echo '<a href="javascript:void(0);" id="prev" class="prevBtn">Previous</a>';
         }
-        	for ($x = ($currentPage - $range); $x < (($currentPage + $range) + 1); $x++) 
+        
+            if($currentPage==1)
+            {
+                for ($x = $currentPage-1; $x < (($currentPage + 2) + 3); $x++) 
                 {
                     if (($x > 0) && ($x <= $totalPage)) 
                     { //if it's valid
@@ -68,6 +71,37 @@ $Revision: 1 $
                             }
                     }              
                  }
+            }else if($currentPage==2)
+            {
+                for ($x = $currentPage-1; $x < (($currentPage + 1) + 3); $x++) 
+                {
+                    if (($x > 0) && ($x <= $totalPage)) 
+                    { //if it's valid
+                            if($x==$currentPage){//if we're on currentPage
+                                    //echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
+                                echo '<span class="currentPageNum">'.$x.'</span>';//don't make a link
+                            }else{//not CurrentPage
+                                    echo '<a href="javascript:void(0);" class="gotoPage" id="'.$x.'">'.$x.'</a>';
+                            }
+                    }              
+                 }
+            }else
+            {
+                for ($x = ($currentPage - 2); $x < (($currentPage + 2) + 1); $x++) 
+                {
+                    if (($x > 0) && ($x <= $totalPage)) 
+                    { //if it's valid
+                            if($x==$currentPage){//if we're on currentPage
+                                    //echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
+                                echo '<span class="currentPageNum">'.$x.'</span>';//don't make a link
+                            }else{//not CurrentPage
+                                    echo '<a href="javascript:void(0);" class="gotoPage" id="'.$x.'">'.$x.'</a>';
+                            }
+                    }              
+                 }
+            }                
+
+                 
         if($currentPage < $totalPage)
         {                 
             echo '<a href="javascript:void(0);" id="next" class="nextBtn">Next</a>'; 
@@ -75,40 +109,5 @@ $Revision: 1 $
         
 	echo '<a href="javascript:void(0);" id="'.$totalPage.'" class=" lastBtn gotoPage">Last</a>';        
         echo '</div>';
-/*
-	echo '<div id="right_pagination" class="pagination right">';
 
-	
-	echo '<div class="pagination-currentPageInfo pagination-currentPage">Page: '.$currentPage.' of '.$totalPage.'</div> |  ';
-	
-	//if not on page 1, show Previous
-	echo '<a href="javascript:void(0);" id="1" class="gotoPage">First </a>';
-	if($currentPage > 1){
-		echo '<a href="javascript:void(0);" id="prev" class="pagination-page"> &lt;</a>';
-	}
-	
-	for ($x = ($currentPage - $range); $x < (($currentPage + $range) + 1); $x++) {
-		if (($x > 0) && ($x <= $totalPage)) 
-                { //if it's valid
-			if($x==$currentPage){//if we're on currentPage
-				//echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
-                            echo '<b>'.$x.'</b>';//don't make a link
-			}else{//not CurrentPage
-				echo '<a href="javascript:void(0);" class="pagination-page gotoPage" id="'.$x.'">'.$x.'</a>';
-			}
-		}                   
-                
-	}
-	
-	//if not on last page, show Next
-	if($currentPage < $totalPage){
-		echo '<a href="javascript:void(0);" id="next" class="pagination-page">&gt;</a>';
-	}
-	
-	echo '<a href="javascript:void(0);" id="'.$totalPage.'" class="gotoPage">Last</a>';
-	
-	//echo '<a href="javascript:void(0);" id="prev">Previous Page</a> <a href="javascript:void(0);" id="next">Next Page</a>';
-	echo '</div>';
- 
- */
 ?>
