@@ -82,7 +82,7 @@ $home = 1;
                         if($d->{'key'}!="tddp")
                         {
                            echo '<li>';
-                            echo          '<img alt="'.$d->{'key'}.'" src="'.$d->{'description_value'}[0].'" id="'.$d->{'key'}.'"/>';
+                            echo          '<a href="javascript:void(0);"><img alt="'.$d->{'key'}.'" src="'.$d->{'description_value'}[0].'" id="'.$d->{'key'}.'"/></a>';
                             echo '</li>';
                         }
                     }	
