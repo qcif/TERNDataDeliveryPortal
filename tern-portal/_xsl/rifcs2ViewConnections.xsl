@@ -47,7 +47,7 @@
 			<xsl:if test="ro:relatedObject/ro:relatedObjectClass = 'Collection' and $objectClass != 'Collection'">
 			<h3 style="margin-top:2px;margin-bottom:2px"><img  class="icon-heading-connections">
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
-				<xsl:text>/img/icon/</xsl:text>
+				<xsl:text>img/icons/</xsl:text>
 				<xsl:text>collections_16.png</xsl:text></xsl:attribute>
 				</img>Collections</h3>	
 			<ul id="c-collections" style="margin-top:2px;margin-bottom:2px">				
@@ -65,7 +65,7 @@
 				<xsl:if test="ro:relatedObject/ro:relatedObjectType = 'person'">
 					<h3 style="margin-top:2px;margin-bottom:2px"><img  class="icon-heading-connections">
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
-				<xsl:text>/img/icon/</xsl:text>
+				<xsl:text>img/icons/</xsl:text>
 				<xsl:text>party_one_16.png</xsl:text></xsl:attribute>
 				</img>Researchers</h3>
 					<ul id="c-researchers" style="margin-top:2px;margin-bottom:2px">
@@ -81,7 +81,7 @@
 				<xsl:if test="ro:relatedObject/ro:relatedObjectType = 'group'">
                                 <h3 style="margin-top:2px;margin-bottom:2px"><img  class="icon-heading-connections">
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
-				<xsl:text>/img/icon/</xsl:text>
+				<xsl:text>img/icons/</xsl:text>
 				<xsl:text>party_multi_16.png</xsl:text></xsl:attribute>
 				</img>Research Groups</h3>
 					<ul id="c-researchGroups">
@@ -98,7 +98,7 @@
 			<xsl:if test="ro:relatedObject/ro:relatedObjectClass = 'Activity' and $objectClass != 'Activity'">
 			<h3><img  class="icon-heading-connections">
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
-				<xsl:text>/img/icon/</xsl:text>
+				<xsl:text>img/icons/</xsl:text>
 				<xsl:text>activities_16.png</xsl:text></xsl:attribute>
 				</img>Activities</h3>			
 			<ul id="c-activities">			
@@ -114,7 +114,7 @@
 			<xsl:if test="ro:relatedObject/ro:relatedObjectClass = 'Service'  and $objectClass != 'Service'">
 			<h3><img  class="icon-heading-connections">
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
-				<xsl:text>/img/icon/</xsl:text>
+				<xsl:text>img/icons/</xsl:text>
 				<xsl:text>services_16.png</xsl:text></xsl:attribute>
 				</img>Services</h3>			
 			<ul id="c-services">			
@@ -130,7 +130,7 @@
 			<xsl:if test="ro:relatedObject/ro:relatedObjectClass = $objectClass and $objectClass != 'Party'">
 			<h3><img  class="icon-heading-connections">
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
-				<xsl:text>/img/icon/</xsl:text>
+				<xsl:text>img/icons/</xsl:text>
 				<xsl:value-of select="$objectClassType"/>
 				<xsl:text>_16.png</xsl:text></xsl:attribute>
 				</img><xsl:value-of select="$objectClassPlural"/></h3>
@@ -148,7 +148,7 @@
 				<xsl:if test="ro:relatedObject/ro:relatedObjectType = 'person'">
 					<h3><img  class="icon-heading-connections">
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
-				<xsl:text>/img/icon/</xsl:text>
+				<xsl:text>img/icons/</xsl:text>
 				<xsl:text>party_one_16.png</xsl:text></xsl:attribute>
 				</img>Researchers</h3>
 					<ul id="c-researchers">
@@ -164,7 +164,7 @@
 				<xsl:if test="ro:relatedObject/ro:relatedObjectType = 'group'">
 					<h3><img  class="icon-heading-connections">
 				<xsl:attribute name="src"><xsl:value-of select="$base_url"/>
-				<xsl:text>/img/icon/</xsl:text>
+				<xsl:text>img/icons/</xsl:text>
 				<xsl:text>multi_one_16.png</xsl:text></xsl:attribute>
 				</img>Research Groups</h3>
 					<ul id="c-researchGroups">

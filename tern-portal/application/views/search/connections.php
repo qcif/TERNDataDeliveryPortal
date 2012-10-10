@@ -28,35 +28,35 @@ if($person['numfound']==0&&$group['numfound']==0&&$collection['numfound']==0&&$s
 }
 // display the researcher connections
 
-$person["heading"] = '<h3><img  class="icon-heading-connections" src="'.base_url().'/img/icon/party_one_16.png"/>Researchers</h3>';
+$person["heading"] = '<h3><img  class="icon-heading-connections" src="'.base_url().'img/icons/party_one_16.png"/>Researchers</h3>';
 $person["title"] = 'researcher';
 $person["titles"] = 'researchers';
 $person["id"] = 'person';
 $person["action_id"] = 'type_id="person"';
 // display the research group connections
 
-$group["heading"] = '<h3 style="margin-top:2px;margin-bottom:2px"><img  class="icon-heading-connections" src="'.base_url().'/img/icon/party_multi_16.png"/>Research Groups</h3>';
+$group["heading"] = '<h3 style="margin-top:2px;margin-bottom:2px"><img  class="icon-heading-connections" src="'.base_url().'img/icons/party_multi_16.png"/>Research Groups</h3>';
 $group["title"] = 'research group';
 $group["titles"] = 'research groups';
 $group["id"] = 'group';
 $group["action_id"] = 'type_id="group"';
 // display the collection connections
 
-$collection["heading"] = '<h3><img  class="icon-heading-connections" src="'.base_url().'/img/icon/collections_16.png"/>Collections</h3>';
+$collection["heading"] = '<h3><img  class="icon-heading-connections" src="'.base_url().'img/icons/collections_16.png"/>Collections</h3>';
 $collection["title"] = 'collection';
 $collection["titles"] = 'collections';
 $collection["id"] = 'collection';
 $collection["action_id"] = 'class_id="collection"';
 // display the service connections
 
-$service["heading"] = '<h3><img  class="icon-heading-connections" src="'.base_url().'/img/icon/services_16.png"/>Services</h3>';
+$service["heading"] = '<h3><img  class="icon-heading-connections" src="'.base_url().'img/icons/services_16.png"/>Services</h3>';
 $service["title"] = 'service';
 $service["titles"] = 'services';
 $service["id"] = 'service';
 $service["action_id"] = 'class_id="service"';
 // display the activity connections
 
-$activity["heading"] = '<h3><img  class="icon-heading-connections" src="'.base_url().'/img/icon/activities_16.png"/>Activities</h3>';
+$activity["heading"] = '<h3><img  class="icon-heading-connections" src="'.base_url().'img/icons/activities_16.png"/>Activities</h3>';
 $activity["title"] = 'activity';
 $activity["titles"] = 'activities';
 $activity["id"] = 'Activity';
