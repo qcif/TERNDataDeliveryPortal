@@ -16,7 +16,7 @@ if (isset($description))
         <meta name="description" content="<?php echo $md_description; ?>">    
          <script type="text/javascript" src="<?php echo base_url();?>js/modernizr.custom.86191.js"></script> <!-- WIDGET TEMPORAL-->
       
-         <link rel="icon" href="<?php echo base_url(); ?>/img/favicon.ico"/>
+         <link rel="icon" href="<?php echo base_url(); ?>/img/favicon.png"/>
          
          <link type="text/css" href="<?php echo base_url(); ?>css/tipsy.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
