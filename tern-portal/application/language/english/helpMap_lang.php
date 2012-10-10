@@ -4,7 +4,7 @@ $lang['map_helptext'] = "<p>
                             <b>Pan</b> - enables a user to move the map up down left or right; search results do not change as a result of panning. 
                          </p>
                          <p>
-                            <b>Longitude and Latitude</b> - select this item and enter North, South, East and West values to set a bounding region for your search.  All fields must be completed prior to selecting <i>Update</i>. 
+                            <b>Longitude and Latitude</b> - select this item and enter North, South, East and West values to set a bounding region for your search.  All fields must be completed prior to selecting <i>Go</i>. 
                          </p>
                          <p>
                             <b>Select Region</b> – draw a rectangular boundary on the map and select the Go button to display results that have a spatial coverage intersecting this boundary.   Only one boundary can be drawn at any time.  Records without spatial coverage data will not be displayed in this result set.  
