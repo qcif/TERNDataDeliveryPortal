@@ -62,7 +62,7 @@ header{
                 nav#globalNav ul.left li:hover .subMenu{ left: 0; cursor:pointer;} 
                 nav#globalNav ul.left li:hover a{ text-decoration: underline;} 
 			nav#globalNav ul.left li a{ color: #fff; text-decoration: none; font-size: 17px; font-weight: bold; }
-			nav#globalNav ul.left .subMenu{  position: absolute; display: inline-block; margin-left: -50px; width: 195px; background: url(../img/template/sub-menu-arrow.png) no-repeat 50% 38px; padding-top: 43px; left: -9999px;}
+			nav#globalNav ul.left .subMenu{  position: absolute; display: inline-block; margin-left: -50px; width: 195px; background: url(../img/template/sub-menu-arrow.png) no-repeat 50% 38px; padding-top: 43px; left: -9999px; top:0;}
                         
 			nav#globalNav ul.left .subMenu ul{ position: absolute; background-color: #fff; padding: 0px; display: block; box-shadow: rgba(0,0,0,0.6) 0px 2px 3px;  behavior: url(/js/PIE.htc);   }
 			nav#globalNav ul.left .subMenu li{ margin: 0px; padding: 0px; border: 0; line-height:32px; display: block; background: url(../img/dividers/sub-menu-divider.png) no-repeat center bottom; }
