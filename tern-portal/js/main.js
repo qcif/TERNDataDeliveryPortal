@@ -962,9 +962,9 @@ $(function() {
          autocomplete('#refineSearchTextField');
          
         $('#refineSearchBtn').click(function(){
-            var special_char=/^[A-Za-z0-9 ]{3,20}$/;
-           
-            if(!special_char.test($('#refineSearchTextField').val())&& $('#refineSearchTextField').val()!="" && $('#refineSearchTextField').val()!=null)
+            var special_char=/^[a-z0-9 ]+$/i;
+
+            if(!special_char.test($('#refineSearchTextField').val()))
             {
                 $("#dialog-searchterm"). dialog({
                     resizable: false,
@@ -999,23 +999,55 @@ $(function() {
                 });
             }else
             {
-                if(search_term==""||search_term=="Search ecosystem data" ||search_term=="*:*")
+                if($('#refineSearchTextField').val()=="Search ecosystem data" ||$('#refineSearchTextField').val()==""||$('#refineSearchTextField').val()==null)
                 {
-                    search_term = "("+$('#refineSearchTextField').val()+")";       
+                   $("#dialog-confirm-all"). dialog({
+                        resizable: false,
+                        height: 140,
+                        modal: true,
+                        buttons: {
+                            "OK": function() { 
+                                search_term='*:*';
+                                    if(getCookie("selection")!=null)
+                                    {
+                                        num=getCookie("selection");
+                                    }
+                                    if(getCookie("sorting")!=null)
+                                    {
+                                        resultSort=getCookie("sorting");
+                                    }
+                                    $(this).dialog("close");
+                                    mapSearch = 0;
+                                    clearAll = 0;
+                                    changeHashTo(formatSearch(search_term, 1, classFilter,num));  
+                                    
+                            },
+                            "Cancel": function(){
+                                    $( this ).dialog( "close" );
+                            }
+                        }
+                    });
                 }else
                 {
-                    var rb=document.getElementsByName('advancedBooleanSearch');
+                      if(search_term==""||search_term=="Search ecosystem data" ||search_term=="*:*")
+                      {
+                            search_term = "("+$('#refineSearchTextField').val()+")";       
+                      }else
+                      {
+                            var rb=document.getElementsByName('advancedBooleanSearch');
 
-                    for(var i=rb.length-1;i>-1;i--)
-                    {
-                        if(rb[i].checked && search_term!=$('#refineSearchTextField').val())
-                            search_term="("+search_term+") "+rb[i].value+" "+$('#refineSearchTextField').val();
-                    }
+                            for(var i=rb.length-1;i>-1;i--)
+                            {
+                                if(rb[i].checked && search_term!=$('#refineSearchTextField').val())
+                                    search_term="("+search_term+") "+rb[i].value+" "+$('#refineSearchTextField').val();
+                            }
 
-                }
-                    mapSearch = 0;
-                    clearAll = 0;
-               changeHashTo(formatSearch(encodeURIComponent(search_term), 1, classFilter,num));  
+                       }
+                  mapSearch = 0;
+                  clearAll = 0;
+                  changeHashTo(formatSearch(encodeURIComponent(search_term), 1, classFilter,num));                         
+                  }
+
             }
 
 
@@ -1165,7 +1197,7 @@ $(function() {
             var selected=$(this).find(":selected").val();
             switch(selected)
             {
-                case "score": 
+                case "score":
                         resultSort="score desc";
                         setCookie('sorting',resultSort,365);
                         break;

@@ -68,7 +68,7 @@ $home = 1;
  --> 
     </div>
 <div id="facilitiesAndDatasets">
-     <div id="dialog-confirm" title="Confirm search" class="hide">No search term entered. Do you want to see ALL records?</div>
+     <div id="dialog-confirm" title="Confirm search" class="hide">No search term was entered. Do you want to see ALL records?</div>
     <h1>Browse<br>TERN facilities & datasets</h1>
     <a id="carouselprev" class="prev" href="javascript:void(0);"></a>
     <div id="carouselContainer">

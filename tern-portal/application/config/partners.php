@@ -67,7 +67,7 @@
             {
                 "key": "auscover",
 
-                "display_title": "Auscover",
+                "display_title": "AusCover",
 
                 "alt_name": "Satellite Biophysical Data",
                 "query_name": "Auscover",  

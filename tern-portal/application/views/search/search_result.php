@@ -40,7 +40,7 @@ $Revision: 1 $
                                 {
                                     echo '<span class="numResultsPerPage"><label id="showing">'.$realNumFound.' </label></span>';
                                 }
-                echo            'of ';                
+                echo            ' of ';                
                 echo           '<span class="totalResults">'. number_format($realNumFound).'</span> results';                
                 echo        '</div>';
 
