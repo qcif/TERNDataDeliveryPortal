@@ -24,7 +24,6 @@ if (isset($description))
         <link type="text/css" href="<?php echo base_url(); ?>css/main.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/print.css" rel="stylesheet" media="print" />
          <link type="text/css" href="<?php echo base_url(); ?>css/treeview.css" rel="stylesheet"/>
-         
          <?php if($this->config->item('GA_enabled')):?>
          <script type="text/javascript">
             

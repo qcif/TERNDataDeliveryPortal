@@ -2,11 +2,11 @@ function addCheckbox(name,image_url,help_url,text_abstract) {
    var container = $('#facilities');
    var inputs = container.find('input');
    var id = inputs.length+1;
-   var img = '<img src=\"' + image_url + '"/>';
+   var img = '<img src="' + image_url + '"/>';
    var helpimg = '<a id="' + id + '" class="helpBtn"></a>'; 
     var helptext = '<div id="help-' + id + '" class="hide" title="About ' + name + '">' + text_abstract + '</div>';
   
-   var html = '<input type="checkbox" id="cb'+id+'" value="'+name+'" /> <label for="cb'+id+'">'+name+ img + '</label>' + helpimg  + '<br/>' + helptext;
+   var html = '<div class="clearfix">' + helpimg + '<input type="checkbox" id="cb'+id+'" value="'+name+'" /> <label for="cb'+id+'">'+name+ img + '</label>' + '<br/>' + helptext + '</div>';
    container.append($(html));
 }
 

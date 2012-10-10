@@ -971,9 +971,9 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
         });
         this.dataLayer = new OpenLayers.Layer.Vector( "Data Markers", {
             styleMap: styleM, 
-            strategies: [strategy]
+            strategies: [strategy]           
         });
-    }else{
+    }else{ 
         this.dataLayer = new OpenLayers.Layer.Vector( "Data Markers", {
             styleMap: styleM
         });
@@ -1037,7 +1037,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
              var link = $(this).closest('tr').find('#metabutton a').attr('href');
              title = "<a href=\"" + link + "\" target=\"_blank\" style=\" vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').children('a').html()  + "</a>"  ;
              var date = $(this).closest('tr').children('td:nth-child(3)').children('p').html();
-             var button =  $(this).closest('tr').find('#metabutton').clone().html();
+             var button =  $('<p>').append($(this).closest('tr').find('#metabutton a').clone()).remove().html();
             
              number = $(this).closest('tr').children('td:nth-child(1)').children('a').html();
              html  = " <a class=\"pin\" style=\"float:left\">" + number +  "</a><strong>" + title + "</strong> <br/> Release date: " + date  + "&nbsp; "+ button ; 
@@ -1166,7 +1166,6 @@ MapWidget.prototype.onFeatureSelect = function(feature){
             html =  html+ "</ul></div></li>";
         }); 
         html = html+ "</ul>";
-        html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";
         this.popup = new CustomFramedCloudPopupClass("chicken",
                     feature.geometry.getBounds().getCenterLonLat(),
                     null, html, offset, true, function(){             
@@ -1192,11 +1191,10 @@ MapWidget.prototype.onFeatureSelect = function(feature){
     $(".popupContent ul li").hover(function(){
         mapWidgetObj.coverageLayer.removeAllFeatures();
         var vectors = Array();
-        $.each($(this).children('.popup_coverage').children('ul').children('li'),function(){
+        var coverages =  $(this).find('.popup_coverage ul li');
+        $.each(coverages, function(){
             var coverage = addVector($(this).text(),mapWidgetObj.WGS84,mapWidgetObj.WGS84_google_mercator,'','','');
             vectors.push(coverage); 
-        },function(){
-
         });
 
       mapWidgetObj.coverageLayer.addFeatures(vectors);
@@ -1254,10 +1252,12 @@ function getStyle(styleName){
     var styleSelected;
     var context = {};
     switch(styleName){
-        case "default" : {
+       case "default" : {
                 style = {
-                    pointRadius: "${radius}", 
-                    externalGraphic: "${imageicon}", 
+                    graphicWidth: 40,
+                    graphicHeight: 42,      
+                    pointRadius: 20,
+                    externalGraphic: '${imageicon}', 
                     fillColor: '${bgcolor}', 
                     fontColor: "#FFF",
                     fillOpacity: '1', 
@@ -1270,7 +1270,6 @@ function getStyle(styleName){
                     labelYOffset: 12,
                     labelXOffset: -4,
                     labelSelect: true
-               
                 };
                
                 styleSelected = {
@@ -1278,9 +1277,9 @@ function getStyle(styleName){
                     externalGraphic: '${imageiconselect}', 
                     strokeColor: '#000000',
                     fontColor: "#FFFFFF",
-                    fontWeight: "Bold"
+                   fontWeight: "Bold"
               
-                }      
+                };      
                   
                 context =  {
                     imageicon: function(feature){
@@ -1304,14 +1303,7 @@ function getStyle(styleName){
                             return "#48D1CC";
                         }
                     },
-                    radius: function(feature){
-                      /*  if(feature.attributes.count > 1) {
-                            return Math.min(feature.attributes.count,9) + 12;
-                        }else{
-                            return 17;
-                        }*/
-                        return 20;
-                    },
+                    
                     count: function(feature){
                         if(feature.attributes.count > 1) {
                            return '';
@@ -1320,9 +1312,10 @@ function getStyle(styleName){
                         }
                     }
                 };
-            };
-        
+            };      
             break;
+            
+       
         case "coverage" : {
                 style = {                   
                     fillColor: '#FFFF00', 
@@ -1336,8 +1329,7 @@ function getStyle(styleName){
                     strokeColor: '#000000', 
                     strokeWidth: '1'
                 };
-            };
-        
+            };       
             break;
         case "transparent" : {
                 style = {
@@ -1349,7 +1341,7 @@ function getStyle(styleName){
                     label: "${number}",
                     labelSelect: true
 
-                }
+                };
                 styleSelected = {
 
                     pointRadius: 9,
@@ -1359,9 +1351,8 @@ function getStyle(styleName){
                     strokeWidth: '1',
                     label: "${number}",
                     labelSelect: true
-                }
-            };
-        
+                };
+            };  
             break;
     }
     // Styling Site Layers

@@ -172,13 +172,13 @@ if ($realNumFound >0)
          
             if($spatial){
 
-                echo '<ul class="spatial" hidden="true">';
+                echo '<ul class="spatial hide">';
                 foreach($spatial as $s){
                 echo '<li>'.$s.'</li>';
                 }
                 echo '</ul>';
-                echo '<a class="spatial_center" hidden="true">'.$center.'</a><br/>';
-                echo '<a class="key" hidden="true">'.$ro_key.'</a>';
+                echo '<span class="spatial_center hide">'.$center.'</span><br/>';
+                echo '<span class="key hide">'.$ro_key.'</span>';
                 if($center) $c++;
             }
             echo '</div>';

@@ -516,7 +516,7 @@
                                 <h1 class="greenGradient">Access Data</h1>  
                                 <div class="content">
                                     <ul style="padding-left:3px">
-                                        <p><xsl:apply-templates select="ro:location/ro:address/ro:electronic"/></p>	
+                                       <xsl:apply-templates select="ro:location/ro:address/ro:electronic"/>
                                     </ul>
                                 </div>
                          </xsl:when>
@@ -998,7 +998,7 @@ Handle:
                 <xsl:variable name="l">
                     <xsl:value-of select="."/>
                 </xsl:variable>
-			<div class="download"> <li><a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="concat(substring($l,1,45),'....')"/></a></li></div>
+			<li><a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="class">download</xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="concat(substring($l,1,45),'....')"/></a></li>
                   
 		</xsl:if>		
 	</xsl:template>
