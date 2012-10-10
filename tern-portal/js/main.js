@@ -1083,8 +1083,72 @@ $(function() {
         }else
         {
               $("#facfacet").show();   
-        }        
+        } 
+      
+//$('.viewrecord').on('change',function(){
+            $('.viewrecord').change(function(){
 
+            var selected=$(this).find(":selected").val();
+            var lbl=document.getElementById("showing");
+            switch(selected)
+            {
+                case "10":
+                        num=10;
+                        lbl.innerHTML='10';
+                        setCookie('selection',10,365);
+                        break;
+                case "25":
+                        num=25;
+                        lbl.innerHTML='25';
+                        setCookie('selection',25,365);             
+                    break;
+                case "50":
+                        num=50;
+                        lbl.innerHTML='50';
+                        setCookie('selection',50,365);             
+                    break;
+                case "100":
+                        num=100;
+                        lbl.innerHTML='100';
+                        setCookie('selection',100,365);             
+                    break;
+                default:
+                        num=10;
+                        setCookie('selection',10,365);
+
+            }         
+
+            doNormalSearch();   
+            changeHashTo(formatSearch(search_term, 1, classFilter,num));    
+
+        });
+        
+         
+            $('.sort_record').on('change',function(){
+
+            // $("#loading").show();
+            var selected=$(this).find(":selected").val();
+            switch(selected)
+            {
+                case "score": 
+                        resultSort="score desc";
+                        setCookie('sorting',resultSort,365);
+                        break;
+                case "timestamp":
+                        resultSort="timestamp desc";
+                        setCookie('sorting',resultSort,365);             
+                    break;
+                default:
+                        resultSort="score desc";
+                        setCookie('sorting',resultSort,365);
+
+            }         
+
+            doNormalSearch();  
+            // $("#loading").hide();
+            changeHashTo(formatSearch(search_term, 1, classFilter,num));    
+
+        });
     } 
  
     function doNormalSearch(){     
@@ -1185,7 +1249,7 @@ $(function() {
              }
             ,
             error:function(msg){
-               // console.log(msg);
+                console.log(msg);
                //  $("#loading").hide();
             }
         });
@@ -1370,72 +1434,7 @@ $(function() {
 	                });		
 	        });		
 	        initViewMap('metadatamap','.spatial_coverage_center','.coverage');		
-    }		
-	
-      
-    $('#viewrecord').on('change',function(){
-     
-     
-     var selected=$(this).find(":selected").val();
-     var lbl=document.getElementById("showing");
-     switch(selected)
-     {
-         case "10":
-                 num=10;
-                 lbl.innerHTML='10';
-                 setCookie('selection',10,365);
-                 break;
-         case "25":
-                 num=25;
-                 lbl.innerHTML='25';
-                 setCookie('selection',25,365);             
-             break;
-         case "50":
-                 num=50;
-                 lbl.innerHTML='50';
-                 setCookie('selection',50,365);             
-             break;
-         case "100":
-                 num=100;
-                 lbl.innerHTML='100';
-                 setCookie('selection',100,365);             
-             break;
-         default:
-                 num=10;
-                 setCookie('selection',10,365);
-          
-     }         
-           
-     doNormalSearch();   
-     changeHashTo(formatSearch(search_term, 1, classFilter,num));    
-     
- });
- 
-     $('#sort_record').on('change',function(){
-     
-     // $("#loading").show();
-     var selected=$(this).find(":selected").val();
-     switch(selected)
-     {
-         case "score":
-                 resultSort="score desc";
-                 setCookie('sorting',resultSort,365);
-                 break;
-         case "timestamp":
-                 resultSort="timestamp desc";
-                 setCookie('sorting',resultSort,365);             
-             break;
-         default:
-                 resultSort="score desc";
-                 setCookie('sorting',resultSort,365);
-          
-     }         
-           
-     doNormalSearch();  
-    // $("#loading").hide();
-     changeHashTo(formatSearch(search_term, 1, classFilter,num));    
-     
- });
+    }			
  
 });
    

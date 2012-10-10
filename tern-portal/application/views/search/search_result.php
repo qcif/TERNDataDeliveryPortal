@@ -46,7 +46,7 @@ $Revision: 1 $
                 
                 echo        '<div id="middle-select-num" class="resultsPerPage left">';
                 echo        'Display';
-                echo        '<select id="viewrecord" name="select-view-record">';				
+                echo        '<select class="viewrecord" name="select-view-record">';				
                 echo                '<option value="10">10</option>';
                 echo                '<option value="25">25</option>';
                 echo                '<option value="50">50</option>';				
@@ -59,7 +59,7 @@ $Revision: 1 $
                 
                 echo        '<div id="sorting_selection" class="sortBy right">';
                 echo        'Sort By:';
-                echo        '<select id="sort_record" name="select-sorting">';				
+                echo        '<select class="sort_record" name="select-sorting">';				
                 echo                '<option value="score">Relevance</option>';
                 echo                '<option value="timestamp">Date released</option>';             
                 echo           '</select>'; 
