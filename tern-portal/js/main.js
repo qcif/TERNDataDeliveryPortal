@@ -1623,7 +1623,7 @@ var t=removeBracket(tmp)
             $("#seeAlso").html(msg);
            // console.log(msg);
             if(parseInt($('#seealso-realnumfound').html())==0){
-                $('#seeAlsoRightBox').hide();
+                $('#seeAlsoRightBox').parent().hide();
             }
         },
         error:function(msg){
