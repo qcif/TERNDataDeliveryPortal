@@ -75,7 +75,6 @@ function initViewPage(){
             var div=$(this).closest('li').find('div');
                if(div.hasClass('content') && div.hasClass('collapse'))
                {
-
                    div.removeClass('collapse').addClass('expand');
                   $(this).find('span.right').html("Hide");
                   $(this).find('a').attr('class','hide');

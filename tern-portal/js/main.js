@@ -1640,15 +1640,20 @@ var t=removeBracket(tmp)
             data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
             success:function(msg){
                 //console.log("success" + msg);
+                
+                
                 $("#infoBox").html(msg);
-
+                $.each($('.subjects li'), function(){
+                    var txt= $(this).html().toProperCase();
+                    $(this).html(txt);
+                });
                 $(".accordion-seealso").accordion({
                     autoHeight:false, 
                     collapsible:true,
                     active:false
                 });
                 //var seeAlso_display = $('#seeAlsoCurrentPage').html() + '/'+$('#seeAlsoTotalPage').html();
-
+                
                 $("#infoBox").dialog({
                     modal: true,
                     minWidth:700,
