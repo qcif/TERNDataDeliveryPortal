@@ -139,7 +139,7 @@
                 "display_title": "Soil and Landscape Grid",
 
                 "alt_name": "Soils & Landform Data", 
-                "query_name": "soil",                 
+                "query_name": "Commonwealth Scientific and Industrial Research Organisation",                 
                 "description_type": [
                     "logo",
                     "full"

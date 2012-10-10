@@ -134,7 +134,7 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
             } 
             echo '</ul>';
            // echo '<button id="facbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
-             echo '<a id="facbutton" class="greenGradient smallRoundedCorners">GO</a> ';
+             echo '<a href="javascript:void(0);" id="facbutton" class="greenGradient smallRoundedCorners">GO</a> ';
             echo '</div>'; 
             echo '</div>';
             echo '<div id="facility-help-text" title="'.$help_title.'" class="hide" >'.$help_content.'</div>';
@@ -731,7 +731,7 @@ if(count($out2)>0)
        	echo '</ul>';
 //end FOR tree
         //echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
-        echo '<a id="forbutton" class="greenGradient smallRoundedCorners" >GO</a>';
+        echo '<a href="javascript:void(0);" id="forbutton" class="greenGradient smallRoundedCorners" >GO</a>';
 	echo '</div>';
         echo '</div>';
         echo '<div id="for-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';

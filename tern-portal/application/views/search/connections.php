@@ -154,11 +154,14 @@ if(isset($groups)&&$groups['numfound']>0){
 		//echo '</a>'.$autoLink.$logostr.'</li>';
                 echo $autoLink.$logostr.'</li>';
 	}
-	echo '</ul>';	
+	echo '</ul>';
+/*        
 	if($seeMore)
 	{			
 		echo '<a href="javascript:void(0);" class="connections_NumFound" '.$groups["action_id"].'>View All <span id="collectionconnections-realnumfound"> '. ($groups['numfound']).'</span> connected '.$title.'</a>';
 	}
+ */
+
 }	
 
 }

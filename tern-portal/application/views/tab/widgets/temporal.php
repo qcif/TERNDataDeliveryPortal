@@ -26,7 +26,7 @@
                     } 
 		?>
         </select>
-        <a id="search_temp" class="greenGradient smallRoundedCorners">GO</a>
+        <a href="javascript:void(0);" id="search_temp" class="greenGradient smallRoundedCorners">GO</a>
         </div>
     </div>
     
