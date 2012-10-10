@@ -28,6 +28,7 @@ $Revision: 1 $
        
          <?php  
                 $realNumFound = $json->{'response'}->{'numFound'}; 
+                if($realNumFound == '') $realNumFound=0;
                 echo '<div id="head-toolbar-content" class="resultsNav">';
                 echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
                 echo        '<div id="left_num_records" class="result left">';

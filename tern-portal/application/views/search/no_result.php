@@ -21,7 +21,7 @@ $Revision: 1 $
 **/ 
 ?>
 <div style="padding:10px;" id="head-toolbar-content">
-    <div id="realNumFound" class="hide">0</div>
+    <div id="realNumFound" class="hide">0</div>anc
 <?php
 
 ?> 

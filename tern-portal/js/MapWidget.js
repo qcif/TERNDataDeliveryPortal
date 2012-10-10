@@ -1040,7 +1040,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
              var button =  $(this).closest('tr').find('#metabutton').clone().html();
             
              number = $(this).closest('tr').children('td:nth-child(1)').children('a').html();
-             html  = " <a class=\"pin\" style=\"float:left\">" + number +  "</a><strong>" + title + "</strong> <br/> Pub date: " + date  + "&nbsp; "+ button ; 
+             html  = " <a class=\"pin\" style=\"float:left\">" + number +  "</a><strong>" + title + "</strong> <br/> Release date: " + date  + "&nbsp; "+ button ; 
            //  html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";    
              $.each($(this).parent().children('.spatial').children('li'), function(){
                   coverage.push( $(this).text());
@@ -1069,6 +1069,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
  
 MapWidget.prototype.removeAllFeatures = function(){
     this.dataLayer.removeAllFeatures();
+   
     this.coverageLayer.removeAllFeatures();
     for (var i=0; i<this.map.popups.length; ++i) 
     { 

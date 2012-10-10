@@ -4,8 +4,8 @@
 <div id="contact_form">
     <?php
     $this->load->helper('form');
-    $hidden = array('ip' => $_SERVER['REMOTE_ADDR']);
-    echo form_open('contact/send','',$hidden);
+    $attr = array('name'=>'contact','id'=>'contact');    
+    echo form_open('contact/send',$attr);
     echo form_label('Name: ','name');
     $ndata = array('name' => 'name', 'id' => 'name', 'size' => '25', 'value' => set_value("name"));
         echo form_error('name'); 
@@ -47,7 +47,7 @@
     }
     echo form_textarea($cdata);
     echo "<br/>";
-    echo "<input id=\"submitBtn\" class=\"orangeGradient roundedCorners\" value=\"Send\"/>";
+    echo "<input id=\"submitBtn\" class=\"orangeGradient roundedCorners\" onClick=\"document.contact.submit()\" value=\"Send\"/>";
     echo form_close();
 
     ?>

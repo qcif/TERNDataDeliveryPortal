@@ -293,7 +293,7 @@
                 <xsl:when test="ro:coverage/extRif:spatial or ro:location/extRif:spatial">
                     <li>  
                         <h2 class="meta_title">
-                            <a class="show" id="spatial">
+                            <a class="hide" id="spatial">
                                 <span class="left">Spatial Coverage</span>
                                 <span class="right">Hide</span>
                             </a>
@@ -332,7 +332,7 @@
                 <xsl:otherwise>
                 <li>
                     <h2 class="meta_title">
-                        <a class="show">
+                        <a class="hide">
                             <span class="left">Spatial Coverage</span>
                             <span class="right">Show</span>
                         </a>

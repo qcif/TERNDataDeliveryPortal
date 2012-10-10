@@ -234,8 +234,8 @@ nav#facetNav{ margin-right: 15px; float: left; width: 215px; }
 	#currentSearchBox ul li a{ display: block; }
 	#currentSearchBox div.buttons{  text-align: center; }
 	#currentSearchBox div.buttons a{ width: 80px; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px;  }
-	#currentSearchBox a#clearSearchBtn{ color: #000; }
-	
+	#currentSearchBox a#clearSearchBtn{ color: #000; cursor: pointer }
+	 
 	/* Refine Search Box */
 	#refineSearchBox > div.content > ul > li{
 		padding: 15px; 
@@ -841,5 +841,10 @@ nav#facetNav #group-facet li{
 }
 .read-more, .read-less{
     color: #BF6000;
+    cursor: pointer;
 }
 .clearfix:after{clear: both;content: ".";display: block;height: 0;visibility: hidden;font-size: 0;}
+
+.text-background{
+     color: #cdcdcd;
+}

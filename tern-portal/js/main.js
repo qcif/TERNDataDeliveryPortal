@@ -681,6 +681,9 @@ $(function() {
               
             }
         });
+  
+        
+       
         
          autocomplete('#refineSearchTextField');
          autocomplete('input[name^=keyword]');
@@ -795,7 +798,9 @@ $(function() {
                         $(this).find('div#sorting_selection').empty();
                         
                     }
-                    
+                    $('#facetNav #refineSearchBox').show();
+                 }else{
+                      $('#facetNav #refineSearchBox').hide();
                  }
             });     
             if(mapSearch == 1 || clearAll == 1){
@@ -803,12 +808,38 @@ $(function() {
                 $('#head-toolbar').hide();
                 $('#middle-toolbar').hide();
                 $('#bottom-toolbar').hide();
+                $('#del').trigger('click');
+                
             }
- 
+
+            //background text
+            $('#refineSearchTextField').each(function(){
+
+                this.value = $(this).attr('title');
+                $(this).addClass('text-background');
+
+                $(this).focus(function(){
+                        if($(this).val() == $(this).attr('title')){
+                            $(this).val("");
+                            $(this).removeAttr("placeholder");                    
+                            $(this).removeClass('text-background');
+                        } 
+                });
+
+                $(this).blur(function(){ 
+                    if(this.value == '') {
+                        this.value = $(this).attr('title');
+                        $(this).addClass('text-background');
+                        $(this).attr('placeholder',$(this).attr('title'));
+                    }
+                });
+            });
+
+
             if(typeof mapWidget !== 'undefined') {
                 mapWidget.map.updateSize();
                 mapWidget.removeAllFeatures();
-                if(mapSearch == 0 && $(msg).find('div#realNumFound').html() !== "0"){
+                if(mapSearch == 0 && clearAll == 0 && $(msg).find('div#realNumFound').html() !== "0"){
                   mapWidget.addVectortoDataLayer(".spatial_center",true);
                   if(ternRegionFilter != 'All'){
                       mapWidget.setHighlightLayer(ternRegionFilter.split(":").pop());
@@ -897,15 +928,17 @@ $(function() {
               if($("#term-help-text").html()){
                  $("#facet-help-text").append($("#term-help-text").html());
               }
-              if($("#facility-help-text").html()){
-                 $("#facet-help-text").append($("#facility-help-text").html());
+              if($("#region-help-text").html()){
+                 $("#facet-help-text").append($("#region-help-text").html());
               }
                if($("#for-help-text").html()){
                   $("#facet-help-text").append($("#for-help-text").html());
               }
-               if($("#region-help-text").html()){
-                 $("#facet-help-text").append($("#region-help-text").html());
+              if($("#facility-help-text").html()){
+                 $("#facet-help-text").append($("#facility-help-text").html());
               }
+              
+              
              $("#facet-help-text").dialog('open');
              return false;
          });
@@ -1283,16 +1316,18 @@ $(function() {
             $(this).addClass('text-background');
 
             $(this).focus(function(){
-                if(this.value == $(this).attr('title')) {
-                    this.value = '';
-                    $(this).removeClass('text-background');
-                }
+                    if($(this).val() == $(this).attr('title')){
+                        $(this).val("");
+                        $(this).removeAttr("placeholder");                    
+                        $(this).removeClass('text-background');
+                    }
             });
 
             $(this).blur(function(){ 
                 if(this.value == '') {
                     this.value = $(this).attr('title');
                     $(this).addClass('text-background');
+                    $(this).attr('placeholder',$(this).attr('title'));
                 }
             });
         });

@@ -24,7 +24,7 @@
 </li>
 
 <li>
-    <input id="refineSearchTextField" name="query" type="text" placeholder="Search ecosystem data">
+    <input id="refineSearchTextField" name="query" type="text" title="Search ecosystem data" placeholder="Search ecosystem data">
     <a id="refineSearchBtn"></a>
 </li>
 
