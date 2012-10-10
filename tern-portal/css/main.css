@@ -59,7 +59,7 @@ header{
 		nav#globalNav ul.left li{ float:left; margin-right: 10px; padding-right: 16px; border-right: 1px solid #636E57;position:relative;   }
 		nav#globalNav ul.left li a.more{ background: url(../img/template/nav-arrow.png) no-repeat right center; padding-right: 20px; }
 		nav#globalNav ul.left li:last-child{ border: 0px; }
-                nav#globalNav ul.left li:hover .subMenu{ left: 0;} 
+                nav#globalNav ul.left li:hover .subMenu{ left: 0; cursor:pointer;} 
                 nav#globalNav ul.left li:hover a{ text-decoration: underline;} 
 			nav#globalNav ul.left li a{ color: #fff; text-decoration: none; font-size: 17px; font-weight: bold; }
 			nav#globalNav ul.left .subMenu{  position: absolute; display: inline-block; margin-left: -50px; width: 195px; background: url(../img/template/sub-menu-arrow.png) no-repeat 50% 38px; padding-top: 43px; left: -9999px;}
@@ -126,6 +126,7 @@ header{
 		display: block;
 		color: #fff;
 		text-decoration: none; 
+                cursor: pointer;
 	}
 	#searchBtn img, #mapSearchBtn img{ margin: 7px -10px 0px 12px; float: left; }
 

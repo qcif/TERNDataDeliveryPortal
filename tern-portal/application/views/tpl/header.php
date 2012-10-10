@@ -47,7 +47,7 @@ if (isset($description))
            
              <!--   <div id="logo">-->
              <h1>
-                    <a href="#"> 
+                    <a href="http://www.tern.org.au" target="_blank"> 
                         <img src="<?php echo site_url('/img/logos/logo-tern.png'); ?>" alt="TERN Logo" id="tern-logo"/>
                     </a>
              </h1>
@@ -58,14 +58,14 @@ if (isset($description))
                         <li><a class="more" href="#">TERN data</a>
                             <div class="subMenu">
                                 <ul >
-                                    <li><?php echo anchor('home/accessdata', 'Access data', 'target="_blank"'); ?></li>
-                                    <li><?php echo anchor('home/submitdata', 'Submit data', 'target="_blank"'); ?></li>
-                                    <li><?php echo anchor('home/licencing', 'Data licensing', 'target="_blank"'); ?></li>                      
+                                    <li><?php echo anchor('home/accessdata', 'Access data', ''); ?></li>
+                                    <li><?php echo anchor('home/submitdata', 'Submit data', ''); ?></li>
+                                    <li><?php echo anchor('home/licensing', 'Data licensing', ''); ?></li>                      
                                     <li><?php echo anchor('home/infrastructure', 'Infrastructure Locations', ''); ?></li> 
                                 </ul> 
                             </div>
                         </li>  
-                        <li><?php echo anchor('contact', 'Contact', ' target="_blank"'); ?>
+                        <li><?php echo anchor('contact', 'Contact', ''); ?>
                             
                         </li>                       
                     </ul> 

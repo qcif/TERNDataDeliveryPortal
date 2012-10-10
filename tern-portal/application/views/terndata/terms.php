@@ -2,7 +2,7 @@
 ?>
 <?php $this->load->view('tpl/header');?>
 <div id="staticContentWhite">
-    <h1 class="margin10">General terms Of use</h1>
+    <h1 class="margin10">Terms of use</h1>
  
 <h2>Introduction</h2>
 

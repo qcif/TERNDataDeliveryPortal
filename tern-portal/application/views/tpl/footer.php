@@ -11,7 +11,7 @@
                 <br>
              <?php echo anchor('home/terms', 'Terms of use',''); ?>
                 |
-            <?php echo anchor('home/contact', 'Contact', ''); ?>
+            <?php echo anchor('contact', 'Contact', ''); ?>
         </small>
         </p>
 </footer>  
