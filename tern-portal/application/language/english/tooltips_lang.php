@@ -68,8 +68,8 @@ $lang['for_helptext'] ="<h2>Field of Research </h2><p>
                         
                     ";
 
-$lang['region_helptitle']="Regions facet help";
-$lang['region_helptext'] ="<h2>Regions</h2><p>
+$lang['region_helptitle']="Region  facet help";
+$lang['region_helptext'] ="<h2>Region</h2><p>
                                 Select a <b>Region Type</b> from the drop-down list to display region names.  Boundaries for the chosen type will appear on the map – the map is not interactive.  
                            </p>
                            <p>

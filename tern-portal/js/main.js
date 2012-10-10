@@ -181,7 +181,7 @@ $(function() {
     $(window).hashchange(); //do the hashchange on page load
     routing(); 
        
-    $('.typeFilter, .groupFilter, .subjectFilter,.fortwoFilter, .forfourFilter, .forsixFilter, .ternRegionFilter').live('click', function(event){
+    $('.typeFilter, .groupFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ternRegionFilter').live('click', function(event){
         if(event.type=='click'){
             page = 1;
             mapSearch = 0;
@@ -661,7 +661,9 @@ $(function() {
                 e=el.value;
                 w=wl.value;  
                 mapSearch = 0;
-                clearAll = 0;
+                clearAll = 0;                
+                spatial_included_ids = '';
+            $("#coords input").trigger('change');
                 changeHashTo(formatSearch(search_term, 1, classFilter));             
           });
         
@@ -1601,8 +1603,8 @@ function checkSelection()
     var subjectSearchstr = '';
     $('.subjectFilter').each(function(){
         //console.log($(this).attr('id'));
-        //subjectSearchstr += $(this).attr('id')+';';
-        subjectSearchstr += $(this).html()+';';
+        subjectSearchstr += $(this).attr('id')+';';
+       
     });
     
 var arr=subjectSearchstr.split(";");

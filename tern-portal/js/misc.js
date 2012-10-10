@@ -80,7 +80,7 @@ function initViewPage(){
                   $(this).find('span.right').html("Hide");
                   $(this).find('a').attr('class','hide');
                   if(div.hasClass('subjects')){
-                       if($('div.subjects ul li').length > 7 && $('div.subjects').height() == 157){
+                       if($('div.subjects ul li').length > 7 && $('div.subjects').height() == 159){
                            $('.showall_subjects').show();
                        }
                   }
@@ -107,10 +107,10 @@ function initViewPage(){
                 var  subjects = null;
                 //if there is no subjetcs
 		if(subjects==null){
-			subjects = $('div.subjects');
+			subjects = $('div.subjects'); 
 		}
                if($('div.subjects ul li').length > 7){
-                    $('div.subjects').css('height','157px');
+                    $('div.subjects').css('height','159px');
                             
                }
 		//the more button

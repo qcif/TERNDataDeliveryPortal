@@ -813,7 +813,7 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 .pac-container{width:300px !important;}
 
 #metadatamap {
- width:598px;height:400px;
+ width:598px;height:400px; margin: 0 auto !important;
 
 }
 #facet-help-text h2{
