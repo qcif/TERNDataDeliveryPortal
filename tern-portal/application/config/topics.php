@@ -60,7 +60,7 @@
             },
             {
                 "key": "oceans_and_coasts",
-                "title": "Oceans & Cdwoasts",
+                "title": "Oceans & Coasts",
                 "img_url": "/img/topics/oceans_and_coastal_processes.png",                 
                 "query_url": "<?php echo base_url();?>search#!\/q=(coast* OR ocean*) OR marine OR beach OR bathmetry OR tide* OR aqua* OR sea* OR saltwa* OR storm OR shoreline OR wave* OR salinity\/p=1\/tab=collection\/num=10" 
 
