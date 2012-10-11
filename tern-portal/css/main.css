@@ -428,6 +428,9 @@ nav.resultsNav{
             padding: 14px 0px 10px 5px;  
             overflow: visible;
         }
+        .popupContent a.title{
+            padding-right: 4px;
+        }
 
          .popupContentScroll { 
             padding: 5px 0px 10px 10px;    

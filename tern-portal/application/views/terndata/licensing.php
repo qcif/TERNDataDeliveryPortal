@@ -10,6 +10,19 @@
 	display: table-cell;
 	width: 100px;
 }
+#licence-statement{
+    text-align:center;
+}
+#licence-logo-p{
+    text-align:center;
+}
+#attribution td{
+    padding: 5px 0;
+} 
+#attribution th{
+    vertical-align:middle;
+    padding: 0px 5px;
+}
 </style>
 <div id="staticContentWhite">
 <h1>
@@ -21,7 +34,7 @@ TERN Data Licensing
 <p><em>Note: This tool only provides for licences under Australian law.</em></p>
 <hr>
 <div style="width: 800px; height:auto; margin: 0 auto; vertical-align:top;">
-  <div style="width: 390px; margin-right:10px; float:left;" >
+  <div style="width: 350px; margin-right:50px; float:left;" >
     <h2>Licence features</h2>
     <form id="selectionForm" name="selectionForm">
       <p><b>Allow modifications to your work?</b></p>
@@ -63,11 +76,15 @@ TERN Data Licensing
               "copy_unsure">Unsure</label>
         </li>
       </ul>
+       <div id="licence-cca" style="text-align: left;">
+           <br/>
+      <p>You may also wish to use a <a href="http://creativecommons.org.au" target="_blank">Creative Commons licence</a>. <!--The <a href="http://creativecommons.org/choose/" target="_blank">Creative Commons licence tool</a> may assist you.--></p>
+    </div>
     </form>
     <hr>
     <h2>Attribution</h2>
     <p>You can add attribution information here:</p>
-    <table>
+    <table id="attribution">
       <tr>
         <th style="text-align: left"><label for="title">Title:</label></th>
         <td><input id="title" placeholder=
@@ -90,17 +107,14 @@ TERN Data Licensing
   <div style=
     "width: 400px; float:right;">
     <h2>Selected licence</h2>
-    <p><a id="licence-logo-link" href="http://tern.org.au/datalicence/TERN-BY/1.0/" target="_blank"><img id="licence-logo" height="60px" src="/img/licence/BY.png"/></a></p>
+    <p id="licence-logo-p"><a id="licence-logo-link" href="http://tern.org.au/datalicence/TERN-BY/1.0/" target="_blank"><img id="licence-logo" height="60px" src="/img/licence/BY.png"/></a></p>
     <div id="licence-statement"></div>
     <br>
     <p style="text-align: left;">You can use this code in your webpage:</p>
     <textarea readonly id="licence-copy" style="width: 100%;" rows="6">
     	
     </textarea>
-    <div id="licence-cca" style="text-align: left;">
-      <hr/>
-      <p>You may also wish to use a <a href="http://creativecommons.org.au" target="_blank">Creative Commons licence</a>. <!--The <a href="http://creativecommons.org/choose/" target="_blank">Creative Commons licence tool</a> may assist you.--></p>
-    </div>
+   
   </div>
 </div>
 <hr>

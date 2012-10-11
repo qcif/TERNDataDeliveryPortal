@@ -21,7 +21,66 @@ String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
+/* Openlayers hack for IE*/
+ OpenLayers.Renderer.VML.prototype.drawText = function(featureId, style, location) {
+        var label = this.nodeFactory(featureId + this.LABEL_ID_SUFFIX, "olv:rect");
+        var textbox = this.nodeFactory(featureId + this.LABEL_ID_SUFFIX + "_textbox", "olv:textbox");
+        
+        var resolution = this.getResolution();
+        label.style.left = ((location.x/resolution - this.offset.x) | 0) + "px";
+        label.style.top = ((location.y/resolution - this.offset.y) | 0) + "px";
+        label.style.flip = "y";
 
+        textbox.innerText = style.label;
+
+        if (style.cursor != "inherit" && style.cursor != null) {
+            textbox.style.cursor = style.cursor;
+        }
+        if (style.fontColor) {
+            textbox.style.color = style.fontColor;
+        }
+        if (style.fontOpacity) {
+            textbox.style.filter = 'alpha(opacity=' + (style.fontOpacity * 100) + ')';
+        }
+        if (style.fontFamily) {
+            textbox.style.fontFamily = style.fontFamily;
+        }
+        if (style.fontSize) {
+            textbox.style.fontSize = style.fontSize;
+        }
+        if (style.fontWeight) {
+            textbox.style.fontWeight = style.fontWeight;
+        }
+        if (style.fontStyle) {
+            textbox.style.fontStyle = style.fontStyle;
+        }
+        if(style.labelSelect === true) {
+            label._featureId = featureId;
+            textbox._featureId = featureId;
+            textbox._geometry = location;
+            textbox._geometryClass = location.CLASS_NAME;
+        }
+        textbox.style.whiteSpace = "nowrap";
+        // fun with IE: IE7 in standards compliant mode does not display any
+        // text with a left inset of 0. So we set this to 1px and subtract one
+        // pixel later when we set label.style.left
+        textbox.inset = "1px,0px,0px,0px";
+
+            label.appendChild(textbox);
+            this.textRoot.appendChild(label);
+       
+        var align = style.labelAlign || "cm";
+        if (align.length == 1) {
+            align += "m";
+        }
+        var xshift = textbox.clientWidth *
+            (OpenLayers.Renderer.VML.LABEL_SHIFT[align.substr(0,1)]);
+        var yshift = textbox.clientHeight *
+            (OpenLayers.Renderer.VML.LABEL_SHIFT[align.substr(1,1)]);
+        label.style.left = parseInt(label.style.left)-xshift-1+"px";
+        label.style.top = parseInt(label.style.top)+yshift+"px";
+        
+    }
 /*       MAIN WIDGET CLASS 
  *         
  * 
@@ -1035,7 +1094,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
              title = ''; 
              coverage = Array();  
              var link = $(this).closest('tr').find('#metabutton a').attr('href');
-             title = "<a href=\"" + link + "\" target=\"_blank\" style=\" vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').children('a').html()  + "</a>"  ;
+             title = "<a href=\"" + link + "\" class=\"title\" target=\"_blank\" style=\" vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').children('a').html()  + "</a>"  ;
              var date = $(this).closest('tr').children('td:nth-child(3)').children('p').html();
              var button =  $('<p>').append($(this).closest('tr').find('#metabutton a').clone()).remove().html();
             
@@ -1069,16 +1128,15 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
 }
  
 MapWidget.prototype.removeAllFeatures = function(){
-    
     for (var i=0; i<this.map.popups.length; i++) 
     { 
         this.map.removePopup(this.map.popups[i]); 
-    };  
+    }     
     this.dataLayer.removeAllFeatures();
-    this.dataLayer.destroyFeatures(this.dataLayer.features);
+    this.dataLayer.destroyFeatures();
     this.coverageLayer.removeAllFeatures();
     this.coverageLayer.destroyFeatures(this.coverageLayer.features);
-    
+   
 }
 
 MapWidget.prototype.toggleExtLayer = function(layer_id, visibility){
