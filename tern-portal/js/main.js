@@ -361,9 +361,21 @@ $(function() {
                     
                     if((s.split("\"").length-1)==1)
                     {
-                        s=s.replace(/\"/g,"");                    
+                        if(s.charAt(3)=="\"" || s.charAt(4)=="\"")
+                        {
+                                //s=s.replace(s,"\"");
+                                str=search_term.replace(s, "\""); 
+                        }else
+                        {
+                            s=s.replace(/\"/g,"");    
+                            str=search_term.replace(s, ""); 
+                        }
+                        
+                    }else
+                    {
+                            str=search_term.replace(s, ""); 
                     }
-                    str=search_term.replace(s, ""); 
+                    
                     
                     str=str.replace(/\(/g,"");
                     str=str.replace(/\)/g,"");
