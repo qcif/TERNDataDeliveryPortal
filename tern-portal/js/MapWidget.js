@@ -1021,16 +1021,16 @@ MapWidget.prototype.toggleControl = function(element) {
 MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
     var self = this;
     var styleM = getStyle(style);
-    var strategy;
+    this.strategy;
     if(clustering){
       
-        strategy = new OpenLayers.Strategy.Cluster({
+        this.strategy = new OpenLayers.Strategy.Cluster({
             distance: 30, 
             threshold: 2
         });
         this.dataLayer = new OpenLayers.Layer.Vector( "Data Markers", {
             styleMap: styleM, 
-            strategies: [strategy]           
+            strategies: [this.strategy]           
         });
     }else{ 
         this.dataLayer = new OpenLayers.Layer.Vector( "Data Markers", {
@@ -1131,11 +1131,11 @@ MapWidget.prototype.removeAllFeatures = function(){
     for (var i=0; i<this.map.popups.length; i++) 
     { 
         this.map.removePopup(this.map.popups[i]); 
-    }     
-    this.dataLayer.removeAllFeatures();
+    } 
     this.dataLayer.destroyFeatures();
-    this.coverageLayer.removeAllFeatures();
-    this.coverageLayer.destroyFeatures(this.coverageLayer.features);
+    this.strategy.clusters=[];
+    this.strategy.features=[];
+    this.coverageLayer.destroyFeatures();
    
 }
 

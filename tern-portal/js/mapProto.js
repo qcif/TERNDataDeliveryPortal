@@ -3,6 +3,7 @@
     var s='';
     var w='';
     var spatial_included_ids;
+    var mapWidget;
  function trimwords(theString, numWords) {
     
     if(theString!=null)
@@ -83,7 +84,45 @@ function initMap(){
             
     var mapWidget = new MapWidget('spatialmap',true);
     resetCoordinates();
-    mapWidget.addDataLayer(true,"default",true);      
+   //mapWidget.addDataLayer(true,"default",false);      
+    //mapWidget.addVectortoDataLayer(".spatial_center",true);
+      strategy = new OpenLayers.Strategy.Cluster({
+            distance: 30, 
+            threshold: 2
+        });
+       
+        vectorLayer = new OpenLayers.Layer.Vector("Data Markers", {
+                styleMap: new OpenLayers.StyleMap({'default':{
+                    strokeColor: "#00FF00",
+                    strokeOpacity: 1,
+                    strokeWidth: 3,
+                    fillColor: "#FF5500",
+                    fillOpacity: 0.5,
+                    pointRadius: 6,
+                    pointerEvents: "visiblePainted",
+                    // label with \n linebreaks
+                    label : "name: ${name}\n\nage: ${age}",
+                    
+                    fontColor: "${favColor}",
+                    fontSize: "12px",
+                    fontFamily: "Courier New, monospace",
+                    fontWeight: "bold",
+                    labelAlign: "${align}",
+                    labelXOffset: "${xOffset}",
+                    labelYOffset: "${yOffset}"
+                }}),strategies: [strategy] 
+            });
+            
+             mapWidget.map.addLayer(vectorLayer);
+         // World Geodetic System 1984 projection (lon/lat)
+    WGS84 = new OpenLayers.Projection("EPSG:4326");
+
+    // WGS84 Google Mercator projection (meters)
+    WGS84_google_mercator = new OpenLayers.Projection("EPSG:900913");
+     
+       marker = addMarker("138.26584,-27.42626", WGS84, WGS84_google_mercator, "test",'1',"1","1","138.26584,-27.42626");     
+      vectorLayer.addFeatures([marker]);
+        
     /*$.getJSON('/api/regions.json',function(data){
        $.each(data.layers,function(key,val){
             if(key == 0){
@@ -102,12 +141,13 @@ function initMap(){
         });
         mapWidget.registerClick(data.layers,updateSelectedFeature);   
     });
-    */
+  
           mapWidget.addDrawLayer({
                 geometry: "box", 
                 allowMultiple: false, 
                 afterDraw: updateCoordinates
             });
+      */
             /* if(n!='') {
                 mapWidget.updateDrawing(mapWidget,w + "," + s+ "," + e + "," + n);
           }
@@ -118,7 +158,7 @@ function initMap(){
             //changing coordinates on textbox should change the map appearance
             enableCoordsChange(mapWidget);  
             
-            mapWidget.registerMoveEnd(refreshResults);
+           /* mapWidget.registerMoveEnd(refreshResults);
             $("#latlong").bind('click',function() {
                  $("#coords").toggle(); 
             });
@@ -137,6 +177,15 @@ function initMap(){
     return mapWidget;
 }
    
+   function removeFeatures(){ 
+			for(var i=0;i< mapWidget.map.layers.length;i++){
+                            if(mapWidget.map.layers[i].name == "Data Markers") 
+                                mapWidget.map.layers[i].removeAllFeatures();
+                            strategy.clusters=[];
+                            strategy.features=[];
+                        }
+			console.log(mapWidget.dataLayer);
+		}
 function switchLayer(e,i,mapWidget){
     var active = $("#regionSelect").accordion('option','active');
     var active_id = $("#regionSelect h3 a:eq(" + active + ")").text();
@@ -152,7 +201,7 @@ $(document).ready(function() {
            
        });*/
   
-    var mapWidget = initMapProto();
+     mapWidget = initMap();
    
     $("#regionSelect").accordion({
         autoHeight: false, 
