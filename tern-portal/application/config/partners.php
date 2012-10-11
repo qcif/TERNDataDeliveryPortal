@@ -129,7 +129,7 @@
                 ],
                 "description_value": [
                     "/img/logos/logo-ausplots.png",
-                    "AusPlots Forests is establishing a continental-scale plot based monitoring network to improve understanding of tree growth, forest productivity and carbon dynamics in tall eucalypt forests in relation to continental-scale environmental gradients.  This work is the first step toward robust monitoring of Australian forest ecosystems using standardised measurement protocols across Australia.<br/>AusPlots Rangelands is establishing a permanent plot based monitoring network throughout the rangeland bioregions of Australia, to undertake baseline surveys of vegetation and soils. This work will fill existing knowledge gaps, and facilitates ongoing evidence-based decision making capacity at local, regional, national and international levels."
+                    "AusPlots Forests is establishing a continental-scale plot based monitoring network to improve understanding of tree growth, forest productivity and carbon dynamics in tall eucalypt forests in relation to continental-scale environmental gradients.  This work is the first step toward robust monitoring of Australian forest ecosystems using standardised measurement protocols across Australia.<br/><br/>AusPlots Rangelands is establishing a permanent plot based monitoring network throughout the rangeland bioregions of Australia, to undertake baseline surveys of vegetation and soils. This work will fill existing knowledge gaps, and facilitates ongoing evidence-based decision making capacity at local, regional, national and international levels."
                 ],
       
                 "location": ["http://www.tern.org.au/ausplots.html"]
