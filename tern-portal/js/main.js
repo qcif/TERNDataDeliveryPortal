@@ -358,7 +358,24 @@ $(function() {
                     s=s.replace(/\\/g,"");
                     s=s.replace(/\(/g,"");
                     s=s.replace(/\)/g,"");
-                    str=search_term.replace(s, ""); 
+                    
+                    if((s.split("\"").length-1)==1)
+                    {
+                        if(s.charAt(3)=="\"" || s.charAt(4)=="\"")
+                        {
+                                //s=s.replace(s,"\"");
+                                str=search_term.replace(s, "\""); 
+                        }else
+                        {
+                            s=s.replace(/\"/g,"");    
+                            str=search_term.replace(s, ""); 
+                        }
+                        
+                    }else
+                    {
+                            str=search_term.replace(s, ""); 
+                    }
+                    
                     
                     str=str.replace(/\(/g,"");
                     str=str.replace(/\)/g,"");
@@ -863,7 +880,7 @@ $(function() {
 		animated: "fast",
 		collapsed: true,
 		unique: false,
-		persist: "cookie",
+		//persist: "cookie",
 		toggle: function() {
 			//window.console && console.log("%o was toggled", this);
 		}

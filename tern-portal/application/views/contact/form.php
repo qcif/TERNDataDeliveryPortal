@@ -62,8 +62,10 @@ St Lucia QLD 4072, Australia</p>
 TEL: +61 7 3346 7021<br/>
 FAX: +61 7 3365 1423<br/>
 EMAIL: <a href="mailto:tern.portal@tern.org.au">tern.portal@tern.org.au</a><br/>
-</p>
-
+</p> 
+<p>
+    <a href="http://www.tern.org.au/Facility-Data-Contacts-pg19931.html" target="_blank">Get access to Facility Data Managers</a>  
+</p> 
     </div>
 </div>
 <?php $this->load->view('tpl/footer'); ?>     

@@ -1,13 +1,13 @@
 <footer>   
-     <a class="left" href="#">
+     <p class="left">
         <img width="236" height="50" alt="Australian Government - Department of Industry, Innovation, Science, Research and Tertiary Education" src="/img/logos/logo-diisrte.png">
-    </a>
+    </p>
     <p class="center">
         <small>TERN is supported by the Australian Government through the National Collaborative Research Infrastructure Strategy and the Super Science Initiative.</small>
     </p>
     <p class="right">
         <small>
-            Copyright © TERN 2012. All Rights Reserved.
+            Copyright © 2012 TERN (University of Queensland).
                 <br>
              <?php echo anchor('home/terms', 'Terms of use',''); ?>
                 |
