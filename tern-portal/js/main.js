@@ -349,7 +349,7 @@ $(function() {
                     }
                     if($.trim(str).substring(0, 2)=="OR")
                     {
-                        str=str.substring(4);
+                        str=$.trim(str).substring(4);
                     }
                 }else
                 {
