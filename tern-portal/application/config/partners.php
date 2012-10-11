@@ -117,6 +117,40 @@
                 "location": ["http://www.tern.org.au/Multi-Scale-Plot-Network-pg17730.html"]
             },
             {
+                "key": "ausplot",
+
+                "display_title": "AusPlots",
+
+                "alt_name": "AusPlots",  
+                "query_name": "ausplots",                 
+                 "description_type": [
+                    "logo",
+                    "full"
+                ],
+                "description_value": [
+                    "/img/logos/logo-ausplots.png",
+                    "AusPlots Forests is establishing a continental-scale plot based monitoring network to improve understanding of tree growth, forest productivity and carbon dynamics in tall eucalypt forests in relation to continental-scale environmental gradients.  This work is the first step toward robust monitoring of Australian forest ecosystems using standardised measurement protocols across Australia.<br/>AusPlots Rangelands is establishing a permanent plot based monitoring network throughout the rangeland bioregions of Australia, to undertake baseline surveys of vegetation and soils. This work will fill existing knowledge gaps, and facilitates ongoing evidence-based decision making capacity at local, regional, national and international levels."
+                ],
+      
+                "location": ["http://www.tern.org.au/ausplots.html"]
+            },    
+            {
+                "key": "ltern",
+                "display_title": "Long Term Ecological Research Network",
+                "alt_name": "Long Term Ecological Research Network",  
+                "query_name": "ltern",                 
+                 "description_type": [
+                    "logo",
+                    "full"
+                ],
+                "description_value": [
+                    "/img/logos/logo-ltern.png",
+                    "The Long Term Ecological Research Network has established a coordinated and collaborative approach across 12 existing long-term ecological plot monitoring programs in a range of Australian ecosystems. Data collected throughout the network includes vegetation, soils, invertebrates, birds, reptiles, arboreal marsupials, genetics and phenology. LTERN provides important scientific knowledge and data to allow Australians to better understand and interpret environmental change."
+                ],
+      
+                "location": ["http://www.tern.org.au/ausplots.html"]
+            },            
+            {
                 "key": "supersite",             
 
                 "display_title": "Australian Supersite Network",

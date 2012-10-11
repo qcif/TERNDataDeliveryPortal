@@ -1454,16 +1454,24 @@ $(function() {
        
         $("#carouselContainer").carousel('#carouselprev','#carouselnext'); 
         
+        var intervalId=window.setInterval(slide,2000);
         $("#carouselContainer img").click(function(){
-                                var facname=$(this).attr("id");
-                                 //alert($(this).attr("id"));                                
-                                handleRandom(facname);
+              if(event.originalEvent)
+              {
+                window.clearInterval(intervalId);
+              }
+               var facname=$(this).attr("id");
+               //alert($(this).attr("id"));                                
+               handleRandom(facname);
                                 //window.open($(this).attr("id"));
                                 //window.focus();
 	});
        // sizeHomeContent();
     }
 
+    function slide(){
+        $('#carouselnext').click();
+    }
     function resetFilter(){
         subjectFilter = 'All';
         classFilter= 'collection';
