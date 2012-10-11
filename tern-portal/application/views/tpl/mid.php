@@ -33,13 +33,14 @@ $Revision: 1 $
                 <?php if($home==1){ ?>
 
                     <div id="searchFeatures">
-                        <span id="slogan">Delivering open access to Australia's Terrestrial Ecosystem data</span>
+                        <span id="slogan">Delivering open access to Australia's terrestrial ecosystem data</span>
                         <input class="rounded" id ="search-box" title="Search ecosystem data" type="text" name="query" placeholder="Search ecosystem data" >
                         <a id="searchBtn" class="orangeGradient roundedCorners">
                             <img alt="Search" src="img/icons/icon-search.png"> 
                             Search
                         </a>
-                        <img id="orImg" alt="Or" src="img/home/or.png">        
+                        <!--img id="orImg" alt="Or" src="img/home/or.png"-->        
+                        <div id="orImg" style="width:74px;"></div>
                         <div id="mapBasedSearchTxt">
                             <span id="mapBasedSearchTitle">Map Based Search</span>
                             <span id="mapBasedSearchDescription">Use our map interface to search for data</span>

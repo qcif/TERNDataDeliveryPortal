@@ -93,7 +93,7 @@ header{
 /* Home Page
 *******************************************************************/
 #searchFeatures{ background: url(../img/gradients/search-bg-gradient.png) repeat-x; padding: 20px 40px; height: 132px; margin-bottom: 13px; }
-	#searchFeatures #slogan{ height: 45px; display: block; font-weight: bold; font-size: 28px; color: #fff; background: url(../img/dividers/search-features-divider.png) no-repeat center bottom; }
+	#searchFeatures #slogan{ height: 45px; display: block; font-weight: bold; font-size: 28px; color: #fff; background: url(../img/dividers/search-features-divider.png) no-repeat center bottom; text-align:center; }
 	#searchFeatures input{ 
 		margin: 25px 10px 0px 0px;
 		width: 330px; 

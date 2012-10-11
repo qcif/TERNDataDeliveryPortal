@@ -48,7 +48,7 @@
                 "key": "land_surface_and_soils",
                 "title": "Land surface & Soils",
                 "img_url": "/img/topics/land_surface_and_soils.png",                 
-                "query_url": "<?php echo base_url();?>search#!\/q=land surface OR soil* OR erosion OR sedimen* OR land* OR topography OR (frozen AND land) OR (soil AND salinity)\/p=1\/tab=collection\/num=10" 
+                "query_url": "<?php echo base_url();?>search#!\/q=land surface OR soil* OR erosion OR sedimen* OR land* OR topography OR (frozen AND land)\/p=1\/tab=collection\/num=10" 
 
             },
              {
@@ -60,7 +60,7 @@
             },
             {
                 "key": "oceans_and_coasts",
-                "title": "Oceans & coasts",
+                "title": "Oceans & Cdwoasts",
                 "img_url": "/img/topics/oceans_and_coastal_processes.png",                 
                 "query_url": "<?php echo base_url();?>search#!\/q=(coast* OR ocean*) OR marine OR beach OR bathmetry OR tide* OR aqua* OR sea* OR saltwa* OR storm OR shoreline OR wave* OR salinity\/p=1\/tab=collection\/num=10" 
 
