@@ -31,7 +31,8 @@
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.cookie.js"></script> <!-- jQuery Cookie-->  
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.infinite-carousel.js"></script> 
         <script type="text/javascript" src="<?php echo base_url();?>js/hoverIntent.js"></script>  
-                        
+        <script type="text/javascript" src="<?php echo base_url();?>js/modernizr.custom.86191.js"></script> 
+      
         <script type="text/javascript" src="<?php echo base_url();?>js/misc.js"></script>  
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.treeview.js"></script> <!-- jQuery treeview -->        
       

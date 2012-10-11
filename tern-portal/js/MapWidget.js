@@ -966,7 +966,7 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
     if(clustering){
       
         strategy = new OpenLayers.Strategy.Cluster({
-            distance: 15, 
+            distance: 30, 
             threshold: 2
         });
         this.dataLayer = new OpenLayers.Layer.Vector( "Data Markers", {
@@ -1022,7 +1022,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
     
     var WGS84 = this.WGS84; 
     var WGS84_google_mercator = this.WGS84_google_mercator;
-    var number;
+    var number,numberPin;
     var html ='';
     var title = '';
     var vectors = Array();
@@ -1040,7 +1040,8 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
              var button =  $('<p>').append($(this).closest('tr').find('#metabutton a').clone()).remove().html();
             
              number = $(this).closest('tr').children('td:nth-child(1)').children('a').html();
-             html  = " <a class=\"pin\" style=\"float:left\">" + number +  "</a><strong>" + title + "</strong> <br/> Release date: " + date  + "&nbsp; "+ button ; 
+             numberPin = $('<p>').append($(this).closest('tr').children('td:nth-child(1)').children('a').clone()).remove().html();
+              html  = numberPin +  "<strong>" + title + "</strong> <br/> Release date: " + date  + "&nbsp; "+ button ; 
            //  html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";    
              $.each($(this).parent().children('.spatial').children('li'), function(){
                   coverage.push( $(this).text());
@@ -1052,9 +1053,9 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
             number = ''
         }
         if($(this).html().indexOf(' ') != -1){ 
-            vectors.push(addVector($(this).html(), WGS84,WGS84_google_mercator, html,number, title));    
+            vectors.push(addVector($(this).html(), WGS84,WGS84_google_mercator, html,number, numberPin, title));    
         }else{
-            vectors.push(addMarker($(this).html(), WGS84,WGS84_google_mercator, html,number,title,coverage));
+            vectors.push(addMarker($(this).html(), WGS84,WGS84_google_mercator, html,number, numberPin, title,coverage));
         }
 
     }); 
@@ -1068,13 +1069,14 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
 }
  
 MapWidget.prototype.removeAllFeatures = function(){
-    this.dataLayer.removeAllFeatures();
-   
-    this.coverageLayer.removeAllFeatures();
     for (var i=0; i<this.map.popups.length; ++i) 
     { 
         this.map.removePopup(this.map.popups[i]); 
     };  
+    this.dataLayer.removeAllFeatures();
+    this.dataLayer.destroyFeatures();
+    this.coverageLayer.removeAllFeatures();
+    this.coverageLayer.destroyFeatures();
     
 }
 
@@ -1158,7 +1160,7 @@ MapWidget.prototype.onFeatureSelect = function(feature){
         var html = '<h2 class="h2color">Multiple matches: </h2>';
         html = html  + "<ul>";
         $.each(feature.cluster,function(){
-            html = html + "<li class=\"clearfix\"><strong> <a class=\"pin\">" + this.data.number + "</a> " +  this.data.title  + "</strong><div class=\"hide popup_coverage\"><ul>";
+            html = html + "<li class=\"clearfix\"><strong>" +  this.data.numberPin +  this.data.title  + "</strong><div class=\"hide popup_coverage\"><ul>";
            $.each(this.data.coverage,function(){
                 html = html  + "<li>" + this +  "</li>";
             });
@@ -1528,7 +1530,7 @@ ms += new Date().getTime();
 while (new Date() < ms){}
 } 
 
- function addMarker(lonlat,WGS84,WGS84_google_mercator,html, number, title, coverage){
+ function addMarker(lonlat,WGS84,WGS84_google_mercator,html, number, numberPin, title, coverage){
         var word = lonlat.split(',');
         var point = new OpenLayers.Geometry.Point(word[0],word[1]);
         point.transform(WGS84, WGS84_google_mercator);
@@ -1537,6 +1539,7 @@ while (new Date() < ms){}
             title: title, 
             type: "point", 
             number: number,
+            numberPin:numberPin,
             coverage: coverage
         }
         var feature = new OpenLayers.Feature.Vector(point, attributes);
@@ -1544,7 +1547,7 @@ while (new Date() < ms){}
         return feature;
    } 
     
-    function addVector(coordinates,WGS84,WGS84_google_mercator,html, number, title){
+    function addVector(coordinates,WGS84,WGS84_google_mercator,html, number, numberPin, title){
         var points = coordinates.split(' ');
         var vector_points = Array();
         $.each(points, function(i, s){
@@ -1559,7 +1562,8 @@ while (new Date() < ms){}
             popupHTML: html,
             title: title,  
             type: "polygon", 
-            number: number
+            number: number,
+            numberPin:numberPin
         }
         var feature = new OpenLayers.Feature.Vector(
         new OpenLayers.Geometry.Polygon([linear_ring]),attributes);          

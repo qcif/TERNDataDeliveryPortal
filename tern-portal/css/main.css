@@ -545,11 +545,13 @@ table#searchResults p.datePublished{ margin: 15px 0px; float: left; width: 100px
 table#searchResults a.smallRoundedCorners{ clear: both; display: block; width: 105px; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px; margin-bottom: 5px; }
 table#searchResults a.show, table#searchResults a.hide{ margin-top: 7px; }
 
-
+ 
 /* Search Results - Pins
 *******************************************************************/
 a.pin{ background: url(../img/icons/pin-single-normal-bg.png) no-repeat; width: 40px; height: 42px; display: block; color: #fff; margin: 10px 0px 0px 15px; padding: 7px 0px 0px 11px; float: left; font-weight: bold; font-size: 15px; }
-a.pin:hover{ background: url(../img/icons/pin-single-hover-bg.png) no-repeat; text-decoration: none; }
+a.pin2{ background: url(../img/icons/pin-single-normal-bg.png) no-repeat; width: 40px; height: 42px; display: block; color: #fff; margin: 10px 0px 0px 15px; padding: 7px 0px 0px 7px; float: left; font-weight: bold; font-size: 15px; }
+a.pin3{ background: url(../img/icons/pin-single-normal-bg.png) no-repeat; width: 40px; height: 42px; display: block; color: #fff; margin: 10px 0px 0px 15px; padding: 7px 0px 0px 3px; float: left; font-weight: bold; font-size: 15px; }
+a.pin:hover, a.pin2:hover, a.pin3:hover{ background: url(../img/icons/pin-single-hover-bg.png) no-repeat; text-decoration: none; }
 a.mapPinSingle{ background: url(../img/icons/map-pin-single-normal-bg.png) no-repeat; width: 40px; height: 42px; display: block; color: #fff; margin: 10px 0px 0px 15px; padding: 7px 0px 0px 11px; float: left; font-weight: bold; font-size: 15px; }
 a.mapPinSingle:hover{ background: url(../img/icons/map-pin-single-hover-bg.png) no-repeat; text-decoration: none; }
 a.mapPinMultiple{ background: url(../img/icons/map-pin-multiple-normal-bg.png) no-repeat; width: 40px; height: 42px; display: block;  margin: 10px 0px 0px 15px; position: absolute; }
@@ -851,4 +853,14 @@ nav#facetNav #group-facet li{
 }
 a.download{
     word-wrap: break-word;
+}
+#contact{
+    height: 400px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+#dateFrom option,#dateTo option{
+     padding-top:3px;padding-left: 3px;
 }

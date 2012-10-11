@@ -139,7 +139,15 @@ if ($realNumFound >0)
             echo '<tbody>';
             echo '<tr>';
             echo    '<td>';
-                        if($center) echo '<a class="pin" href="javascript:void(0);">' . $c . '</a>';
+                        if($center) {
+                            if($c > 99){ 
+                                echo '<a class="pin3" href="javascript:void(0);">' . $c . '</a>';
+                            }elseif($c > 9){
+                                 echo '<a class="pin2" href="javascript:void(0);">' . $c . '</a>';
+                            }else{
+                                echo '<a class="pin" href="javascript:void(0);">' . $c . '</a>';
+                            }
+                        }
             echo    '</td>';
             echo    '<td><h2><a href="javascript:void(0);">' . $name . '</a></h2>';
             echo        '<div class="expand" id="metadesc">';

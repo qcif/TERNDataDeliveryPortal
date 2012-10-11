@@ -146,11 +146,6 @@ ins {background-color: #fcd700; color: #000; text-decoration: none;}
 mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: bold;}
 
 
-#dateFrom,#dateTo{
-     height:25px;padding-top:3px;width:60px;padding-left: 3px;
-}
-
-
 /* Print styles!
 -------------------------------------------------------------------------------*/
 @media print {
