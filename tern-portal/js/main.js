@@ -345,11 +345,11 @@ $(function() {
                     
                     if($.trim(str).substring(0, 2)=="AN" ||$.trim(str).substring(0, 2)=="NO")
                     {
-                        str=str.substring(5);
+                        str=$.trim(str).substring(4);
                     }
                     if($.trim(str).substring(0, 2)=="OR")
                     {
-                        str=$.trim(str).substring(4);
+                        str=$.trim(str).substring(3);
                     }
                 }else
                 {
@@ -359,6 +359,9 @@ $(function() {
                     s=s.replace(/\(/g,"");
                     s=s.replace(/\)/g,"");
                     str=search_term.replace(s, ""); 
+                    
+                    str=str.replace(/\(/g,"");
+                    str=str.replace(/\)/g,"");
                 }         
 
                   search_term=$.trim(str)
