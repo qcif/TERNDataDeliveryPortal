@@ -4,8 +4,6 @@
 <div id="staticContentWhite">
     <h1 class="margin10">Terms of use</h1>
  
-<h2>Introduction</h2>
-
 <p>By using TERN Data Discovery Portal contents you are agreeing to be bound by these Terms of Use.</p>
 
 <p>Content provided through this portal may be subjected to specific terms and conditions imposed by a data provider and the data provider may include certain licenses to use the Content.</p>
@@ -26,12 +24,13 @@
 <p>The TERN Data Discovery Portal utilises resources from the following third-party providers.</p>
 <h3>Mapping data</h3>
 <p>The region maps used in the search interface has been provided by the following agencies:</p>
-<ul>
+<ul style="line-height: 30px;">
   <li><a href="http://www.environment.gov.au/parks/nrs/science/bioregion-framework/ibra/index.html" target="_blank">Interim Biogeographic Regionalisation of Australia (v7)</a>: Australian Government - Department of Sustainability, Environment, Water, Population and Communities</li>
   <li><a href="http://www.environment.gov.au/metadataexplorer/full_metadata.jsp?docId=%7BFA68F769-550B-4605-A0D5-50B10ECD0EB9%7D" target="_blank">Natural Resource Management (NRM) Regions (2010)</a>: Australian Government - Department of Sustainability, Environment, Water, Population and Communities</li>
   <li><a href="http://www.bom.gov.au/jsp/ncc/climate_averages/climate-classifications/index.jsp" target="_blank">Climate classification maps</a>: Australian Government - Bureau of Meteorology</li>
   <li><a href="http://www.abs.gov.au/AUSSTATS/abs@.nsf/Lookup/1259.0.30.001Main+Features1July%202011?OpenDocument" target="_blank">Australian Standard Geographical Classification (ASGC) Digital Boundaries, Australia, July 2011</a>: Australian Government - Australian Bureau of Statistics</li>
   </ul>
-<p>Please note that the links provided above are current as of October 1, 2012. In no way do these data providers endorse the TERN Data Discover Portal.</p>
+<br/>
+<p>Please note that the links provided above are current as of October 1, 2012. In no way do these data providers endorse the TERN Data Discovery Portal.</p>
 </div>
 <?php $this->load->view('tpl/footer');?>
