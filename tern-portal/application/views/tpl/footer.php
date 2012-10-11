@@ -22,7 +22,7 @@
 		var service_url = "<?php echo service_url();?>";
 	</script>
 	
-	 
+	  
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.2.min.js"></script> <!-- jQuery -->
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui-1.8.20.custom.min.js"></script> <!-- jQuery UI-->
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.tools.min.js"></script> <!-- jQuery UI-->
@@ -31,8 +31,7 @@
 	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.cookie.js"></script> <!-- jQuery Cookie-->  
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.infinite-carousel.js"></script> 
         <script type="text/javascript" src="<?php echo base_url();?>js/hoverIntent.js"></script>  
-        <script type="text/javascript" src="<?php echo base_url();?>js/modernizr.custom.86191.js"></script> 
-      
+       
         <script type="text/javascript" src="<?php echo base_url();?>js/misc.js"></script>  
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.treeview.js"></script> <!-- jQuery treeview -->        
       
