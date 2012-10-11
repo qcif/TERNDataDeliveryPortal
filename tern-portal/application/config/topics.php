@@ -81,7 +81,7 @@
             },
             {
                 "key": "energy_water_and_gas_exchange",
-                "title": "Energy, water & gas exchange",
+                "title": "Energy, water & gas",
                 "img_url": "/img/topics/energy_water_and_gas_exchange.png",                 
                 "query_url": "<?php echo base_url();?>search#!\/q=energy OR gas OR flux* OR atmospher* OR cloud OR air OR Pheno* OR radia* OR vapo* OR wind* OR precipitation OR rain\/p=1\/tab=collection\/num=10" 
 

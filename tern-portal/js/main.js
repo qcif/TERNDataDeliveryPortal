@@ -1455,11 +1455,15 @@ $(function() {
         $("#carouselContainer").carousel('#carouselprev','#carouselnext'); 
         
         var intervalId=window.setInterval(slide,2000);
-        $("#carouselContainer img").click(function(){
+        $('#carouselprev, #carouselnext').click(
+           function(event){
               if(event.originalEvent)
               {
                 window.clearInterval(intervalId);
               }
+           }
+       );
+        $("#carouselContainer img").click(function(){
                var facname=$(this).attr("id");
                //alert($(this).attr("id"));                                
                handleRandom(facname);
