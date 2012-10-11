@@ -778,7 +778,8 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 /* Contact Form
 ***********************************************************/
 #contact_form{
-    width: 400px;   
+    width: 400px;
+    float: left;
 }
 #contact_form label{
     font-weight: bold;
@@ -786,6 +787,8 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 #contact_form .error{
     color: red;
 }
+
+
 
 /* Static Content
 *********************************************************/

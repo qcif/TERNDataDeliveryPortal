@@ -52,5 +52,18 @@
 
     ?>
 </div>
+    <div id="contactText">
+        <p>
+        Terrestrial Ecosystem Research Network (TERN)<br/>
+Goddard Building (Bld #8)<br/>
+The University of Queensland<br/>
+St Lucia QLD 4072, Australia</p>
+<p>
+TEL: +61 7 3346 7021<br/>
+FAX: +61 7 3365 1423<br/>
+EMAIL: <a href="mailto:tern.portal@tern.org.au">tern.portal@tern.org.au</a><br/>
+</p>
+
+    </div>
 </div>
 <?php $this->load->view('tpl/footer'); ?>     
