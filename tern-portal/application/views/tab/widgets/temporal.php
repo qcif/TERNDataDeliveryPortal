@@ -9,16 +9,16 @@
             <strong>between</strong>
             :
         </p>
-        <select id="dateFrom">               
+        <select id="dateFrom" class="facetDropDown">               
 		<?php 
                     for($i=$min_year;$i<$max_year;$i++)
                     {
                         echo '<option value="'.$i.'">'.$i.'</option>';
                     }
-		?>
+		?> 
         </select>
         &  
-        <select id="dateTo">
+        <select id="dateTo" class="facetDropDown">
 		<?php 
                     for($i=$max_year;$i>$min_year;$i--)
                     {

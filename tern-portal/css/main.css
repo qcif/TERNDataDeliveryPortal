@@ -854,13 +854,10 @@ nav#facetNav #group-facet li{
 a.download{
     word-wrap: break-word;
 }
-#contact{
+#contactResult{
     height: 400px;
     font-weight: bold;
     text-align: center;
 }
 
 
-#dateFrom option,#dateTo option{
-     padding-top:3px;padding-left: 3px;
-}
