@@ -1069,14 +1069,15 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
 }
  
 MapWidget.prototype.removeAllFeatures = function(){
-    for (var i=0; i<this.map.popups.length; ++i) 
+    
+    for (var i=0; i<this.map.popups.length; i++) 
     { 
         this.map.removePopup(this.map.popups[i]); 
     };  
     this.dataLayer.removeAllFeatures();
-    this.dataLayer.destroyFeatures();
+    this.dataLayer.destroyFeatures(this.dataLayer.features);
     this.coverageLayer.removeAllFeatures();
-    this.coverageLayer.destroyFeatures();
+    this.coverageLayer.destroyFeatures(this.coverageLayer.features);
     
 }
 
