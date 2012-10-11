@@ -358,6 +358,11 @@ $(function() {
                     s=s.replace(/\\/g,"");
                     s=s.replace(/\(/g,"");
                     s=s.replace(/\)/g,"");
+                    
+                    if((s.split("\"").length-1)==1)
+                    {
+                        s=s.replace(/\"/g,"");                    
+                    }
                     str=search_term.replace(s, ""); 
                     
                     str=str.replace(/\(/g,"");
