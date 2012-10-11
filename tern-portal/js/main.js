@@ -863,7 +863,7 @@ $(function() {
 		animated: "fast",
 		collapsed: true,
 		unique: false,
-		persist: "cookie",
+		//persist: "cookie",
 		toggle: function() {
 			//window.console && console.log("%o was toggled", this);
 		}
