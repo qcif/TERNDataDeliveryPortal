@@ -1227,34 +1227,11 @@ $(function() {
                 $("div[id=metabutton]").hide();
                    $("#searchResults tr").click(function(event) {
                         event.stopPropagation();
-                         $(this).context.cells[1].children[1].style.display=="block" ?    $(this).context.cells[1].children[1].style.display="none":
-                         $(this).context.cells[1].children[1].style.display="block"; 
-
-                         $(this).context.cells[2].childNodes[2].style.display=="block" ?    $(this).context.cells[2].childNodes[2].style.display="none":
-                         $(this).context.cells[2].childNodes[2].style.display="block";
-                     
-                         $(this).context.cells[2].childNodes[1].className=="show" ? $(this).context.cells[2].childNodes[1].className="hide":
-                         $(this).context.cells[2].childNodes[1].className="show";
-                         
+                        $(this).find("#metabutton").toggle();
+                        $(this).find("#metadesc").toggle();
+                   
                     }); 
-/*
-                    $("#searchResults").click(function(event) {
-                        event.stopPropagation();
-                        var $target = $(event.target);
-                        if ( $target.closest("tr").attr("id")=="desc" ) {
-                            $target.closet("tr").slideUp();
-
-                        } else if($target.closest("div").attr("id")!="metabutton") { 
-                            $target.closest("div").next().slideToggle();           
-                        } else if ($target.attr("class")!="viewmeta")
-                        {
-                            $target.closest("tr").slideToggle();  
-                        }
-                    }); 
-*/
-                    
-               //  $("#loading").hide();
-                 
+ 
                  var opt=document.getElementsByName('select-view-record');
                  if(opt.length>0){
                      for(var s=0;s<opt.length;s++)
