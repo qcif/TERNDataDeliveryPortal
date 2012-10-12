@@ -1229,7 +1229,12 @@ $(function() {
                         event.stopPropagation();
                         $(this).find("#metabutton").toggle();
                         $(this).find("#metadesc").toggle();
-                   
+                        if($(this).find(".actionsColumn .show").length > 0){
+                            $(this).find(".actionsColumn").children('a').attr("class","hide");                            
+                        }
+                        else if($(this).find(".actionsColumn .hide").length > 0){
+                            $(this).find(".actionsColumn").children('a').attr("class","show");                            
+                        }
                     }); 
  
                  var opt=document.getElementsByName('select-view-record');
