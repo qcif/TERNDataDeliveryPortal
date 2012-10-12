@@ -550,7 +550,7 @@ table#searchResults th.datePublishedTH{ width: 159px; text-align: left; }
 
 table#searchResults tbody td h2{ font-size: 14px; font-weight: normal; margin: 0px; margin: 15px 0px; }
 table#searchResults p.datePublished{ margin: 15px 0px; float: left; width: 100px; }
-table#searchResults a.smallRoundedCorners{ clear: both; display: block; width: 105px; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px; margin-bottom: 5px; }
+table#searchResults a.smallRoundedCorners{ clear: both; display: block; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px; margin-bottom: 5px; }
 table#searchResults a.show, table#searchResults a.hide{ margin-top: 7px; }
 
  
