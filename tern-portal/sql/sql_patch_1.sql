@@ -3,7 +3,9 @@
 --
 
 CREATE VIEW dba.vw_minmax_date AS
-    SELECT min("left"((dba.tbl_temporal_coverage_dates.value)::text, 4)) AS min_year, max("left"((dba.tbl_temporal_coverage_dates.value)::text, 4)) AS max_year FROM dba.tbl_temporal_coverage_dates;
+     SELECT min("left"(tbl_temporal_coverage_dates.value::text, 4)) AS min_year, max("left"(tbl_temporal_coverage_dates.value::text, 4)) AS max_year
+   FROM tbl_temporal_coverage_dates
+  WHERE tbl_temporal_coverage_dates.value::text <> ''::text;
 
 
 ALTER TABLE dba.vw_minmax_date OWNER TO admin;
