@@ -330,7 +330,7 @@ $(function() {
                 search_term='*:*';    
             }else
             {
-                var str="";
+                 var str="";
                 if($.trim($(this).attr('id')).search("AND")==-1 && $.trim($(this).attr('id')).search("NOT")==-1 &&$.trim($(this).attr('id')).search("OR")==-1)
                 {
                     var r=decodeURIComponent($.trim($(this).attr('id'))); 
@@ -358,13 +358,18 @@ $(function() {
                     s=s.replace(/\\/g,"");
                     s=s.replace(/\(/g,"");
                     s=s.replace(/\)/g,"");
+                      
+                    if((s.split("\"").length-1)==1)
+                    {
+                        s=s.replace(/\"/g,"");                    
+                    }
                     str=search_term.replace(s, ""); 
                     
                     str=str.replace(/\(/g,"");
                     str=str.replace(/\)/g,"");
                 }         
 
-                  search_term=$.trim(str)
+                  search_term=$.trim(str)            
             }
             
         }
@@ -863,7 +868,7 @@ $(function() {
 		animated: "fast",
 		collapsed: true,
 		unique: false,
-		persist: "cookie",
+		//persist: "cookie",
 		toggle: function() {
 			//window.console && console.log("%o was toggled", this);
 		}
