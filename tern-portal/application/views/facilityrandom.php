@@ -39,13 +39,14 @@ $half = round($count / 2);
 
 
         
-function printRecord($r){
+function printRecord($r, $class){
      $ro_key = $r->{'key'};
      $date = $r->{'timestamp'};
      
      $date_t = new DateTime($date);
      $date_t->setTimeZone(new DateTimeZone("Australia/Brisbane"));
      $date = $date_t->format('d-m-Y');
+     if($class!="") $class = "class=\"" . $class. "\"";
      if ($r->url_slug)
 	{
             $key_url = base_url().$r->{'url_slug'};
@@ -56,9 +57,9 @@ function printRecord($r){
            // $name =  $r->{'displayTitle'}; //commented 8.1
             $name =  $r->{'display_title'}; //added 8.1
 
-
-            echo '<li>'; 
-            echo    '<a href="'. $key_url .'" target="_new">';
+ 
+            echo '<li ' .$class . '>'; 
+            echo    '<a href="'. $key_url .'" target="_new" >';
             echo    '<span class="date">'.$date.' - </span>';
             echo    $name;
             echo    '</a>';
@@ -126,14 +127,22 @@ function printRecord($r){
 
                             for($i=0;$i<$half; $i++)
                             {
-                                printRecord($recordsArr[$i]);
+                               if($i==$half-1){
+                                    printRecord($recordsArr[$i],"last-child");
+                                }else{
+                                    printRecord($recordsArr[$i],"");
+                                }
                             }
                         echo '</ul>';
 
                         echo '<ul>';
                             for($i=$half;$i<$count; $i++)
                             {
-                                printRecord($recordsArr[$i]);
+                                 if($i==$count-1){
+                                    printRecord($recordsArr[$i],"last-child");
+                                }else{
+                                    printRecord($recordsArr[$i],"");
+                                }
                             }
                         echo '</ul>';
                     }else

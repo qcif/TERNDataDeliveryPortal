@@ -60,9 +60,9 @@ if ($realNumFound >0)
         echo '<table id="searchResults">';
         echo '<thead>';
         echo '<tr>';
-        echo    '<th class="mapRefTH blackGradient">Map ref#</th>';
+        echo    '<th class="mapRefTH blackGradient first-child">Map ref#</th>';
         echo    '<th class="titleTH blackGradient">Title</th>';
-        echo    '<th class="datePublishedTH blackGradient">Date released</th>';
+        echo    '<th class="datePublishedTH blackGradient last-child">Date released</th>';
         echo '</tr>';
         echo '</thead>';
         foreach ($json->{'response'}->{'docs'} as $r) 
@@ -191,7 +191,7 @@ if ($realNumFound >0)
             }
             echo '</div>';
             echo '</td>';
-            echo    '<td><p class="datePublished">' . $date_pub . '</p>';
+            echo    '<td class="actionsColumn"><p class="datePublished">' . $date_pub . '</p>';
             echo    '<a class="show" href="javascript:void(0);"></a>';
             echo        '<div class="expand" id="metabutton">';
             echo            '<a class="greenGradient smallRoundedCorners viewmeta" href="' . $key_url . '" target="_blank">View Metadata</a>';
@@ -202,63 +202,6 @@ if ($realNumFound >0)
 
             echo '</tbody>';
 
-
-
-            /*
-            echo '<div class="search_item">';
-
-            $key_url =  base_url().'view/?key='.urlencode($ro_key);
-
-            echo '<h2 class="h2color"><span class="count">'. $c . '. </span><a  id="'.$ro_key.'" class="record-list">'.$name.'</a></h2>';
-
-            //if(isset($r->{'alt_listTitle'})){
-            if(isset($r->{'alt_list_title'})){
-            echo '<div class="alternatives">';
-            //foreach($r->{'alt_listTitle'} as $listTitle){
-            foreach($r->{'alt_list_title'} as $listTitle){
-
-            echo '<p class="alt_listTitle">'.$listTitle.'</p>';
-            }
-            echo '</div>';
-            }
-
-            //DESCRIPTIONS';
-            if($found_brief || $found_full){
-            echo '<p>';
-            if($found_brief){
-            echo ($brief);
-            }elseif($found_full){
-            echo ($full);
-
-            }
-            echo '</p> ';
-            }
-
-            if($spatial){
-
-            echo '<ul class="spatial">';
-            foreach($spatial as $s){
-            echo '<li>'.$s.'</li>';
-            }
-            echo '</ul>';
-            echo '<a class="spatial_center">'.$center.'</a>';
-            echo '<a class="key hide">'.$ro_key.'</a>';
-            }
-
-            if(get_cookie('show_subjects')=='yes'){
-            if($subjects){
-            echo '<div class="subject-container">';
-            echo '<ul class="subjects">';
-            foreach($subjects as $s){
-            echo '<li><a href="javascript:void(0);" class="contentSubject" id="'.$s.'">'.$s.'</a></li>';
-            }
-            echo '</ul>';
-            echo '</div>';
-            }
-            }
-            echo '</div>';
-            */
-        // $c++;
         }
         echo '</table>';
 

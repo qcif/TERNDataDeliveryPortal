@@ -62,11 +62,11 @@ if (isset($description))
                                     <li><?php echo anchor('home/accessdata', 'Access data', ''); ?></li>
                                     <li><?php echo anchor('home/submitdata', 'Submit data', ''); ?></li>
                                     <li><?php echo anchor('home/licensing', 'Data licensing', ''); ?></li>                      
-                                    <li><?php echo anchor('home/infrastructure', 'Research Infrastructure', ''); ?></li> 
+                                    <li class="last-child"><?php echo anchor('home/infrastructure', 'Research Infrastructure', ''); ?></li> 
                                 </ul> 
                             </div>
                         </li>  
-                        <li><?php echo anchor('contact', 'Contact', ''); ?>
+                        <li class="last-child"><?php echo anchor('contact', 'Contact', ''); ?>
                             
                         </li>                       
                     </ul> 

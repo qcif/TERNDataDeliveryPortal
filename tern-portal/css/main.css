@@ -66,7 +66,7 @@ header{
                         
 			nav#globalNav ul.left .subMenu ul{ position: absolute; background-color: #fff; padding: 0px; display: block; box-shadow: rgba(0,0,0,0.6) 0px 2px 3px;  behavior: url(/css/PIE.htc);   }
 			nav#globalNav ul.left .subMenu li{ margin: 0px; padding: 0px; border: 0; line-height:32px; display: block; background: url(../img/dividers/sub-menu-divider.png) no-repeat center bottom; }
-			nav#globalNav ul.left .subMenu  li:last-child{ background: none; }
+			 nav#globalNav ul.left .subMenu  li.last-child /*nav#globalNav ul.left .subMenu  li:last-child*/{ background: none; } /* RW UPDATED */                        
 			nav#globalNav ul.left .subMenu li a{ font-size: 14px; color: #467000; font-weight: normal; margin: 0px; padding: 0px 9px; width: 177px; display: block; line-height: 32px; text-decoration: none; }
 			nav#globalNav ul.left .subMenu li a:hover{
 				color: #fff;
@@ -144,7 +144,7 @@ header{
 	#recentlyReleased h1{ color: #609227; }
 	#recentlyReleased ul{ float: left; width: 50%; list-style: none; padding: 0px; }
 		#recentlyReleased ul li{ margin: 0px 20px 20px 30px; padding-bottom: 20px; font-size: 14px; background: url(../img/dividers/recently-released-divider.png) no-repeat center bottom; }
-			#recentlyReleased ul li:last-child{ background: none; }
+			#recentlyReleased ul li.last-child /* #recentlyReleased ul li:last-child */{ background: none; } /* RW UPDATED */
 		#recentlyReleased a span.date{ color: #333333; }
 		
 #facilitiesAndDatasets{ background-color: #fff; height: 95px; clear: both; padding: 30px 35px 30px 35px; }
@@ -329,7 +329,7 @@ nav.resultsNav{
 	#map-toolbar ul{ list-style: none; padding: 0px; }
 	#map-toolbar li{ float: left; background: url(../img/dividers/map-tools-divider.png) no-repeat right center; padding: 8px 10px 0px 10px; text-align: center; margin: 0px; }
 	#map-toolbar li.heading{ font-size: 16px !important; color: #fff !important; }
-	#map-toolbar li:first-child, #map-toolbar li:last-child{ background: none; }
+	#map-toolbar li.first-child, #map-toolbar li.last-child /*#map-toolbar li:first-child, #map-toolbar li:last-child*/{ background: none; } /* RW UPDATED */
 	#map-toolbar input{ margin: 0px; padding: 0px; }
 	
 	.panBtn,.panBtnActive,
@@ -510,23 +510,23 @@ table#searchResults{
 	border-spacing: 0px;
 }
 
-table#searchResults thead th{ font-weight: normal; background: url(../img/dividers/table-th-divider.png) no-repeat right center; padding: 10px 10px; }	
-table#searchResults thead th:first-child {
+table#searchResults thead th{ font-weight: normal; background: url(/img/dividers/table-th-divider.png) no-repeat right center; padding: 10px 10px; }	
+
+table#searchResults thead th /*table#searchResults thead th:only-child*/{ /* RW UPDATED - Moved up above the bottom two */
+	-moz-border-radius: 6px 6px 0 0;
+	-webkit-border-radius: 6px 6px 0 0;
+	border-radius: 6px 6px 0 0;
+}
+table#searchResults thead th.first-child /*table#searchResults thead th:first-child */{ /* RW UPDATED */
 	-moz-border-radius: 6px 0 0 0;
 	-webkit-border-radius: 6px 0 0 0;
 	border-radius: 6px 0 0 0;
 }
 
-table#searchResults thead th:last-child {
+table#searchResults thead th.last-child /*table#searchResults thead th:last-child*/ { /* RW UPDATED */
 	-moz-border-radius: 0 6px 0 0;
 	-webkit-border-radius: 0 6px 0 0;
 	border-radius: 0 6px 0 0;
-}
-
-table#searchResults thead th:only-child{
-	-moz-border-radius: 6px 6px 0 0;
-	-webkit-border-radius: 6px 6px 0 0;
-	border-radius: 6px 6px 0 0;
 }
 
 table#searchResults tbody td{ 
@@ -536,10 +536,15 @@ table#searchResults tbody td{
 }
 
 table#searchResults tbody td:last-child {
-	background: #fff url(../img/dividers/search-results-divider.png) no-repeat left center; 
+	background: #fff url(/img/dividers/search-results-divider.png) no-repeat left center; 
 }
 
-table#searchResults th.mapRefTH{ width: 50px; }
+
+table#searchResults tbody td.actionsColumn/*, table#searchResults tbody td:last-child*/{ /* RW UPDATED */
+	background: #fff url(/img/dividers/search-results-divider.png) no-repeat left center; 
+}
+
+table#searchResults th.mapRefTH{ width: 66px; }
 table#searchResults th.titleTH{ text-align: left; width:1050px;  }
 table#searchResults th.datePublishedTH{ width: 140px; text-align: left; }
 
@@ -686,7 +691,15 @@ footer{ margin: 0px 40px; display: block; height: 30px; padding: 40px 0px; clear
 }
 a.orangeGradient:hover{
 	text-decoration: none;
-	background: #bf6000 !important;
+	background: #bf6000/* !important*/; /* RW REMOVED */
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#bf6000) to(#bf6000)); /*old webkit*/ /* RW ADDED */
+	background: -webkit-linear-gradient(#bf6000, #bf6000); /*new webkit*/ /* RW ADDED */
+	background: -moz-linear-gradient(#bf6000, #bf6000); /*gecko*/ /* RW ADDED */
+	background: -ms-linear-gradient(#bf6000, #bf6000); /*IE10*/ /* RW ADDED */
+	background: -o-linear-gradient(#bf6000, #bf6000); /*opera 11.10+*/ /* RW ADDED */
+	background: linear-gradient(#bf6000, #bf6000); /*future CSS3 browsers*/ /* RW ADDED */
+	-pie-background: linear-gradient(#bf6000, #bf6000); /*PIE*/ /* RW ADDED */
+	behavior: url(/css/PIE.htc); /* RW ADDED */
 }
 .greenGradient{ 
 	background: #70a53e; /*fallback for non-CSS3 browsers*/
@@ -701,7 +714,15 @@ a.orangeGradient:hover{
 }
 a.greenGradient:hover{ 
 	text-decoration: none;
-	background: #477000 !important;
+	background: #477000/* !important*/; /* RW REMOVED */
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#477000) to(#477000)); /*old webkit*/ /* RW ADDED */
+	background: -webkit-linear-gradient(#477000, #477000); /*new webkit*/ /* RW ADDED */
+	background: -moz-linear-gradient(#477000, #477000); /*gecko*/ /* RW ADDED */
+	background: -ms-linear-gradient(#477000, #477000); /*IE10*/ /* RW ADDED */
+	background: -o-linear-gradient(#477000, #477000); /*opera 11.10+*/ /* RW ADDED */
+	background: linear-gradient(#477000, #477000); /*future CSS3 browsers*/ /* RW ADDED */
+	-pie-background: linear-gradient(#477000, #477000); /*PIE*/ /* RW ADDED */
+	behavior: url(/css/PIE.htc); /* RW ADDED */
         
 }
 .greyGradient{ 
@@ -726,7 +747,7 @@ a.greyGradient:hover{
    background: linear-gradient(#bababa, #6f716e); /*future CSS3 browsers*/
    -pie-background: linear-gradient(#bababa, #6f716e); /*PIE*/
 	 behavior: url(/css/PIE.htc);  
-}
+} 
 .blackGradient{
 	background-color: #171916 !important; /*fallback for non-CSS3 browsers*/
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(#535353) to(#171916)) !important; /*old webkit*/
