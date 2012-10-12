@@ -224,7 +224,7 @@
                 "display_title": "Australian Centre for Ecological Analysis and Synthesis",
 
                 "alt_name": "Science and Management Synthesis", 
-                "query_name": "localhost", 
+                "query_name": "ACEAS", 
                 "description_type": [
                     "logo",
                     "full"

@@ -523,7 +523,7 @@ table#searchResults thead th.last-child /*table#searchResults thead th:last-chil
 	-moz-border-radius: 0 6px 0 0;
 	-webkit-border-radius: 0 6px 0 0;
 	border-radius: 0 6px 0 0;
-	width: 150px; 
+	width: 150px;  
 }
 
 table#searchResults tbody td{ 
@@ -543,7 +543,7 @@ table#searchResults tbody td.actionsColumn/*, table#searchResults tbody td:last-
 
 table#searchResults th.mapRefTH{ width: 66px; }
 table#searchResults th.titleTH{ text-align: left; width:1050px;  }
-table#searchResults th.datePublishedTH{ width: 140px; text-align: left; }
+table#searchResults th.datePublishedTH{ width: 159px; text-align: left; }
 
 table#searchResults tbody td h2{ font-size: 14px; font-weight: normal; margin: 0px; margin: 15px 0px; }
 table#searchResults p.datePublished{ margin: 15px 0px; float: left; width: 100px; }
@@ -800,7 +800,7 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 /* Contact Form
 ***********************************************************/
 #contact_form{
-    width: 400px;
+    width: 350px;
     float: left;
 }
 #contact_form label{
@@ -810,6 +810,9 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
     color: red;
 }
 
+#contact_text{
+    float:right;
+}
 
 
 /* Static Content

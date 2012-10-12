@@ -149,7 +149,7 @@ function printRecord($r, $class){
                     {
                         echo '<ul>';
                         echo '<li>';
-                        echo 'No records available';
+                        echo 'Coming soon';
                         echo '</li>';
                         echo '</ul>';
                     }

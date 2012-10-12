@@ -1,6 +1,7 @@
 <?php $this->load->view('tpl/header'); ?>    
 <div id="staticContent">
     <h1 class="margin10">Contact Form</h1>
+    <div style="margin:0 auto; overflow: auto; width: 670px">
 <div id="contact_form">
     <?php
     $this->load->helper('form');
@@ -52,7 +53,7 @@
 
     ?>
 </div>
-    <div id="contactText">
+    <div id="contact_text">
         <p>
         Terrestrial Ecosystem Research Network (TERN)<br/>
 Goddard Building (Bld #8)<br/>
@@ -64,8 +65,9 @@ FAX: +61 7 3365 1423<br/>
 EMAIL: <a href="mailto:tern.portal@tern.org.au">tern.portal@tern.org.au</a><br/>
 </p> 
 <p>
-    <a href="http://www.tern.org.au/Facility-Data-Contacts-pg19931.html" target="_blank">Get access to Facility Data Managers</a>  
+    <a href="http://www.tern.org.au/Facility-Data-Contacts-pg19931.html" style="font-size:16px;" target="_blank">Get access to Facility Data Managers</a>  
 </p> 
+    </div>
     </div>
 </div>
 <?php $this->load->view('tpl/footer'); ?>     

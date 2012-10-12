@@ -321,7 +321,7 @@ $(function() {
             s = '';
             spatial_included_ids = '';
             resetCoordinates(); 
-            $("#coords input").trigger('change');
+            $("#coordsOverlay input").trigger('change');
         }else if($(this).hasClass('clearTerm'))
         {
             //search_term=encodeURIComponent(search_term);;
@@ -671,18 +671,11 @@ $(function() {
                 mapSearch = 0;
                 clearAll = 0;                
                 spatial_included_ids = '';
-            $("#coords input").trigger('change');
+                $("#coordsOverlay").hide();
+                 $("#coordsOverlay input").trigger('change');
                 changeHashTo(formatSearch(search_term, 1, classFilter));             
           });
         
-
-
-        //Reset Button 
-        $('#search_reset').click(function(){
-            resetAllFields(temporalWidget);
-        }).button();
-        
-
         
          $('#search-panel input').keypress(function(e) {
             if(e.which == 13) {
@@ -742,25 +735,7 @@ $(function() {
         mapSearch=0;
         spatial_included_ids='';        
     }
-    /* Reset all fields in the search pane*/
-    function resetAllFields(temporalWidget){
-        $('[name^=fields]').val('');
-        $('[name^=keyword]').val('');
-        $('[name^=keyword]').val('');
-        $('[name^=operator]').val('');
-        $('#groupFilter :checked').each(function(){
-            $(this).removeAttr('checked');
-        }); 
-        $('#forfourFilter').val('');
-        temporalWidget.doTemporalSearch = false;
-        temporalWidget.refreshTemporalSearch();
-         
-        if($('#spatial-north').val() != '') {
-            $("#box").trigger('click');
-            $('#coords').hide();
-        }
-        
-    }
+  
     
     function handleResults(msg,mapWidget){    
         //console.log(msg);
@@ -1497,8 +1472,11 @@ $(function() {
         w='';
         spatial_included_ids = '';
         mapResult.switchLayer('none');
-        resetCoordinates(); 
-        $("#coords input").trigger('change');
+        resetCoordinates();        
+        $("#coordsOverlay input").trigger('change');     
+        page = 1;
+        mapSearch=0;
+        
     }
         
     function initPreviewPage(){
