@@ -41,7 +41,7 @@
                 "key": "fresh_water_and_estuarine",
                 "title": "Fresh water & Estuarine",
                 "img_url": "/img/topics/freshwater_and_estuarine_processes.png",                 
-                "query_url": "<?php echo base_url();?>search#!\/q=(%22fresh water%22 OR freshwater) OR (estuarine OR riparian) OR (hydro* OR 22%surface water%22 OR %22ground water%22 OR %22water quality%22) OR (creek OR river* OR stream* OR lake*) OR (flood* OR flow*) OR (glacier* OR snow OR ice)\/p=1\/tab=collection\/num=10" 
+                "query_url": "<?php echo base_url();?>search#!\/q=(%22fresh water%22 OR freshwater) OR (estuarine OR riparian) OR (hydro* OR %22surface water%22 OR %22ground water%22 OR %22water quality%22) OR (creek OR river* OR stream* OR lake*) OR (flood* OR flow*) OR (glacier* OR snow OR ice)\/p=1\/tab=collection\/num=10" 
 
             },
             {

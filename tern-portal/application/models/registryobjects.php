@@ -76,8 +76,20 @@ limitations under the License.
 		 * update the statistics from searches
 		 */ 
 	    function updateStatistic($query, $class, $group, $subject, $type, $temporal){
-	    	$terms = array($query, 'class:'.$class, 'type:'.$type, 'subject:'.$subject, 'group:'.$group, 'type:'.$type, 'temporal:'.$temporal);
-    	foreach($terms as $t){
+                $terms = array('class:'.$class, 'type:'.$type, 'subject:'.$subject, 'group:'.$group, 'type:'.$type, 'temporal:'.$temporal);
+                $boolean = array("AND","OR","NOT","(",")");
+                preg_match_all('/"([^"]+)"/', $query, $phrases);              
+                $queryNoPhrase = str_replace($phrases[0], "",$query);
+                $queryNoPhrase = str_replace($boolean,"", $queryNoPhrase);
+                $qArr = explode(' ',$queryNoPhrase);
+                foreach ($qArr as $qTerm){
+                    if(trim($qTerm)!='') array_push($terms,trim($qTerm));                    
+                }
+                foreach ($phrases[0] as $qPhrase){
+                     if(trim($qPhrase)!='') array_push($terms,trim($qPhrase));                    
+                }
+                 
+                foreach($terms as $t){
     		//check if term exists
     		$term = $this->db->get_where('dba.tbl_search_statistics', array('search_term' => $t));
     		if($term->num_rows() > 0){//term exists

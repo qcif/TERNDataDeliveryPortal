@@ -98,14 +98,16 @@ class Search extends CI_Controller
         redirect(base_url() . 'search#!/p=1/tab=' . $class . '/group=' . urldecode($group));
     }
 
-    public function updateStatistic()
+    public function updateStatistic() 
     {//update the statistics
         $query = $this->input->post('q');
         $class = $this->input->post('classFilter');
         $group = $this->input->post('groupFilter');
         $subject = $this->input->post('subjectFilter');
+        $temporal = $this->input->post('temporal');
+        $typeFilter = $this->input->post('typeFilter');
         $this->load->model('Registryobjects', 'ro');
-        $this->ro->updateStatistic($query, $class, $group, $subject);
+        $this->ro->updateStatistic($query, $class, $group, $subject, typeFilter, $temporal);
     }
 
     public function service_front()

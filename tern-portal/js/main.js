@@ -1522,10 +1522,6 @@ $(function() {
  
 });
    
-function checkSelection()
-{
-    
-}
 
     function autocomplete(id){
        
