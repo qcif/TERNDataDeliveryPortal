@@ -6,6 +6,7 @@ $md_description = 'TERN Data Discovery Portal (Dev Version)is a mesh of searchab
 if (!isset($title))  $title = $md_title;
 if (isset($description))
     $md_description = htmlentities($description);
+$number = mt_rand(1,3);
 ?>
 <html lang="en">
     <head>
@@ -41,7 +42,7 @@ if (isset($description))
 	<?php endif;?>
     </head>
     <body>
-        <div id="backgroundImage"></div> 
+        <div id="backgroundImage<?php echo $number;?>"></div> 
         <header>
         <div id="wrapper" class="wrapper">
           <!--  <div id="header" >-->

@@ -43,7 +43,9 @@ textarea{
 /* Template 
 *******************************************************************/
 #printHeader{ display: none; }
-#backgroundImage{ position: absolute; background: url(../img/backgrounds/background-3.png) no-repeat center top; height: 100%; width: 100%; min-width: inherit; z-index: -1000; }
+#backgroundImage1{ position: absolute; background: url(../img/backgrounds/background-1.png) no-repeat center top; height: 100%; width: 100%; min-width: inherit; z-index: -1000; }
+#backgroundImage2{ position: absolute; background: url(../img/backgrounds/background-2.png) no-repeat center top; height: 100%; width: 100%; min-width: inherit; z-index: -1000; }
+#backgroundImage3{ position: absolute; background: url(../img/backgrounds/background-3.png) no-repeat center top; height: 100%; width: 100%; min-width: inherit; z-index: -1000; }
 /* Header 
 *******************************************************************/
 header{
