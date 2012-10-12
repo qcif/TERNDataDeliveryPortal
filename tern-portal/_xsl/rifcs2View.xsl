@@ -998,7 +998,7 @@ Handle:
                 <xsl:variable name="l">
                     <xsl:value-of select="."/>
                 </xsl:variable>
-			<li><a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="class">download</xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="concat(substring($l,1,45),'....')"/></a></li>
+			<li><a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="class">download external</xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="concat(substring($l,1,45),'....')"/></a></li>
                   
 		</xsl:if>		
 	</xsl:template>

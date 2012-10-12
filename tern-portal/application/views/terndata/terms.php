@@ -25,10 +25,10 @@
 <h3>Mapping data</h3>
 <p>The region maps used in the search interface has been provided by the following agencies:</p>
 <ul style="line-height: 30px;">
-  <li><a href="http://www.environment.gov.au/parks/nrs/science/bioregion-framework/ibra/index.html" target="_blank">Interim Biogeographic Regionalisation of Australia (v7)</a>: Australian Government - Department of Sustainability, Environment, Water, Population and Communities</li>
-  <li><a href="http://www.environment.gov.au/metadataexplorer/full_metadata.jsp?docId=%7BFA68F769-550B-4605-A0D5-50B10ECD0EB9%7D" target="_blank">Natural Resource Management (NRM) Regions (2010)</a>: Australian Government - Department of Sustainability, Environment, Water, Population and Communities</li>
-  <li><a href="http://www.bom.gov.au/jsp/ncc/climate_averages/climate-classifications/index.jsp" target="_blank">Climate classification maps</a>: Australian Government - Bureau of Meteorology</li>
-  <li><a href="http://www.abs.gov.au/AUSSTATS/abs@.nsf/Lookup/1259.0.30.001Main+Features1July%202011?OpenDocument" target="_blank">Australian Standard Geographical Classification (ASGC) Digital Boundaries, Australia, July 2011</a>: Australian Government - Australian Bureau of Statistics</li>
+  <li><a href="http://www.environment.gov.au/parks/nrs/science/bioregion-framework/ibra/index.html" class="external" target="_blank">Interim Biogeographic Regionalisation of Australia (v7)</a>: Australian Government - Department of Sustainability, Environment, Water, Population and Communities</li>
+  <li><a href="http://www.environment.gov.au/metadataexplorer/full_metadata.jsp?docId=%7BFA68F769-550B-4605-A0D5-50B10ECD0EB9%7D" class="external" target="_blank">Natural Resource Management (NRM) Regions (2010)</a>: Australian Government - Department of Sustainability, Environment, Water, Population and Communities</li>
+  <li><a href="http://www.bom.gov.au/jsp/ncc/climate_averages/climate-classifications/index.jsp" class="external" target="_blank">Climate classification maps</a>: Australian Government - Bureau of Meteorology</li>
+  <li><a href="http://www.abs.gov.au/AUSSTATS/abs@.nsf/Lookup/1259.0.30.001Main+Features1July%202011?OpenDocument" class="external" target="_blank">Australian Standard Geographical Classification (ASGC) Digital Boundaries, Australia, July 2011</a>: Australian Government - Australian Bureau of Statistics</li>
   </ul>
 <br/>
 <p>Please note that the links provided above are current as of October 1, 2012. In no way do these data providers endorse the TERN Data Discovery Portal.</p>

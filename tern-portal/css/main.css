@@ -512,11 +512,7 @@ table#searchResults{
 
 table#searchResults thead th{ font-weight: normal; background: url(/img/dividers/table-th-divider.png) no-repeat right center; padding: 10px 10px; }	
 
-table#searchResults thead th /*table#searchResults thead th:only-child*/{ /* RW UPDATED - Moved up above the bottom two */
-	-moz-border-radius: 6px 6px 0 0;
-	-webkit-border-radius: 6px 6px 0 0;
-	border-radius: 6px 6px 0 0;
-}
+
 table#searchResults thead th.first-child /*table#searchResults thead th:first-child */{ /* RW UPDATED */
 	-moz-border-radius: 6px 0 0 0;
 	-webkit-border-radius: 6px 0 0 0;
@@ -527,6 +523,7 @@ table#searchResults thead th.last-child /*table#searchResults thead th:last-chil
 	-moz-border-radius: 0 6px 0 0;
 	-webkit-border-radius: 0 6px 0 0;
 	border-radius: 0 6px 0 0;
+	width: 150px; 
 }
 
 table#searchResults tbody td{ 
@@ -702,29 +699,30 @@ a.orangeGradient:hover{
 	behavior: url(/css/PIE.htc); /* RW ADDED */
 }
 .greenGradient{ 
-	background: #70a53e; /*fallback for non-CSS3 browsers*/
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#70a53e) to(#477000)); /*old webkit*/
-	background: -webkit-linear-gradient(#70a53e, #477000); /*new webkit*/
-	background: -moz-linear-gradient(#70a53e, #477000); /*gecko*/
-	background: -ms-linear-gradient(#70a53e, #477000); /*IE10*/
-	background: -o-linear-gradient(#70a53e, #477000); /*opera 11.10+*/
-	background: linear-gradient(#70a53e, #477000); /*future CSS3 browsers*/
-	-pie-background: linear-gradient(#70a53e, #477000); /*PIE*/
-	 behavior: url(/css/PIE.htc);  
+	background: #70a53e !important; /*fallback for non-CSS3 browsers*/
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#70a53e) to(#477000)) !important; /*old webkit*/
+	background: -webkit-linear-gradient(#70a53e, #477000) !important; /*new webkit*/
+	background: -moz-linear-gradient(#70a53e, #477000) !important; /*gecko*/
+	background: -ms-linear-gradient(#70a53e, #477000) !important; /*IE10*/
+	background: -o-linear-gradient(#70a53e, #477000) !important; /*opera 11.10+*/
+	background: linear-gradient(#70a53e, #477000) !important; /*future CSS3 browsers*/
+	-pie-background: linear-gradient(#70a53e, #477000) !important; /*PIE*/
+	behavior: url(/css/PIE.htc) !important;  
 }
+
 a.greenGradient:hover{ 
-	text-decoration: none;
-	background: #477000/* !important*/; /* RW REMOVED */
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#477000) to(#477000)); /*old webkit*/ /* RW ADDED */
-	background: -webkit-linear-gradient(#477000, #477000); /*new webkit*/ /* RW ADDED */
-	background: -moz-linear-gradient(#477000, #477000); /*gecko*/ /* RW ADDED */
-	background: -ms-linear-gradient(#477000, #477000); /*IE10*/ /* RW ADDED */
-	background: -o-linear-gradient(#477000, #477000); /*opera 11.10+*/ /* RW ADDED */
-	background: linear-gradient(#477000, #477000); /*future CSS3 browsers*/ /* RW ADDED */
-	-pie-background: linear-gradient(#477000, #477000); /*PIE*/ /* RW ADDED */
-	behavior: url(/css/PIE.htc); /* RW ADDED */
-        
+	text-decoration: none !important;
+	background: #477000 !important;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#477000) to(#477000)) !important; /*old webkit*/ /* RW ADDED */
+	background: -webkit-linear-gradient(#477000, #477000) !important; /*new webkit*/ /* RW ADDED */
+	background: -moz-linear-gradient(#477000, #477000) !important; /*gecko*/ /* RW ADDED */
+	background: -ms-linear-gradient(#477000, #477000) !important; /*IE10*/ /* RW ADDED */
+	background: -o-linear-gradient(#477000, #477000) !important; /*opera 11.10+*/ /* RW ADDED */
+	background: linear-gradient(#477000, #477000) !important; /*future CSS3 browsers*/ /* RW ADDED */
+	-pie-background: linear-gradient(#477000, #477000) !important; /*PIE*/ /* RW ADDED */
+	behavior: url(/css/PIE.htc) !important; /* RW ADDED */
 }
+
 .greyGradient{ 
 	background: #949398; /*fallback for non-CSS3 browsers*/
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(#cccacb) to(#949398)); /*old webkit*/
@@ -887,4 +885,9 @@ a.download{
     text-align: center;
 }
 
+
+a.external{
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=") no-repeat scroll right center transparent;
+    padding-right: 13px;
+}
 

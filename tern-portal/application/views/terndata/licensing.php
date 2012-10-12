@@ -78,7 +78,7 @@ TERN Data Licensing
       </ul>
        <div id="licence-cca" style="text-align: left;">
            <br/>
-      <p>You may also wish to use a <a href="http://creativecommons.org.au" target="_blank">Creative Commons licence</a>. <!--The <a href="http://creativecommons.org/choose/" target="_blank">Creative Commons licence tool</a> may assist you.--></p>
+      <p>You may also wish to use a <a href="http://creativecommons.org.au" class="external" target="_blank">Creative Commons licence</a>. <!--The <a href="http://creativecommons.org/choose/" target="_blank">Creative Commons licence tool</a> may assist you.--></p>
     </div>
     </form>
     <hr>
