@@ -460,71 +460,6 @@ $(function() {
     */
     function populateSearchFields(temporalWidget, search_term){ 
         
-        /* removed because adv is not used anymore Yi please delete when you're done
-        if(adv == 1){
-            if(param_q > -1 && search_term != '*:*') {
-                var word = search_term.split(' ');
-
-                $('input[name^="keyword"]').each(function(index){
-                    $(this).val('');           
-                });
-
-                //getting operators
-                var ors = [];
-                $.each(word, function(index){
-                    if(this.toString()=='OR' || this.toString() == "AND" || this.toString() == "-"){
-                        if(ors.length < 2) ors.push(index);				
-                    }
-                });
-                ors.push(word.length);
-                var start = -1;
-                $.each(ors,function(index,value){
-                    if(value < word.length)  $('select[name^="operator"]').eq(index).val(word[value]);
-                    var keywords = word.slice((start+1),value);
-                    //fulltext:searchterm
-                    $.each(keywords,function(i,v){
-                        var fieldNterm = v.split(':');
-                        //fulltext, searchterm
-                        $.each(fieldNterm,function(fieldNtermIndex,fieldNtermValue){
-
-                            if(this.toString()=='fulltext' || this.toString() == "displayTitle" || this.toString() == "description" || this.toString() == "subject"){ //not changed need to check
-                            
-
-                                $('select[name^="fields"]').eq(index).val(fieldNtermValue);
-                            }else{
-                                $('input[name^="keyword"]').eq(index).val(fieldNtermValue);
-                            }                            
-                        });
-                    });
-                    start = value;
-                });
-            }else{
-               $("#accordion").accordion("activate",1);
-            }
-            
-            var group;
-            if(groupFilter !="All"){
-                group = groupFilter.split(';');
-                $.each(group,function(i,v){
-                    $('input[id^="group"][value="' + urldecode(v) + '"]').attr('checked',true);
-                });            
-            }
- 
-            if(n!='') {
-                populateCoordinates(n,w,s,e);
-            } 
-
-            if(forfourFilter != "All"){
-
-                $('select[id="forfourFilter"]').val(urldecode(forfourFilter));
-            }
-            if(temporal!= 'All'){
-                temporalWidget.doTemporalSearch = true;
-                temporalWidget.refreshTemporalSearch();
-            }
-        }else{ // it's just basic search
-        */
-        
             populateCoordinates(n,w,s,e);
             $("#coordsOverlay input").trigger('change');
             if(param_q > -1 && search_term != '*:*' && search_term !="Search ecosystem data") {
@@ -853,22 +788,14 @@ $(function() {
             $("#metadesc p").each(function(index){
                 if($(this).height() > 48){
                     $(this).css('height','48px').css('overflow','hidden');
-                    var readMore = $("<span class='read-more'>Read more</span>");
+                    var readMore = $("<a class=\"read-more\" target=\"_blank\" href=\"" + $(this).closest("tr").find("#metabutton a").attr("href") + "\"> Read more</a>");
                     $(this).parent().append(readMore);
                 }else{
                     $(this).css('height','48px');
                 }
             });
-            $('.read-more').on("click",function() {
-                if($(this).text() == 'Read more'){
-                    $(this).siblings('p').css('height','auto');
-                    $(this).text('Read less');
-                }else{
-                    $(this).siblings('p').css('height','48px'); 
-                    $(this).text('Read more');
-                }
-
-                return false;
+             $('.read-more').on("click",function(event) {
+                event.stopPropagation();
             });
 
             //LIMIT 5
