@@ -84,14 +84,15 @@ class Tregion extends CI_Controller {
     public function newRecords()
     {
         
+       ob_end_clean();
         header("Connection: close\r\n");
         header("Content-Encoding: none\r\n");
         ob_start();
         echo ('OK');
         $size = ob_get_length();
         header("Content-Length: $size");
-        ob_end_flush();     // Strange behaviour, will not work
-        flush();            // Unless both are called !
+        ob_end_flush();     
+        flush();          
         ob_end_clean();
         if($schedules = $this->Scheduler->getOrder(1)){ 
             $json = $this->load->file('../api/regions.json',TRUE);
@@ -239,8 +240,7 @@ class Tregion extends CI_Controller {
                     $this->last_run = 0;
                     $this->new_start_timestamp = $start_timestamp;
                 }
-                ob_end_flush();
-                flush();
+              
         }while($this->last_run == 0 && $this->cancel != 1);
     }
     
