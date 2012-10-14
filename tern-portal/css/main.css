@@ -369,25 +369,37 @@ nav.resultsNav{
 		margin: 3px 0px 0px 0px;
 		height: 30px;
 		line-height: 30px;
-		-webkit-border-radius: 3px;
-		-moz-border-radius: 3px;
-		border-radius: 3px;		
-		background: #2B2B2B; /*fallback for non-CSS3 browsers*/
-		background: -webkit-gradient(linear, 0 0, 0 100%, from(#646464) to(#2B2B2B)); /*old webkit*/
-		background: -webkit-linear-gradient(#646464, #2B2B2B); /*new webkit*/
-		background: -moz-linear-gradient(#646464, #2B2B2B); /*gecko*/
-		background: -ms-linear-gradient(#646464, #2B2B2B); /*IE10*/
-		background: -o-linear-gradient(#646464, #2B2B2B); /*opera 11.10+*/
-		background: linear-gradient(#646464, #2B2B2B); /*future CSS3 browsers*/
-		-pie-background: linear-gradient(#646464, #2B2B2B); /*PIE*/
-		 behavior: url(/css/PIE.htc);  
+		/*-webkit-border-radius: 3px;*/ /* RW REMOVED */
+		/*-moz-border-radius: 3px;*/ /* RW REMOVED */
+		/*border-radius: 3px;	*/	 /* RW REMOVED */
+		/*background: #2B2B2B; *//*fallback for non-CSS3 browsers*/ /* RW REMOVED */
+		/*background: -webkit-gradient(linear, 0 0, 0 100%, from(#646464) to(#2B2B2B));*/ /*old webkit*/ /* RW REMOVED */
+		/*background: -webkit-linear-gradient(#646464, #2B2B2B); *//*new webkit*/ /* RW REMOVED */
+		/*background: -moz-linear-gradient(#646464, #2B2B2B); *//*gecko*/ /* RW REMOVED */
+		/*background: -ms-linear-gradient(#646464, #2B2B2B); *//*IE10*/ /* RW REMOVED */
+		/*background: -o-linear-gradient(#646464, #2B2B2B); *//*opera 11.10+*/ /* RW REMOVED */
+		/*background: linear-gradient(#646464, #2B2B2B); *//*future CSS3 browsers*/ /* RW REMOVED */
+		/*-pie-background: linear-gradient(#646464, #2B2B2B);*/ /*PIE*/ /* RW REMOVED */
+		/*behavior: url(/css/PIE.htc);  */
                 cursor: pointer;
 	}
-		#map-toolbar .mapViewSelector a{ color: #fff; padding: 5px; height: 20px; display: block; float: left; line-height: 20px; }
+		#map-toolbar .mapViewSelector a{ color: #fff; padding: 5px; height: 20px; display: block; float: left; line-height: 20px; 
+			background: #2B2B2B; /*fallback for non-CSS3 browsers*/
+			position: relative; /* RW ADDED */
+			background: -webkit-gradient(linear, 0 0, 0 100%, from(#646464) to(#2B2B2B)); /*old webkit*/ /* RW ADDED */
+			background: -webkit-linear-gradient(#646464, #2B2B2B); /*new webkit*/ /* RW ADDED */
+			background: -moz-linear-gradient(#646464, #2B2B2B); /*gecko*/ /* RW ADDED */
+			background: -ms-linear-gradient(#646464, #2B2B2B); /*IE10*/ /* RW ADDED */
+			background: -o-linear-gradient(#646464, #2B2B2B); /*opera 11.10+*/ /* RW ADDED */
+			background: linear-gradient(#646464, #2B2B2B); /*future CSS3 browsers*/ /* RW ADDED */
+			-pie-background: linear-gradient(#646464, #2B2B2B); /*PIE*/ /* RW ADDED */
+			behavior: url(/css/PIE.htc);  /* RW ADDED */ 
+		}
 		#map-toolbar .mapViewSelector a.current,
 		#map-toolbar .mapViewSelector a:hover{ 
 			text-decoration: none;
 			color: #000; 
+			position: relative; /* RW ADDED */
 			background: #8A8A8A; /*fallback for non-CSS3 browsers*/
 			background: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff) to(#8A8A8A)); /*old webkit*/
 			background: -webkit-linear-gradient(#ffffff, #8A8A8A); /*new webkit*/
@@ -399,12 +411,14 @@ nav.resultsNav{
 			 behavior: url(/css/PIE.htc);  
 		}
 		#map-toolbar .mapViewSelector #gmap{
+			position: relative; /* RW ADDED */
 			-webkit-border-radius: 5px 0px 0px 5px;
 			-moz-border-radius: 5px 0px 0px 5px;
 			border-radius: 5px 0px 0px 5px;
 			 behavior: url(/css/PIE.htc);  
 		}
 		#map-toolbar .mapViewSelector #gphy{
+			position: relative; /* RW ADDED */
 			-webkit-border-radius: 0px 5px 5px 0px;
 			-moz-border-radius: 0px 5px 5px 0px;
 			border-radius: 0px 5px 5px 0px;
@@ -516,13 +530,13 @@ table#searchResults{
 table#searchResults thead th{ font-weight: normal; background: url(/img/dividers/table-th-divider.png) no-repeat right center; padding: 10px 10px; }	
 
 
-table#searchResults thead th.first-child /*table#searchResults thead th:first-child */{ /* RW UPDATED */
+table#searchResults thead th.first-child{
 	-moz-border-radius: 6px 0 0 0;
 	-webkit-border-radius: 6px 0 0 0;
 	border-radius: 6px 0 0 0;
 }
 
-table#searchResults thead th.last-child /*table#searchResults thead th:last-child*/ { /* RW UPDATED */
+table#searchResults thead th.last-child{
 	-moz-border-radius: 0 6px 0 0;
 	-webkit-border-radius: 0 6px 0 0;
 	border-radius: 0 6px 0 0;
@@ -540,7 +554,7 @@ table#searchResults tbody td:last-child {
 }
 
 
-table#searchResults tbody td.actionsColumn/*, table#searchResults tbody td:last-child*/{ /* RW UPDATED */
+table#searchResults tbody td.actionsColumn{
 	background: #fff url(/img/dividers/search-results-divider.png) no-repeat left center; 
 }
 
@@ -550,7 +564,7 @@ table#searchResults th.datePublishedTH{ width: 159px; text-align: left; }
 
 table#searchResults tbody td h2{ font-size: 14px; font-weight: normal; margin: 0px; margin: 15px 0px; }
 table#searchResults p.datePublished{ margin: 15px 0px; float: left; width: 100px; }
-table#searchResults a.smallRoundedCorners{ clear: both; display: block; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px; margin-bottom: 5px; }
+table#searchResults a.smallRoundedCorners{ clear: both; display: block; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px; margin-bottom: 5px; position: relative; } /* RW UPDATED */
 table#searchResults a.show, table#searchResults a.hide{ margin-top: 7px; }
 
  
@@ -691,39 +705,39 @@ footer{ margin: 0px 40px; display: block; height: 30px; padding: 40px 0px; clear
 }
 a.orangeGradient:hover{
 	text-decoration: none;
-	background: #bf6000/* !important*/; /* RW REMOVED */
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#bf6000) to(#bf6000)); /*old webkit*/ /* RW ADDED */
-	background: -webkit-linear-gradient(#bf6000, #bf6000); /*new webkit*/ /* RW ADDED */
-	background: -moz-linear-gradient(#bf6000, #bf6000); /*gecko*/ /* RW ADDED */
-	background: -ms-linear-gradient(#bf6000, #bf6000); /*IE10*/ /* RW ADDED */
-	background: -o-linear-gradient(#bf6000, #bf6000); /*opera 11.10+*/ /* RW ADDED */
-	background: linear-gradient(#bf6000, #bf6000); /*future CSS3 browsers*/ /* RW ADDED */
-	-pie-background: linear-gradient(#bf6000, #bf6000); /*PIE*/ /* RW ADDED */
-	behavior: url(/css/PIE.htc); /* RW ADDED */
+	background: #bf6000;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#bf6000) to(#bf6000)); /*old webkit*/
+	background: -webkit-linear-gradient(#bf6000, #bf6000); /*new webkit*/
+	background: -moz-linear-gradient(#bf6000, #bf6000); /*gecko*/
+	background: -ms-linear-gradient(#bf6000, #bf6000); /*IE10*/
+	background: -o-linear-gradient(#bf6000, #bf6000); /*opera 11.10+*/
+	background: linear-gradient(#bf6000, #bf6000); /*future CSS3 browsers*/
+	-pie-background: linear-gradient(#bf6000, #bf6000); /*PIE*/
+	behavior: url(/css/PIE.htc);
 }
 .greenGradient{ 
-	background: #70a53e !important; /*fallback for non-CSS3 browsers*/
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#70a53e) to(#477000)) !important; /*old webkit*/
-	background: -webkit-linear-gradient(#70a53e, #477000) !important; /*new webkit*/
-	background: -moz-linear-gradient(#70a53e, #477000) !important; /*gecko*/
-	background: -ms-linear-gradient(#70a53e, #477000) !important; /*IE10*/
-	background: -o-linear-gradient(#70a53e, #477000) !important; /*opera 11.10+*/
-	background: linear-gradient(#70a53e, #477000) !important; /*future CSS3 browsers*/
-	-pie-background: linear-gradient(#70a53e, #477000) !important; /*PIE*/
-	behavior: url(/css/PIE.htc) !important;  
+	background: #70a53e; /*fallback for non-CSS3 browsers*/ /* RW UPDATED */
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#70a53e) to(#477000)); /*old webkit*/ /* RW UPDATED */
+	background: -webkit-linear-gradient(#70a53e, #477000); /*new webkit*/ /* RW UPDATED */
+	background: -moz-linear-gradient(#70a53e, #477000); /*gecko*/ /* RW UPDATED */
+	background: -ms-linear-gradient(#70a53e, #477000); /*IE10*/ /* RW UPDATED */
+	background: -o-linear-gradient(#70a53e, #477000); /*opera 11.10+*/ /* RW UPDATED */
+	background: linear-gradient(#70a53e, #477000); /*future CSS3 browsers*/ /* RW UPDATED */
+	-pie-background: linear-gradient(#70a53e, #477000); /*PIE*/ /* RW UPDATED */
+	behavior: url(/css/PIE.htc);  
 }
 
 a.greenGradient:hover{ 
-	text-decoration: none !important;
-	background: #477000 !important;
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#477000) to(#477000)) !important; /*old webkit*/ /* RW ADDED */
-	background: -webkit-linear-gradient(#477000, #477000) !important; /*new webkit*/ /* RW ADDED */
-	background: -moz-linear-gradient(#477000, #477000) !important; /*gecko*/ /* RW ADDED */
-	background: -ms-linear-gradient(#477000, #477000) !important; /*IE10*/ /* RW ADDED */
-	background: -o-linear-gradient(#477000, #477000) !important; /*opera 11.10+*/ /* RW ADDED */
-	background: linear-gradient(#477000, #477000) !important; /*future CSS3 browsers*/ /* RW ADDED */
-	-pie-background: linear-gradient(#477000, #477000) !important; /*PIE*/ /* RW ADDED */
-	behavior: url(/css/PIE.htc) !important; /* RW ADDED */
+	text-decoration: none; /* RW UPDATED */
+	background: #477000; /* RW UPDATED */
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#477000) to(#477000)); /*old webkit*/ /* RW UPDATED */
+	background: -webkit-linear-gradient(#477000, #477000); /*new webkit*/ /* RW UPDATED */
+	background: -moz-linear-gradient(#477000, #477000); /*gecko*/ /* RW UPDATED */
+	background: -ms-linear-gradient(#477000, #477000); /*IE10*/ /* RW UPDATED */
+	background: -o-linear-gradient(#477000, #477000); /*opera 11.10+*/ /* RW UPDATED */
+	background: linear-gradient(#477000, #477000); /*future CSS3 browsers*/ /* RW UPDATED */
+	-pie-background: linear-gradient(#477000, #477000); /*PIE*/ /* RW UPDATED */
+	behavior: url(/css/PIE.htc); /* RW UPDATED */
 }
 
 .greyGradient{ 
@@ -750,14 +764,14 @@ a.greyGradient:hover{
 	 behavior: url(/css/PIE.htc);  
 } 
 .blackGradient{
-	background-color: #171916 !important; /*fallback for non-CSS3 browsers*/
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#535353) to(#171916)) !important; /*old webkit*/
-	background: -webkit-linear-gradient(#535353, #171916) !important; /*new webkit*/
-	background: -moz-linear-gradient(#535353, #171916) !important; /*gecko*/
-	background: -ms-linear-gradient(#535353, #171916) !important; /*IE10*/
-	background: -o-linear-gradient(#535353, #171916) !important; /*opera 11.10+*/
-	background: linear-gradient(#535353, #171916) !important; /*future CSS3 browsers*/
-	-pie-background: linear-gradient(#535353, #171916) !important; /*PIE*/
+	background-color: #171916; /*fallback for non-CSS3 browsers*/ /* RW UPDATED */
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#535353) to(#171916)); /*old webkit*/ /* RW UPDATED */
+	background: -webkit-linear-gradient(#535353, #171916); /*new webkit*/ /* RW UPDATED */
+	background: -moz-linear-gradient(#535353, #171916); /*gecko*/ /* RW UPDATED */
+	background: -ms-linear-gradient(#535353, #171916); /*IE10*/ /* RW UPDATED */
+	background: -o-linear-gradient(#535353, #171916); /*opera 11.10+*/ /* RW UPDATED */
+	background: linear-gradient(#535353, #171916); /*future CSS3 browsers*/ /* RW UPDATED */
+	-pie-background: linear-gradient(#535353, #171916); /*PIE*/ /* RW UPDATED */
 	 behavior: url(/css/PIE.htc);  
 	color: #B7B7B7;
 }

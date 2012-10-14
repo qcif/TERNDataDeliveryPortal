@@ -59,7 +59,7 @@
                     "full"
                 ],
                 "description_value": [
-                    "/img/logos/logo-aekos.jpg",
+                    "/img/logos/logo-aekos.png",
                     "Eco-Informatics enables the storage, sharing, integration and visualisation of ecological plot data through the Australian Ecological Knowledge and Observation System (ÆKOS) and other products. By making data discoverable and accessible at fine levels of detail, along with extra information about the context of data collection, Eco-Informatics is opening up new opportunities for re-purpose and informed re-use of data."
                 ],
               "location": ["http://www.tern.org.au/Eco-informatics-pg17733.html"]

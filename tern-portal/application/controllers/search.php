@@ -584,6 +584,7 @@ class Search extends CI_Controller
          $regions = $regions->layers;
          for($i=0;$i<count($regions);$i++){                  
               $regionsName[$regions[$i]->l_id] =  json_decode(file_get_contents('http://' . REGIONS_URL . '/r/getList/' . $regions[$i]->l_id));  
+             if(is_array($regionsName[$regions[$i]->l_id]))
               $regionsName[$regions[$i]->l_id]['l_name'] = $regions[$i]->l_name;
               
          }
