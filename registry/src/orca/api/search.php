@@ -30,7 +30,8 @@ if(getQueryValue('count')>0)
     $cnt=  getQueryValue('count');
 }
 
-$itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/view/dataview?key=';
+//$itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/view/dataview?key=';
+$itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/';
 
 $totalResults = 0;
 
@@ -100,6 +101,8 @@ function buildXMLContent($content,$itemLinkBaseURL)
 	{	
        
                 $registryObjectKey = $doc->xpath('str[@name="key"]');
+                $registryObjectSlug=$doc->xpath('str[@name="url_slug"]');     
+
                 $registryObjectName=$doc->xpath('str[@name="display_title"]');
 		$registryObjectClass=$doc->xpath('str[@name="class"]');
 		$registryObjectType=$doc->xpath('str[@name="type"]');
@@ -112,7 +115,15 @@ function buildXMLContent($content,$itemLinkBaseURL)
 		$tmp1=$tmp1.'    <item>'."\n";
 		$tmp1=$tmp1.'      <guid>'.esc($registryObjectKey[0]).'</guid>'."\n";
 		$tmp1=$tmp1.'      <title>'.esc($registryObjectName[0]).'</title>'."\n";
-		$tmp1=$tmp1.'      <link>'.$itemLinkBaseURL.esc($registryObjectKey[0]).'</link>'."\n";
+		//$tmp1=$tmp1.'      <link>'.$itemLinkBaseURL.esc($registryObjectKey[0]).'</link>'."\n";
+                if($registryObjectSlug)
+                {
+                    $tmp1=$tmp1.'      <link>'.$itemLinkBaseURL.esc($registryObjectSlug[0]).'</link>'."\n";    
+                }else
+                {
+                    $tmp1=$tmp1.'      <link>'.$itemLinkBaseURL.'view?key='.esc($registryObjectKey[0]).'</link>'."\n";    
+                }
+                
 		$tmp1=$tmp1.'      <category>'.esc("$registryObjectClass[0]:$registryObjectType[0]").'</category>'."\n";
 		$tmp1=$tmp1.'      <description>'.esc($registryObjectDescriptions[0]).esc($registryObjectDescriptions[1]).esc($registryObjectDescriptions[2]).'</description>'."\n";
                                                  
