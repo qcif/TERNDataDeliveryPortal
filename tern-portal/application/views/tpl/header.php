@@ -103,6 +103,15 @@ $number = mt_rand(1,3);
             </a>
             </h1>
             <p>Printed from the TERN Data Discovery portal</p>
+            <?php 
+                $protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === FALSE ? 'http' : 'https';
+                $host     = $_SERVER['HTTP_HOST'];
+                $script   = $_SERVER['REQUEST_URI']; 
+                $params   = $_SERVER['QUERY_STRING'];
+                $currentUrl = $protocol . '://' . $host . $script;
+                if($params) $currentUrl.= '?' . $params;
+                echo $currentUrl;
+        ?>
        </div>
   <!--      <div class="tmptitle"> <?php //echo $md_sub ?></div>-->
         <div class="wrapper">

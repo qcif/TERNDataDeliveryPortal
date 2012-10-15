@@ -145,7 +145,7 @@
                 ],
                 "description_value": [
                     "/img/logos/logo-ltern.png",
-                    "The Long Term Ecological Research Network(LTERN) has established a coordinated and collaborative approach across 12 existing long-term ecological plot monitoring programs in a range of Australian ecosystems. Data collected throughout the network includes vegetation, soils, invertebrates, birds, reptiles, arboreal marsupials, genetics and phenology. LTERN provides important scientific knowledge and data to allow Australians to better understand and interpret environmental change."
+                    "The Long Term Ecological Research Network (LTERN) has established a coordinated and collaborative approach across 12 existing long-term ecological plot monitoring programs in a range of Australian ecosystems. Data collected throughout the network includes vegetation, soils, invertebrates, birds, reptiles, arboreal marsupials, genetics and phenology. LTERN provides important scientific knowledge and data to allow Australians to better understand and interpret environmental change."
                 ],
       
                 "location": ["http://www.tern.org.au/ausplots.html"]

@@ -2,31 +2,31 @@
         "layers": [ 
             {
             "l_id": "l4", 
-            "l_name" : "States",
+            "l_name" : "States and Territories",
             "geo_name" : "nr:states",
-             "geo_url": "http://demo:8080/geoserver/wms"
+             "geo_url": "/geoserver/gwc/service/wms"
 
             },
             {
             "l_id": "l1",  
-            "l_name" : "IBRA", 
+            "l_name" : "Biogeographic region", 
             "geo_name" : "nr:ibra",
-            "geo_url": "http://demo:8080/geoserver/wms"
+            "geo_url": "/geoserver/gwc/service/wms"
 
           
             }, 
             {
             "l_id": "l2", 
-            "l_name" : "NRM",
+            "l_name" : "Natural Resource Mgmt",
             "geo_name" : "nr:nrm",
-           "geo_url": "http://demo:8080/geoserver/wms"
+           "geo_url": "/geoserver/gwc/service/wms"
 
             }, 
             {
-            "l_id": "l3", 
+            "l_id": "l3",  
             "l_name" : "Climate Zone",
             "geo_name" : "nr:climzone",
-             "geo_url": "http://demo:8080/geoserver/wms"
+             "geo_url": "/geoserver/gwc/service/wms"
 
             }
         ]

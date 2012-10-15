@@ -22,4 +22,5 @@ section.left{ margin: 0px; }
 #metadataContent ul.moreInformation > li{ box-shadow: none; }
 #metadataContent ul.moreInformation > li h2{ padding: 0px; margin: 0px; }
 #metadataContent ul.moreInformation > li .content{ padding: 0px; margin: 0px; clear: both; }
-
+.noprint { display: none !important; }
+.print {display: inline-block;}

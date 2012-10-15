@@ -45,7 +45,7 @@
         <script type="text/javascript" src="<?php echo base_url();?>js/MapWidget.js"></script> <!-- WIDGET MAP -->        
         <?php } ?>
         <?php if($infrastructure_map) { ?> 
-              <script type="text/javascript" src="<?php echo base_url();?>js/mapProto_service.js"></script> <!-- Infrastructure MAP -->
+              <script type="text/javascript" src="<?php echo base_url();?>js/infrastructure.js"></script> <!-- Infrastructure MAP -->
         <?php } ?>
         <?php if($load_license_js) { ?> 
               <script type="text/javascript" src="<?php echo base_url();?>js/licensing.js"></script> <!-- Licensing Scripts -->

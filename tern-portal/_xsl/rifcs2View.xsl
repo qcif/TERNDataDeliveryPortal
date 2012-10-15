@@ -22,7 +22,7 @@
         </xsl:choose>       
     </xsl:variable>
 	<xsl:variable name="objectClassType" >
-		<xsl:choose>
+		b<xsl:choose>
 			<xsl:when test="//ro:collection">collections</xsl:when>
 			<xsl:when test="//ro:activity">activities</xsl:when>
 			<xsl:when test="//ro:party/@type='group'">party_multi</xsl:when>
@@ -355,7 +355,7 @@
             <!--Spatial Coverage-->
             <xsl:choose>
                 <xsl:when test="ro:coverage/extRif:spatial or ro:location/extRif:spatial">
-                    <li>  
+                    <li class="noprint">  
                         <h2 class="meta_title">
                             <a class="hide" id="spatial">
                                 <span class="left">Spatial coverage</span>
@@ -998,7 +998,7 @@ Handle:
                 <xsl:variable name="l">
                     <xsl:value-of select="."/>
                 </xsl:variable>
-			<li><a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="class">download external</xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="concat(substring($l,1,45),'....')"/></a></li>
+			<li><a><xsl:attribute name="href"><xsl:value-of select="."/></xsl:attribute><xsl:attribute name="class">download external noprint</xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="concat(substring($l,1,45),'....')"/></a><a><xsl:attribute name="href"></xsl:attribute><xsl:attribute name="class">collapse print</xsl:attribute><xsl:attribute name="target">_blank</xsl:attribute><xsl:value-of select="."/></a></li>
                   
 		</xsl:if>		
 	</xsl:template>
