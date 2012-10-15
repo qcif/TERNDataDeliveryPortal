@@ -41,6 +41,38 @@ $Revision: 1 $
             $currentPage = ceil($start / $row)+1;
         }
 	//$range = 2;
+        
+        function displayPagination($currentPage,$totalPage,$num)
+        {
+                for ($x = $currentPage-1; $x < ($currentPage + $num); $x++) 
+                {
+                    if (($x > 0) && ($x <= $totalPage)) 
+                    { //if it's valid
+                            if($x==$currentPage){//if we're on currentPage
+                                    //echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
+                                echo '<span class="currentPageNum">'.$x.'</span>';//don't make a link
+                            }else{//not CurrentPage
+                                    echo '<a href="javascript:void(0);" class="gotoPage" id="'.$x.'">'.$x.'</a>';
+                            }
+                    }              
+                 }
+        }
+
+        function displayPaginationBackward($currentPage,$totalPage,$num)
+        {
+                for ($x = ($currentPage-$num); $x <=$totalPage; $x++) 
+                {
+                    if (($x > 0) && ($x <= $totalPage)) 
+                    { //if it's valid
+                            if($x==$currentPage){//if we're on currentPage
+                                    //echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
+                                echo '<span class="currentPageNum">'.$x.'</span>';//don't make a link
+                            }else{//not CurrentPage
+                                    echo '<a href="javascript:void(0);" class="gotoPage" id="'.$x.'">'.$x.'</a>';
+                            }
+                    }              
+                 }
+        }
 ?>
 <?php
         echo '<div id="right_pagination" class="pagination right">';
@@ -59,32 +91,16 @@ $Revision: 1 $
         
             if($currentPage==1)
             {
-                for ($x = $currentPage-1; $x < (($currentPage + 2) + 3); $x++) 
-                {
-                    if (($x > 0) && ($x <= $totalPage)) 
-                    { //if it's valid
-                            if($x==$currentPage){//if we're on currentPage
-                                    //echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
-                                echo '<span class="currentPageNum">'.$x.'</span>';//don't make a link
-                            }else{//not CurrentPage
-                                    echo '<a href="javascript:void(0);" class="gotoPage" id="'.$x.'">'.$x.'</a>';
-                            }
-                    }              
-                 }
+                displayPagination($currentPage,$totalPage,5);
             }else if($currentPage==2)
             {
-                for ($x = $currentPage-1; $x < (($currentPage + 1) + 3); $x++) 
-                {
-                    if (($x > 0) && ($x <= $totalPage)) 
-                    { //if it's valid
-                            if($x==$currentPage){//if we're on currentPage
-                                    //echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
-                                echo '<span class="currentPageNum">'.$x.'</span>';//don't make a link
-                            }else{//not CurrentPage
-                                    echo '<a href="javascript:void(0);" class="gotoPage" id="'.$x.'">'.$x.'</a>';
-                            }
-                    }              
-                 }
+                displayPagination($currentPage,$totalPage,4);
+            }else if($currentPage==$totalPage)
+            {
+                displayPaginationBackward($currentPage,$totalPage,4);
+            }else if($currentPage==$totalPage-1)
+            {
+                displayPaginationBackward($currentPage,$totalPage,3);
             }else
             {
                 for ($x = ($currentPage - 2); $x < (($currentPage + 2) + 1); $x++) 
