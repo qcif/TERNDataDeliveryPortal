@@ -68,58 +68,7 @@ $Revision: 1 $
                 $this->load->view('search/pagination');
                 echo '</div>';
                 
-/*                
-                $realNumFound = $json->{'response'}->{'numFound'}; 
-                echo '<div id="head-toolbar-content" class="toolbar clearfix">';
 
-                echo '<div id="realNumFound" class="hide">'.($realNumFound).'</div>';
-
-
-                $class='';
-                if($this->input->cookie('facets')!=''){
-                        if($this->input->cookie('facets')=='yes'){
-                                $class='ui-icon-arrowthickstop-1-w';
-                        }else{
-                                $class='ui-icon-arrowthickstop-1-e';
-                        }
-                }else{
-                        $class='ui-icon-arrowthickstop-1-w';
-                }
-
-                
-                echo '<div id="left_num_records" class="result">';
-                if($this->input->cookie('selection')<$realNumFound)
-                {    
-                    echo 'Showing <label id="showing">'.$this->input->cookie('selection').' </label> of ';
-                }else
-                {
-                    echo 'Showing <label id="showing">'.$realNumFound.' </label> of ';
-                }
-                echo ''.number_format($realNumFound).' results';
-                echo '</div>';
-             
-                                
-                echo    '<div id="middle_select_num">';
-                echo        '<b>View</b><select id="viewrecord" name="select-view-record">';				
-                echo                '<option value="10">10</option>';
-                echo                '<option value="25">25</option>';
-                echo                '<option value="50">50</option>';				
-                echo               '<option value="100">100</option>';			
-                echo           '</select><b>records</b> ';
-                echo       '</div>' ;
-                
-//sorting
-                echo    '<div id="sorting_selection">';
-                echo        '<b>Sort By</b><select id="sort_record" name="select-sorting">';				
-                echo                '<option value="score">Relevance</option>';
-                echo                '<option value="timestamp">Date released</option>';             
-                echo           '</select>';
-                echo       '</div>' ;
-//===                
-                $this->load->view('search/pagination');
-       
-                echo '</div>';
-*/
                 ?>    
 
         <div id="search-results-content" >
