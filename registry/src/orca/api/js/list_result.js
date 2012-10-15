@@ -5,7 +5,7 @@
 
 var term=TERNData.getTerm();
 //var base_url='http://demo/api/search';
-var base_url='http://portal-dev.tern.org.au/api/search';
+var base_url='http://115.146.80.56/ternapi/search';
 
 $(document).ready(function() 
 { 
@@ -15,6 +15,7 @@ $(document).ready(function()
             url:base_url+"?term="+term+"&format=json&w=1&count=10&callback=?",
             dataType:"jsonp",
             success:function(data){
+                alert(data);
                 if(data.response!=null)
                 {
                     TERNData.serverResponse(data.response.item);
