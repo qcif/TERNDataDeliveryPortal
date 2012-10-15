@@ -60,11 +60,11 @@ if ($realNumFound >0)
         echo '<table id="searchResults">';
         echo '<thead>';
         echo '<tr>';
-        echo    '<th class="mapRefTH blackGradient first-child">Map ref#</th>';
-        echo    '<th class="titleTH blackGradient">Title</th>';
-        echo    '<th class="datePublishedTH blackGradient last-child">Date released</th>';
+        echo    '<th class="mapRefTH">Map ref#</th>';
+        echo    '<th class="titleTH">Title</th>';
+        echo    '<th class="datePublishedTH">Date released</th>';
         echo '</tr>';
-        echo '</thead>';
+        echo '</thead>'; 
         foreach ($json->{'response'}->{'docs'} as $r) 
         {
             //var_dump($r->{'description_value'});

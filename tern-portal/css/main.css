@@ -274,7 +274,7 @@ nav#facetNav{ margin-right: 15px; float: left; width: 215px; }
 		.facetTree label:hover, .facetContainer label:hover{ text-decoration: underline; }
 		.facetTree > li > ul > li{ margin: 5px 0px 0px 15px !important; }
 		.clearAll{ margin: 5px 0px 10px 0px; display: block; float: left; }
-		#facetNav .helpBtn{ float: right; background: url(../img/buttons/help-normal-btn.png) no-repeat; height: 29px; width: 29px; display: block; margin-top: 8px; margin-right: 8px; }
+		#facetNav .helpBtn{ float: right; background: url(../img/buttons/help-normal-btn.png) no-repeat; height: 29px; width: 29px; display: block; margin-top: 8px; margin-right: 8px; position: relative; z-index: 1000; /* RW ADDED 15/10/12 */}
                 
 		.helpBtn:hover{ background: url(../img/buttons/help-hover-btn.png) no-repeat; }
 		
@@ -529,8 +529,9 @@ table#searchResults{
 	border-spacing: 0px;
         position: relative;
 }
-
-table#searchResults thead th{ font-weight: normal; background: url(/img/dividers/table-th-divider.png) no-repeat right center; padding: 10px 10px; }	
+/*
+table#searchResults thead th{ font-weight: normal; background: url(/img/dividers/table-th-divider.png) no-repeat right center; padding: 10px 10px; 
+}	
 
 
 table#searchResults thead th.first-child{
@@ -564,7 +565,65 @@ table#searchResults tbody td.actionsColumn{
 table#searchResults th.mapRefTH{ width: 66px; }
 table#searchResults th.titleTH{ text-align: left; width:1050px;  }
 table#searchResults th.datePublishedTH{ width: 159px; text-align: left; }
+*/
+table#searchResults thead th{ font-weight: normal; padding: 10px 10px; }	
 
+table#searchResults tbody td{ 
+	padding: 10px;
+	background-color: #fff;
+	border-bottom: 1px solid #ddd;
+}
+
+table#searchResults tbody td.actionsColumn/*, table#searchResults tbody td:last-child*/{
+	background: #fff url(../img/dividers/search-results-divider.png) no-repeat left center; 
+}
+
+table#searchResults th.mapRefTH{ 
+	color: #B7B7B7;
+	width: 50px; 
+	-moz-border-radius: 6px 0 0 0;
+	-webkit-border-radius: 6px 0 0 0;
+	border-radius: 6px 0 0 0;
+	background: #171916 url(../img/dividers/table-th-divider.png) no-repeat right center; /*fallback for non-CSS3 browsers*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -webkit-gradient(linear, 0 0, 0 100%, from(#535353) to(#171916)); /*old webkit*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -webkit-linear-gradient(#535353, #171916) !important; /*new webkit*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -moz-linear-gradient(#535353, #171916); /*gecko*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -ms-linear-gradient(#535353, #171916); /*IE10*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -o-linear-gradient(#535353, #171916); /*opera 11.10+*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, linear-gradient(#535353, #171916); /*future CSS3 browsers*/
+	-pie-background: url(../img/dividers/table-th-divider.png) no-repeat right center, linear-gradient(#535353, #171916); /*PIE*/
+	behavior: url(css/PIE.htc);
+}
+table#searchResults th.titleTH{
+	color: #B7B7B7;
+	text-align: left;
+	background: #171916 url(../img/dividers/table-th-divider.png) no-repeat right center; /*fallback for non-CSS3 browsers*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -webkit-gradient(linear, 0 0, 0 100%, from(#535353) to(#171916)); /*old webkit*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -webkit-linear-gradient(#535353, #171916) !important; /*new webkit*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -moz-linear-gradient(#535353, #171916); /*gecko*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -ms-linear-gradient(#535353, #171916); /*IE10*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -o-linear-gradient(#535353, #171916); /*opera 11.10+*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, linear-gradient(#535353, #171916); /*future CSS3 browsers*/
+	-pie-background: url(../img/dividers/table-th-divider.png) no-repeat right center, linear-gradient(#535353, #171916); /*PIE*/
+	behavior: url(css/PIE.htc);
+}
+table#searchResults th.datePublishedTH{ 
+	color: #B7B7B7;
+	width: 150px; 
+	text-align: left;
+	-moz-border-radius: 0 6px 0 0;
+	-webkit-border-radius: 0 6px 0 0;
+	border-radius: 0 6px 0 0;
+	background: #171916 url(../img/dividers/table-th-divider.png) no-repeat right center; /*fallback for non-CSS3 browsers*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -webkit-gradient(linear, 0 0, 0 100%, from(#535353) to(#171916)); /*old webkit*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -webkit-linear-gradient(#535353, #171916) !important; /*new webkit*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -moz-linear-gradient(#535353, #171916); /*gecko*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -ms-linear-gradient(#535353, #171916); /*IE10*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, -o-linear-gradient(#535353, #171916); /*opera 11.10+*/
+	background: url(../img/dividers/table-th-divider.png) no-repeat right center, linear-gradient(#535353, #171916); /*future CSS3 browsers*/
+	-pie-background: url(../img/dividers/table-th-divider.png) no-repeat right center, linear-gradient(#535353, #171916); /*PIE*/
+	behavior: url(css/PIE.htc);
+}
 table#searchResults tbody td h2{ font-size: 14px; font-weight: normal; margin: 0px; margin: 15px 0px; }
 table#searchResults p.datePublished{ margin: 15px 0px; float: left; width: 100px; }
 table#searchResults a.smallRoundedCorners{ clear: both; display: block; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px; margin-bottom: 5px; position: relative; } 
@@ -744,7 +803,7 @@ a.greenGradient:hover{
 	-pie-background: linear-gradient(#477000, #477000); /*PIE*/ 
 	behavior: url(/css/PIE.htc); 
 }
-
+ 
 .greyGradient{ 
 	position: relative; /* RW ADDED 15/10/12 */
 	background: #949398; /*fallback for non-CSS3 browsers*/
@@ -905,13 +964,14 @@ nav#facetNav #group-facet li{
 a.download{
     word-wrap: break-word;
 }
+#metadataContent p{
+    word-wrap: break-word;
+}
 #contactResult{
     height: 400px;
     font-weight: bold;
     text-align: center;
 }
-
-
 a.external{
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB50RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAAANBJREFUGJVjZEADCZPU/6OLYYDKXQb/K3cZ/EcGrz8++Z8wSf0/E7LCdrcLjM9vfGeo2m2IYQgLulU//wowyOqwYChkYmBgYJife4Nhfu4Nhv///jPYhrMwZEoeYZj+3AbFZLjWxMkaDOZhonBFh1f+YWBn/s5QcXsiwkQGBgYGsxARhsdXviIp+sCwIO8mo5jqbob///4zwhVmSh5hkNXhZji15g3DpKS1cCufXfvGCLf6zaenDAwMDAyh3CsZQuOxBx0LAwMDQ+lCZ+yySAAAOUlVHUJdCpQAAAAASUVORK5CYII=") no-repeat scroll right center transparent;
     padding-right: 13px;
