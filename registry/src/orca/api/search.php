@@ -89,7 +89,7 @@ function buildJsonOutput($totalResults,$searchString,$content,$itemLinkBaseURL)
  
 function buildXMLContent($content,$itemLinkBaseURL)
 {
-   
+
     $docs=simplexml_load_string($content);
    
     $tmp1='';
@@ -100,7 +100,7 @@ function buildXMLContent($content,$itemLinkBaseURL)
 	{	
        
                 $registryObjectKey = $doc->xpath('str[@name="key"]');
-                $registryObjectName=$doc->xpath('str[@name="displayTitle"]');
+                $registryObjectName=$doc->xpath('str[@name="display_title"]');
 		$registryObjectClass=$doc->xpath('str[@name="class"]');
 		$registryObjectType=$doc->xpath('str[@name="type"]');
 		$registryObjectDescriptions=$doc->xpath('arr[@name="description_value"]/str');
@@ -151,13 +151,13 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
         else
             $row=100000;
           
-        $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR displayTitle:(' . $q . ')^50 OR listTitle:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
+        $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR display_title:(' . $q . ')^50 OR list_title:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
   
         $fields = array(
             'q' => $q, 'version' => '2.2', 'start' => $start, 'rows'=>$row,'wt' => 'xml',
             'fl' => '*,score'
         );
-   
+    
         $fields_string = '';
         foreach ($fields as $key => $value)
         {
@@ -168,7 +168,7 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
        // $fields_string .= $facet; //add the facet bits
         $fields_string = urldecode($fields_string);
         
-        
+   
         $ch = curl_init();
         //set the url, number of POST vars, POST data
         curl_setopt($ch, CURLOPT_URL, $solr_url . 'select'); //post to SOLR
@@ -177,12 +177,11 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //return to variable
         $content = curl_exec($ch); //execute the curl
         curl_close($ch); //close the curl
- 
+    
         if ($format == 'json')
         {           
-
                 $output= buildJsonOutput($totalResults,$searchString,$content,$itemLinkBaseURL);
-               
+    
                 $out= xml2json::transformXmlStringToJson($output);
                 if(getQueryValue('w')!=null)
                 {
@@ -203,6 +202,7 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
         else// ($format == 'xml')
         {
           $output= buildXMLOutput($totalResults,$searchString,$content,$itemLinkBaseURL);
+          //print_r($output);
           header("Content-Type: text/xml; charset=UTF-8", true);
           echo $output;
           
@@ -260,14 +260,14 @@ function buildHtmlContent($content,$itemLinkBaseURL)
 	{	
        
                 $registryObjectKey = $doc->xpath('str[@name="key"]');
-                $registryObjectName=$doc->xpath('str[@name="displayTitle"]');
+                $registryObjectName=$doc->xpath('str[@name="display_title"]');
 		//$registryObjectClass=$doc->xpath('str[@name="class"]');
 		//$registryObjectType=$doc->xpath('str[@name="type"]');
 		//$registryObjectDescriptions=$doc->xpath('arr[@name="description_value"]/str');
                 
                 $location=$doc->xpath('arr[@name="location"]/str');
 
-                $relatedinfo=$doc->xpath('arr[@name="relatedInfo"]/str');
+                $relatedinfo=$doc->xpath('arr[@name="related_info"]/str');
 
 		$tmp1=$tmp1.'    <div>'."\n";
 		$tmp1=$tmp1.'      <h3><a href="'.$itemLinkBaseURL.esc($registryObjectKey[0]).'">'.esc($registryObjectName[0]).'</a></h3>'."<br>";

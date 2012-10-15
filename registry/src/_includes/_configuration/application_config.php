@@ -231,12 +231,12 @@ addMenu($menu);
 
 		// =============================================================================
 		// services/OpenSearchDescription
-		$activity = new activity('aORCA_SERVICE_OPENSEARCH_DESCRIPTION', 'OpenSearch Description', 'orca/services/OpenSearchDescription.php');
+		$activity = new activity('aORCA_SERVICE_OPENSEARCH_DESCRIPTION', 'OpenSearch Description', 'orca/ternapi/OpenSearchDescription.php');
 		addActivity($activity);
 
 		// =============================================================================
 		// services/OpenSearch
-		$activity = new activity('aORCA_SERVICE_OPENSEARCH', 'OpenSearch', 'orca/services/OpenSearch.php');
+		$activity = new activity('aORCA_SERVICE_OPENSEARCH', 'OpenSearch', 'orca/ternapi/search.php');
 		addActivity($activity);
 
 
