@@ -25,7 +25,7 @@
             "marker_url": "/img/map/map_marker_yellow_sml.png"
             }
         ],
-        "geo_url": "http://demo:8080/geoserver/wms",
+        "geo_url": "/geoserver/wms",
         "help_url" : ""
         
  }
