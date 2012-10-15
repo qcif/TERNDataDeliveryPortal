@@ -23,7 +23,7 @@ $Revision: 1 $
 <?php $this->load->view('tpl/header');?>
 <?php $this->load->view('tpl/mid');?>
 
-<div id="search-result">
+<div id="search-result" style="background: white;">
 	<?php if(isset($message)):?>
 		<center><h1><?php echo $message;?></h1></center>
 	<?php endif;?>

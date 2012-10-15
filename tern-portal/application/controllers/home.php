@@ -193,7 +193,7 @@ class Home extends CI_Controller {
 	public function notfound(){
 		$this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();
-		$data['message']='Whoops! Page not found!';
+		$data['message']='Page not found!';
                 $this->load->model('Solr');
                 $data['json'] = $this->Solr->getTERNPartners();
 
