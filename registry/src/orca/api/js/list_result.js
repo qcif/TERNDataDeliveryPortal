@@ -15,8 +15,7 @@ $(document).ready(function()
             url:base_url+"?term="+term+"&format=json&w=1&count=10&callback=?",
             dataType:"jsonp",
             success:function(data){
-                alert(data);
-                if(data.response!=null)
+                      if(data.response!=null)
                 {
                     TERNData.serverResponse(data.response.item);
                 }else
