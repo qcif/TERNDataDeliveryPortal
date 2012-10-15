@@ -3,13 +3,46 @@
 class Contact extends CI_Controller {
 
 
-	public function index(){
-            
+	public function index(){ 
+           session_start();
           $this->load->view('contact/form');
         }
         
+        public function security_check($str)
+	{
+		 session_start();
+                 $captcha = $_SESSION['captcha'];  
+                
+                if ($str == $captcha)
+		{
+                        $this->form_validation->set_message('security_check', 'error');
+                                return TRUE;
+                    
+		}
+		else
+		{
+			
+			$this->form_validation->set_message('security_check', 'The security code you have entered was incorrect');
+			return FALSE;
+		}
+	}
+        
+        public function create_security(){
+            session_start();
+               require_once(APPPATH . 'libraries/CaptchaSecurityImages.php');       
+                $width = '120';
+                $height = '40';
+                $characters = 6;
+
+               $data["captcha"] = new CaptchaSecurityImages($width,$height,$characters);
+                
+            
+        }
         public function send(){
+            session_start();
+            
             $this->load->library('form_validation');            
+            $this->form_validation->set_rules('security_code', 'Security code', 'callback_security_check|xss_clean');
             $this->form_validation->set_rules('name', 'Full name', 'trim|xss_clean');
             $this->form_validation->set_rules('phone', 'Phone', 'trim|xss_clean');
             $this->form_validation->set_rules('subject', 'Subject', 'trim|required|xss_clean');
@@ -23,6 +56,8 @@ class Contact extends CI_Controller {
 	    else
 		{		           
                     $this->load->library('email');
+                   
+                    
                     $this->email->from(eCONTACT_EMAIL, eINSTANCE_TITLE. ' website');
                     $this->email->to(eCONTACT_EMAIL);             
                     $this->email->subject('TERN Portal Contact form');

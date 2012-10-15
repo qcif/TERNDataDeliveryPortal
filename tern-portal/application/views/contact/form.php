@@ -48,6 +48,15 @@
     }
     echo form_textarea($cdata);
     echo "<br/>";
+    echo "<label for=\"security_code\">Security Code: </label><br/>
+        <img src=\"/contact/create_security/" . $captcha ."\" width=\"120\" height=\"40\" ><br/>" ; 
+    echo "<input id=\"security_code\" name=\"security_code\" type=\"text\" /><br />";
+    echo  form_error('security_code'); 
+     if(!form_error('msg')){
+        echo "<br/>";
+        
+  
+    }
     echo "<input id=\"submitBtn\" class=\"orangeGradient roundedCorners\" onClick=\"document.contact.submit()\" value=\"Send\"/>";
     echo form_close();
 
