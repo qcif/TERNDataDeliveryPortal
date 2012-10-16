@@ -163,7 +163,7 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
             $row=100000;
           
         $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR display_title:(' . $q . ')^50 OR list_title:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
-  
+        $q.=' class:(collection)';
         $fields = array(
             'q' => $q, 'version' => '2.2', 'start' => $start, 'rows'=>$row,'wt' => 'xml',
             'fl' => '*,score'
