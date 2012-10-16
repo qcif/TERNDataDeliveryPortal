@@ -2,47 +2,6 @@
   String.prototype.toProperCase = function () {
        return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   };
-  
-//iPAD Support
-$.fn.addTouch = function(){
-  this.each(function(i,el){
-    $(el).bind('touchstart touchmove touchend touchcancel',function(){
-      //we pass the original event object because the jQuery event
-      //object is normalized to w3c specs and does not provide the TouchList
-      handleTouch(event);
-    });
-  });
- 
-  var handleTouch = function(event)
-  {
-    var touches = event.changedTouches,
-            first = touches[0],
-            type = '';
- 
-    switch(event.type)
-    {
-      case 'touchstart':
-        type = 'mousedown';
-        break;
- 
-      case 'touchmove':
-        type = 'mousemove';
-        event.preventDefault();
-        break;
- 
-      case 'touchend':
-        type = 'mouseup';
-        break;
- 
-      default:
-        return;
-    }
- 
-    var simulatedEvent = document.createEvent('MouseEvent');
-    simulatedEvent.initMouseEvent(type, true, true, window, 1, first.screenX, first.screenY, first.clientX, first.clientY, false, false, false, false, 0/*left*/, null);
-    first.target.dispatchEvent(simulatedEvent);
-  };
-};
 
 function urldecode(str) {
     return decodeURIComponent((str+'').replace(/\+/g, '%20'));
@@ -425,7 +384,7 @@ $(function() {
         enableCoordsChange(mapWidget);  
      
          
-        $("#map-help-text").dialog({autoOpen:false, height: 500, zIndex: 3999}).addTouch();
+        $("#map-help-text").dialog({autoOpen:false, height: 500});
         $("#map-help").click(function(){
              $("#map-help-text").dialog('open');
              return false;
@@ -875,7 +834,7 @@ $(function() {
  
  //help contents
     
-      $("#facet-help-text").dialog({autoOpen:false, height: 400, width: 500, zIndex: 3999}).addTouch();
+      $("#facet-help-text").dialog({autoOpen:false, height: 400, width: 500, zIndex: 3999});
           $("#facet-help").click(function(){
               $("#facet-help-text").html('');
               
@@ -1660,7 +1619,7 @@ var t=removeBracket(tmp)
                         setupSeealsoBtns();
                         return false;
                     }
-                }).height('auto').addTouch();
+                }).height('auto');
 
                 //$('#infoBox').dialog().prepend('<div id="something-here" style="border:1px solid black;height:400px;width:400px;"></div>');
                 //$('#infoBox').overlay();
