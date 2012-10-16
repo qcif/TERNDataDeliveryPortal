@@ -52,12 +52,13 @@
         <img src=\"/contact/create_security/" . $captcha ."\" width=\"120\" height=\"40\" ><br/>" ; 
     echo "<input id=\"security_code\" name=\"security_code\" type=\"text\" /><br />";
     echo  form_error('security_code'); 
-     if(!form_error('msg')){
-        echo "<br/>";
-        
-  
+     if(!form_error('security_code')){
+        echo "<br/>";         
     }
-    echo "<input id=\"submitBtn\" class=\"orangeGradient roundedCorners\" onClick=\"document.contact.submit()\" value=\"Send\"/>";
+    echo "<a class=\"orangeGradient roundedCorners\" id=\"submitBtn\" onClick=\"document.contact.submit()\">
+                           Send
+                        </a>";
+ 
     echo form_close();
 
     ?>

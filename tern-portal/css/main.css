@@ -921,7 +921,7 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 #submitBtn{
 		margin-top: 25px;
 		float: left;
-		line-height: 50px;
+		line-height: 30px;
 		font-size: 18px; 
 		font-weight: bold;
 		text-align: center;	
