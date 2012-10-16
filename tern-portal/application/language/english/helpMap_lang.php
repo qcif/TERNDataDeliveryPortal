@@ -20,7 +20,7 @@ $lang['map_helptext'] = "<p>
                             <b>Map view</b> – – enables display of the map in either hybrid, satellite or terrain view –this is a display preference only and has no impact on search functionality. 
                          </p>
                          <p>
-                            Refer to the <a href=\"http://tern.org.au/tern_data_portal_terms_of_use-pg21208.html\">Terms of Use</a> for attribution statements relating to use of these maps.                         
+                            Refer to the <a href=\"/home/terms\">Terms of Use</a> for attribution statements relating to use of these maps.                         
                          </p>                         
 ";
 

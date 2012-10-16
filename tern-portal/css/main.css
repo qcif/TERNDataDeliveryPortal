@@ -3,8 +3,8 @@
 html{ background: #d2d9ca url(../img/gradients/bg-gradient.png) repeat-x; height: 100%; min-width: 1280px; }
 html, body, p, h1, h2, h3, h4{ font-family: helvetica, arial, sans-serif !important; }
 body{ height: 100%; background: url(../img/template/bg-lines.png) no-repeat bottom center; min-width: 1280px; }
-a{ color: #467000; text-decoration: none; }
-a:hover{ color: #467000; text-decoration: underline; }
+a, .ui-widget-content a{ color: #467000; text-decoration: none; }
+a:hover, .ui-widget-content a:hover{ color: #467000; text-decoration: underline; }
 p{ color: #333333; margin-bottom: 7px; }
 h2{ font-size: 16px; color: #4B7606; margin: 22px 0px 5px 0px; }
 h3{ font-size: 14px; margin: 5px 0px 5px 0px; }
