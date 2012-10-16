@@ -153,28 +153,18 @@ $(function() {
                 search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
                 search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
                 
-                checkCookie(num,resultSort);
                // $("#loading").show();                             
-  /*  
+    
                 if(getCookie("selection")!=null)
                 {                   
                     num=getCookie("selection");
-                }else
-                {
-                    num=10;
-                    setCookie("selection",10,365);      
                 }
                 
                 if(getCookie("sorting")!=null)
                 {
                     resultSort=getCookie("sorting");
                 }
-                else
-                {
-                    resultSort="score desc";
-                    setCookie("sorting",resultSort,365);
-                }                    
-*/
+
                 if(window.location.href.indexOf('/n')>=0&&window.location.href.indexOf('/s')>=0&&window.location.href.indexOf('/w')>=0&&window.location.href.indexOf('/e')>=0)
                 { 
                         
@@ -268,124 +258,7 @@ $(function() {
             
         }
     }); 
-     
-    /*
-	 * Clearing filters/facets
-	 */
-    $('.clearFilter').live('click', function(e){
-        if($(this).hasClass('clearType')){
-            typeFilter = 'All';
-        }else if($(this).hasClass('clearGroup')){
-            var arrgroupFilter=groupFilter.split(";");
-            
-            if(arrgroupFilter.length>1)
-            {
-                var idx=jQuery.inArray($(this).attr('id'),arrgroupFilter);
-                //var idx=arrgroupFilter.indexOf($(this).attr('id'));
-                arrgroupFilter.splice(idx,1);
-                groupFilter=arrgroupFilter.join(";");
-            }else if(arrgroupFilter.length==1)
-            {
-                groupFilter='All';
-            }else{ }
-
-            
-        }else if($(this).hasClass('clearSubjects')){
-            subjectFilter = 'All';
-        }else if($(this).hasClass('clearFortwo')){
-            //fortwoFilter = 'All';
-            var arrtwo=fortwoFilter.split(";");
-            arrtwo=arrtwo.clean("");
-            if(arrtwo.length>1)
-            {
-                fortwoFilter=fortwoFilter+";";
-                fortwoFilter=fortwoFilter.replace($(this).attr("id")+";","");
-            }else
-            {
-                fortwoFilter = 'All';
-            }
-            
-        }else if($(this).hasClass('clearForfour')){
-            var arrfour=forfourFilter.split(";");
-            arrfour=arrfour.clean("");
-            if(arrfour.length>1)
-            {
-                forfourFilter=forfourFilter+";";
-                forfourFilter=forfourFilter.replace($(this).attr("id")+";","");
-            }else
-            {
-                forfourFilter = 'All';
-            }
-            //forfourFilter = 'All';
-        }else if($(this).hasClass('clearForsix')){
-            forsixFilter = 'All';
-        }else if($(this).hasClass('clearTemporal')){
-            temporal = 'All';
-        }else if($(this).hasClass('clearTernRegion')){
-            ternRegionFilter = 'All';
-            mapResult.switchLayer('none');
-       }else if($(this).hasClass('clearSpatial')){
-            n = '';
-            e = '';
-            w = '';
-            s = '';
-            spatial_included_ids = '';
-            resetCoordinates(); 
-            $("#coordsOverlay input").trigger('change');
-        }else if($(this).hasClass('clearTerm'))
-        {
-            //search_term=encodeURIComponent(search_term);;
-            if(search_term.search("AND")==-1 && search_term.search("NOT")==-1 && search_term.search("OR")==-1 )
-            {
-                search_term='*:*';    
-            }else
-            {
-                 var str="";
-                if($.trim($(this).attr('id')).search("AND")==-1 && $.trim($(this).attr('id')).search("NOT")==-1 &&$.trim($(this).attr('id')).search("OR")==-1)
-                {
-                    var r=decodeURIComponent($.trim($(this).attr('id'))); 
-                    r=r.replace(/\(/g,"");
-                    r=r.replace(/\)/g,"");
-                    r=r.replace(/\+/g," ");
-                    r=r.replace(/\\/g,"");
-                    str=search_term.replace(r, "");     
-
-                    str=str.replace(/\(/g,"");
-                    str=str.replace(/\)/g,"");
-                    
-                    if($.trim(str).substring(0, 2)=="AN" ||$.trim(str).substring(0, 2)=="NO")
-                    {
-                        str=$.trim(str).substring(4);
-                    }
-                    if($.trim(str).substring(0, 2)=="OR")
-                    {
-                        str=$.trim(str).substring(3);
-                    }
-                }else
-                {
-                    var s=decodeURIComponent($.trim($(this).attr('id')));
-                    s=s.replace(/\+/g," ");
-                    s=s.replace(/\\/g,"");
-                    s=s.replace(/\(/g,"");
-                    s=s.replace(/\)/g,"");
-                      
-                    if((s.split("\"").length-1)==1)
-                    {
-                        s=s.replace(/\"/g,"");                    
-                    }
-                    str=search_term.replace(s, ""); 
-                    
-                    str=str.replace(/\(/g,"");
-                    str=str.replace(/\)/g,"");
-                }         
-
-                  search_term=$.trim(str)            
-            }
-            
-        }
-        if($("#currentSearchBox .content ul li").length == 1) clearAll = 1;
-        changeHashTo(formatSearch(search_term,1,classFilter));
-    });
+    
         
         
     /*PAGINATION*/
@@ -784,6 +657,123 @@ $(function() {
                    //$(this).append('<a class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
                        $(this).append('<a class="remove" />');
             });
+             
+                /*
+                * Clearing filters/facets
+                */
+            $('.clearFilter').on('click','a', function(e){
+                if($(this).parent().hasClass('clearType')){
+                    typeFilter = 'All';
+                }else if($(this).parent().hasClass('clearGroup')){
+                    var arrgroupFilter=groupFilter.split(";");
+
+                    if(arrgroupFilter.length>1)
+                    {
+                        var idx=jQuery.inArray($(this).parent().attr('id'),arrgroupFilter);
+                        //var idx=arrgroupFilter.indexOf($(this).attr('id'));
+                        arrgroupFilter.splice(idx,1);
+                        groupFilter=arrgroupFilter.join(";");
+                    }else if(arrgroupFilter.length==1)
+                    {
+                        groupFilter='All';
+                    }
+                }else if($(this).parent().hasClass('clearSubjects')){
+                    subjectFilter = 'All';
+                }else if($(this).parent().hasClass('clearFortwo')){
+                    //fortwoFilter = 'All';
+                    var arrtwo=fortwoFilter.split(";");
+                    arrtwo=arrtwo.clean("");
+                    if(arrtwo.length>1)
+                    {
+                        fortwoFilter=fortwoFilter+";";
+                        fortwoFilter=fortwoFilter.replace($(this).parent().attr("id")+";","");
+                    }else
+                    {
+                        fortwoFilter = 'All';
+                    }
+
+                }else if($(this).parent().hasClass('clearForfour')){
+                    var arrfour=forfourFilter.split(";");
+                    arrfour=arrfour.clean("");
+                    if(arrfour.length>1)
+                    {
+                        forfourFilter=forfourFilter+";";
+                        forfourFilter=forfourFilter.replace($(this).parent().attr("id")+";","");
+                    }else
+                    {
+                        forfourFilter = 'All';
+                    }
+                    //forfourFilter = 'All';
+                }else if($(this).parent().hasClass('clearForsix')){
+                    forsixFilter = 'All';
+                }else if($(this).parent().hasClass('clearTemporal')){
+                    temporal = 'All';
+                }else if($(this).parent().hasClass('clearTernRegion')){
+                    ternRegionFilter = 'All';
+                    mapResult.switchLayer('none');
+            }else if($(this).parent().hasClass('clearSpatial')){
+                    n = '';
+                    e = '';
+                    w = '';
+                    s = '';
+                    spatial_included_ids = '';
+                    resetCoordinates(); 
+                    $("#coordsOverlay input").trigger('change');
+                }else if($(this).parent().hasClass('clearTerm'))
+                {
+                    //search_term=encodeURIComponent(search_term);;
+                    if(search_term.search("AND")==-1 && search_term.search("NOT")==-1 && search_term.search("OR")==-1 )
+                    {
+                        search_term='*:*';    
+                    }else
+                    {
+                        var str="";
+                        if($.trim($(this).parent().attr('id')).search("AND")==-1 && $.trim($(this).parent().attr('id')).search("NOT")==-1 &&$.trim($(this).parent().attr('id')).search("OR")==-1)
+                        {
+                            var r=decodeURIComponent($.trim($(this).parent().attr('id'))); 
+                            r=r.replace(/\(/g,"");
+                            r=r.replace(/\)/g,"");
+                            r=r.replace(/\+/g," ");
+                            r=r.replace(/\\/g,"");
+                            str=search_term.replace(r, "");     
+
+                            str=str.replace(/\(/g,"");
+                            str=str.replace(/\)/g,"");
+
+                            if($.trim(str).substring(0, 2)=="AN" ||$.trim(str).substring(0, 2)=="NO")
+                            {
+                                str=$.trim(str).substring(4);
+                            }
+                            if($.trim(str).substring(0, 2)=="OR")
+                            {
+                                str=$.trim(str).substring(3);
+                            }
+                        }else
+                        {
+                            var s=decodeURIComponent($.trim($(this).parent().attr('id')));
+                            s=s.replace(/\+/g," ");
+                            s=s.replace(/\\/g,"");
+                            s=s.replace(/\(/g,"");
+                            s=s.replace(/\)/g,"");
+
+                            if((s.split("\"").length-1)==1)
+                            {
+                                s=s.replace(/\"/g,"");                    
+                            }
+                            str=search_term.replace(s, ""); 
+
+                            str=str.replace(/\(/g,"");
+                            str=str.replace(/\)/g,"");
+                        }         
+
+                        search_term=$.trim(str)            
+                    }
+
+                }
+                if($("#currentSearchBox .content ul li").length == 1) clearAll = 1;
+                changeHashTo(formatSearch(search_term,1,classFilter));
+            });
+
            $("#fortree").treeview({
 		animated: "fast",
 		collapsed: true,
@@ -843,7 +833,7 @@ $(function() {
  
  //help contents
     
-      $("#facet-help-text").dialog({autoOpen:false, height: 400, width: 500});
+      $("#facet-help-text").dialog({autoOpen:false, height: 400, width: 500, zIndex: 3999});
           $("#facet-help").click(function(){
               $("#facet-help-text").html('');
               
@@ -928,25 +918,14 @@ $(function() {
                         buttons: {
                             "OK": function() { 
                                 search_term='*:*';
-                                checkCookie(num,resultSort);
-/*                                
                                     if(getCookie("selection")!=null)
                                     {
                                         num=getCookie("selection");
-                                    }else
-                                   {
-                                       num=10;
-                                        setCookie('selection',10,365);  
-                                   }
+                                    }
                                     if(getCookie("sorting")!=null)
                                     {
                                         resultSort=getCookie("sorting");
-                                    }else
-                                    {
-                                        resultSort="score desc";
-                                        setCookie('sorting','relevance',365); 
-                                    }                                        
-*/                                
+                                    }
                                     $(this).dialog("close");
                                     mapSearch = 0;
                                     clearAll = 0;
@@ -1297,25 +1276,14 @@ $(function() {
                     buttons: {
                          "OK": function() { 
                                search_term='*:*';
-                                checkCookie(num,resultSort);
-/*                                
                                 if(getCookie("selection")!=null)
                                 {
                                    num=getCookie("selection");
-                                }else
-                                {
-                                   num=10;
-                                   setCookie("selection",10,365);
                                 }
                                 if(getCookie("sorting")!=null)
                                 {
                                    resultSort=getCookie("sorting");
-                                }else
-                                {
-                                    resultSort="score desc";
-                                    setCookie("sorting",resultSort,365);
                                 }
-*/                             
                                 changeHashTo(formatSearch(search_term, 1, classFilter,num));  
                           },
                           "Cancel": function(){
@@ -1325,26 +1293,15 @@ $(function() {
                 });
                         
              }else{
-                  checkCookie(num,resultSort);
-/*                 
                   if(getCookie("selection")!=null)
-                  {
-                      num=getCookie("selection");
-                  }else
-                  {
-                       num=10;
-                       setCookie("selection",10,365);
-                  }                      
-                  if(getCookie("sorting")!=null)
-                  {
-                      resultSort=getCookie("sorting");
-                  }else
-                  {
-                      resultSort="score desc";
-                      setCookie("sorting",resultSort,365);
-                  }
-*/                  
-                  changeHashTo(formatSearch(search_term, 1, classFilter,num));   
+                                {
+                                        num=getCookie("selection");
+                                }
+                                if(getCookie("sorting")!=null)
+                                {
+                                        resultSort=getCookie("sorting");
+                                }
+                                    changeHashTo(formatSearch(search_term, 1, classFilter,num));   
              }
            
 
@@ -1813,12 +1770,24 @@ var t=removeBracket(tmp)
    
     function handleRandom(facname)
     {
-         $.ajax({
+        //alert("dsfd");
+          $.ajax({
         type:"POST",
         url:base_url+"home/getrdmrecord?fac="+facname,
+        // url:base_url+"home/getrdmrecord",
                     
         success:function(msg){
           $("#homeContent").html(msg);
+          
+         // if(facname=="tddp")
+          //{
+            //document.getElementById('tddp').attr('class','flSelect');
+
+            //$(this).attr('class','flSelect');
+            
+                  //handleRollover();
+          //}
+
         },
         error:function(msg){
             //console.log("error");
@@ -1855,28 +1824,42 @@ function setCookie(c_name,value,exdays)
     document.cookie=c_name + "=" + c_value;
 }
 
-function checkCookie(num,resultSort)
-{
+ 
     
-    if(getCookie("selection")!=null)
-    {                   
-        num=getCookie("selection");
-    }else
+    function handleRollover()
     {
-        num=10;
-        setCookie("selection",10,365);      
-    }
 
-    if(getCookie("sorting")!=null)
-    {
-        resultSort=getCookie("sorting");
+
+      /*
+      //$("#scrollable").scrollable({circular: true}).autoscroll(2000);
+      $("#scrollable").scrollable({circular: true});
+			var api = $("#scrollable").data("scrollable");
+			api.seekTo(0);
+			api.onSeek(function() {
+				var currentImageIndex = this.getIndex()+2;
+				var prev = this.getIndex() + 1;
+				var next = this.getIndex() + 3;
+				currentKey = $("#items img:nth-child(" + currentImageIndex + ")").attr('alt');
+				//$('#items img').removeClass('current-scroll');
+				$("#items img:nth-child(" + currentImageIndex + ")").addClass('current-scroll');
+				//currentDescription = $('div[name="'+currentKey+'"]').html();
+				//$('#display-here').html(currentDescription);
+				//$('#display-here a').tipsy({live:true, gravity:'w'});
+			});
+			$("#items img").click(function(){
+                                var facname=$(this).attr("id");
+                                 //alert($(this).attr("id"));                                
+                                handleRandom(facname);
+                                //window.open($(this).attr("id"));
+                                //window.focus();
+			});
+
+			$("#display-here").mouseenter(function() {
+		  api.pause();
+		}).mouseleave(function() {
+		  api.play();
+		});
+      */
     }
-    else
-    {
-        resultSort="score desc";
-        setCookie("sorting",resultSort,365);
-    } 
-    
-}
 
 

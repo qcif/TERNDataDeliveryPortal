@@ -339,10 +339,9 @@ function displaySelectedTerm($query, $json){
         echo  '<ul>';
         for($m=0;$m<count($rawquery_no_op);$m++)
         {            
-                 $tmp=str_replace("\"","",$rawquery_no_op[$m]);
                  echo '<li>';
                  echo '<span class="searchTerm">';
-                 echo '   <label class="clearFilter '.$clear.'" id="'.rtrim(ltrim($op[$m])).' ('.escapeSolrValue(rtrim(ltrim($rawquery_no_op[$m]))).')">'.$op[$m].'('.$tmp.')</label>';
+                 echo '   <label class="clearFilter '.$clear.'" id="'.rtrim(ltrim($op[$m])).' ('.escapeSolrValue(rtrim(ltrim($rawquery_no_op[$m]))).')">'.$op[$m].'('.$rawquery_no_op[$m].')</label>';
                  echo '</span>';    
                  echo '</li>';
               

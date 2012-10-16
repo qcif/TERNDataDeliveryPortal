@@ -26,8 +26,6 @@
     }
 
 
-//    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc', $adv = 0, $ternRegionFilter = 'All')
-
 
     function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc',$ternRegionFilter='All', $num=10)
     {  
@@ -54,15 +52,7 @@
 
         if ($status != 'All')
             $filter_query .= constructFilterQuery('status', $status);
-/*
-        if ($fortwo != 'All')
-            $filter_query .= constructFilterQuery('for_value_two', $fortwo);
-        if ($forfour != 'All')
-            $filter_query .= constructFilterQuery('for_value_four', $forfour);
-        if ($forsix != 'All')
-            $filter_query .= constructFilterQuery('for_value_six', $forsix);
-   
- */
+
         if ($ternRegionFilter != 'All')
             $filter_query .= constructFilterQuery('tern_region', $ternRegionFilter);
 
@@ -88,11 +78,8 @@
             $for2str=constructFORQuery('for_value_two',$fortwo);
             $for4str=constructFORQuery('for_value_four',$forfour);
             
-            $q=$q.'AND ('.$for2str.' OR '.$for4str.')';   
-          
-
+            $q=$q.'AND ('.$for2str.' OR '.$for4str.')';            
         }
-
 
         $q = urldecode($q);
         
@@ -112,7 +99,7 @@
         
 //        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&f.subject_value.facet.mincount=1&facet.sort=count';
  
-        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&facet.field=for_code_two&facet.field=for_code_four&facet.field=for_code_six&f.subject_value_resolved.facet.mincount=1&facet.sort=count&facet.field=tern_region&f.tern_region.facet.mincount=1&facet.limit=-1';
+        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&facet.field=for_code_two&facet.field=for_code_four&facet.field=for_code_six&f.subject_value_resolved.facet.mincount=1&facet.sort=count&facet.field=tern_region&facet.limit=-1';
 
         /* prep */
         $fields_string = '';
