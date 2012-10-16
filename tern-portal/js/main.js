@@ -153,18 +153,28 @@ $(function() {
                 search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
                 search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
                 
+                checkCookie(num,resultSort);
                // $("#loading").show();                             
-    
+  /*  
                 if(getCookie("selection")!=null)
                 {                   
                     num=getCookie("selection");
+                }else
+                {
+                    num=10;
+                    setCookie("selection",10,365);      
                 }
                 
                 if(getCookie("sorting")!=null)
                 {
                     resultSort=getCookie("sorting");
                 }
-
+                else
+                {
+                    resultSort="score desc";
+                    setCookie("sorting",resultSort,365);
+                }                    
+*/
                 if(window.location.href.indexOf('/n')>=0&&window.location.href.indexOf('/s')>=0&&window.location.href.indexOf('/w')>=0&&window.location.href.indexOf('/e')>=0)
                 { 
                         
@@ -918,14 +928,25 @@ $(function() {
                         buttons: {
                             "OK": function() { 
                                 search_term='*:*';
+                                checkCookie(num,resultSort);
+/*                                
                                     if(getCookie("selection")!=null)
                                     {
                                         num=getCookie("selection");
-                                    }
+                                    }else
+                                   {
+                                       num=10;
+                                        setCookie('selection',10,365);  
+                                   }
                                     if(getCookie("sorting")!=null)
                                     {
                                         resultSort=getCookie("sorting");
-                                    }
+                                    }else
+                                    {
+                                        resultSort="score desc";
+                                        setCookie('sorting','relevance',365); 
+                                    }                                        
+*/                                
                                     $(this).dialog("close");
                                     mapSearch = 0;
                                     clearAll = 0;
@@ -1276,14 +1297,25 @@ $(function() {
                     buttons: {
                          "OK": function() { 
                                search_term='*:*';
+                                checkCookie(num,resultSort);
+/*                                
                                 if(getCookie("selection")!=null)
                                 {
                                    num=getCookie("selection");
+                                }else
+                                {
+                                   num=10;
+                                   setCookie("selection",10,365);
                                 }
                                 if(getCookie("sorting")!=null)
                                 {
                                    resultSort=getCookie("sorting");
+                                }else
+                                {
+                                    resultSort="score desc";
+                                    setCookie("sorting",resultSort,365);
                                 }
+*/                             
                                 changeHashTo(formatSearch(search_term, 1, classFilter,num));  
                           },
                           "Cancel": function(){
@@ -1293,15 +1325,26 @@ $(function() {
                 });
                         
              }else{
+                  checkCookie(num,resultSort);
+/*                 
                   if(getCookie("selection")!=null)
-                                {
-                                        num=getCookie("selection");
-                                }
-                                if(getCookie("sorting")!=null)
-                                {
-                                        resultSort=getCookie("sorting");
-                                }
-                                    changeHashTo(formatSearch(search_term, 1, classFilter,num));   
+                  {
+                      num=getCookie("selection");
+                  }else
+                  {
+                       num=10;
+                       setCookie("selection",10,365);
+                  }                      
+                  if(getCookie("sorting")!=null)
+                  {
+                      resultSort=getCookie("sorting");
+                  }else
+                  {
+                      resultSort="score desc";
+                      setCookie("sorting",resultSort,365);
+                  }
+*/                  
+                  changeHashTo(formatSearch(search_term, 1, classFilter,num));   
              }
            
 
@@ -1770,24 +1813,12 @@ var t=removeBracket(tmp)
    
     function handleRandom(facname)
     {
-        //alert("dsfd");
-          $.ajax({
+         $.ajax({
         type:"POST",
         url:base_url+"home/getrdmrecord?fac="+facname,
-        // url:base_url+"home/getrdmrecord",
                     
         success:function(msg){
           $("#homeContent").html(msg);
-          
-         // if(facname=="tddp")
-          //{
-            //document.getElementById('tddp').attr('class','flSelect');
-
-            //$(this).attr('class','flSelect');
-            
-                  //handleRollover();
-          //}
-
         },
         error:function(msg){
             //console.log("error");
@@ -1824,42 +1855,28 @@ function setCookie(c_name,value,exdays)
     document.cookie=c_name + "=" + c_value;
 }
 
- 
+function checkCookie(num,resultSort)
+{
     
-    function handleRollover()
+    if(getCookie("selection")!=null)
+    {                   
+        num=getCookie("selection");
+    }else
     {
-
-
-      /*
-      //$("#scrollable").scrollable({circular: true}).autoscroll(2000);
-      $("#scrollable").scrollable({circular: true});
-			var api = $("#scrollable").data("scrollable");
-			api.seekTo(0);
-			api.onSeek(function() {
-				var currentImageIndex = this.getIndex()+2;
-				var prev = this.getIndex() + 1;
-				var next = this.getIndex() + 3;
-				currentKey = $("#items img:nth-child(" + currentImageIndex + ")").attr('alt');
-				//$('#items img').removeClass('current-scroll');
-				$("#items img:nth-child(" + currentImageIndex + ")").addClass('current-scroll');
-				//currentDescription = $('div[name="'+currentKey+'"]').html();
-				//$('#display-here').html(currentDescription);
-				//$('#display-here a').tipsy({live:true, gravity:'w'});
-			});
-			$("#items img").click(function(){
-                                var facname=$(this).attr("id");
-                                 //alert($(this).attr("id"));                                
-                                handleRandom(facname);
-                                //window.open($(this).attr("id"));
-                                //window.focus();
-			});
-
-			$("#display-here").mouseenter(function() {
-		  api.pause();
-		}).mouseleave(function() {
-		  api.play();
-		});
-      */
+        num=10;
+        setCookie("selection",10,365);      
     }
+
+    if(getCookie("sorting")!=null)
+    {
+        resultSort=getCookie("sorting");
+    }
+    else
+    {
+        resultSort="score desc";
+        setCookie("sorting",resultSort,365);
+    } 
+    
+}
 
 
