@@ -828,7 +828,9 @@ MapWidget.prototype.setHighlightLayer = function(r_id){
         });
         this.highlightLayer.setVisibility(true);
     }    
-    this.map.raiseLayer(this.highlightLayer,this.map.layers.length-1);
+    //this.map.raiseLayer(this.highlightLayer,this.map.layers.length-1);
+     
+   
 }
 
 
@@ -1119,6 +1121,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
 
     }); 
     dataLayer.addFeatures(vectors);
+    this.map.raiseLayer(this.dataLayer,this.map.layers.length-1);
     /* Script to zoom into markers. Commented out because currently unneeded feature.
     var bounds = dataLayer.getDataExtent();
     if(bounds)  this.map.zoomToExtent(bounds); 

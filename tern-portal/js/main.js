@@ -643,10 +643,11 @@ $(function() {
                 mapWidget.map.updateSize();
                 mapWidget.removeAllFeatures();
                 if(mapSearch == 0 && clearAll == 0 && $(msg).find('div#realNumFound').html() !== "0"){
-                  mapWidget.addVectortoDataLayer(".spatial_center",true);
-                  if(ternRegionFilter != 'All'){
+                 if(ternRegionFilter != 'All'){
                       mapWidget.setHighlightLayer(ternRegionFilter.split(":").pop());
                   }
+                     mapWidget.addVectortoDataLayer(".spatial_center",true);
+                 
                 }
                 mapWidget.deactivateAllControls();
             }
