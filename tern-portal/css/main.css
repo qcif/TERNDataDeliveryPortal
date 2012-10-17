@@ -184,16 +184,8 @@ section.left{ width: 975px; margin-right: 15px; }
 #metadataContent{ background: #ffffff; padding: 13px 35px 35px 35px; width: 905px; }
 	#metadataContent .left{ width: 430px; }
 	#metadataContent .right{ width: 430px; }
-	/* RW ADDED BELOW 15/10/12 to fix issue with long links not wrapping when printed */
 	#metadataContent .left p,
 	#metadataContent .right p{
-		white-space: pre;           /* CSS 2.0 */
-		white-space: pre-wrap;      /* CSS 2.1 */
-		white-space: pre-line;      /* CSS 3.0 */
-		white-space: -pre-wrap;     /* Opera 4-6 */
-		white-space: -o-pre-wrap;   /* Opera 7 */
-		white-space: -moz-pre-wrap; /* Mozilla */
-		white-space: -hp-pre-wrap;  /* HP Printers */
 		word-wrap: break-word;      /* IE 5+ */	
 	}
 #metadataContent .authorName{ margin-top: 22px; font-weight: bold; }
