@@ -1219,17 +1219,20 @@ MapWidget.prototype.onFeatureSelect = function(feature){
         this.coverageLayer.addFeatures(vectors);
         mapWidgetObj.map.raiseLayer(this.coverageLayer,this.map.layers.length-1);
     }else{
-        var html = '<h2 class="h2color">Multiple matches: </h2>';
-        html = html  + "<ul>";
+       
+        var html = "<ul>";
+        var count = 0;
         $.each(feature.cluster,function(){
             html = html + "<li class=\"clearfix\"><strong>" +  this.data.numberPin +  this.data.title  + "</strong><div class=\"hide popup_coverage\"><ul>";
            $.each(this.data.coverage,function(){
                 html = html  + "<li>" + this +  "</li>";
+                count++;
             });
       
             html =  html+ "</ul></div></li>";
         }); 
-        html = html+ "</ul>";
+         var html2 = '<h2 class="h2color">Multiple matches (' + count+ '): </h2>';
+        html = html2 + html+ "</ul>"; 
         this.popup = new CustomFramedCloudPopupClass("chicken",
                     feature.geometry.getBounds().getCenterLonLat(),
                     null, html, offset, true, function(){             

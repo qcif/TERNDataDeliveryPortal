@@ -166,7 +166,7 @@ function addPublishedSolrIndexForDatasource($dataSourceKey)
 	global $chunkSize;
 	$rifcsContent = '';
 	$allKeys = getRegistryObjectKeysForDataSource($dataSourceKey);
-    $message = '';
+        $message = '';
 	if($allKeys)
 	{
 		$arraySize = sizeof($allKeys);
