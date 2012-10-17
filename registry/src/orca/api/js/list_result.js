@@ -5,7 +5,7 @@
 
 var term=TERNData.getTerm();
 //var base_url='http://demo/api/search';
-var base_url='http://115.146.80.56/ternapi/search';
+var base_url='http://portal.tern.org.au/ternapi/search';
 
 $(document).ready(function() 
 { 
