@@ -54,7 +54,6 @@ class Search extends CI_Controller
                 $data['widget_facilities'] = 1;
              
                 //get Subject
-                include APPPATH . '/views/tab/forstat.php';
                 $data['widget_for'] = 1;
                 $data['subject'] = $subject;
               
@@ -163,8 +162,6 @@ class Search extends CI_Controller
         
         $sort="score desc";
         $extended_query = $extended . '-key:("' . escapeSolrValue($excluded_key) . '")';
-        //$extended_query='';
-        //$extended_query .=constructFilterQuery('subject_value', $subject).'^100';
 
         $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $class, $group, 'All', $subject, $fortwo,$forfour,$forsix, 'PUBLISHED',$sort, 'All');
  
@@ -195,10 +192,7 @@ class Search extends CI_Controller
             $relation_types2 = array('custodian', 'isManagedBy');
             echo '<pre>';
             print_r($relation =
-
-                    //$this->getRelatedObjects($r->{'relatedObject_key'}[$index],
                             $this->getRelatedObjects($r->{'related_object_key'}[$index],
-
                             $relation_types2));
             echo '</pre>';
         }
@@ -236,10 +230,8 @@ class Search extends CI_Controller
         $object = $this->solr->getObjects($related, null, null, null);
         if (isset($object->{'response'}->{'docs'}[0]))
         {
-
-            //$keyList = $object->{'response'}->{'docs'}[0]->{'relatedObject_key'};
             $keyList = $object->{'response'}->{'docs'}[0]->{'related_object_key'};
-            //$relationshipList = $object->{'response'}->{'docs'}[0]->{'relatedObject_relation'};
+
             $relationshipList = $object->{'response'}->{'docs'}[0]->{'related_object_relation'};
 
 
@@ -288,7 +280,6 @@ class Search extends CI_Controller
                 foreach ($data[$class]['json'][0]->{'response'}->{'docs'} as $r)
                 {
 
-                    //$relatedNum = count($r->{'relatedObject_key'});
                     $relatedNum = count($r->{'related_object_key'});
 
 
@@ -296,13 +287,10 @@ class Search extends CI_Controller
                     $relationship = '';
                     for ($i = 0; $i < $relatedNum; $i++)
                     {
-
-                        //if ($r->{'relatedObject_relatedObjectClass'}[$i] == $class)
                         if ($r->{'related_object_class'}[$i] == $class)
                         {
-                            //$relatedKeys[] = $r->{'relatedObject_key'}[$i];
+ 
                             $relatedKeys[] = $r->{'related_object_key'}[$i];
-                            //$data[$class]['relationship'][] = $r->{'relatedObject_relation'}[$i];
                             $data[$class]['relationship'][] = $r->{'related_object_relation'}[$i];
 
                         }
@@ -354,17 +342,14 @@ class Search extends CI_Controller
                 foreach ($data[$types]['json'][0]->{'response'}->{'docs'} as $r)
                 {
 
-                    //$relatedNum = count($r->{'relatedObject_key'});
                     $relatedNum = count($r->{'related_object_key'});
                     $relatedKeys = '';
                     for ($i = 0; $i < $relatedNum; $i++)
                     {
-                        //if ($r->{'relatedObject_relatedObjectType'}[$i] == $types)
+
                         if ($r->{'related_object_type'}[$i] == $types)
                         {
-                            //$relatedKeys[] = $r->{'relatedObject_key'}[$i];
                             $relatedKeys[] = $r->{'related_object_key'}[$i];
-                            //$data[$types]['relationship'][] = $r->{'relatedObject_relation'}[$i];
                             $data[$types]['relationship'][] = $r->{'related_object_relation'}[$i];
 
                         }
@@ -423,10 +408,9 @@ class Search extends CI_Controller
                 $relatedKeys = '';
                 for ($i = 0; $i < $relatedNum; $i++)
                 {
-                   // if ($r->{'relatedObject_relatedObjectClass'}[$i] == $class)
-                     if ($r->{'related_object_class'}[$i] == $class)
+                    if ($r->{'related_object_class'}[$i] == $class)
                     {
-                        //$relatedKeys[] = $r->{'relatedObject_key'}[$i];
+
                         $relatedKeys[] = $r->{'related_object_key'}[$i];
 
                     }
@@ -515,8 +499,6 @@ class Search extends CI_Controller
         
         $query = $q;
         $extended_query = '';
-        
-        //echo '+spatial:('.$spatial_included_ids.')';
 
         if ($spatial_included_ids != '')
         {
@@ -525,10 +507,7 @@ class Search extends CI_Controller
         if ($temporal != 'All' && $temporal !='')
         {
             $temporal_array = explode('-', $temporal);
-            //$extended_query .='+dateFrom:[' . $temporal_array[0] . ' TO *]+dateTo:[* TO ' . $temporal_array[1] . ']';
-
-             //$extended_query .='+dateFrom:[* TO '. $temporal_array[1].']+dateTo:['.$temporal_array[0] . ' TO *]';
-              $extended_query .='+date_from:[* TO '. $temporal_array[1].']+date_to:['.$temporal_array[0] . ' TO *]';
+            $extended_query .='+date_from:[* TO '. $temporal_array[1].']+date_to:['.$temporal_array[0] . ' TO *]';
 
         }
 
@@ -537,20 +516,10 @@ class Search extends CI_Controller
         /* Search Part */
 
         $this->load->model('solr');
-
-//        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, $fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $adv, $ternRegionFilter);
-
         $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, $fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $ternRegionFilter,$num);
-
-        if ($classFilter == 'collection')
-        {
-            // $data['result_spatial']= $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter,'PUBLISHED');
-        }
         
         /*         * getting the tabbing right* */
         $query_tab = $q;
-
-//        $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $adv, $ternRegionFilter); //just for the tabbing mechanism (getting the numbers right)
 
         $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $ternRegionFilter,$num); //just for the tabbing mechanism (getting the numbers right)
 
@@ -627,8 +596,7 @@ class Search extends CI_Controller
         $query = $q;
         $extended_query = '';
 
-        //echo '+spatial:('.$spatial_included_ids.')';
-        
+       
         if ($spatial_included_ids != '')
         {
             $extended_query .= $spatial_included_ids;
@@ -637,7 +605,6 @@ class Search extends CI_Controller
         {
             $temporal_array = explode('-', $temporal);
 
-            //$extended_query .='+dateFrom:[* TO '. $temporal_array[1].']+dateTo:['.$temporal_array[0] . ' TO *]';
             $extended_query .='+date_from:[* TO '. $temporal_array[1].']+date_to:['.$temporal_array[0] . ' TO *]';
 
         }

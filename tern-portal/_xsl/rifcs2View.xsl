@@ -87,9 +87,6 @@
                 </xsl:for-each>
             </div>          
         </xsl:otherwise>
-           <!-- <xsl:apply-templates select="../extRif:extendedMetadata/extRif:displayLogo"/>
-            <xsl:apply-templates select="ro:name[@type='alternative']/ro:displayTitle"/>
-            -->
    </xsl:choose> 
    
    <div id="metadataContent">
@@ -99,11 +96,7 @@
                 <xsl:when test="ro:relatedObject/ro:relation[@type='author']">
                 <p class="authorName">Author name: <xsl:apply-templates select="ro:relatedObject/ro:relation[@type='author']"/></p>  
                 </xsl:when>
-<!--                
-                <xsl:otherwise>
-                <p class="authorName">Author name: Not provided </p>
-                </xsl:otherwise>
--->                
+             
             </xsl:choose>
             
             <!--Organisation -->
@@ -150,31 +143,7 @@
             </xsl:choose>            
             <!--Dates-->
             <h2>Dates</h2>
-            <ul class="datesList">
-<!--
-                <li>
-                    <h3>Temporal coverage:</h3>
-                    <p>
-                        <xsl:choose>
-                                    <xsl:when test="ro:coverage/ro:temporal/ro:date">
-                                        <xsl:apply-templates select="ro:coverage/ro:temporal/ro:date"/>
-                                    </xsl:when>
-                                    <xsl:when test="ro:location[@dateFrom!=''] | ro:location[@dateTo!='']">
-                                       <xsl:apply-templates select="ro:location[@dateFrom!=''] | ro:location[@dateTo!='']"/>
-                                    </xsl:when>
-                                    <xsl:when test="ro:coverage/ro:temporal/ro:text">
-                                        <xsl:apply-templates select="ro:coverage/ro:temporal/ro:text"/>
-                                    </xsl:when>  
-                                    <xsl:otherwise>
-                                        Not provided
-                                    </xsl:otherwise>
-                       </xsl:choose>
-                    </p>
-                </li>
-                <li class="divider">
-                    <img width="2" height="82" alt="" src="/img/dividers/dates-list-divider.png"/>
-                </li>
--->                
+            <ul class="datesList">          
                 <li>
                     <h3>Date released</h3>
                     <p>
@@ -393,21 +362,7 @@
                         </div>
                     </li> 
                 </xsl:when>
-<!--                
-                <xsl:otherwise>                    
-                <li>
-                    <h2 class="meta_title">
-                        <a class="hide">
-                            <span class="left">Spatial Coverage</span>
-                            <span class="right">Show</span>
-                        </a>
-                    </h2>
-                    <div class="content expand">
-                        Not provided
-                    </div>
-                </li>
-                </xsl:otherwise>
--->                
+           
             </xsl:choose>
             <!--Additional Information-->
           <li>
@@ -628,7 +583,7 @@
     <xsl:template match="extRif:extendedMetadata/extRif:registryDateModified">   
         <xsl:value-of select="."/><br /> 			
     </xsl:template>
-    <!--<xsl:template match="ro:relatedInfo/ro:notes">-->
+
     <xsl:template match="ro:relatedInfo/ro:notes">
         <xsl:value-of select="."/><br />    
     </xsl:template> 
@@ -696,8 +651,7 @@
      
     </xsl:template>  
 
-    <xsl:template match="ro:subject">
-            <!--<li><a href="javascript:void(0);" class="subjectFilter" id="{@extRif:resolvedValue}" title="{.}"><xsl:value-of select="@extRif:resolvedValue"/></a></li>-->
+    <xsl:template match="ro:subject">            
             <li class="subjectFilter" id="{@extRif:resolvedValue}"><xsl:value-of select="@extRif:resolvedValue"/></li>
     </xsl:template>
  
@@ -867,7 +821,6 @@ Handle:
   </xsl:template> 
   
  <xsl:template match="ro:identifier" mode="other">     			 			 	    			 			
-   <!--  <xsl:attribute name="name"><xsl:value-of select="./@type"/></xsl:attribute>  -->
    <xsl:choose>
    <xsl:when test="./@type='arc' or ./@type='abn' or ./@type='isil'">
  		<xsl:value-of select="translate(./@type,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>: <xsl:value-of select="."/>  
@@ -1027,7 +980,7 @@ Handle:
 						<xsl:apply-templates select="./ro:addressPart[@type='locationdescriptor']"/>
 						<xsl:apply-templates select="./ro:addressPart[@type='deliverypointidentifier']"/>	
 						<xsl:apply-templates select="./ro:addressPart[not(@type='organizationname' or @type='fullname' or @type='buildingorpropertyname' or @type='flatorunitnumber' or @type='floororlevelnumber' or @type='lotnumber' or @type='housenumber' or @type='streetname' or @type='postaldeliverynumberprefix' or @type='postaldeliverynumbervalue' or @type='postaldeliverynumbersuffix' or @type='addressline' or @type='suburborplaceorlocality' or @type='stateorterritory' or @type='country' or @type='locationdescriptor' or @type='deliverypointidentifier' or @type='postcode')]"/>	
-						<!--xsl:apply-templates select="./ro:addressPart[not(@type='addressLine') or @type!='deliveryPointIdentifier' or @type='locationDescriptor' or @type='country' or @type='stateOrTerritory' or @type='suburbOrPlaceOrLocality' or @type='suburbOrPlaceOrLocality' or @type='addressLine' or @type='postalDeliveryNumberSuffix])"/-->
+						
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="." disable-output-escaping="yes"/><br />			
@@ -1063,7 +1016,6 @@ Handle:
                 <xsl:if test="string-length(substring-after(./@licence_type,'CC-'))=0">	
                     <xsl:if test="./@licence_type='Unknown/Other' and .=''"><p>Unknown</p></xsl:if>
                     <xsl:if test="./@licence_type!='Unknown/Other'"><p><xsl:value-of select="./@licence_type"/></p></xsl:if>
-                    <!-- <xsl:value-of select="./@licence_type"/> -->
                 </xsl:if>
                 <xsl:if test="."><p><xsl:value-of select="."/></p></xsl:if>
                     <xsl:if test="./@rightsUri"><p>
@@ -1075,7 +1027,6 @@ Handle:
 
 
 <xsl:template match="extRif:description" mode="content">
-        <!--<xsl:attribute name="class"><xsl:value-of select="@type"/></xsl:attribute>-->
            <p><xsl:value-of select="." disable-output-escaping="yes"/></p>        
 </xsl:template>	
 	

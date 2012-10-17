@@ -31,42 +31,7 @@ $home = 1;
 <div id="homeContent">
  <div id="page_name" class="hide">Home</div>
 
-
-<!--   
-    <div id="ui-layout-center" class="ui-layout-center ">
-        <div id="dialog-confirm" title="Confirm search" class="hide">No search term entered. Do you want to see ALL records?</div>
-        
-
-
-               <div id="random"></div>
-             
-                   
-
-                    <div id="carousel">
-                        <div class="clearfix">
-                     <div class="prev browse left"></div>
-                        <div id="scrollable">  
-                           <div class="items" id="items" style="left: 0px; ">                               
-                                <img id="auscover" src="../img/auscover.png" height="102" width="194" />
-                                <img id="ozflux" src="../img/ozflux.png" height="102" width="194" />
-                                <img id="mspn" src="../img/mspn.png" height="102" width="194" />
-                                <img id="ausplot" src="../img/ausplot.png" height="102" width="194"/>
-                                <img id="ltern" src="../img/ltern.png" height="102" width="194" />
-                                <img id="supersite" src="../img/supersite.png" height="102" width="194" />
-                                <img id="soil" src="../img/soil.png" height="102" width="194" />
-                                <img id="acef" src="../img/acef.png" height="102" width="194" />
-                                <img id="aekos" src="../img/aekos.png" height="102" width="194" />
-                                <img id="emast" src="../img/emast.png" height="102" width="194" />
-                                <img id="aceas" src="../img/aceas.png" height="102" width="194" />
-                          </div>
-                          </div>
-                          <div class="next browse right"></div>
-                      </div>
-                      </div>  
-                    
-    </div>
- --> 
-    </div>
+</div>
 <div id="facilitiesAndDatasets">
      <div id="dialog-confirm" title="Confirm search" class="hide">No search term was entered. Do you want to see ALL records?</div>
     <h1>Browse<br>TERN facilities & datasets</h1>

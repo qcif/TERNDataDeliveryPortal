@@ -645,8 +645,6 @@ $(function() {
        
            
             $('.clearFilter').each(function(){
-                //if($(this).context.innerHTML!="All Records")
-                   //$(this).append('<a class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
                        $(this).append('<a class="remove" />');
             });
              

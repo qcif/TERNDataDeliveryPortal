@@ -23,26 +23,7 @@ class Home extends CI_Controller {
 
                  $this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();
-            /*
-                if ($this->agent->is_mobile()){
-                
-                   if($this->input->get('theme') == 'web'){
-                        
-                        $cookie = array(
-                            'name'   => 'theme',
-                            'value'  => 'web',
-                            'expire' => '500',
-                            'domain' => '.tern.org.au',
-                            'secure' => TRUE
-                        );
-                    }elseif($this->input->cookie('theme') == '' ) {
 
-                        redirect('m');
-                    }
-
-
-
-                }*/
                 $this->load->model('Registryobjects');
                 $query = $this->Registryobjects->get_min_year();
                 if($query) $row = $query->row();
@@ -56,10 +37,10 @@ class Home extends CI_Controller {
                 $data['json'] = $this->Solr->getTERNPartners();
                 
                 $data['topics']=$this->Solr->getTopics();
-//print_r($data['topics']);
+
 		$data['home'] = 1;
 		$data['tabs'] = 1;
-		//echo $data['user_agent'];
+
 
                 $data['recordsArr'] = $this->handleRandomTab(10,'tddp');
 		$this->load->view('home_pagev4', $data);
@@ -77,7 +58,6 @@ class Home extends CI_Controller {
             $data['json'] = $this->Solr->getTERNPartners();
             $data['topics']=$this->Solr->getTopics();
             $data['recordsArr'] = $this->handleRandomTab(10,$fac);
-            //$data['recordsArr'] = $this->handleRandomTab(10);
 
             $data['fackey']=$fac;
 
@@ -217,7 +197,6 @@ class Home extends CI_Controller {
 
             $randomRJson = $this->Solr->getRandomRecords($num,$fac);
             
-           //  $randomRJson = $this->Solr->getRandomRecords($num);
             $recordsArr = $randomRJson->{'response'}->{'docs'};
             return $recordsArr;
             
