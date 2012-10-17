@@ -7,7 +7,7 @@
             "marker_url": "/img/map/map_marker_green_sml.png"
             }, 
             {
-           "name" : "Supersites", 
+           "name" : "Australian Supersites Network", 
             "geo_name" : "nr:supersites",
             "geo_url": "/geoserver/wms",
             "marker_url": "/img/map/map_marker_red_sml.png"
@@ -19,7 +19,7 @@
             "marker_url": "/img/map/map_marker_blue_sml.png"
             },   
             {
-            "name" : "Auscover",
+            "name" : "AusCover",
             "geo_name" : "nr:auscover", 
             "geo_url": "/geoserver/wms",
             "marker_url": "/img/map/map_marker_yellow_sml.png"

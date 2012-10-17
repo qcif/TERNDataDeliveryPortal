@@ -462,9 +462,9 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
                         'contentDisplayClass' : 'popupContentScroll',
                         'padding' : new OpenLayers.Bounds(0,0,10,0),                       
                         'autoSize' : true
-                    });  
+                    });   
 
-                    if(length > 657){
+                    if(length > 687){
                         var html = event.text; // +  "<img class=\"mapArrow\" src=\"/img/buttons/map-tools/map_arrow_white.png\"/>"
                         var popup = new CustomFramedCloudPopupClass("chicken",
                                 this.map.getLonLatFromPixel(event.xy),

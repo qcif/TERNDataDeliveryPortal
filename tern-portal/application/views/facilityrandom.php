@@ -41,7 +41,7 @@ $half = round($count / 2);
         
 function printRecord($r, $class){
      $ro_key = $r->{'key'};
-     $date = $r->{'timestamp'};
+     $date = $r->{'date_modified'};
      
      $date_t = new DateTime($date);
      $date_t->setTimeZone(new DateTimeZone("Australia/Brisbane"));
