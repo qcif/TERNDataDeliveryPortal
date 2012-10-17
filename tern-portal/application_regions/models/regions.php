@@ -38,9 +38,9 @@ class Regions extends CI_Model {
         else return new stdClass;
         
     }
-    
+      
     function getRegionList($l_id){
-        $sql = 'SELECT r_id, r_name from regions WHERE l_id=?';
+        $sql = 'SELECT r_id, r_name from regions WHERE l_id=? ORDER BY r_name ASC';
         $q = $this->db->query($sql, array($l_id));
         if($q->num_rows() > 0) return $q->result();
         else return new stdClass;
