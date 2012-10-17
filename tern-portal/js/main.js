@@ -1261,7 +1261,7 @@ $(function() {
                     buttons: {
                          "OK": function() { 
                                search_term='*:*';
-                               checkCookie(num,resultSort);
+                               checkCookie();
                                
                                 changeHashTo(formatSearch(search_term, 1, classFilter,num));  
                           },
@@ -1787,7 +1787,7 @@ function setCookie(c_name,value,exdays)
 }
 
  
-function checkCookie(num,resultSort)
+function checkCookie()
 {
     
     if(getCookie("selection")!=null)
