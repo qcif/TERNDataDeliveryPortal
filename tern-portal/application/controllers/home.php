@@ -117,25 +117,8 @@ class Home extends CI_Controller {
                 
                 
 		$this->load->view('content/advancesrch', $data);
-	}
-        
-	public function about(){
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
-		$this->load->view('content/about', $data);
-	}
+	}       
 	
-	public function disclaimer(){
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
-		$this->load->view('content/disclaimer', $data);
-	}
-	
-	public function help(){
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
-		$this->load->view('content/help', $data);
-	}
 	
 	public function contact(){
 		$this->load->library('user_agent');
@@ -238,30 +221,7 @@ class Home extends CI_Controller {
             $recordsArr = $randomRJson->{'response'}->{'docs'};
             return $recordsArr;
             
-        }
-        
-        /*get data type stats, find the parent name and put in respective arrays */
-       private function handleDataTypeTab(&$dataTypeLvl1,&$dataTypeLvl2){
-            $this->load->model('Registryobjects','ro');
-            include APPPATH . 'views/tab/datatypestat.php';
-            $dataTypeLvl1 = array();
-            $dataTypeLvl2 = array();
-
-            if(count($datatype)>0) { ksort($datatype);
-
-
-            foreach($datatype as $key=>$value){
-                $parentQ = $this->ro->getParentTerms('TERN',$key);
-                 if($parentQ) $row = $parentQ->row();
-                 if($row->name!='') {
-                    array_push($dataTypeLvl1, array('name' => $row->name));
-                    $dataTypeLvl2[$row->name][$key] = array('name' => $key, 'stat' => $value);
-                    }
-            }
-              }
-            if(count($dataTypeLvl2)>1) ksort($dataTypeLvl2);
-        }
-        
+        }    
 
 
     
