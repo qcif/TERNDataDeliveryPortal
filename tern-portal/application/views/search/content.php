@@ -78,8 +78,8 @@ if ($realNumFound >0)
             if (isset($r->{'description_value'}))
                 $descriptions = $r->{'description_value'};
             $date_pub = array();
-            if (isset($r->{'timestamp'})){
-                $date_pub = $r->{'timestamp'};
+            if (isset($r->{'date_modified'})){
+                $date_pub = $r->{'date_modified'};
                 $date_pubf = new DateTime($date_pub);
                 $date_pubf->setTimeZone(new DateTimeZone("Australia/Brisbane"));
                 $date_pub = $date_pubf->format('d-m-Y');
