@@ -645,6 +645,8 @@ $(function() {
        
            
             $('.clearFilter').each(function(){
+                //if($(this).context.innerHTML!="All Records")
+                   //$(this).append('<a class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
                        $(this).append('<a class="remove" />');
             });
              
@@ -1095,7 +1097,7 @@ $(function() {
                         setCookie('sorting',resultSort,365);
                         break;
                 case "timestamp":
-                        resultSort="timestamp desc";
+                        resultSort="date_modified desc";
                         setCookie('sorting',resultSort,365);             
                     break;
                 default:
