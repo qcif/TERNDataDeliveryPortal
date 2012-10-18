@@ -22,7 +22,7 @@
         </xsl:choose>       
     </xsl:variable>
 	<xsl:variable name="objectClassType" >
-		b<xsl:choose>
+		<xsl:choose>
 			<xsl:when test="//ro:collection">collections</xsl:when>
 			<xsl:when test="//ro:activity">activities</xsl:when>
 			<xsl:when test="//ro:party/@type='group'">party_multi</xsl:when>
@@ -144,28 +144,7 @@
             <!--Dates-->
             <h2>Dates</h2>
             <ul class="datesList">          
-                <li>
-                    <h3>Date released</h3>
-                    <p>
-                         <xsl:choose>
-                              <xsl:when test="../extRif:extendedMetadata/extRif:registryDateHarvested">
-                                  <xsl:variable name="dateResult">
-                                       <xsl:call-template name="format-date">
-                                            <xsl:with-param name="date"><xsl:value-of select="substring(../extRif:extendedMetadata/extRif:registryDateHarvested,1,10)"/></xsl:with-param>
-                                            <xsl:with-param name="format" select="'d-n-Y'"/> 
-                                       </xsl:call-template>                      
-                                 </xsl:variable> 
-                                 <xsl:value-of select="$dateResult"/>
-                              </xsl:when> 
-                              <xsl:otherwise>
-                                   Not provided
-                              </xsl:otherwise>
-                       </xsl:choose>  
-                    </p>
-                </li>
-                <li class="divider">
-                    <img width="2" height="82" alt="" src="/img/dividers/dates-list-divider.png"/>
-                </li>
+            
                <xsl:if test="../extRif:extendedMetadata/extRif:registryDateModified">
                 <li>
                     <h3>Date modified</h3>
