@@ -3585,6 +3585,7 @@ function getHarvestedTime($registryObjectKey)
        
 }
 
+// added function to rely on local db if the resolver service is not set.
 function resolveVocabLocal($rawvalue,$vocabType){
     if($vocabType == 'anzsrc-for' || $vocabType == 'anzsrc-seo'){
        if(strlen($rawvalue)== 2 ){

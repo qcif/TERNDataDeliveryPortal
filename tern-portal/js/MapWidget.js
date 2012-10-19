@@ -81,11 +81,18 @@ String.prototype.capitalize = function() {
         label.style.top = parseInt(label.style.top)+yshift+"px";
         
     }
+    
 /*       MAIN WIDGET CLASS 
- *         
- * 
- * 
+ *       Where the map is created  
+ *      mapId is the div ID name to load the map in. Note that this is not a selector so should not have a '#' in front
+ *      overviewMap true means the overviewMap will be displayed at the right bottom screenn
+ *      options for now is only used when sending a customised array of base layers to list as options . for example 
+ *          options.layer = [new OpenLayers.Layer.Google(
+                "Google Physical",
+                {type: google.maps.MapTypeId.TERRAIN}
+             )]; 
  */
+
 function MapWidget(mapId, overviewMap, options){
 
     this.map = '';
@@ -93,10 +100,8 @@ function MapWidget(mapId, overviewMap, options){
     this.overviewMap = true;
     this.overviewMap = overviewMap;
     
-    // get Options 
     var options = options || {};
-    
-    // World Geodetic System 1984 projection (lon/lat)
+      // World Geodetic System 1984 projection (lon/lat)
     this.WGS84 = new OpenLayers.Projection("EPSG:4326");
 
     // WGS84 Google Mercator projection (meters)
@@ -106,15 +111,15 @@ function MapWidget(mapId, overviewMap, options){
     this.extLayers = new Array();
     this.selectLayers = new Array();
     this.selectFeature = '';
-   // this.mapBounds = new OpenLayers.Bounds(11548635,-5889094,18604187,-597430);
-   this.mapBounds = new OpenLayers.Bounds(-20037508, -20037508,20037508, 20037508.34);
-   this.mapExtent = new OpenLayers.Bounds(11548635,-5889094,18604187,-597430);
+    this.mapBounds = new OpenLayers.Bounds(-20037508.34, -20037508.34, 20037508.34, 20037508.34);
+    //   this.mapBounds = new OpenLayers.Bounds(12234012.036478, -5761139.9444121, 17537272.577131, -5761139.9444121);
+   
     /*  ------------------------------------------------------------  
      *    CREATE MAP OBJECT 
      *
      *  ------------------------------------------------------------
      */
-    this.navControl = new OpenLayers.Control.Navigation({zoomWheelEnabled: false});
+    this.navControl = new OpenLayers.Control.Navigation({zoomWheelEnabled: false}); 
     this.options = {
         units : 'm',
         numZoomLevels : 12,
@@ -175,8 +180,8 @@ function MapWidget(mapId, overviewMap, options){
         var zoomsToEnd = this.map.getNumZoomLevels() - 1 - this.map.getZoom();
         var slider = OpenLayers.Util.createAlphaImageDiv(id,
                        centered.add(-1, zoomsToEnd * this.zoomStopHeight),
-                       new OpenLayers.Size(20,16),
-                       imgLocation+"img/buttons/map-tools/map-tools-zoom-handle-normal-btn.png",
+                       new OpenLayers.Size(20,16), // this was changed to our img dimensions
+                       imgLocation+"img/buttons/map-tools/map-tools-zoom-handle-normal-btn.png", // this was changed to our img path
                        "absolute");
         slider.style.cursor = "move";
         this.slider = slider;
@@ -204,7 +209,7 @@ function MapWidget(mapId, overviewMap, options){
             div = OpenLayers.Util.createAlphaImageDiv(id, centered,
                                       new OpenLayers.Size(sz.w,
                                               this.zoomStopHeight),
-                                      imgLocation + "/img/buttons/map-tools/map-tools-zoom-bar.png",
+                                      imgLocation + "/img/buttons/map-tools/map-tools-zoom-bar.png", // changed to our img path
                                       "absolute", null, "crop");
             div.style.height = sz.h + "px";
         } else {
@@ -212,7 +217,7 @@ function MapWidget(mapId, overviewMap, options){
                         'OpenLayers_Control_PanZoomBar_Zoombar' + this.map.id,
                         centered,
                         sz,
-                        imgLocation+ "/img/buttons/map-tools/map-tools-zoom-bar.png");
+                        imgLocation+ "/img/buttons/map-tools/map-tools-zoom-bar.png"); // changed to our img path
         }
         div.style.cursor = "pointer";
         this.zoombarDiv = div;
@@ -255,27 +260,27 @@ function MapWidget(mapId, overviewMap, options){
                 centered = new OpenLayers.Pixel(px.x+sz.w, px.y);
             }
 
-            this._addButton("panup", '/img/buttons/map-tools/map-tools-pan-north-normal-btn.png', centered, sz);
+            this._addButton("panup", '/img/buttons/map-tools/map-tools-pan-north-normal-btn.png', centered, sz); // changed to our img path
             px.y = centered.y+sz.h;
-            this._addButton("panleft", '/img/buttons/map-tools/map-tools-pan-west-normal-btn.png', px, sz);
+            this._addButton("panleft", '/img/buttons/map-tools/map-tools-pan-west-normal-btn.png', px, sz);// changed to our img path
             if (this.zoomWorldIcon) {
                 this._addButton("zoomworld", "zoom-world-mini.png", px.add(sz.w, 0), sz);
 
                 wposition *= 2;
             }
-            this._addButton("panright", '/img/buttons/map-tools/map-tools-pan-east-normal-btn.png', px.add(wposition, 0), sz);
-            this._addButton("pandown", '/img/buttons/map-tools/map-tools-pan-south-normal-btn.png', centered.add(0, sz.h*2), sz);
-            this._addButton("zoomin", '/img/buttons/map-tools/map-tools-zoom-in-normal-btn.png', centered.add(0, sz.h*3+5), sz);
-            centered = this._addZoomBar(centered.add(8, sz.h*4 + 5));
-            this._addButton("zoomout", '/img/buttons/map-tools/map-tools-zoom-out-normal-btn.png', centered.add(-8,0), sz);
+            this._addButton("panright", '/img/buttons/map-tools/map-tools-pan-east-normal-btn.png', px.add(wposition, 0), sz);// changed to our img path
+            this._addButton("pandown", '/img/buttons/map-tools/map-tools-pan-south-normal-btn.png', centered.add(0, sz.h*2), sz);// changed to our img path
+            this._addButton("zoomin", '/img/buttons/map-tools/map-tools-zoom-in-normal-btn.png', centered.add(0, sz.h*3+5), sz);// changed to our img path
+            centered = this._addZoomBar(centered.add(8, sz.h*4 + 5)); // changed to our img size adjustment
+            this._addButton("zoomout", '/img/buttons/map-tools/map-tools-zoom-out-normal-btn.png', centered.add(-8,0), sz);// changed to our img path
         }
         else {
-            this._addButton("zoomin", "/img/buttons/map-tools/map-tools-zoom-in-normal-btn.png", px, sz);
+            this._addButton("zoomin", "/img/buttons/map-tools/map-tools-zoom-in-normal-btn.png", px, sz);// changed to our img path
             centered = this._addZoomBar(px.add(0, sz.h));
-            this._addButton("zoomout", "/img/buttons/map-tools/map-tools-zoom-out-normal-btn.png", centered, sz);
+            this._addButton("zoomout", "/img/buttons/map-tools/map-tools-zoom-out-normal-btn.png", centered, sz);// changed to our img path
             if (this.zoomWorldIcon) {
                 centered = centered.add(0, sz.h+3);
-                this._addButton("zoomworld", "zoom-world-mini.png", centered, sz);
+                this._addButton("zoomworld", "zoom-world-mini.png", centered, sz);// changed to our img path
             }
         }
         return this.div;
@@ -283,11 +288,9 @@ function MapWidget(mapId, overviewMap, options){
     });
         return panZoomBar;
     }
-    //this.zoomBar = new OpenLayers.Control.ZoomBar();
      this.map.addControl(new customZoom());
-   //   this.map.addControl(new OpenLayers.Control.PanPanel());
-    // this.map.addControl(this.zoomBar);
-    /*  ------------------------------------------------------------  
+
+/*  ------------------------------------------------------------  
      *    ADD GOOGLE BASE MAP LAYER
      *
      *  ------------------------------------------------------------
@@ -314,9 +317,8 @@ function MapWidget(mapId, overviewMap, options){
     this.zoomRefine = false;
     
     this.map.addLayers(layers);
-            
-    //this.layers.push(gphy); 
-    
+          
+   
     //Enable switch layers (that + button on the map) 
     //this.map.addControl(new OpenLayers.Control.LayerSwitcher());
     
@@ -328,25 +330,21 @@ function MapWidget(mapId, overviewMap, options){
                 projection: this.WGS84_google_mercator,
                 displayProjection: this.WGS84,
                 minZoomLevel: 2
-        },
-        
+        },        
           minRatio: this.map.getResolution()/this.map.getResolutionForZoom(5), 
-           // isSuitableOverview: function() {return true;},
-         
-         //  units: "m",
+           // isSuitableOverview: function() {return true;},         
+           //  units: "m",
            maximized: true,
-         //  numZoomLevels: 1,
+           //  numZoomLevels: 1,
             maxRatio: this.map.getResolution()/this.map.getResolutionForZoom(5),//Number.POSITIVE_INFINITY, 
             autoPan: true
         };
         this.map.addControl(new OpenLayers.Control.OverviewMap( options));
     }
     
-    // look at Australia 
+    // look at Australia !
     if (!this.map.getCenter()) this.map.zoomToExtent(new OpenLayers.Bounds( 11548635,-5889094,18604187,-597430));
-   
-   //this.panZoomBar.buttons[0].innerHTML = "<div class=olControlPanup ></div>";
-    
+      
      
 }
 
@@ -483,8 +481,7 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
                 
          });
          this.map.addControl(this.info);
-         this.info.activate();
-   
+         this.info.activate();   
 }   
 
 /*  ------------------------------------------------------------  
@@ -613,7 +610,7 @@ MapWidget.prototype.addExtLayer = function(options){
     
     // what is the protocol? 
     switch(protocol){
-        case "WFS": {
+        case "WFS": { // this is currently unused, the code is kept in case functionality will be required
                 if(layerName!='supersites'){
                     tempLayer =  new OpenLayers.Layer.Vector(layerName.capitalize(), {
                         styleMap: styleM
@@ -629,23 +626,9 @@ MapWidget.prototype.addExtLayer = function(options){
                 getWFS(layerName,tempLayer);  
             };        
             break;
-        case "WMS": {
+        case "WMS": { 
                 switch(layerName){
-                    case "supersites" : { // not being used  for  now
-                            tempLayer = new OpenLayers.Layer.TMS("Metacat Doc Points", "http://tern-supersites.net.au/knb/wms?", {
-                                getURL : get_wms_url, 
-                                layers : ["data_points","data_bounds"], 
-                                visibility : true, 
-                                type : 'gif', 
-                                format : "image/gif",
-                                opacity : 1, 
-                                isBaseLayer : false,	
-                                deltaX : 0.00, 
-                                deltaY : 0.00
-                            });                       
-                        };
-            
-                        break;
+                  
                     default: {
                             tempLayer = new OpenLayers.Layer.WMS(layerName,url,{
                                 //   height: '512',
@@ -669,7 +652,7 @@ MapWidget.prototype.addExtLayer = function(options){
             };
     
             break;
-        case "GEOJSON": {
+        case "GEOJSON": { // this is currently unused, the code is kept in case functionality will be required
                 tempLayer =  new OpenLayers.Layer.Vector(layerName.capitalize(), {
                     projection: WGS84
                 });   
@@ -806,7 +789,7 @@ MapWidget.prototype.addExtLayer = function(options){
 
 MapWidget.prototype.setHighlightLayer = function(r_id){
     if (!this.highlightLayer) {    
-        this.highlightLayer = new OpenLayers.Layer.WMS("Highlight Layer",getURL('nr:regions'),{
+        this.highlightLayer = new OpenLayers.Layer.WMS("Highlight Layer",getURL('nr:regions'),{ //nr:regions is the geoserver layer name that corresponds to table regions in tern_spatial database
             layers: 'nr:regions',
             styles: 'polygon', 
             featureid: r_id,
@@ -834,10 +817,25 @@ MapWidget.prototype.setHighlightLayer = function(r_id){
 }
 
 
+/*  ------------------------------------------------------------  
+ *    getZoomRefine
+ *    Functionality currently not used
+ *    
+ *  ------------------------------------------------------------
+ */
 
 MapWidget.prototype.getZoomRefine = function(){
     return this.zoomRefine; 
 }
+
+
+/*  ------------------------------------------------------------  
+ *    setZoomRefine
+ *    Functionality currently not used
+ *    enables searching results based on zoom levels
+ *  ------------------------------------------------------------
+ */
+
 
 MapWidget.prototype.setZoomRefine = function(){
     if(this.zoomRefine == true){
@@ -848,6 +846,12 @@ MapWidget.prototype.setZoomRefine = function(){
     } 
 }
 
+/*  ------------------------------------------------------------  
+ *    toggleNavControl
+ *    Functionality currently not used
+ *    enables turning on and off zoom wheel for the map. By default it is set false in MapWidget constructor  
+ *  ------------------------------------------------------------
+ */
 MapWidget.prototype.toggleNavControl = function(element){
     if(this.navControl.zoomWheelEnabled == true){
         this.navControl.disableZoomWheel();     
@@ -869,7 +873,7 @@ MapWidget.prototype.getFeatureCoordinates = function(){
          for(var i=0;i<this.map.layers.length;i++){
             for(var key in this.drawControls) {
                 if(this.map.layers[i].name == key.capitalize()){
-                     if(this.map.layers[i].features.length == 1) {
+                     if(this.map.layers[i].features.length == 1) { // only supports one feature for now. 
                      verticesNative = this.map.layers[i].features[0].geometry.getVertices();
                      
                       for (var x in verticesNative) {
@@ -880,10 +884,6 @@ MapWidget.prototype.getFeatureCoordinates = function(){
                 }
             }
             }
-           //  if(this.map.layers[i].features.length == 1) {
-            //     geom = this.map.layers[i].features[0].geometry.getVertices();
-           //      break;
-           //  }             
          }
         return geom;
 }
@@ -982,13 +982,11 @@ MapWidget.prototype.toggleControl = function(element) {
   
         for(var key in this.drawControls) {
             var control = this.drawControls[key];
-             var classNameKey = key.capitalize(); 
-            if(element.id == key) {
-               
+             if(element.id == key) {               
                  if(control.active){
                         control.deactivate();
                         element.setAttribute("class", key + "Btn");  
-                          $("#drag").attr("class","panBtnActive");
+                          $("#drag").attr("class","panBtnActive"); 
                     }
                     else{
                         control.activate();  
@@ -998,7 +996,7 @@ MapWidget.prototype.toggleControl = function(element) {
                     }
                
             }else{
-                if(element.id=='del'){
+                if(element.id=='del'){ // user is trying to delete a feature
                     control.layer.removeAllFeatures();
                     control.deactivate();
                     var elem = $("#" + key); 
@@ -1007,23 +1005,21 @@ MapWidget.prototype.toggleControl = function(element) {
                 }
             } 
            
-        }
-      
-   // }
+        }  
 }
 
 
 /*  ------------------------------------------------------------  
  *    addDataLayer(coordinateSelector)  
  *    Display coordinates in coordinateSelector as markers on map
- *    
- *    
+ *    clickInfo enables clicking on the markers 
+ *    style style 'id' to grab the correct style from getStyle
+ *    clustering true enables clustering markers near each other to a single marker with + sign
  *  ------------------------------------------------------------
  */
 MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
     var self = this;
     var styleM = getStyle(style);
-    this.strategy;
     if(clustering){
       
         this.strategy = new OpenLayers.Strategy.Cluster({
@@ -1040,11 +1036,13 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
         });
     }
     this.map.addLayer(this.dataLayer);  
+    
+    // coverageLayer is the layer that show the data spatial coverage  on hover
     this.coverageLayer = new OpenLayers.Layer.Vector("Data Boundaries", { 
             styleMap: getStyle('coverage')
         });
     this.map.addLayer(this.coverageLayer);
-    if(clickInfo){
+    if(clickInfo){ // if features are selectable, declare hover and click to handle hover on regular computers and clicks on tablets
         this.selectControl = new OpenLayers.Control.SelectFeature(this.dataLayer,
         {
             onSelect: function(e) {   
@@ -1071,9 +1069,9 @@ MapWidget.prototype.addDataLayer = function(clickInfo,style,clustering) {
 }
 
 /*  ------------------------------------------------------------  
- *    addMarkersDataLayer(coordinateSelector)  
- *    For every coordinateSelector, create a marker
- *    If clickInfo is true, try to find the info and create HTML popup
+ *    addVectortoDataLayer(coordinateSelector, clickinfo)  
+ *    For every coordinateSelector, create a marker    
+ *    If clickInfo is true, try to find the info within the search table results and create HTML popup
  *    
  *  ------------------------------------------------------------
  */
@@ -1089,39 +1087,37 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
     var vectors = Array();
     var coverage = Array();
     if(typeof clickInfo == "undefined") clickInfo = false;
-    $.each(centers, function(){
+    $.each(centers, function(){ 
             
         if(clickInfo){
              html ='';
              title = ''; 
              coverage = Array();  
-             var link = $(this).closest('tr').find('#metabutton a').attr('href');
-             title = "<a href=\"" + link + "\" class=\"title\" target=\"_blank\" style=\" vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').children('a').html()  + "</a>"  ;
+             title = "<a href=\"" + link + "\" class=\"title\" target=\"_blank\" style=\" vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').children('a').html()  + "</a>"  ; 
+             var link = $(this).closest('tr').find('#metabutton a').attr('href');            
              var date = $(this).closest('tr').children('td:nth-child(3)').children('p').html();
              var button =  $('<p>').append($(this).closest('tr').find('#metabutton a').clone()).remove().html();
             
              number = $(this).closest('tr').children('td:nth-child(1)').children('a').html();
              numberPin = $('<p>').append($(this).closest('tr').children('td:nth-child(1)').children('a').clone()).remove().html();
-              html  = numberPin +  "<strong>" + title + "</strong> <br/> Release date: " + date  + "&nbsp; "+ button ; 
-           //  html = html+ "<img class=\"mapArrow\" src=\"/img/map_arrow_white.png\"/>";    
-             $.each($(this).parent().children('.spatial').children('li'), function(){
+             html  = numberPin +  "<strong>" + title + "</strong> <br/> Release date: " + date  + "&nbsp; "+ button ; 
+           
+             $.each($(this).parent().children('.spatial').children('li'), function(){ //get coverage coordinates 
                   coverage.push( $(this).text());
              });
             
-         
-             
         }else {
             number = ''
         }
-        if($(this).html().indexOf(' ') != -1){ 
+        if($(this).html().indexOf(' ') != -1){  // if we should draw polygons
             vectors.push(addVector($(this).html(), WGS84,WGS84_google_mercator, html,number, numberPin, title));    
-        }else{
+        }else{ //if we should draw marker vectors
             vectors.push(addMarker($(this).html(), WGS84,WGS84_google_mercator, html,number, numberPin, title,coverage));
         }
 
     }); 
     dataLayer.addFeatures(vectors);
-    this.map.raiseLayer(this.dataLayer,this.map.layers.length-1);
+    this.map.raiseLayer(this.dataLayer,this.map.layers.length-1); //set the layer on top of all the other layers
     /* Script to zoom into markers. Commented out because currently unneeded feature.
     var bounds = dataLayer.getDataExtent();
     if(bounds)  this.map.zoomToExtent(bounds); 
@@ -1130,6 +1126,11 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
    
 }
  
+ /*  ------------------------------------------------------------  
+ *    removeAllFeatures 
+ *    Remove all popups, and then destroy features in dataLayer and coverageLayer
+ *  ------------------------------------------------------------
+ */
 MapWidget.prototype.removeAllFeatures = function(){
     for (var i=0; i<this.map.popups.length; i++) 
     { 
@@ -1142,6 +1143,15 @@ MapWidget.prototype.removeAllFeatures = function(){
    
 }
 
+ /*  ------------------------------------------------------------  
+ *    toggleExtLayer(layer_id,visibility)
+ *    Just to toggle visibility for one layer 
+ *    layer_id, the layer we want to toggle
+ *    visibility, whether we want to show or hide the layer. TRUE is show
+ *    This is currently unused, just there to have if needed
+ *  ------------------------------------------------------------
+ */
+
 MapWidget.prototype.toggleExtLayer = function(layer_id, visibility){
     for(var i=0;i<this.extLayers.length; i++){
          if(this.extLayers[i].name == layer_id){ this.extLayers[i].setVisibility(visibility);
@@ -1150,6 +1160,14 @@ MapWidget.prototype.toggleExtLayer = function(layer_id, visibility){
          
     }
 }
+
+
+
+ /*  ------------------------------------------------------------  
+ *    switchLayer(layer_id)
+ *    Have the layer_id layer visible, but turn all other layers off
+ *  ------------------------------------------------------------
+ */
 MapWidget.prototype.switchLayer = function(layer_id){
     for(var i=0;i<this.extLayers.length; i++){
         if(this.extLayers[i].name != layer_id) this.extLayers[i].setVisibility(false);
@@ -1180,9 +1198,6 @@ MapWidget.prototype.updateDrawing = function(map,coordStr){
  *
  *  ------------------------------------------------------------
  */
-
-// Force the popup to always open to the top-right
-
 
 MapWidget.prototype.onFeatureSelect = function(feature){
     selectedFeature = feature; 
@@ -1319,7 +1334,7 @@ function getStyle(styleName){
     var styleSelected;
     var context = {};
     switch(styleName){
-       case "default" : {
+       case "default" : { //used to show markers on search result map
                 style = {
                     graphicWidth: 40,
                     graphicHeight: 42,      
@@ -1383,7 +1398,7 @@ function getStyle(styleName){
             break;
             
        
-        case "coverage" : {
+        case "coverage" : { //used to show boundaries on search result map
                 style = {                   
                     fillColor: '#FFFF00', 
                     fillOpacity: '0.5', 
@@ -1398,7 +1413,7 @@ function getStyle(styleName){
                 };
             };       
             break;
-        case "transparent" : {
+        case "transparent" : {  //used in view metadata 
                 style = {
                     pointRadius: 9, 
                     fillColor: '#48D1CC', 
@@ -1432,16 +1447,15 @@ function getStyle(styleName){
             context:context
         })
     });
-    //  styleM.addUniqueValueRules("default", "type", style);
-    //  styleM.addUniqueValueRules("select", "type", styleSelected);
- 
+  
     return styleM;
 }
     
 
 /*  ------------------------------------------------------------  
  *    Bind changes to coordinates textbox 
- *
+ *    Show the GO button on the lat long box if all the textboxes are filled
+ *    Update the vector
  *  ------------------------------------------------------------
  */
 function enableCoordsChange(map){
@@ -1561,39 +1575,23 @@ function populateCoordinates(n,w,s,e){
 
 
 
-function get_wms_url(bounds) {
-    // recalculate bounds from Google to WGS
-    var proj = new OpenLayers.Projection("EPSG:4326");
-    bounds.transform(new OpenLayers.Projection("EPSG:900913"), proj);
-	
-    // this is not necessary for most servers display overlay correctly,
-    //but in my case the WMS  has been slightly shifted, so I had to correct this with this delta shift
-    bounds.left += this.deltaX;
-    bounds.right += this.deltaX;
-    bounds.top += this.deltaY;
-    bounds.bottom += this.deltaY;
-	
-    //construct WMS request
-    var url = this.url;
-    url += "&REQUEST=GetMap";
-    url += "&SERVICE=WMS";
-    url += "&VERSION=1.1.1";
-    url += "&LAYERS=" + this.layers;
-    url += "&FORMAT=" + this.format;
-    url += "&TRANSPARENT=TRUE";
-    url += "&STYLES=&SRS=" + "EPSG:4326";
-    url += "&BBOX=" + bounds.toBBOX();
-    url += "&WIDTH=" + this.tileSize.w;
-    url += "&HEIGHT=" + this.tileSize.h;
-
-    return url;
-}
-
-
 function pausecomp(ms) {
 ms += new Date().getTime();
 while (new Date() < ms){}
 } 
+
+/*  ------------------------------------------------------------  
+ *    addMarker
+ *    lonlat : longitude latitude coordinates to add marker to
+ *    WGS84 projection : object
+ *    WGS84_google_mercator : 900913 projection object
+ *    html : content of the popup 
+ *    number: the number in the search result list
+ *    numberPin: the number as an image 
+ *    title: the record title
+ *    coverage: coordinates of the record coverage
+ *  ------------------------------------------------------------
+ */
 
  function addMarker(lonlat,WGS84,WGS84_google_mercator,html, number, numberPin, title, coverage){
         var word = lonlat.split(',');
@@ -1611,7 +1609,17 @@ while (new Date() < ms){}
 
         return feature;
    } 
-    
+    /*  ------------------------------------------------------------  
+ *    addVector
+ *    coordinates : a set of lat lon string pairs seperated by space 
+ *    WGS84 projection : object
+ *    WGS84_google_mercator : 900913 projection object
+ *    html : content of the popup 
+ *    number: the number in the search result list
+ *    numberPin: the number as an image 
+ *    title: the record title
+ *  ------------------------------------------------------------
+ */
     function addVector(coordinates,WGS84,WGS84_google_mercator,html, number, numberPin, title){
         var points = coordinates.split(' ');
         var vector_points = Array();

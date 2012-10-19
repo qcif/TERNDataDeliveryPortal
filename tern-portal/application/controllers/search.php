@@ -548,19 +548,18 @@ class Search extends CI_Controller
         $data['temporal'] = $temporal;
  
         $data['mapsearch']=$mapsearch;
-        // get Regions  File
+        // get Regions config file
          $regions = json_decode(file_get_contents( REGIONS_CONFIG_PATH, TRUE));
          $regions = $regions->layers;
-         for($i=0;$i<count($regions);$i++){                  
+         for($i=0;$i<count($regions);$i++){ //for every layer, get list of regions                  
               $regionsName[$regions[$i]->l_id] =  json_decode(file_get_contents('http://' . REGIONS_URL . '/r/getList/' . $regions[$i]->l_id));  
              if(is_array($regionsName[$regions[$i]->l_id]))
               $regionsName[$regions[$i]->l_id]['l_name'] = $regions[$i]->l_name;
-              
-         }
-             
+               
+         }             
          $data["regionsName"] = $regionsName;
 
-                    //get Temporal 
+        //get Temporal 
         $this->load->model('Registryobjects');
         $query = $this->Registryobjects->get_min_year();
         if($query) $row = $query->row();              

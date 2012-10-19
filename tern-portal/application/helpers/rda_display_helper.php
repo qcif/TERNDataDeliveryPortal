@@ -89,8 +89,16 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
            
         }
 }
+
 /* displayRegionFacet
- * tern_region field in SOLR
+ * 
+ * facet_name : the SOLR field name, e.g. tern_region
+ * facetFilter : The facet currently selected by user
+ * json : SOLR json search result with facet
+ * ro_class : currently unused, used to differentiate Collections/Activities.etc
+ * regionsName: an array with region layers and regions name list for each of them
+ * help_title: help dialog popup title
+ * help_text: text for dialog popup 
  */
 
 function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $regionsName,$help_title,$help_text){
@@ -99,7 +107,7 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
         
 	$object_type="";
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
-        if(count($object_type)>0){
+        if(count($object_type)>0 ){
           echo '<li>'  ;
           echo '<div id="facet-region" class="content expand collapsiblePanel">';
           
@@ -113,22 +121,25 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
             echo '<select id="region-select" class="facetDropDown">';
             echo '<option value="">Please select a region type</option>';
            
-             foreach($regionsName as $key=>$regionsList){
+             foreach($regionsName as $key=>$regionsList){ // looping through the regions configuration in regions.json to build the drop down
+                 if(is_array($regionsList))
                  echo '<option value="'. $key . '">'. $regionsList['l_name'] . "</option>";                                 
              }
-            echo '</select><br/><div id="visible-region"> </div>';
-           foreach($regionsName as $key=>$regionsList){
+            echo '</select><br/><div id="visible-region"> </div>'; // the empty div will be filled by the JS everytime the drop down changes
+            
+           foreach($regionsName as $key=>$regionsList){ //build each list for each regions type
+               if(is_array($regionsList)){ 
                $firstRun=true;
-                 for($k=0;$k<count($regionsList);$k++){
-                      for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
-                        if($object_type[$i+1]>0 && (strpos($object_type[$i],$key)!==false)){   
-                            if($firstRun){
+                 for($k=0;$k<count($regionsList);$k++){  // for every regions in regions type
+                      for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){ // for every region in facet 
+                        if($object_type[$i+1]>0 && (strpos($object_type[$i],$key)!==false)){   // check that the current facet is > 0 
+                            if($firstRun){ // print opening tags
                                  echo '<div id="' . $key . '" class="hide">';
                                  echo '<ul class="facetContainer" >';
                                  $firstRun=false;
                             }
-                            list($l_id, $r_id) = explode(':',$object_type[$i]);
-                            if($regionsList[$k]->r_id == $r_id){
+                            list($l_id, $r_id) = explode(':',$object_type[$i]); // get the layer id, and the region id
+                            if($regionsList[$k]->r_id == $r_id && $object_type[$i]!=$facetFilter){   // compare the facet ID and the ID from the regionsName region list and whether it's the facet already selected by the user
                                     echo '<li>
                                     <a href="javascript:void(0);"                                                        
                                             class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .'</a></li>';
@@ -137,45 +148,14 @@ function displayRegionFacet($facet_name, $facetFilter, $json, $ro_class, $region
                                               
                      }
                                            
-                 }
-            
-               
-                if($firstRun==false) {
+                 }                           
+                if($firstRun==false) { // closing tags
                     echo '</ul>';
                    echo '</div>';
                 }
+               }
              }
-             /*
-           foreach($regionsName as $key=>$regionsList){
-               $firstRun=true;
-              for($i=0;$i< sizeof($object_type)-1 ;$i=$i+2){
-                        if($object_type[$i+1]>0 && (strpos($object_type[$i],$key)!==false)){   
-                            if($firstRun){
-                                 echo '<div id="' . $key . '" class="hide">';
-                                 echo '<ul class="facetContainer" >';
-                                 $firstRun=false;
-                            }
-                                if($object_type[$i]!=$facetFilter){
-                                       list($l_id, $r_id) = explode(':',$object_type[$i]);
-                                       for($k=0;$k<count($regionsList);$k++){
-                                          if($regionsList[$k]->r_id == $r_id){
-                                               echo '<li>
-                                                <a href="javascript:void(0);"                                                        
-                                                        class="'.$class.'" id="'.$object_type[$i].'">'.$regionsList[$k]->r_name .'</a></li>';
-                                              
-                                           }
-                                           
-                                       }
-                                       
-                                } 
-                        }
-                }
-               
-                if($firstRun==false) {
-                    echo '</ul>';
-                   echo '</div>';
-                }
-             }*/
+         
           echo '</div>';
            echo '</div>';
             echo '<div id="region-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
@@ -227,7 +207,6 @@ function displaySelectedRegionFacet($facet_name, $facetFilter, $json,$regionsNam
                           for($k=0;$k<count($regionsList);$k++){
                               if($regionsList[$k]->r_id == $r_id)
                               {
-                                    //echo '<li class="limit"><a href="javascript:void(0);" class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$regionsList['l_name'] . ": ".$regionsList[$k]->r_name .' ('.number_format($object_type[$idx+1]).')'.'</a></li>';
                                 echo '<li>
                                         <span class="clearFilter '.$clear.'" id="'.$object_type[$i].'">'.$regionsList['l_name'] . ": ".$regionsList[$k]->r_name .' ('.number_format($object_type[$idx+1]).')'.'</span>';
                                 echo '</li>';  
