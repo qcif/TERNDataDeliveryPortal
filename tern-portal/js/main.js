@@ -1361,7 +1361,10 @@ $(function() {
     }
         
     function initPreviewPage(){
-    $("ul.sf-menu").superfish();
+    //$("ul.sf-menu").superfish();
+        initViewPage();
+    initDataViewPage();
+
 	       initConnectionsBox()		
 	       initSubjectsSEEALSO()		
 	        $('#view-in-orca').remove();		
