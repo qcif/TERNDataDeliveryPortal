@@ -1087,14 +1087,14 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
     var vectors = Array();
     var coverage = Array();
     if(typeof clickInfo == "undefined") clickInfo = false;
-    $.each(centers, function(){ 
+    $.each(centers, function(){  
             
         if(clickInfo){
              html ='';
              title = ''; 
              coverage = Array();  
-             title = "<a href=\"" + link + "\" class=\"title\" target=\"_blank\" style=\" vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').children('a').html()  + "</a>"  ; 
              var link = $(this).closest('tr').find('#metabutton a').attr('href');            
+             title = "<a href=\"" + link + "\" class=\"title\" target=\"_blank\" style=\" vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').children('a').html()  + "</a>"  ; 
              var date = $(this).closest('tr').children('td:nth-child(3)').children('p').html();
              var button =  $('<p>').append($(this).closest('tr').find('#metabutton a').clone()).remove().html();
             

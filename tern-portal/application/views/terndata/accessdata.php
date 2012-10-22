@@ -21,7 +21,7 @@
                     <a href="#MSPN">Multi-Scale Plot Network</a>
                 </li>      
                 <li>                  
-                    <a href="#ASN">Australian Supersites Network </a>
+                    <a href="#ASN">Australian Supersite Network </a>
                 </li>   
                  <li>                  
                     <a href="#Eco-informatics">Eco-informatics</a>
@@ -51,9 +51,9 @@ At present, access to the data requires registering for an account from the port
          TERN’s Soil and Landscape Facility will provide a number of new national soil attribute and terrain derivative data sets, primarily as fine resolution raster/grid files. As data products become available they will be made viewable through the TERN Soil Data Portal, with links to meta-data providing information regarding access and licensing. Data sets will be made available for download where possible, through the <a href="http://www.asris.csiro.au/" target="_blank" class="external">Australian Soil Resource Information System (ASRIS)</a> and the <a href="https://data.csiro.au/dap" target="_blank" class="external">CSIRO Data Access Portal (DAP)</a>.
          
      <h2><a name="MSPN"></a>Multi-Scale Plot Network</h2> 
-    <p>The Multi-Scale Plot Network (MSPN) will publish a range of ecological plot based datasets covering rangelands, forests, long-term ecological monitoring programs and sub-continental transects that span from coasts to inland. All the data will be available via the Australian Ecological Knowledge and Observation System (<a href="http://www.aekos.org.au/" target="_blank" class="external">ÆKOS</a>), developed by TERN Eco-informatics Facility. Australian Supersites Network (ASN), a sub-Facility of MSPN uses a different data delivery mechanism due to the nature of the data collected by the sub-Facility. </p>
-     <h2><a name="ASN"></a>Australian Supersites Network </h2>
-    <p>The Australian Supersites Network (ASN) is a sub-Facility in the Multi-Scale Plot Network and publishes datasets about Australian Terrestrial biomes from 10 different supersites across Australia. Data sets uploaded to the ASN are stored in a secure Metacat repository. Access to the data is through the <a href="http://www.tern-supersites.net.au/" target="_blank" class="external">ASN web portal</a>.
+    <p>The Multi-Scale Plot Network (MSPN) will publish a range of ecological plot based datasets covering rangelands, forests, long-term ecological monitoring programs and sub-continental transects that span from coasts to inland. All the data will be available via the Australian Ecological Knowledge and Observation System (<a href="http://www.aekos.org.au/" target="_blank" class="external">ÆKOS</a>), developed by TERN Eco-informatics Facility. Australian Supersite Network (ASN), a sub-Facility of MSPN uses a different data delivery mechanism due to the nature of the data collected by the sub-Facility. </p>
+     <h2><a name="ASN"></a>Australian Supersite Network </h2>
+    <p>The Australian Supersite Network (ASN) is a sub-Facility in the Multi-Scale Plot Network and publishes datasets about Australian Terrestrial biomes from 10 different supersite across Australia. Data sets uploaded to the ASN are stored in a secure Metacat repository. Access to the data is through the <a href="http://www.tern-supersites.net.au/" target="_blank" class="external">ASN web portal</a>.
 Some of the data sets from the portal may be restricted and requires login credentials. Requests for access and login details can be made by clicking on the record you require or by contacting <a href="mailto:info%40tern-supersites.net.au">Siobhann McCafferty</a></p>
  
   <h2><a name="Eco-informatics"></a>Eco-informatics</h2>

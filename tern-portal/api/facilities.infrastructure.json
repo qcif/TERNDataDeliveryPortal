@@ -1,13 +1,13 @@
 { 
         "facilities": [ 
             {
-            "name" : "Long Term Ecological Plot Network",
+            "name" : "Long Term Ecological Research Network",
             "geo_name" : "nr:vw_ltern",
             "geo_url": "/geoserver/wms",
             "marker_url": "/img/map/map_marker_green_sml.png"
             }, 
             {
-           "name" : "Australian Supersites Network", 
+           "name" : "Australian Supersite Network", 
             "geo_name" : "nr:supersites",
             "geo_url": "/geoserver/wms",
             "marker_url": "/img/map/map_marker_red_sml.png"

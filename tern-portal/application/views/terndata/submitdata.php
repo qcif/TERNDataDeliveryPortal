@@ -21,7 +21,7 @@
                     <a href="#MSPN">Multi-Scale Plot Network</a>
                 </li>      
                 <li>                  
-                    <a href="#ASN">Australian Supersites Network </a>
+                    <a href="#ASN">Australian Supersite Network </a>
                 </li>   
                  <li>                  
                     <a href="#Eco-informatics">Eco-informatics</a>
@@ -58,7 +58,7 @@ Please contact <a href="mailto:jonathan.hodge%40csiro.au">Jonathan Hodge</a> to 
      <p>The TERN Soils and Landscape Facility is developing fine resolution national grids of key soil attributes through the application of digital soil mapping techniques. This utilises available soil site and mapped soil data as inputs to attribute estimation models, as well as comparing modelled outputs to site data for validation. Submission of soil site and mapped data is to be arranged through state government agencies in cooperation with the Australian Collaborative Land Evaluation Program, which delivers and manages the Australian Soil Resource Information System (ASRIS). Please contact <a href="mailto:peter.wilson%40csiro.au">Peter Wilson</a> for further information.</p>
      <h2><a name="MSPN"></a>Multi-Scale Plot Network</h2>
     <p>The Multi-Scale Plot Network (MSPN) collects a range of ecological plot data covering rangelands, forests, long-term ecological monitoring programs and sub-continental transects that span from coasts to inland. These data come from a range of sub-Facilities, including Supersites. Researchers will use the SHaRED tool, under development by Eco-informatics to submit ecological plot-based datasets to the Australian Ecological Knowledge and Observation System (<a href="http://www.aekos.org.au/" target="_blank" class="external">ÆKOS</a>). Please contact <a href="mailto:kathryn.allard%40anu.edu.au">Kathryn Allard</a> for data related enquires with MSPN.</p> 
-     <h2><a name="ASN"></a>Australian Supersites Network</h2>
+     <h2><a name="ASN"></a>Australian Supersite Network</h2>
     <p>The Australian Supersite Network data repository manages data from a number of supersites across the country. Each Supersite represents a different ecosystem type and takes long-term vegetative, faunal and biophysical measurements in a series of core experiments. Core experiment measurements cover meteorology and fluxes, faunal monitoring, soils and hydrology, vegetation, landscape and water measurements. Data from each site must be collected, formatted and indexed to create a dataset and stored in CSV, text and Excel file formats along with descriptive metadata. 
 Submitting a dataset to the ASN repository is done using the Morpho desktop application. Instructions for downloading Morpho and using it for formatting data and creating datasets are available in <a href="http://www.tern-supersites.net.au/index.php/data/repository-tutorial" target="_blank" class="external">http://www.tern-supersites.net.au/index.php/data/repository-tutorial</a>.
 To request a username and password for secure uploading, contact <a href="mailto:info@tern-supersites.net.au">Siobhann McCafferty</a>.</p>
