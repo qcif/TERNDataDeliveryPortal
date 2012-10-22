@@ -30,13 +30,20 @@ class Contact extends CI_Controller {
          
         public function phone_num_check($str)
         {
-            $pattern = "/^[\d|\+|\(][\)|\d|\s|-]+[\d]$/" ;
-            if (preg_match($pattern,$str)){
-                $this->form_validation->set_message('phone_num_check', 'error');
-                                 return TRUE;
-            }else{
-                $this->form_validation->set_message('phone_num_check', 'The phone number you have entered was invalid ');
-			return FALSE;
+            if(trim($str!='')){
+                $pattern = "/^[\d|\+|\(][\)|\d|\s|-]+[\d]$/" ;
+                if (preg_match($pattern,$str)){
+                    $this->form_validation->set_message('phone_num_check', 'error');
+                                    return TRUE;
+                }else{
+                    $this->form_validation->set_message('phone_num_check', 'The phone number you have entered was invalid ');
+                            return FALSE;
+                }
+            }
+           else
+            {
+                  $this->form_validation->set_message('phone_num_check', 'error');
+                                    return TRUE;
             }
             
         }
