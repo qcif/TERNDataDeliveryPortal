@@ -439,7 +439,7 @@ nav.resultsNav{
 	#facilities .helpBtn:hover{ float: right; background: url(../img/buttons/help-hover-btn.png) no-repeat; }
         #spatialmap {
             display: block;
-            height: 410px;
+            height: 460px;
             width: 1010px;
         }
         div.olLayerGoogleCopyright,
@@ -931,7 +931,7 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
 .pac-container{width:300px !important;}
 
 #metadatamap {
- width:598px;height:400px; margin: 0 auto !important;
+ width:750px;height:460px; margin: 0 auto !important;
 
 }
 #facet-help-text h2{

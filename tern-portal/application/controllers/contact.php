@@ -27,13 +27,26 @@ class Contact extends CI_Controller {
 		}
 	}
         
+         
+        public function phone_num_check($str)
+        {
+            $pattern = "/^[\d|\+|\(][\)|\d|\s|-]+[\d]$/" ;
+            if (preg_match($pattern,$str)){
+                $this->form_validation->set_message('phone_num_check', 'error');
+                                 return TRUE;
+            }else{
+                $this->form_validation->set_message('phone_num_check', 'The phone number you have entered was invalid ');
+			return FALSE;
+            }
+            
+        }
         public function create_security(){
             session_start();
                require_once(APPPATH . 'libraries/CaptchaSecurityImages.php');       
                 $width = '120';
                 $height = '40';
                 $characters = 6;
-
+ 
                $data["captcha"] = new CaptchaSecurityImages($width,$height,$characters);
                 
             
@@ -44,7 +57,7 @@ class Contact extends CI_Controller {
             $this->load->library('form_validation');            
             $this->form_validation->set_rules('security_code', 'Security code', 'callback_security_check|xss_clean');
             $this->form_validation->set_rules('name', 'Full name', 'trim|xss_clean');
-            $this->form_validation->set_rules('phone', 'Phone', 'trim|xss_clean');
+            $this->form_validation->set_rules('phone', 'Phone', 'trim|callback_phone_num_check|xss_clean');
             $this->form_validation->set_rules('subject', 'Subject', 'trim|required|xss_clean');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean');
             $this->form_validation->set_rules('msg', 'Message', 'trim|required|xss_clean');
