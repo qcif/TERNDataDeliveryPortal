@@ -1,10 +1,10 @@
-function addCheckbox(name,image_url,help_url,text_abstract) {
+function addCheckbox(name,image_url,help_url,text_abstract,popup_title) {
    var container = $('#facilities');
    var inputs = container.find('input');
    var id = inputs.length+1;
    var img = '<img src="' + image_url + '"/>';
    var helpimg = '<a id="' + id + '" class="helpBtn"></a>'; 
-    var helptext = '<div id="help-' + id + '" class="hide" title="About the ' + name + '">' + text_abstract + '</div>';
+    var helptext = '<div id="help-' + id + '" class="hide" title="About ' + popup_title + '">' + text_abstract + '</div>';
   
    var html = '<div class="clearfix">' + helpimg + '<input type="checkbox" id="cb'+id+'" value="'+name+'" /> <label for="cb'+id+'">'+name+ img + '</label>' + '<br/>' + helptext + '</div>';
    container.append($(html));
@@ -13,8 +13,7 @@ function addCheckbox(name,image_url,help_url,text_abstract) {
  
 function initMapProto(){
             
-    var mapWidget = new MapWidget('spatialmap',true);          
-            
+    var mapWidget = new MapWidget('spatialmap',true);                   
           
            OpenLayers.ProxyHost= base_url + "api/geoproxy.php?url=";
 
@@ -29,7 +28,7 @@ function initMapProto(){
                         capability = response.capability;
                         $.each(data.facilities,function(key,val){
                         var visibility = false;
-                            mapWidget.addExtLayer({
+                            mapWidget.addExtLayer({ 
                                 url: val.geo_url,
                                 protocol: "WMS",
                                 geoLayer: val.geo_name,
@@ -41,7 +40,7 @@ function initMapProto(){
                         for (var i=0, len=capability.layers.length; i<len; i+=1) {
                             var layerObj = capability.layers[i];
                             if (layerObj.name === val.geo_name) {
-                                addCheckbox(val.name,val.marker_url,data.help_url, layerObj.abstract);
+                                addCheckbox(val.name,val.marker_url,data.help_url, layerObj.abstract, val.popup_title);
                             }
                         }
                         $("#facilities .helpBtn").click(function(e){

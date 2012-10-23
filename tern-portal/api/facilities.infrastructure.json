@@ -4,25 +4,29 @@
             "name" : "Long Term Ecological Research Network",
             "geo_name" : "nr:vw_ltern",
             "geo_url": "/geoserver/wms",
-            "marker_url": "/img/map/map_marker_green_sml.png"
+            "marker_url": "/img/map/map_marker_green_sml.png",
+            "popup_title" : "the Long Term Ecological Research Network"
             }, 
             {
            "name" : "Australian Supersite Network", 
             "geo_name" : "nr:supersites",
             "geo_url": "/geoserver/wms",
-            "marker_url": "/img/map/map_marker_red_sml.png"
+            "marker_url": "/img/map/map_marker_red_sml.png",
+            "popup_title" : "the Australian Supersite Network"
             }, 
             {
             "name" : "OzFlux",
             "geo_name" : "nr:ozflux",
             "geo_url": "/geoserver/wms",
-            "marker_url": "/img/map/map_marker_blue_sml.png"
+            "marker_url": "/img/map/map_marker_blue_sml.png",
+            "popup_title" : "OzFlux"
             },   
             {
             "name" : "AusCover",
             "geo_name" : "nr:auscover", 
             "geo_url": "/geoserver/wms",
-            "marker_url": "/img/map/map_marker_yellow_sml.png"
+            "marker_url": "/img/map/map_marker_yellow_sml.png",
+            "popup_title" : "AusCover"
             }
         ],
         "geo_url": "/geoserver/wms",
