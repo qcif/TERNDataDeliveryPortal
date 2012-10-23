@@ -295,7 +295,8 @@
         <xsd:choice minOccurs="1" maxOccurs="3">
             <xsd:element name="rightsStatement" type="rightsInfoType" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="licence" type="rightsTypedInfoType" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="accessRights" type="rightsTypedInfoType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="accessRights" type="rightsTypedInfoType" minOccurs="0" maxOccurs="1"
+            />
         </xsd:choice>
     </xsd:complexType>
 
@@ -399,8 +400,7 @@
                             maxOccurs="unbounded"/>
                         <xsd:element name="title" type="xsd:string" minOccurs="1" maxOccurs="1"/>
                         <xsd:element name="edition" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-                        <xsd:element name="publisher" type="xsd:string" minOccurs="0"
-                            maxOccurs="1"/>
+                        <xsd:element name="publisher" type="xsd:string" minOccurs="0" maxOccurs="1"/>
                         <xsd:element name="placePublished" type="xsd:string" minOccurs="1"
                             maxOccurs="1"/>
                         <xsd:element name="date" type="citationDateType" minOccurs="0"
@@ -452,7 +452,7 @@
                 <xsd:attribute name="type" use="required" type="xsd:string">
                     <xsd:annotation>
                         <xsd:documentation>A value taken from a controlled vocabulary indicating the
-                            type of date.</xsd:documentation>
+                             type of date.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:attribute>
             </xsd:extension>
@@ -466,7 +466,7 @@
                     object being described</xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
-        <xsd:attribute name="dateModified" type="xsd:dateTime" use="optional">
+        <xsd:attribute name="dateModified" type="xsd:string" use="optional">
             <xsd:annotation>
                 <xsd:documentation>The date this object’s metadata was last changed. This only
                     refers to the metadata of the registry object itself. For example if a
@@ -478,7 +478,7 @@
     </xsd:attributeGroup>
 
     <xsd:attributeGroup name="dateRangeAttributes">
-        <xsd:attribute name="dateFrom" type="xsd:dateTime" use="optional">
+        <xsd:attribute name="dateFrom" type="xsd:string" use="optional">
             <xsd:annotation>
                 <xsd:documentation>The date from which the metadata being described was current.
                     This is only applicable where versions of the same metadata is being provided
@@ -487,7 +487,7 @@
                     (http://www.w3.org/TR/xmlschema-2/).</xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
-        <xsd:attribute name="dateTo" type="xsd:dateTime" use="optional">
+        <xsd:attribute name="dateTo" type="xsd:string" use="optional">
             <xsd:annotation>
                 <xsd:documentation>The date the metadata being described was no longer current. This
                     is only applicable where versions of the same metadata is being provided (e.g.
@@ -508,7 +508,7 @@
     </xsd:attributeGroup>
 
     <xsd:attributeGroup name="collectionAttributes">
-        <xsd:attribute name="dateAccessioned" type="xsd:dateTime" use="optional">
+        <xsd:attribute name="dateAccessioned" type="xsd:string" use="optional">
             <xsd:annotation>
                 <xsd:documentation>The date this object was registered in a managed environment.
                     Must be UTC and of one of the forms described in section 3.2.7 of the W3C's
