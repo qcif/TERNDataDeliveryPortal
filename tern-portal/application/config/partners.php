@@ -111,7 +111,7 @@
                 ],
                 "description_value": [
                     "/img/logos/logo-mspn.jpg",
-                    "The Multi-Scale Plot Network (MSPN) is collecting data on selected flora, fauna and biophysical processes from plots, sites and transects across all Australian ecosystems to describe the rate, magnitude and direction of change in these ecosystems.  The MSPN includes five sub-facilities that each addresses a different aspect of ecosystem research at different spatial, temporal and information scales. The synthesis and integration of data across the whole of MSPN addresses novel ecosystem questions and policy and management needs."
+                    "The Multi-Scale Plot Network (MSPN) is collecting data on selected flora, fauna and biophysical processes from plots, sites and transects across all Australian ecosystems to describe the rate, magnitude and direction of change in these ecosystems. The MSPN includes five sub-facilities Ausplots forests, Ausplot rangelands, Long-Term Ecological Research Network, Australian Supersite Network and Australian Transect Network. Each of these sub-facilities addresses a different aspect of ecosystem research at different spatial, temporal and information scales. The synthesis and integration of data across the whole of MSPN addresses novel ecosystem questions and policy and management needs."
                 ],
       
                 "location": ["http://www.tern.org.au/Multi-Scale-Plot-Network-pg17730.html"]
@@ -129,7 +129,7 @@
                 ],
                 "description_value": [
                     "/img/logos/logo-ausplots.png",
-                    "AusPlots Forests is establishing a continental-scale plot based monitoring network to improve understanding of tree growth, forest productivity and carbon dynamics in tall eucalypt forests in relation to continental-scale environmental gradients.  This work is the first step toward robust monitoring of Australian forest ecosystems using standardised measurement protocols across Australia.<br/><br/>AusPlots Rangelands is establishing a permanent plot based monitoring network throughout the rangeland bioregions of Australia, to undertake baseline surveys of vegetation and soils. This work will fill existing knowledge gaps, and facilitates ongoing evidence-based decision making capacity at local, regional, national and international levels."
+                    "Ausplot is a sub-facility of Multi-Scale Plot Network and consists of AusPlots Forest and AusPlots Rangelands.<br/>AusPlots Forests is establishing a continental-scale plot based monitoring network to improve understanding of tree growth, forest productivity and carbon dynamics in tall eucalypt forests in relation to continental-scale environmental gradients. This work is the first step toward robust monitoring of Australian forest ecosystems using standardised measurement protocols across Australia.<br/>AusPlots Rangelands is establishing a permanent plot based monitoring network throughout the rangeland bioregions of Australia, to undertake baseline surveys of vegetation and soils. This work will fill existing knowledge gaps, and facilitates ongoing evidence-based decision making capacity at local, regional, national and international levels."
                 ],
       
                 "location": ["http://www.tern.org.au/ausplots.html"]
@@ -145,7 +145,7 @@
                 ],
                 "description_value": [
                     "/img/logos/logo-ltern.png",
-                    "The Long Term Ecological Research Network (LTERN) has established a coordinated and collaborative approach across 12 existing long-term ecological plot monitoring programs in a range of Australian ecosystems. Data collected throughout the network includes vegetation, soils, invertebrates, birds, reptiles, arboreal marsupials, genetics and phenology. LTERN provides important scientific knowledge and data to allow Australians to better understand and interpret environmental change."
+                    "The Long Term Ecological Research Network (LTERN) is a sub-facility of MSPN, which has established a coordinated and collaborative approach across 12 existing long-term ecological plot monitoring programs in a range of Australian ecosystems. Data collected throughout the network includes vegetation, soils, invertebrates, birds, reptiles, arboreal marsupials, genetics and phenology. LTERN provides important scientific knowledge and data to allow Australians to better understand and interpret environmental change."
                 ],
       
                 "location": ["http://www.tern.org.au/ausplots.html"]
@@ -163,7 +163,7 @@
                 ],
                 "description_value": [
                     "/img/logos/logo-asn.png",
-                    "The Australian Supersite Network (ASN) is a national network of multidisciplinary ecosystem observatories, located in significant Australian biomes spanning a wide range of environmental conditions. The ASN collects detailed data sets on flora, fauna and biophysical processes from each Supersite to improve understanding of how key ecosystems may respond to future environmental change."
+                    "The Australian Supersite Network (ASN), a sub-facility of MSPN is a national network of multidisciplinary ecosystem observatories, located in significant Australian biomes spanning a wide range of environmental conditions. The ASN collects detailed data sets on flora, fauna and biophysical processes from each Supersite to improve understanding of how key ecosystems may respond to future environmental change."
                 ],
                 "location": ["http://www.tern.org.au/Australian-Supersite-Network-pg17873.html"]
             },
