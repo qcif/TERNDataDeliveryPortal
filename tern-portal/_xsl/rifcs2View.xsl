@@ -608,12 +608,14 @@
                       <xsl:value-of select="$dateResult"/>&#160;
                       <xsl:value-of select="substring(.,12)"/>
                  </xsl:when>
-                 
-                 <xsl:otherwise>
+                  <xsl:when test='string-length(.)=0'>
                        <xsl:variable name="dateResult">
                          [not provided]
                         </xsl:variable> 
                       <xsl:value-of select="$dateResult"/>
+                 </xsl:when>                
+                 <xsl:otherwise>
+                    <xsl:value-of select="."/>
 
                  </xsl:otherwise>
              </xsl:choose>
