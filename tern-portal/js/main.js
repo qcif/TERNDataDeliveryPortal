@@ -1,3 +1,5 @@
+     var num;
+     var resultSort;
  //capitalize first letter
   String.prototype.toProperCase = function () {
        return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -44,7 +46,7 @@ $(function() {
     var forfourFilter='All';
     var forsixFilter='All';
     var ternRegionFilter = 'All';
-    var resultSort = 'score desc';
+
     var temporal = 'All';        
     var n = '';
     var e = '';
@@ -53,7 +55,7 @@ $(function() {
     var mapResult;
     var param_q;
     var spatial_included_ids = '';
-    var num=10;
+
     var clearAll = 0; 
     
     // ROUTING 
@@ -153,7 +155,7 @@ $(function() {
                 search_term = search_term.replace(/ or /g, " OR ");//uppercase the ORs
                 search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
                 
-                checkCookie(num,resultSort);
+                checkCookie();
                 // $("#loading").show();                             
                   
                 if(window.location.href.indexOf('/n')>=0&&window.location.href.indexOf('/s')>=0&&window.location.href.indexOf('/w')>=0&&window.location.href.indexOf('/e')>=0)
@@ -910,7 +912,7 @@ $(function() {
                         buttons: {
                             "OK": function() { 
                                 search_term='*:*';
-                                checkCookie(num,resultSort);
+                                checkCookie();
                                     $(this).dialog("close");
                                     mapSearch = 0;
                                     clearAll = 0;
@@ -1272,7 +1274,7 @@ $(function() {
                 });
                         
              }else{
-                 checkCookie(num,resultSort);
+                 checkCookie();
                  changeHashTo(formatSearch(search_term, 1, classFilter,num));   
              }
            
