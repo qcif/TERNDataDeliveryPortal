@@ -1096,7 +1096,7 @@ $(function() {
                         resultSort="score desc";
                         setCookie('sorting',resultSort,365);
                         break;
-                case "timestamp":
+                case "date_modified":
                         resultSort="date_modified desc";
                         setCookie('sorting',resultSort,365);             
                     break;
@@ -1170,7 +1170,7 @@ $(function() {
                  if(sel_sort.length>0){
                      for(var s=0;s<sel_sort.length;s++)
                      {
-                        for(var i=0;i<opt[s].options.length;i++)
+                        for(var i=0;i<sel_sort[s].options.length;i++)
                         {
                             if(sel_sort[s].options[i].value===resultSort.split(" ")[0].toString())
                             {                         

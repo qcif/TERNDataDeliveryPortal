@@ -61,7 +61,7 @@ $Revision: 1 $
                 echo        'Sort By:';
                 echo        '<select class="sort_record" name="select-sorting">';				
                 echo                '<option value="score">Relevance</option>';
-                echo                '<option value="timestamp">Date released</option>';             
+                echo                '<option value="date_modified">Date released</option>';             
                 echo           '</select>'; 
                 echo        '</div>';
                                 
