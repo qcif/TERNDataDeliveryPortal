@@ -27,7 +27,7 @@ function getRegistryObjectXML($registryObjectKey, $forSOLR = false, $includeRela
 	if (!eCACHE_ENABLED)
 	{
 		return getRegistryObjectXMLFromDB($registryObjectKey, $forSOLR, $includeRelated);
-	}
+	} 
 
 
 
@@ -205,9 +205,9 @@ function getRegistryObjectXMLFromDB($registryObjectKey, $forSOLR = false, $inclu
 		}
 
 		$dateModified = '';
-		if( $registryObject[0]['status_modified_when'] )
+		if( $registryObject[0]['date_modified'] )
 		{
-			$dateModified = ' dateModified="'.esc(getXMLDateTime($registryObject[0]['status_modified_when'])).'"';
+			$dateModified = ' dateModified="'.esc(getXMLDateTime($registryObject[0]['date_modified'])).'"';
 		}     
                 
              

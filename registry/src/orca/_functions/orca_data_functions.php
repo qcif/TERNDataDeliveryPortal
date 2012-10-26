@@ -2850,14 +2850,14 @@ function getRegistryObjectRegistryDateModified($registry_object_key)
 function getRegistryObjectStatusModified($registry_object_key)
 {
 	global $gCNN_DBS_ORCA;
-	$strQuery = 'SELECT status_modified_when FROM dba.tbl_registry_objects WHERE registry_object_key = $1';
+	$strQuery = 'SELECT date_modified FROM dba.tbl_registry_objects WHERE registry_object_key = $1';
 	$params = array($registry_object_key);
 	$resultSet = executeQuery($gCNN_DBS_ORCA, $strQuery, $params);
 
 	if (!isset($resultSet[0]))
 		return false;
 	else
-		return $resultSet[0]['status_modified_when'];
+		return $resultSet[0]['date_modified'];
 }
 
 

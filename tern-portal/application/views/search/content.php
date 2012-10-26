@@ -67,6 +67,7 @@ if ($realNumFound >0)
         echo '</thead>'; 
         foreach ($json->{'response'}->{'docs'} as $r) 
         {
+
             //var_dump($r->{'description_value'});
             $type = $r->{'type'};
             $ro_key = $r->{'key'};
