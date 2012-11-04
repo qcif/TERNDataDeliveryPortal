@@ -30,7 +30,7 @@ class Tregion extends CI_Controller {
         
     }
     
-   
+   // Run indexing for a certain job 
     public function index()
     {    
         $default = array('id');
@@ -50,7 +50,7 @@ class Tregion extends CI_Controller {
         flush();          
         ob_end_clean();
        
-        if($schedules = $this->Scheduler->getOrder(0,$id)){ 
+        if($schedules = $this->Scheduler->getOrder(0,$id)){  // if there is a schedule found
             
             $json = $this->load->file('../api/regions.json',TRUE);
             $rcf = json_decode($json,TRUE);
@@ -66,7 +66,7 @@ class Tregion extends CI_Controller {
                         }
                     }
                    if($valid_schedule == 1){
-                      $this->Scheduler->setUnderProcess($schedule->batch_id);
+                      $this->Scheduler->setUnderProcess($schedule->batch_id); 
                     }
                 }
                 
@@ -80,6 +80,8 @@ class Tregion extends CI_Controller {
           
         }
     }
+    
+    // Run indexing for new Records, index_scheduler category should be 1
     
     public function newRecords()
     {
@@ -174,7 +176,7 @@ class Tregion extends CI_Controller {
                                         sort($index_id_arr);   
                                 }
                             }
-                        }else{
+                        }else{ // if there's only one spatial coverage 
                             if(checkValidCoords($spatial_coverages)){
                                 $index_id_arr = getRegionIndexId($this->doIntersect($spatial_coverages,$layer_id));
                             }

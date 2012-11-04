@@ -368,12 +368,14 @@ $(function() {
                         layerName: val.l_id,
                         visibility: visibility
                     });
-            });
+            }); 
+            //functionality to click on the region to search
+            mapWidget.registerClickRegions(data.layers,showInfo);      
         });
-             
+       
         enableToolbarClick(mapWidget);
         enableCoordsClick();
-        //changing coordinates on textbox should change the map appearance
+        //changing coordinates in textbox should change the map appearance
         enableCoordsChange(mapWidget);  
      
          
@@ -404,6 +406,7 @@ $(function() {
             $("#map-toolbar").css("height", "67px");
         });
         
+      
         return mapWidget;
     }
 
@@ -637,14 +640,17 @@ $(function() {
                 mapWidget.removeAllFeatures();
                 if(mapSearch == 0 && clearAll == 0 && $(msg).find('div#realNumFound').html() !== "0"){
                  if(ternRegionFilter != 'All'){
-                      mapWidget.setHighlightLayer(ternRegionFilter.split(":").pop());
+                      mapWidget.setHighlightLayer(ternRegionFilter.split(":").pop(),{style_name: 'polygon'});
                   }
                      mapWidget.addVectortoDataLayer(".spatial_center",true);
                  
                 }
                 mapWidget.deactivateAllControls();
             }
-       
+            
+            
+          
+ 
            
             $('.clearFilter').each(function(){
                 //if($(this).context.innerHTML!="All Records")
@@ -1011,12 +1017,19 @@ $(function() {
         $("#region-select").change( function() {
             var regionid = $(this).val();
             $('#visible-region').html($('#' + regionid ).html());
-            mapWidget.switchLayer(regionid);
+            mapWidget.switchLayer(regionid, { turn_data_off : true});
         });
-
-       // var e=document.getElementById("viewrecord");
-       // $("#showing").text(e.options[e.selectedIndex].value);
-        
+            
+        /*   Uncomment for highlight region on hover on the regions list
+         *
+        $("#visible-region").on("mouseenter","a", function(){
+                mapWidget.setHighlightLayer($(this).attr("id").split(":").pop(),'PolyHighlight');
+       });
+        $("#visible-region").on("mouseleave","a", function(){
+                mapWidget.removeHighlightFeatures(); 
+       });
+       */
+      
        if($(msg).find('div#realNumFound').html() == "0")
        {
                     showNoResult(1); 
@@ -1049,7 +1062,7 @@ $(function() {
               $("#facfacet").show();   
         } 
       
-//$('.viewrecord').on('change',function(){
+
             $('.viewrecord').change(function(){
 
             var selected=$(this).find(":selected").val();

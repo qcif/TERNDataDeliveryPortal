@@ -349,17 +349,17 @@ function MapWidget(mapId, overviewMap, options){
 }
 
 /*  ------------------------------------------------------------  
- *    registerClick()  
+ *    registerClickRegions()  
  *    Register click event listener to map 
  *    When clicked, sends parameters to handleMapClick
  *  ------------------------------------------------------------
  */
 
-MapWidget.prototype.registerClick = function(layers,callback){
+MapWidget.prototype.registerClickRegions = function(layers,callback){
     var obj = this;
     this.map.events.register('click', this.map, function(e){           
-        obj.handleMapClick(e,layers,callback);   
-         
+        obj.handleMapClickRegions(e,layers,callback);   
+       
     });    
      
 }
@@ -418,6 +418,61 @@ MapWidget.prototype.setSelectedId = function(selectedFeatureLayer, selectedFeatu
    this.selectedFeatureId = selectedFeatureId;
    this.selectedFeatureName = selectedFeatureName;
    
+}
+
+/*
+ *
+ *
+ */
+function onRegionClick(){
+       
+        info = new OpenLayers.Control.WMSGetFeatureInfo({
+            url: getURL(url), 
+            title: 'Identify features by clicking',
+            infoFormat: 'application/vnd.ogc.gml', 
+            queryVisible: true,
+            eventListeners: {
+                getfeatureinfo: function(event) {
+                    var text = '';
+                    for (var i = 0; i < event.features.length; i++) {
+                        var feature = event.features[i];
+                        var attributes = feature.attributes;
+                        text += ',' + feature.fid;
+                    } //Get feature id from the feature list
+                    if(text!=""){
+                        if (!this.highlightLayer) {    
+                            this.highlightLayer = new OpenLayers.Layer.WMS("Highlight Layer",getURL(url),{
+                                //height: '512',
+                                //width: '242',  
+                                layers: url,
+                                styles: 'polygon', 
+                                featureid: text,
+                                srs: 'EPSG:900913',
+                                format: 'image/png',
+                                //tiled: 'true',
+                                transparent: true
+                            }, {
+                                buffer:0, 
+                                displayOutsideMaxExtent: false,
+                                displayInLayerSwitcher: false,
+                                isBaseLayer: false
+                            });
+                            this.map.addLayer(this.highlightLayer);
+                        }else { 
+                    
+                            this.highlightLayer.mergeNewParams({
+                                featureid: text
+                            });
+             
+                        }
+                    }
+                }
+            }
+        });
+        
+        this.map.addControl(info);
+        info.activate();
+            
 }
 
 /*  ------------------------------------------------------------  
@@ -626,7 +681,7 @@ MapWidget.prototype.addExtLayer = function(options){
                 getWFS(layerName,tempLayer);  
             };        
             break;
-        case "WMS": { 
+        case "WMS": {
                 switch(layerName){
                   
                     default: {
@@ -713,68 +768,6 @@ MapWidget.prototype.addExtLayer = function(options){
         }
         this.selectFeature.activate();
     
-    }else{
-        if(protocol == 'WMS'){
-            /*  
-        info = new OpenLayers.Control.WMSGetFeatureInfo({
-            url: getURL(url), 
-            title: 'Identify features by clicking',
-            infoFormat: 'application/vnd.ogc.gml', 
-            queryVisible: true,
-            eventListeners: {
-                getfeatureinfo: function(event) {
-                    var text = '';
-                    for (var i = 0; i < event.features.length; i++) {
-                        var feature = event.features[i];
-                        var attributes = feature.attributes;
-                        text += ',' + feature.fid;
-                    } //Get feature id from the feature list
-                    if(text!=""){
-                        if (!this.highlightLayer) {    
-                            this.highlightLayer = new OpenLayers.Layer.WMS("Highlight Layer",getURL(url),{
-                                //height: '512',
-                                //width: '242',  
-                                layers: url,
-                                styles: 'polygon', 
-                                featureid: text,
-                                srs: 'EPSG:900913',
-                                format: 'image/png',
-                                //tiled: 'true',
-                                transparent: true
-                            }, {
-                                buffer:0, 
-                                displayOutsideMaxExtent: false,
-                                displayInLayerSwitcher: false,
-                                isBaseLayer: false
-                            });
-                            this.map.addLayer(this.highlightLayer);
-                        }else { 
-                    
-                            this.highlightLayer.mergeNewParams({
-                                featureid: text
-                            });
-                        } 
-             *
-                   
-                    this.map.addPopup(new OpenLayers.Popup.FramedCloud(
-                        "chicken", 
-                        this.map.getLonLatFromPixel(event.xy),
-                        null,
-                        text,
-                        null,
-                        true
-                    ));
-             *
-                    }
-                }
-            }
-        });
-        
-        this.map.addControl(info);
-        info.activate();
-             */
-       
-        }
     }    
 }
 
@@ -787,11 +780,13 @@ MapWidget.prototype.addExtLayer = function(options){
  *  ------------------------------------------------------------
  */
 
-MapWidget.prototype.setHighlightLayer = function(r_id){
+MapWidget.prototype.setHighlightLayer = function(r_id,options){
+    var options = options || {};
+    var style_name = options.style_name || "polygon";
     if (!this.highlightLayer) {    
         this.highlightLayer = new OpenLayers.Layer.WMS("Highlight Layer",getURL('nr:regions'),{ //nr:regions is the geoserver layer name that corresponds to table regions in tern_spatial database
             layers: 'nr:regions',
-            styles: 'polygon', 
+            styles: style_name, 
             featureid: r_id,
             srs: 'EPSG:900913',
             format: 'image/png',
@@ -807,7 +802,8 @@ MapWidget.prototype.setHighlightLayer = function(r_id){
     }else { 
 
         this.highlightLayer.mergeNewParams({
-            featureid: r_id
+            featureid: r_id,
+            styles: style_name
         });
         this.highlightLayer.setVisibility(true);
     }    
@@ -898,8 +894,9 @@ MapWidget.prototype.getFeatureCoordinates = function(){
 MapWidget.prototype.getExtentCoords = function(){
         return coords = this.map.getExtent().transform(this.WGS84_google_mercator, this.WGS84);       
 }
+
 /*  ------------------------------------------------------------  
- *    handleMapClick(e,  layers, callback)
+ *    handleMapClickRegions(e,  layers, callback)
  *    e : Click Event
  *    layers: Layers list from the regions.json
  *    Callback function to call after completed 
@@ -907,14 +904,14 @@ MapWidget.prototype.getExtentCoords = function(){
  *  ------------------------------------------------------------
  */
 
-MapWidget.prototype.handleMapClick = function(e, layers, callback){
+MapWidget.prototype.handleMapClickRegions = function(e, layers, callback){
    var lonlat = this.map.getLonLatFromViewPortPx(e.xy);
     var layer,l_id;
     for(var i=0;i<this.extLayers.length;i++){
         if(this.extLayers[i].visibility == true){           
             layer = this.extLayers[i].name;
             $.each(layers,function(key,val){
-                if(val.l_name == layer){
+                if(val.l_id == layer){
                     l_id = val.l_id;                      
                 }
             });
@@ -927,9 +924,9 @@ MapWidget.prototype.handleMapClick = function(e, layers, callback){
                         obj.selectedFeatureName = val.r_name;
                         obj.selectedFeatureId = val.r_id;
                         obj.selectedFeatureLayer = val.l_id;
-                        obj.setHighlightLayer(val.r_id);
+                        obj.setHighlightLayer(val.r_id, {style_name: 'PolyHighlight'});
                                
-                        if(typeof(callback) == 'function') callback(obj.selectedFeatureName);
+                        if(typeof(callback) == 'function') callback(e, obj);
                         return(false);
                     });
 
@@ -1117,6 +1114,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
 
     }); 
     dataLayer.addFeatures(vectors);
+    this.dataLayer.setVisibility(true); 
     this.map.raiseLayer(this.dataLayer,this.map.layers.length-1); //set the layer on top of all the other layers
     /* Script to zoom into markers. Commented out because currently unneeded feature.
     var bounds = dataLayer.getDataExtent();
@@ -1144,6 +1142,15 @@ MapWidget.prototype.removeAllFeatures = function(){
 }
 
  /*  ------------------------------------------------------------  
+ *    removeHighlightFeatures 
+ *    Remove features from highlightLayer
+ *  ------------------------------------------------------------
+ */
+MapWidget.prototype.removeHighlightFeatures = function(){    
+    this.highlightLayer.setVisibility(false);      
+}
+
+ /*  ------------------------------------------------------------  
  *    toggleExtLayer(layer_id,visibility)
  *    Just to toggle visibility for one layer 
  *    layer_id, the layer we want to toggle
@@ -1154,7 +1161,7 @@ MapWidget.prototype.removeAllFeatures = function(){
 
 MapWidget.prototype.toggleExtLayer = function(layer_id, visibility){
     for(var i=0;i<this.extLayers.length; i++){
-         if(this.extLayers[i].name == layer_id){ this.extLayers[i].setVisibility(visibility);
+         if(this.extLayers[i].name == layer_id){this.extLayers[i].setVisibility(visibility);
                 if(visibility) this.map.raiseLayer(this.extLayers[i],this.map.layers.length-1);
          } 
          
@@ -1168,18 +1175,36 @@ MapWidget.prototype.toggleExtLayer = function(layer_id, visibility){
  *    Have the layer_id layer visible, but turn all other layers off
  *  ------------------------------------------------------------
  */
-MapWidget.prototype.switchLayer = function(layer_id){
+MapWidget.prototype.switchLayer = function(layer_id, options){
+     OpenLayers.ProxyHost= base_url + "api/geoproxy.php?url=";
+   
+    var options = options || {};
+    var turn_data_off = options.turn_data_off || false;
+    var enable_click = options.enable_click || true;
+    
     for(var i=0;i<this.extLayers.length; i++){
-        if(this.extLayers[i].name != layer_id) this.extLayers[i].setVisibility(false);
+        if(this.extLayers[i].name != layer_id) {this.extLayers[i].setVisibility(false); 
+            
+        }
         else {
+            
             this.extLayers[i].setVisibility(true);       
         }
     }
+    
     if(this.highlightLayer){
         this.highlightLayer.setVisibility(false);
         this.selectedFeatureName = '';
         this.selectedFeatureId = '';
     }
+     if(turn_data_off && this.dataLayer){
+       this.dataLayer.setVisibility(false); 
+       this.coverageLayer.setVisibility(false);
+       while( this.map.popups.length ) {
+            this.map.removePopup(this.map.popups[0]);
+        }
+    }
+    
 }
 
 /* Use coordStr to update Map Vector*/
@@ -1193,6 +1218,15 @@ MapWidget.prototype.updateDrawing = function(map,coordStr){
 }
 
 
+/*  ------------------------------------------------------------  
+ *    Region Select 
+ *
+ *  ------------------------------------------------------------
+ */
+
+MapWidget.prototype.onRegionSelect = function(region){
+     
+}
 /*  ------------------------------------------------------------  
  *    Feature Select methods
  *
@@ -1215,10 +1249,10 @@ MapWidget.prototype.onFeatureSelect = function(feature){
     if(!feature.cluster){
        this.popup = new CustomFramedCloudPopupClass("chicken",
             feature.geometry.getBounds().getCenterLonLat(),
-            null, feature.data.popupHTML, offset, true, function(){
+            null, feature.data.popupHTML, offset, true, function(e){
                   
                     mapWidgetObj.onPopupClose(this);
-                    
+                    OpenLayers.Event.stop(e);
         });    
         this.popup.calculateRelativePosition = function () {
             return 'br';
@@ -1232,7 +1266,8 @@ MapWidget.prototype.onFeatureSelect = function(feature){
              vectors.push(coverage);
         });
         this.coverageLayer.addFeatures(vectors);
-        mapWidgetObj.map.raiseLayer(this.coverageLayer,this.map.layers.length-1);
+        this.coverageLayer.setVisibility(true);
+        this.map.raiseLayer(this.coverageLayer,this.map.layers.length-1);
     }else{
        
         var html = "<ul>";
@@ -1250,8 +1285,9 @@ MapWidget.prototype.onFeatureSelect = function(feature){
         html = html2 + html+ "</ul>"; 
         this.popup = new CustomFramedCloudPopupClass("chicken",
                     feature.geometry.getBounds().getCenterLonLat(),
-                    null, html, offset, true, function(){             
+                    null, html, offset, true, function(e){             
                     mapWidgetObj.onPopupClose(this);
+                    OpenLayers.Event.stop(e);
         });
          this.popup.calculateRelativePosition = function () {
             return 'br';
@@ -1269,7 +1305,7 @@ MapWidget.prototype.onFeatureSelect = function(feature){
   //  this.popup.setBorder('1px solid black');
         
     feature.popup = this.popup;   
-    mapWidgetObj.map.addPopup(feature.popup);     
+    this.map.addPopup(feature.popup);     
     $(".popupContent ul li").hover(function(){
         mapWidgetObj.coverageLayer.removeAllFeatures();
         var vectors = Array();
@@ -1279,7 +1315,8 @@ MapWidget.prototype.onFeatureSelect = function(feature){
             vectors.push(coverage); 
         });
 
-      mapWidgetObj.coverageLayer.addFeatures(vectors);
+      this.coverageLayer.addFeatures(vectors);
+      this.coverageLayer.setVisibility(true);
 
     });        
 } 
@@ -1290,9 +1327,14 @@ MapWidget.prototype.onPopupClose = function(popup){
    this.selectControl.unselectAll();  
    this.popup = null;
 }
+                  
+MapWidget.prototype.onPopupRegionClose = function(popup){
+   popup.destroy();
+   this.highlightLayer.setVisibility(false);
+   this.popup = null;
 
-
-    
+}
+           
 /*  ------------------------------------------------------------  
  *   FUNCTION TO GET WFS FEATURES AND ADD TO LAYER
  *
@@ -1643,3 +1685,41 @@ while (new Date() < ms){}
 
         return feature;
     }
+    
+function showInfo(event, mapWidget){
+        var text = '';
+        if(mapWidget.selectedFeatureLayer != ''){
+        ternRegionFilter = mapWidget.selectedFeatureLayer + "\\\\:" + mapWidget.selectedFeatureId;
+              
+        text = "<strong>" + mapWidget.selectedFeatureName + "</strong><br/><a class=\"greenGradient smallRoundedCorners\" onClick=\"$('#" + ternRegionFilter + "').trigger('click');\">Search records in this area";
+        while( mapWidget.map.popups.length ) {
+            mapWidget.map.removePopup(mapWidget.map.popups[0]);
+        }   
+         var offset = {'size':new OpenLayers.Size(0,0),'offset':new OpenLayers.Pixel(10,-30)};
+    
+        CustomFramedCloudPopupClass = OpenLayers.Class(OpenLayers.Popup.Anchored, {
+            'backgroundColor': '#FFFFFF', 
+            'border': '1px solid black',
+            'displayClass' : 'popupGroup',
+            'contentDisplayClass' : 'popupContentScroll',
+            'padding' : new OpenLayers.Bounds(0,0,10,0),                                             
+            'autoSize' : true 
+        });    
+        var popup = new CustomFramedCloudPopupClass(
+            "chicken", 
+            mapWidget.map.getLonLatFromPixel(event.xy),
+            null,
+            text,
+            offset,
+            true,
+            function(e){                  
+                    mapWidget.onPopupRegionClose(this);    
+                    OpenLayers.Event.stop(e);
+            });
+            
+          
+        popup.minSize = new OpenLayers.Size(200,70);        
+        popup.maxSize = new OpenLayers.Size(200,200);
+        mapWidget.map.addPopup(popup);
+        }
+}

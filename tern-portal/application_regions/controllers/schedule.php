@@ -12,6 +12,7 @@ class Schedule extends CI_Controller {
         
     }
     
+    
     public function put(){
         $default = array('run_schedule','start_timestamp','end_timestamp','l_id','cat','rec_start');
         $params = $this->uri->uri_to_assoc(3, $default);

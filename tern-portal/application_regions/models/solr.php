@@ -107,15 +107,14 @@ class Solr extends CI_Model
                 
                 if ($response->response->numFound > 0)
                 {
-                    log_message('info',"Number of records searched:" . $response->response->numFound);
-                    return($response->response);
-                    
+                    log_message ('info',"Number of records searched:" . $response->response->numFound);
                 }
                 else
                 {
                    log_message('info',"Empty results from SOLR");
-                    return '';
+                 
                 }
+                  return($response->response);
             }
             else
             {
