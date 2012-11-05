@@ -640,7 +640,9 @@ $(function() {
                 mapWidget.removeAllFeatures();
                 if(mapSearch == 0 && clearAll == 0 && $(msg).find('div#realNumFound').html() !== "0"){
                  if(ternRegionFilter != 'All'){
+                      mapWidget.switchLayer('none');
                       mapWidget.setHighlightLayer(ternRegionFilter.split(":").pop(),{style_name: 'polygon'});
+                    
                   }
                      mapWidget.addVectortoDataLayer(".spatial_center",true);
                  
@@ -1017,7 +1019,7 @@ $(function() {
         $("#region-select").change( function() {
             var regionid = $(this).val();
             $('#visible-region').html($('#' + regionid ).html());
-            mapWidget.switchLayer(regionid, { turn_data_off : true});
+            mapWidget.switchLayer(regionid, {turn_data_off : true});
         });
             
         /*   Uncomment for highlight region on hover on the regions list

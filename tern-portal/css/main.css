@@ -265,7 +265,7 @@ nav#facetNav{ margin-right: 15px; float: left; width: 215px; }
 		/* Search Box */
 		li#search{ background: none !important; overflow: hidden; }
 	
-		#refineSearchBox a.smallRoundedCorners{ padding: 3px; color: #fff; float: right; }
+		#refineSearchBox a.smallRoundedCorners, .popupContentScroll a.smallRoundedCorners{ padding: 3px; color: #fff; float: right; }
 		#refineSearchTextField{ float: left; display: block; width: 153px; height: 23px; margin-right: -2px; }
 		#refineSearchBtn{ background: url(../img/buttons/refine-search-normal-btn.png) no-repeat; float: left; display: block; width: 26px; height: 25px; }
 		#refineSearchBtn:hover{ background: url(../img/buttons/refine-search-hover-btn.png) no-repeat; }
@@ -435,13 +435,15 @@ nav.resultsNav{
 	#map-toolbar .helpBtn:hover{ background: url(../img/buttons/map-tools/map-tools-help-hover-btn.png) no-repeat; }
 	#map-toolbar a.hide, #map-toolbar a.show{ margin: 2px 12px 0px 0px; padding: 0px 30px 0px 0px; color: #fff;  float: right; }
 	 
-        #facilities .helpBtn{float: right; margin-bottom:-5px; display:inline-block; background: url(../img/buttons/help-normal-btn.png) no-repeat; height: 29px; width: 29px;  } 
+        #facilities .helpBtn{float: right; margin-top: -3px; display:inline-block; background: url(../img/buttons/help-normal-btn.png) no-repeat; height: 29px; width: 29px;  } 
 	#facilities .helpBtn:hover{ float: right; background: url(../img/buttons/help-hover-btn.png) no-repeat; }
         #spatialmap {
             display: block;
             height: 460px;
             width: 1010px;
         }
+        #facilities label img{ vertical-align: middle;}
+        #facilities input[type="checkbox"] { vertical-align: middle;}
         div.olLayerGoogleCopyright,
         div.olLayerGooglePoweredBy
         {
