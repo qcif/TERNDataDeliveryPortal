@@ -195,6 +195,13 @@ if ($realNumFound >0)
             echo    '<td class="actionsColumn"><p class="datePublished">' . $date_pub . '</p>';
             echo    '<a class="show" href="javascript:void(0);"></a>';
             echo        '<div class="expand" id="metabutton">';
+            
+                 echo            '<a class="greyGradient smallRoundedCorners disabled tblsaveRecord" href="javascript:void(0);" style="display: block;">Saved</a>';
+        
+                 echo            '<a class="orangeGradient smallRoundedCorners tblFav" href="javascript:void(0);">Add to Favourites</a>';
+            
+
+
             echo            '<a class="greenGradient smallRoundedCorners viewmeta" href="' . $key_url . '" target="_blank">View Metadata</a>';
             echo        '</div>';
              echo '</td>';

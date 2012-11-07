@@ -763,7 +763,8 @@ function checkInFilter($word,$filter)
                             }
                     }              
                  }
-        }
+        }       
+
 /*
 // is this still being used? 
 function escapeSolrValueNoEncode($string){

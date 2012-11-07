@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-	var MAX_LOGO_WIDTH = 200;
+        var MAX_LOGO_WIDTH = 200;
 	var MAX_LOGO_HEIGHT = 200;
 
 function testLogo(id, url){
@@ -122,7 +122,32 @@ function initViewPage(){
                  });
 
                  if($('#metadataTitle h1').html().length > 100) $('#metadataTitle h1').css('font-size', '16px');
-             }
+             
+                 var metatitle=$('#metadataTitle h1').text();
+                 $('#addToFavourite').click(function(){
+                     var tmp;
+                     var arr_cookie=new Array;
+
+                     
+                     if(getCookie('SavedRecords')!='undefined')
+                     {
+                        tmp=getCookie('SavedRecords');
+                        arr_cookie=tmp.split('|');
+                        arr_cookie.push(window.location.href+";"+metatitle);                        
+                        
+                     }
+                     else
+                     {
+                         arr_cookie.push(window.location.href+";"+metatitle);                         
+                     }
+                     tmp=arr_cookie.join('|');
+                     setCookie('SavedRecords',tmp,365);     
+                     $('#saveRecord').show()
+                     $('#addToFavourite').hide();     
+                     
+                 });
+                 checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+metatitle);
+   }
 
 
 function removeBracket(arr)
@@ -191,4 +216,31 @@ Array.prototype.clean = function(deleteValue) {
   return this;
 };
         
-
+function checkRecordinCookie(saveRecord,addToFavourite,urlandtitle)
+{
+    var savedRecords;
+    var key;
+    if(getCookie('SavedRecords')!=null)
+    {
+        savedRecords=getCookie('SavedRecords');  
+        var t=savedRecords.split('|');
+        //var title=$('#metadataTitle h1').text();
+        key=jQuery.inArray(urlandtitle,t);
+        if(key===-1)
+        {
+            
+            saveRecord.hide();
+            addToFavourite.show();      
+        }else
+        { 
+            saveRecord.show();
+            addToFavourite.hide();                
+        }
+        
+    }else 
+    {
+        saveRecord.hide()
+        addToFavourite.show();
+    }
+    
+}

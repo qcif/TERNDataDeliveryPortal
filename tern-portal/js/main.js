@@ -252,7 +252,56 @@ $(function() {
         }
     }); 
     
-        
+var p=1;
+        $('#myFav').click(function(){
+          $.ajax({
+                    type:"POST",
+                    url: base_url+"search/mySavedRecords?page="+p,
+
+                    success:function(msg)
+                    {
+                         $("#divFav").html(msg);
+
+                         $("#divFav").dialog({
+                            modal: true,
+                            minWidth:700,
+                            position:'center',
+                            draggable:'false',
+                            resizable:false,
+                            title:"My favourite records",
+/*                            
+                        buttons: {
+                        '<': function() {
+                            if(p > 1){
+                                p = p - 1;
+                                $('.accordion-seealso').html('Loading...');
+                                //getCookiesAjax(p)
+                            }
+                        },
+                        '>': function() {
+                            if(p < parseInt($('#cookiesTotalPage').html())){
+                                p = p + 1;
+                                $('.accordion-seealso').html('Loading...');
+                                //getCookiesAjax(p)
+                            }
+                        }
+                    },
+*/
+                    open: function(){
+                        $(".ui-dialog-buttonset").append("<span id='status'></span>");
+                        //setupCookiesBtns();
+                        return false;
+                    }
+                });
+
+                return false;
+            },
+            error:function(msg){
+            console.log("error" + msg);
+            }
+        });
+        return false;
+        });        
         
     /*PAGINATION*/
     $('#next').live('click', function(){
@@ -648,15 +697,10 @@ $(function() {
                  
                 }
                 mapWidget.deactivateAllControls();
-            }
-            
-            
-          
+            }         
  
            
             $('.clearFilter').each(function(){
-                //if($(this).context.innerHTML!="All Records")
-                   //$(this).append('<a class="clearFilterImg" src="'+base_url+'/img/delete.png"/>');
                        $(this).append('<a class="remove" />');
             });
              
@@ -1128,6 +1172,32 @@ $(function() {
             changeHashTo(formatSearch(search_term, 1, classFilter,num));    
 
         });
+
+            $('.tblFav').on('click',function(){
+                     var tmp;
+                     var arr_cookie=new Array;
+                     var t=this.parentNode.parentNode.parentNode.cells[1].firstChild.firstChild.innerHTML;
+                     var url=this.parentNode.children[2].attributes['href'].value;
+                     
+                     if(getCookie('SavedRecords')!=null)
+                     {
+                        tmp=getCookie('SavedRecords');
+                        arr_cookie=tmp.split('|');
+                        arr_cookie.push(url+";"+t);                        
+                        
+                     }
+                     else
+                     {
+                         arr_cookie.push(url+";"+t);                          
+                     }
+                     tmp=arr_cookie.join('|');
+                     setCookie('SavedRecords',tmp,365);    
+                     $(this).removeClass('orangeGradient').addClass('greyGradient');
+                     $(this).addClass('disabled');
+                     $(this).html("Saved");
+                     
+                 });
+        
     } 
  
     function doNormalSearch(){     
@@ -1166,6 +1236,17 @@ $(function() {
                         }
                     }); 
  
+                 $("#searchResults tr").each(function(){
+                     if($(this)[0].parentElement.nodeName!="THEAD")
+                     { 
+                        checkRecordinCookie(jQuery($(this)[0].cells[2].childNodes[2].childNodes[0]),
+                                            jQuery($(this)[0].cells[2].childNodes[2].childNodes[1]),
+                                            $(this)[0].cells[2].childNodes[2].childNodes[2].attributes['href'].value+";"+$(this)[0].cells[1].childNodes[0].firstChild.firstChild.nodeValue);         
+                     }
+                    
+                    
+                 });
+                 
                  var opt=document.getElementsByName('select-view-record');
                  if(opt.length>0){
                      for(var s=0;s<opt.length;s++)
@@ -1348,6 +1429,7 @@ $(function() {
                                 //window.open($(this).attr("id"));
                                 //window.focus();
 	});
+        
        // sizeHomeContent();
     }
 
@@ -1380,7 +1462,7 @@ $(function() {
     function initPreviewPage(){
     //$("ul.sf-menu").superfish();
         initViewPage();
-    initDataViewPage();
+        initDataViewPage();
 
 	       initConnectionsBox()		
 	       initSubjectsSEEALSO()		
@@ -1627,7 +1709,7 @@ var t=removeBracket(tmp)
 }
 
     function getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value){
-		 $.ajax({
+	$.ajax({
              type:"POST",
              url: base_url+"search/seeAlso/content",data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
                      success:function(msg){
@@ -1753,6 +1835,12 @@ var t=removeBracket(tmp)
         $("#status").html($('#connectionsCurrentPage').html() + '/'+$('#connectionsTotalPage').html());
     }
     
+        function setupCookiesBtns(){
+		$(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
+		$('.button').button();
+        $("#status").html($('#cookiesCurrentPage').html() + '/'+$('#cookiesTotalPage').html());
+    }
+    
     function initViewMap(mapId, centerSelector,coverageSelector){
             var mapView = new MapWidget(mapId,true);
             mapView.addDataLayer(false,"transparent");
@@ -1831,6 +1919,18 @@ function checkCookie()
     
 }
 
-
-    
- 
+/* temporarily commented out
+        function getCookiesAjax(p){
+	$.ajax({
+             type:"POST",
+             url: base_url+"search/mySavedRecords?page="+p,
+             
+                     success:function(msg){
+                             $(".accordion-seealso").html(msg);
+                            // $(".accordion-seealso").accordion({autoHeight:false, collapsible:true,active:false});
+                             setupCookiesBtns();
+                     },
+                     error:function(msg){}
+             });
+	}
+ */

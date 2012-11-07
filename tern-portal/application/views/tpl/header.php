@@ -55,21 +55,21 @@ $number = mt_rand(1,3);
                             
                         </li>                       
                     </ul> 
-                    <!--ul class="right">
+                    <ul class="right">
                         <li>
-                            <a href="#">
+                            <a id="myFav" href="javascript:void(0);">
                                 <img alt="My Favourites" src="img/icons/icon-my-favourites.png"/>
                                 My Favourites
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
+                            <a id="mySaved" href="javascript:void(0);">
                                 <img alt="My Searches" src="img/icons/icon-my-favourites.png"/>
                                 My Searches
                             </a>
                         </li>
-                    </ul-->
+                    </ul>
               </nav> 
              <img id="dataDiscoveryPortalLogo" alt="Data Discovery Portal" src="/img/logos/logo-datadiscoveryportal-beta.png"/>
 
@@ -97,7 +97,7 @@ $number = mt_rand(1,3);
                 echo $currentUrl;
         ?>
        </div>
-  <!--      <div class="tmptitle"> <?php //echo $md_sub ?></div>-->
+        <div id="divSaved" title="Saved records"></div>
+        <div id="divFav" title="My favourites records"></div>
+
         <div class="wrapper">
-        <!--<div class="clearfix"></div>    -->
-        <!--<div class="margin10"></div>-->

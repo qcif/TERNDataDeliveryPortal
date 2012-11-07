@@ -521,14 +521,14 @@
                     <xsl:if test="./ro:startDate"><xsl:value-of select="./ro:startDate"/></xsl:if> - <xsl:if test="./ro:endDate"><xsl:value-of select="./ro:endDate"/></xsl:if><br/>
                 </xsl:for-each>
              <ul>
-<!--                 
+                
                 <li>
-                <a class="orangeGradient smallRoundedCorners" href="#">Add to Favourites</a>
+                <a class="orangeGradient smallRoundedCorners" href="javascript:void(0);" id="addToFavourite">Add to Favourites</a>
                 </li>
                 <li>
-                <a class="greyGradient smallRoundedCorners disabled" href="#">Saved</a>
+                <a class="greyGradient smallRoundedCorners disabled" href="javascript:void(0);" id="saveRecord">Saved</a>
                 </li>
--->                
+                
                 <li>
                 <a class="greenGradient smallRoundedCorners" href="javascript:window.print();">Print</a>
                 </li>

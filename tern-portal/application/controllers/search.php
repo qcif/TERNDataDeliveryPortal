@@ -772,5 +772,17 @@ class Search extends CI_Controller
 
         $this->load->view('search/listIDs', $data);
     }
+    
+    public function mySavedRecords()
+    {
+        $savedRecords=$_COOKIE['SavedRecords'];
+        
+        $data['page']=$this->input->post('page');
+        
+        $data['saved']=$savedRecords;
+        
+        $this->load->view('search/mySavedRecord', $data);
+    }
+
 
 }
