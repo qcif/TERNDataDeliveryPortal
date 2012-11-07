@@ -97,7 +97,14 @@ $number = mt_rand(1,3);
                 echo $currentUrl;
         ?>
        </div>
-        <div id="divSaved" title="Saved records"></div>
+        <div id="divSaved" title="Saved searches"></div>
         <div id="divFav" title="My favourites records"></div>
-
+        
+       <div id="saveSearchPrompt" title="Enter name" class="hide">
+           Please enter a name:
+           <input type="text" id="searchname"><br/>
+           
+           
+       </div>
+           
         <div class="wrapper">

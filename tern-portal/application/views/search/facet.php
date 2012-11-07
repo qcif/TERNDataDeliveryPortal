@@ -18,7 +18,7 @@ $Date: 2011-09-06 11:35:57 +1000 (Tue, 06 Sep 2011) $
 $Revision: 1 $
 ***************************************************************************
 *
-**/ 
+**/  
 ?>
 <?php 
 if($mapsearch==0 && ($spatial_included_ids=='') && ($temporal=='All') && ($typeFilter=='All') && ($groupFilter=='All')&&($subjectFilter=='All')&&($fortwoFilter=='All')&&($forfourFilter=='All')&&($forsixFilter=='All') && $ternRegionFilter=='All' && $query=='All Records')
@@ -32,6 +32,7 @@ if($mapsearch==0 && ($spatial_included_ids=='') && ($temporal=='All') && ($typeF
                         </li>';
         echo        '</ul>';
         echo        '<div class="buttons">';
+        echo            '<a id="saveSearchBtn" class="orangeGradient smallRoundedCorners">Save Search</a>';
         echo            '<a id="clearSearchBtn" class="greyGradient smallRoundedCorners">Clear Search</a>';
         echo        '</div>';        
         echo    '</div>';
@@ -65,6 +66,7 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
         if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
         if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
         echo        '<div class="buttons">';
+        echo            '<a id="saveSearchBtn" class="orangeGradient smallRoundedCorners">Save Search</a>';
         echo            '<a id="clearSearchBtn" class="greyGradient smallRoundedCorners">Clear Search</a>';
         echo        '</div>';
         echo    '</div>';

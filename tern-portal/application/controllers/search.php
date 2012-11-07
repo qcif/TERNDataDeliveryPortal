@@ -783,6 +783,16 @@ class Search extends CI_Controller
         
         $this->load->view('search/mySavedRecord', $data);
     }
+    
+    public function mySavedSearches()
+    {
+        $savedSearch=$_COOKIE['SavedSearch'];
+        
+        
+        $data['saved']=$savedSearch;
+        
+        $this->load->view('search/mySavedSearch', $data);
+    }
 
 
 }

@@ -43,21 +43,7 @@ $Revision: 1 $
         
         echo '</ul>';
         
-    }
-        echo '<div class="hide">';
-	$numFound = count($r);	
-
-
-
-	$start =$page;
-	
-	$end = $start + $row;
-		
-	$totalPage = ceil($numFound / $row);
-	$currentPage = ceil($start / $row) + 1;
-	echo '<div id="cookiesTotalPage">'.$totalPage.'</div>';
-	echo '<div id="cookiesCurrentPage">'.$currentPage.'</div>';
-        echo '</div>';
+    }        
 
 
 ?>

@@ -264,7 +264,7 @@ var p=1;
 
                          $("#divFav").dialog({
                             modal: true,
-                            minWidth:700,
+                            minWidth:400,
                             position:'center',
                             draggable:'false',
                             resizable:false,
@@ -303,6 +303,39 @@ var p=1;
         return false;
         });        
         
+ $('#mySaved').click(function(){
+          $.ajax({
+                    type:"POST",
+                    url: base_url+"search/mySavedSearches",
+
+                    success:function(msg)
+                    {
+                         $("#divSaved").html(msg);
+
+                         $("#divSaved").dialog({
+                            modal: true,
+                            minWidth:400,
+                            position:'center',
+                            draggable:'false',
+                            resizable:false,
+                            title:"My saved searches",
+
+                    open: function(){
+                        $(".ui-dialog-buttonset").append("<span id='status'></span>");
+                        //setupCookiesBtns();
+                        return false;
+                    }
+                });
+
+                return false;
+            },
+            error:function(msg){
+            console.log("error" + msg);
+            }
+        });
+        return false;
+        });        
+                
     /*PAGINATION*/
     $('#next').live('click', function(){
         var current_page = parseInt(page);
@@ -1197,6 +1230,38 @@ var p=1;
                      $(this).html("Saved");
                      
                  });
+                 
+             $('#saveSearchBtn').click(function(){
+                 $("#saveSearchPrompt"). dialog({
+                    resizable: false,
+                    height: 140,
+                    modal: true,
+                    buttons: {
+                         "OK": function() { 
+                             var t;
+                             var ss_cookie=new Array;
+                             if(getCookie('SavedSearch')!=null)
+                             {
+                                t=getCookie('SavedSearch');
+                                ss_cookie=t.split('|');
+                                ss_cookie.push(window.location.href+";"+$('#searchname').val());                        
+
+                             }
+                             else
+                             {
+                                ss_cookie.push(window.location.href+";"+$('#searchname').val());                          
+                             }
+                                t=ss_cookie.join('|');
+                                setCookie('SavedSearch',t,365);    
+
+                                $( this ).dialog( "close" );
+                          },
+                          "Cancel": function(){
+                                $( this ).dialog( "close" );
+                          }
+                    }
+                });
+             });    
         
     } 
  
