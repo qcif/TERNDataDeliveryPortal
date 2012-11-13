@@ -66,7 +66,7 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
         if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
         if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
         echo        '<div class="buttons">';
-        echo            '<a id="saveSearchBtn" class="orangeGradient smallRoundedCorners">Save Search</a>';
+        echo            '<a id="saveSearchBtn" class="orangeGradient smallRoundedCorners">Save Search</a>&nbsp;';
         echo            '<a id="clearSearchBtn" class="greyGradient smallRoundedCorners">Clear Search</a>';
          echo        '</div>';
         echo    '</div>';

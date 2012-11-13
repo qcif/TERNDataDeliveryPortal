@@ -1222,12 +1222,16 @@ var p=1;
 
         });
 
+            $('.viewmeta').on('click',function(){
+                $(this).data("clicked",true);
+            });
             $('.tblFav').on('click',function(){
                      var tmp;
                      var arr_cookie=new Array;
                      var t=this.parentNode.parentNode.parentNode.cells[1].firstChild.firstChild.innerHTML;
                      var url=this.parentNode.children[2].attributes['href'].value;
                      
+                     $(this).data("clicked",true);
                      if(getCookie('SavedRecords')!=null)
                      {
                         tmp=getCookie('SavedRecords');
@@ -1320,14 +1324,24 @@ var p=1;
                 $("div[id=metabutton]").hide();
                    $("#searchResults tr").click(function(event) {
                         event.stopPropagation();
-                        $(this).find("#metabutton").toggle();
-                        $(this).find("#metadesc").toggle();
-                        if($(this).find(".actionsColumn .show").length > 0){
-                            $(this).find(".actionsColumn").children('a').attr("class","hide");                            
+                        if(!$('.viewmeta').data("clicked"))
+                        {
+                            if(!$('.tblFav').data("clicked"))
+                            {
+                                $(this).find("#metabutton").toggle();
+                                $(this).find("#metadesc").toggle();
+                                if($(this).find(".actionsColumn .show").length > 0){
+                                    $(this).find(".actionsColumn").children('a').attr("class","hide");                            
+                                }
+                                else if($(this).find(".actionsColumn .hide").length > 0){
+                                    $(this).find(".actionsColumn").children('a').attr("class","show");                            
+                                } 
+                            }
+ 
+                          
                         }
-                        else if($(this).find(".actionsColumn .hide").length > 0){
-                            $(this).find(".actionsColumn").children('a').attr("class","show");                            
-                        }
+                          $('.viewmeta').data("clicked",false);
+                          $('.tblFav').data("clicked",false);
                     }); 
  
                  updateTable();
@@ -2039,7 +2053,7 @@ function doAjaxFavCookie()
                             var s=a.join("|");
                             setCookie('SavedRecords',s,365); 
                             updateTable();
-                            doAjaxCookie();
+                            doAjaxFavCookie();
 
                             
                         });
