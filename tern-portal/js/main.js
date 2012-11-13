@@ -269,35 +269,34 @@ var p=1;
                             draggable:'false',
                             resizable:false,
                             title:"My favourite records",
-/*                            
-                        buttons: {
-                        '<': function() {
-                            if(p > 1){
-                                p = p - 1;
-                                $('.accordion-seealso').html('Loading...');
-                                //getCookiesAjax(p)
-                            }
-                        },
-                        '>': function() {
-                            if(p < parseInt($('#cookiesTotalPage').html())){
-                                p = p + 1;
-                                $('.accordion-seealso').html('Loading...');
-                                //getCookiesAjax(p)
-                            }
-                        }
-                    },
-*/
-                    open: function(){
-                        $(".ui-dialog-buttonset").append("<span id='status'></span>");
-                        //setupCookiesBtns();
-                        return false;
-                    }
-                });
 
+                            open: function(){
+                            $(".ui-dialog-buttonset").append("<span id='status'></span>");
+
+                            //setupCookiesBtns();
+                            return false;
+                            }
+                    
+                        });
+                            
+                     $('.removeCookie').on('click','a.remove', function(e){
+                            var r=this.parentNode.attributes['id'].value
+                            var tmp=getCookie("SavedRecords");
+                            var a=new Array;
+                            
+                            a=tmp.split("|");
+                            a.splice($.inArray(r, a),1);
+                            a.clean("");
+                            var s=a.join("|");
+                            setCookie('SavedRecords',s,365); 
+                            doAjaxFavCookie();    
+                            doNormalSearch();
+                        
+                        });
                 return false;
             },
-            error:function(msg){
-            console.log("error" + msg);
+            error:function(msg){ 
+            //console.log("error" + msg);
             }
         });
         return false;
@@ -310,8 +309,9 @@ var p=1;
 
                     success:function(msg)
                     {
+                      
                          $("#divSaved").html(msg);
-
+                        
                          $("#divSaved").dialog({
                             modal: true,
                             minWidth:400,
@@ -322,20 +322,36 @@ var p=1;
 
                     open: function(){
                         $(".ui-dialog-buttonset").append("<span id='status'></span>");
+                       
+                        $('.removeCookie').on('click','a.remove', function(e){
+                            var r=this.parentNode.attributes['id'].value
+                            var tmp=getCookie("SavedSearch");
+                            var a=new Array;
+                            
+                            a=tmp.split("|");
+                            a.splice($.inArray(r, a),1);
+                            a.clean("");
+                            var s=a.join("|");
+                            setCookie('SavedSearch',s,365); 
+                            doAjaxSearchCookie();
+                        
+                        });
                         //setupCookiesBtns();
                         return false;
                     }
+
                 });
 
                 return false;
             },
-            error:function(msg){
-            console.log("error" + msg);
+            error:function(msg){  
+            //console.log("error" + msg);
             }
         });
         return false;
-        });        
-                
+        });   
+
+
     /*PAGINATION*/
     $('#next').live('click', function(){
         var current_page = parseInt(page);
@@ -1216,13 +1232,20 @@ var p=1;
                      {
                         tmp=getCookie('SavedRecords');
                         arr_cookie=tmp.split('|');
-                        arr_cookie.push(url+";"+t);                        
+                        
+                        if($.inArray(url+";"+t,arr_cookie)==-1)
+                        {
+                           arr_cookie.push(url+";"+t);  
+                        }
+                        
+                        
                         
                      }
                      else
                      {
                          arr_cookie.push(url+";"+t);                          
                      }
+                     arr_cookie.clean("");
                      tmp=arr_cookie.join('|');
                      setCookie('SavedRecords',tmp,365);    
                      $(this).removeClass('orangeGradient').addClass('greyGradient');
@@ -1244,13 +1267,19 @@ var p=1;
                              {
                                 t=getCookie('SavedSearch');
                                 ss_cookie=t.split('|');
-                                ss_cookie.push(window.location.href+";"+$('#searchname').val());                        
+                               
+                               if($.inArray(window.location.href+";"+$('#searchname').val(), ss_cookie)==-1)
+                               {
+                                  ss_cookie.push(window.location.href+";"+$('#searchname').val());    
+                               }                           
+
 
                              }
                              else
                              {
                                 ss_cookie.push(window.location.href+";"+$('#searchname').val());                          
                              }
+                                ss_cookie.clean("");
                                 t=ss_cookie.join('|');
                                 setCookie('SavedSearch',t,365);    
 
@@ -1301,16 +1330,7 @@ var p=1;
                         }
                     }); 
  
-                 $("#searchResults tr").each(function(){
-                     if($(this)[0].parentElement.nodeName!="THEAD")
-                     { 
-                        checkRecordinCookie(jQuery($(this)[0].cells[2].childNodes[2].childNodes[0]),
-                                            jQuery($(this)[0].cells[2].childNodes[2].childNodes[1]),
-                                            $(this)[0].cells[2].childNodes[2].childNodes[2].attributes['href'].value+";"+$(this)[0].cells[1].childNodes[0].firstChild.firstChild.nodeValue);         
-                     }
-                    
-                    
-                 });
+                 updateTable();
                  
                  var opt=document.getElementsByName('select-view-record');
                  if(opt.length>0){
@@ -1984,18 +2004,112 @@ function checkCookie()
     
 }
 
-/* temporarily commented out
-        function getCookiesAjax(p){
-	$.ajax({
-             type:"POST",
-             url: base_url+"search/mySavedRecords?page="+p,
-             
-                     success:function(msg){
-                             $(".accordion-seealso").html(msg);
-                            // $(".accordion-seealso").accordion({autoHeight:false, collapsible:true,active:false});
-                             setupCookiesBtns();
-                     },
-                     error:function(msg){}
-             });
-	}
- */
+function doAjaxFavCookie()
+{
+              $.ajax({
+                    type:"POST",
+                    url: base_url+"search/mySavedRecords?page="+1,
+
+                    success:function(msg)
+                    {
+                         $("#divFav").html(msg);
+
+                         $("#divFav").dialog({
+                            modal: true,
+                            minWidth:400,
+                            position:'center',
+                            draggable:'false',
+                            resizable:false,
+                            title:"My favourite records",
+
+                            open: function(){
+                             $(".ui-dialog-buttonset").append("<span id='status'></span>");
+
+                             return false;
+                            }
+                        });
+                     $('.removeCookie').on('click','a.remove', function(e){
+                            var r=this.parentNode.attributes['id'].value
+                            var tmp=getCookie("SavedRecords");
+                            var a=new Array;
+                            
+                            a=tmp.split("|");
+                            a.splice($.inArray(r, a),1);
+                            a.clean("");
+                            var s=a.join("|");
+                            setCookie('SavedRecords',s,365); 
+                            updateTable();
+                            doAjaxCookie();
+
+                            
+                        });
+                return false;
+            },
+            error:function(msg){
+            console.log("error" + msg);
+            }
+        });
+        return false;
+}
+
+function doAjaxSearchCookie()
+{
+              $.ajax({
+                    type:"POST",
+                    url: base_url+"search/mySavedSearches",
+
+                    success:function(msg)
+                    {
+                         $("#divSaved").html(msg);
+
+                         $("#divSaved").dialog({
+                            modal: true,
+                            minWidth:400,
+                            position:'center',
+                            draggable:'false',
+                            resizable:false,
+                            title:"My saved searches",
+
+                            open: function(){
+                             $(".ui-dialog-buttonset").append("<span id='status'></span>");
+
+                             return false;
+                            }
+                        });
+                     $('.removeCookie').on('click','a.remove', function(e){
+                            var r=this.parentNode.attributes['id'].value
+                            var tmp=getCookie("SavedSearch");
+                            var a=new Array;
+                            
+                            a=tmp.split("|");
+                            a.splice($.inArray(r, a),1);
+                            a.clean("");
+                            var s=a.join("|");
+                            setCookie('SavedSearch',s,365); 
+                            doAjaxSearchCookie();
+
+                            
+                        });
+                return false;
+            },
+            error:function(msg){
+            console.log("error" + msg);
+            }
+        });
+        return false;
+}
+
+function updateTable()
+{
+        $("#searchResults tr").each(function(){
+        if($(this)[0].parentElement.nodeName!="THEAD")
+        { 
+        checkRecordinCookie(jQuery($(this)[0].cells[2].childNodes[2].childNodes[0]),
+                            jQuery($(this)[0].cells[2].childNodes[2].childNodes[1]),
+                            $(this)[0].cells[2].childNodes[2].childNodes[2].attributes['href'].value+";"+$(this)[0].cells[1].childNodes[0].firstChild.firstChild.nodeValue);         
+        }
+
+
+    });
+}
+

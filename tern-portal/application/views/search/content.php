@@ -212,7 +212,6 @@ if ($realNumFound >0)
 
         }
         echo '</table>';
-
         echo '<div id="infoBox"></div>';
 }
 ?>

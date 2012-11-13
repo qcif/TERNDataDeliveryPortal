@@ -68,7 +68,7 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
         echo        '<div class="buttons">';
         echo            '<a id="saveSearchBtn" class="orangeGradient smallRoundedCorners">Save Search</a>';
         echo            '<a id="clearSearchBtn" class="greyGradient smallRoundedCorners">Clear Search</a>';
-        echo        '</div>';
+         echo        '</div>';
         echo    '</div>';
         echo '</div>';
 
