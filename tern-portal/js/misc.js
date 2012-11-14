@@ -129,7 +129,7 @@ function initViewPage(){
                      var arr_cookie=new Array;
 
                      
-                     if(getCookie('SavedRecords')!='undefined')
+                     if(getCookie('SavedRecords')!='undefined' && getCookie('SavedRecords')!=null)
                      {
                         tmp=getCookie('SavedRecords');
                         arr_cookie=tmp.split('|');
