@@ -140,6 +140,7 @@ function initViewPage(){
                      {
                          arr_cookie.push(window.location.href+";"+metatitle);                         
                      }
+                     arr_cookie.clean("");
                      tmp=arr_cookie.join('|');
                      setCookie('SavedRecords',tmp,365);     
                      $('#saveRecord').show()

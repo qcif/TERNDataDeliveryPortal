@@ -280,6 +280,7 @@ var p=1;
                         });
                             
                      $('.removeCookie').on('click','a.remove', function(e){
+                        
                             var r=this.parentNode.attributes['id'].value
                             var tmp=getCookie("SavedRecords");
                             var a=new Array;
@@ -289,6 +290,11 @@ var p=1;
                             a.clean("");
                             var s=a.join("|");
                             setCookie('SavedRecords',s,365); 
+                            
+                            if($("#page_name").text()=='View')
+                            {
+                                checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+$('#metadataTitle h1').text());
+                            }
                             doAjaxFavCookie();    
                             doNormalSearch();
                         
@@ -1323,11 +1329,11 @@ var p=1;
                 $("div[id=metadesc]").hide();
                 $("div[id=metabutton]").hide();
                    $("#searchResults tr").click(function(event) {
-                        event.stopPropagation();
-                        if(!$('.viewmeta').data("clicked"))
-                        {
-                            if(!$('.tblFav').data("clicked"))
-                            {
+                        event.stopPropagation(); 
+
+                            if($("#metabutton a").not(".viewmeta"))
+                            {                              
+                            
                                 $(this).find("#metabutton").toggle();
                                 $(this).find("#metadesc").toggle();
                                 if($(this).find(".actionsColumn .show").length > 0){
@@ -1337,11 +1343,8 @@ var p=1;
                                     $(this).find(".actionsColumn").children('a').attr("class","show");                            
                                 } 
                             }
- 
-                          
-                        }
-                          $('.viewmeta').data("clicked",false);
-                          $('.tblFav').data("clicked",false);
+                        
+
                     }); 
  
                  updateTable();
@@ -2052,6 +2055,12 @@ function doAjaxFavCookie()
                             a.clean("");
                             var s=a.join("|");
                             setCookie('SavedRecords',s,365); 
+                            
+                            if($("#page_name").text()=='View')
+                            {
+                                checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+$('#metadataTitle h1').text());
+                            }
+                            
                             updateTable();
                             doAjaxFavCookie();
 
