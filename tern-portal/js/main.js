@@ -295,7 +295,7 @@ var p=1;
                             {
                                 checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+$('#metadataTitle h1').text());
                             }
-                            doAjaxFavCookie();    
+                            doAjaxFavCookie();                               
                             doNormalSearch();
                         
                         });
@@ -1347,7 +1347,7 @@ var p=1;
 
                     }); 
  
-                 updateTable();
+                 //updateTable();
                  
                  var opt=document.getElementsByName('select-view-record');
                  if(opt.length>0){
@@ -2061,7 +2061,7 @@ function doAjaxFavCookie()
                                 checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+$('#metadataTitle h1').text());
                             }
                             
-                            updateTable();
+                            //updateTable();
                             doAjaxFavCookie();
 
                             
@@ -2122,7 +2122,7 @@ function doAjaxSearchCookie()
         return false;
 }
 
-function updateTable()
+window.setInterval(function updateTable() 
 {
         $("#searchResults tr").each(function(){
         if($(this)[0].parentElement.nodeName!="THEAD")
@@ -2134,5 +2134,5 @@ function updateTable()
 
 
     });
-}
+},5000)
 
