@@ -28,10 +28,10 @@ $Revision: 1 $
 
     if(count($r)<1||$saved=='')
     {
-        echo 'No saved records';
+        echo 'no favourite records saved';
     }else
     {
-        echo '<ul>';
+        echo '<ul class="saved">';
         
 
             for($s=0;$s<count($r);$s++)

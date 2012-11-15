@@ -988,3 +988,7 @@ a.external{
 #divFav a.remove:hover{ background: url(../img/buttons/remove-hover-btn.png) no-repeat; }
 #divSaved a.remove{ background: url(../img/buttons/remove-normal-btn.png) no-repeat; width: 12px; height: 12px; margin-top: 2px; float: right; display: block; }
 #divSaved a.remove:hover{ background: url(../img/buttons/remove-hover-btn.png) no-repeat; }
+
+.saved li{
+    margin-top:5px;
+}
