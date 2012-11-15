@@ -144,7 +144,8 @@ function initViewPage(){
                      tmp=arr_cookie.join('|');
                      setCookie('SavedRecords',tmp,365);     
                      $('#saveRecord').show()
-                     $('#addToFavourite').hide();     
+                     $('#addToFavourite').hide();  
+                
                      
                  });
                  checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+metatitle);
@@ -221,13 +222,13 @@ function checkRecordinCookie(saveRecord,addToFavourite,urlandtitle)
 {
     var savedRecords;
     var key;
-    if(getCookie('SavedRecords')!=null)
+    if(getCookie('SavedRecords')!=null&&getCookie('SavedRecords')!="")
     {
         savedRecords=getCookie('SavedRecords');  
         var t=savedRecords.split('|');
         //var title=$('#metadataTitle h1').text();
         key=jQuery.inArray(urlandtitle,t);
-        if(key===-1)
+        if(key==-1) 
         {
             
             saveRecord.hide();
