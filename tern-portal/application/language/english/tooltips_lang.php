@@ -4,15 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-$lang['term'] = "Enter search term here";
-$lang['term_boolean'] = "Select boolean operator";
-$lang['termporal'] = "select temporal coverage range ";
-$lang['region'] = "Select different regions";
-$lang['for'] = "add field of research ";
-$lang['facility'] = "select facilities to refine search results";
-
+ 
 $lang['term_helptitle']="Advance boolean search help";
 $lang['term_helptext']="<h2>Advance boolean search </h2><p>
                             Use AND, OR and NOT to refine your search results.

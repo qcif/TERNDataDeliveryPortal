@@ -49,26 +49,7 @@ $Revision: 1 $
                             <img alt="Map Search" src="img/icons/icon-australia.png">
                             Map Search
                         </a>
-                        
-                        
-                        
-<!--                    
-                    <div id="wrapper-adv">
-                       
-			<div id="search-bar">
-				
-				<div id="search-wrapper" class="clearfix">
-					<div class="ui-widget left-align"><input class="searchbox" id ="search-box" title="Search ecosystem data" type="text" name="query" ></div>
-					<button class="searchbox_submit" id="search-button" title="Search ecosystem data">Search</button>                                        
-				</div>
-				
-			</div> 
-
-            <div id="placeholder">	
-                <button id="map-search-button" title="Map Search">temporary Map Search button</button>
-            </div>
-                     </div>
--->
+                                    
 		</div>
 
                 <?php } ?> 

@@ -18,10 +18,10 @@ limitations under the License.
 
 class Home extends CI_Controller {
 
-
+	/* This loads the home page of the portal*/
 	public function index(){
 
-                 $this->load->library('user_agent');
+                $this->load->library('user_agent');
 		$data['user_agent']=$this->agent->browser();
 
                 $this->load->model('Registryobjects');
@@ -43,12 +43,13 @@ class Home extends CI_Controller {
 
 
                 $data['recordsArr'] = $this->handleRandomTab(10,'tddp');
-		$this->load->view('home_pagev4', $data);
+		$this->load->view('home_page', $data);
 	}
 	
+	/* Get random records from the facilities*/
         public function getrdmrecord()
         {
-            
+             
            if(isset($_GET['fac']))
                 $fac=$_GET['fac'];
             else
@@ -63,49 +64,8 @@ class Home extends CI_Controller {
 
             $this->load->view('facilityrandom',$data);
         }
-        public function advancesrch(){
-                //get Temporal 
-                $this->load->model('Registryobjects');
-                $query = $this->Registryobjects->get_min_year();
-                if($query) $row = $query->row();              
-                $data['min_year'] = $row->min_year;
-                $data['max_year'] = $row->max_year;
-                $data['widget_temporal'] = 1;
-                
-                //get Group
-                $this->load->model('Solr');
-                $queryFacilities = $this->Solr->getFacilities();
-                $data['facilities'] = $queryFacilities->{'facet_counts'}->{'facet_fields'}->{'group'};
-                $data['widget_facilities'] = 1;
-                
-                //get Subject
-                include APPPATH . '/views/tab/forstat.php';
-                $data['widget_for'] = 1;
-                $data['subject'] = $subject;
-              
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
-                
-                //get Map widget
-
-                $data['widget_map'] = 1;
-                $data['widget_map_drawtoolbar'] = 1;
-                $data['widget_map_coords'] = 1;
-                
-                //get Keyword
-                $data['widget_keyword'] = 1;
-                
-                
-		$this->load->view('content/advancesrch', $data);
-	}       
-	
-	
-	public function contact(){
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
-		$this->load->view('content/contact_form', $data);
-	}
-         
+		
+	/* This is a hidden page, to test map widget capabilities*/
         public function mapproto(){
                 $data['widget_map'] = 1;
               
@@ -118,76 +78,51 @@ class Home extends CI_Controller {
                  $data["regions"] = $regions;
                 $this->load->view('content/mapproto',$data);
         }
+		
+	/* This leads to the research infrastructure page map*/
 	public function infrastructure(){
-                $data['widget_map'] = 1;
-                $data['infrastructure_map'] = 1;
+                $data['widget_map'] = 1; // flag so the MapWidget.js is included in the footer
+                $data['infrastructure_map'] = 1; // flag so the infrastructure javascript is loaded
                 $this->load->view('content/infrastructure',$data);
         }
 
         
-        public function mapproto_viewport(){
-                $data['widget_map'] = 1;
-              
-        
-                $this->load->view('content/mapproto_viewport',$data);
-        }
-        
+		/* page not found view for 404 */ 
+		public function notfound(){
+			$this->load->library('user_agent');
+			$data['user_agent']=$this->agent->browser();
+			$data['message']='Page not found!';
+					$this->load->model('Solr');
+					$data['json'] = $this->Solr->getTERNPartners();
 
-	public function send(){
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
-		$name = $this->input->post('name');
-		$email = $this->input->post('email');
-		$content = $this->input->post('content');
+					$this->load->view('layout',$data);
+		}
+		/* Static page area*/
+		public function accessdata(){
+			$this->load->library('user_agent');
+			$data['user_agent']=$this->agent->browser();
+			$this->load->view('terndata/accessdata', $data);
+		}
+			
+                public function submitdata(){
+			$this->load->library('user_agent');
+			$data['user_agent']=$this->agent->browser();
+			$this->load->view('terndata/submitdata', $data);
+		}
+			
+		public function licensing(){
+			$this->load->library('user_agent');
+			$data['user_agent']=$this->agent->browser();
+			$data['load_license_js'] = 1;
+			$this->load->view('terndata/licensing', $data);
+					
+		}
+		public function terms(){
+			$this->load->library('user_agent');
+			$data['user_agent']=$this->agent->browser();
+			$this->load->view('terndata/terms', $data);
+		}
 		
-		$this->load->library('email');
-
-		$this->email->from($email, $name);
-		$this->email->to('services@tern.org.au');
-		
-		$this->email->subject('Contact Us');
-		$this->email->message($content);	
-		
-		$this->email->send();
-		
-		echo '<b>Thank you for your response. Your message has been delivered successfully</b>';
-	}
-	
-	public function notfound(){
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
-		$data['message']='Page not found!';
-                $this->load->model('Solr');
-                $data['json'] = $this->Solr->getTERNPartners();
-
-                $this->load->view('layout',$data);
-	}
-
-	public function accessdata(){
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
-		$this->load->view('terndata/accessdata', $data);
-	}
-        
-         public function submitdata(){
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
-		$this->load->view('terndata/submitdata', $data);
-	}
-        
-        public function licensing(){
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
-		$data['load_license_js'] = 1;
-                $this->load->view('terndata/licensing', $data);
-                
-	}
-         public function terms(){
-		$this->load->library('user_agent');
-		$data['user_agent']=$this->agent->browser();
-		$this->load->view('terndata/terms', $data);
-	}
-    
         
     
         /*get 10 random records*/

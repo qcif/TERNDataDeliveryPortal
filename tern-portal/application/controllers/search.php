@@ -61,8 +61,7 @@ class Search extends CI_Controller
 		$data['user_agent']=$this->agent->browser();
                 
                 //get Map widget
-                $this->lang->load('tooltipMap');
-                $this->lang->load('helpMap'); 
+                $this->lang->load('helpmap'); 
                 $data['widget_map'] = 1;
                 $data['widget_map_drawtoolbar'] = 1;
       

@@ -932,7 +932,8 @@ var p=1;
         temporalWidget.doTemporalSearch=true;
         temporalWidget.refreshTemporalSearch();
  
- //help contents
+ 
+        //help contents
     
       $("#facet-help-text").dialog({autoOpen:false, height: 400, width: 500, zIndex: 3999});
           $("#facet-help").click(function(){
