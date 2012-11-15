@@ -57,17 +57,11 @@ $number = mt_rand(1,3);
                     </ul> 
                     <ul class="right">
                         <li>
-                            <a id="myFav" href="javascript:void(0);">
-                                <img alt="My Favourites" src="/img/icons/icon-my-favourites.png"/>
-                                My Favourites
-                            </a>
+                            <a id="myFav" href="javascript:void(0);"><img alt="My Favourites" src="/img/icons/icon-my-favourites.png"/>My Favourites</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a id="mySaved" href="javascript:void(0);">
-                                <img alt="My Searches" src="/img/icons/icon-my-favourites.png"/>
-                                My Searches
-                            </a>
+                            <a id="mySaved" href="javascript:void(0);"><img alt="My Searches" src="/img/icons/icon-my-favourites.png"/>My Searches</a>
                         </li>
                     </ul>
               </nav> 
