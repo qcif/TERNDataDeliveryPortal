@@ -1,40 +1,17 @@
 <?php
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * 
  * Original json format
  * 
  *
  */
 ?>
-   { "responseHeader": {
-        "status": 0,
-        "QTime": 1,
-        "params": {
-            "explainOther": "",
-            "indent": "on",
-            "hl.fl": "",
-            "wt": "json",
-            "rows": "1",
-            "version": "2.2",
-
-            "fl": "description_value, description_type, key, display_title, location",
-
-            "start": "0",
-            "q": "group:(\"Facilities\")",
-            "qt": "",
-            "fq": ""
-        }
-    },
+   {
     "response": {
-        "numFound": 11,
-        "start": 0,
-        "docs": [
+         "docs": [
             {
                 "key": "tddp",
-
                 "display_title": "TERN Data Discovery Portal",
-
                 "alt_name": "Terrestial Ecosystem Data",                 
                 "query_name": "TERN Data Discovery Portal", 
                 "description_type": [
@@ -235,8 +212,7 @@
                 ],
                 "location": ["http://www.tern.org.au/Australian-Centre-for-Ecological-Analysis-and-Synthesis-pg17735.html"]
             } 
-
-
+ 
 
         ]
 

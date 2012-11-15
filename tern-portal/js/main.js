@@ -482,7 +482,7 @@ var p=1;
         //changing coordinates in textbox should change the map appearance
         enableCoordsChange(mapWidget);  
      
-         
+        //map help contents
         $("#map-help-text").dialog({autoOpen:false, height: 500});
         $("#map-help").click(function(){
              $("#map-help-text").dialog('open');
@@ -933,7 +933,7 @@ var p=1;
         temporalWidget.refreshTemporalSearch();
  
  
-        //help contents
+        //search help contents
     
       $("#facet-help-text").dialog({autoOpen:false, height: 400, width: 500, zIndex: 3999});
           $("#facet-help").click(function(){
