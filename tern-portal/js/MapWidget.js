@@ -1694,7 +1694,7 @@ function showInfo(event, mapWidget){
         if(mapWidget.selectedFeatureLayer != ''){
         ternRegionFilter = mapWidget.selectedFeatureLayer + "\\\\:" + mapWidget.selectedFeatureId;
               
-        text = "<strong>" + mapWidget.selectedFeatureName + "</strong><br/><a class=\"greenGradient smallRoundedCorners\" onClick=\"$('#" + ternRegionFilter + "').trigger('click');\">Search records in this area";
+        text = "<strong>" + mapWidget.selectedFeatureName + "</strong><br/><a class=\"greenGradient smallRoundedCorners\" onClick=\"$('#visible-region #" + ternRegionFilter + "').trigger('click');\">Search records in this area";
         while( mapWidget.map.popups.length ) {
             mapWidget.map.removePopup(mapWidget.map.popups[0]);
         }   
