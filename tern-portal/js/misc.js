@@ -133,19 +133,40 @@ function initViewPage(){
                      {
                         tmp=getCookie('SavedRecords');
                         arr_cookie=tmp.split('|');
-                        arr_cookie.push(window.location.href+";"+metatitle);                        
                         
+                        if(arr_cookie.length<20)
+                        {
+                           arr_cookie.push(window.location.href+";"+metatitle);    
+                        }   
+                        else
+                        {
+                           $("#cookiewarning"). dialog({
+                                resizable: false,
+                                height: 140,
+                                modal: true,
+                                buttons: {
+                                    "OK": function() { 
+                                        $( this ).dialog( "close" );
+                                    }
+                                }
+                            });                 
+                        }
                      }
                      else
                      {
                          arr_cookie.push(window.location.href+";"+metatitle);                         
                      }
-                     arr_cookie.clean("");
-                     tmp=arr_cookie.join('|');
-                     setCookie('SavedRecords',tmp,365);     
-                     $('#saveRecord').show()
-                     $('#addToFavourite').hide();  
-                
+                     
+                     if(arr_cookie.length<20)
+                     {
+                        arr_cookie.clean("");
+                        tmp=arr_cookie.join('|');
+                        setCookie('SavedRecords',tmp,365);     
+                        $('#saveRecord').show()
+                        $('#addToFavourite').hide();  
+                        
+                     }
+                     
                      
                  });
                  checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+metatitle);

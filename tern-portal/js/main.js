@@ -268,7 +268,7 @@ var p=1;
                             position:'center',
                             draggable:'false',
                             resizable:false,
-                            title:"My favourite records",
+                            title:"save favourite record",
 
                             open: function(){
                             $(".ui-dialog-buttonset").append("<span id='status'></span>");
@@ -324,7 +324,7 @@ var p=1;
                             position:'center',
                             draggable:'false',
                             resizable:false,
-                            title:"My saved searches",
+                            title:"save search",
 
                     open: function(){
                         $(".ui-dialog-buttonset").append("<span id='status'></span>");
@@ -1253,24 +1253,46 @@ var p=1;
                         tmp=getCookie('SavedRecords');
                         arr_cookie=tmp.split('|');
                         
-                        if($.inArray(url+";"+t,arr_cookie)==-1)
-                        {
-                           arr_cookie.push(url+";"+t);  
-                        }
-                        
-                        
-                        
+
+                            if($.inArray(url+";"+t,arr_cookie)==-1 && arr_cookie.length<20)
+                            {
+                                arr_cookie.push(url+";"+t);  
+                                
+                                arr_cookie.clean("");
+                                tmp=arr_cookie.join('|');
+                                setCookie('SavedRecords',tmp,365);    
+                                $(this).removeClass('orangeGradient').addClass('greyGradient');
+                                $(this).addClass('disabled');
+                                $(this).html("Saved");
+                            }        
+                            else if(arr_cookie.length>=20)
+                            {
+                                $("#cookiewarning"). dialog({
+                                    resizable: false,
+                                    height: 140,
+                                    modal: true,
+                                    buttons: {
+                                        "OK": function() { 
+                                            $( this ).dialog( "close" );
+                                        }
+                                    }
+                                });
+                            } else{}                  
                      }
                      else
                      {
-                         arr_cookie.push(url+";"+t);                          
+                         arr_cookie.push(url+";"+t);
+                         
+                         arr_cookie.clean("");
+                         tmp=arr_cookie.join('|');
+                         setCookie('SavedRecords',tmp,365);    
+                         $(this).removeClass('orangeGradient').addClass('greyGradient');
+                         $(this).addClass('disabled');
+                         $(this).html("Saved");
                      }
-                     arr_cookie.clean("");
-                     tmp=arr_cookie.join('|');
-                     setCookie('SavedRecords',tmp,365);    
-                     $(this).removeClass('orangeGradient').addClass('greyGradient');
-                     $(this).addClass('disabled');
-                     $(this).html("Saved");
+   
+
+
                      
                  });
                  
@@ -1288,22 +1310,38 @@ var p=1;
                                 t=getCookie('SavedSearch');
                                 ss_cookie=t.split('|');
                                
-                               if($.inArray(window.location.href+";"+$('#searchname').val(), ss_cookie)==-1)
+                               if(ss_cookie.length<20)
                                {
-                                  ss_cookie.push(window.location.href+";"+$('#searchname').val());    
-                               }                           
-
-
+                                    if($.inArray(window.location.href+";"+$('#searchname').val(), ss_cookie)==-1)
+                                    {
+                                        ss_cookie.push(window.location.href+";"+$('#searchname').val());
+                                        ss_cookie.clean("");
+                                        t=ss_cookie.join('|');
+                                        setCookie('SavedSearch',t,365);   
+                                    }  
+                               }                         
+                               else
+                               {
+                                     $("#cookiewarning"). dialog({
+                                        resizable: false,
+                                        height: 140,
+                                        modal: true,
+                                        buttons: {
+                                            "OK": function() { 
+                                                $( this ).dialog( "close" );
+                                            }
+                                        }
+                                    });        
+                               }
                              }
                              else
                              {
-                                ss_cookie.push(window.location.href+";"+$('#searchname').val());                          
-                             }
+                                ss_cookie.push(window.location.href+";"+$('#searchname').val()); 
                                 ss_cookie.clean("");
                                 t=ss_cookie.join('|');
-                                setCookie('SavedSearch',t,365);    
-
-                                $( this ).dialog( "close" );
+                                setCookie('SavedSearch',t,365);   
+                             }                            
+                             $( this ).dialog( "close" );
                           },
                           "Cancel": function(){
                                 $( this ).dialog( "close" );
@@ -2037,7 +2075,7 @@ function doAjaxFavCookie()
                             position:'center',
                             draggable:'false',
                             resizable:false,
-                            title:"My favourite records",
+                            title:"save favourite record",
 
                             open: function(){
                              $(".ui-dialog-buttonset").append("<span id='status'></span>");
@@ -2091,7 +2129,7 @@ function doAjaxSearchCookie()
                             position:'center',
                             draggable:'false',
                             resizable:false,
-                            title:"My saved searches",
+                            title:"save search",
 
                             open: function(){
                              $(".ui-dialog-buttonset").append("<span id='status'></span>");

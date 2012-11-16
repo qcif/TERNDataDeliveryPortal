@@ -542,43 +542,6 @@ table#searchResults{
         position: relative;
 	width: 100%; /* RW ADDED 15/10/12 */
 }
-/*
-table#searchResults thead th{ font-weight: normal; background: url(/img/dividers/table-th-divider.png) no-repeat right center; padding: 10px 10px; 
-}	
-
-
-table#searchResults thead th.first-child{
-	-moz-border-radius: 6px 0 0 0;
-	-webkit-border-radius: 6px 0 0 0;
-	border-radius: 6px 0 0 0;
-}
-
-table#searchResults thead th.last-child{
-	-moz-border-radius: 0 6px 0 0;
-	-webkit-border-radius: 0 6px 0 0;
-	border-radius: 0 6px 0 0;
-	width: 150px;  
-}
-
-table#searchResults tbody td{ 
-	padding: 10px;
-	background-color: #fff;
-	border-bottom: 1px solid #ddd;
-}
-
-table#searchResults tbody td:last-child {
-	background: #fff url(/img/dividers/search-results-divider.png) no-repeat left center; 
-}
-
-
-table#searchResults tbody td.actionsColumn{
-	background: #fff url(/img/dividers/search-results-divider.png) no-repeat left center; 
-}
-
-table#searchResults th.mapRefTH{ width: 66px; }
-table#searchResults th.titleTH{ text-align: left; width:1050px;  }
-table#searchResults th.datePublishedTH{ width: 159px; text-align: left; }
-*/
 table#searchResults thead th{ font-weight: normal; padding: 10px 10px; }	
 
 table#searchResults tbody td{ 
@@ -988,5 +951,14 @@ a.download{
 a.external{
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB50RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAAANBJREFUGJVjZEADCZPU/6OLYYDKXQb/K3cZ/EcGrz8++Z8wSf0/E7LCdrcLjM9vfGeo2m2IYQgLulU//wowyOqwYChkYmBgYJife4Nhfu4Nhv///jPYhrMwZEoeYZj+3AbFZLjWxMkaDOZhonBFh1f+YWBn/s5QcXsiwkQGBgYGsxARhsdXviIp+sCwIO8mo5jqbob///4zwhVmSh5hkNXhZji15g3DpKS1cCufXfvGCLf6zaenDAwMDAyh3CsZQuOxBx0LAwMDQ+lCZ+yySAAAOUlVHUJdCpQAAAAASUVORK5CYII=") no-repeat scroll right center transparent;
     padding-right: 13px;
+}
+
+#divFav a.remove{ background: url(../img/buttons/remove-normal-btn.png) no-repeat; width: 12px; height: 12px; margin-top: 2px; float: right; display: block; }
+#divFav a.remove:hover{ background: url(../img/buttons/remove-hover-btn.png) no-repeat; }
+#divSaved a.remove{ background: url(../img/buttons/remove-normal-btn.png) no-repeat; width: 12px; height: 12px; margin-top: 2px; float: right; display: block; }
+#divSaved a.remove:hover{ background: url(../img/buttons/remove-hover-btn.png) no-repeat; }
+
+.saved li{
+    margin-top:5px;
 }
 

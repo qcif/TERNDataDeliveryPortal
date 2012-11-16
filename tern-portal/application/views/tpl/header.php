@@ -57,17 +57,11 @@ $number = mt_rand(1,3);
                     </ul> 
                     <ul class="right">
                         <li>
-                            <a id="myFav" href="javascript:void(0);">
-                                <img alt="My Favourites" src="/img/icons/icon-my-favourites.png"/>
-                                My Favourites
-                            </a>
+                            <a id="myFav" href="javascript:void(0);"><img alt="My Favourites" src="/img/icons/icon-my-favourites.png"/>My Favourites</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a id="mySaved" href="javascript:void(0);">
-                                <img alt="My Searches" src="/img/icons/icon-my-favourites.png"/>
-                                My Searches
-                            </a>
+                            <a id="mySaved" href="javascript:void(0);"><img alt="My Searches" src="/img/icons/icon-my-favourites.png"/>My Searches</a>
                         </li>
                     </ul>
               </nav> 
@@ -97,10 +91,13 @@ $number = mt_rand(1,3);
                 echo $currentUrl;
         ?>
        </div>
-        <div id="divSaved" title="Saved searches"></div>
-        <div id="divFav" title="My favourites records"></div>
-        
-       <div id="saveSearchPrompt" title="Enter name" class="hide">
+        <div id="divSaved" title="save search"></div>
+        <div id="divFav" title="save favourite record"></div>
+        <div id="cookiewarning" title="Warning" class="hide">
+           The maximum number of records allowed to be saved is 20.You have exceeded the limit.
+        </div>
+       
+        <div id="saveSearchPrompt" title="save search" class="hide">
            Please enter a name:
            <input type="text" id="searchname"><br/>
            

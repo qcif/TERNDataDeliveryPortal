@@ -17,7 +17,7 @@ limitations under the License.
 $Date: 2011-09-06 11:35:57 +1000 (Tue, 06 Sep 2011) $
 $Revision: 1 $
 ***************************************************************************
-*
+* 
 **/ 
 ?>
 <div class="saved_cookie">
@@ -28,10 +28,10 @@ $Revision: 1 $
 
     if(count($r)<1||$saved=='')
     {
-        echo 'No saved searches';
+        echo 'no saved searches';
     }else
     {
-        echo '<ul>';
+        echo '<ul class="saved">';
         
 
             for($s=0;$s<count($r);$s++)
