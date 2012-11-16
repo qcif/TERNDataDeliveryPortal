@@ -450,6 +450,7 @@ var p=1;
       
     }
    
+   /* Create map for the search page*/
    function initMap(){
 
         var mapWidget = new MapWidget('spatialmap',true);
@@ -513,7 +514,8 @@ var p=1;
       
         return mapWidget;
     }
-
+    
+    /* Using google places autocomplete to get coordinates for the map*/
      function initPlaceName(elementId,mapWidget){
          var placename = document.getElementById(elementId);
          var options = {
@@ -610,7 +612,7 @@ var p=1;
          autocomplete('input[name^=keyword]');
       
     }
-    
+        
     function doSpatialSearch()
     {
 	
@@ -654,7 +656,12 @@ var p=1;
         spatial_included_ids='';        
     }
   
-    
+    /* This function handles all the action after a search is performed. 
+     *  - Refreshing the contents of the current search box, facet search, map, and result table 
+     *  - if mapSearch is 1 only regions facet is shown 
+     *  - if clearAll is 1 only the basic search box and the regions facet is shown
+     * 
+     */
     function handleResults(msg,mapWidget){    
         //console.log(msg);
         var divs = $(msg).filter(function(){return $(this).is('div')});
@@ -741,6 +748,8 @@ var p=1;
 
             if(typeof mapWidget !== 'undefined') {
                 mapWidget.map.updateSize();
+                mapWidget.switchLayer('none');
+                     
                 mapWidget.removeAllFeatures();
                 if(mapSearch == 0 && clearAll == 0 && $(msg).find('div#realNumFound').html() !== "0"){
                  if(ternRegionFilter != 'All'){
@@ -1366,6 +1375,7 @@ var p=1;
 
                  }
                  
+                 
                  //sorting
                  var sel_sort=document.getElementsByName('select-sorting');
                  if(sel_sort.length>0){
@@ -1408,17 +1418,6 @@ var p=1;
     function initHomePage(){
         //setupOuterLayout();
 
-/*
-        $('.hp-icons img').hover(function(){
-            id = $(this).attr('id');
-
-            $('.hp-icon-content').hide();
-            $('#hp-content-'+id).show();
-            //console.log('#hp-content-'+id);
-            $('.hp-icons img').removeClass('active');
-            $(this).addClass('active');
-        });
-*/        
         $('#clearSearch').hide();
 
         //background text

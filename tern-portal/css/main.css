@@ -242,7 +242,7 @@ nav#facetNav{ margin-right: 15px; float: left; width: 215px; }
 	#currentSearchBox ul{ margin-bottom: 15px; }
 	#currentSearchBox ul li a{ display: block; }
 	#currentSearchBox div.buttons{  text-align: center; }
-	#currentSearchBox div.buttons a{ width: 80px; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px; cursor: pointer  }
+	#currentSearchBox div.buttons a{ width: 80px; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px;  }
 	#currentSearchBox a#clearSearchBtn{ color: #000; cursor: pointer }
 	 
 	/* Refine Search Box */
@@ -494,6 +494,12 @@ nav.resultsNav{
             margin-top:0px !important;
         }
         .popupContent a.smallRoundedCorners{ clear: both; width: 105px; height: 15px; line-height: 35px; text-align: center; color: #fff; padding: 5px; margin-bottom: 5px; }
+        
+
+        .logo_right{
+           float:right;
+        }
+       
         .popupGroup #chicken_GroupDiv{
             overflow: visible !important;
 
@@ -984,7 +990,3 @@ a.external{
     padding-right: 13px;
 }
 
-#divFav a.remove{ background: url(../img/buttons/remove-normal-btn.png) no-repeat; width: 12px; height: 12px; margin-top: 2px; float: right; display: block; }
-#divFav a.remove:hover{ background: url(../img/buttons/remove-hover-btn.png) no-repeat; }
-#divSaved a.remove{ background: url(../img/buttons/remove-normal-btn.png) no-repeat; width: 12px; height: 12px; margin-top: 2px; float: right; display: block; }
-#divSaved a.remove:hover{ background: url(../img/buttons/remove-hover-btn.png) no-repeat; }

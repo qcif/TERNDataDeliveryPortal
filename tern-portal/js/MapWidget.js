@@ -523,8 +523,8 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
                                 this.map.getLonLatFromPixel(event.xy),
                                 null, html, offset, true);    
        
-                            popup.minSize = new OpenLayers.Size(180,50);        
-                            popup.maxSize = new OpenLayers.Size(400,200);
+                            popup.minSize = new OpenLayers.Size(450,100);        
+                            popup.maxSize = new OpenLayers.Size(450,200);
                             popup.calculateRelativePosition = function () {
                                 return 'br';
                             }          
@@ -1685,7 +1685,10 @@ while (new Date() < ms){}
 
         return feature;
     }
-    
+   
+   /* Function to show region name and button when user click on a predefined region
+    * 
+    */
 function showInfo(event, mapWidget){
         var text = '';
         if(mapWidget.selectedFeatureLayer != ''){

@@ -2,10 +2,14 @@
 
 <#setting number_format="0.###">
 <#attempt> 
-
-<h4>Supersite: <br/>${features[0].name.value}</h4>
-${features[0].description.value}
-	
+<div ></div>
+<div id="info_left"><img class="logo_right" src="http://portal.tern.org.au/img/logos/logo-asn.png"/><h3>Supersite information: </h3>
+<b>Name:</b> ${features[0].name.value}
+<br/>
+<b>Further information:</b> <a href="${features[0].info_url.value}">${features[0].info_url.value}</a>
+</div>	 
+ 
+<div style="clear:both"></div>
 <#recover>
 		
 		 
