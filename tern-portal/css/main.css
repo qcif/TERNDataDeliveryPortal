@@ -994,6 +994,6 @@ a.external{
     text-align: center;
 }
 
-#clearFav{ cursor: pointer;width: 80px; height: 15px; line-height: 15px; text-align: center;  padding: 5px; }
-#clearSearch{ cursor: pointer;width: 80px; height: 15px; line-height: 15px; text-align: center; padding: 5px; }
+#clearFav{ cursor: pointer;width: 80px; height: 15px; line-height: 15px; text-align: center;  padding: 5px;float:right; }
+#clearSearch{ cursor: pointer;width: 80px; height: 15px; line-height: 15px; text-align: center; padding: 5px; float:right;}
 .cookieClearBtn{alignment-adjust: auto;}
