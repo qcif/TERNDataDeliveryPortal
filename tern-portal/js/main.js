@@ -289,14 +289,19 @@ var p=1;
                             a.splice($.inArray(r, a),1);
                             a.clean("");
                             var s=a.join("|");
-                            setCookie('SavedRecords',s,365); 
+                            setCookie("SavedRecords",s,365,'/'); 
                             
                             if($("#page_name").text()=='View')
                             {
                                 checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+$('#metadataTitle h1').text());
                             }
-                            doAjaxFavCookie();                               
-                            doNormalSearch();
+                            doAjaxFavCookie();  
+                            
+                            if($("#page_name").text()=='Search')
+                                {
+                            doNormalSearch();        
+                                }
+                            
                         
                         });
                 return false;
@@ -338,7 +343,7 @@ var p=1;
                             a.splice($.inArray(r, a),1);
                             a.clean("");
                             var s=a.join("|");
-                            setCookie('SavedSearch',s,365); 
+                            setCookie("SavedSearch",s,365,'/'); 
                             doAjaxSearchCookie();
                         
                         });
@@ -450,7 +455,6 @@ var p=1;
       
     }
    
-   /* Create map for the search page*/
    function initMap(){
 
         var mapWidget = new MapWidget('spatialmap',true);
@@ -514,8 +518,7 @@ var p=1;
       
         return mapWidget;
     }
-    
-    /* Using google places autocomplete to get coordinates for the map*/
+
      function initPlaceName(elementId,mapWidget){
          var placename = document.getElementById(elementId);
          var options = {
@@ -612,7 +615,7 @@ var p=1;
          autocomplete('input[name^=keyword]');
       
     }
-        
+    
     function doSpatialSearch()
     {
 	
@@ -656,12 +659,7 @@ var p=1;
         spatial_included_ids='';        
     }
   
-    /* This function handles all the action after a search is performed. 
-     *  - Refreshing the contents of the current search box, facet search, map, and result table 
-     *  - if mapSearch is 1 only regions facet is shown 
-     *  - if clearAll is 1 only the basic search box and the regions facet is shown
-     * 
-     */
+    
     function handleResults(msg,mapWidget){    
         //console.log(msg);
         var divs = $(msg).filter(function(){return $(this).is('div')});
@@ -748,8 +746,6 @@ var p=1;
 
             if(typeof mapWidget !== 'undefined') {
                 mapWidget.map.updateSize();
-                mapWidget.switchLayer('none');
-                     
                 mapWidget.removeAllFeatures();
                 if(mapSearch == 0 && clearAll == 0 && $(msg).find('div#realNumFound').html() !== "0"){
                  if(ternRegionFilter != 'All'){
@@ -1183,26 +1179,26 @@ var p=1;
                 case "10":
                         num=10;
                         lbl.innerHTML='10';
-                        setCookie('selection',10,365);
+                        setCookie('selection',10,365,'/');
                         break;
                 case "25":
                         num=25;
                         lbl.innerHTML='25';
-                        setCookie('selection',25,365);             
+                        setCookie('selection',25,365,'/');             
                     break;
                 case "50":
                         num=50;
                         lbl.innerHTML='50';
-                        setCookie('selection',50,365);             
+                        setCookie('selection',50,365,'/');             
                     break;
                 case "100":
                         num=100;
                         lbl.innerHTML='100';
-                        setCookie('selection',100,365);             
+                        setCookie('selection',100,365,'/');             
                     break;
                 default:
                         num=10;
-                        setCookie('selection',10,365);
+                        setCookie('selection',10,365,'/');
 
             }         
 
@@ -1220,15 +1216,15 @@ var p=1;
             {
                 case "score":
                         resultSort="score desc";
-                        setCookie('sorting',resultSort,365);
+                        setCookie('sorting',resultSort,365,'/');
                         break;
                 case "date_modified":
                         resultSort="date_modified desc";
-                        setCookie('sorting',resultSort,365);             
+                        setCookie('sorting',resultSort,365,'/');             
                     break;
                 default:
                         resultSort="score desc";
-                        setCookie('sorting',resultSort,365);
+                        setCookie('sorting',resultSort,365,'/');
 
             }         
 
@@ -1260,7 +1256,7 @@ var p=1;
                                 
                                 arr_cookie.clean("");
                                 tmp=arr_cookie.join('|');
-                                setCookie('SavedRecords',tmp,365);    
+                                setCookie('SavedRecords',tmp,365,'/');    
                                 $(this).removeClass('orangeGradient').addClass('greyGradient');
                                 $(this).addClass('disabled');
                                 $(this).html("Saved");
@@ -1285,7 +1281,7 @@ var p=1;
                          
                          arr_cookie.clean("");
                          tmp=arr_cookie.join('|');
-                         setCookie('SavedRecords',tmp,365);    
+                         setCookie('SavedRecords',tmp,365,'/');    
                          $(this).removeClass('orangeGradient').addClass('greyGradient');
                          $(this).addClass('disabled');
                          $(this).html("Saved");
@@ -1317,7 +1313,7 @@ var p=1;
                                         ss_cookie.push(window.location.href+";"+$('#searchname').val());
                                         ss_cookie.clean("");
                                         t=ss_cookie.join('|');
-                                        setCookie('SavedSearch',t,365);   
+                                        setCookie('SavedSearch',t,365,'/');   
                                     }  
                                }                         
                                else
@@ -1339,7 +1335,7 @@ var p=1;
                                 ss_cookie.push(window.location.href+";"+$('#searchname').val()); 
                                 ss_cookie.clean("");
                                 t=ss_cookie.join('|');
-                                setCookie('SavedSearch',t,365);   
+                                setCookie('SavedSearch',t,365,'/');   
                              }                            
                              $( this ).dialog( "close" );
                           },
@@ -1413,7 +1409,6 @@ var p=1;
 
                  }
                  
-                 
                  //sorting
                  var sel_sort=document.getElementsByName('select-sorting');
                  if(sel_sort.length>0){
@@ -1456,6 +1451,17 @@ var p=1;
     function initHomePage(){
         //setupOuterLayout();
 
+/*
+        $('.hp-icons img').hover(function(){
+            id = $(this).attr('id');
+
+            $('.hp-icon-content').hide();
+            $('#hp-content-'+id).show();
+            //console.log('#hp-content-'+id);
+            $('.hp-icons img').removeClass('active');
+            $(this).addClass('active');
+        });
+*/        
         $('#clearSearch').hide();
 
         //background text
@@ -2031,7 +2037,7 @@ function setCookie(c_name,value,exdays)
     
     var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
     
-    document.cookie=c_name + "=" + c_value;
+    document.cookie=c_name + "=" + c_value+";path=/";
 }
 
  
@@ -2044,7 +2050,7 @@ function checkCookie()
     }else
     {
         num=10;
-        setCookie("selection",10,365);      
+        setCookie("selection",10,365,'/');      
     }
 
     if(getCookie("sorting")!=null)
@@ -2054,7 +2060,7 @@ function checkCookie()
     else
     {
         resultSort="score desc";
-        setCookie("sorting",resultSort,365);
+        setCookie("sorting",resultSort,365,'/');
     } 
     
 }
@@ -2092,7 +2098,7 @@ function doAjaxFavCookie()
                             a.splice($.inArray(r, a),1);
                             a.clean("");
                             var s=a.join("|");
-                            setCookie('SavedRecords',s,365); 
+                            setCookie("SavedRecords",s,365,'/'); 
                             
                             if($("#page_name").text()=='View')
                             {
@@ -2146,7 +2152,7 @@ function doAjaxSearchCookie()
                             a.splice($.inArray(r, a),1);
                             a.clean("");
                             var s=a.join("|");
-                            setCookie('SavedSearch',s,365); 
+                            setCookie("SavedSearch",s,365,'/'); 
                             doAjaxSearchCookie();
 
                             

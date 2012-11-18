@@ -391,7 +391,7 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
     }
     
     /* This method is used by refreshFORStat.php to get statistics for uncategorized codes */
-  public function getNotFORCodes()
+    public function getNotFORCodes()
     {
         // get Partner File
 
