@@ -1732,7 +1732,7 @@ var p=1;
                                     position:'center',
                                     draggable:'false',
                                     resizable:false,
-                                    title:"save search",
+                                    title:"My Saved Searches",
 
                                     open: function(){
                                     $(".ui-dialog-buttonset").append("<span id='status'></span>");
