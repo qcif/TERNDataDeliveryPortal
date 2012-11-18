@@ -161,7 +161,7 @@ function initViewPage(){
                      {
                         arr_cookie.clean("");
                         tmp=arr_cookie.join('|');
-                        setCookie('SavedRecords',tmp,365,'/');     
+                        setCookie('SavedRecords',tmp,365);     
                         $('#saveRecord').show()
                         $('#addToFavourite').hide();  
                         

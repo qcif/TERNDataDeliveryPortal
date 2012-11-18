@@ -28,7 +28,7 @@ $Revision: 1 $
 
     if(count($r)<1||$saved=='')
     {
-        echo 'no favourite records saved';
+        echo 'No favourite records have been saved.';
     }else
     {
         echo '<ul class="saved">';
@@ -43,6 +43,10 @@ $Revision: 1 $
  
         
         echo '</ul>';
+        
+        echo '<div class="cookieClearBtn">';
+        echo '<a id="clearFav" class="greyGradient smallRoundedCorners">Clear All</a>';
+        echo '</div>';
         
     }
         echo '<div class="hide">';

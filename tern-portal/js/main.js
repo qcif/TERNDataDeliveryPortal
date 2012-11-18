@@ -166,6 +166,7 @@ $(function() {
                         if(mapSearch != 1 && clearAll != 1)$('#refineSearchBox h1.greenGradient').html('Refine Search'); else $('#refineSearchBox h1.greenGradient').html('Search');
                         
                         doNormalSearch();
+                        //updateTable(); 
                 }
          }
             
@@ -261,14 +262,13 @@ var p=1;
                     success:function(msg)
                     {
                          $("#divFav").html(msg);
-
                          $("#divFav").dialog({
                             modal: true,
                             minWidth:400,
                             position:'center',
                             draggable:'false',
                             resizable:false,
-                            title:"save favourite record",
+                            title:"My Favourite Records (maximum 20)",
 
                             open: function(){
                             $(".ui-dialog-buttonset").append("<span id='status'></span>");
@@ -281,7 +281,7 @@ var p=1;
                             
                      $('.removeCookie').on('click','a.remove', function(e){
                         
-                            var r=this.parentNode.attributes['id'].value
+                            var r=this.parentNode.getAttribute('id');
                             var tmp=getCookie("SavedRecords");
                             var a=new Array;
                             
@@ -289,7 +289,7 @@ var p=1;
                             a.splice($.inArray(r, a),1);
                             a.clean("");
                             var s=a.join("|");
-                            setCookie("SavedRecords",s,365,'/'); 
+                            setCookie("SavedRecords",s,365); 
                             
                             if($("#page_name").text()=='View')
                             {
@@ -298,9 +298,29 @@ var p=1;
                             doAjaxFavCookie();  
                             
                             if($("#page_name").text()=='Search')
-                                {
-                            doNormalSearch();        
-                                }
+                            {
+                                doNormalSearch();        
+                            }
+                            //updateTable();
+                            
+                        
+                        });
+                        
+                         $('#clearFav').on('click', function(e){
+                        
+                            deleteCookie("SavedRecords");
+                            
+                            if($("#page_name").text()=='View')
+                            {
+                                checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+$('#metadataTitle h1').text());
+                            }
+                            doAjaxFavCookie();  
+                            
+                            if($("#page_name").text()=='Search')
+                            {
+                                doNormalSearch();        
+                            }
+                         // updateTable();
                             
                         
                         });
@@ -329,13 +349,13 @@ var p=1;
                             position:'center',
                             draggable:'false',
                             resizable:false,
-                            title:"save search",
+                            title:"My Saved Searches (maximum 20)",
 
                     open: function(){
                         $(".ui-dialog-buttonset").append("<span id='status'></span>");
                        
                         $('.removeCookie').on('click','a.remove', function(e){
-                            var r=this.parentNode.attributes['id'].value
+                            var r=this.parentNode.getAttribute('id');
                             var tmp=getCookie("SavedSearch");
                             var a=new Array;
                             
@@ -343,7 +363,14 @@ var p=1;
                             a.splice($.inArray(r, a),1);
                             a.clean("");
                             var s=a.join("|");
-                            setCookie("SavedSearch",s,365,'/'); 
+                            setCookie("SavedSearch",s,365); 
+                            doAjaxSearchCookie();
+                        
+                        });
+                        
+                        $('#clearSearch').on('click', function(e){
+
+                           deleteCookie("SavedSearch");
                             doAjaxSearchCookie();
                         
                         });
@@ -638,6 +665,7 @@ var p=1;
                         spatial_included_ids = msg;
 
                         doNormalSearch();
+                        //updateTable(); 
                        // $("#loading").hide();
                     },
                     error:function(msg)
@@ -1182,40 +1210,42 @@ var p=1;
 
         $('.viewrecord').change(function(){
 
-        var selected=$(this).find(":selected").val();
-        var lbl=document.getElementById("showing");
-        switch(selected)
-        {
-            case "10":
-                    num=10;
-                    lbl.innerHTML='10';
-                    setCookie('selection',10,365,'/');
+            var selected=$(this).find(":selected").val();
+            var lbl=document.getElementById("showing");
+            switch(selected)
+            {
+                case "10":
+                        num=10;
+                        lbl.innerHTML='10';
+                        setCookie('selection',10,365);
+                        break;
+                case "25":
+                        num=25;
+                        lbl.innerHTML='25';
+                        setCookie('selection',25,365);             
                     break;
-            case "25":
-                    num=25;
-                    lbl.innerHTML='25';
-                    setCookie('selection',25,365,'/');             
-                break;
-            case "50":
-                    num=50;
-                    lbl.innerHTML='50';
-                    setCookie('selection',50,365,'/');             
-                break;
-            case "100":
-                    num=100;
-                    lbl.innerHTML='100';
-                    setCookie('selection',100,365,'/');             
-                break;
-            default:
-                    num=10;
-                    setCookie('selection',10,365,'/');
+                case "50":
+                        num=50;
+                        lbl.innerHTML='50';
+                        setCookie('selection',50,365);             
+                    break;
+                case "100":
+                        num=100;
+                        lbl.innerHTML='100';
+                        setCookie('selection',100,365);             
+                    break;
+                default:
+                        num=10;
+                        setCookie('selection',10,365);
 
-        }         
+            }         
 
-        doNormalSearch();   
-        changeHashTo(formatSearch(search_term, 1, classFilter,num));    
+            doNormalSearch();   
+            changeHashTo(formatSearch(search_term, 1, classFilter,num));  
+           // updateTable(); 
 
-    });
+        });
+
         
          
             $('.sort_record').on('change',function(){
@@ -1226,15 +1256,15 @@ var p=1;
             {
                 case "score":
                         resultSort="score desc";
-                        setCookie('sorting',resultSort,365,'/');
+                        setCookie('sorting',resultSort,365);
                         break;
                 case "date_modified":
                         resultSort="date_modified desc";
-                        setCookie('sorting',resultSort,365,'/');             
+                        setCookie('sorting',resultSort,365);             
                     break;
                 default:
                         resultSort="score desc";
-                        setCookie('sorting',resultSort,365,'/');
+                        setCookie('sorting',resultSort,365);
 
             }         
 
@@ -1251,7 +1281,7 @@ var p=1;
                      var tmp;
                      var arr_cookie=new Array;
                      var t=this.parentNode.parentNode.parentNode.cells[1].firstChild.firstChild.innerHTML;
-                     var url=this.parentNode.children[2].attributes['href'].value;
+                     var url=this.parentNode.children[2].getAttribute('href');
                      
                      $(this).data("clicked",true);
                      if(getCookie('SavedRecords')!=null)
@@ -1266,7 +1296,7 @@ var p=1;
                                 
                                 arr_cookie.clean("");
                                 tmp=arr_cookie.join('|');
-                                setCookie('SavedRecords',tmp,365,'/');    
+                                setCookie('SavedRecords',tmp,365);    
                                 $(this).removeClass('orangeGradient').addClass('greyGradient');
                                 $(this).addClass('disabled');
                                 $(this).html("Saved");
@@ -1291,7 +1321,7 @@ var p=1;
                          
                          arr_cookie.clean("");
                          tmp=arr_cookie.join('|');
-                         setCookie('SavedRecords',tmp,365,'/');    
+                         setCookie('SavedRecords',tmp,365);    
                          $(this).removeClass('orangeGradient').addClass('greyGradient');
                          $(this).addClass('disabled');
                          $(this).html("Saved");
@@ -1323,7 +1353,7 @@ var p=1;
                                         ss_cookie.push(window.location.href+";"+$('#searchname').val());
                                         ss_cookie.clean("");
                                         t=ss_cookie.join('|');
-                                        setCookie('SavedSearch',t,365,'/');   
+                                        setCookie('SavedSearch',t,365);   
                                     }  
                                }                         
                                else
@@ -1345,7 +1375,7 @@ var p=1;
                                 ss_cookie.push(window.location.href+";"+$('#searchname').val()); 
                                 ss_cookie.clean("");
                                 t=ss_cookie.join('|');
-                                setCookie('SavedSearch',t,365,'/');   
+                                setCookie('SavedSearch',t,365);   
                              }                            
                              $( this ).dialog( "close" );
                           },
@@ -1360,7 +1390,7 @@ var p=1;
  
     function doNormalSearch(){     
         $.ajax({
-            type:"POST",
+            type:"POST", 
             url: base_url+"/search/filter/",
 
 //            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv + "&ternRegionFilter=" + ternRegionFilter,
@@ -1613,6 +1643,132 @@ var p=1;
 	        initViewMap('metadatamap','.spatial_coverage_center','.coverage');		
     }			
  
+
+        function doAjaxFavCookie()
+        {
+                    $.ajax({
+                            type:"POST",
+                            url: base_url+"search/mySavedRecords?page="+1,
+
+                            success:function(msg)
+                            {
+                                $("#divFav").html(msg);
+
+                                $("#divFav").dialog({
+                                    modal: true,
+                                    minWidth:400,
+                                    position:'center',
+                                    draggable:'false',
+                                    resizable:false,
+                                    title:"My Favourite Records (maximum 20)",
+
+                                    open: function(){
+                                    $(".ui-dialog-buttonset").append("<span id='status'></span>");
+
+                                    return false;
+                                    }
+                                });
+                            $('.removeCookie').on('click','a.remove', function(e){
+                                    var r=this.parentNode.getAttribute("id").value
+                                    var tmp=getCookie("SavedRecords");
+                                    var a=new Array;
+
+                                    a=tmp.split("|");
+                                    a.splice($.inArray(r, a),1);
+                                    a.clean("");
+                                    var s=a.join("|");
+                                    setCookie("SavedRecords",s,365); 
+
+                                    if($("#page_name").text()=='View')
+                                    {
+                                        checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+$('#metadataTitle h1').text());
+                                    }
+
+                                    //updateTable();
+                                    doAjaxFavCookie();
+                                    //updateTable();
+
+                                });
+
+                                $('#clearFav').on('click', function(e){
+
+                                    deleteCookie("SavedRecords");
+
+                                    if($("#page_name").text()=='View')
+                                    {
+                                        checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+$('#metadataTitle h1').text());
+                                    }
+                                    doAjaxFavCookie();  
+
+                                    if($("#page_name").text()=='Search')
+                                    {
+                                        doNormalSearch();        
+                                    }
+                                    //updateTable();
+
+                                });                        
+                        return false;
+                    },
+                    error:function(msg){
+                    console.log("error" + msg);
+                    }
+                });
+                return false;
+        }
+
+        function doAjaxSearchCookie()
+        {
+                    $.ajax({
+                            type:"POST",
+                            url: base_url+"search/mySavedSearches",
+
+                            success:function(msg)
+                            {
+                                $("#divSaved").html(msg);
+
+                                $("#divSaved").dialog({
+                                    modal: true,
+                                    minWidth:400,
+                                    position:'center',
+                                    draggable:'false',
+                                    resizable:false,
+                                    title:"save search",
+
+                                    open: function(){
+                                    $(".ui-dialog-buttonset").append("<span id='status'></span>");
+
+                                    return false;
+                                    }
+                                });
+                            $('.removeCookie').on('click','a.remove', function(e){
+                                    var r=this.parentNode.getAttribute('id');
+                                    var tmp=getCookie("SavedSearch");
+                                    var a=new Array;
+
+                                    a=tmp.split("|");
+                                    a.splice($.inArray(r, a),1);
+                                    a.clean("");
+                                    var s=a.join("|");
+                                    setCookie("SavedSearch",s,365); 
+                                    doAjaxSearchCookie();
+
+
+                                });
+                                $('#clearSearch').on('click', function(e){
+
+                                deleteCookie("SavedSearch");
+                                    doAjaxSearchCookie();
+
+                                });                        
+                        return false;
+                    },
+                    error:function(msg){
+                    console.log("error" + msg);
+                    }
+                });
+                return false;
+        }
+
 });
    
 
@@ -1950,11 +2106,25 @@ function initIdentifiersSEEALSO(){
         }
 }
 
-function setupConnectionsBtns(){
-            $(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
-            $('.button').button();
-    $("#status").html($('#connectionsCurrentPage').html() + '/'+$('#connectionsTotalPage').html());
-}
+    function setupConnectionsBtns(){
+		$(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
+		$('.button').button();
+        $("#status").html($('#connectionsCurrentPage').html() + '/'+$('#connectionsTotalPage').html());
+    }
+    
+        function setupCookiesBtns(){
+		$(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
+		$('.button').button();
+        $("#status").html($('#cookiesCurrentPage').html() + '/'+$('#cookiesTotalPage').html());
+    }
+    
+    function initViewMap(mapId, centerSelector,coverageSelector){
+            var mapView = new MapWidget(mapId,true);
+            mapView.addDataLayer(false,"transparent");
+            mapView.addVectortoDataLayer(centerSelector,false);
+            mapView.addVectortoDataLayer(coverageSelector,false);
+   }
+   
 
     function setupCookiesBtns(){
             $(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
@@ -2025,7 +2195,7 @@ function checkCookie()
     }else
     {
         num=10;
-        setCookie("selection",10,365,'/');      
+        setCookie("selection",10,365);      
     }
 
     if(getCookie("sorting")!=null)
@@ -2035,123 +2205,28 @@ function checkCookie()
     else
     {
         resultSort="score desc";
-        setCookie("sorting",resultSort,365,'/');
+        setCookie("sorting",resultSort,365);
     } 
     
 }
 
-function doAjaxFavCookie()
-{
-              $.ajax({
-                    type:"POST",
-                    url: base_url+"search/mySavedRecords?page="+1,
 
-                    success:function(msg)
-                    {
-                         $("#divFav").html(msg);
-
-                         $("#divFav").dialog({
-                            modal: true,
-                            minWidth:400,
-                            position:'center',
-                            draggable:'false',
-                            resizable:false,
-                            title:"save favourite record",
-
-                            open: function(){
-                             $(".ui-dialog-buttonset").append("<span id='status'></span>");
-
-                             return false;
-                            }
-                        });
-                     $('.removeCookie').on('click','a.remove', function(e){
-                            var r=this.parentNode.attributes['id'].value
-                            var tmp=getCookie("SavedRecords");
-                            var a=new Array;
-                            
-                            a=tmp.split("|");
-                            a.splice($.inArray(r, a),1);
-                            a.clean("");
-                            var s=a.join("|");
-                            setCookie("SavedRecords",s,365,'/'); 
-                            
-                            if($("#page_name").text()=='View')
-                            {
-                                checkRecordinCookie( $('#saveRecord'),$('#addToFavourite'),window.location.href+";"+$('#metadataTitle h1').text());
-                            }
-                            
-                            //updateTable();
-                            doAjaxFavCookie();
-
-                            
-                        });
-                return false;
-            },
-            error:function(msg){
-            console.log("error" + msg);
-            }
-        });
-        return false;
-}
-
-function doAjaxSearchCookie()
-{
-              $.ajax({
-                    type:"POST",
-                    url: base_url+"search/mySavedSearches",
-
-                    success:function(msg)
-                    {
-                         $("#divSaved").html(msg);
-
-                         $("#divSaved").dialog({
-                            modal: true,
-                            minWidth:400,
-                            position:'center',
-                            draggable:'false',
-                            resizable:false,
-                            title:"save search",
-
-                            open: function(){
-                             $(".ui-dialog-buttonset").append("<span id='status'></span>");
-
-                             return false;
-                            }
-                        });
-                     $('.removeCookie').on('click','a.remove', function(e){
-                            var r=this.parentNode.attributes['id'].value
-                            var tmp=getCookie("SavedSearch");
-                            var a=new Array;
-                            
-                            a=tmp.split("|");
-                            a.splice($.inArray(r, a),1);
-                            a.clean("");
-                            var s=a.join("|");
-                            setCookie("SavedSearch",s,365,'/'); 
-                            doAjaxSearchCookie();
-
-                            
-                        });
-                return false;
-            },
-            error:function(msg){
-            console.log("error" + msg);
-            }
-        });
-        return false;
-}
 
 window.setInterval(function updateTable() 
 {
         $("#searchResults tr").each(function(){
-        if($(this)[0].parentElement.nodeName!="THEAD")
+        if(this.parentElement.nodeName!="THEAD")
         { 
-        checkRecordinCookie(jQuery($(this)[0].cells[2].childNodes[2].childNodes[0]),
-                            jQuery($(this)[0].cells[2].childNodes[2].childNodes[1]),
-                            $(this)[0].cells[2].childNodes[2].childNodes[2].attributes['href'].value+";"+$(this)[0].cells[1].childNodes[0].firstChild.firstChild.nodeValue);         
+        checkRecordinCookie(jQuery(this.cells[2].childNodes[2].childNodes[0]),
+                           jQuery(this.cells[2].childNodes[2].childNodes[1]),
+                            this.cells[2].childNodes[2].childNodes[2].getAttribute("href")+";"+this.cells[1].childNodes[0].firstChild.firstChild.nodeValue);         
         }
 
 
     });
 },5000)
 
+
+function deleteCookie(c_name) {
+    document.cookie = encodeURIComponent(c_name) + "=deleted; expires=" + new Date(0).toUTCString();
+}

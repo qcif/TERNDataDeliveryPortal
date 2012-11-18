@@ -28,7 +28,7 @@ $Revision: 1 $
 
     if(count($r)<1||$saved=='')
     {
-        echo 'no saved searches';
+        echo 'No searches have been saved.';
     }else
     {
         echo '<ul class="saved">';
@@ -42,6 +42,9 @@ $Revision: 1 $
  
          
         echo '</ul>';
+        echo '<div class="cookieClearBtn">';
+        echo '<a id="clearSearch" class="greyGradient smallRoundedCorners">Clear All</a>';
+        echo '</div>';
         
     }        
 

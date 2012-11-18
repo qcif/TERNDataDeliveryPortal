@@ -12,8 +12,10 @@ $number = mt_rand(1,3);
     <head>
         <meta charset="utf-8">
         <title><?php echo $title; ?></title>
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1" />
         <meta name="description" content="<?php echo $md_description; ?>">    
        
          <link rel="icon" href="<?php echo base_url(); ?>/img/favicon.png"/>

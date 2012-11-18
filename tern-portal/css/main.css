@@ -242,7 +242,7 @@ nav#facetNav{ margin-right: 15px; float: left; width: 215px; }
 	#currentSearchBox ul{ margin-bottom: 15px; }
 	#currentSearchBox ul li a{ display: block; }
 	#currentSearchBox div.buttons{  text-align: center; }
-	#currentSearchBox div.buttons a{ width: 80px; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px;  }
+	#currentSearchBox div.buttons a{ width: 80px; height: 15px; line-height: 15px; text-align: center; color: #fff; padding: 5px; cursor:pointer; }
 	#currentSearchBox a#clearSearchBtn{ color: #000; cursor: pointer }
 	 
 	/* Refine Search Box */
@@ -960,6 +960,8 @@ a.external{
 
 .saved li{
     margin-top:5px;
+    padding-bottom: 10px;
+    
 }
 .info_left{
     width: 413px;
@@ -991,3 +993,7 @@ a.external{
 .info_left .center{
     text-align: center;
 }
+
+#clearFav{ cursor: pointer;width: 80px; height: 15px; line-height: 15px; text-align: center;  padding: 5px; }
+#clearSearch{ cursor: pointer;width: 80px; height: 15px; line-height: 15px; text-align: center; padding: 5px; }
+.cookieClearBtn{alignment-adjust: auto;}
