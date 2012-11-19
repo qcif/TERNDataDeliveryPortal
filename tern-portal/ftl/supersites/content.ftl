@@ -10,7 +10,7 @@
                        <a class="external" target="_new"  href="${features[0].info_url.value}">${features[0].info_url.value}</a>
                 <#else>
                         not provided
-                </#if>
+                </#if> 
 </div>	 
  
 <div style="clear:both"></div>

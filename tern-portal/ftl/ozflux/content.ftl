@@ -18,7 +18,11 @@
 <br/>
 <b>Status:</b> ${features[0].status.value}
 <br/>
-<b>Further details:</b> <a class="external" target="_new" href="${features[0].site_url.value}">${features[0].site_url.value}</a>
+<b>Further details:</b><#if features[0].site_url.value != "">
+                            <a class="external" target="_new" href="${features[0].site_url.value}">${features[0].site_url.value}</a>
+                    <#else>
+                        not provided
+                    </#if>
 </div>	 
  
 <div style="clear:both"></div>
