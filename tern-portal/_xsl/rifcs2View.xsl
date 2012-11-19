@@ -219,7 +219,8 @@
                     </xsl:otherwise>
             </xsl:choose>
 
-            <!--Data quality infomation -->          
+            <!--Data quality infomation -->   
+<!--    Hide for demo only        
             <xsl:choose>
                 <xsl:when test="ro:relatedInfo[@type='dataQualityInformation']">
                     <h2>Data quality information</h2>            
@@ -230,7 +231,7 @@
                     <p>Not provided</p>
                 </xsl:otherwise>
             </xsl:choose>
-
+-->
             <!--Data Type -->
             <xsl:variable name="vLower" select="'abcdefghijklmnopqrstuvwxyz'"/>
             <xsl:variable name="vUpper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
