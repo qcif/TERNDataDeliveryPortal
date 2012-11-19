@@ -3,7 +3,7 @@
 <#setting number_format="0.###">
 <#attempt> 
 
-<div id="info_left"><img class="logo_right" src="http://portal.tern.org.au/img/logos/logo-ozflux.jpg"/><h3>Flux Station details: </h3>
+<div class="info_left"><img class="logo_right" src="http://portal.tern.org.au/img/logos/logo-ozflux.jpg"/><h3>Flux Station details: </h3>
 <b>Site name:</b> ${features[0].name.value}
 <br/>
 <b>Location:</b> ${features[0].location.value}

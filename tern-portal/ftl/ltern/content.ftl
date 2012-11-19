@@ -2,7 +2,7 @@
 
 <#setting number_format="0.###">
 <#attempt> 
-<div id="info_left"><img class="logo_right" src="http://portal.tern.org.au/img/logos/logo-ltern.png"/><h3>Plot Network information: </h3>
+<div class="info_left"><img class="logo_right" src="http://portal.tern.org.au/img/logos/logo-ltern.png"/><h3>Plot Network information: </h3>
 <b>Name:</b> ${features[0].name.value}
 <br/>
 <b>Leader:</b> <#if features[0].plot_leade.value != "">

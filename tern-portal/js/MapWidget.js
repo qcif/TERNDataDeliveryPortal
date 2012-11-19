@@ -524,7 +524,7 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
                                 null, html, offset, true);    
        
                             popup.minSize = new OpenLayers.Size(450,100);        
-                            popup.maxSize = new OpenLayers.Size(450,200);
+                            popup.maxSize = new OpenLayers.Size(480,200);
                             popup.calculateRelativePosition = function () {
                                 return 'br';
                             }          

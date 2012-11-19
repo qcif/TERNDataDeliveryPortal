@@ -3,7 +3,7 @@
 <#setting number_format="0.###">
 <#attempt> 
 
-<div id="info_left"><img class="logo_right" src="http://portal.tern.org.au/img/logos/logo-auscover.png"/><h3>Field validation site information:</h3>
+<div class="info_left"><img class="logo_right" src="http://portal.tern.org.au/img/logos/logo-auscover.png"/><h3>Field validation site information:</h3>
 <b>Name:</b> ${features[0].name.value}
 <br/>
 <b>Site description:</b> ${features[0].description.value}

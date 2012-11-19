@@ -2,12 +2,12 @@
 
 <#setting number_format="0.###">
 <#attempt> 
-<div id="info_left"><img class="logo_right" src="http://portal.tern.org.au/img/logos/logo-asn.png"/><h3>Supersite information: </h3>
+<div class="info_left"><img class="logo_right" src="http://portal.tern.org.au/img/logos/logo-asn.png"/><h3>Supersite information: </h3>
 <b>Name:</b> ${features[0].name.value}
 <br/> 
 <b>Further information:</b>
                 <#if features[0].info_url.value != "">
-                       <a class="external" target="_new"  href="${features[0].info_url.value}">${features[0].info_url.value}</a>
+                       <a  target="_new"  href="${features[0].info_url.value}">${features[0].info_url.value}</a><a class="external"></a>
                 <#else>
                         not provided
                 </#if> 
