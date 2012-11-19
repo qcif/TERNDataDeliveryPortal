@@ -4,9 +4,16 @@
 <#attempt> 
 
 <div class="info_left"><img class="logo_right" src="http://portal.tern.org.au/img/logos/logo-auscover.png"/><h3>Field validation site information:</h3>
-<b>Name:</b> ${features[0].name.value}
+<b>Name:</b> <#if features[0].name.value != ""> ${features[0].name.value}   
+                         <#else>
+                            not provided
+                        </#if> 
+
 <br/>
-<b>Site description:</b> ${features[0].description.value}
+<b>Site description:</b>  <#if features[0].description.value != ""> ${features[0].description.value}   
+                         <#else>
+                            not provided
+                        </#if> 
 
 <#if features[0].image_url.value != ""> 
             <img src="${features[0].image_url.value}"/>
