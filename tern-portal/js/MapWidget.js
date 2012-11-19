@@ -523,7 +523,7 @@ MapWidget.prototype.handleWMSGetInfo = function(options,callback){
                                 this.map.getLonLatFromPixel(event.xy),
                                 null, html, offset, true);    
        
-                            popup.minSize = new OpenLayers.Size(450,100);        
+                            popup.minSize = new OpenLayers.Size(490,100);        
                             popup.maxSize = new OpenLayers.Size(490,200);
                             popup.calculateRelativePosition = function () {
                                 return 'br';

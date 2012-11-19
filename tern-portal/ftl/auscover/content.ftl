@@ -17,7 +17,7 @@
                         </#if> 
 </div>
 <#if features[0].image_url.value != ""> 
-            <img src="${features[0].image_url.value}"/>
+          <div class="center"><img src="${features[0].image_url.value}"/></div>
 </#if>
 </div>	   
 

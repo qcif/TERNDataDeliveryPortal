@@ -987,3 +987,7 @@ a.external{
 .justifyme{
     text-align: justify;
 }
+
+.info_left .center{
+    text-align: center;
+}
