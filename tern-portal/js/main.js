@@ -1280,9 +1280,11 @@ var p=1;
             $('.tblFav').on('click',function(){
                      var tmp;
                      var arr_cookie=new Array;
-                     var t=this.parentNode.parentNode.parentNode.cells[1].firstChild.firstChild.innerHTML;
-                     var url=this.parentNode.children[2].getAttribute('href');
-                     
+                     //var t=this.parentNode.parentNode.parentNode.cells[1].firstChild.firstChild.innerHTML;
+                     var t=$(this).closest("tr").find(".recordTitle").text();
+                     //var url=this.parentNode.children[2].getAttribute('href');
+                     var url=$(this).closest("tr").find(".viewmeta").attr("href");
+
                      $(this).data("clicked",true);
                      if(getCookie('SavedRecords')!=null)
                      {
@@ -2217,10 +2219,10 @@ window.setInterval(function updateTable()
         $("#searchResults tr").each(function(){
         if(this.parentElement.nodeName!="THEAD")
         { 
-        checkRecordinCookie(jQuery(this.cells[2].childNodes[2].childNodes[0]),
-                           jQuery(this.cells[2].childNodes[2].childNodes[1]),
-                            this.cells[2].childNodes[2].childNodes[2].getAttribute("href")+";"+this.cells[1].childNodes[0].firstChild.firstChild.nodeValue);         
-        }
+        checkRecordinCookie($(this).find(".tblsaveRecord"),
+                          $(this).find(".tblFav"),
+                            $(this).find(".viewmeta").attr("href")+";"+$(this).find(".recordTitle").text());         
+        } 
 
 
     });

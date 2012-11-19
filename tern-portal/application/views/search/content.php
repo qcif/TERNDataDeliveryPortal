@@ -150,7 +150,7 @@ if ($realNumFound >0)
                             }
                         }
             echo    '</td>';
-            echo    '<td><h2><a href="javascript:void(0);">' . $name . '</a></h2>';
+            echo    '<td><h2><a href="javascript:void(0);" class="recordTitle">' . $name . '</a></h2>';
             echo        '<div class="expand" id="metadesc">';
                             if (isset($r->{'alt_list_title'}))
                             {
