@@ -7,7 +7,7 @@
 <br/> 
 <b>Further information:</b>
                 <#if features[0].info_url.value != "">
-                       <a class="external"  href="${features[0].info_url.value}">${features[0].info_url.value}</a>
+                       <a class="external" target="_new"  href="${features[0].info_url.value}">${features[0].info_url.value}</a>
                 <#else>
                         not provided
                 </#if>
