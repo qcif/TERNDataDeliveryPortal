@@ -37,7 +37,7 @@ $Revision: 1 $
             for($s=0;$s<count($r);$s++)
             {
                 $sep=explode(";",$r[$s]);
-                echo '<li><span  class="removeCookie" id="'.$sep[0].';'.$sep[1].'"><a target="_blank" href="'.$sep[0].'">'.(string)$sep[1].'</a><a class="remove"></a></span></li>';
+                echo '<li><span  class="removeCookie" id="'.$sep[0].';'.$sep[1].'"><a class="remove"></a><a target="_blank" href="'.$sep[0].'">'.(string)$sep[1].'</a></span></li>';
             }
  
          
