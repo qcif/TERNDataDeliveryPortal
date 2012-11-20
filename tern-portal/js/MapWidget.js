@@ -1315,8 +1315,8 @@ MapWidget.prototype.onFeatureSelect = function(feature){
             vectors.push(coverage); 
         });
 
-      this.coverageLayer.addFeatures(vectors);
-      this.coverageLayer.setVisibility(true);
+      mapWidgetObj.coverageLayer.addFeatures(vectors);
+      mapWidgetObj.coverageLayer.setVisibility(true);
 
     });        
 } 
