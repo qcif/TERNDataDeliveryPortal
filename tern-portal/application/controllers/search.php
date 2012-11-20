@@ -774,6 +774,8 @@ class Search extends CI_Controller
     
     public function mySavedRecords()
     {
+        header("Cache-Control: private, no-cache, no-store, must-revalidate");
+
         $savedRecords=$_COOKIE['SavedRecords'];
         
         $data['page']=$this->input->post('page');
@@ -785,6 +787,8 @@ class Search extends CI_Controller
     
     public function mySavedSearches()
     {
+        header("Cache-Control: private, no-cache, no-store, must-revalidate");
+ 
         $savedSearch=$_COOKIE['SavedSearch'];
         
         
