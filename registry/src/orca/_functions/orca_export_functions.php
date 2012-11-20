@@ -132,22 +132,27 @@ function getRegistryObjectXMLFromDB($registryObjectKey, $forSOLR = false, $inclu
 			$xml .= "      <extRif:reverseLinks>".$reverseLinks."</extRif:reverseLinks>\n";
 
 
-			// Get registry date modified
-			if (!($registryDateModified =  getRegistryObjectStatusModified($registryObjectKey)))
-			{
-					$registryDateModified = time(); // default to now
-			}
-			else 
-			{
-				$registryDateModified = strtotime($registryDateModified); // parse the SQL timestamp
-			}
-			// SOLR requires the date in ISO8601, restricted to zulu time (why, I don't know...)
-			$xml .= "      <extRif:registryDateModified>".gmdate('Y-m-d\TH:i:s\Z',$registryDateModified)."</extRif:registryDateModified>\n";
-
 //date Harvested
                         $dateHarvested='';
                         $dateHarvested= getHarvestedTime($registryObjectKey);
                         $xml.="      <extRif:registryDateHarvested>".$dateHarvested."</extRif:registryDateHarvested>\n";
+                        
+			// Get registry date modified
+			if (!($registryDateModified =  getRegistryObjectStatusModified($registryObjectKey)))
+			{
+                            //$registryDateModified = time(); // default to now
+                                 $registryDateModified = $dateHarvested;
+			}
+			else 
+			{
+				//$registryDateModified = strtotime($registryDateModified); // parse the SQL timestamp
+                                $registryDateModified = gmdate('Y-m-d\TH:i:s\Z',$registryDateModified);
+			}
+			// SOLR requires the date in ISO8601, restricted to zulu time (why, I don't know...)
+			//$xml .= "      <extRif:registryDateModified>".gmdate('Y-m-d\TH:i:s\Z',$registryDateModified)."</extRif:registryDateModified>\n";
+                        $xml .= "      <extRif:registryDateModified>".$registryDateModified."</extRif:registryDateModified>\n";
+                        
+
 
 			// displayTitle
 			// -------------------------------------------------------------
@@ -3580,6 +3585,12 @@ function getHarvestedTime($registryObjectKey)
         if($numFound>0)
         {
             $harvestedTime = $json->{'response'}->{'docs'}[0]->{'timestamp'};
+        }else
+        {
+            $harvestedTime = time(); 
+
+            $harvestedTime=gmdate('Y-m-d\TH:i:s\Z',$harvestedTime);
+
         }
         return $harvestedTime;
        
