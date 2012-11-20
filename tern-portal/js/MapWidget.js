@@ -1090,7 +1090,7 @@ MapWidget.prototype.addVectortoDataLayer = function(coordinateSelector,clickInfo
              html ='';
              title = ''; 
              coverage = Array();  
-             var link = $(this).closest('tr').find('#metabutton a').attr('href');            
+             var link = $(this).closest('tr').find('#metabutton a.viewmeta').attr('href');            
              title = "<a href=\"" + link + "\" class=\"title\" target=\"_blank\" style=\" vertical-align:middle\">" + $(this).closest('tr').children('td:nth-child(2)').children('h2').children('a').html()  + "</a>"  ; 
              var date = $(this).closest('tr').children('td:nth-child(3)').children('p').html();
              var button =  $('<p>').append($(this).closest('tr').find('#metabutton a.viewmeta').clone()).remove().html();
