@@ -295,11 +295,13 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 				}
 				else
 				{
+                                        $date_modified = date('Y-m-d H:i:s');
 					if($deleted && !$errors && $activity = $gXPath->evaluate("$xs:activity", $registryObject)->item(0) )
 					{
 						$activityType = $activity->getAttribute("type");
-						$date_modified = $activity->getAttribute("dateModified");
-
+						if($activity->getAttribute("dateModified")!=''){
+                                                    $date_modified = $activity->getAttribute("dateModified");
+                                                }
 						$errors = insertRegistryObject($registryObjectKey, 'Activity', $activityType, $originatingSourceValue, $originatingSourceType, $dataSourceKey, $object_group, null, $date_modified, $created_who, $status, $record_owner);
 						$totalAttemptedInserts++;
 						if( !$errors ) { $totalRegistryObjectInserts++; $totalInserts++; } else { $runErrors .= "Failed to insert Activity with key $registryObjectKey\n"; }
@@ -357,8 +359,9 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 						$collectionType = $collection->getAttribute("type");
 
 						$date_accessioned = $collection->getAttribute("dateAccessioned");
-						$date_modified = $collection->getAttribute("dateModified");
-
+						if($collection->getAttribute("dateModified")!=''){
+                                                    $date_modified = $collection->getAttribute("dateModified");
+                                                }
 						$errors = insertRegistryObject($registryObjectKey, 'Collection', $collectionType, $originatingSourceValue, $originatingSourceType, $dataSourceKey, $object_group, $date_accessioned, $date_modified, $created_who, $status, $record_owner);
 						$totalAttemptedInserts++;
 						if( !$errors ) { $totalRegistryObjectInserts++; $totalInserts++; } else { $runErrors .= "Failed to insert Collection with key $registryObjectKey\n(aaa".$errors; }
@@ -415,8 +418,9 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 					if($deleted && !$errors && $party = $gXPath->evaluate("$xs:party", $registryObject)->item(0) )
 					{
 						$partyType = $party->getAttribute("type");
-						$date_modified = $party->getAttribute("dateModified");
-
+						if($party->getAttribute("dateModified")!=''){
+                                                    $date_modified = $party->getAttribute("dateModified");
+                                                }
 						//echo $registryObjectKey.' Party '.$partyType.' '.$originatingSourceValue.' '.$originatingSourceType.' '.$dataSourceKey.' '.$object_group.' '.$date_modified.' '.$created_who.' '.$status.' '.$record_owner;
 						$errors = insertRegistryObject($registryObjectKey, 'Party', $partyType, $originatingSourceValue, $originatingSourceType, $dataSourceKey, $object_group, null, $date_modified, $created_who, $status, $record_owner);
 						//echo $errors;
@@ -467,7 +471,7 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 						// relatedInfo
 						// -----------------------------------------------------------------
 						importRelatedInfo($registryObjectKey, $party, "relatedInfo", &$runErrors, &$totalAttemptedInserts, &$totalInserts);
-
+ 
 					} // Party
 
 					// Service
@@ -475,8 +479,9 @@ function importRegistryObjects($registryObjects, $dataSourceKey, &$runResultMess
 					if($deleted && !$errors && $service = $gXPath->evaluate("$xs:service", $registryObject)->item(0) )
 					{
 						$serviceType = $service->getAttribute("type");
-						$date_modified = $service->getAttribute("dateModified");
-
+						if($service->getAttribute("dateModified")!=''){
+                                                    $date_modified = $service->getAttribute("dateModified");
+                                                }
 						$errors = insertRegistryObject($registryObjectKey, 'Service', $serviceType, $originatingSourceValue, $originatingSourceType, $dataSourceKey, $object_group, null, $date_modified, $created_who, $status, $record_owner);
 						$totalAttemptedInserts++;
 						if( !$errors ) { $totalRegistryObjectInserts++; $totalInserts++; } else { $runErrors .= "Failed to insert Service with key $registryObjectKey\n"; }
@@ -1230,7 +1235,7 @@ function importRelatedInfo($registryObjectKey, $node, $elementName, $runErrors, 
 			$notes = $notesElement->nodeValue;
 		}
 		if(!$identifier)
-		{// old rifcs probably :-(
+		{// old rifcs probably :-( 
 			$value = $list->item($j)->nodeValue;
 			$errors = insertRelatedInfoOld($id, $registryObjectKey, $value);
 		}
@@ -1238,7 +1243,7 @@ function importRelatedInfo($registryObjectKey, $node, $elementName, $runErrors, 
 		{
 			$errors = insertRelatedInfo($id, $registryObjectKey, $type, $identifier, $identifier_type, $title, $notes);
 		}
-		$totalAttemptedInserts++;
+		$totalAttemptedInserts++; 
 		if( !$errors ) { $totalInserts++; } else { $runErrors .= "Failed to insert relatedInfo for key $registryObjectKey\n"; }
 	}
 }
