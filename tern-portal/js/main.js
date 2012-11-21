@@ -933,7 +933,7 @@ var p=1;
             $("#metadesc p").each(function(index){
                 if($(this).height() > 48){
                     $(this).css('height','48px').css('overflow','hidden');
-                    var readMore = $("<a class=\"read-more\" target=\"_blank\" href=\"" + $(this).closest("tr").find("#metabutton a").attr("href") + "\"> Read more</a>");
+                    var readMore = $("<a class=\"read-more\" target=\"_blank\" href=\"" + $(this).closest("tr").find("#metabutton a.viewmeta").attr("href") + "\"> Read more</a>");
                     $(this).parent().append(readMore);
                 }else{
                     $(this).css('height','48px');
