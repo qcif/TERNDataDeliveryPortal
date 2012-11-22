@@ -44,7 +44,7 @@ function printRecord($r, $class){
      $date = $r->{'date_modified'};
      
      $date_t = new DateTime($date);
-    // $date_t->setTimeZone(new DateTimeZone("Australia/Brisbane"));
+     $date_t->setTimeZone(new DateTimeZone("Australia/Brisbane"));
      $date = $date_t->format('d-m-Y');
      if($class!="") $class = "class=\"" . $class. "\"";
      if ($r->url_slug)

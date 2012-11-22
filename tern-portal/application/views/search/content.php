@@ -51,7 +51,7 @@ if ($realNumFound >0)
 {
 
             //$this->load->view('search/no_result');
- 
+   
         $c = 1; //record counter 1- 10
        // echo '<table style="border:1px solid black;table-layout:fixed" width="880px">';
         //echo '<col width=50>';
@@ -82,7 +82,7 @@ if ($realNumFound >0)
             if (isset($r->{'date_modified'})){  
                 $date_pub = $r->{'date_modified'};
                 $date_pubf = new DateTime($date_pub);
-                //$date_pubf->setTimeZone(new DateTimeZone("Australia/Brisbane")); 
+                $date_pubf->setTimeZone(new DateTimeZone("Australia/Brisbane")); 
                 $date_pub = $date_pubf->format('d-m-Y');
             }
             $description_type = array();

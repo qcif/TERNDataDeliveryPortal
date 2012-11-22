@@ -84,10 +84,14 @@ class View extends CI_Controller {
 			$doc = ($obj->{'response'}->{'docs'}[0]);
 			
 			$key = $doc->{'key'};
-			$data['key'] = $key;
+                        $date_modified = $doc->{ 'date_modified' };
+                        $date_modifiedf = new DateTime($date_modified);
+                        $date_modifiedf->setTimeZone(new DateTimeZone("Australia/Brisbane"));
+                        $date_modified = $date_modifiedf->format('d-m-Y');
+                        $data['key'] = $key;
 			$group = $doc->{'group'};
-                        $data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key));	
-		
+                        $data['content'] = $this->transform($content, 'rifcs2View.xsl',urlencode($key), $date_modified);	
+                      
                         $data['title'] = $doc->{'display_title'};
 			
 			if(isset($doc->{'description_value'}[0]))$data['description']=htmlentities($doc->{'description_value'}[0]);
@@ -116,7 +120,7 @@ class View extends CI_Controller {
 	
 	
         
-	private function transform($registryObjectsXML, $xslt,$key){
+	private function transform($registryObjectsXML, $xslt,$key ,$date_modified){
              
                 $qtestxsl = new DomDocument();
                 $registryObjects = new DomDocument();   
@@ -127,7 +131,9 @@ class View extends CI_Controller {
 		$proc->setParameter('','base_url',base_url());
                 $orca_view = view_url();
 		$proc->setParameter('','orca_view',$orca_view);
-		$proc->setParameter('','key',$key);     
+		$proc->setParameter('','key',$key);    
+                $proc->setParameter('','date_modified',$date_modified);    
+                
                 $transformResult = $proc->transformToXML($registryObjects);	
 		return $transformResult;
 	}

@@ -8,7 +8,7 @@
     <xsl:param name="dataSource" select="//ro:originatingSource"/>
     <xsl:param name="dateCreated"/>
     <xsl:param name="date_pub"/> 
-    <xsl:param name="date_mod"/>
+    <xsl:param name="date_modified"/>
    <xsl:param name="base_url"/>  
     
     <xsl:param name="orca_view"/>   
@@ -150,13 +150,8 @@
                     <h3>Date modified</h3>
                     <p>
                                                        
-                        <xsl:variable name="dateResult">
-                            <xsl:call-template name="format-date">
-                                <xsl:with-param name="date"><xsl:value-of select="substring(../extRif:extendedMetadata/extRif:registryDateModified,1,10)"/></xsl:with-param>
-                                    <xsl:with-param name="format" select="'d-n-Y'"/> 
-                            </xsl:call-template>                      
-                        </xsl:variable> 
-                        <xsl:value-of select="$dateResult"/>
+                        
+                        <xsl:value-of select="$date_modified"/>
                     </p>  
                 </li>
                </xsl:if>
