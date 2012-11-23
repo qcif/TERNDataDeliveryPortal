@@ -25,11 +25,12 @@ class Solr extends CI_Model
     function __construct()
     {
         parent::__construct();
-        require_once(APPPATH . 'libraries/Solr/Service.php');       
+        require_once(APPPATH . 'libraries/Solr/Service.php');    // uses SOLR library    
         $this->solr = new Apache_Solr_Service( $this->config->item('solr_host'),$this->config->item('solr_port'), $this->config->item('solr_instance') );
         
     } 
 
+    //get records based on time limits and record index
     public function getRecords($start_timestamp = '*', $end_timestamp = 'NOW', $rec_start = 0, $rows = 100)
     {
         if(!$start_timestamp ) $start_timestamp = '*';
@@ -79,6 +80,7 @@ class Solr extends CI_Model
         }
     } 
     
+    //get only new records that has not been indexed
     public function getNewRecords($start_timestamp = '*', $end_timestamp = 'NOW', $rec_start = 0, $rows = 100)
     {
         if(!$start_timestamp ) $start_timestamp = '*';
@@ -127,6 +129,8 @@ class Solr extends CI_Model
             log_message('error', $e->getMessage() );
         }
     } 
+    
+    // add the indexed results to a solr document
     public function addRegion2SolrDoc($doc, $index_id_arr){
           
         if(count($index_id_arr)>0){
@@ -138,6 +142,7 @@ class Solr extends CI_Model
         
     } 
     
+    //delete tern_region field values  from SOLR 
     public function removeRegionSolrDoc($doc, $l_id=null){
         $region_arr = $doc->getField('tern_region');
      
@@ -168,6 +173,7 @@ class Solr extends CI_Model
         return $doc;
     }
     
+    // commit documents to SOLR 
     public function addDocuments($docs){
      //
         // Load the documents into the index

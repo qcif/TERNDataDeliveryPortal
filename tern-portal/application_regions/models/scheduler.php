@@ -1,5 +1,7 @@
 <?php
-
+/* Scheduler class 
+ * managing data in index_scheduler table 
+ */
 
 class Scheduler extends CI_Model {
     function __construct()
@@ -10,7 +12,11 @@ class Scheduler extends CI_Model {
         
     }
     
-    
+    /*retrieve a schedule based on category and ID, the scheduled retrieve has to satisfy these criterias:
+     * not currently being run by a script / under_process=0
+     * has not ended / end_run =0 
+     * needs to be run earlier or now run_schedule<=NOW()
+     */  
     function getOrder($cat_id,$batch_id = null){
         if($batch_id){
             $sql = 'SELECT * FROM index_scheduler WHERE run_schedule <= NOW() and under_process=0 and end_run = 0 and cat = ? and batch_id = ? ORDER BY run_schedule ASC LIMIT 1';
@@ -30,6 +36,7 @@ class Scheduler extends CI_Model {
         
     }
     
+    // while schedule is being run, under_process =1 
     function setUnderProcess($id){
         $sql = 'UPDATE index_scheduler SET under_process=1,run_timestamp=NOW() WHERE batch_id = ?';
         $q  = $this->db->query($sql, $id);
@@ -40,6 +47,7 @@ class Scheduler extends CI_Model {
         
     }
     
+    // set schedule as not currently being run 
     function setNotUnderProcess($id){
         $sql = 'UPDATE index_scheduler SET under_process=0 WHERE batch_id = ?';
         $q  = $this->db->query($sql, $id);
@@ -49,6 +57,7 @@ class Scheduler extends CI_Model {
         return $this->db->affected_rows();        
     }
     
+    // to update start_timestamp (category 1 schedules) or record start index (category 0 schedules)
     function updateProcess($id,$start_timestamp, $rec_start){
         $sql = 'UPDATE index_scheduler SET under_process=1,start_timestamp=?,rec_start=? WHERE batch_id = ?';
         $q  = $this->db->query($sql, array((string) $start_timestamp,$rec_start, $id));
@@ -59,6 +68,7 @@ class Scheduler extends CI_Model {
         
     }
     
+    // cancel the indexing process
     function setCancelProcess($id){
         $sql = 'UPDATE index_scheduler SET under_process=0 WHERE batch_id = ?';
         $q  = $this->db->query($sql, $id);
@@ -69,6 +79,7 @@ class Scheduler extends CI_Model {
         
     }
     
+    // flag the process as being completed for category 0 schedules
      function setFinishProcess($id,$start_timestamp, $last_run, $rec_start){
         if ($start_timestamp != '' ){ 
         $sql = 'UPDATE index_scheduler SET under_process=0,end_run=?,start_timestamp=?,rec_start=? WHERE batch_id = ?';
@@ -86,7 +97,7 @@ class Scheduler extends CI_Model {
         return $this->db->affected_rows();        
         
     }
-    
+        
     function insertSchedule($start_timestamp = null, $end_timestamp = null, $run_schedule = null, $l_id=null, $rec_start=0, $cat=0 ){
        if($start_timestamp) $convert_start = ' AT TIME ZONE \'UTC\'';
        if($end_timestamp) $convert_end = ' AT TIME ZONE \'UTC\'';    
@@ -108,6 +119,7 @@ class Scheduler extends CI_Model {
         return $this->db->insert_id();        
     }
     
+    //delete schedule based on a batch ID or category 
     function deleteSchedule($batch_id=null,$cat=null){
          
          if(!is_null($batch_id) && $batch_id !=''){
