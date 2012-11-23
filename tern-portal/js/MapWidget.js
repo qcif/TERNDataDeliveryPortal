@@ -449,60 +449,6 @@ MapWidget.prototype.setSelectedId = function(selectedFeatureLayer, selectedFeatu
    
 }
 
-/*
- *
- *
- */
-function onRegionClick(){
-       
-        info = new OpenLayers.Control.WMSGetFeatureInfo({
-            url: getURL(url), 
-            title: 'Identify features by clicking',
-            infoFormat: 'application/vnd.ogc.gml', 
-            queryVisible: true,
-            eventListeners: {
-                getfeatureinfo: function(event) {
-                    var text = '';
-                    for (var i = 0; i < event.features.length; i++) {
-                        var feature = event.features[i];
-                        var attributes = feature.attributes;
-                        text += ',' + feature.fid;
-                    } //Get feature id from the feature list
-                    if(text!=""){
-                        if (!this.highlightLayer) {    
-                            this.highlightLayer = new OpenLayers.Layer.WMS("Highlight Layer",getURL(url),{
-                                //height: '512',
-                                //width: '242',  
-                                layers: url,
-                                styles: 'polygon', 
-                                featureid: text,
-                                srs: 'EPSG:900913',
-                                format: 'image/png',
-                                //tiled: 'true',
-                                transparent: true
-                            }, {
-                                buffer:0, 
-                                displayOutsideMaxExtent: false,
-                                displayInLayerSwitcher: false,
-                                isBaseLayer: false
-                            });
-                            this.map.addLayer(this.highlightLayer);
-                        }else { 
-                    
-                            this.highlightLayer.mergeNewParams({
-                                featureid: text
-                            });
-             
-                        }
-                    }
-                }
-            }
-        });
-        
-        this.map.addControl(info);
-        info.activate();
-            
-}
 
 /*  ------------------------------------------------------------  
  *    function handleWMSGetInfo(e, callback)
@@ -1248,17 +1194,8 @@ MapWidget.prototype.updateDrawing = function(map,coordStr){
 
 
 /*  ------------------------------------------------------------  
- *    Region Select 
- *
- *  ------------------------------------------------------------
- */
-
-MapWidget.prototype.onRegionSelect = function(region){
-     
-}
-/*  ------------------------------------------------------------  
  *    Feature Select methods
- *
+ *    triggered when a marker in search results page is clicked
  *  ------------------------------------------------------------
  */
 
@@ -1350,6 +1287,7 @@ MapWidget.prototype.onFeatureSelect = function(feature){
     });        
 } 
 
+// Close popup for markers in search results page 
 MapWidget.prototype.onPopupClose = function(popup){
    popup.destroy();
    this.coverageLayer.removeAllFeatures();
@@ -1357,6 +1295,7 @@ MapWidget.prototype.onPopupClose = function(popup){
    this.popup = null;
 }
                   
+//close popup for pre-defined regions in search  page                 
 MapWidget.prototype.onPopupRegionClose = function(popup){
    popup.destroy();
    this.highlightLayer.setVisibility(false);
@@ -1643,14 +1582,6 @@ function populateCoordinates(n,w,s,e){
     
 }
  
-
-
-
-function pausecomp(ms) {
-ms += new Date().getTime();
-while (new Date() < ms){}
-} 
-
 /*  ------------------------------------------------------------  
  *    addMarker
  *    lonlat : longitude latitude coordinates to add marker to

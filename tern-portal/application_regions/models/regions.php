@@ -25,6 +25,7 @@ class Regions extends CI_Model {
         
     }
     
+    /* intersect regions table with coordinates*/
     function intersectPoly($coords,$layer=null){
         $coords = "POLYGON((". $coords . "))";        
           if(!$layer){            
@@ -38,7 +39,8 @@ class Regions extends CI_Model {
         else return new stdClass;
         
     }
-      
+     
+    /* get full region list based on layer id*/ 
     function getRegionList($l_id){
         $sql = 'SELECT r_id, r_name from regions WHERE l_id=? ORDER BY r_name ASC';
         $q = $this->db->query($sql, array($l_id));
