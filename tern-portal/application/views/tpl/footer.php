@@ -15,7 +15,7 @@
         </small>
         </p>
 </footer>  
-  
+</div>  
         	<script type="text/javascript">
   		var base_url = "<?php echo base_url(); ?>";
   		var secure_base_url = "<?php echo getHTTPs(base_url());?>";
@@ -69,6 +69,6 @@
         <?php endif; ?>
 
         <script type="text/javascript" src="<?php echo base_url();?>js/main.js"></script> <!-- Main Script call -->
-        </div>
+        
     </body>
 </html>

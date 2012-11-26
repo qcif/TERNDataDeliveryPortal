@@ -36,7 +36,7 @@ $Revision: 1 $
                         <span id="slogan">Delivering open access to Australia's terrestrial ecosystem data</span>
                         <input class="rounded" id ="search-box" title="Search ecosystem data" type="text" name="query" placeholder="Search ecosystem data" >
                         <a id="searchBtn" class="orangeGradient roundedCorners">
-                            <img alt="Search" src="img/icons/icon-search.png"> 
+                            <img alt="Search" src="/img/icons/icon-search.png"> 
                             Search
                         </a>
                         <!--img id="orImg" alt="Or" src="img/home/or.png"-->        
@@ -46,8 +46,8 @@ $Revision: 1 $
                             <span id="mapBasedSearchDescription">Use our map interface to search for data</span>
                         </div>
                         <a id="mapSearchBtn" class="greenGradient roundedCorners">
-                            <img alt="Map Search" src="img/icons/icon-australia.png">
-                            Map Search
+                            <img alt="Map Search" src="/img/icons/icon-australia.png">
+                            Map Search 
                         </a>
                                     
 		</div>
