@@ -1182,12 +1182,14 @@ var p=1;
        $(".collapsiblePanel").on("click",".hide", function()
         {
             $(this).parent().next("div").slideToggle(300);
-            $(this).attr('class','show')
+            $(this).attr('class','show');
+            setCookie('adv_bool',0,2);
         });
         $(".collapsiblePanel").on('click','.show',function()
         {
             $(this).parent().next("div").slideToggle(300);
-            $(this).attr('class','hide')
+            $(this).attr('class','hide');
+            setCookie('adv_bool',1,2);
         });
         
         
@@ -1262,6 +1264,12 @@ var p=1;
                         resultSort="date_modified desc";
                         setCookie('sorting',resultSort,365);             
                     break;
+/*                    
+                case "list_title":
+                        resultSort="list_title desc";
+                        setCookie('sorting',resultSort,365);             
+                    break;                    
+*/
                 default:
                         resultSort="score desc";
                         setCookie('sorting',resultSort,365);
@@ -1386,7 +1394,8 @@ var p=1;
                           }
                     }
                 });
-             });    
+             });             
+
         
     } 
  
