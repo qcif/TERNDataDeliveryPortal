@@ -62,6 +62,7 @@ $Revision: 1 $
                 echo        '<select class="sort_record" name="select-sorting">';				
                 echo                '<option value="score">Relevance</option>';
                 echo                '<option value="date_modified">Date released</option>';             
+               // echo                '<option value="list_title">Title</option>';   
                 echo           '</select>'; 
                 echo        '</div>';
                                 

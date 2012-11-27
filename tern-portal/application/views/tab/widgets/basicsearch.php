@@ -4,7 +4,16 @@
         <a id ="adv_bool" class="show" href="javascript:void(0);">Advanced Boolean Search</a>
   
     </h2>
-    <div class="content expand" id="adv_bool_operator" style="display:none">
+<?php 
+   if( $_COOKIE['adv_bool']==1)
+   {
+       echo '<div class="content expand" id="adv_bool_operator">';
+   }
+   else
+   {
+       echo '<div class="content expand" id="adv_bool_operator" style="display:none">';
+   }
+?>   
            <input id="advancedBooleanSearch_1" type="radio" checked="checked" value="AND" name="advancedBooleanSearch">
             Include (AND)
         </label>
