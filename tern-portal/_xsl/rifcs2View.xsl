@@ -620,7 +620,7 @@
     </xsl:template> 
    <xsl:template match="ro:location[@dateFrom!=''] | ro:location[@dateTo!='']">
         <xsl:if test="./@dateFrom != ''">
-            From b<xsl:value-of select="./@dateFrom"/>
+            From <xsl:value-of select="./@dateFrom"/>
         </xsl:if> 
         <xsl:if test="./@dateTo != ''">
             To <xsl:value-of select="./@dateTo"/>
@@ -1004,7 +1004,7 @@ Handle:
 
 
 <xsl:template match="extRif:description" mode="content">
-           <p><xsl:value-of select="." disable-output-escaping="yes"/></p>        
+           <div class="description"><xsl:value-of select="." disable-output-escaping="yes"/></div>        
 </xsl:template>	
 	
 	<xsl:template match="ro:location/ro:address/ro:electronic/@type">		
