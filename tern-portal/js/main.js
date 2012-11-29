@@ -1816,7 +1816,8 @@ function initConnectionsBox(){
                 gravity:'s'
             });
             if(parseInt($('#connections-realnumfound').html())==0){
-                $('#connectionsRightBox').hide();
+                //$('#connectionsRightBox').hide();
+                $('#additional').hide();
             }
 
         },
@@ -1914,6 +1915,7 @@ function initSubjectsSEEALSO(){
            // console.log(msg);
             if(parseInt($('#seealso-realnumfound').html())==0){
                 $('#seeAlsoRightBox').parent().hide();
+                $('#related').hide();
             }
         },
         error:function(msg){

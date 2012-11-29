@@ -341,7 +341,7 @@
             </xsl:choose>
             <!--Additional Information-->
           <li>
-              <h2 class="meta_title">
+              <h2 class="meta_title" id="additional">
                     <a class="show">
                         <span class="left">Additional information</span>
                         <span class="right">Show</span>
@@ -414,7 +414,7 @@
            <!--Related Datasets-->
            <xsl:if test="$objectClass='Collection'">
                <li>
-                   <h2 class="meta_title">
+                   <h2 class="meta_title" id="related">
                        <a class="show">
                             <span class="left">Related datasets</span>
                             <span class="right">Show</span>
@@ -620,7 +620,7 @@
     </xsl:template> 
    <xsl:template match="ro:location[@dateFrom!=''] | ro:location[@dateTo!='']">
         <xsl:if test="./@dateFrom != ''">
-            From b<xsl:value-of select="./@dateFrom"/>
+            From <xsl:value-of select="./@dateFrom"/>
         </xsl:if> 
         <xsl:if test="./@dateTo != ''">
             To <xsl:value-of select="./@dateTo"/>
