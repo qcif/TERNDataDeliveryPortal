@@ -1264,12 +1264,12 @@ var p=1;
                         resultSort="date_modified desc";
                         setCookie('sorting',resultSort,365);             
                     break;
-/*                    
+                   
                 case "list_title":
-                        resultSort="list_title desc";
+                        resultSort="list_title asc";
                         setCookie('sorting',resultSort,365);             
                     break;                    
-*/
+
                 default:
                         resultSort="score desc";
                         setCookie('sorting',resultSort,365);
