@@ -25,11 +25,12 @@ $Revision: 1 $
 
 <div id="search-result" style="background: white;">
 	<?php if(isset($message)):?>
-		<center><h1><?php echo $message;?></h1>
+    <div id="staticContentWhite">
+		<h1><?php echo $message;?></h1>
                     <p>Sorry, but the requested page could not be located. If you feel there's been a mistake, please let us know via our <a href=<?php echo base_url().'contact'?>>contacts page</a>.</p>
 
                     <p>Return to the <a href=<?php echo base_url()?>> home page</a> to continue.</p>
-                </center>
+    </div>            
 	<?php endif;?>
 </div>
 
