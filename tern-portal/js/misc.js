@@ -5,7 +5,8 @@
 
         var MAX_LOGO_WIDTH = 200;
 	var MAX_LOGO_HEIGHT = 200;
-
+        
+        
 function testLogo(id, url){
 		var img = $('#'+id)[0]; // Get my img elem
 		//$('#'+id).hide();
@@ -97,6 +98,16 @@ function initViewPage(){
                }
 
         }); 
+        
+        $.each($('.description'), function() {
+            var desc = $(this).html();
+            //var urlRegEx = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-]*)?\??(?:[\-\+=&;%@\.\w]*)#?(?:[\.\!\/\\\w]*))?)/g;
+            //$(this).html(desc.replace(urlRegEx, "<a href='$1'>$1</a>"));
+            //desc = $(desc).not('a').html();
+             $(this).html(linkify_html(desc));
+            
+            
+        });
 		//$(brief).show();
                  $.each($('.forcode li'), function(){
                     var txt= $(this).html().toProperCase();
@@ -262,7 +273,7 @@ function checkRecordinCookie(saveRecord,addToFavourite,urlandtitle)
         
     }else 
     {
-        saveRecord.hide()
+        saveRecord.hide(); 
         addToFavourite.show();
     }
     
