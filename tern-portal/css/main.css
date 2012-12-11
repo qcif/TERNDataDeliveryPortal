@@ -343,6 +343,7 @@ nav.resultsNav{
 	
 	.panBtn,.panBtnActive,
 	.boxBtn,.boxBtnActive,
+        .polyBtn,.polyBtnActive,
 	.delBtn,.delBtnActive,
 	.mapGoBtn,
 	.helpBtn{ width: 38px; height: 37px; display: block; cursor:pointer; }
@@ -357,6 +358,9 @@ nav.resultsNav{
 		#map-toolbar .boxBtn{ background: url(../img/buttons/map-tools/map-tools-box-normal-btn.png) no-repeat; }
 		#map-toolbar .boxBtnActive{ background: url(../img/buttons/map-tools/map-tools-box-hover-btn.png) no-repeat; }
 		#map-toolbar .boxBtn:hover{ background: url(../img/buttons/map-tools/map-tools-box-hover-btn.png) no-repeat; }
+		#map-toolbar .polyBtn{ background: url(../img/buttons/map-tools/map-tools-poly-normal-btn.png) no-repeat; }
+		#map-toolbar .polyBtnActive{ background: url(../img/buttons/map-tools/map-tools-poly-hover-btn.png) no-repeat; }
+		#map-toolbar .polyBtn:hover{ background: url(../img/buttons/map-tools/map-tools-poly-hover-btn.png) no-repeat; }
 		#map-toolbar .delBtn{ background: url(../img/buttons/map-tools/map-tools-delete-normal-btn.png) no-repeat; }
 		#map-toolbar .delBtnActive{ background: url(../img/buttons/map-tools/map-tools-delete-hover-btn.png) no-repeat; }
 		#map-toolbar .delBtn:hover{ background: url(../img/buttons/map-tools/map-tools-delete-hover-btn.png) no-repeat; }
@@ -964,7 +968,7 @@ a.external{
     
 }
 .info_left{
-    width: 413px;
+    /*width: 413px;*/
     
 }
 .info_left a{
