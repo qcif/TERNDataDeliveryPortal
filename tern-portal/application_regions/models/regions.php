@@ -25,8 +25,26 @@ class Regions extends CI_Model {
         
     }
     
+     /* intersect regions table with coordinates*/
+    function intersectLine($coords,$layer=null){
+        
+        $coords = "LINESTRING(". $coords . ")";        
+          if(!$layer){             
+            $sql = 'SELECT r_id,r_name,l_id FROM regions WHERE ST_INTERSECTS(ST_GeomFromText(?,4326), the_geom)';
+            $q  = $this->db->query($sql, array($coords)); 
+        }else{
+            $sql = 'SELECT r_id,r_name,l_id FROM regions WHERE ST_INTERSECTS(ST_GeomFromText(?,4326), the_geom) AND l_id=?';
+            $q =  $this->db->query($sql, array($coords,$layer)); 
+        }
+       if($q->num_rows() > 0) return $q->result();
+        else return new stdClass;
+        
+    }
+     
+    
     /* intersect regions table with coordinates*/
     function intersectPoly($coords,$layer=null){
+        
         $coords = "POLYGON((". $coords . "))";        
           if(!$layer){            
             $sql = 'SELECT r_id,r_name,l_id FROM regions WHERE ST_INTERSECTS(ST_GeomFromText(?,4326), the_geom)';
@@ -36,7 +54,7 @@ class Regions extends CI_Model {
             $q =  $this->db->query($sql, array($coords,$layer)); 
         }
        if($q->num_rows() > 0) return $q->result();
-        else return new stdClass;
+       else return new stdClass;
         
     }
      

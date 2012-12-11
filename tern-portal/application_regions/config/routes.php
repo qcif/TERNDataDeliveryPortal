@@ -62,8 +62,8 @@ $Revision: 1 $
 
 $route['default_controller'] = "home";
 //$route['view/(:any)'] = "view/viewitem/$1";
-$route['404_override'] = '/home/index';
-
+$route['404_override'] = '/home/notfound';
+  
 
 
 /* End of file routes.php */

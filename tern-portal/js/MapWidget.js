@@ -529,11 +529,16 @@ MapWidget.prototype.addDrawLayer = function(options){
       
     //Box Layer declaration
     var boxLayer = new OpenLayers.Layer.Vector("Box");
+    //poly Layer declaration
+    var polyLayer = new OpenLayers.Layer.Vector("Poly");
 
     boxLayer.events.register('beforefeatureadded',boxLayer, (function(feature){ 
         if(!allowMultiple){   // No multiple boxes yet
             if(boxLayer.features.length > 0) {
                 boxLayer.removeAllFeatures();       
+            }
+             if(polyLayer.features.length > 0) {
+                polyLayer.removeAllFeatures();
             }
         }
         // set other layers to hide when drawing starts
@@ -542,14 +547,10 @@ MapWidget.prototype.addDrawLayer = function(options){
                 if(typeof this.extLayers[layer] == "[object]" )  this.extLayers[layer].setVisibility(false);
             }       
         }
-     
-       
-    }).bind(this));
+     }).bind(this));
     
-     /*
-    //poly Layer declaration
-    var polyLayer = new OpenLayers.Layer.Vector("Poly");
-
+     
+   
     polyLayer.events.register('beforefeatureadded',polyLayer, (function(feature){ 
         if(!allowMultiple){   // No multiple polygons
             if(polyLayer.features.length > 0) {
@@ -562,15 +563,14 @@ MapWidget.prototype.addDrawLayer = function(options){
         // set other layers to hide when drawing starts
         if(this.extLayers){
        
-            for(var layer in this.extLayers){
-
-                this.extLayers[layer].setVisibility(false);
-            }       
+           for(var layer in this.extLayers){
+                if(typeof this.extLayers[layer] == "[object]" )  this.extLayers[layer].setVisibility(false);
+            }     
         }
        
     }).bind(this));
     
-    */
+   
     var WGS84 = this.WGS84; 
     var WGS84_google_mercator = this.WGS84_google_mercator;
     
@@ -589,9 +589,13 @@ MapWidget.prototype.addDrawLayer = function(options){
                 afterDraw(e,WGS84, WGS84_google_mercator);
                 
             }
-        })
-        /*poly: new OpenLayers.Control.DrawFeature(polyLayer,
-                        OpenLayers.Handler.Polygon)*/
+        }),
+        poly: new OpenLayers.Control.DrawFeature(polyLayer,
+                        OpenLayers.Handler.Polygon,{
+                            featureAdded: function(e){
+                                resetCoordinates();
+                            }
+                        })
                         
         /*drag: new OpenLayers.Control.DragFeature(boxLayer, {
             onComplete:function(e){
@@ -607,10 +611,10 @@ MapWidget.prototype.addDrawLayer = function(options){
 
   
     
-    this.map.addLayers([boxLayer]); 
+    this.map.addLayers([boxLayer,polyLayer]); 
     //make sure this layer is on top.
     this.map.raiseLayer(boxLayer,this.map.layers.length);
-  //  this.map.raiseLayer(polyLayer,this.map.layers.length);
+    this.map.raiseLayer(polyLayer,this.map.layers.length);
     
 }
 
@@ -832,6 +836,31 @@ MapWidget.prototype.toggleNavControl = function(element){
 }
 
 /*  ------------------------------------------------------------  
+ *    getFeatureBounds()
+ *    returns the coordinates boudning box for a feature
+ *    
+ *  ------------------------------------------------------------
+ */
+
+MapWidget.prototype.getFeatureBounds = function(){
+    var geom = [];
+    var boundsNative, bounds;
+         for(var i=0;i<this.map.layers.length;i++){
+            for(var key in this.drawControls) {
+                if(this.map.layers[i].name == key.capitalize()){
+                     if(this.map.layers[i].features.length == 1) { // only supports one feature for now. 
+                        boundsNative = this.map.layers[i].features[0].geometry.getBounds();
+
+                        bounds = boundsNative.transform(this.WGS84_google_mercator, this.WGS84);
+                        
+                    } 
+                }
+            }
+         }
+        return bounds;
+}
+
+/*  ------------------------------------------------------------  
  *    getFeatureCoordinates()
  *    returns the coordinates for a feature
  *    
@@ -846,9 +875,10 @@ MapWidget.prototype.getFeatureCoordinates = function(){
                 if(this.map.layers[i].name == key.capitalize()){
                      if(this.map.layers[i].features.length == 1) { // only supports one feature for now. 
                      verticesNative = this.map.layers[i].features[0].geometry.getVertices();
-                     
-                      for (var x in verticesNative) {
-                            geom.push(verticesNative[x].clone().transform(this.WGS84_google_mercator, this.WGS84));
+                      
+                      for (var x=0; x<verticesNative.length; x++) {
+                          var clone = verticesNative[x].clone();
+                            geom.push(clone.transform(this.WGS84_google_mercator, this.WGS84));
                             
                       }
                       break;
@@ -959,12 +989,19 @@ MapWidget.prototype.toggleControl = function(element) {
                         control.deactivate();
                         element.setAttribute("class", key + "Btn");  
                           $("#drag").attr("class","panBtnActive"); 
+                          this.dataLayer.setVisibility(true);
+                          
                     }
                     else{
                         control.activate();  
                         control.map.raiseLayer(control.layer,control.map.layers.length-1);
                         element.setAttribute("class", key + "BtnActive");
                         $("#drag").attr("class","panBtn");
+                        this.dataLayer.setVisibility(false);
+                        this.coverageLayer.setVisibility(false);
+                        while( this.map.popups.length ) {
+                                this.map.removePopup(this.map.popups[0]);
+                            }
                     }
                
             }else{
@@ -974,6 +1011,11 @@ MapWidget.prototype.toggleControl = function(element) {
                     var elem = $("#" + key); 
                     elem.attr("class", key + "Btn");  
                      resetCoordinates();
+                }else{
+                    control.deactivate();
+                    var elem = $("#" + key); 
+                    elem.attr("class", key + "Btn");
+                   
                 }
             } 
            
@@ -1186,6 +1228,9 @@ MapWidget.prototype.switchLayer = function(layer_id, options){
 MapWidget.prototype.updateDrawing = function(map,coordStr){
     var control = this.drawControls['box'];
     control.layer.removeAllFeatures();
+    if(!control.active) {
+        map.toggleControl($("#box").get(0));
+    }
     var bounds = OpenLayers.Bounds.fromString(coordStr);
      
     var box = new OpenLayers.Feature.Vector(bounds.toGeometry().transform(this.WGS84,this.WGS84_google_mercator));
@@ -1479,6 +1524,7 @@ function enableCoordsChange(map){
         }else{
              $('#coordsOverlay .mapGoBtn').hide();
         }
+        
         map.updateDrawing(map,coordStr);
     });
 }
@@ -1563,7 +1609,7 @@ function resetCoordinates(){
     $('#spatial-west').val('');
     $('#spatial-south').val('');
     $('#spatial-east').val(''); 
-   
+    $("#coordsOverlay .mapGoBtn").hide();
    
 }
 
