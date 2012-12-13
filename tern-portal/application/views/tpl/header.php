@@ -20,9 +20,9 @@ $number = mt_rand(1,3);
        
          <link rel="icon" href="<?php echo base_url(); ?>/img/favicon.png"/>
        <script type="text/javascript" src="<?php echo base_url();?>js/modernizr.custom.87481.js"></script> 
+        <link type="text/css" href="<?php echo base_url(); ?>css/css-reset.css" rel="stylesheet"/>
           
         <link type="text/css" href="<?php echo base_url(); ?>css/smoothness/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
-        <link type="text/css" href="<?php echo base_url(); ?>css/css-reset.css" rel="stylesheet"/>
         <link type="text/css" href="<?php echo base_url(); ?>css/main.css" rel="stylesheet" />
         <link type="text/css" href="<?php echo base_url(); ?>css/print.css" rel="stylesheet" media="print" />
          <link type="text/css" href="<?php echo base_url(); ?>css/treeview.css" rel="stylesheet"/>         
