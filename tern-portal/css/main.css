@@ -502,6 +502,7 @@ nav.resultsNav{
 
         .logo_right{
            float:right;
+           clear: both;
         }
        
         .popupGroup #chicken_GroupDiv{

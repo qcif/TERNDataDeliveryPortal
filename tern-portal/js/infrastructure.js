@@ -4,11 +4,11 @@ function addCheckbox(name,image_url,help_url,text_abstract,popup_title) {
    var id = inputs.length+1;
    var img = '<img src="' + image_url + '"/>';
    var helpimg = '<a id="' + id + '" class="helpBtn"></a>'; 
-    var helptext = '<div id="help-' + id + '" class="hide" checked="checked" title="About ' + popup_title + '">' + text_abstract + '</div>';
+    var helptext = '<div id="help-' + id + '" class="hide" checked="checked" title="Help">' + text_abstract + '</div>';
   
    var html = '<div class="clearfix">' + helpimg + '<input  checked="checked" type="checkbox" id="cb'+id+'" value="'+name+'" /> <label for="cb'+id+'">'+name+ img + '</label>' + '<br/>' + helptext + '</div>';
    container.append($(html));
-}
+} 
 
  
 function initMapProto(){
@@ -58,9 +58,8 @@ function initMapProto(){
                         });
                  }
             });
-          
+       
                 
-           
         });                       
         
         
