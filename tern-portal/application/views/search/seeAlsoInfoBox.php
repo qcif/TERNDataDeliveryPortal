@@ -49,19 +49,19 @@ foreach($json->{'response'}->{'docs'} as $r)
 	
 	if(isset($r->{'subject_type'})){
 		echo '<h2>Subjects</h2><ul class="subjects">';
-                if(is_array($r->{'for_value_six'})){
+               /* if(is_array($r->{'for_value_six'})){
 		 foreach($r->{'for_value_six'} as $index=>$for_value){
-			echo '<li>'.$for_value.'</a></li>';
+			echo '<li>'.$for_value.'</li>';
                         if($index == 9) { echo '<li>...</li>'; break;  }
                 }
-                }
+                }*/
 		foreach($r->{'subject_type'} as $index2=>$subject_type){
                         if($index == 9) { 
                             break;
                         }else{
 
                            // echo '<li>'.$r->{'subject_value'}[$index2].'</a></li>';
-                             echo '<li>'.$r->{'subject_value_resolved'}[$index2].'</a></li>';
+                             echo '<li>'.$r->{'subject_value_resolved'}[$index2].'</li>';
 
                              if(($index + $index2) == 7) { echo '<li>...</li>'; break;  }
                     }
