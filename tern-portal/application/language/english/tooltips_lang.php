@@ -74,5 +74,15 @@ $lang['region_helptext'] ="<h2>Region</h2><p>
                                 To remove a Region, delete the parameter from the <i>Current Search</i> box.                           
                            </p>
 ";
+
+$lang['licensing_helptitle']="Licensing help";
+$lang['licensing_helptext'] ="<h2>Title</h2><p>
+This is the title of the data set, data collection, paper or other item to be licensed.</p>
+<h2>URL</h2><p>
+This creates a link to the item the subject of the licence. It may be a link to a document or to a website.
+
+                          </p>
+";
+
 ?>
 
