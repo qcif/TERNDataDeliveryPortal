@@ -29,12 +29,12 @@
             "popup_title" : "AusCover"
             },   
             {
-            "name" : "AusPlots",
+            "name" : "Australian Transect Network",
             "geo_name" : "nr:trendsplots", 
             "geo_url": "/geoserver/wms",
             "marker_url": "/img/map/map_marker_purple_sml.png",
-            "popup_title" : "AusPlots"
-            }
+            "popup_title" : "Australian Transect Network"
+            } 
         ],
         "geo_url": "/geoserver/wms",
         "help_url" : ""
