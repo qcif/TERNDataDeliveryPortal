@@ -48,7 +48,7 @@ foreach($json->{'response'}->{'docs'} as $r)
 	}
 	
 	if(isset($r->{'subject_type'})){
-		echo '<h4>Keywords</h4><ul class="subjects">';
+		echo '<h2>Subjects</h2><ul class="subjects">';
                 if(is_array($r->{'for_value_six'})){
 		 foreach($r->{'for_value_six'} as $index=>$for_value){
 			echo '<li>'.$for_value.'</a></li>';
@@ -69,7 +69,7 @@ foreach($json->{'response'}->{'docs'} as $r)
 		echo '</ul>';
 		echo '<hr/>'; 
 	}
-	echo '<a href="'.base_url().'view/dataview?key='.urlencode($r->{'key'}).'" class="button" target="_blank">View Metadata</a>';
+	echo '<a href="'.base_url().'view/dataview?key='.urlencode($r->{'key'}).'" class="greenGradient smallRoundedCorners" target="_blank">View Metadata</a>';
 	//echo anchor('view/?key='.$r->{'key'},'View Record', array('class'=>'button'));
 	echo '</div>';
 	

@@ -27,6 +27,13 @@
             "geo_url": "/geoserver/wms",
             "marker_url": "/img/map/map_marker_yellow_sml.png",
             "popup_title" : "AusCover"
+            },   
+            {
+            "name" : "AusPlots",
+            "geo_name" : "nr:trendsplots", 
+            "geo_url": "/geoserver/wms",
+            "marker_url": "/img/map/map_marker_purple_sml.png",
+            "popup_title" : "AusPlots"
             }
         ],
         "geo_url": "/geoserver/wms",
