@@ -1,18 +1,22 @@
 <li id="advancedSearch">
     <div class="expand collapsiblePanel">
-    <h2>
-        <a id ="adv_bool" class="show" href="javascript:void(0);">Advanced Boolean Search</a>
   
-    </h2>
 <?php 
-   if( $_COOKIE['adv_bool']==1)
+
+ /*/*  if( $_COOKIE['adv_bool']==1)
    {
-       echo '<div class="content expand" id="adv_bool_operator">';
+       echo '  <h2>
+        <a id ="adv_bool" class="hide" href="javascript:void(0);">Advanced Boolean Search</a>
+      </h2>';
+       echo '<div class="content expand" id="adv_bool_operator" >';
    }
    else
-   {
-       echo '<div class="content expand" id="adv_bool_operator" style="display:none">';
-   }
+   {*/
+       echo '<h2>
+            <a id ="adv_bool" class="hide" href="javascript:void(0);">Advanced Boolean Search</a>
+            </h2>';
+       echo '<div class="content expand" id="adv_bool_operator"  >';
+ //  }
 ?>   
            <input id="advancedBooleanSearch_1" type="radio" checked="checked" value="AND" name="advancedBooleanSearch">
             Include (AND)
