@@ -27,7 +27,7 @@
                 "key": "terrestrial_ecosystems",
                 "title": "Terrestrial ecosystem",
                 "img_url": "/img/topics/terrestrial_ecosystems.png",                 
-                "query_url": "<?php echo base_url();?>search#!\/q=(terrestrial OR ecosystem) OR (wetlands OR grass* OR forest OR habitat) OR (land OR dessert OR islands OR savannas)\/p=1\/tab=collection\/num=10" 
+                "query_url": "<?php echo base_url();?>search#!\/q=(terrestrial OR ecosystem) OR (wetlands OR grass* OR forest OR habitat) OR (land OR desert OR islands OR savannas)\/p=1\/tab=collection\/num=10" 
 
             },
             {
