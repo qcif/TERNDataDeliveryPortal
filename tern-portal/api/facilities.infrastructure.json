@@ -34,7 +34,14 @@
             "geo_url": "/geoserver/wms",
             "marker_url": "/img/map/map_marker_purple_sml.png",
             "popup_title" : "Australian Transect Network"
-            } 
+            },   
+            {
+            "name" : "AusPlot and Transect plots",
+            "geo_name" : "nr:trendausplot", 
+            "geo_url": "/geoserver/wms",
+            "marker_url": "/img/map/map_marker_orange_sml.png",
+            "popup_title" : "AusPlots"
+            }
         ],
         "geo_url": "/geoserver/wms",
         "help_url" : ""
