@@ -956,7 +956,7 @@ a.download{
     font-weight: bold;
     text-align: center;
 }
-a.external{
+a.external, .description a {
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB50RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAAANBJREFUGJVjZEADCZPU/6OLYYDKXQb/K3cZ/EcGrz8++Z8wSf0/E7LCdrcLjM9vfGeo2m2IYQgLulU//wowyOqwYChkYmBgYJife4Nhfu4Nhv///jPYhrMwZEoeYZj+3AbFZLjWxMkaDOZhonBFh1f+YWBn/s5QcXsiwkQGBgYGsxARhsdXviIp+sCwIO8mo5jqbob///4zwhVmSh5hkNXhZji15g3DpKS1cCufXfvGCLf6zaenDAwMDAyh3CsZQuOxBx0LAwMDQ+lCZ+yySAAAOUlVHUJdCpQAAAAASUVORK5CYII=") no-repeat scroll right center transparent;
     padding-right: 13px;
 }
