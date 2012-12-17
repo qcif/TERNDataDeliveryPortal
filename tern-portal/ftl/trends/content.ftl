@@ -2,7 +2,7 @@
 
 <#setting number_format="0.###">
 <#attempt> 
-<div class="info_left"><img class="logo_right" src="/img/logos/logo-trends.png"/><h3>Plot Network information: </h3>
+<div class="info_left"><img class="logo_right" src="/img/logos/logo-trends.png"/><img class="logo_right" src="/img/logos/logo-atn.jpg"/><h3>Plot Network information: </h3>
 <p>The plot is part of the study to understand vegetation genetic and morphological variation over the Adelaide Geosyncline and testing the "space as a proxy for time" concept in understanding climate change impacts on South Australian native ecosystems. </p>
 <b>TERN Site ID:</b> ${features[0].tern_site_id.value} 
 <br/>
