@@ -1004,12 +1004,12 @@ Handle:
 
 
 <xsl:template match="extRif:description" mode="content">
-           <div class="description"><xsl:value-of select="." disable-output-escaping="yes"/></div>        
+           <p><xsl:value-of select="." disable-output-escaping="yes"/></p>        
 </xsl:template>	
 	
 	<xsl:template match="ro:location/ro:address/ro:electronic/@type">		
 		<xsl:if test=".='email'">	
-	  		<xsl:value-of select=".."/><br />
+	  		<a> <xsl:attribute name="href">mailto:<xsl:value-of select=".."/></xsl:attribute><xsl:value-of select=".."/></a><br />
 		</xsl:if>				
 	</xsl:template>  
 	      
