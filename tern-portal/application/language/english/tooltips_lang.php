@@ -75,14 +75,14 @@ $lang['region_helptext'] ="<h2>Region</h2><p>
                            </p>
 ";
 
-$lang['licensing_helptitle']="Licensing help";
+$lang['licensing_helptitle']="Attribution help";
 $lang['licensing_helptext'] ="<h2>Title</h2><p>
 This is the title of the data set, data collection, paper or other item to be licensed.</p>
 <h2>URL</h2><p>
-This creates a link to the item the subject of the licence. It may be a link to a document or to a website.
-
-                          </p>
+This creates a link to the item the subject of the licence. It may be a link to a document or to a website. 
+</p>
+<h2>Attribution</h2><p>
+This is the attribution to be used by users of the data set, data collection, paper or other item being licensed.  It should be as complete as possible and appear exactly as you wish the attribution or citation of your work to appear in a paper.  If more than one person/organisation needs to be attributed, please include all attributions.  You can also include a link to the appropriate attribution if it appears on a website (including for third party attribution).</p>
 ";
-
 ?>
 
