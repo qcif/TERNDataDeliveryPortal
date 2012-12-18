@@ -692,7 +692,6 @@ var p=1;
                         type:"POST",
                         url: base_url+"regions/r/search/",
                         data:{ 'geometry': polygeometry , 'bounds' : polybounds},
-                        dataType: "json",
                         success:function(msg) 
                         {
                             spatial_included_ids = msg;

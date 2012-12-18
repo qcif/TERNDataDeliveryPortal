@@ -38,18 +38,20 @@ class R extends CI_Controller {
          
     }	
         
-    public function searchSpatialPoly($box, $poly){
-         $this->load->model('Regions');
-         header('Content-type: application/json');
-         $r_list = json_encode($this->Regions->intersectPoly($geom,$l_id));
-         // get spatial list from SOLR 
-         
-    }	
+   
     public function search(){
+       $this->load->model('Regions');
        $geometry = $_POST['geometry'];
        $bounds = $_POST['bounds'];
-       
-        
+       $r_list_single = array();
+       $r_list = $this->Regions->searchPoly($bounds, $geometry);
+       foreach($r_list as $key=>$res){
+           array_push($r_list_single, $res->key);
+       };
+        $data['registryObjects'] = $r_list_single;
+
+        $this->load->view('listIDs', $data);
+
     }    
 }
 ?>

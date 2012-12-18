@@ -308,10 +308,11 @@ function insertDataSourceEvent($data_source_key, $event_description, $log_type="
 	$strQuery = 'SELECT dba.udf_insert_data_source_event($1, $2, $3, $4, $5, $6)';
 	$params = array($event_id, $data_source_key, $created_who, $request_ip, substr($event_description, 0, 2000), $log_type);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
-
+        $errors = $event_id . "','" . $data_soruce_key . "','". $created_who ."','".  $request_ip ."','" . substr($event_description, 0, 2000) . "','" .  $log_type;
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";
+                $errors .= pg_last_error();
 	}
 	return $errors;
 }
@@ -721,7 +722,7 @@ function insertSpatialLocation($spatial_location_id, $location_id, $value, $type
 
 	$errors = "";
 	$strQuery = 'SELECT dba.udf_insert_spatial_location($1, $2, $3, $4, $5)';
-	$params = array($spatial_location_id, $location_id, substr($value, 0, 512), substr($type, 0, 512), $lang);
+	$params = array($spatial_location_id, $location_id, substr($value, 0, 4000), substr($type, 0, 512), $lang);
 	foreach($params as &$param)
 	{
 		if( $param == '' )

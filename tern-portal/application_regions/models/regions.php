@@ -66,6 +66,18 @@ class Regions extends CI_Model {
         else return new stdClass;
         
     }
+    
+    function searchPoly($bounds,$geometry){
+        $db2 = $this->load->database('orca', TRUE);
+        $sql = 'SET search_path=dba;';
+        $q = $db2->query($sql);
+        $sql = 'SELECT  dba.tern_search_geom_intersect(CAST(? as DOUBLE PRECISION), CAST(? as DOUBLE PRECISION), CAST(? as DOUBLE PRECISION), CAST(?  as DOUBLE PRECISION) , CAST(? as TEXT)) as key';
+        $q = $db2->query($sql, array($bounds['n'],$bounds['w'],$bounds['s'],$bounds['e'],$geometry));
+        if($q->num_rows() > 0) return $q->result();
+        else return new stdClass;
+        
+        
+    }
 }
 
 

@@ -880,6 +880,11 @@ MapWidget.prototype.getFeatureCoordinates = function(){
                           var clone = verticesNative[x].clone();
                             geom.push(clone.transform(this.WGS84_google_mercator, this.WGS84));
                             
+                      } 
+                      
+                      var firstpoint;
+                      if(  verticesNative.length > 1 && (firstpoint = verticesNative[0].clone()) ){
+                          geom.push(firstpoint.transform(this.WGS84_google_mercator,this.WGS84));
                       }
                       break;
                 }
