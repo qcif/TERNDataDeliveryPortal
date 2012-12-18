@@ -101,14 +101,16 @@ function initViewPage(){
         
         $.each($('.description'), function() {
             var desc = $(this).html();
-            //var urlRegEx = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-]*)?\??(?:[\-\+=&;%@\.\w]*)#?(?:[\.\!\/\\\w]*))?)/g;
-            //$(this).html(desc.replace(urlRegEx, "<a href='$1'>$1</a>"));
-            //desc = $(desc).not('a').html();
+            
              $(this).html(linkify_html(desc));
             
             
         });
-		//$(brief).show();
+        $.each($('.licensing p'), function() {
+               var html = $(this).html();
+               $(this).html(linkify_html(html));
+        });
+            	//$(brief).show();
                  $.each($('.forcode li'), function(){
                     var txt= $(this).html().toProperCase();
                     $(this).html(txt);

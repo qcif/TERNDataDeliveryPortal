@@ -202,18 +202,20 @@
                     </xsl:when>
                 </xsl:choose> 
                 <!--Rights and Licencing-->
-                <xsl:choose>
+                  <div class="licensing">
+                   <xsl:choose>
                     <xsl:when test="extRif:rights or ro:rights or extRif:rights[@type='licence']">  
-                        <h2>Rights and Licensing</h2>            
+                       <h2>Rights and Licensing</h2>            
                             <xsl:apply-templates select="extRif:rights[@type='licence']"/>
                             <xsl:apply-templates select="extRif:rights[@type!='licence']"/>     
+                   
                 </xsl:when>
                     <xsl:otherwise>
                     <h2>Rights and Licensing</h2>            
                     Not provided
                     </xsl:otherwise>
-            </xsl:choose>
-
+                 </xsl:choose>
+                 </div>
             <!--Data quality infomation -->   
 <!--    Hide for demo only        
             <xsl:choose>
