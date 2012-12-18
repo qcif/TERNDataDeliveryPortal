@@ -16,22 +16,12 @@
 #licence-logo-p{
     text-align:center;
 }
-#licensing-help{
-    float: right; background: url(../img/buttons/help-normal-btn.png) no-repeat; height: 29px; width: 29px; display: block; margin-top: 8px; margin-right: 8px; position: relative; z-index: 1000; /* RW ADDED 15/10/12 */
-}
-#licensing-help-text p{
-    text-align:justify;
-}
 #attribution td{
     padding: 5px 0;
 } 
 #attribution th{
     vertical-align:middle;
     padding: 0px 5px;
-}
-#attribution input{
-    border: 1px solid #ccc;
-    border-radius:3px;
 }
 </style>
 <div id="staticContentWhite">
@@ -92,7 +82,7 @@ TERN Data Licensing
     </div>
     </form>
     <hr>
-   <a class="helpBtn" id="licensing-help"></a> <h2>Attribution</h2>
+    <h2>Attribution</h2>
     <p>You can add attribution information here:</p>
     <table id="attribution">
       <tr>
@@ -100,18 +90,14 @@ TERN Data Licensing
         <td><input id="title" placeholder=
                 "What is the title of the work?" size='40'/></td>
       </tr>
-      <!--tr>
+      <tr>
         <th style="text-align: left"><label for="creators">Creators:</label></th>
         <td><input id="creators" 
                 placeHolder='Who created the work?' size='40'/></td>
-      </tr-->
+      </tr>
       <tr>
         <th style="text-align: left"><label for="link">URL:</label></th>
         <td><input id="link" placeHolder='Where is the work available from?' size='40'/></td>
-      </tr>
-      <tr>
-        <th style="text-align: left;vertical-align:top;padding-top:6px;"><label for="attribution" >Attribution:</label></th>
-        <td><textarea id="attributionText" placeHolder='Your attribution text here' cols='45' rows="5"></textarea></td>
       </tr>
     </table>
     <p style="text-align: center;">
@@ -127,10 +113,9 @@ TERN Data Licensing
     <p style="text-align: left;">You can use this code in your webpage:</p>
     <textarea readonly id="licence-copy" style="width: 100%;" rows="6">
     	
-    </textarea> 
+    </textarea>
    
   </div>
-   <div id="licensing-help-text" title="<?php echo $this->lang->line('licensing_helptitle');?>" class="hide" ><?php echo $this->lang->line('licensing_helptext');?></div>
 </div>
 <hr>
 </div>

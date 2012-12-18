@@ -31,7 +31,6 @@
     function prepareLicenceStatementAndIcon() {
         var title = "This work";
         var creators = "";
-        var attribution = "";
 		var link_work = "";
         var tern_licence = "TERN Attribution";
         var statement = "";
@@ -42,13 +41,9 @@
         if ($('#title').val() !== '') {
             title = $("#title").val();
         }
-        /*
+        
         if ($('#creators').val() !== '') {
             creators = "by " + $("#creators").val();
-        }*/
-        if ($('#attributionText').val() !== '') {
-            attribution = "Please use the following attribution: " + $("#attributionText").val();
-            
         }
 		
 		if ($('#link').val() !== '') {
@@ -66,7 +61,7 @@
         }
         
         licence_link = licence_link + link + "/1.0/";
-        statement = title +  " is licensed under a <br/><a target='_blank' href='" + licence_link + "'>" + tern_licence + " licence</a>. " + attribution ;
+        statement = title + " " + creators + " is licensed under a <br/><a target='_blank' href='" + licence_link + "'>" + tern_licence + " licence</a>." ;
         $("#licence-statement").html(statement);
         
         icon_file = icon_file + link + ".png";
@@ -92,11 +87,4 @@
 		$("#copy_false").click(function(){toggleCopyright(false)});
 		$("#copy_unsure").click(function(){toggleCopyright(false)});
                 resetForm();
-                
-                $("#licensing-help-text").dialog({autoOpen:false, height: 300});
-                $("#licensing-help").click(function(){
-                    $("#licensing-help-text").dialog('open');
-                    return false;
-                });
-
 	});
