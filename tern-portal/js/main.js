@@ -69,7 +69,6 @@ $(function() {
         if($("#page_name").text() == 'View') {
             initViewPage();
             initDataViewPage();
-
         }else if($("#page_name").text() == 'Search'){
             initSearchPage();   
         }else if($("#page_name").text() == 'Preview'){
@@ -123,8 +122,7 @@ $(function() {
                     temporal=value;
                     break;
                 case 'ternRegion':
-                    ternRegionFilter = value;
-                   
+                    ternRegionFilter = value;                   
                     break;
                 case 'n':
                     n=value;
@@ -137,6 +135,17 @@ $(function() {
                     break;
                 case 'w':
                     w=value;
+                    break;
+                case 'g':
+                    polygeometry=value;
+                    break;
+                case 'b' :
+                    var temp_arr = value.split(' ');
+                    polybounds.e = temp_arr[0];
+                    polybounds.s = temp_arr[1];
+                    polybounds.w = temp_arr[2];
+                    polybounds.n = temp_arr[3];
+                    
                     break;
                 case 'alltab':
                     alltab=value;
@@ -159,7 +168,7 @@ $(function() {
                 checkCookie();
                 // $("#loading").show();                             
                   
-                if((window.location.href.indexOf('/n')>=0&&window.location.href.indexOf('/s')>=0&&window.location.href.indexOf('/w')>=0&&window.location.href.indexOf('/e')>=0) )
+                if((window.location.href.indexOf('/n=')>=0&&window.location.href.indexOf('/s=')>=0&&window.location.href.indexOf('/w=')>=0&&window.location.href.indexOf('/e=')>=0) || window.location.href.indexOf('/g=') )
                 {                         
                         doSpatialSearch();
                 }else{
@@ -441,6 +450,8 @@ var p=1;
         if(forfourFilter!='All') res+='/forfour='+(forfourFilter);
         if(forsixFilter!='All') res+='/forsix='+(forsixFilter);
         if(ternRegionFilter!='All') res+='/ternRegion='+(ternRegionFilter);
+        if(polygeometry != '') res+='/g=' + (polygeometry);
+        if(!jQuery.isEmptyObject(polybounds)) res+='/b=' + polybounds.e + ' ' + polybounds.s + ' ' + polybounds.w + ' ' + polybounds.n;
         if(n!=''){
             res+='/n='+n+'/e='+e+'/s='+s+'/w='+w;
         }
@@ -639,14 +650,16 @@ var p=1;
                    polybounds.s = bounds.bottom;
                    polybounds.e = bounds.right;
                    polybounds.w = bounds.left;
+                }else{
+                    polygeometry = '';
+                    polybounds = Object();
                 }
                 mapSearch = 0;
                 clearAll = 0;                
                 spatial_included_ids = '';
                 $("#coordsOverlay").hide();
-                $("#coordsOverlay input").trigger('change');
-                //changeHashTo(formatSearch(search_term, 1, classFilter));             
-                doSpatialSearch();
+               changeHashTo(formatSearch(search_term, 1, classFilter));             
+                //doSpatialSearch();
                 //doNormalSearch();
           });
         
@@ -668,6 +681,7 @@ var p=1;
     //searches to SOLR using coordinates
     function doSpatialSearch()
     {
+        spatial_included_ids='';
 	if(n!=''){
             $.ajax({
                         type:"POST",
@@ -677,8 +691,9 @@ var p=1;
                         success:function(msg)
                         {
                             spatial_included_ids = msg;
-
+                          
                             doNormalSearch();
+                            
                             //updateTable(); 
                         // $("#loading").hide();
                         },
@@ -688,6 +703,9 @@ var p=1;
                         }
                     });
         }else if(polygeometry){
+          //  setCookie('geom',polygeometry,2);  not implemented as a cookie (yet)
+           // setCookie('bounds',JSON.stringify(polybounds),2);
+        
             $.ajax({
                         type:"POST",
                         url: base_url+"regions/r/search/",
@@ -695,7 +713,7 @@ var p=1;
                         success:function(msg) 
                         {
                             spatial_included_ids = msg;
-
+                            
                             doNormalSearch();
                             //updateTable(); 
                         // $("#loading").hide();
@@ -750,7 +768,10 @@ var p=1;
                         facetdivs.appendTo('#refineSearchBox .content ul'); 
                      
                     }else{
-                        $('#refineSearchBox .content ul').html($(this).html());               
+                        $('#refineSearchBox .content ul').html($(this).html());         
+                        if(mapSearch == 0){
+                              $('#refineSearchBox h1.greenGradient').html('Refine Search'); 
+                        }
                     }
                    
                 }
@@ -819,6 +840,7 @@ var p=1;
             if(typeof mapWidget !== 'undefined') {
                 mapWidget.map.updateSize();
                 mapWidget.removeAllFeatures();
+                if(polygeometry !='') mapWidget.drawPoly(polygeometry);
                 if(mapSearch == 0 && clearAll == 0 && $(msg).find('div#realNumFound').html() !== "0"){
                  if(ternRegionFilter != 'All'){
                       mapWidget.switchLayer('none'); //don't display regions overlay
@@ -897,6 +919,8 @@ var p=1;
                     s = '';
                     spatial_included_ids = '';
                     resetCoordinates(); 
+                    polybounds = Object();
+                    polygeometry = '';
                     $("#coordsOverlay input").trigger('change');
                 }else if($(this).parent().hasClass('clearTerm'))
                 {
@@ -1665,6 +1689,8 @@ var p=1;
         $("#coordsOverlay input").trigger('change');     
         page = 1;
         mapSearch=0;
+        setCookie('geom','',2);
+        setCookie('bounds','',2);
         
     }
         

@@ -860,6 +860,50 @@ MapWidget.prototype.getFeatureBounds = function(){
         return bounds;
 }
 
+
+
+/*  ------------------------------------------------------------  
+ *    drawPoly()
+ *    draw polygon to map
+ *    
+ *  ------------------------------------------------------------
+ */
+
+MapWidget.prototype.drawPoly = function(geomstr){
+    var polyFeature = this.makePolygon(geomstr);
+    var mapWidget = this;
+    var control = this.drawControls['poly'];
+    control.layer.removeAllFeatures();
+    if(!control.active) {
+        mapWidget.toggleControl($("#poly").get(0));
+    }
+    control.layer.addFeatures(polyFeature);      
+}
+/*  ------------------------------------------------------------  
+ *    makePolygon()
+ *    convert coordinates to polygon 
+ *    return polygon vector
+ *    
+ *  ------------------------------------------------------------
+ */
+
+MapWidget.prototype.makePolygon = function(geomstr){
+    var geom = geomstr.split(',');
+    var point;
+    var poly_points = [];
+    var latlong = '';
+     for(var i=0;i<geom.length;i++){
+         latlong = geom[i].split(' ');
+         point = new OpenLayers.Geometry.Point(latlong[0], latlong[1]);
+         point.transform(this.WGS84,this.WGS84_google_mercator);
+         poly_points.push(point);                
+     }
+     var linear_ring = new OpenLayers.Geometry.LinearRing(poly_points);
+     var polygonFeature = new OpenLayers.Feature.Vector(
+            new OpenLayers.Geometry.Polygon([linear_ring]));
+     return polygonFeature;
+}
+
 /*  ------------------------------------------------------------  
  *    getFeatureCoordinates()
  *    returns the coordinates for a feature
@@ -1230,7 +1274,7 @@ MapWidget.prototype.switchLayer = function(layer_id, options){
 }
 
 /* Use coordStr to update Map Vector*/
-MapWidget.prototype.updateDrawing = function(map,coordStr){
+MapWidget.prototype.drawBox = function(map,coordStr){
     var control = this.drawControls['box'];
     control.layer.removeAllFeatures();
     if(!control.active) {
@@ -1530,7 +1574,7 @@ function enableCoordsChange(map){
              $('#coordsOverlay .mapGoBtn').hide();
         }
         
-        map.updateDrawing(map,coordStr);
+        map.drawBox(map,coordStr);
     });
 }
 
