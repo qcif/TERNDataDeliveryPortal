@@ -645,11 +645,15 @@ var p=1;
                            polygeometry += ",";
                        }
                    }
-                   var bounds = mapResult.getFeatureBounds();
-                   polybounds.n = bounds.top;
-                   polybounds.s = bounds.bottom;
-                   polybounds.e = bounds.right;
-                   polybounds.w = bounds.left;
+                   if (polygeometry != ''){
+                        var bounds = mapResult.getFeatureBounds();
+                        polybounds.n = bounds.top;
+                        polybounds.s = bounds.bottom;
+                        polybounds.e = bounds.right;
+                        polybounds.w = bounds.left;
+                   }else{
+                       polybounds = Object();
+                   }
                 }else{
                     polygeometry = '';
                     polybounds = Object();
