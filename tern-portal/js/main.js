@@ -168,7 +168,7 @@ $(function() {
                 checkCookie();
                 // $("#loading").show();                             
                   
-                if((window.location.href.indexOf('/n=')>=0&&window.location.href.indexOf('/s=')>=0&&window.location.href.indexOf('/w=')>=0&&window.location.href.indexOf('/e=')>=0) || window.location.href.indexOf('/g=') )
+                if((window.location.href.indexOf('/n=')>=0&&window.location.href.indexOf('/s=')>=0&&window.location.href.indexOf('/w=')>=0&&window.location.href.indexOf('/e=')>=0) || window.location.href.indexOf('/g=') >=0)
                 {                         
                         doSpatialSearch();
                 }else{
