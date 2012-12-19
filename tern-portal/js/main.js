@@ -55,8 +55,7 @@ $(function() {
     var mapResult;
     var param_q;
     var spatial_included_ids = '';
-    var polygeometry ='';
-    var polybounds = new Object();
+
     var clearAll = 0; 
     
     // ROUTING 
@@ -159,8 +158,9 @@ $(function() {
                 checkCookie();
                 // $("#loading").show();                             
                   
-                if((window.location.href.indexOf('/n')>=0&&window.location.href.indexOf('/s')>=0&&window.location.href.indexOf('/w')>=0&&window.location.href.indexOf('/e')>=0) )
-                {                         
+                if(window.location.href.indexOf('/n')>=0&&window.location.href.indexOf('/s')>=0&&window.location.href.indexOf('/w')>=0&&window.location.href.indexOf('/e')>=0)
+                { 
+                        
                         doSpatialSearch();
                 }else{
                         if(mapSearch != 1 && clearAll != 1)$('#refineSearchBox h1.greenGradient').html('Refine Search'); else $('#refineSearchBox h1.greenGradient').html('Search');
@@ -615,7 +615,8 @@ var p=1;
         initPlaceName('geocode',mapResult);
         
         $(".mapGoBtn").bind('click',function(){
-                //update spatial coordinates from textboxes
+      //  var geometry = mapWidget.getFeatureCoordinates();
+         //update spatial coordinates from textboxes
                 var nl=document.getElementById("spatial-north");
                 var sl=document.getElementById("spatial-south");
                 var el=document.getElementById("spatial-east");
@@ -625,32 +626,15 @@ var p=1;
                 s=sl.value;
                 e=el.value;
                 w=wl.value;  
-                if(n==''){
-                   var geometry = mapResult.getFeatureCoordinates();
-                   polygeometry ='';
-                   for (var i=0; i<geometry.length; i++) {
-                       polygeometry += geometry[i].x + " " + geometry[i].y;
-                       if(i<geometry.length-1){
-                           polygeometry += ",";
-                       }
-                   }
-                   var bounds = mapResult.getFeatureBounds();
-                   polybounds.n = bounds.top;
-                   polybounds.s = bounds.bottom;
-                   polybounds.e = bounds.right;
-                   polybounds.w = bounds.left;
-                }
                 mapSearch = 0;
                 clearAll = 0;                
                 spatial_included_ids = '';
                 $("#coordsOverlay").hide();
-                $("#coordsOverlay input").trigger('change');
-                //changeHashTo(formatSearch(search_term, 1, classFilter));             
-                doSpatialSearch();
-                //doNormalSearch();
+                 $("#coordsOverlay input").trigger('change');
+                changeHashTo(formatSearch(search_term, 1, classFilter));             
           });
         
-      
+        
          $('#search-panel input').keypress(function(e) {
             if(e.which == 13) {
              
@@ -660,6 +644,8 @@ var p=1;
         });
   
         
+       
+        
          autocomplete('#refineSearchTextField');
          autocomplete('input[name^=keyword]');
       
@@ -668,45 +654,25 @@ var p=1;
     //searches to SOLR using coordinates
     function doSpatialSearch()
     {
-	if(n!=''){
-            $.ajax({
-                        type:"POST",
-                        url: base_url+"/search/spatial/",
-                        data:"north="+n+"&south="+s+"&east="+e+"&west="+w,
+	
+        $.ajax({
+                    type:"POST",
+                    url: base_url+"/search/spatial/",
+                    data:"north="+n+"&south="+s+"&east="+e+"&west="+w,
 
-                        success:function(msg)
-                        {
-                            spatial_included_ids = msg;
+                    success:function(msg)
+                    {
+                        spatial_included_ids = msg;
 
-                            doNormalSearch();
-                            //updateTable(); 
-                        // $("#loading").hide();
-                        },
-                        error:function(msg)
-                        {
-                        // $("#loading").hide();
-                        }
-                    });
-        }else if(polygeometry){
-            $.ajax({
-                        type:"POST",
-                        url: base_url+"regions/r/search/",
-                        data:{ 'geometry': polygeometry , 'bounds' : polybounds},
-                        dataType: "json",
-                        success:function(msg) 
-                        {
-                            spatial_included_ids = msg;
-
-                            doNormalSearch();
-                            //updateTable(); 
-                        // $("#loading").hide();
-                        },
-                        error:function(msg)
-                        {
-                        // $("#loading").hide();
-                        }
-                    });
-        }
+                        doNormalSearch();
+                        //updateTable(); 
+                       // $("#loading").hide();
+                    },
+                    error:function(msg)
+                    {
+                       // $("#loading").hide();
+                    }
+  		});
     }
         
     /* Reset all search values */
@@ -791,8 +757,7 @@ var p=1;
                 $('#del').trigger('click');
                 
             }
-            
-           
+
             //background text
             $('#refineSearchTextField').each(function(){
 
@@ -1456,7 +1421,7 @@ var p=1;
                 {
                      resetFilter();
                      clearAll = 1;
-                     changeHashTo(formatSearch(search_term, 1, classFilter,num));
+                    changeHashTo(formatSearch(search_term, 1, classFilter,num));
                      if(getCookie('adv_bool')== 1) setCookie('adv_bool',0,2);
                     //$("#current-search").empty();
                   
@@ -2284,4 +2249,3 @@ window.setInterval(function updateTable()
 function deleteCookie(c_name) {
     document.cookie = encodeURIComponent(c_name) + "=deleted; expires=" + new Date(0).toUTCString();
 }
- 
