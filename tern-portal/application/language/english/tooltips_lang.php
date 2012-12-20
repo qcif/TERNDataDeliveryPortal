@@ -80,8 +80,9 @@ $lang['licensing_helptext'] ="
 <h2>Title</h2><p>
 This is the title of the data set, data collection, paper or other item to be licensed.</p>
 <h2>Attribute name</h2><p>
-This may be the author, primary investigators or list of investigators to be identified as having created the data. It may be appropriate to identify an organisation rather than an individual as the creator. If this is the case, the name of the organisation should be included here.
-</p><h2>URL</h2><p>
+This may be the author(s), investigator(s) or organisation(s) who should receive attribution for the work.
+</p>
+<h2>URL</h2><p>
 This creates a link to the item the subject of the licence. It may be a link to a document or to a website. 
 </p>
 
