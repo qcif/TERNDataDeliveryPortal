@@ -42,14 +42,14 @@
         if ($('#title').val() !== '') {
             title = $("#title").val();
         }
-        /*
+        
         if ($('#creators').val() !== '') {
             creators = "by " + $("#creators").val();
-        }*/
-        if ($('#attributionText').val() !== '') {
+        }
+        /*if ($('#attributionText').val() !== '') {
             attribution = "Please use the following attribution: " + $("#attributionText").val();
             
-        }
+        }*/
 		
 		if ($('#link').val() !== '') {
             title = "<a target='_blank' href='" + $("#link").val() + "'>" + title + "</a>";
@@ -66,7 +66,7 @@
         }
         
         licence_link = licence_link + link + "/1.0/";
-        statement = title +  " is licensed under a <br/><a target='_blank' href='" + licence_link + "'>" + tern_licence + " licence</a>. " + attribution ;
+        statement = title + " " + creators +  " is licensed under a <br/><a target='_blank' href='" + licence_link + "'>" + tern_licence + " licence</a>. " + attribution ;
         $("#licence-statement").html(statement);
         
         icon_file = icon_file + link + ".png";

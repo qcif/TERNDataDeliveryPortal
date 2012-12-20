@@ -97,22 +97,21 @@ TERN Data Licensing
     <table id="attribution">
       <tr>
         <th style="text-align: left"><label for="title">Title:</label></th>
-        <td><input id="title" placeholder=
-                "What is the title of the work?" size='40'/></td>
+        <td><input id="title"  size='30'/></td>
       </tr>
-      <!--tr>
-        <th style="text-align: left"><label for="creators">Creators:</label></th>
+      <tr>
+        <th style="text-align: left"><label for="creators">Attribute name:</label></th>
         <td><input id="creators" 
-                placeHolder='Who created the work?' size='40'/></td>
-      </tr-->
+                size='30'/></td>
+      </tr>
       <tr>
         <th style="text-align: left"><label for="link">URL:</label></th>
-        <td><input id="link" placeHolder='Where is the work available from?' size='40'/></td>
+        <td><input id="link"  size='30'/></td>
       </tr>
-      <tr>
+      <!--<tr>
         <th style="text-align: left;vertical-align:top;padding-top:6px;"><label for="attribution" >Attribution:</label></th>
         <td><textarea id="attributionText" placeHolder='Your attribution text here' cols='45' rows="5"></textarea></td>
-      </tr>
+      </tr>-->
     </table>
     <p style="text-align: center;">
       <button id="attribution_button"> Update </button>

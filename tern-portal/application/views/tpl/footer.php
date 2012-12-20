@@ -1,6 +1,6 @@
 <footer>   
      <p class="left">
-        <img width="236" height="50" alt="Australian Government - Department of Industry, Innovation, Science, Research and Tertiary Education" src="/img/logos/logo-diisrte.png">
+        <img width="270" height="55" alt="Australian Government - Department of Industry, Innovation, Science, Research and Tertiary Education" src="/img/logos/logo-diisrte.png">
     </p>
     <p class="center">
         <small>TERN is supported by the Australian Government through the National Collaborative Research Infrastructure Strategy and the Super Science Initiative.</small>
