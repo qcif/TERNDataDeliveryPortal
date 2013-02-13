@@ -34,7 +34,9 @@ $home = 1;
 </div>
 <div id="facilitiesAndDatasets">
      <div id="dialog-confirm" title="Confirm search" class="hide">No search term was entered. Do you want to see ALL records?</div>
-    <h1>Browse<br>TERN facilities & datasets</h1>
+
+     <h1>Browse TERN facilities & datasets</h1>
+
     <a id="carouselprev" class="prev" href="javascript:void(0);"></a>
     <div id="carouselContainer">
  
@@ -58,6 +60,7 @@ $home = 1;
  
     </div>
     <a id="carouselnext" class="next" href="javascript:void(0);"></a>
+
 </div>
 
 <?php $this->load->view('tpl/footer'); ?>

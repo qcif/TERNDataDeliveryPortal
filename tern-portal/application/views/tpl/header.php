@@ -1,7 +1,7 @@
 <!DOCTYPE html><?php
-$md_title = 'TERN Data Discovery Portal (Beta Version)';
-$md_sub = 'Beta Version - For TERN community use only';
-$md_description = 'TERN Data Discovery Portal (Dev Version)is a mesh of searchable web pages describing (and where possible linking to) terrestrial ecosystem research data collections. ';
+$md_title = 'TERN Data Discovery Portal';
+//$md_sub = 'Beta Version - For TERN community use only';
+$md_description = 'TERN Data Discovery Portal will enable the discovery of Australian terrestrial ecosystem data collections harvested by TERN Facilities.';
 //$md_image = 'http://services.ands.org.au/home/orca/rda/img/rda-design.png';
 if (!isset($title))  $title = $md_title;
 if (isset($description))
@@ -67,9 +67,9 @@ $number = mt_rand(1,3);
                         </li>
                     </ul>
               </nav> 
-             <img id="dataDiscoveryPortalLogo" alt="Data Discovery Portal" src="/img/logos/logo-datadiscoveryportal-beta.png"/>
+             <img id="dataDiscoveryPortalLogo" alt="Data Discovery Portal" src="/img/logos/logo-datadiscoveryportal.png"/> 
 
-         <!--      <div class="no_print top-menu-cover">-->
+         <!--      <div class="no_print top-menu-cover">-->  
 
           <!--      </div>-->
            <!-- </div>-->

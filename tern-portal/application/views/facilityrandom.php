@@ -90,7 +90,7 @@ function printRecord($r, $class){
                     if($half>0)
                     {    
                         echo        '<div class="viewAll">';
-                        echo            '<a href="'.base_url().'search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/num=10">View '.$partners[$fackey]['display_title'].' records</a>';
+                        echo            '<a id="allrec" class="greenGradient roundedCorners" href="'.base_url().'search#!/q=*:*/p=1/tab=collection/group='.$partners[$fackey]['query_name'].'/num=10">View ALL '.$partners[$fackey]['alt_name'].' records</a>';
                         echo        '</div>';
                     }
                     echo '</div>';       

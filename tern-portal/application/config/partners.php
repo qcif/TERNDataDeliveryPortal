@@ -12,7 +12,7 @@
             {
                 "key": "tddp",
                 "display_title": "TERN Data Discovery Portal",
-                "alt_name": "Terrestial Ecosystem Data",                 
+                "alt_name": "TDDP",                 
                 "query_name": "TERN Data Discovery Portal", 
                 "description_type": [
                     "logo",
@@ -29,7 +29,7 @@
 
                 "display_title": "Ecoinformatics",
 
-                "alt_name": "Ecological Data",    
+                "alt_name": "EI",    
                 "query_name": "Ecoinformatics", 
                  "description_type": [
                     "logo",
@@ -46,7 +46,7 @@
 
                 "display_title": "AusCover",
 
-                "alt_name": "Satellite Biophysical Data",
+                "alt_name": "AusCover",
                 "query_name": "Auscover",  
                 "description_type": [
                     "logo",
@@ -63,7 +63,7 @@
 
                 "display_title": "OzFlux",
 
-                "alt_name": "Carbon Dioxide, Energy & Water fluxes",
+                "alt_name": "OzFlux",
                 "query_name": "OzFlux: Australian and New Zealand Flux Research and Monitoring",                 
                 "description_type": [
                     "logo",
@@ -80,7 +80,7 @@
 
                 "display_title": "Multi Scale Plot Network",
 
-                "alt_name": "Flora and fauna plots",  
+                "alt_name": "MSPN",  
                 "query_name": "mspn",                 
                  "description_type": [
                     "logo",
@@ -114,7 +114,7 @@
             {
                 "key": "ltern",
                 "display_title": "Long Term Ecological Research Network",
-                "alt_name": "Long Term Ecological Research Network",  
+                "alt_name": "LTERN",  
                 "query_name": "ltern",                 
                  "description_type": [
                     "logo",
@@ -132,7 +132,7 @@
 
                 "display_title": "Australian Supersite Network",
 
-                "alt_name": "Biogeochemical and Ecological Data", 
+                "alt_name": "ASN", 
                 "query_name": "Australian Supersite Network",                 
                 "description_type": [
                     "logo",
@@ -149,7 +149,7 @@
 
                 "display_title": "Soil and Landscape Grid",
 
-                "alt_name": "Soils & Landform Data", 
+                "alt_name": "Soils", 
                 "query_name": "Soils",                 
                 "description_type": [
                     "logo",
@@ -166,7 +166,7 @@
 
                 "display_title": "Australian Coastal Ecosystems",
 
-                "alt_name": "Coastal Zone Data", 
+                "alt_name": "ACE", 
                 "query_name": "coastal",               
                 "description_type": [
                     "logo",
@@ -183,7 +183,7 @@
 
                 "display_title": "Ecosystem Modelling and Scaling Infrastructure",
 
-                "alt_name": "Ecosystem Modelling Tools",  
+                "alt_name": "EMaST",  
                 "query_name": "eMast", 
                 "description_type": [
                     "logo",
@@ -200,7 +200,7 @@
 
                 "display_title": "Australian Centre for Ecological Analysis and Synthesis",
 
-                "alt_name": "Science and Management Synthesis", 
+                "alt_name": "ACEAS", 
                 "query_name": "ACEAS", 
                 "description_type": [
                     "logo",

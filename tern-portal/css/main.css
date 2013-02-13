@@ -150,13 +150,13 @@ header{
 		#recentlyReleased a span.date{ color: #333333; }
 		
 #facilitiesAndDatasets{ background-color: #fff; height: 95px; clear: both; padding: 30px 35px 30px 35px; }
-	#facilitiesAndDatasets h1{ float: left; color: #484848; font-size: 20px; font-weight: normal; padding: 0px; margin: 0px 10px 0px 0px; width: 140px; }
+	#facilitiesAndDatasets h1{ /*float: left;*/ color: #609227; font-size: 20px; font-weight: normal; padding: 0px; margin: 0px 10px 0px 0px; width: 400px; }
 	#facilitiesAndDatasets a.prev, #facilitiesAndDatasets a.next{ float: left; width: 15px; height: 29px; margin-top: 30px; }
 	#facilitiesAndDatasets a.prev{ background: url(../img/home/carousel/carousel-prev-normal-btn.png) no-repeat; }
 	#facilitiesAndDatasets a.prev:hover{ background: url(../img/home/carousel/carousel-prev-hover-btn.png) no-repeat; }
 	#facilitiesAndDatasets a.next{ background: url(../img/home/carousel/carousel-next-normal-btn.png) no-repeat; }
 	#facilitiesAndDatasets a.next:hover{ background: url(../img/home/carousel/carousel-next-hover-btn.png) no-repeat; }
-	#facilitiesAndDatasets #carouselContainer{ float: left; width: 970px; height: 90px; overflow: hidden; margin: 0px 10px; }
+	#facilitiesAndDatasets #carouselContainer{ float: left; width: 1120px; height: 90px; overflow: hidden; margin: 0px 10px; }
 		#facilitiesAndDatasets #carouselContainer ul{ list-style: none; position:relative; }
 			#facilitiesAndDatasets #carouselContainer ul li{ float: left; line-height: 90px; margin: 0px 10px 0px 0px;width:200px;}
 				#facilitiesAndDatasets #carouselContainer ul li img{ vertical-align: middle; }
@@ -1014,4 +1014,24 @@ a.external, .description a, .licensing a{
     position: relative;
     text-align: center;
     
+}
+
+.datatext{
+    line-height: 25px;
+    text-align: justify;
+}
+
+#allrec{
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size:20px;
+    text-align: center;
+    display:block;
+    width:300px;
+    float:left;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 50px;
+    margin-top:25px;
+    margin-left:160px;
 }

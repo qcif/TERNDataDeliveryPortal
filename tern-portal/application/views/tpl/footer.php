@@ -7,7 +7,7 @@
     </p>
     <p class="right">
         <small>
-            Copyright © 2012 TERN (University of Queensland).
+            Copyright © 2013 TERN (University of Queensland).
                 <br>
              <?php echo anchor('home/terms', 'Terms of use',''); ?>
                 |
