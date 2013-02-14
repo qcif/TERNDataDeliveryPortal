@@ -37,13 +37,12 @@ require '_functions/table_functions.php';
 // Include the application configuration.
 require '_configuration/application_config.php';
 
-
 $t_context = array(
-    'ciphers' => 'ALL:!AES:!3DES:!RC4:@STRENGTH', // OK:LOW
+   'ciphers' => 'ALL:!AES:!3DES:!RC4:@STRENGTH', // OK:LOW
 );
 $context = stream_context_create(
-    array(
-        'ssl' => $t_context,
+   array(
+       'ssl' => $t_context,
 ));
 libxml_set_streams_context($context);
 

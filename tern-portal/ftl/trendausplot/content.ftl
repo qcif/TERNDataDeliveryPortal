@@ -25,6 +25,7 @@
                     <#else>
                         not provided
                     </#if> <br/>
+<img width="300" height="300" src="/img/transect-ausplot/${features[0].tern_plot_id.value}.JPG"/>
                    <br/>
 		</div> 
 		

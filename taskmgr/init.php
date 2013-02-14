@@ -4,7 +4,7 @@ set_time_limit(0);
 ini_set('memory_limit', '1024M');
 
 // Get our global config path
-$APPLICATION_BASE = "CHANGEME";
+$APPLICATION_BASE = "/var/www/tern/registry/src/";
 $ip = '';
 
 set_include_path(get_include_path() . PATH_SEPARATOR . $APPLICATION_BASE);
