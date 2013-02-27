@@ -55,7 +55,8 @@ $(function() {
     var mapResult;
     var param_q;
     var spatial_included_ids = '';
-
+    var polygeometry ='';
+    var polybounds = new Object();
     var clearAll = 0; 
     
     // ROUTING 
