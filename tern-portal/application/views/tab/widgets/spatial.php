@@ -9,7 +9,7 @@
             	<li>Select region then 'GO'<br>
                   <div id="regionPanel">
                      <a title="To draw a region: click in the map and drag the mouse to get a rectangle. Release the mouse to finish." id="box" class="boxBtn"></a>
-                     <!--<a href="#" id="selectPolyBtn" title="To move the region: Click and drag the box around the map"></a>-->
+                     <a id="poly" class="polyBtn"></a>
                      <a class="mapGoBtn" ></a>
                      <a title="Clear selected region" id="del" class="delBtn" ></a>
                   </div>

@@ -128,7 +128,7 @@ class Tregion extends CI_Controller {
     }
     
     
-    
+    // the main brunt of the process
     private function processNewRecords($schedule){
         $this->load->model('Solr');
         $this->load->model('Regions');
@@ -247,7 +247,7 @@ class Tregion extends CI_Controller {
     }
     
     
-    
+    // the main brunt of the process record
     private function processRecords($schedule){
         $this->load->model('Solr');
         $this->load->model('Regions');
@@ -364,7 +364,7 @@ class Tregion extends CI_Controller {
                 ob_end_flush();
                 flush();
         }while($this->last_run == 0 && $this->cancel != 1);
-    }
+    } 
     
     
     private function doIntersect($coords,$layer_id){
@@ -378,12 +378,16 @@ class Tregion extends CI_Controller {
                 $index_id_arr = $this->Regions->intersect($longlat[0],$longlat[1],$layer_id);
 
             }else if(count($spatial_arr) > 1){
-                foreach ($spatial_arr as $key => $value){
-                    $spatial_arr[$key]  = str_replace(",", " ", $value);
+                for($i=0;$i<count($spatial_arr);$i++){ 
+                     $spatial_arr[$i]  = str_replace(",", " ", $spatial_arr[$i]); 
                 }
-                $poly = implode(", ", $spatial_arr);
+                $poly = implode(", ", $spatial_arr); 
 
-                $index_id_arr = $this->Regions->intersectPoly($poly,$layer_id);
+                if ($spatial_arr[0] != $spatial_arr[count($spatial_arr-1)] || count($spatial_arr) <= 3){ // if it's not a closed loop it's a line string
+                      $index_id_arr = $this->Regions->intersectLine($poly,$layer_id);
+                }else if(count($spatial_arr) > 3){
+                    $index_id_arr = $this->Regions->intersectPoly($poly,$layer_id);
+                }
              
             }
             return $index_id_arr;

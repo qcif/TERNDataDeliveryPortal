@@ -57,7 +57,7 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
         {
             echo '<h2>Spatial:</h2>';
             echo '<ul>';
-            if($spatial_included_ids!='') echo '<li><span class="clearSpatial clearFilter">Bounding box</span></li>';
+            if($spatial_included_ids!='') echo '<li><span class="clearSpatial clearFilter">Spatial search</span></li>';
             if($ternRegionFilter!='All') displaySelectedRegionFacet('tern_region',$ternRegionFilter,$json,$regionsName);
             echo '</ul>';
         }

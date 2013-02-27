@@ -7,6 +7,10 @@ class Home extends CI_Controller {
     {
     }
 
-
+    public function notfound()
+    {
+        print("Unrecognized script");
+        exit();
+    }
     
 }

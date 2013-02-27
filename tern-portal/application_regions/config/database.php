@@ -77,5 +77,23 @@ $db['default']['stricton'] = FALSE;
 $db['default']['port'] = $orca_db_port;
 
 
+$db['orca']['hostname'] = $orca_db_host;
+$db['orca']['username'] = 'webuser';
+$db['orca']['password'] = '';
+$db['orca']['database'] = 'dbs_orca';
+$db['orca']['dbdriver'] = 'postgre';
+$db['orca']['dbprefix'] = '';
+$db['orca']['pconnect'] = FALSE;
+$db['orca']['db_debug'] = FALSE;
+$db['orca']['cache_on'] = FALSE;
+$db['orca']['cachedir'] = '';
+$db['orca']['char_set'] = 'utf8';
+$db['orca']['dbcollat'] = 'utf8_general_ci';
+$db['orca']['swap_pre'] = '';
+$db['orca']['autoinit'] = TRUE;
+$db['orca']['stricton'] = FALSE;
+$db['orca']['port'] = $orca_db_port;
+
+
 /* End of file database.php */
 /* Location: ./application/config/database.php */
