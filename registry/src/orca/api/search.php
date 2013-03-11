@@ -5,13 +5,23 @@ require '../../_includes/init.php';
 require '../orca_init.php';
 require_once 'xml2json.php';
 require '../../global_config.php';
+require 'api_functions.php';
 
 $executionTimeoutSeconds = 10*60;
 ini_set("max_execution_time", "$executionTimeoutSeconds");
 
+//search keyword
 $searchString = getQueryValue('term');
+if ($searchString=="")
+    $searchString="*:*";
+
+//format xml or json, xml by default
 $format=  getQueryValue('format');
 
+//temporal coverage
+$temporal=getQueryValue('temporal');
+
+//xml is the default format
 if(($format=='json')||($format=='xml')||($format=='checker'))
 {
     $format=getQueryValue('format');
@@ -19,29 +29,48 @@ if(($format=='json')||($format=='xml')||($format=='checker'))
 }
 else
 {
-    $format='xml';
-    
+    $format='xml'; 
 }
 
+//geometry (supports polygon, linestring and point)
+$g=getQueryValue('g');
+
+if($g!="")
+{    
+    $bounds=findBounds($g); //find envelop bounding box for given geometry
+}
+
+$b=getQueryValue('b'); //n,e,s,w
+
+//return 5 records by default
 $cnt=5;//by default , only return 5 results
 
-if(getQueryValue('count')>0)
+if(is_numeric(getQueryValue('count')))
 {
-    $cnt=  getQueryValue('count');
+    if(getQueryValue('count')>0)
+    {
+        $cnt=  getQueryValue('count');
+    } 
+}else if(getQueryValue('count')=='all')
+{
+    $cnt=1000000;
 }
 
-//$itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/view/dataview?key=';
+
+
+
 $itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/';
 
 $totalResults = 0;
 
-searchRegistryTERNSolr($searchString, $format, $cnt,$totalResults,$itemLinkBaseURL,$solr_url);
+searchRegistryTERNSolr($searchString, $temporal, $g,$bounds,$b,$format, $cnt,$totalResults,$itemLinkBaseURL,$solr_url);
 
 
 require '../../_includes/finish.php';
  
 
-function buildXMLOutput($totalResults,$searchString,$content,$itemLinkBaseURL)
+//build xml header 
+function buildXMLOutput($totalResults,$searchString,$temporal,$g,$b,$content,$itemLinkBaseURL)
 {
 
     
@@ -57,13 +86,32 @@ function buildXMLOutput($totalResults,$searchString,$content,$itemLinkBaseURL)
     $tmp=$tmp.'    <link>'.eAPP_ROOT.'orca/api/search.php</link>'."\n";
     $tmp=$tmp.'    <description>Search results for '.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Ecosystem registry Search</description>\n";
     $tmp=$tmp.'    <opensearch:totalResults>'.$totalResults.'</opensearch:totalResults>'."\n";
-    $tmp=$tmp.'    <opensearch:Query role="request" searchTerms="'.esc($searchString).'" ></opensearch:Query>'."\n";
+    
+    $tq='    <opensearch:Query role="request" searchTerms="'.esc($searchString).'" ';
+    if ($temporal!="" && $temporal!=null)
+    {
+        $tq=$tq.'temporal="'.$temporal.'"';
+    }
+    
+    if ($g!="" && $g!=null)
+    {
+        $tq=$tq.' geometry="'.$g.'"';
+    }
+    
+    if ($b!="" && $b!=null)
+    {
+        $tq=$tq.' bbox="'.$b.'"';
+    }
+    
+    $tq=$tq.'></opensearch:Query>'."\n";
+    $tmp=$tmp.$tq;
    $t='  </channel>'."\n"."</rss>\n";
 
     return $tmp.$tmpc.$t;
  }
  
-function buildJsonOutput($totalResults,$searchString,$content,$itemLinkBaseURL)
+ //wrapper to convert xml to json format
+function buildJsonOutput($totalResults,$searchString,$temporal,$g,$b,$content,$itemLinkBaseURL)
 {
      $totalResults= getCount($content);
     
@@ -72,8 +120,26 @@ function buildJsonOutput($totalResults,$searchString,$content,$itemLinkBaseURL)
      $jtmp=$jtmp.'    <link>'.eAPP_ROOT.'orca/api/search.php</link>'."\n";
      $jtmp=$jtmp.'    <description>Search results for '.esc(eINSTANCE_TITLE_SHORT.' '.eAPP_TITLE)." Ecosystem registry Search</description>\n";
      $jtmp=$jtmp.'    <opensearch:totalResults>'.$totalResults.'</opensearch:totalResults>'."\n";
-     $jtmp=$jtmp.'    <opensearch:Query role="request" searchTerms="'.esc($searchString).'" />'."\n";     
+     
+    $tq='    <opensearch:Query role="request" searchTerms="'.esc($searchString).'" ';
+    if ($temporal!="" && $temporal!=null)
+    {
+        $tq=$tq.'temporal="'.$temporal.'"';
+    }
     
+    if ($g!="" && $g!=null)
+    {
+        $tq=$tq.' geometry="'.$g.'"';
+    }
+    
+    if ($b!="" && $b!=null)
+    {
+        $tq=$tq.' bbox="'.$b.'"';
+    }
+    
+    $tq=$tq.'></opensearch:Query>'."\n";
+    $jtmp=$jtmp.$tq;
+     
      $jtmpc= buildXMLContent($content,$itemLinkBaseURL);
      
      $jt='  </response>';
@@ -88,6 +154,7 @@ function buildJsonOutput($totalResults,$searchString,$content,$itemLinkBaseURL)
      return $xmlstring;
  }
  
+ //xml content without header
 function buildXMLContent($content,$itemLinkBaseURL)
 {
 
@@ -96,10 +163,9 @@ function buildXMLContent($content,$itemLinkBaseURL)
     $tmp1='';
     if( $docs->result!=null )
     {       
-        
+
         foreach( $docs->result->doc as $doc )  
 	{	
-       
                 $registryObjectKey = $doc->xpath('str[@name="key"]');
                 $registryObjectSlug=$doc->xpath('str[@name="url_slug"]');     
 
@@ -107,6 +173,11 @@ function buildXMLContent($content,$itemLinkBaseURL)
 		$registryObjectClass=$doc->xpath('str[@name="class"]');
 		$registryObjectType=$doc->xpath('str[@name="type"]');
 		$registryObjectDescriptions=$doc->xpath('arr[@name="description_value"]/str');
+                
+                $registryObjectDateFrom=$doc->xpath('arr[@name="date_from"]/int');
+                $registryObjectDateTo=$doc->xpath('arr[@name="date_to"]/int');
+                
+                $registryObjectSpatial=$doc->xpath('arr[@name="spatial_coverage"]/str');
                 
                 $location=$doc->xpath('arr[@name="location"]/str');
 
@@ -126,7 +197,17 @@ function buildXMLContent($content,$itemLinkBaseURL)
                 
 		$tmp1=$tmp1.'      <category>'.esc("$registryObjectClass[0]:$registryObjectType[0]").'</category>'."\n";
 		$tmp1=$tmp1.'      <description>'.esc($registryObjectDescriptions[0]).esc($registryObjectDescriptions[1]).esc($registryObjectDescriptions[2]).'</description>'."\n";
-                                                 
+                
+                if($registryObjectDateFrom && $registryObjectDateTo)
+                {
+                    $tmp1=$tmp1.'      <temporal>'.array_shift($registryObjectDateFrom).'-'.array_shift($registryObjectDateTo).'</temporal>'."\n";
+                }                
+                    
+                if($registryObjectSpatial)
+                {
+                    $tmp1=$tmp1.'      <spatial_coverage>'.array_shift($registryObjectSpatial).'</spatial_coverage>'."\n";
+                }
+                
                 for($j=0;$j<count($location);$j++)
                 {
 
@@ -147,28 +228,54 @@ function buildXMLContent($content,$itemLinkBaseURL)
     return $tmp1;
 }
 
-function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLinkBaseURL,$solr_url)
+//actual solr query
+function searchRegistryTERNSolr($searchString,$temporal,$g,$bounds,$b,$format,$cnt,$totalResults,$itemLinkBaseURL,$solr_url)
 {
         $q = $searchString;
         $q = rawurlencode($q);
         $q = str_replace("%5C%22", "\"", $q); //silly encoding
         $start = 0;
         $row = $cnt;     
+        $extended_query="";
+        $spatial_included_ids="";
+        
+        if ($g!="" && $b=="")
+        {
+            $spatial_included_ids=doSpatial($g,$bounds);
+        }
+        
+        if ($b!="" && $g=="")
+        {
+            $spatial_included_ids=doSpatialBox($b);
+        }
         
         $q = urldecode($q);
         
         if ($q != '*:*')
             $q = escapeSolrValueTERN($q);
-        else
-            $row=100000;
-          
+        
         $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR display_title:(' . $q . ')^50 OR list_title:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
         $q.=' class:(collection)';
+        
+        if($temporal!="" && $temporal !=null)
+        {
+            $temporal_array=explode('-', $temporal);
+            $extended_query .='+date_from:[* TO '. $temporal_array[1].']+date_to:['.$temporal_array[0] . ' TO *]';
+            
+             $q.=($extended_query);
+        }
+        
+        if($spatial_included_ids!="")
+        {
+            $extended_query.=$spatial_included_ids;
+            $q.=$extended_query;
+        }
+
         $fields = array(
             'q' => $q, 'version' => '2.2', 'start' => $start, 'rows'=>$row,'wt' => 'xml',
             'fl' => '*,score'
         );
-    
+     
         $fields_string = '';
         foreach ($fields as $key => $value)
         {
@@ -188,10 +295,11 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //return to variable
         $content = curl_exec($ch); //execute the curl
         curl_close($ch); //close the curl
-    
+  
+        //output json 
         if ($format == 'json')
         {           
-                $output= buildJsonOutput($totalResults,$searchString,$content,$itemLinkBaseURL);
+                $output= buildJsonOutput($totalResults,$searchString,$temporal,$g,$b,$content,$itemLinkBaseURL);
     
                 $out= xml2json::transformXmlStringToJson($output);
                 if(getQueryValue('w')!=null)
@@ -205,14 +313,14 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
              
              
         }
-        elseif ($format=='checker')
+        elseif ($format=='checker') //output html for link checker
         {
             $html=buildHTML($totalResults,$searchString,$content,$itemLinkBaseURL);
             echo $html;
         }
         else// ($format == 'xml')
         {
-          $output= buildXMLOutput($totalResults,$searchString,$content,$itemLinkBaseURL);
+          $output= buildXMLOutput($totalResults,$searchString,$temporal,$g,$b,$content,$itemLinkBaseURL);
           //print_r($output);
           header("Content-Type: text/xml; charset=UTF-8", true);
           echo $output;
@@ -221,7 +329,6 @@ function searchRegistryTERNSolr($searchString,$format,$cnt,$totalResults,$itemLi
 
         }
 }
-
 
 function escapeSolrValueTERN($string)
 {	
@@ -272,9 +379,6 @@ function buildHtmlContent($content,$itemLinkBaseURL)
        
                 $registryObjectKey = $doc->xpath('str[@name="key"]');
                 $registryObjectName=$doc->xpath('str[@name="display_title"]');
-		//$registryObjectClass=$doc->xpath('str[@name="class"]');
-		//$registryObjectType=$doc->xpath('str[@name="type"]');
-		//$registryObjectDescriptions=$doc->xpath('arr[@name="description_value"]/str');
                 
                 $location=$doc->xpath('arr[@name="location"]/str');
 
