@@ -1,4 +1,4 @@
-CREATE or REPLACE FUNCTION tern_api_search_geom_intersect(north double precision, east double precision, south double precision, west double precision, coords text) RETURNS SETOF character varying
+CREATE or REPLACE FUNCTION dba.tern_api_search_geom_intersect(north double precision, east double precision, south double precision, west double precision, coords text) RETURNS SETOF character varying
     LANGUAGE plpgsql
     AS $_$DECLARE
   inputpoly dba.geometry;
