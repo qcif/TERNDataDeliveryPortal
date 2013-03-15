@@ -9,7 +9,7 @@ function iecheck() {
 
 
 TERNData = new function() {
-  //var BASE_URL = 'http://portal-dev.tern.org.au/admin/orca/api/';
+  //var BASE_URL = 'http://tern9.qern.qcif.edu.au/admin/orca/api/';
   var BASE_URL = 'http://portal.tern.org.au/admin/orca/api/';
   var STYLESHEET = BASE_URL + "css/api.css"
   var CONTENT_URL = BASE_URL + 'js/list_result.js';
@@ -33,11 +33,26 @@ TERNData = new function() {
     document.getElementsByTagName('head')[0].appendChild(script);
   }
   
-  this.init = function(Args) {
+  this.init = function(Args,temporal,geo,bbox) {
            _args = Args;
+           var temporal=temporal;
+           var geo=geo;
+           var bbox=bbox;
            
            this.getTerm=function(){
                return _args;
+           }
+           
+           this.getTemporal=function(){
+               return temporal;
+           }
+           
+           this.getGeo=function(){
+               return geo;
+           }
+           
+           this.getBBox=function(){
+               return bbox;
            }
 
            this.serverResponse = function(data) {
