@@ -21,6 +21,8 @@ $format=  getQueryValue('format');
 //temporal coverage
 $temporal=getQueryValue('temporal');
 
+//facility
+$fac=getQueryValue('fac');
 //xml is the default format
 if(($format=='json')||($format=='xml')||($format=='checker'))
 {
@@ -63,14 +65,14 @@ $itemLinkBaseURL = ePROTOCOL.'://'.eHOST.'/';
 
 $totalResults = 0;
 
-searchRegistryTERNSolr($searchString, $temporal, $g,$bounds,$b,$format, $cnt,$totalResults,$itemLinkBaseURL,$solr_url);
+searchRegistryTERNSolr($searchString, $temporal, $g,$bounds,$b,$fac,$format, $cnt,$totalResults,$itemLinkBaseURL,$solr_url);
 
 
 require '../../_includes/finish.php';
  
 
 //build xml header 
-function buildXMLOutput($totalResults,$searchString,$temporal,$g,$b,$content,$itemLinkBaseURL)
+function buildXMLOutput($totalResults,$searchString,$temporal,$g,$b,$fac,$content,$itemLinkBaseURL)
 {
 
     
@@ -103,6 +105,11 @@ function buildXMLOutput($totalResults,$searchString,$temporal,$g,$b,$content,$it
         $tq=$tq.' bbox="'.$b.'"';
     }
     
+    if ($fac!="" && $fac!=null)
+    {
+        $tq=$tq.'facility="'.$fac.'"';
+    }
+    
     $tq=$tq.'></opensearch:Query>'."\n";
     $tmp=$tmp.$tq;
    $t='  </channel>'."\n"."</rss>\n";
@@ -111,7 +118,7 @@ function buildXMLOutput($totalResults,$searchString,$temporal,$g,$b,$content,$it
  }
  
  //wrapper to convert xml to json format
-function buildJsonOutput($totalResults,$searchString,$temporal,$g,$b,$content,$itemLinkBaseURL)
+function buildJsonOutput($totalResults,$searchString,$temporal,$g,$b,$fac,$content,$itemLinkBaseURL)
 {
      $totalResults= getCount($content);
     
@@ -135,6 +142,11 @@ function buildJsonOutput($totalResults,$searchString,$temporal,$g,$b,$content,$i
     if ($b!="" && $b!=null)
     {
         $tq=$tq.' bbox="'.$b.'"';
+    }
+    
+    if ($fac!="" && $fac!=null)
+    {
+        $tq=$tq.'facility="'.$fac.'"';
     }
     
     $tq=$tq.'></opensearch:Query>'."\n";
@@ -229,7 +241,7 @@ function buildXMLContent($content,$itemLinkBaseURL)
 }
 
 //actual solr query
-function searchRegistryTERNSolr($searchString,$temporal,$g,$bounds,$b,$format,$cnt,$totalResults,$itemLinkBaseURL,$solr_url)
+function searchRegistryTERNSolr($searchString,$temporal,$g,$bounds,$b,$fac,$format,$cnt,$totalResults,$itemLinkBaseURL,$solr_url)
 {
         $q = $searchString;
         $q = rawurlencode($q);
@@ -256,6 +268,13 @@ function searchRegistryTERNSolr($searchString,$temporal,$g,$bounds,$b,$format,$c
         
         $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR display_title:(' . $q . ')^50 OR list_title:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';
         $q.=' class:(collection)';
+        
+        if($fac!="" && $fac !=null)
+        {
+            $extended_query .='+data_source_key:('.$fac.')';
+            
+             $q.=($extended_query);
+        }
         
         if($temporal!="" && $temporal !=null)
         {
@@ -299,7 +318,7 @@ function searchRegistryTERNSolr($searchString,$temporal,$g,$bounds,$b,$format,$c
         //output json 
         if ($format == 'json')
         {           
-                $output= buildJsonOutput($totalResults,$searchString,$temporal,$g,$b,$content,$itemLinkBaseURL);
+                $output= buildJsonOutput($totalResults,$searchString,$temporal,$g,$b,$fac,$content,$itemLinkBaseURL);
     
                 $out= xml2json::transformXmlStringToJson($output);
                 if(getQueryValue('w')!=null)
@@ -320,7 +339,7 @@ function searchRegistryTERNSolr($searchString,$temporal,$g,$bounds,$b,$format,$c
         }
         else// ($format == 'xml')
         {
-          $output= buildXMLOutput($totalResults,$searchString,$temporal,$g,$b,$content,$itemLinkBaseURL);
+          $output= buildXMLOutput($totalResults,$searchString,$temporal,$g,$b,$fac,$content,$itemLinkBaseURL);
           //print_r($output);
           header("Content-Type: text/xml; charset=UTF-8", true);
           echo $output;
