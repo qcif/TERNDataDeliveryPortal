@@ -33,11 +33,12 @@ TERNData = new function() {
     document.getElementsByTagName('head')[0].appendChild(script);
   }
   
-  this.init = function(Args,temporal,geo,bbox) {
+  this.init = function(Args,temporal,geo,bbox,fac) {
            _args = Args;
            var temporal=temporal;
            var geo=geo;
            var bbox=bbox;
+           var fac=fac;
            
            this.getTerm=function(){
                return _args;
@@ -54,7 +55,9 @@ TERNData = new function() {
            this.getBBox=function(){
                return bbox;
            }
-
+           this.getFac=function(){
+               return fac;
+           }
            this.serverResponse = function(data) {
 	   
            // if (!data) return;
