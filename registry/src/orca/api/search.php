@@ -292,7 +292,7 @@ function searchRegistryTERNSolr($searchString,$temporal,$g,$bounds,$b,$fac,$form
 
         $fields = array(
             'q' => $q, 'version' => '2.2', 'start' => $start, 'rows'=>$row,'wt' => 'xml','defType'=>'edismax',
-            'fl' => '*,score'
+            'boost'=>'display_title','fl' => '*,score'
         );
      
         $fields_string = '';
