@@ -415,12 +415,12 @@
                                         </xsl:for-each>
                                         </ul>
                                </xsl:if>     
-                            <xsl:if test="ro:subject[not(@type = 'anzsrc-for' or  @type = 'anzsrc-seo' or  @type = 'anzsrc-toa' or @type = 'gcmd')]">
+                            <xsl:if test="ro:subject/@type='local'">
                                     <h3>Local</h3>
                                         <ul>
                                             <xsl:for-each select="ro:subject">      
                                                 <xsl:sort select="./@type"/>
-                                                <xsl:if test="@type!='anzsrc-for'and @type!='anzsrc-seo' and @type!='anzsrc-toa' and @type!='gcmd'">
+                                                <xsl:if test="@type='local'"> 
                                                     <xsl:apply-templates select="."/>
                                                 </xsl:if>
                                             </xsl:for-each>
