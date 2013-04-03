@@ -371,6 +371,62 @@
                             </a>
                         </h2>
                         <div class="content collapse subjects" >
+                                <xsl:if test="ro:subject/@type='anzsrc-for'">
+                                    <h3>ANZSRC - FOR</h3>
+                                        <ul  class="forcode">
+                                        <xsl:for-each select="ro:subject">      
+                                            <xsl:sort select="./@type"/>
+                                            <xsl:if test="@type='anzsrc-for'">
+                                                <xsl:apply-templates select="."/>
+                                            </xsl:if>
+                                        </xsl:for-each>
+                                        </ul>
+                                </xsl:if>
+                                <xsl:if test="ro:subject/@type='anzsrc-seo'">
+                                    <h3>ANZSRC - SEO</h3>
+                                        <ul  class="forcode">
+                                        <xsl:for-each select="ro:subject">      
+                                            <xsl:sort select="./@type"/>
+                                            <xsl:if test="@type='anzsrc-seo'">
+                                                <xsl:apply-templates select="."/>
+                                            </xsl:if>
+                                        </xsl:for-each>
+                                        </ul>
+                                </xsl:if>
+                               <xsl:if test="ro:subject/@type='anzsrc-toa'">
+                                    <h3>ANZSRC - TOA</h3>
+                                        <ul  class="forcode">
+                                        <xsl:for-each select="ro:subject">      
+                                            <xsl:sort select="./@type"/>
+                                            <xsl:if test="@type='anzsrc-toa'">
+                                                <xsl:apply-templates select="."/>
+                                            </xsl:if>
+                                        </xsl:for-each>
+                                        </ul>
+                               </xsl:if>
+                               <xsl:if test="ro:subject/@type='gcmd'">
+                                    <h3>GCMD</h3>
+                                        <ul  class="forcode">
+                                        <xsl:for-each select="ro:subject">      
+                                            <xsl:sort select="./@type"/>
+                                            <xsl:if test="@type='gcmd'">
+                                                <xsl:apply-templates select="."/>
+                                            </xsl:if>
+                                        </xsl:for-each>
+                                        </ul>
+                               </xsl:if>     
+                            <xsl:if test="ro:subject[not(@type = 'anzsrc-for' or  @type = 'anzsrc-seo' or  @type = 'anzsrc-toa' or @type = 'gcmd')]">
+                                    <h3>Local</h3>
+                                        <ul>
+                                            <xsl:for-each select="ro:subject">      
+                                                <xsl:sort select="./@type"/>
+                                                <xsl:if test="@type!='anzsrc-for'and @type!='anzsrc-seo' and @type!='anzsrc-toa' and @type!='gcmd'">
+                                                    <xsl:apply-templates select="."/>
+                                                </xsl:if>
+                                            </xsl:for-each>
+                                        </ul>
+                            </xsl:if>                                                         
+<!--                            
                             <xsl:if test="ro:subject/@type='anzsrc-for' or ro:subject/@type='anzsrc-seo' or ro:subject/@type='anzsrc-toa'">
                                     <h3>ANZSRC</h3>
                                         <ul  class="forcode">
@@ -394,7 +450,7 @@
                                             </xsl:for-each>
                                         </ul>
                             </xsl:if>
-                                     
+-->                                     
                         </div>
                         <a href="javascript:void(0);" class="showall_subjects collapse">More...</a>      
                     </li> 

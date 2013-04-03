@@ -140,6 +140,7 @@ else
 			{	
 				// Import the data.
 				$deletedRegistryObjectCount = checkforOAIdeletes($OAIPMHDocument);
+
 				$runErrors = importRegistryObjects($registryObjects, $dataSourceKey, $runResultMessage, $harvestRequestId, NULL,  $harvestRequestId);
 			}
 
