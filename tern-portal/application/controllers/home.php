@@ -127,7 +127,7 @@ class Home extends CI_Controller {
 		
         
     
-        /*get 10 random records*/
+        /*get nt released records, getRandomRecords() provide recent releaee records */
         private function handleRandomTab($num,$fac){
 
             $this->load->model('Solr','Solr');

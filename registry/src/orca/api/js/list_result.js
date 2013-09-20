@@ -7,10 +7,11 @@ var term=TERNData.getTerm();
 var temporal=TERNData.getTemporal();
 var geo=TERNData.getGeo();
 var bbox=TERNData.getBBox();
+var fac=TERNData.getFac();
 
 //var base_url='http://demo/api/search';
-var base_url='http://portal.tern.org.au/ternapi/search';
-//var base_url='http://tern9.qern.qcif.edu.au/ternapi/search';
+//var base_url='http://portal.tern.org.au/ternapi/search';
+var base_url='http://tern9.qern.qcif.edu.au/ternapi/search';
 
 $(document).ready(function() 
 { 
@@ -27,7 +28,10 @@ $(document).ready(function()
    
    if(bbox!=undefined)
        str=str+"b="+bbox+"&";          
-  
+
+   if (fac!=undefined)
+       str=str+"fac="+fac+"&";  
+
     $.ajax({
             type:'GET',
            // url:base_url+"?term="+term+"&format=json&w=1&count=10&callback=?",

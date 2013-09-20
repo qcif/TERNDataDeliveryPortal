@@ -48,7 +48,7 @@ class Tregion extends CI_Controller {
         header("Content-Length: $size");
         ob_end_flush();     
         flush();          
-        ob_end_clean();
+//        ob_end_clean();
        
         if($schedules = $this->Scheduler->getOrder(0,$id)){  // if there is a schedule found
             
@@ -95,7 +95,7 @@ class Tregion extends CI_Controller {
         header("Content-Length: $size");
         ob_end_flush();     
         flush();          
-        ob_end_clean();
+//        ob_end_clean();
         if($schedules = $this->Scheduler->getOrder(1)){ 
             $json = $this->load->file('../api/regions.json',TRUE);
             $rcf = json_decode($json,TRUE);
@@ -383,7 +383,7 @@ class Tregion extends CI_Controller {
                 }
                 $poly = implode(", ", $spatial_arr); 
 
-                if ($spatial_arr[0] != $spatial_arr[count($spatial_arr-1)] || count($spatial_arr) <= 3){ // if it's not a closed loop it's a line string
+                if ($spatial_arr[0] != $spatial_arr[count($spatial_arr)-1] || count($spatial_arr) <= 3){ // if it's not a closed loop it's a line string
                       $index_id_arr = $this->Regions->intersectLine($poly,$layer_id);
                 }else if(count($spatial_arr) > 3){
                     $index_id_arr = $this->Regions->intersectPoly($poly,$layer_id);
