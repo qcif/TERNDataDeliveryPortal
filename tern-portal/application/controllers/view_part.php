@@ -59,6 +59,8 @@ class View_part extends CI_Controller {
 		$key = $this->input->post('key');
 		$this->load->model('Registryobjects', 'ro');
 		$content = $this->ro->get($key);
+print_r($key);
+die();
 		$data['contentTop'] = $this->transform($content, 'rifcs2MenuHtml.xsl');
 		$data['contentLeft'] = $this->transform($content, 'rifcs2View.xsl');
 		$data['contentRight'] = $this->transform($content, 'rifcs2ViewRight.xsl');
@@ -66,8 +68,9 @@ class View_part extends CI_Controller {
 		$this->load->view('xml-view2', $data);
 	}
 
-
-	private function transform($registryObjectsXML, $xslt){
+     
+	private function transform($registryObjectsXML, $xslt)
+        {
 		$qtestxsl = new DomDocument();
 		$registryObjects = new DomDocument();
 		$registryObjects->loadXML($registryObjectsXML);

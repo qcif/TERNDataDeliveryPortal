@@ -308,7 +308,7 @@ function insertDataSourceEvent($data_source_key, $event_description, $log_type="
 	$strQuery = 'SELECT dba.udf_insert_data_source_event($1, $2, $3, $4, $5, $6)';
 	$params = array($event_id, $data_source_key, $created_who, $request_ip, substr($event_description, 0, 2000), $log_type);
 	$resultSet = executeUpdateQuery($gCNN_DBS_ORCA, $strQuery, $params);
-        $errors = $event_id . "','" . $data_soruce_key . "','". $created_who ."','".  $request_ip ."','" . substr($event_description, 0, 2000) . "','" .  $log_type;
+        $errors = $event_id . "','" . $data_source_key . "','". $created_who ."','".  $request_ip ."','" . substr($event_description, 0, 2000) . "','" .  $log_type;
 	if( !$resultSet )
 	{
 		$errors = "An error occurred when trying to insert the record.";

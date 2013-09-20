@@ -21,7 +21,7 @@ $Revision: 1 $
 **/  
 ?>
 <?php 
-if($mapsearch==0 && ($spatial_included_ids=='') && ($temporal=='All') && ($typeFilter=='All') && ($groupFilter=='All')&&($subjectFilter=='All')&&($fortwoFilter=='All')&&($forfourFilter=='All')&&($forsixFilter=='All') && $ternRegionFilter=='All' && $query=='All Records')
+if($mapsearch==0 && ($spatial_included_ids=='') && ($temporal=='All') && ($typeFilter=='All') && ($groupFilter=='All')&&($subjectFilter=='All')&&($gcmdFilter=='All')&&($fortwoFilter=='All')&&($forfourFilter=='All')&&($forsixFilter=='All') && $ternRegionFilter=='All' && $query=='All Records')
 {
         echo '<div id="currentSearchBox" class="box">';
         echo    '<h1 class="orangeGradient">Current Search</h1>';
@@ -39,7 +39,7 @@ if($mapsearch==0 && ($spatial_included_ids=='') && ($temporal=='All') && ($typeF
         echo '</div>';
       
 }
-else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All' ||$query!='All Records')    
+else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All') || ($groupFilter!='All')||($subjectFilter!='All')||($gcmdFilter!='All')||($fortwoFilter!='All')||($forfourFilter!='All')||($forsixFilter!='All') || $ternRegionFilter!='All' ||$query!='All Records')    
 {
         echo '<div id="currentSearchBox" class="box">';
         echo    '<h1 class="orangeGradient">Current Search</h1>';
@@ -62,13 +62,17 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
             echo '</ul>';
         }
         if($groupFilter!='All') displaySelectedFacet('group',$groupFilter,$json);
-       
+       //display gcmd here
+        if($gcmdFilter!='All') displaySelectedFacet('gcmd',$gcmdFilter,$json);
+        
         if($fortwoFilter!='All') displaySelectedFacet('for_value_two',$fortwoFilter,$json);
         if($forfourFilter!='All') displaySelectedFacet('for_value_four',$forfourFilter,$json);
+        if($forsixFilter!='All') displaySelectedFacet('for_value_six',$forsixFilter,$json);
+
         echo        '<div class="buttons">';
         echo            '<a id="saveSearchBtn" class="orangeGradient smallRoundedCorners">Save Search</a>&nbsp;';
         echo            '<a id="clearSearchBtn" class="greyGradient smallRoundedCorners">Clear Search</a>';
-         echo        '</div>';
+        echo        '</div>';
         echo    '</div>';
         echo '</div>';
 
@@ -86,9 +90,12 @@ else if(($spatial_included_ids!='') || ($temporal!='All') || ($typeFilter!='All'
 
                          displayRegionFacet('tern_region', $ternRegionFilter, $json, $ternRegionFilter,$regionsName,$help->language['region_helptitle'],$help->language['region_helptext']);
        
-                         displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$fortwoFilter,$json, $classFilter, $this,$help->language['for_helptitle'],$help->language['for_helptext']);      
-
-                         displayFacilitiesFacet('group', $groupFilter, $json, $classFilter,$help->language['facility_helptitle'],$help->language['facility_helptext']);
-  
+//                         displayFORFacet('for_value_two','for_value_four','for_value_six',$forfourFilter,$fortwoFilter,$json, $classFilter, $this,$help->language['for_helptitle'],$help->language['for_helptext']);      
+displayFOR('for_value_two','for_value_four','for_value_six',$forfourFilter,$fortwoFilter,$forsixFilter,$json, $classFilter, $this,$help->language['for_helptitle'],$help->language['for_helptext']);
+displayGCMD('gcmd',$gcmdFilter,$json,$classFilter,$help->language['facility_helptitle'],$help->language['facility_helptext']);
+//      echo '<a id="testa" class="a">GCMD</a>';
+displayFacilitiesFacet('group', $groupFilter, $json, $classFilter,$help->language['facility_helptitle'],$help->language['facility_helptext']);
+                         
 ?>
+    <div id="gcmdd"></div>
 </div>

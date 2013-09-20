@@ -32,13 +32,14 @@ class Search extends CI_Controller
     public function index()
     {
         parse_str($_SERVER['QUERY_STRING'], $_GET);
+
         if (isset($_GET['q']))
-        {
+        {            
             $q = $_GET['q'];
             redirect(base_url() . 'search/#!/q=' . $q);
         }
         else
-        {
+        {            
                 //get Temporal 
                 $this->load->model('Registryobjects');
                 $query = $this->Registryobjects->get_min_year();
@@ -72,11 +73,22 @@ class Search extends CI_Controller
                 //get Keyword
                 $data['widget_keyword'] = 1;   
                     
-
             $this->load->view('new_search', $data);
         }
     }
 
+    public function gcmdchild()
+    {
+        $data['id']=$this->input->post('id');
+        
+        $this->load->view('gcmdchild',$data);
+    }
+    
+    public function gcmd()
+    {
+        $this->load->view('gcmdview');
+    }
+            
     public function bwredirect()
     {//backward redirection with list.php
         parse_str($_SERVER['QUERY_STRING'], $_GET);
@@ -474,7 +486,7 @@ class Search extends CI_Controller
 
         if (($q == '') || ($q == 'Search ecosystem data'))
             $q = "*:*";
-      
+  
         //echo $q;
         //Filtering if there is any
         $classFilter = $this->input->post('classFilter');
@@ -485,6 +497,9 @@ class Search extends CI_Controller
         $fortwoFilter = urldecode($this->input->post('fortwoFilter'));
         $forfourFilter = urldecode($this->input->post('forfourFilter'));
         $forsixFilter = urldecode($this->input->post('forsixFilter'));
+        
+        $gcmdFilter=  urldecode($this->input->post('gcmdFilter'));
+        
         $ternRegionFilter = urldecode($this->input->post('ternRegionFilter'));
         $page = $this->input->post('page');
         $spatial_included_ids = $this->input->post('spatial_included_ids');
@@ -515,12 +530,14 @@ class Search extends CI_Controller
         /* Search Part */
 
         $this->load->model('solr');
-        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, $fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $ternRegionFilter,$num);
+        $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, $gcmdFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $ternRegionFilter,$num);
+        //$data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $ternRegionFilter,$num);
         
         /*         * getting the tabbing right* */
         $query_tab = $q;
 
-        $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $ternRegionFilter,$num); //just for the tabbing mechanism (getting the numbers right)
+        $data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$gcmdFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $ternRegionFilter,$num); //just for the tabbing mechanism (getting the numbers right)
+        //$data['json_tab'] = $this->solr->search($query, $extended_query, 'json', $page, 'All', $groupFilter, $typeFilter, $subjectFilter,$fortwoFilter, $forfourFilter,$forsixFilter,'PUBLISHED',$sort, $ternRegionFilter,$num); //just for the tabbing mechanism (getting the numbers right)
 
         /* just that! and json_tab is used in tab view */
 
@@ -536,6 +553,7 @@ class Search extends CI_Controller
         $data['typeFilter'] = $typeFilter;
         $data['groupFilter'] = $groupFilter;
         $data['subjectFilter'] = $subjectFilter;
+        $data['gcmdFilter'] = $gcmdFilter;
         $data['subjectCodeFilter'] = $subjectCodeFilter;
         $data['fortwoFilter'] = $fortwoFilter;
         $data['forfourFilter'] = $forfourFilter;
@@ -586,11 +604,12 @@ class Search extends CI_Controller
         $typeFilter = urldecode($this->input->post('typeFilter'));
         $groupFilter = urldecode($this->input->post('groupFilter'));
         $subjectFilter = urldecode($this->input->post('subjectFilter'));
-         $page = $this->input->post('page');
+       
+        $page = $this->input->post('page');
         $spatial_included_ids = $this->input->post('spatial_included_ids');
         $temporal = $this->input->post('temporal');
         $column = $this->input->post('column');
-         $output = $this->input->post('output');
+        $output = $this->input->post('output');
         $query = $q;
         $extended_query = '';
 
@@ -609,10 +628,8 @@ class Search extends CI_Controller
 
         /* Search Part */
 
-
         $this->load->model('solr');
         $data['json'] = $this->solr->subjectSearch($query, $extended_query, 'json', $page, $classFilter, $groupFilter, $typeFilter, $subjectFilter, 'PUBLISHED', 10000,$column);
-
       
         /* getting the tabbing right* */
         $query_tab = $q;
@@ -637,12 +654,10 @@ class Search extends CI_Controller
         $data['temporal'] = $temporal;
 
        print json_encode($data['json']);
-         
-         
-
           
     }
- function getListByKeys()
+    
+    function getListByKeys()
     {
         $q = $this->input->post('q');
         $q = trim($q); //remove spaces
@@ -653,7 +668,8 @@ class Search extends CI_Controller
         $keyList = $this->input->post('keyList');
         $page = $this->input->post('page');
         $keyList = explode("^",$keyList);
-        if(count($keyList) > 0 ){
+        if(count($keyList) > 0 )
+        {
             if($q == "") $query = "(key:(";
                 else
                     $query .= " AND (key:(";
@@ -666,7 +682,6 @@ class Search extends CI_Controller
         }
         /* Search Part */
 
-
         $this->load->model('solr');
        // $data['json'] = $this->solr->search($query, $extended_query, 'json', $page, $classFilter, 'All', 'All','All', 'PUBLISHED');
         $data['json'] = $this->solr->getObjects($keyList,null,null,$page);
@@ -678,11 +693,9 @@ class Search extends CI_Controller
        
         $data['page'] = $page;
         //print_r($query. json_encode($data['json']));
-        $this->load->view('search/seeAlsoInfoBox',$data);
-         
-
-          
+        $this->load->view('search/seeAlsoInfoBox',$data);          
     }
+    
     public function jfilter()
     {//AJAX CALL, VERY IMPORTANT, this thing is called on every search
         $this->benchmark->mark('search_start');

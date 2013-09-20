@@ -46,6 +46,10 @@ class Home extends CI_Controller {
 		$this->load->view('home_page', $data);
 	}
 	
+        public function test()
+        {
+            $this->load->view('testgcmd');
+        }
 	/* Get random records from the facilities*/
         public function getrdmrecord()
         {

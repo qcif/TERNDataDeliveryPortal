@@ -69,7 +69,8 @@
 
         <?php endif; ?>
 
+        <script type="text/javascript" src="js/jquery.qtip.js"></script> 
         <script type="text/javascript" src="<?php echo base_url();?>js/main.js"></script> <!-- Main Script call -->
-        
+
     </body>
 </html>

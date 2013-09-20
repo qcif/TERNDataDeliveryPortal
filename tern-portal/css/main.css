@@ -271,12 +271,17 @@ nav#facetNav{ margin-right: 15px; float: left; width: 215px; }
 		#refineSearchBtn:hover{ background: url(../img/buttons/refine-search-hover-btn.png) no-repeat; }
 		.facetContainer{ height: 150px; overflow: auto; border: 1px solid #999; padding: 5px !important; margin-bottom: 10px; clear: both; }
 		.facetDropDown{ overflow: auto; border: 1px solid #999; padding: 5px !important; margin-bottom: 10px; clear: both; }
-		.facetTree{ clear: both; }
+		
+                .facetTree{ clear: both; }
 		.facetTree li, .facetContainer li{ margin-bottom: 5px !important; }
 		.facetTree input[type=checkbox], .facetContainer input[type=checkbox]{ float: left; display: block; }
 		.facetTree label, .facetContainer label{ display: block; margin-left: 18px; }
 		.facetTree label:hover, .facetContainer label:hover{ text-decoration: underline; }
-		.facetTree > li > ul > li{ margin: 5px 0px 0px 15px !important; }
+                .facetTree > li > ul > li > ul > li > ul > li > ul > li{ margin: 5px 0px 0px 15px !important; }
+                .facetTree > li > ul > li > ul > li > ul > li{ margin: 5px 0px 0px 15px !important; }
+		.facetTree > li > ul > li > ul > li{ margin: 5px 0px 0px 15px !important; }
+                .facetTree > li > ul > li{ margin: 5px 0px 0px 15px !important; }
+                
 		.clearAll{ margin: 5px 0px 10px 0px; display: block; float: left; }
 		#facetNav .helpBtn{ float: right; background: url(../img/buttons/help-normal-btn.png) no-repeat; height: 29px; width: 29px; display: block; margin-top: 8px; margin-right: 8px; position: relative; z-index: 1000; /* RW ADDED 15/10/12 */}
                 
@@ -920,6 +925,12 @@ a.hide:hover{ background: url(../img/buttons/hide-hover-btn.png) no-repeat right
     margin-left:3px;
 }
 #fortree span:hover { 
+    margin-left:3px;
+}
+#gcmdtree span { 
+    margin-left:3px;
+}
+#gcmdtree span:hover { 
     margin-left:3px;
 }
 nav#facetNav #group-facet li{

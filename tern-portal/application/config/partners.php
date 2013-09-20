@@ -53,7 +53,7 @@
                     "full"
                 ],
                 "description_value": [
-                    "/img/logos/logo-auscover.png",
+                    "/img/logos/logo-auscover_new.png",
                     "AusCover is a national expert network that provides remote sensing data time-series and satellite based biophysical map products for Australia. AusCover also provides associated field calibration and validation data at continental scales. The data sets served by AusCover at continental and site scales represent key environmental variables required by the ecosystem science and management communities in Australia."
                 ],
                 "location": ["http://www.tern.org.au/AusCover-pg17728.html","http://www.auscover.org.au"]

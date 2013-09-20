@@ -36,7 +36,7 @@
 </nav>
 <div id="staticContentWhite">
     <h1 class="margin10">Submit Data</h1>
-    <p class="datatext">One of the aims of TERN is to collectively increase the research capacity of the Australian ecosystem science community by collecting, storing, sharing and enabling integration of data across different disciplines. Information regarding the contribution of data and expertise is provided below for each TERN Facility.</p>
+    <p class="datatext">One of the aims of TERN is to collectively increase the research capacity of the Australian ecosystem science community by collecting, storing, sharing and enabling integration of data across different disciplines. Please contact <a href="mailto:tern.data@uq.edu.au">TERN Data Integration and Synthesis Coordinator</a> at first instance to discuss data contribution to TERN. Further Information regarding the contribution of data and expertise is provided below for each TERN Facility.</p>
     <h2 class="terndatah2"><a name="Auscover"></a>AusCover</h2>
     <p class="datatext">The AusCover partners include all of the major satellite remote sensing data groups in the Commonwealth Government, State Governments and Australian research organisations. AusCover maintains strong collaborative links with international organisations and activities through their partners. To submit data please contact your relevant <a href="http://data.auscover.org.au/?q=node/24" target="_blank" class="external">state AusCover partner</a> or email <a href="mailto:data%40auscover.org.au">Matt Paget</a> for any data related enquires.</p>   
     <h2 class="terndatah2"><a name="Coasts"></a>Australian Coastal Ecosystem</h2>

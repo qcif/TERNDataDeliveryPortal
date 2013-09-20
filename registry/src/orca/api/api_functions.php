@@ -9,7 +9,7 @@
 function findBounds($g)
 {
     global $gCNN_DBS_ORCA;
-    
+
     $e='select dba.st_xmax((select dba.st_extent((select dba.ST_AsText(dba.ST_envelope(dba.ST_GeomFromText(\''.$g.'\')'.')::dba.geometry)))::dba.geometry))';
     $n='select dba.st_ymax((select dba.st_extent((select dba.ST_AsText(dba.ST_envelope(dba.ST_GeomFromText(\''.$g.'\')'.')::dba.geometry)))::dba.geometry))';
     $w='select dba.st_xmin((select dba.st_extent((select dba.ST_AsText(dba.ST_envelope(dba.ST_GeomFromText(\''.$g.'\')'.')::dba.geometry)))::dba.geometry))';
@@ -30,7 +30,6 @@ function findBounds($g)
     return $b;
 }
 
-
 function doSpatial($g,$bounds)
 {
     global $gCNN_DBS_ORCA;
@@ -42,7 +41,7 @@ function doSpatial($g,$bounds)
         $params=array($bounds['n'],$bounds['w'],$bounds['s'],$bounds['e'],$g);
         
         $q=  executeQuery($gCNN_DBS_ORCA, $sql, $params);
-        //print_r($q);
+        print_r($params);
         $kstr="";
         foreach ($q as $key)
         {

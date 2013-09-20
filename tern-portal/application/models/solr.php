@@ -27,8 +27,10 @@
 
 
 
-    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc',$ternRegionFilter='All', $num=10)
+    function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$gcmdFilter='All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc',$ternRegionFilter='All', $num=10)
+    //function search($query, $extended_query, $write_type = 'json', $page, $classFilter = 'All', $groupFilter = 'All', $typeFilter = 'All', $subjectFilter = 'All',$fortwo='All',$forfour='All',$forsix='All',$status = 'All', $sort='score desc',$ternRegionFilter='All', $num=10)
     {  
+        print_r($query);
         $q = $query;
         $q = rawurlencode($q);
         $q = str_replace("%5C%22", "\"", $q); //silly encoding
@@ -50,6 +52,8 @@
             //$filter_query .= constructFilterQuery('subject_value', $subjectFilter);
             $filter_query .= constructFilterQuery('subject_value_resolved', $subjectFilter);
 
+        if($gcmdFilter !='All')
+            $filter_query .=constructFilterQuery ('gcmd', $gcmdFilter);
         if ($status != 'All')
             $filter_query .= constructFilterQuery('status', $status);
 
@@ -59,8 +63,9 @@
         if ($q != '*:*')
         $q = escapeSolrValue($q);
         
-        $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR display_title:(' . $q . ')^50 OR list_title:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value_resolved:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR name_part:(' . $q . ')^30)';    
-        
+        $q = '(fulltext:(' . $q . ')OR key:(' . $q . ')^50 OR display_title:(' . $q . ')^50 OR list_title:(' . $q . ')^50 OR description_value:(' . $q . ')^5 OR subject_value_resolved:(' . $q . ')^10  OR for_value_two:('. $q . ')^10 OR for_value_four:('. $q .')^10 OR for_value_six:('. $q .')^10 OR gcmd:('.$q.')^10 OR name_part:(' . $q . ')^30)';    
+
+/*        
         if($fortwo!='All' &&$forfour=='All' )
         {
             $forstr=constructFORQuery('for_value_two',$fortwo);
@@ -80,7 +85,55 @@
             
             $q=$q.'AND ('.$for2str.' OR '.$for4str.')';            
         }
+*/
+        if($fortwo!='All' && $forfour=='All' && $forsix=='All' )
+        {
+            $forstr=constructFORQuery('for_value_two',$fortwo);
+            
+            $q=$q.'AND ('.$forstr.')';
 
+        }else if($fortwo=='All' && $forfour!='All'  && $forsix=='All')
+        {
+            $forstr=constructFORQuery('for_value_four',$forfour);
+            
+            $q=$q.'AND ('.$forstr.')';             
+
+        }else if($fortwo=='All' && $forfour=='All' && $forsix!='All')
+        {
+            $forstr=constructFORQuery('for_value_six',$forsix);
+            
+            $q=$q.'AND ('.$forstr.')';           
+        }else if ($fortwo!='All' && $forfour!='All' && $forsix=='All')
+        {
+            $for2str=constructFORQuery('for_value_two',$fortwo);
+            $for4str=constructFORQuery('for_value_four',$forfour);
+            
+            $q=$q.'AND ('.$for2str.' OR '.$for4str.')';   
+        }else if($fortwo!='All' && $forfour=='All' && $forsix!='All')
+        {
+            $for2str=constructFORQuery('for_value_two',$fortwo);
+            $for6str=constructFORQuery('for_value_six',$forsix);
+            
+            $q=$q.'AND ('.$for2str.' OR '.$for6str.')';  
+        }else if($fortwo=='All' && $forfour!='All' && $forsix!='All')
+        {
+            $for6str=constructFORQuery('for_value_six',$forsix);
+            $for4str=constructFORQuery('for_value_four',$forfour);
+            
+            $q=$q.'AND ('.$for4str.' OR '.$for6str.')';  
+        }else if ($fortwo!='All' && $forfour!='All' && $forsix!='All')
+        {
+            $for2str=constructFORQuery('for_value_two',$fortwo);
+            $for4str=constructFORQuery('for_value_four',$forfour);
+            $for6str=constructFORQuery('for_value_six',$forsix);
+            
+            $q=$q.'AND ('.$for2str.' OR '.$for4str.' OR '.$for6str.')';  
+            
+        }else if($fortwo=='All' && $forfour=='All' && $forsix=='All')
+        {
+            
+        }
+        
         $q = urldecode($q);
         
      
@@ -99,7 +152,7 @@
         
 //        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&f.subject_value.facet.mincount=1&facet.sort=count';
  
-        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&facet.field=for_code_two&facet.field=for_code_four&facet.field=for_code_six&f.subject_value_resolved.facet.mincount=1&facet.sort=count&facet.field=tern_region&facet.limit=-1';
+        $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&facet.field=for_code_two&facet.field=for_code_four&facet.field=for_code_six&facet.field=gcmd&f.subject_value_resolved&facet.mincount=1&facet.sort=count&facet.field=tern_region&facet.field=data_source_key&facet.limit=-1';
 
         /* prep */
         $fields_string = '';
@@ -188,7 +241,7 @@
 
         //$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value&f.subject_value.facet.mincount=1&facet.sort=index';
 
-$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&facet.mincount=1&facet.sort=index';
+$facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet.field=subject_value_resolved&facet.field=for_value_two&facet.field=for_value_four&facet.field=for_value_six&facet.field=data_source_key&facet.mincount=1&facet.sort=index';
 
 
         /* prep */
@@ -277,7 +330,6 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         
         if (count($exclude) > 1)
         {
-
             $excludes = array_keys($exclude);
             $excludeKeys = '(';
 
@@ -310,12 +362,12 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
 		if($excludeKeys)$filter_query .= '-key: '.escapeSolrValue($excludeKeys);  
 
 		$fields['fq']=$filter_query;
-        $json = $this->fireSearch($fields, '');
+                $json = $this->fireSearch($fields, '');
 
         return $json;
     }
 
-	public function getObjects($keys, $class, $type, $page){	
+    public function getObjects($keys, $class, $type, $page){	
 		//echo $keys[0];
 		if($page!=null){
             $start = 0;
@@ -349,17 +401,14 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
         return $json;
     }
 
-	public function getByKey($key){
+    public function getByKey($key){
 		return $this->getRegistryObjectSOLR($key, '*', 'json');
 	}
         
-        public function getByHash($hash){
+    public function getByHash($hash){
 		return $this->getRegistryObjectSOLRByHash($hash, '*', 'json');
 	}
-
-
-        
-
+   
     public function getFacilities()
     {
         // get Partner File
@@ -368,7 +417,7 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
           $fields = array(
           'q'=>'class:collection','version'=>'2.2','start'=>'0','rows'=>'0','indent'=>'on', 'wt'=>'json'
           );
-          $facet = 'facet=on&facet=true&facet.limit=-1&facet.field=group&facet.mincount=1';
+          $facet = 'facet=on&facet=true&facet.limit=-1&facet.field=data_source_key&facet.mincount=1';
 
           $json = $this->fireSearch($fields, $facet); 
 
@@ -383,7 +432,7 @@ $facet = '&facet=true&facet.field=type&facet.field=class&facet.field=group&facet
 
         $fields = array('q' => "class:collection", 'version' => '2.2', 'start' => '0', 'rows' => '1', 'indent' => 'on', 'wt' => 'json',
             'fl' => '*');
-        $facet = 'facet=on&facet=true&facet.limit=-1&facet.field=for_code_four&facet.field=for_value_four&facet.field=for_value_two&facet.field=for_code_two&facet.mincount=1';
+        $facet = 'facet=on&facet=true&facet.limit=-1&facet.field=for_code_four&facet.field=for_value_four&facet.field=for_value_two&facet.field=for_code_two&facet.field=for_code_six&facet.field=for_value_six&facet.mincount=1';
 
         $json = $this->fireSearch($fields, $facet);
 

@@ -95,8 +95,7 @@
             <xsl:choose>
                 <xsl:when test="ro:relatedObject/ro:relation[@type='author']">
                 <p class="authorName">Author name: <xsl:apply-templates select="ro:relatedObject/ro:relation[@type='author']"/></p>  
-                </xsl:when>
-             
+                </xsl:when>             
             </xsl:choose>
             
             <!--Organisation -->
@@ -548,7 +547,6 @@
         </xsl:choose>
        </div>
    </aside>
-
        
 </xsl:template>
 

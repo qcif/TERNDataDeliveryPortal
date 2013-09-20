@@ -9,7 +9,8 @@ function urldecode(str) {
     return decodeURIComponent((str+'').replace(/\+/g, '%20'));
 }
 
-function trimwords(theString, numWords) {
+function trimwords(theString, numWords) 
+{
     
     if(theString!=null)
     {
@@ -41,6 +42,7 @@ $(function() {
     var typeFilter = 'All';
     var groupFilter = 'All';
     var subjectFilter = 'All';
+    var gcmdFilter='All';
     var fortwoFilter='All';
     var mapSearch = 0;
     var forfourFilter='All';
@@ -109,7 +111,10 @@ $(function() {
                 case 'subject':
                     subjectFilter=value;
                     break;
-                case 'fortwo':
+                case 'gcmd':
+                    gcmdFilter=value;
+                    break;
+                case 'fortwo':              
                     fortwoFilter=value;
                     break;
                 case 'forfour':
@@ -166,18 +171,13 @@ $(function() {
                 search_term = search_term.replace(/ and /g, " AND ");//uppercase the ANDS
                 
                 checkCookie();
-                // $("#loading").show();                             
-                  
-
                 if((window.location.href.indexOf('/n=')>=0&&window.location.href.indexOf('/s=')>=0&&window.location.href.indexOf('/w=')>=0&&window.location.href.indexOf('/e=')>=0) || window.location.href.indexOf('/g=') >=0)
                 {                         
-
                         doSpatialSearch();
                 }else{
                         if(mapSearch != 1 && clearAll != 1)$('#refineSearchBox h1.greenGradient').html('Refine Search'); else $('#refineSearchBox h1.greenGradient').html('Search');
-                        
-                        doNormalSearch();
-                        //updateTable(); 
+                      
+                        doNormalSearch(); 
                 }
          }
             
@@ -186,7 +186,7 @@ $(function() {
     $(window).hashchange(); //do the hashchange on page load
     routing(); 
        
-    $('.typeFilter, .groupFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ternRegionFilter').live('click', function(event){
+    $('.typeFilter, .groupFilter, .fortwoFilter, .forfourFilter, .forsixFilter, .ternRegionFilter, .gcmdFilter,').live('click', function(event){
         if(event.type=='click'){
             page = 1;
             mapSearch = 0;
@@ -196,69 +196,69 @@ $(function() {
                 changeHashTo(formatSearch(search_term, 1, classFilter));
             }else if($(this).hasClass('groupFilter')){
                 //groupFilter = encodeURIComponent($(this).attr('id'));
-                //changeHashTo(formatSearch(search_term, 1, classFilter));
+                //changeHashTo(formatSearch(search_term, 1, classFilter)); 
             }else if($(this).hasClass('subjectFilter')){
                 subjectFilter = encodeURIComponent($(this).attr('id'));
-                changeHashTo(formatSearch(search_term, 1, classFilter));
-                               
-            }else if($(this).hasClass('fortwoFilter')){
-                fortwoFilter = encodeURIComponent($(this).attr('id'));
-                var len=$(this).parent().parent().children("ul").children("li").children("span").children("input").length;
+                changeHashTo(formatSearch(search_term, 1, classFilter));                               
+            }else if($(this).hasClass('gcmdFilter')){
+               // gcmdFilter = encodeURIComponent($(this).attr('id'));
+               // changeHashTo(formatSearch(search_term, 1, classFilter)); 
+                   if($(this).attr("checked")=="checked")
+                   {
+                       $(this).parent().find('input').checked=true;
+                    }else
+                    {
+                        $(this).parent().find('input').checked=false;
+                    } 
+            }           
+            else if($(this).hasClass('fortwoFilter')){
+                fortwoFilter = encodeURIComponent($(this).attr('id'));                
+                var len=$(this).parent().children("ul").children("li").length;
                 
                    if($(this).attr("checked")=="checked")
                    {
                         for(var j=0;j<len;j++)
                         {
-                            $(this).parent().parent().children("ul").children("li").children("span").children("input")[j].checked=true;
-
-                        }
+                           $(this).parent().children("ul").children("li").children("input")[j].checked=true;                         
+                        }                     
+                        
                     }else
-                    {
+                    { 
                         for(var j=0;j<len;j++)
                         {
-                            $(this).parent().parent().children("ul").children("li").children("span").children("input")[j].checked=false;
-
+                           $(this).parent().children("ul").children("li").children("input")[j].checked=false;
+                            
                         }
-                    }                
-
-                //changeHashTo(formatSearch(search_term, 1, classFilter));               
+                    }           
                                
             }else if($(this).hasClass('forfourFilter'))
             {
                 forfourFilter = encodeURIComponent($(this).attr('id'));
                 if($(this).attr("checked")!="checked")
-                {
-                    $(this).parent().parent().parent().parent().children("span").children("input")[0].checked=false;
+                {                    
+                    $(this).parent().parent().parent().children("input")[0].checked=false;
                 }else
-                {
-                    var flag=true;
-                    var arrli=$(this).parent().parent().parent().parent().children("ul").children("li");
+                {                    
+                    var arrli=$(this).parent().children("ul").children("li").children("input");
                     
                     for(var s=0;s<arrli.length;s++)
                     {
-                         if(arrli[s].children[0].children[0].checked!=true)
+                         if(arrli[s].checked!=true)
                          {
-                              flag=false;
+                             arrli[s].checked="checked";
                          }                         
-                    }
-                    if(flag==true)
-                        $(this).parent().parent().parent().parent().children("span").children("input")[0].checked=true;
-                }
-                
-               // if(flag=="1")$(this).parent().parent().parent().parent().children("span").children("input").checked=true;
-                
-               // changeHashTo(formatSearch(search_term, 1, classFilter));               
-                               
+                    }                    
+                }           
+                           
             }else if($(this).hasClass('forsixFilter')){
-                forsixFilter = encodeURIComponent($(this).attr('id'));
-                //changeHashTo(formatSearch(search_term, 1, classFilter));               
-                               
+                forsixFilter = encodeURIComponent($(this).attr('id'));                                   
 
-            }else if($(this).hasClass('ternRegionFilter')){
+            }else if($(this).hasClass('gcmdFilter')){
+                gcmdFilter=encodeURIComponent($(this).attr('id'));
+            }
+            else if($(this).hasClass('ternRegionFilter')){
                 ternRegionFilter = encodeURIComponent($(this).attr('id'));
-                changeHashTo(formatSearch(search_term, 1, classFilter));               
-                               
-
+                changeHashTo(formatSearch(search_term, 1, classFilter));
             }         
             
         }
@@ -282,10 +282,8 @@ var p=1;
                             title:"My Favourite Records (maximum 20)",
 
                             open: function(){
-                            $(".ui-dialog-buttonset").append("<span id='status'></span>");
-
-                            //setupCookiesBtns();
-                            return false;
+                                $(".ui-dialog-buttonset").append("<span id='status'></span>");
+                                return false;
                             }
                     
                         });
@@ -330,15 +328,12 @@ var p=1;
                             if($("#page_name").text()=='Search')
                             {
                                 doNormalSearch();        
-                            }
-                         // updateTable();
-                            
-                        
+                            } 
                         });
                 return false;
             },
             error:function(msg){ 
-            //console.log("error" + msg);
+
             }
         });
         return false;
@@ -350,8 +345,7 @@ var p=1;
                     url: base_url+"search/mySavedSearches",
 
                     success:function(msg)
-                    {
-                      
+                    {                      
                          $("#divSaved").html(msg);
                         
                          $("#divSaved").dialog({
@@ -385,12 +379,10 @@ var p=1;
                             doAjaxSearchCookie();
                         
                         });
-                        //setupCookiesBtns();
+                        
                         return false;
                     }
-
                 });
-
                 return false;
             },
             error:function(msg){  
@@ -399,7 +391,6 @@ var p=1;
         });
         return false;
         });   
-
 
     /*PAGINATION*/
     $('#next').live('click', function(){
@@ -447,6 +438,7 @@ var p=1;
         if(typeFilter!='All') res+='/type='+(typeFilter);
         if(groupFilter!='All') res+='/group='+(groupFilter);
         if(subjectFilter!='All') res+='/subject='+(subjectFilter);
+        if(gcmdFilter!='All') res+='/gcmd='+(gcmdFilter);
         if(temporal!='All') res+='/temporal='+(temporal);
         if(fortwoFilter!='All') res+='/fortwo='+(fortwoFilter);
         if(forfourFilter!='All') res+='/forfour='+(forfourFilter);
@@ -463,7 +455,7 @@ var p=1;
         res+= '/num='+(numToDisplay); //local variable to pass in number of records
         
         return res;
-
+        
     }
     
     /*      Show No Results on the result set div */
@@ -474,11 +466,7 @@ var p=1;
         $("#search-result").html('');
         $("#dialog-noresult").dialog();
         $("#search-result").hide();
-    }
-    
-  
-  
-   
+    }   
     /*      Populate Search fields
     *      
     *      
@@ -498,7 +486,7 @@ var p=1;
    /* create map in search page
     */
    
-   function initMap(){
+    function initMap(){
 
         var mapWidget = new MapWidget('spatialmap',true);
         resetCoordinates();
@@ -567,7 +555,7 @@ var p=1;
     }
 
      // zoom to a typed place name functionality
-     function initPlaceName(elementId,mapWidget){
+    function initPlaceName(elementId,mapWidget){
          var placename = document.getElementById(elementId);
          var options = {
             componentRestrictions: {country: 'au'}
@@ -605,14 +593,11 @@ var p=1;
              if(typeof mapResult !== 'undefined') mapResult.map.updateSize();
           }
 
-        //setupOuterLayout();
-       // setupNestedLayout(resizeMap);  
-
-         $("#facetH2").addClass("ui-state-disabled");
+        $("#facetH2").addClass("ui-state-disabled");
         var temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
         temporalWidget.refreshTemporalSearch();
-        //enableToggleTemporal("#show-temporal-search",temporalWidget);   
+   
         temporalWidget.doTemporalSearch=true;
         resetCoordinates();
          
@@ -681,8 +666,6 @@ var p=1;
               
             }
         });
-  
-        
        
         
          autocomplete('#refineSearchTextField');
@@ -693,7 +676,6 @@ var p=1;
     //searches to SOLR using coordinates
     function doSpatialSearch()
     {
-
         spatial_included_ids='';
 	if(n!=''){
             $.ajax({
@@ -706,9 +688,7 @@ var p=1;
                             spatial_included_ids = msg;
                           
                             doNormalSearch();
-                            
-                            //updateTable(); 
-                        // $("#loading").hide();
+
                         },
                         error:function(msg)
                         {
@@ -728,7 +708,7 @@ var p=1;
                             spatial_included_ids = msg;
                             
                             doNormalSearch();
-                            //updateTable(); 
+                            
                         // $("#loading").hide();
                         },
                         error:function(msg)
@@ -748,6 +728,7 @@ var p=1;
         typeFilter = 'All';
         groupFilter = 'All';
         subjectFilter = 'All';
+        gcmdFilter='All';
         fortwoFilter='All';
         forfourFilter='All';
         forsixFilter='All';
@@ -799,7 +780,7 @@ var p=1;
                 }
              
                 if($(msg).find('div#realNumFound').html() !== "0")
-                 {
+                {
                      if($(this).attr('id') == 'search-results-content' && mapSearch == 0  && clearAll == 0) { //display metadata table       
                         $('#search-result').html($(this).html());
                         $("#search-result").show();
@@ -813,22 +794,20 @@ var p=1;
                         
                     }
                     $('#facetNav #refineSearchBox').show();
-                 }else{
+                }else{
                       $('#facetNav #refineSearchBox').hide();
-                 }
+                }
             });     
             if(mapSearch == 1 || clearAll == 1){ 
                 $("#search-result").hide();
                 $('#head-toolbar').hide();
                 $('#middle-toolbar').hide();
                 $('#bottom-toolbar').hide();
-                $('#del').trigger('click');
-                
+                $('#del').trigger('click');                
             }
 
             //background text
             $('#refineSearchTextField').each(function(){
-
                 this.value = $(this).attr('title');
                 $(this).addClass('text-background');
 
@@ -919,8 +898,32 @@ var p=1;
                     }
                     //forfourFilter = 'All';
                 }else if($(this).parent().hasClass('clearForsix')){
-                    forsixFilter = 'All';
-                }else if($(this).parent().hasClass('clearTemporal')){
+                    var arrsix=forsixFilter.split(";");
+                    arrsix=arrsix.clean("");
+                    if(arrsix.length>1)
+                    {
+                        forsixFilter=forsixFilter+";";
+                        forsixFilter=forsixFilter.replace($(this).parent().attr("id")+";","");
+                    }else
+                    {
+                        forsixFilter = 'All';
+                    }
+                }
+                
+                else if($(this).parent().hasClass('clearGCMD')){
+                    var arrgcmd=gcmdFilter.split(";");
+                    arrgcmd=arrgcmd.clean("");
+                    if(arrgcmd.length>1)
+                    {
+                        gcmdFilter=gcmdFilter+";";
+                        gcmdFilter=gcmdFilter.replace($(this).parent().attr("id")+";","");
+                    }else
+                    {
+                        gcmdFilter = 'All';
+                    }
+                }
+                
+                else if($(this).parent().hasClass('clearTemporal')){
                     temporal = 'All';
                 }else if($(this).parent().hasClass('clearTernRegion')){
                     ternRegionFilter = 'All';
@@ -1003,7 +1006,58 @@ var p=1;
 		}
             });
         
+             $("#gcmdtree").treeview({
+		animated: "fast",
+		collapsed: true,
+		unique: false,
+		//persist: "cookie",
+		toggle: function() {
+			//window.console && console.log("%o was toggled", this);
+		}
+            });            
+   /*        
+                $("#testa").qtip({
+                        content:{
+                            text:$('#gcmdd'),
+                            title:{
+                                text:'GCMD',
+                                button:'Close'
+                            }
+			},
+                        hide:false,
+                        event: 'click',
+                        position: {
+                                my: 'top left', 
+                                at: 'bottom right' 
+                                },
+                        style: {
+                                width: 500
+                        },
+                        show: {                        
+                            effect: function(offset) {
+                                        $(this).slideDown(100); 
+                                        $(this).resizable();                               
 
+                                        $.ajax({
+                                                type:'POST',
+
+                                                url:base_url+"search/gcmd",
+
+                                                success:function(data){
+                                                    $('#gcmdd').html(data);
+                                                            $('.gcmdkeyword').click(function(){
+                                                                //alert($(this).attr('id'));
+                                                                populateGCMDChild($(this).attr('id'));
+                                                            });
+                                                },
+                                                error:function(msg){  
+
+                                                }
+                                        });
+                                    }
+                        }                       
+                });
+*/
             $("#metadesc p").each(function(index){
                 if($(this).height() > 48){
                     $(this).css('height','48px').css('overflow','hidden');
@@ -1013,7 +1067,8 @@ var p=1;
                     $(this).css('height','48px');
                 }
             });
-             $('.read-more').on("click",function(event) {
+            
+            $('.read-more').on("click",function(event) {
                 event.stopPropagation();
             });
 
@@ -1022,33 +1077,32 @@ var p=1;
                 $("li:gt(4)", this).hide();
                 $("li:nth-child(6)", this).after("<a href='#' class=\"more\">More...</a>");
             });
+            
             $("a.more").click(function() {
                 //console.log($(this).parent());
                 $(this).parent().children().slideDown();
                 $(this).remove();
                 return false;
             });
-
-
+            
             if($('#realNumFound').html() !='0'){//only update statistic when there is a result
                 //update search statistics
                 $.ajax({
                     type:"POST",
                     url: base_url+"/search/updateStatistic/",
 
+                    //data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&gcmdFilter="+gcmdFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1" + "&ternRegionFilter=" + ternRegionFilter,
                     data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1" + "&ternRegionFilter=" + ternRegionFilter,
                     success:function(msg){},
                     error:function(msg){}
                 });
-            }
-           
+            }           
             
         var temporalWidget = new TemporalWidget();
         temporalWidget.temporal = temporal;
 
         temporalWidget.doTemporalSearch=true;
-        temporalWidget.refreshTemporalSearch();
- 
+        temporalWidget.refreshTemporalSearch(); 
  
         //search help contents
     
@@ -1067,13 +1121,11 @@ var p=1;
               }
               if($("#facility-help-text").html()){
                  $("#facet-help-text").append($("#facility-help-text").html());
-              }
-              
+              }              
               
              $("#facet-help-text").dialog('open');
              return false;
-         });
-         
+         });         
        
         $.each($('#fortree span'), function(){
              var txt= $(this).html().toProperCase();
@@ -1088,7 +1140,7 @@ var p=1;
             }
         });
         
-         autocomplete('#refineSearchTextField');
+        autocomplete('#refineSearchTextField');
          
         $('#refineSearchBtn').click(function(){
             var special_char=/^[a-z0-9 ]+$/i;
@@ -1163,7 +1215,6 @@ var p=1;
                                 if(rb[i].checked && search_term!=$('#refineSearchTextField').val())
                                     search_term="("+search_term+") "+rb[i].value+" "+$('#refineSearchTextField').val();
                             }
-
                        }
                   mapSearch = 0;
                   clearAll = 0;
@@ -1171,8 +1222,6 @@ var p=1;
                   }
 
             }
-
-
         });   
         
         $('#forbutton').click(function(){
@@ -1181,6 +1230,7 @@ var p=1;
                 {
                     var two_first = true;
                     var four_first = true;
+                    var six_first=true;
                     $('#fortree :checked').each(function(){
                         if($(this).attr("class")=="fortwoFilter")
                         {
@@ -1190,7 +1240,7 @@ var p=1;
                                 two_first=false;
                             }
                             else fortwoFilter +=  ";" + $(this).val();
-                        }else
+                        }else if($(this).attr("class")=="forfourFilter")
                         {
                             if(four_first) 
                             {
@@ -1198,6 +1248,14 @@ var p=1;
                                 four_first=false;
                             }
                             else forfourFilter +=  ";" + $(this).val();   
+                        }else
+                        {
+                            if(six_first) 
+                            {
+                                forsixFilter = $(this).val();
+                                six_first=false;
+                            }
+                            else forsixFilter +=  ";" + $(this).val();                                   
                         }
 
                     }); 
@@ -1206,6 +1264,30 @@ var p=1;
             changeHashTo(formatSearch(search_term, 1, classFilter,num));
 
         }); 
+            
+          $('#gcmdbutton').click(function(){            
+                if( document.getElementById("gcmdfacet") != null)  
+                {
+                    var first = true;
+
+                    $('#gcmdfacet :checked').each(function(){
+                        if($(this).attr("class")=="gcmdFilter")
+                        {
+                            if(first) 
+                            {
+                                gcmdFilter = $(this).val();
+                                first=false;
+                            }
+                            else gcmdFilter +=  ";" + $(this).val();
+                        }
+
+                    }); 
+                }
+            mapSearch = 0;  
+            changeHashTo(formatSearch(search_term, 1, classFilter,num));
+
+        }); 
+           
         
         $('#facbutton').click(function(){           
               
@@ -1230,8 +1312,7 @@ var p=1;
               mapSearch = 0;
             changeHashTo(formatSearch(search_term, 1, classFilter,num));
 
-        });
-       
+        });       
      
         $("#region-select").change( function() {
             var regionid = $(this).val();
@@ -1266,9 +1347,10 @@ var p=1;
             if($(this).attr('id') == 'adv_bool') setCookie('adv_bool',1,2);
         });
         
-         if(getCookie('adv_bool')!=1){
+        if(getCookie('adv_bool')!=1)
+        {
                 $("#adv_bool").trigger('click');
-            }
+        }
         if($("#fortree li").size()<1)
         {
             $("#forfacet").hide();
@@ -1285,7 +1367,6 @@ var p=1;
               $("#facfacet").show();   
         } 
       
-
         $('.viewrecord').change(function(){
 
             var selected=$(this).find(":selected").val();
@@ -1319,17 +1400,14 @@ var p=1;
             }         
 
             doNormalSearch();   
-            changeHashTo(formatSearch(search_term, 1, classFilter,num));  
-           // updateTable(); 
+            changeHashTo(formatSearch(search_term, 1, classFilter,num));          
 
         });
-
         
          
-            $('.sort_record').on('change',function(){
+           $('.sort_record').on('change',function(){
 
-            // $("#loading").show();
-            var selected=$(this).find(":selected").val();
+           var selected=$(this).find(":selected").val();
             switch(selected)
             {
                 case "score":
@@ -1411,11 +1489,7 @@ var p=1;
                          $(this).removeClass('orangeGradient').addClass('greyGradient');
                          $(this).addClass('disabled');
                          $(this).html("Saved");
-                     }
-   
-
-
-                     
+                     }                     
                  });
                  
              $('#saveSearchBtn').click(function(){
@@ -1470,25 +1544,45 @@ var p=1;
                           }
                     }
                 });
-             });             
-
-        
+             });        
     } 
  
-    function doNormalSearch(){     
+    function populateGCMDChild(id)
+    {
+        $.ajax({
+                type:'POST',
+
+                url:base_url+"search/gcmdchild/",
+                data:"id="+id,
+                
+                success:function(data){
+
+                    $("#"+id).after(data);
+                    $('.gcmdkeyword').click(function(){
+
+                        populateGCMDChild($(this).attr('id'));
+                    });
+                },
+                error:function(msg){  
+
+                }
+            });
+    }
+    
+    function doNormalSearch(){   
         $.ajax({
             type:"POST", 
             url: base_url+"/search/filter/",
 
 //            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort +"&adv="+adv + "&ternRegionFilter=" + ternRegionFilter,
 
-            data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort + "&ternRegionFilter=" + ternRegionFilter+"&num="+num+"&mapsearch="+mapSearch,
+              data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&gcmdFilter="+gcmdFilter+"&temporal="+temporal+"&alltab=1&sort="+ resultSort + "&ternRegionFilter=" + ternRegionFilter+"&num="+num+"&mapsearch="+mapSearch,
+            //data:"q="+search_term+"&classFilter="+classFilter+"&typeFilter="+typeFilter+"&groupFilter="+groupFilter+"&subjectFilter="+subjectFilter+"&fortwoFilter="+fortwoFilter+"&forfourFilter="+forfourFilter+"&forsixFilter="+forsixFilter+"&page="+page+"&spatial_included_ids="+spatial_included_ids+"&temporal="+temporal+"&alltab=1&sort="+ resultSort + "&ternRegionFilter=" + ternRegionFilter+"&num="+num+"&mapsearch="+mapSearch,
 
-        
             success: function(msg,textStatus){
                 handleResults(msg,mapResult);
-                
-                 $('#clearSearchBtn').click(function()
+              
+                $('#clearSearchBtn').click(function()
                 {
                      resetFilter();
                      clearAll = 1;
@@ -1518,9 +1612,7 @@ var p=1;
                         
 
                     }); 
- 
-                 //updateTable();
-                 
+  
                  var opt=document.getElementsByName('select-view-record');
                  if(opt.length>0){
                      for(var s=0;s<opt.length;s++)
@@ -1534,7 +1626,6 @@ var p=1;
                             }
                         }     
                      }
-
                  }
                  
                  //sorting
@@ -1561,7 +1652,6 @@ var p=1;
                  
                  if (document.getElementById('fortree')==null ||document.getElementById('fortree').childNodes.length<1 )
                      $("#for-facet").hide();
-
              }
             ,
             error:function(msg){
@@ -1569,8 +1659,7 @@ var p=1;
                //  $("#loading").hide();
             }
         });
-    }
-        
+    }  
 
     /*
 
@@ -1609,10 +1698,10 @@ var p=1;
         $('#searchBtn').click(function(){
             page = 1;
             search_term = $('#search-box').val();
-
              
              if(search_term==''||search_term=='Search ecosystem data')     
              {
+                
                 $("#dialog-confirm"). dialog({
                     resizable: false,
                     height: 140,
@@ -1621,7 +1710,7 @@ var p=1;
                          "OK": function() { 
                                search_term='*:*';
                                checkCookie();
-                               
+                      
                                 changeHashTo(formatSearch(search_term, 1, classFilter,num));  
                           },
                           "Cancel": function(){
@@ -1634,8 +1723,6 @@ var p=1;
                  checkCookie();
                  changeHashTo(formatSearch(search_term, 1, classFilter,num));   
              }
-           
-
         });     
          
          /*
@@ -1672,7 +1759,7 @@ var p=1;
               }
            }
        );
-        $("#carouselContainer img").click(function(){
+       $("#carouselContainer img").click(function(){
                var facname=$(this).attr("id");
                handleRandom(facname);
  	});
@@ -1682,15 +1769,18 @@ var p=1;
     function slide(){
         $('#carouselnext').click();
     }
+    
     function resetFilter(){
         subjectFilter = 'All';
         classFilter= 'collection';
         groupFilter= 'All';
         fortwoFilter='All';
         forfourFilter='All';
+        forsixFilter='All';
         search_term='*:*';
         temporal='All';
         ternRegionFilter = 'All';
+        gcmdFilter='All';
 
         n = '';
         e = '';
@@ -1703,8 +1793,7 @@ var p=1;
         page = 1;
         mapSearch=0;
         setCookie('geom','',2);
-        setCookie('bounds','',2);
-        
+        setCookie('bounds','',2);        
     }
         
     function initPreviewPage(){
@@ -1731,11 +1820,10 @@ var p=1;
 	                });		
 	        });		
 	        initViewMap('metadatamap','.spatial_coverage_center','.coverage');		
-    }			
- 
-
-        function doAjaxFavCookie()
-        {
+    }
+    
+    function doAjaxFavCookie()
+    {
                     $.ajax({
                             type:"POST",
                             url: base_url+"search/mySavedRecords?page="+1,
@@ -1804,10 +1892,10 @@ var p=1;
                     }
                 });
                 return false;
-        }
+    }
 
-        function doAjaxSearchCookie()
-        {
+    function doAjaxSearchCookie()
+    {
                     $.ajax({
                             type:"POST",
                             url: base_url+"search/mySavedSearches",
@@ -1858,7 +1946,6 @@ var p=1;
                 });
                 return false;
         }
-
 });
    
 
@@ -1883,7 +1970,6 @@ function autocomplete(id){
    
 
 }
-
 
 function initConnectionsBox(){
 
@@ -2017,9 +2103,7 @@ function initSubjectsSEEALSO(){
             url: base_url+"search/seeAlso/content/subjects",
             data:"q=*:*&classFilter=collection&typeFilter=All&groupFilter=All&subjectFilter="+subjectSearchstr+"&page="+seeAlsoPage+"&spatial_included_ids=&temporal=All&excluded_key="+key_value,
             success:function(msg){
-                //console.log("success" + msg);
-                
-                
+    
                 $("#infoBox").html(msg);
                 $.each($('.subjects li'), function(){
                     var txt= $(this).html().toProperCase();
@@ -2063,9 +2147,6 @@ function initSubjectsSEEALSO(){
                     }
                 }).height('auto');
 
-                //$('#infoBox').dialog().prepend('<div id="something-here" style="border:1px solid black;height:400px;width:400px;"></div>');
-                //$('#infoBox').overlay();
-
                 return false;
             },
             error:function(msg){
@@ -2088,7 +2169,7 @@ function getSeeAlsoAjax(group_value, subjectSearchstr, seeAlsoPage, key_value){
                      },
                      error:function(msg){}
              });
-	}
+}
 
 function initIdentifiersSEEALSO(){
 	var key_value=$('#key').text();
@@ -2198,27 +2279,26 @@ function initIdentifiersSEEALSO(){
         }
 }
 
-    function setupConnectionsBtns(){
+function setupConnectionsBtns(){
 		$(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
 		$('.button').button();
         $("#status").html($('#connectionsCurrentPage').html() + '/'+$('#connectionsTotalPage').html());
     }
     
-        function setupCookiesBtns(){
+function setupCookiesBtns(){
 		$(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
 		$('.button').button();
         $("#status").html($('#cookiesCurrentPage').html() + '/'+$('#cookiesTotalPage').html());
     }
     
-    function initViewMap(mapId, centerSelector,coverageSelector){
+function initViewMap(mapId, centerSelector,coverageSelector){
             var mapView = new MapWidget(mapId,true);
             mapView.addDataLayer(false,"transparent");
             mapView.addVectortoDataLayer(centerSelector,false);
             mapView.addVectortoDataLayer(coverageSelector,false);
    }
    
-
-    function setupCookiesBtns(){
+function setupCookiesBtns(){
             $(".accordion").accordion({autoHeight:false, collapsible:true,active:false});
             $('.button').button();
     $("#status").html($('#cookiesCurrentPage').html() + '/'+$('#cookiesTotalPage').html());
@@ -2247,12 +2327,10 @@ function handleRandom(facname)
     }
     })
 
-
 }
 
-
- function getCookie(c_name)
- {
+function getCookie(c_name)
+{
     var i,x,y,ARRcookies=document.cookie.split(";");
     for (i=0;i<ARRcookies.length;i++)
     {
@@ -2265,7 +2343,7 @@ function handleRandom(facname)
             return unescape(y);
         }
     }
- }
+}
 
 function setCookie(c_name,value,exdays)
 {
@@ -2277,7 +2355,6 @@ function setCookie(c_name,value,exdays)
     document.cookie=c_name + "=" + c_value+";path=/";
 }
 
- 
 function checkCookie()
 {
     
@@ -2302,8 +2379,6 @@ function checkCookie()
     
 }
 
-
-
 window.setInterval(function updateTable() 
 {
         $("#searchResults tr").each(function(){
@@ -2312,12 +2387,9 @@ window.setInterval(function updateTable()
         checkRecordinCookie($(this).find(".tblsaveRecord"),
                           $(this).find(".tblFav"),
                             $(this).find(".viewmeta").attr("href")+";"+$(this).find(".recordTitle").text());         
-        } 
-
-
+        }
     });
 },5000)
-
 
 function deleteCookie(c_name) {
     document.cookie = encodeURIComponent(c_name) + "=deleted; expires=" + new Date(0).toUTCString();

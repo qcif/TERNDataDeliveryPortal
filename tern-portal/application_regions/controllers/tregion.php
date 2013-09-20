@@ -85,7 +85,6 @@ class Tregion extends CI_Controller {
     
     public function newRecords()
     {
-        
        ob_end_clean();
         header("Connection: close\r\n");
         header("Content-Encoding: none\r\n");
@@ -95,7 +94,7 @@ class Tregion extends CI_Controller {
         header("Content-Length: $size");
         ob_end_flush();     
         flush();          
-        ob_end_clean();
+        //ob_end_clean();
         if($schedules = $this->Scheduler->getOrder(1)){ 
             $json = $this->load->file('../api/regions.json',TRUE);
             $rcf = json_decode($json,TRUE);
@@ -164,7 +163,8 @@ class Tregion extends CI_Controller {
                     foreach($response->docs as $doc){
                         $doc_c++;
                         //get spatial coverage                    
-                        $spatial_coverages = $doc->spatial_coverage;                        
+                        $spatial_coverages = $doc->spatial_coverage;      
+
                         if($layer_id)  $doc = $this->Solr->removeRegionSolrDoc($doc,$layer_id);  // remove region information before processing 
                         else $doc = $this->Solr->removeRegionSolrDoc($doc);
 
@@ -176,13 +176,15 @@ class Tregion extends CI_Controller {
                                         sort($index_id_arr);   
                                 }
                             }
-                        }else{ // if there's only one spatial coverage 
+                         }else{ // if there's only one spatial coverage 
                             if(checkValidCoords($spatial_coverages)){
                                 $index_id_arr = getRegionIndexId($this->doIntersect($spatial_coverages,$layer_id));
                             }
                         }    
-
-                        if(count($index_id_arr)>0) $resultDocs[] = $this->Solr->addRegion2SolrDoc($doc, $index_id_arr); 
+                        if(count($index_id_arr)>0) 
+                        {
+                            $resultDocs[] = $this->Solr->addRegion2SolrDoc($doc, $index_id_arr); 
+                        }
 
                     }
 
@@ -381,15 +383,15 @@ class Tregion extends CI_Controller {
                 for($i=0;$i<count($spatial_arr);$i++){ 
                      $spatial_arr[$i]  = str_replace(",", " ", $spatial_arr[$i]); 
                 }
+                   
                 $poly = implode(", ", $spatial_arr); 
-
-                if ($spatial_arr[0] != $spatial_arr[count($spatial_arr-1)] || count($spatial_arr) <= 3){ // if it's not a closed loop it's a line string
-                      $index_id_arr = $this->Regions->intersectLine($poly,$layer_id);
-                }else if(count($spatial_arr) > 3){
+                if ($spatial_arr[0] != $spatial_arr[count($spatial_arr)-1] || count($spatial_arr) <= 3){ // if it's not a closed loop it's a line string
+                    $index_id_arr = $this->Regions->intersectLine($poly,$layer_id);
+                }else if(count($spatial_arr) > 3){   
                     $index_id_arr = $this->Regions->intersectPoly($poly,$layer_id);
                 }
-             
             }
+
             return $index_id_arr;
     }
     

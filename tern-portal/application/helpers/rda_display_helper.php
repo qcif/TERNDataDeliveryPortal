@@ -17,6 +17,18 @@ limitations under the License.
 **/ 
 ?>
 <?php
+    
+define("RDFAPI_INCLUDE_DIR", "rdfapi/");
+include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
+
+error_reporting(1);
+ini_set('memory_limit', '-1');
+
+define("FOR_PREFIX","http://purl.org/asc/1297.0/2008/for/");
+define("SKOS_PREFIX","http://www.w3.org/2004/02/skos/core#");
+define("GCMD","http://gcmdservices.gsfc.nasa.gov/kms/concept/");
+define("GCMDBASE","sciencekeywords.rdf");
+
 function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$help_title,$help_content){
 	
 	$clear ='';$name = '';$class='';
@@ -34,14 +46,13 @@ function displayFacilitiesFacet($facet_name, $facetFilter, $json, $ro_class,$hel
         foreach($words as $w)
         {
             $g[]=urldecode($w);
-
         }
 
 	$object_type="";
 	$object_type = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
-      
+
         if(count($object_type)>0){
-            
+     
             echo '<li id="facfacet">';
            // echo '<div class="facet-list facet-content collapsiblePanel">';
             echo '<div class="content expand collapsiblePanel">';
@@ -215,11 +226,8 @@ function displaySelectedRegionFacet($facet_name, $facetFilter, $json,$regionsNam
                         }
                      }
                 }
-               
-                
             }
         }
-      
 }   
 
 /*
@@ -233,6 +241,7 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
 		case "type":$clear = 'clearType';$name='Types';$class="typeFilter";break;
 		case "group":$clear = 'clearGroup';$name='Facilities';$class="groupFilter";break;
 
+                case "gcmd":$clear ='clearGCMD'; $name='GCMD'; $class="gcmdFilter";break;
 		//case "subject_value":$clear = 'clearSubjects';$name="Keywords";$class="subjectFilter";break;
                 case "subject_value_resolved":$clear = 'clearSubjects';$name="Subjects";$class="subjectFilter";break;
 
@@ -244,7 +253,7 @@ function displaySelectedFacet($facet_name, $facetFilter, $json){
         // handle it if facetFilter is an array 
         $facetFilter = explode(";",$facetFilter);
         //print the selected 
-        
+   
         echo '<h2>'.$name.'</h2>';
         echo '<ul>';
         for($i=0; $i<count($facetFilter); $i++){
@@ -302,10 +311,7 @@ function displaySelectedTerm($query, $json){
               
   
         }
-        echo '</ul>';
-
-        
-            
+        echo '</ul>';            
 } 
 /*
  * Construct a SOLR based filter query
@@ -317,7 +323,8 @@ function constructFilterQuery($class, $groups){
 		case 'class':$str='+class:(';break;
 		case 'type':$str='+type:(';break;
 		case 'group':$str='+group:(';break;
-
+                
+                case 'gcmd':$str='+gcmd:(';break;
 		//case 'subject_value':$str='+subject_value:(';break;
                 case 'subject_value_resolved':$str='+subject_value_resolved:(';break;
 
@@ -352,11 +359,12 @@ function constructFORQuery($class,$forvalues)
     if($class=='for_value_two')
     {
         $forField="for_value_two";
-
-    }else
+    }else if ($class=='for_value_four')
     {
        $forField="for_value_four";
-
+    }else
+    {
+        $forField="for_value_six";
     }
     $words=explode(';',$forvalues);
     $first=true;
@@ -386,8 +394,9 @@ function escapeSolrValue($string){
 	//$string = urldecode($string); 
     $match = array('\\','&', '|', '!', '(', ')', '{', '}', '[', ']', '^', '~', '*', '?', ':', '"', ';');
     $replace = array('\\\\','\\&', '\\|', '\\!', '\\(', '\\)', '\\{', '\\}', '\\[', '\\]', '\\^', '\\~', '\\*', '\\?', '\\:', '\\"', '\\;');
-        $string = str_replace($match, $replace, $string);
-        return urlencode($string);
+    $string = str_replace($match, $replace, $string);
+    
+    return urlencode($string);
     }
 
 /*
@@ -484,14 +493,12 @@ function view_url(){
 	return getHTTPs($ci->config->item('orca_url')).$ci->config->item('orca_view_point');
 }
 
-
 /*Get response from a http request*/
 function get_http_response_code($url) {
 	$headers = get_headers($url);
 	return substr($headers[0], 9, 3);
-	}
-
-        
+}
+      
 function showBrief($str, $length) {
   $str = strip_tags($str);
   $str = explode(" ", $str);
@@ -515,10 +522,7 @@ function displayFacet4Mobile($facet_name, $facetFilter, $json, $ro_class, $obj){
 
 	}
 
-
-
 	echo '<div class="right-box" data-role="collapsible">';
-
 
 	echo '<h2>'.$name;
 	echo '</h2>';
@@ -552,8 +556,7 @@ function stripFORString($str)
 
 function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facettwoFilter, $json, $ro_class, $obj,$help_title,$help_text)
 {
-	//$clear =$facetName;$class=$facetFilter;
-     
+
     $words=explode(';',$facetfourFilter);
     $four=array();
 
@@ -571,7 +574,7 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
        $two[]=$wt;
 
     }
-//print_r($two);
+
 //code        
         $code2 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_two'};
         $code4 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_four'};
@@ -592,7 +595,6 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
         $out_code4[$code4[$j]]=$code4[$j+1];
     } 
 
-
     //copy text value to array      
     for($j=0;$j<count($object_type2);$j=$j+2)
     {
@@ -606,164 +608,497 @@ function displayFORFacet($facettwo,$facetfour,$facetsix,$facetfourFilter,$facett
         $out4[$object_type4[$j]]=$object_type4[$j+1];
     }
     
-if(count($out2)>0)    
-{
-    //print_r($out4);
-        echo '<li id="forfacet">';
-        echo '<div class="content expand collapsiblePanel">';
-	echo '<h2><a class="hide">Field of Research</a>';
-        echo '</h2>';
-	//echo '<div class="facet-list" >';
-        echo '<div>';
-     
-//build FOR tree	
-	echo '<ul class="facetTree treeview-red" id="fortree">'; 
-               $out_keys4=array_keys($out4);
-               $out_keys2=array_keys($out2);
+    if(count($out2)>0)    
+    {
+            echo '<li id="forfacet">';
+            echo '<div class="content expand collapsiblePanel">';
+            echo '<h2><a class="hide">Field of Research</a>';
+            echo '</h2>';
+            echo '<div>';
 
-               $out_code_keys4=array_keys($out_code4);
+    //build FOR tree	
+            echo '<ul class="facetTree treeview-red" id="fortree">'; 
+                   $out_keys4=array_keys($out4);
+                   $out_keys2=array_keys($out2);
 
-               $out_code_keys2=array_keys($out_code2);
-               
-                for($i=0;$i< count($out_keys2);$i=$i+1)
-                {  
-                    if($out2[$out_keys2[$i]]>0)
-                    {
-                        if($out_keys2[$i]!=null)
-                        {             
-                            $index=findFORChildFour($out_code_keys2[$i],$out_code_keys4);
+                   $out_code_keys4=array_keys($out_code4);
 
-                            if(!checkInFilter($out_keys2[$i],$two))
-                            {
-                                //print_r(count($index));
-                                if(count($index)==0)//no child node under 2 digits FOR
-                                { 
-                                    echo '<li>
-                                            <input type="checkbox" 
-                                                    name="twoFOR"
-                                                    value="'.$out_keys2[$i].'" 
-                                                    class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/><span> '.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')'.'</span></li>';
-                                }else//found child
+                   $out_code_keys2=array_keys($out_code2);
+
+                    for($i=0;$i< count($out_keys2);$i=$i+1)
+                    {  
+                        if($out2[$out_keys2[$i]]>0)
+                        {
+                            if($out_keys2[$i]!=null)
+                            {             
+                                $index=findFORChildFour($out_code_keys2[$i],$out_code_keys4);
+
+                                if(!checkInFilter($out_keys2[$i],$two))
                                 {
-                                   // if($out2[$out_keys2[$i]]>0)
-                                    //{    
-                                        //get values from $index[]. create <ul>
+                                    //print_r(count($index));
+                                    if(count($index)==0)//no child node under 2 digits FOR
+                                    { 
                                         echo '<li>
-                                                <input type="checkbox"
+                                                <input type="checkbox" 
                                                         name="twoFOR"
                                                         value="'.$out_keys2[$i].'" 
-                                                        class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/><span> '.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')</span>';
+                                                        class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/><span> '.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')'.'</span></li>';
+                                    }else//found child
+                                    {
+                                            echo '<li>
+                                                    <input type="checkbox"
+                                                            name="twoFOR"
+                                                            value="'.$out_keys2[$i].'" 
+                                                            class="fortwoFilter'.'" id="'.$out_keys2[$i].'"/><span> '.$out_keys2[$i].' ('.number_format($out2[$out_keys2[$i]]).')</span>';
 
-                                        echo    '<ul>';
+                                            echo    '<ul>';
 
-                                                    for($k=0;$k<count($index);$k++)
-                                                    {
-                                                        
-                                                        if(!checkInFilter($out_keys4[$index[$k]],$four)&& $out4[$out_keys4[$index[$k]]]>0)
+                                                        for($k=0;$k<count($index);$k++)
                                                         {
-                                                            echo '<li>
 
-                                                                <input type="checkbox"
-                                                                    name="fourFOR"
-                                                                    value="'.$out_keys4[$index[$k]].'" 
-                                                                    class="forfourFilter'.'" id="'.$out_keys4[$index[$k]].'"/><span> '.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).')'.'</span>';
-                                                            echo '</li>';
+                                                            if(!checkInFilter($out_keys4[$index[$k]],$four)&& $out4[$out_keys4[$index[$k]]]>0)
+                                                            {
+                                                                echo '<li>
+
+                                                                    <input type="checkbox"
+                                                                        name="fourFOR"
+                                                                        value="'.$out_keys4[$index[$k]].'" 
+                                                                        class="forfourFilter'.'" id="'.$out_keys4[$index[$k]].'"/><span> '.$out_keys4[$index[$k]].' ('.number_format($out4[$out_keys4[$index[$k]]]).')'.'</span>';
+                                                                echo '</li>';
+                                                            }
+
                                                         }
+                                            echo    '</ul>'; 
 
-                                                    }
-                                        echo    '</ul>'; 
-
-                                        echo '</li>'; 
-                                    //}
-
+                                            echo '</li>'; 
+                                        //}
+                                    }
                                 }
                             }
                         }
                     }
-                }
 
+            echo '</ul>';
+    //end FOR tree
+            //echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
+            echo '<a href="javascript:void(0);" id="forbutton" class="greenGradient smallRoundedCorners" >GO</a>';
+            echo '</div>';
+            echo '</div>';
+            echo '<div id="for-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
+            echo '</li>';
 
-       	echo '</ul>';
-//end FOR tree
-        //echo '<button id="forbutton" class="buttonSearch srchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">Search</span></button>';
-        echo '<a href="javascript:void(0);" id="forbutton" class="greenGradient smallRoundedCorners" >GO</a>';
-	echo '</div>';
-        echo '</div>';
-        echo '<div id="for-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
-        echo '</li>';
-      
-}
+    }
 
 }
 
 function findFORChildFour($twocode,$code_arr4)
 {
-    
-// print_r ($code_arr4);
     $idx=array();
     
     for ($n=0;$n<count($code_arr4);$n++)
     {        
-               //print_r (substr($code_arr4[$n],0,2));
-               //print_r (substr($twocode,0,2));
         if((substr($twocode,0,2)==substr($code_arr4[$n],0,2))&& ($twocode!=$code_arr4[$n]))
         {
 
             $idx[]=$n;
         }
     }
-    //print_r($idx);
+
     return $idx;
 }
 
 function checkInFilter($word,$filter)
-{
-//print_r(count($filter));
-   // die(); 
+{    
     $r=false;
-     for ($n=0;$n<count($filter);$n++)
-     {
-            //print_r($word."    and   ".urldecode($filter[$n]));
-        if($word==$filter[$n])
-        {
+    for ($n=0;$n<count($filter);$n=$n+2)
+    {
+        if($word==rtrim($filter[$n],"0"))
+        {     
             $r=true;
             return true;
         }
-     }
+    }
      return $r;
 }
 
-        function displayPagination($currentPage,$totalPage,$num)
+function displayPagination($currentPage,$totalPage,$num)
+{
+        for ($x = $currentPage-1; $x < ($currentPage + $num); $x++) 
         {
-                for ($x = $currentPage-1; $x < ($currentPage + $num); $x++) 
-                {
-                    if (($x > 0) && ($x <= $totalPage)) 
-                    { //if it's valid
-                            if($x==$currentPage){//if we're on currentPage
-                                    //echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
-                                echo '<span class="currentPageNum">'.$x.'</span>';//don't make a link
-                            }else{//not CurrentPage
-                                    echo '<a href="javascript:void(0);" class="gotoPage" id="'.$x.'">'.$x.'</a>';
-                            }
-                    }              
-                 }
-        }
+            if (($x > 0) && ($x <= $totalPage)) 
+            { //if it's valid
+                    if($x==$currentPage){//if we're on currentPage
+                            //echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
+                        echo '<span class="currentPageNum">'.$x.'</span>';//don't make a link
+                    }else{//not CurrentPage
+                            echo '<a href="javascript:void(0);" class="gotoPage" id="'.$x.'">'.$x.'</a>';
+                    }
+            }              
+         }
+}
 
-        function displayPaginationBackward($currentPage,$totalPage,$num)
+function displayPaginationBackward($currentPage,$totalPage,$num)
+{
+        for ($x = ($currentPage-$num); $x <=$totalPage; $x++) 
         {
-                for ($x = ($currentPage-$num); $x <=$totalPage; $x++) 
+            if (($x > 0) && ($x <= $totalPage)) 
+            { //if it's valid
+                    if($x==$currentPage){//if we're on currentPage
+                            //echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
+                        echo '<span class="currentPageNum">'.$x.'</span>';//don't make a link
+                    }else{//not CurrentPage
+                            echo '<a href="javascript:void(0);" class="gotoPage" id="'.$x.'">'.$x.'</a>';
+                    }
+            }              
+         }
+}   
+
+function displayFOR($facettwo,$facetfour,$facetsix,$facetfourFilter,$facettwoFilter,$facetsixFilter, $json, $ro_class, $obj,$help_title,$help_text)
+{   
+    $words=explode(';',$facetfourFilter);
+    $four=array();
+
+    foreach($words as $w)
+    {
+       $four[]=$w;
+    }
+    
+    $wordstwo=explode(';',$facettwoFilter);
+    $two=array();
+
+    foreach($wordstwo as $wt)
+    {
+       $two[]=$wt;
+    }
+    
+    $wordsix=explode(';',$facetsixFilter);
+    $six=array();
+
+    foreach($wordsix as $ws)
+    {
+       $six[]=$ws;
+    }    
+//code        
+        $code2 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_two'};
+        $code4 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_four'};
+        $code6 = $json->{'facet_counts'}->{'facet_fields'}->{'for_code_six'};
+//values
+	$object_type2 = $json->{'facet_counts'}->{'facet_fields'}->{$facettwo};
+        $object_type4 = $json->{'facet_counts'}->{'facet_fields'}->{$facetfour};
+        $object_type6 = $json->{'facet_counts'}->{'facet_fields'}->{$facetsix};
+
+    $base="for08.rdf";
+
+    // Create a new MemModel
+    $model = ModelFactory::getDefaultModel();
+
+    // Load and parse document
+    $model->load($base);
+
+    $for2=array();//key value pairs for FOR2
+    $for4=array();//key value pairs for FOR4
+    $for6=array();//key value pairs for FOR6
+
+    $obj2=new Resource(FOR_PREFIX.'FOR2');
+    $obj4=new Resource(FOR_PREFIX.'FOR4');
+    $obj6=new Resource(FOR_PREFIX.'FOR6');
+
+    $result2=$model->find(NULL,NULL,$obj2);
+    $result4=$model->find(NULL,NULL,$obj4);
+    $result6=$model->find(NULL,NULL,$obj6);
+
+    //create key/value pairs for FoR2,FoR4 and FoR6
+    $for2=buildFoRMap($result2,$model);
+    $for4=buildFoRMap($result4,$model);
+    $for6=buildFoRMap($result6,$model);
+
+    $forall=array_merge($for2,$for4,$for6);
+
+    echo '<li id="forfacet">';
+    echo '<div class="content expand collapsiblePanel">';
+    echo '<h2><a class="hide">Field of Research</a>';
+    echo '</h2>';
+    echo '<div>';
+        
+    $keys2=array_keys($for2);
+    $keys4=array_keys($for4);
+    $keys6=array_keys($for6);
+    
+    echo '<ul class="facetTree treeview-red treeview" id="fortree">';
+
+    for($i=0;$i<count($for2);$i++)
+    {          
+      $idx=array_search(substr($keys2[$i],strrpos($keys2[$i],'/')+1).'0000',$code2);
+ 
+      if (checkInFilter(substr($keys2[$i],strrpos($keys2[$i],'/')+1),$code2)&& number_format($code2[$idx+1])>0)
+      {     
+            echo '<li>
+                     <input type="checkbox" 
+                            name="twoFOR"
+                            value="'.mb_strtoupper($for2[$keys2[$i]]).'" 
+                            class="fortwoFilter'.'" id="'.$for2[$keys2[$i]].'"/><span> '.mb_strtoupper($for2[$keys2[$i]]).'('.$code2[$idx+1].')</span>';
+            findChild($keys2[$i],$model,$forall,'fourFOR','forfourFilter',$keys4,$code4,$keys6,$code6);
+
+            echo '</li>' ;
+      }
+    }
+
+    echo '</ul>';
+    
+    echo '<a href="javascript:void(0);" id="forbutton" class="greenGradient smallRoundedCorners" >GO</a>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div id="for-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
+    echo '</li>'; 
+}
+
+function displayGCMD($facet_name, $facetFilter, $json, $ro_class,$help_title,$help_content)
+{   
+    $words=explode(';',$facetFilter);
+    $gcmd=array();
+
+    foreach($words as $w)
+    {
+       $gcmd[]=$w;
+    }    
+    
+    $gcmd_value = $json->{'facet_counts'}->{'facet_fields'}->{$facet_name};
+      
+    $tree= array();
+    foreach ($gcmd_value as $val)
+    {
+        $valuePart=explode('-',$val);      
+        $subTree=array(array_pop($valuePart));
+        foreach (array_reverse($valuePart)as $d)
+        {
+            $subTree=array($d=>$subTree);
+        }
+        $tree=array_merge_recursive($tree,$subTree);
+    }
+    
+    foreach($tree as $key=>$value)
+    {
+        if(is_int($key))
+        {
+            unset($tree[$key]);
+        }
+    }
+    
+    echo '<li id="gcmdfacet">';
+    echo '<div class="content expand collapsiblePanel">';
+    echo '<h2><a id="testa" class="hide">GCMD</a>';
+    echo '</h2>';
+    echo '<div>';    
+ 
+    echo '<ul id="gcmdtree"  class="facetTree treeview-red treeview">';
+
+    generateTree($tree,$gcmd_value);
+    
+    echo '</ul>';
+    
+    echo '<a href="javascript:void(0);" id="gcmdbutton" class="greenGradient smallRoundedCorners" >GO</a>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div id="gcmd-help-text" title="'.$help_title.'" class="hide" >'.$help_text.'</div>';
+    echo '</li>';
+
+ }
+
+ function generateTree($tree,$gcmd_value) 
+ {    
+     
+     $keys=array_keys($tree);
+     
+     for($s=0;$s<count($keys);$s++)
+     {
+         echo   '<li>'.
+                          '<input type="checkbox" 
+                                        name="'.$keys[$s].'"
+                                        value="'.$keys[$s].'" 
+                                        class="gcmdFilter" id="'.$keys[$s].'"/><span>'.ucwords(strtolower($keys[$s])).'</span>';
+
+         if (count($tree[$keys[$s]])>0)
+         {
+
+                createChild($tree[$keys[$s]],$keys[$s],$gcmd_value);
+
+         }         
+         echo    '</li>';
+     }
+
+ }
+ 
+ function createChild($p,$parent,$gcmd_value)
+ {
+     echo '<ul>';          
+    
+     $tmpkey=array_keys($p);
+     for($b=0;$b<count($tmpkey);$b++)
+     {
+         if(is_int($tmpkey[$b]))
+         {
+             $x=$parent.'-'.$p[$tmpkey[$b]];
+             $c=findCount($x,$gcmd_value);
+                echo   '<li>'.
+                '<input type="checkbox" 
+                     name="'.$p[$tmpkey[$b]].'"
+                     value="'.$parent.'-'.$p[$tmpkey[$b]].'" 
+                      class="gcmdFilter" id="'.$parent.'-'.$p[$tmpkey[$b]].'"/><span>'.ucwords(strtolower($p[$tmpkey[$b]])).'('.$c.')</span>';          
+                
+                createChild($p[$tmpkey[$b]],$parent.'-'.$p[$tmpkey[$b]],$gcmd_value);
+            echo '</li>';
+         }else
+         {
+             //$z=$parent.'-'.$tmpkey[$b];
+            // $cnt=findCount($z,$gcmd_value);
+            echo   '<li>'.
+                '<input type="checkbox" 
+                     name="'.$tmpkey[$b].'"
+                     value="'.$parent.'-'.$tmpkey[$b].'" 
+                     class="gcmdFilter" id="'.$parent.'-'.$tmpkey[$b].'"/><span>'.ucwords(strtolower($tmpkey[$b])).'</span>';
+          
+                createChild($p[$tmpkey[$b]],$parent.'-'.$tmpkey[$b],$gcmd_value);
+            echo '</li>';
+         }
+          
+     }
+
+     echo '</ul>';
+ }
+ 
+ function findCount($x,$gcmd_value)
+ {
+     $key=array_search($x,$gcmd_value);
+     
+     return $gcmd_value[$key+1];;
+ }
+//find FoR label by subject uri
+function findLabel($model,$subj)
+{
+    $r=SKOS_PREFIX.'prefLabel';
+    $pred=new Resource($r);    
+
+    $result=$model->find($subj,$pred,NULL);
+    
+    $it = $result->getStatementIterator();
+    $l='';
+    
+    if($it->hasNext())
+    {
+      $stat=$it->next();
+      $l=$stat->getLabelObject();
+    }
+
+    return $l;
+}
+
+function buildFoRMap($r,$model)
+{
+    $for=array();
+    $it = $r->getStatementIterator();
+
+    while ($it->hasNext()) 
+    {
+        $statement = $it->next();
+        $s=new Resource($statement->getLabelSubject());
+
+        $lbl=findLabel($model,$s);
+
+        $for[$statement->getLabelSubject()]=$lbl;
+     }
+
+     return $for;
+}
+
+function findChild($sub,$model,$forall,$name,$class,$k,$code,$k6=null,$c6=null)
+{
+    $res=new Resource($sub);
+    $pred=new Resource(SKOS_PREFIX.'narrower');
+    $n=$model->find($res,$pred,NULL);
+
+    $iterator=$n->getStatementIterator();
+    
+        echo '<ul class="forchild">';
+    
+        while($iterator->hasNext())
+        {
+            $statement=$iterator->next();
+            $ol=$forall[$statement->getLabelObject()];
+            
+            if($class=='forsixFilter')
+            {
+                $idx=array_search(substr($statement->getLabelObject(),strrpos($statement->getLabelObject(),'/')+1),$code);
+            }
+            else if($class=='forfourFilter')
+            {
+                $idx=array_search(substr($statement->getLabelObject(),strrpos($statement->getLabelObject(),'/')+1).'00',$code);
+            }
+            
+            if (checkInFilter(substr($statement->getLabelObject(),strrpos($statement->getLabelObject(),'/')+1),$code)&& number_format($code[$idx+1])>0)
+            {           
+                if($class=='forsixFilter')
                 {
-                    if (($x > 0) && ($x <= $totalPage)) 
-                    { //if it's valid
-                            if($x==$currentPage){//if we're on currentPage
-                                    //echo '<a class="pagination-page pagination-currentPage">'.$x.'</a>';//don't make a link
-                                echo '<span class="currentPageNum">'.$x.'</span>';//don't make a link
-                            }else{//not CurrentPage
-                                    echo '<a href="javascript:void(0);" class="gotoPage" id="'.$x.'">'.$x.'</a>';
-                            }
-                    }              
-                 }
-        }       
+                     echo '<li> <input type="checkbox" 
+                                name="'.$name.'"
+                                value="'.$ol.'" 
+                                class="'.$class.'" id="'.$ol.'"/><span> '.$ol.'('.$code[$idx+1].')</span>';
+                
+                     echo '</li>';
+                }else
+                {
+                    echo '<li> <input type="checkbox" 
+                                name="'.$name.'"
+                                value="'.strtoupper($ol).'" 
+                                class="'.$class.'" id="'.$ol.'"/><span> '.$ol.'('.$code[$idx+1].')</span>';
+                    findChild($statement->getLabelObject(),$model,$forall,'sixFOR','forsixFilter',$k6,$c6);
+                    echo '</li>';
+                }
+            }
+        }
+    
+       echo'</ul>';    
+}
+
+function checkGCMD($gcmd,$gcmdAll)
+{
+    $flag=false;
+   
+    $l=count($gcmdAll);
+    for($m=0;$m<$l;$m++)
+    {
+            if(strtoupper(trim($gcmd))==strtoupper(trim($gcmdAll[$m])))
+            {
+               $flag=true;
+            }     
+    }    
+    return $flag;
+}
+
+function findChildGCMD($p,$model)
+{
+    $pr=new Resource(GCMD.$p);
+    $pred=new Resource(SKOS_PREFIX.'narrower');
+
+    $children=$model->find($pr,$pred,NULL);
+    $iter=$children->getStatementIterator();
+    
+    echo '<ul>';
+    
+    while($iter->hasNext())
+    {
+        $statement=$iter->next();
+        $t=new Resource($statement->getLabelObject());
+        
+        $temp=$statement->getLabelObject();
+        $id=substr($temp,strrpos($temp,'/')+1);
+
+        echo '<li id="'.$id.'" class="gcmdkeyword">';
+        echo   '<a>'.findLabel($model, $t).'</a>';
+        echo '</li>';
+    }
+
+    echo '</ul>';
+}
 
 /*
 // is this still being used? 

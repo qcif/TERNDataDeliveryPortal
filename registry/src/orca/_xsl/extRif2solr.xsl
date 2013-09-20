@@ -19,47 +19,46 @@
             <xsl:apply-templates select="ro:key"/>
 
         <xsl:choose>
-			<xsl:when test="extRif:extendedMetadata">
-	        	<xsl:apply-templates select="extRif:extendedMetadata/extRif:keyHash"/>
+		 <xsl:when test="extRif:extendedMetadata">
+	            <xsl:apply-templates select="extRif:extendedMetadata/extRif:keyHash"/>
 	            <xsl:apply-templates select="extRif:extendedMetadata/extRif:status"/>
 	            <xsl:apply-templates select="extRif:extendedMetadata/extRif:reverseLinks"/> 
 	            <xsl:apply-templates select="extRif:extendedMetadata/extRif:searchBaseScore"/>
-	 			<xsl:apply-templates select="extRif:extendedMetadata/extRif:registryDateModified"/>
+	 	    <xsl:apply-templates select="extRif:extendedMetadata/extRif:registryDateModified"/>
 	            <xsl:apply-templates select="ro:originatingSource"/>
 	            <xsl:apply-templates select="extRif:extendedMetadata/extRif:dataSourceKey"/> 
 	            <xsl:apply-templates select="extRif:extendedMetadata/extRif:dataSourceKeyHash"/> 
 	            <xsl:apply-templates select="extRif:extendedMetadata/extRif:displayTitle"/> 
 	            <xsl:apply-templates select="extRif:extendedMetadata/extRif:listTitle"/>  
 	            <xsl:apply-templates select="extRif:extendedMetadata/extRif:flag"/>
-      			<xsl:apply-templates select="extRif:extendedMetadata/extRif:warning_count"/>
-      			<xsl:apply-templates select="extRif:extendedMetadata/extRif:error_count"/>
-     			<xsl:apply-templates select="extRif:extendedMetadata/extRif:url_slug"/>
-      			<xsl:apply-templates select="extRif:extendedMetadata/extRif:manually_assessed_flag"/>
-      			<xsl:apply-templates select="extRif:extendedMetadata/extRif:gold_status_flag"/>
-      			<xsl:apply-templates select="extRif:extendedMetadata/extRif:quality_level"/>
-      			<xsl:apply-templates select="extRif:extendedMetadata/extRif:feedType"/>           	
+      		    <xsl:apply-templates select="extRif:extendedMetadata/extRif:warning_count"/>
+      		    <xsl:apply-templates select="extRif:extendedMetadata/extRif:error_count"/>
+     		    <xsl:apply-templates select="extRif:extendedMetadata/extRif:url_slug"/>
+      		    <xsl:apply-templates select="extRif:extendedMetadata/extRif:manually_assessed_flag"/>
+      		    <xsl:apply-templates select="extRif:extendedMetadata/extRif:gold_status_flag"/>
+      		    <xsl:apply-templates select="extRif:extendedMetadata/extRif:quality_level"/>
+      		    <xsl:apply-templates select="extRif:extendedMetadata/extRif:feedType"/>           	
         	</xsl:when>
         	<xsl:otherwise>
-	        	<xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:keyHash"/>
+	            <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:keyHash"/>
 	            <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:status"/>
 	            <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:reverseLinks"/> 
 	            <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:searchBaseScore"/>
-	 			<xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:registryDateModified"/>
+	 	    <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:registryDateModified"/>
 	            <xsl:apply-templates select="ro:originatingSource"/>
 	            <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:dataSourceKey"/> 
 	            <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:dataSourceKeyHash"/> 
 	            <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:displayTitle"/> 
 	            <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:listTitle"/>
 	            <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:flag"/>
-      			<xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:warning_count"/>
-      			<xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:error_count"/>
-     			<xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:url_slug"/>
-      			<xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:manually_assessed_flag"/>
-      			<xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:gold_status_flag"/>
-      			<xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:quality_level"/>
-      			<xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:feedType"/>
-      			
-        	</xsl:otherwise>
+      		    <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:warning_count"/>
+      		    <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:error_count"/>
+     		    <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:url_slug"/>
+      		    <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:manually_assessed_flag"/>
+      		    <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:gold_status_flag"/>
+      		    <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:quality_level"/>
+      		    <xsl:apply-templates select="following-sibling::extRif:extendedMetadata[@key = $roKey]/extRif:feedType"/>
+      		</xsl:otherwise>
         </xsl:choose>
 
             <xsl:element name="field">
@@ -255,6 +254,8 @@
         		<xsl:apply-templates select="ro:description" mode="type"/>
         	</xsl:otherwise>
         </xsl:choose>
+        
+        <xsl:apply-templates select="ro:subject[@type='gcmd']" mode="value"/>
         <xsl:apply-templates select="ro:subject[@type='anzsrc-for']" mode="code"/>
 
         
@@ -481,7 +482,19 @@
 
     
     <xsl:template match="ro:name"/>
-   		
+    
+        <!--Added for gcmd -->		
+    <xsl:template match="ro:subject[@type='gcmd']" mode="value">
+        
+        <xsl:element name="field">
+            <xsl:attribute name="name">gcmd</xsl:attribute>
+            
+             <xsl:variable name="tval" select="."/> 
+            <xsl:value-of select="translate(translate($tval,'>','-'),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>  
+        </xsl:element> 
+        
+    </xsl:template> 
+        
      <!--Added for FOR -->
     <xsl:template match="ro:subject[@type='anzsrc-for']" mode="code">
         
