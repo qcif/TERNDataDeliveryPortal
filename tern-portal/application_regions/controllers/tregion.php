@@ -48,7 +48,7 @@ class Tregion extends CI_Controller {
         header("Content-Length: $size");
         ob_end_flush();     
         flush();          
-        ob_end_clean();
+//        ob_end_clean();
        
         if($schedules = $this->Scheduler->getOrder(0,$id)){  // if there is a schedule found
             
@@ -95,7 +95,7 @@ class Tregion extends CI_Controller {
         header("Content-Length: $size");
         ob_end_flush();     
         flush();          
-        ob_end_clean();
+//        ob_end_clean();
         if($schedules = $this->Scheduler->getOrder(1)){ 
             $json = $this->load->file('../api/regions.json',TRUE);
             $rcf = json_decode($json,TRUE);

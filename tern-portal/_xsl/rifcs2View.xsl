@@ -772,7 +772,7 @@ DOI:
                         <xsl:value-of select="substring-after(.,'doi.org/')"/>
                 </xsl:when>
                 <xsl:otherwise>
-                <xsl:value-of select="./ro:identifier/@type"/>: <xsl:value-of select="./ro:identifier"/><br />   			
+                <xsl:value-of select="./ro:identifier/@type"/><xsl:value-of select="."/><br />   			
                 </xsl:otherwise>          		
         </xsl:choose>
     </xsl:variable>   	  
