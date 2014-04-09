@@ -87,7 +87,8 @@ function endSession()
 
 function getUserAgent()
 {
-	return $_SERVER['HTTP_USER_AGENT'];
+	//return $_SERVER['HTTP_USER_AGENT'];
+	return isset($_SERVER['HTTP_USER_AGENT'])&& $_SERVER['HTTP_USER_AGENT'];
 }
 
 function getRemoteAddress()

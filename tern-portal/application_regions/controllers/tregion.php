@@ -383,7 +383,7 @@ class Tregion extends CI_Controller {
                 }
                 $poly = implode(", ", $spatial_arr); 
 
-                if ($spatial_arr[0] != $spatial_arr[count($spatial_arr-1)] || count($spatial_arr) <= 3){ // if it's not a closed loop it's a line string
+                if ($spatial_arr[0] != $spatial_arr[count($spatial_arr)-1] || count($spatial_arr) <= 3){ // if it's not a closed loop it's a line string
                       $index_id_arr = $this->Regions->intersectLine($poly,$layer_id);
                 }else if(count($spatial_arr) > 3){
                     $index_id_arr = $this->Regions->intersectPoly($poly,$layer_id);

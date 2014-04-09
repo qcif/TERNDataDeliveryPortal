@@ -2,7 +2,7 @@
 
 <#setting number_format="0.###">
 <#attempt> 
-<div class="info_left"><img class="logo_right" src="http://tern9.qern.qcif.edu.au/img/logos/logo-ltern.png"/><h3>Plot Network information: </h3>
+<div class="info_left"><img class="logo_right" src="http://130.220.210.158/img/logos/logo-ltern.png"/><h3>Plot Network information: </h3>
 <#assign x=1>
  <#list features as feature>
 <#if x==1>

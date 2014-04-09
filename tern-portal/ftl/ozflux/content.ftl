@@ -3,7 +3,7 @@
 <#setting number_format="0.###">
 <#attempt> 
 
-<div class="info_left"><img class="logo_right" src="http://portal.tern.org.au/img/logos/logo-ozflux.jpg"/><h3>Flux Station details: </h3>
+<div class="info_left"><img class="logo_right" src="http://130.220.210.158/img/logos/logo-ozflux.jpg"/><h3>Flux Station details: </h3>
 <#assign x=1>
  <#list features as feature>
 <#if x==1>

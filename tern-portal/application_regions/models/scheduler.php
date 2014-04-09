@@ -99,6 +99,10 @@ class Scheduler extends CI_Model {
     }
         
     function insertSchedule($start_timestamp = null, $end_timestamp = null, $run_schedule = null, $l_id=null, $rec_start=0, $cat=0 ){
+	$convert_start=null;      
+	$convert_end=null;
+	$convert_run=null;
+
        if($start_timestamp) $convert_start = ' AT TIME ZONE \'UTC\'';
        if($end_timestamp) $convert_end = ' AT TIME ZONE \'UTC\'';    
        if($run_schedule) $convert_run = ' AT TIME ZONE \'UTC\'';    
