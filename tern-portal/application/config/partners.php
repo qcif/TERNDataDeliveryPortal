@@ -25,7 +25,7 @@
                 "location": ["http://www.tern.org.au/The-Australian-Terrestrial-Ecosystem-Research-Network-Data-Discovery-Portal-pg17727.html"]
             }, 
             {
-                "key": "ecoinformatics",
+                "key": "AEKOS",
 
                 "display_title": "Ecoinformatics",
 
@@ -112,10 +112,10 @@
                 "location": ["http://www.tern.org.au/ausplots.html"]
             },    
             {
-                "key": "ltern",
+                "key": "LTERN",
                 "display_title": "Long Term Ecological Research Network",
                 "alt_name": "LTERN",  
-                "query_name": "ltern",                 
+                "query_name": "LTERN",                 
                  "description_type": [
                     "logo",
                     "full"
@@ -162,12 +162,12 @@
                  "location": ["http://www.tern.org.au/Soil-and-Landscape-Grid-of-Australia-pg17731.html"]
             },            
             {
-                "key": "coastal",
+                "key": "acef",
 
                 "display_title": "Australian Coastal Ecosystems",
 
-                "alt_name": "ACE", 
-                "query_name": "coastal",               
+                "alt_name": "ACEF", 
+                "query_name": "Australian Coastal Ecosystems Facility,TERN",               
                 "description_type": [
                     "logo",
                     "full"
